@@ -17,13 +17,8 @@ import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
 import net.spross.app.widget.WordWidget
-import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
-import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
-import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.BoxStatistics
-import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.catalog.Catalog
@@ -34,7 +29,6 @@ import net.spross.kern.catalog.dateDrillContent
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
-import net.spross.kern.session.HomeStanding
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
@@ -112,8 +106,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var switchingLanguage by mutableStateOf(false)
         private set
-    var stats by mutableStateOf<BoxStatistics?>(null)
-        private set
+    /** The numbers the box surfaces read, taken again whenever the box moves. */
+    val numbers = BoxNumbers()
 
     /**
      * The atlas joined for this profile, or null where the pair has no drill at all —
@@ -132,28 +126,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * activates, and the whole of what the Dates chip gates on.
      */
     var dates by mutableStateOf<DateDrillContent?>(null)
-        private set
-
-    /**
-     * The trailing fortnight the activity strip draws, oldest day first.
-     * Kern walks it beside the streak number, so a strip and a flame cannot disagree —
-     * refreshed with the rest of the numbers, never re-derived per composition.
-     */
-    var activityWindow by mutableStateOf<List<ActivityDay>>(emptyList())
-        private set
-    /** Everything Home asks kern for, taken when the box last moved; null before a box exists. */
-    var homeStanding by mutableStateOf<HomeStanding?>(null)
-        private set
-
-    /**
-     * What each shelf's two queue controls would do, every area at once
-     * (`BoxBrowser.shelfCounts`).
-     *
-     * The browser draws both numbers on every shelf it lists, and asked one shelf at a
-     * time each answer scans and sorts the whole box — so a screenful cost sixty walks
-     * per frame. Refreshed with the rest of the numbers, never per composition.
-     */
-    var shelfCounts by mutableStateOf<Map<String, ShelfCounts>>(emptyMap())
         private set
 
     /**
@@ -259,7 +231,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             if (!thenPractice) return@launch
             // why: the coaching arms with the round that actually opens — an install with
             // nothing to practice yet must not carry it into some later round.
-            if (homeStanding?.offer?.hasRound == true) {
+            if (numbers.homeStanding?.offer?.hasRound == true) {
                 coachActive = true
                 startSession()
             }
@@ -418,18 +390,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: the grader snapshots the join, and this runs wherever the join, the
         // queue or the profile's languages can have moved — the one place it goes stale.
         cachedProduceGrader = null
-        stats = BoxEngine.statistics(state, now(), tz(), otherLanguagesAnswerDays)
-        // why: the strip reads the same merged days the streak does — a day worked in
-        // another language is still a day worked, on the picture as well as the count.
-        activityWindow = BoxEngine.activityWindow(
-            state,
-            ACTIVITY_WINDOW_DAYS,
-            now(),
-            tz(),
-            otherLanguagesAnswerDays,
-        )
-        homeStanding = HomeStanding.of(state, now(), tz(), otherLanguagesAnswerDays)
-        shelfCounts = BoxBrowser.shelfCounts(state)
+        numbers.refresh(state, now(), tz(), otherLanguagesAnswerDays)
     }
 
     override fun onCleared() {

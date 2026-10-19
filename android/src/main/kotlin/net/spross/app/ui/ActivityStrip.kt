@@ -47,7 +47,7 @@ private val RUN_THICKNESS = 2.5.dp
  * the streak rule counts.
  *
  * [days] is kern's own walk ([net.spross.kern.box.streakWindow], held on
- * `AppModel.activityWindow`), oldest day first and today last, and [streakDays] is
+ * `BoxNumbers.activityWindow`), oldest day first and today last, and [streakDays] is
  * `BoxStatistics.streak`: the strip NEVER counts a run of its own, or the flame in the
  * header and the underline below could disagree. [health] grades that flame the same way.
  * The arithmetic is kern's [ActivityBars]; this file only draws it.

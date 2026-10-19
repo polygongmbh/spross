@@ -72,22 +72,22 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
         // why: the day is folded and the numbers refreshed before this runs
         // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
         // the answer just extended rather than the one it started with.
-        val streakDays = stats?.streak ?: 0
+        val streakDays = numbers.stats?.streak ?: 0
         val sample = sampleTreesAge?.let(SampleTrees::round)
         val summary = if (sample != null) {
             RoundSummary.withArea(active, sample, streakDays, now(), tz())
         } else {
-            val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
+            val order = catalog?.let { cat -> numbers.stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
             RoundSummary.of(active, order, streakDays, now(), tz())
         }
         SessionUi(
             card = null, role = null, promptForm = null,
             emojiCue = null,
             segments = active.segments, remaining = 0,
-            // why: `DayBooked` precedes this in [dispatch], so [AppModel.homeStanding] was
+            // why: `DayBooked` precedes this in [dispatch], so [BoxNumbers.homeStanding] was
             // taken against the box this summary is for — asking again would compose
             // the same round a second time.
-            canPracticeMore = homeStanding?.canPracticeMore == true,
+            canPracticeMore = numbers.homeStanding?.canPracticeMore == true,
             summary = summary,
         )
     } else {
@@ -113,7 +113,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             remaining = active.remaining,
             // why: only the finished round shows this, and composing a whole round
             // to fill a field no card on screen reads is a pause between cards.
-            canPracticeMore = homeStanding?.canPracticeMore == true,
+            canPracticeMore = numbers.homeStanding?.canPracticeMore == true,
         )
     }
 }

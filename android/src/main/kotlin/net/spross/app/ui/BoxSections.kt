@@ -105,7 +105,7 @@ internal fun AreaSection(
     // each was a scan and a sort of the whole box, per shelf, per frame. The queue
     // itself still derives its ids from the state it is about to change, so the
     // count and the action cannot come apart.
-    val counts = model.shelfCounts[area]
+    val counts = model.numbers.shelfCounts[area]
     val cards = remember(box.cards, area, expanded) {
         if (expanded) BoxBrowser.cardsInArea(box, area) else emptyList()
     }

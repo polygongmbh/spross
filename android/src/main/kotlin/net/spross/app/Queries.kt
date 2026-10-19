@@ -60,7 +60,7 @@ fun AppModel.composedAreaGrowth(): List<AreaGrowth> {
     sampleTreesAge?.let { return SampleTrees.trees(it) }
     val state = box ?: return emptyList()
     val cat = catalog ?: return emptyList()
-    val numbers = stats ?: return emptyList()
+    val stats = numbers.stats ?: return emptyList()
     val byArea = growthByArea(state, BoxEngine.growth(state, now(), tz()))
-    return BoxBrowser.areaNames(cat, numbers).mapNotNull { byArea[it] }
+    return BoxBrowser.areaNames(cat, stats).mapNotNull { byArea[it] }
 }

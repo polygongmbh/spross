@@ -47,7 +47,7 @@ import net.spross.kern.catalog.Catalog
 fun BoxScreen(model: AppModel, openAt: String? = null) {
     val catalog = model.catalog
     val box = model.box
-    val stats = model.stats
+    val stats = model.numbers.stats
     if (catalog == null || box == null || stats == null) {
         Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
             BoxTitle(model.chrome, onSearch = null)

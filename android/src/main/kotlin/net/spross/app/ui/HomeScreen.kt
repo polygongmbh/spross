@@ -37,7 +37,7 @@ import net.spross.kern.trainer.DayLead
 @Composable
 fun HomeScreen(model: AppModel) {
     val chrome = model.chrome
-    val stats = model.stats
+    val stats = model.numbers.stats
     // The run's grade travels with its count: the card's flame and the strip's read one
     // answer, so they can never show two different states of the same day.
     val health = stats?.streakHealth ?: StreakHealth.NoRun
@@ -64,7 +64,7 @@ fun HomeScreen(model: AppModel) {
         dayPart(greetingNow, greetingZone, greetingTarget),
     ) { greetingTarget?.let { greeting(model, it) } }
     var briefingOpen by remember { mutableStateOf(false) }
-    val standing = model.homeStanding
+    val standing = model.numbers.homeStanding
 
     Box(Modifier.fillMaxSize()) {
         Column(
@@ -112,7 +112,7 @@ fun HomeScreen(model: AppModel) {
             // The same fortnight the streak was counted from, on the very refresh that
             // produced it — the strip reads kern's walk, never one of its own. It names
             // itself, so nothing announces it a second time above.
-            ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
+            ActivityStrip(model.numbers.activityWindow, stats?.streak ?: 0, health, chrome, locale)
 
             HomeTrees(model)
             Spacer(Modifier.height(Theme.spacing.lg))

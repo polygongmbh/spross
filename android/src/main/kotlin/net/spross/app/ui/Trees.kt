@@ -44,7 +44,7 @@ import net.spross.kern.design.TreesLayout
  */
 @Composable
 internal fun HomeTrees(model: AppModel) {
-    val stats = model.stats
+    val stats = model.numbers.stats
     val trees = remember(model.box, stats, model.catalog) { model.composedAreaGrowth() }
     if (trees.isEmpty()) return
     val chrome = model.chrome
