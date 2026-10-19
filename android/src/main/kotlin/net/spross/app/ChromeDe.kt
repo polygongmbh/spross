@@ -320,8 +320,6 @@ internal object ChromeDe : Chrome {
     override val progressAllGrowingCountOne = "%d wächst"
     override val boxAreaPhrasesLockedShort = "%d Sätze"
     override val boxAreaPhrasesLockedShortOne = "%d Satz"
-    override val boxAreaPhrasesLocked = "%d Sätze gesperrt"
-    override val boxAreaPhrasesLockedOne = "%d Satz gesperrt"
     override val a11yStateExpanded = "ausgeklappt"
     override val a11yStateCollapsed = "eingeklappt"
     override val boxStageFresh = "Frisch"
@@ -435,8 +433,6 @@ internal object ChromeDe : Chrome {
     override val sessionHearCantListen = "Kannst du gerade nicht hören?"
     override val commonVolumeLow = "Dein Handy ist sehr leise gestellt – mach lauter, um die " +
         "Wörter zu hören."
-    override val sessionCardPosition = "Karte %s von %s"
-    override val a11yCountSessionTally = "%s richtig, %s schwer, %s daneben"
     override val homeDoneCaughtUp = "Gerade ist nichts dran"
     override val homeTallyReviews = "%d Checks"
     override val homeTallyReviewsOne = "%d Check"
@@ -519,9 +515,6 @@ internal object ChromeDe : Chrome {
         "Mittlerweile sitzt's bei dir",
     )
     override val progressLast14Days = "Letzte 14 Tage"
-    override val a11yCountActivity14Days = "Aktivität der letzten 14 Tage: an %d Tagen gelernt"
-    override val a11yCountActivity14DaysOne = "Aktivität der letzten 14 Tage: an %d Tag " +
-        "gelernt"
     override val a11yCountStreakDays = "Serie: %d Tage"
     override val a11yCountStreakDaysOne = "Serie: %d Tag"
     override val commonDayOne = "Tag"

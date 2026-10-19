@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -87,12 +88,13 @@ fun RunTopBar(
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         RunCloseButton(onClose, closeLabel)
-        SegmentsBar(outcomes, remaining, model.chrome, Modifier.weight(1f))
+        SegmentsBar(outcomes, remaining, Modifier.weight(1f))
         if (counter != null) {
             Text(
                 counter,
                 style = MaterialTheme.typography.bodySmall,
                 color = Theme.colors.textSecondary,
+                modifier = Modifier.clearAndSetSemantics { },
             )
         }
         if (showsMuteButton) ReadAloudSwitch(model)

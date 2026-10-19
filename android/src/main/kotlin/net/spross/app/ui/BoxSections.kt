@@ -223,12 +223,7 @@ fun AreaChip(
     val settled = stats?.allSettled ?: 0
     val allGrowing = stats?.allGrowing ?: 0
     val locked = stats?.phrasesLocked ?: 0
-    val spoken = buildList {
-        add(name)
-        add(countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled))
-        add(countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, allGrowing))
-        if (locked > 0) add(countLine(chrome.boxAreaPhrasesLockedOne, chrome.boxAreaPhrasesLocked, locked))
-    }.joinToString(", ")
+    val spoken = listOfNotNull(name, subtitle).joinToString(", ")
 
     Column(
         modifier = modifier.semantics(mergeDescendants = true) { contentDescription = spoken },

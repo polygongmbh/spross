@@ -315,8 +315,6 @@ internal object ChromeEn : Chrome {
     override val progressAllGrowingCountOne = "%d growing"
     override val boxAreaPhrasesLockedShort = "%d sentences"
     override val boxAreaPhrasesLockedShortOne = "%d sentence"
-    override val boxAreaPhrasesLocked = "%d sentences locked"
-    override val boxAreaPhrasesLockedOne = "%d sentence locked"
     override val a11yStateExpanded = "expanded"
     override val a11yStateCollapsed = "collapsed"
     override val boxStageFresh = "Fresh"
@@ -427,8 +425,6 @@ internal object ChromeEn : Chrome {
     override val sessionSkip = "Skip"
     override val sessionHearCantListen = "Can't listen right now?"
     override val commonVolumeLow = "Your volume is almost off — turn it up to hear the words."
-    override val sessionCardPosition = "Card %1\$s of %2\$s"
-    override val a11yCountSessionTally = "%1\$s correct, %2\$s hard, %3\$s wrong"
     override val homeDoneCaughtUp = "Nothing's due right now"
     override val homeTallyReviews = "%d reviews"
     override val homeTallyReviewsOne = "%d review"
@@ -510,10 +506,6 @@ internal object ChromeEn : Chrome {
         "Words are settling in",
     )
     override val progressLast14Days = "Last 14 days"
-    override val a11yCountActivity14Days = "Activity over the last 14 days: practiced on %d " +
-        "days"
-    override val a11yCountActivity14DaysOne = "Activity over the last 14 days: practiced on " +
-        "%d day"
     override val a11yCountStreakDays = "Streak: %d days"
     override val a11yCountStreakDaysOne = "Streak: %d day"
     override val commonDayOne = "day"

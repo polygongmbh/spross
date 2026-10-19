@@ -19,8 +19,7 @@ struct WidgetActivityStrip: View {
             }
         }
         .frame(height: height, alignment: .bottom)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(label)
+        .accessibilityHidden(true)
     }
 
     private func barShape(_ bar: WidgetSnapshot.Bar, isToday: Bool) -> some View {
@@ -30,9 +29,5 @@ struct WidgetActivityStrip: View {
         return Capsule()
             .fill(bar.worked ? hue.opacity(bar.fillOpacity) : Color.secondary.opacity(0.3))
             .frame(width: barWidth, height: bar.height)
-    }
-
-    private var label: Text {
-        Text("widget.activity \(bars.filter(\.worked).count) \(bars.count)", tableName: GlanceChrome.table)
     }
 }

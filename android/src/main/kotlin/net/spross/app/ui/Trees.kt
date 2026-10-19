@@ -48,20 +48,12 @@ internal fun HomeTrees(model: AppModel) {
     val trees = remember(model.box, stats, model.catalog) { model.composedAreaGrowth() }
     if (trees.isEmpty()) return
     val chrome = model.chrome
-    val areas = remember(stats) { stats?.areas?.associateBy { it.name }.orEmpty() }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         Trees(
             garden = model.garden,
             trees = trees,
             emoji = model::areaEmoji,
-            describe = { tree ->
-                val area = areas[tree.area]
-                listOf(
-                    model.areaTitle(tree.area),
-                    countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, area?.allSettled ?: 0),
-                    countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, area?.allGrowing ?: 0),
-                ).joinToString(", ")
-            },
+            describe = { model.areaTitle(it.area) },
             open = { model.openBox(it) },
         )
         Text(
@@ -71,6 +63,7 @@ internal fun HomeTrees(model: AppModel) {
             ).joinToString(" · "),
             style = MaterialTheme.typography.bodySmall,
             color = Theme.colors.textSecondary,
+            modifier = Modifier.clearAndSetSemantics { },
         )
     }
 }

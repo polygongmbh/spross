@@ -202,63 +202,6 @@
         }
       }
     },
-    "a11y.count.activity14Days %lld" : {
-      "comment" : "%d = days worked inside the window",
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Aktivität der letzten 14 Tage: an %lld Tag gelernt"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Aktivität der letzten 14 Tage: an %lld Tagen gelernt"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Activity over the last 14 days: practiced on %lld day"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Activity over the last 14 days: practiced on %lld days"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "a11y.count.sessionTally %@ %@ %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ richtig, %@ schwer, %@ daneben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ correct, %2$@ hard, %3$@ wrong"
-          }
-        }
-      }
-    },
     "a11y.count.streakDays %lld" : {
       "comment" : "%d — days in a row, the strip's own label",
       "localizations" : {
@@ -685,47 +628,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wrong"
-          }
-        }
-      }
-    },
-    "box.area.phrasesLocked %lld" : {
-      "comment" : "The same count spelled out for a screen reader. box.area.phrasesLockedShort sits beside a padlock that carries the \"locked\"; spoken, the padlock is gone.",
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Satz gesperrt"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Sätze gesperrt"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sentence locked"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sentences locked"
-                }
-              }
-            }
           }
         }
       }
@@ -5498,23 +5400,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In %@ …"
-          }
-        }
-      }
-    },
-    "session.cardPosition %@ %@" : {
-      "comment" : "How far a round has got, for the one reader the segments bar shows nothing: session.cardPosition (%1$s of %2$s) before the first answer, and once there are answers to report, a11y.count.sessionTally — %1$s right, %2$s hard, %3$s missed — which says the same three colors in words.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karte %@ von %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Card %1$@ of %2$@"
           }
         }
       }

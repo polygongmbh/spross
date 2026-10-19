@@ -328,8 +328,6 @@ interface Chrome {
     val progressAllGrowingCountOne: String
     val boxAreaPhrasesLockedShort: String // %d
     val boxAreaPhrasesLockedShortOne: String // %d
-    val boxAreaPhrasesLocked: String // %d
-    val boxAreaPhrasesLockedOne: String // %d
     val a11yStateExpanded: String
     val a11yStateCollapsed: String
     // A new card has no badge; past that a row reads fresh, lapsed, growing,
@@ -457,8 +455,6 @@ interface Chrome {
     val sessionSkip: String
     val sessionHearCantListen: String
     val commonVolumeLow: String
-    val sessionCardPosition: String
-    val a11yCountSessionTally: String
 
     // ── The day's standing (Home) ──────────────────────────────────────────────
     val homeDoneCaughtUp: String
@@ -535,8 +531,6 @@ interface Chrome {
 
     // ── Activity strip ──────────────────────────────────────────────────────────
     val progressLast14Days: String
-    val a11yCountActivity14Days: String      // %d
-    val a11yCountActivity14DaysOne: String   // %d
     val a11yCountStreakDays: String        // %d
     val a11yCountStreakDaysOne: String
     val commonDayOne: String

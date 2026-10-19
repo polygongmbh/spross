@@ -177,23 +177,6 @@
         }
       }
     },
-    "widget.activity %lld %lld" : {
-      "comment" : "Spoken label of the activity strip: days practiced, days shown",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiv an %1$lld von %2$lld Tagen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Active on %1$lld of %2$lld days"
-          }
-        }
-      }
-    },
     "widget.allDone" : {
       "comment" : "Complication label with nothing due",
       "localizations" : {

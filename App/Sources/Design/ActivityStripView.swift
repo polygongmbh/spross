@@ -42,8 +42,7 @@ struct ActivityStripView: View {
         }
         .panelSurface()
         .cardShadow()
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(activityLabel(bars))
+        .accessibilityHidden(true)
     }
 
     private var streakBadge: some View {
@@ -61,13 +60,6 @@ struct ActivityStripView: View {
         }
         .font(Theme.typography.caption)
         .lineLimit(1)
-        .accessibilityHidden(true) // why: the combined strip label names the streak
-    }
-
-    private func activityLabel(_ bars: [ActivityBar]) -> Text {
-        let activity = Text("a11y.count.activity14Days \(Int(ActivityBars.shared.activeDays(bars: bars)))")
-        guard streakDays > 0 else { return activity }
-        return activity + Text(verbatim: ". ") + Text("a11y.count.streakDays \(streakDays)")
     }
 
     // why: opaque fills only — joined segments overlap, and translucent ones

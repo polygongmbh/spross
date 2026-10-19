@@ -21,8 +21,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.Instant
@@ -30,7 +28,6 @@ import java.time.ZoneId
 import java.time.format.TextStyle
 import java.util.Locale
 import net.spross.app.Chrome
-import net.spross.app.countLine
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.design.ActivityBar
@@ -70,23 +67,9 @@ fun ActivityStrip(
     if (days.isEmpty()) return
     val bars = remember(days) { ActivityBars.of(days) }
     val palette = Theme.colors
-    val label = remember(bars, streakDays, chrome) {
-        val activity = countLine(
-            chrome.a11yCountActivity14DaysOne,
-            chrome.a11yCountActivity14Days,
-            ActivityBars.activeDays(bars),
-        )
-        if (streakDays > 0) {
-            "$activity. ${countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streakDays)}"
-        } else {
-            activity
-        }
-    }
 
     Column(
-        modifier = modifier.fillMaxWidth().panel().semantics(mergeDescendants = true) {
-            contentDescription = label
-        },
+        modifier = modifier.fillMaxWidth().panel().clearAndSetSemantics { },
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
@@ -117,9 +100,7 @@ fun ActivityStrip(
                     }
                 }
             }
-            // why: one label for the whole strip — fourteen columns each announcing a
-            // date and a count is a minute of speech for a picture of a fortnight.
-            Column(Modifier.fillMaxWidth().clearAndSetSemantics {}) {
+            Column(Modifier.fillMaxWidth()) {
                 BarRow(bars, palette)
                 RunRule(bars, palette)
                 WeekdayRow(bars, locale, palette)

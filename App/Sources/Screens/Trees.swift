@@ -86,7 +86,7 @@ struct Trees: View {
     private static let labelHeight = CGFloat(TreesLayout.shared.LABEL_HEIGHT)
 
     /// What a learner taps, and what VoiceOver reads: one invisible element
-    /// on the cell kern gave the tree, carrying everything the picture itself cannot say.
+    /// on the cell kern gave the tree, named by its area.
     private func tapTarget(_ mark: TreeMark) -> some View {
         Color.clear
             .frame(width: mark.cell.width, height: mark.cell.height)
@@ -94,7 +94,7 @@ struct Trees: View {
             .offset(x: mark.cell.minX, y: mark.cell.minY)
             .onTapGesture { open(mark.area) }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(describe(mark.area))
+            .accessibilityLabel(Text(model.areaTitle(mark.area)))
             .accessibilityAddTraits(.isButton)
     }
 
@@ -107,16 +107,7 @@ struct Trees: View {
         )
         .font(Theme.typography.caption)
         .foregroundStyle(Theme.colors.textSecondary)
-    }
-
-    /// What VoiceOver reads: the area and the same split the caption spells out.
-    private func describe(_ area: String) -> Text {
-        let stats = model.areaStats(area)
-        return Text.joined(
-            Text(model.areaTitle(area)),
-            Text("progress.allSettledCount \(Int(stats?.allSettled ?? 0))"),
-            Text("progress.allGrowingCount \(Int(stats?.allGrowing ?? 0))")
-        )
+        .accessibilityHidden(true)
     }
 }
 

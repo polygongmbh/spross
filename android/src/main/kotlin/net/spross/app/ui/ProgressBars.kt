@@ -23,10 +23,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
-import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.design.AreaBar
 import net.spross.kern.design.AreaStretch
@@ -48,28 +46,14 @@ import net.spross.kern.session.AnswerOutcome
 fun SegmentsBar(
     segments: List<AnswerOutcome>,
     remaining: Int,
-    chrome: Chrome,
     modifier: Modifier = Modifier,
 ) {
     val palette = Theme.colors
     val bar = KernSegmentsBar(segments.size, remaining)
-    val slots = segments.size + remaining
-    // why: colored stretches are the whole of what the bar says, and a color says nothing
-    // to TalkBack — so it speaks the tally it is drawing, or where the round stands before
-    // there is one.
-    val spoken = if (segments.isEmpty()) {
-        chrome.sessionCardPosition.format(1, slots)
-    } else {
-        chrome.a11yCountSessionTally.format(
-            segments.count { it == AnswerOutcome.Right },
-            segments.count { it == AnswerOutcome.Almost },
-            segments.count { it == AnswerOutcome.Wrong },
-        )
-    }
     Row(
         modifier = modifier.fillMaxWidth().height(10.dp)
             .clip(CircleShape).background(palette.separator)
-            .semantics { contentDescription = spoken },
+            .clearAndSetSemantics { },
         horizontalArrangement = Arrangement.spacedBy(bar.gap.dp),
     ) {
         segments.takeLast(bar.shown).forEachIndexed { offset, tone ->

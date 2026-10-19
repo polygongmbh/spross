@@ -15,11 +15,7 @@ import androidx.glance.ImageProvider
 import androidx.glance.LocalContext
 import androidx.glance.layout.height
 import androidx.glance.layout.width
-import androidx.glance.semantics.contentDescription
-import androidx.glance.semantics.semantics
 import kotlin.math.roundToInt
-import net.spross.app.Chrome
-import net.spross.app.countLine
 import net.spross.app.ui.ThemeColors
 import net.spross.app.ui.ThemeDark
 import net.spross.app.ui.ThemeLight
@@ -42,25 +38,16 @@ private val GUTTER = WidgetStripColumns.GUTTER.dp
  * squeezed but dropped — a fortnight drawn as views silently loses half its days.
  */
 @Composable
-fun ActivityStrip(bars: List<WidgetBar>, chrome: Chrome) {
+fun ActivityStrip(bars: List<WidgetBar>) {
     if (bars.isEmpty()) return
     val context = LocalContext.current
     val bitmap = remember(bars, context.isNight) { render(bars, context) }
     Image(
         provider = ImageProvider(bitmap),
         contentDescription = null,
-        // why: one label for the strip — fourteen bars each announcing a date and a count
-        // is a minute of speech for a picture of a fortnight.
         modifier = GlanceModifier
             .width(BAR_WIDTH * bars.size + GUTTER * (bars.size - 1))
-            .height(ActivityScale.widget.maxHeight.dp)
-            .semantics {
-                contentDescription = countLine(
-                    chrome.a11yCountActivity14DaysOne,
-                    chrome.a11yCountActivity14Days,
-                    bars.count { it.worked },
-                )
-            },
+            .height(ActivityScale.widget.maxHeight.dp),
     )
 }
 

@@ -68,7 +68,7 @@ struct AreaChip: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             if !hideProgress {
-                counts
+                counts.accessibilityHidden(true)
                 GeometryReader { geo in
                     // why: the neutral track is the area's untouched rest — cards
                     // never queued draw no segment, so without it the bar would end
@@ -85,7 +85,7 @@ struct AreaChip: View {
                 }
                 .frame(height: 6)
                 .clipShape(Capsule())
-                .accessibilityHidden(true) // why: counts above already carry the split
+                .accessibilityHidden(true)
             }
         }
         .accessibilityElement(children: .combine)
@@ -111,7 +111,6 @@ struct AreaChip: View {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
                 Label("box.area.phrasesLockedShort \(lockedPhrases)", systemImage: "lock.fill")
-                    .accessibilityLabel(Text("box.area.phrasesLocked \(lockedPhrases)"))
             }
             Spacer(minLength: 0)
         }

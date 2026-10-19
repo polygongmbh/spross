@@ -43,17 +43,6 @@ struct SessionScaffold<Content: View>: View {
         return Double(position - 1) / Double(total)
     }
 
-    /// `Text` (not a String) so it localizes via the environment locale.
-    private var progressAccessibility: Text {
-        if outcomes.isEmpty {
-            return Text("session.cardPosition \(position.formatted()) \(total.formatted())")
-        }
-        let right = outcomes.filter { $0 == .right }.count
-        let tough = outcomes.filter { $0 == .almost }.count
-        let wrong = outcomes.filter { $0 == .wrong }.count
-        return Text("a11y.count.sessionTally \(right.formatted()) \(tough.formatted()) \(wrong.formatted())")
-    }
-
     var body: some View {
         VStack(spacing: Theme.spacing.lg) {
             VStack(spacing: 0) {
@@ -109,8 +98,7 @@ struct SessionScaffold<Content: View>: View {
             .frame(height: 10)
             .animation(.easeOut(duration: 0.3), value: outcomes.count)
             .animation(.easeOut(duration: 0.3), value: fraction)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(progressAccessibility)
+            .accessibilityHidden(true)
 
             if let counter {
                 Text(counter)

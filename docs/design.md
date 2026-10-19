@@ -75,6 +75,9 @@ rephrase it as an availability statement or a question.
 - Area titles and area emoji both come from the catalog; the app carries no map.
   A title is a plain name usable as the produce prompt's area cue;
   the catalog's optional subtitle is the flavor line, never shown where a cue is wanted.
+- **A screen reader speaks what learning needs** — prompts, answers, verdicts, corrections, controls —
+  and stays silent on visual cues, counters, progress and decoration.
+  A sound beside a word is an action on the word, never a stop of its own.
 
 ## Presentation model in the UI
 
@@ -217,8 +220,8 @@ What licenses a second component is a parameter attempted and found not to carry
   An unopened area is one faded seedling.
   A lapse drops leaves, never shrinks the tree.
   A suspended word gets no space.
-  Accessibility: canvas hidden, each tree has tap target + spoken split,
-  blossom differs from leaf in shape before color, figures spelled out beneath.
+  Accessibility: canvas hidden, each tree has a tap target speaking its area name,
+  blossom differs from leaf in shape before color, figures spelled out beneath for the eye.
   Nothing moves.
 - **Box**: browse by area, queue words, unqueue, revive suspended.
   The area is the unit for queuing and unqueuing
