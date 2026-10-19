@@ -13,7 +13,7 @@ struct SprossWidgets: WidgetBundle {
 /// the phone pre-ranks attention-worthy cards on every save that carries the snapshots.
 struct WordWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "SprossWordWidget", provider: WordProvider()) { entry in
+        StaticConfiguration(kind: WidgetKind.word, provider: WordProvider()) { entry in
             WordWidgetView(entry: entry)
                 .containerBackground(Color(.systemBackground), for: .widget)
                 // why: names the tap's destination instead of leaning on the default

@@ -166,6 +166,6 @@ actor BoxStore {
         try? Data(json.utf8).write(to: directory.appendingPathComponent("widget-snapshot.json"),
                                    options: .atomic)
         // why: a placed widget keeps drawing its old timeline until it is rebuilt.
-        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetKind.word)
     }
 }

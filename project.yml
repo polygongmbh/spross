@@ -135,6 +135,7 @@ targets:
       - Shared/Sources/AppGroup.swift
       - Shared/Sources/SnapshotGender.swift
       - Shared/Sources/GlanceChrome.swift
+      - Shared/Sources/WidgetKind.swift
       - Shared/Resources/Glance.xcstrings
       - path: Widgets/PrivacyInfo.xcprivacy
         buildPhase: resources
