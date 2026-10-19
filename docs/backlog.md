@@ -58,10 +58,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - Over ~300 lines with a seam worth checking: Android `AppModel.kt` (wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
   iOS `AppModel.swift`, `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
   Android `Chrome.kt` is a hand-declared field table, and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
-- A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
-  duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
-  screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
-  and a panel cut by hand at 15 sites — and stands at 7 groups.
 - `kern/docs` `grading.md`, `catalog.md`, `audio.md`, `reports.md`, the head of `snapshots.md` and all of `turns.md`,
   plus `catalog/README.md`, `catalog/audio/README.md`, `catalog/alphabet/README.md`, `docs/date-readings.md`, `RUNBOOK-android.md` and `docs/backlog.md`,
   still hard-wrap at a column instead of semantic linebreaks.
