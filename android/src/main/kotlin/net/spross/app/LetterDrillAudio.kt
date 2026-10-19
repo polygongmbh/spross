@@ -84,6 +84,7 @@ fun AppModel.letterName(name: String, glyph: String, lang: Language, take: Int =
         lang = lang,
         recordingPath = recording?.path,
         gain = recording?.gain ?: 0.0,
+        cap = recording?.cap ?: 0.0,
         leadMs = recording?.leadMs ?: 0,
         gate = recording?.gate,
     )
