@@ -97,7 +97,7 @@ the ear rather than tuned to a handful of files. A verdict also overrules the sc
 those bytes: bad never ships, and bad or mediocre has every other take of its word tried.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.
-A listening set is about 15 takes beside a TSV naming them, rated one key per take with
+A listening set is takes beside a TSV naming them, rated one key per take with
 `../../scripts/audio-listen.py`, which writes the verdicts itself;
 `audio-listen.py sample NAME --from shipped|journal` draws one out of unrated takes —
 the lowest scorers that ship, or the staged and shipped swaps most likely to be wrong.

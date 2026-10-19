@@ -33,15 +33,15 @@ def mos_floor(lang):
 RECONSIDER_MOS = 2.8
 
 # What a challenger has to beat a passable incumbent by: a swap costs a voice change and a
-# re-credit, and a single file's score strays by a few tenths. Also the most a consolidation may
-# give up for a tidier credits screen.
+# re-credit, and a single file's score strays by a few tenths. A consolidation gives up strictly
+# less for a tidier credits screen, so neither picker undoes the other.
 SWAP_MARGIN = 0.3
 
 # Takes a voice ships in a language before it counts as established: every new speaker is another
 # voice change on the cards and another credit group, so a picker takes an established voice's
 # take over a slightly better stranger's. A voice with ONE_OFF_TAKES or fewer is moved onto an
 # established one wherever it can be.
-ESTABLISHED_TAKES = 5
+ESTABLISHED_TAKES = 4
 ONE_OFF_TAKES = 3
 
 # The most energy above 6 kHz (`audio_measure.brightness`) a consolidation may give up: a take lopped

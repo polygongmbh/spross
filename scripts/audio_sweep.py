@@ -13,7 +13,8 @@ wins. A voice the language already ships `ESTABLISHED_TAKES` of beats a slightly
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
 an established voice's take of the same form — smallest license harm first (CC0 and public domain,
 then attribution, then share-alike), then the biggest voice, then the catalog's casing — unless
-that take is refused, squashed, scores more than `SWAP_MARGIN` under the incumbent, or gives up
+that take is refused, squashed, scores `SWAP_MARGIN` or more under the incumbent (a sweep would win
+that back, and the two would trade the take forever), or gives up
 more than `DULLNESS_DB` above 6 kHz (a telephone-band take scores clean and sounds dull).
 """
 import collections
@@ -187,7 +188,7 @@ def consolidate(lang, section, catalog, measures, only, apply):
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], record.get('author', '?'), why))
                 continue
-            if take['mos'] is not None and verdict.mos is not None and verdict.mos < take['mos'] - SWAP_MARGIN:
+            if take['mos'] is not None and verdict.mos is not None and round(take['mos'] - verdict.mos, 2) >= SWAP_MARGIN:
                 print('  next   %-18s %5.2f  (%s only %.2f)' % (take['key'], take['mos'], record.get('author', '?'), verdict.mos))
                 continue
             is_bright = brightness(measures, sha, path)
