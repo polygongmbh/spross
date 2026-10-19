@@ -104,24 +104,29 @@ def prune_poor(languages):
         pruned = []
         for (section, key, take), verdict in zip(entries, judged):
             if verdict.refused:
-                os.remove(os.path.join(out_dir, take['file']))
-                drop_take(manifest[section], key, take)
+                drop_take(out_dir, section, manifest[section], key, take['sha256'])
                 pruned.append('%s/%s %s: %s' % (section, key, verdict.refused[0], verdict.refused[1]))
         print('  %s: %d pruned%s' % (lang, len(pruned), ''.join('\n    ' + p for p in pruned)))
         if pruned:
             write_manifest(out_dir, manifest)
 
 
-def drop_take(section, key, take):
-    """[take] out of [key]'s entry in [section]: an alternate goes alone, a first take hands the
-    key to its first alternate, and a key with no take left goes."""
+def drop_take(out_dir, name, section, key, sha256):
+    """The take of [key] holding [sha256] out of [section] (called [name]), file and all: an
+    alternate goes alone, a first take hands the key and its file name to its first alternate,
+    and a key with no take left goes."""
     item = section[key]
-    rest = [other for other in takes(item) if other['file'] != take['file']]
+    gone = next(take for take in takes(item) if take['sha256'] == sha256)
+    os.remove(os.path.join(out_dir, gone['file']))
+    rest = [take for take in takes(item) if take is not gone]
     if not rest:
         del section[key]
         return
     first = dict(rest[0], **{field: item[field] for field in ('matches', 'word') if field in item})
     first.pop('alternates', None)
+    if gone is item:
+        first['file'] = audio_manifest.section_file(name, key)
+        os.rename(os.path.join(out_dir, rest[0]['file']), os.path.join(out_dir, first['file']))
     if rest[1:]:
         first['alternates'] = rest[1:]
     section[key] = first
