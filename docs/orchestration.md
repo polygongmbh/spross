@@ -28,6 +28,7 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   `xcodebuild`'s pre-build phase also reads/writes the kern framework, so it is a cache writer too.
 - iOS runs on `scripts/run-sim.sh`'s default `iPhone 17`; `iPhone 18 Pro Max` only when a change is about screen size,
   and an agent never creates a simulator.
+- `scripts/dup-scan.py` ranks duplicated Swift/Kotlin code (never a gate; `--why` lists repeated `// why:` comments) — the report to hand a cleanup wave.
 - `scripts/catalog-format.py --fix` rewrites the WHOLE repo — only the conductor runs it,
   after all agents are done. Agents that need valid JSON write through the formatter's own
   `formatted()` function on their files only.

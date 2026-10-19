@@ -22,8 +22,6 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
-scripts/arch-status.py --check    # which turn machines have a kern home; the pre-commit hook runs it on staged kern/app sources
-scripts/dup-scan.py          # ranked report of duplicated code across Swift/Kotlin (never a gate; --why for repeated `// why:` comments)
 scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/distribution.md)
 ```
 
