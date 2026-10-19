@@ -28,7 +28,6 @@ import net.spross.kern.catalog.countryDrillContent
 import net.spross.kern.catalog.dateDrillContent
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
@@ -148,15 +147,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
     var chrome by mutableStateOf(Chrome.forSource("en"))
         private set
-    var normalizer: AnswerNormalizer? = null
-        private set
 
-    /**
-     * The SOURCE language's grading, for the one turn typed in it: a card asked by ear
-     * owes what the word MEANS, and the articles and typo budget it is measured under
-     * are that language's own (`docs/review.md`).
-     */
-    var meaningNormalizer: AnswerNormalizer? = null
+    /** The active pair's review grading; null before a pair is joined. */
+    var grading: PairGrading? = null
         private set
 
     /**
@@ -168,26 +161,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var otherLanguagesAnswerDays by mutableStateOf<Map<String, Int>>(emptyMap())
         private set
-
-    /**
-     * Produce grading with the whole join in view: a form the catalog owns
-     * elsewhere is that word, never a typo of this card's answer (`docs/grading.md`).
-     * One pass over every accepted form the join carries — thousands of normalized
-     * strings — so it is built on the first turn that asks and kept until
-     * [refreshStats] retires it. A card that arrives after the box moved is still
-     * graded against the box standing now: everything that can move the join
-     * refreshes the numbers with it.
-     */
-    private var cachedProduceGrader: CatalogAnswerGrader? = null
-
-    val produceGrader: CatalogAnswerGrader?
-        get() {
-            cachedProduceGrader?.let { return it }
-            val norm = normalizer ?: return null
-            val state = box ?: return null
-            return CatalogAnswerGrader(norm, state.cards.values.toList())
-                .also { cachedProduceGrader = it }
-        }
 
     // internal: the box surfaces stamp their own verbs with it (`FeedbackActions.kt`),
     // and a second reading of the clock is how two of them end up disagreeing.
@@ -300,8 +273,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             box = opened.box
             atlas = pairAtlas
             dates = pairDates
-            normalizer = AnswerNormalizer(cat.languages.getValue(target))
-            meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
+            grading = PairGrading(
+                words = AnswerNormalizer(cat.languages.getValue(target)),
+                meanings = AnswerNormalizer(cat.languages.getValue(source)),
+            )
             otherLanguagesAnswerDays = days
             refreshStats()
             refreshListening()
@@ -389,7 +364,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         // why: the grader snapshots the join, and this runs wherever the join, the
         // queue or the profile's languages can have moved — the one place it goes stale.
-        cachedProduceGrader = null
+        grading?.retire()
         numbers.refresh(state, now(), tz(), otherLanguagesAnswerDays)
     }
 
