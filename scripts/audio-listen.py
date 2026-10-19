@@ -2,7 +2,7 @@
 """Rate a listening set by ear, one key per take, straight into `docs/audio-verdicts.tsv`.
 
     scripts/audio-listen.py <set.tsv> [FILE]
-    scripts/audio-listen.py sample NAME --from shipped|journal [--lang L] [--section S] [--voice V]
+    scripts/audio-listen.py sample NAME --from shipped|journal|voices [--lang L] [--section S] [--voice V]
                                         [--mos-below X] [-n 15]
 
 A set is a TSV beside its mp3s (or naming absolute paths), columns `file lang word speaker
@@ -19,7 +19,9 @@ just that one take, rated already or not. Each take plays on arrival:
 `sample` writes one to `../data/review/<date>-NAME/` out of takes nobody rated yet: `--from shipped`
 the lowest scorers of what ships, `--from journal` the swaps staged or shipped (`$W/staged.tsv`,
 `$W/shipped.tsv`) most likely to be wrong — a voice new to its language first, then the smallest
-gains. With more than one language in play, at most three takes come from each.
+gains — and `--from voices` one take per voice nobody heard yet in its language, its lowest scorer,
+the voices shipping most first. Out of shipped or journal takes from more than one language, at most
+three come from each.
 """
 import argparse
 import csv
@@ -97,26 +99,41 @@ def from_journal(shipped):
     return sorted(takes, key=lambda take: (not take['new'], take['gain']))
 
 
+def from_voices(shipped, heard):
+    """Each voice's lowest scorer, for every voice no take of which was heard in its language, the
+    voices shipping most first."""
+    voices = {}
+    for take in from_shipped(shipped):
+        if (take['lang'], take['speaker']) not in heard:
+            voices.setdefault((take['lang'], take['speaker']), []).append(take)
+    for held in voices.values():
+        held[0]['why'] = 'voice of %d, %s' % (len(held), held[0]['why'])
+    return [held[0] for held in sorted(voices.values(), key=lambda held: (-len(held), held[0]['lang']))]
+
+
 def sample(argv):
     parser = argparse.ArgumentParser(prog='audio-listen.py sample', description='write a listening set')
     parser.add_argument('name')
-    parser.add_argument('--from', dest='source', choices=('shipped', 'journal'), required=True)
+    parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'),
+                        required=True)
     parser.add_argument('--lang')
     parser.add_argument('--section')
     parser.add_argument('--voice')
     parser.add_argument('--mos-below', type=float)
     parser.add_argument('-n', type=int, default=15)
     args = parser.parse_args(argv)
-    with open(VERDICTS, encoding='utf-8') as handle:
-        heard = {row['sha256'] for row in csv.DictReader(handle, delimiter='\t')}
+    verdicts = rows(VERDICTS)
+    heard = {row['sha256'] for row in verdicts}
     shipped = shipped_entries()
-    takes = [take for take in (from_shipped if args.source == 'shipped' else from_journal)(shipped)
+    drawn = from_voices(shipped, {(row['lang'], row['speaker']) for row in verdicts}) \
+        if args.source == 'voices' else (from_shipped if args.source == 'shipped' else from_journal)(shipped)
+    takes = [take for take in drawn
              if take['sha256'] not in heard
              and (not args.lang or take['lang'] == args.lang)
              and (not args.section or take['section'] == args.section)
              and (not args.voice or take['speaker'] == args.voice)
              and (args.mos_below is None or (take['mos'] is not None and take['mos'] < args.mos_below))]
-    capped = len({take['lang'] for take in takes}) > 1
+    capped = args.source != 'voices' and len({take['lang'] for take in takes}) > 1
     picked, per, seen = [], {}, set()
     for take in takes:
         if len(picked) == args.n:

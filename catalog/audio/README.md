@@ -101,8 +101,9 @@ A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voic
 and every take of it counts as bad unless a listener passed that file.
 A listening set is takes beside a TSV naming them, rated one key per take with `../../scripts/audio-listen.py`,
 which writes the verdicts itself;
-`audio-listen.py sample NAME --from shipped|journal` draws one out of unrated takes —
-the lowest scorers that ship, or the staged and shipped swaps most likely to be wrong.
+`audio-listen.py sample NAME --from shipped|journal|voices` draws one out of unrated takes —
+the lowest scorers that ship, the staged and shipped swaps most likely to be wrong,
+or one take of each voice nobody heard yet.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are unversioned research input;
 what is committed here is the shipped bytes and the license record that has to travel with them.
