@@ -29,8 +29,7 @@ struct StreakFlameView: View {
         .padding(.horizontal, Theme.spacing.lg)
         .padding(.vertical, Theme.spacing.md)
         .background(Theme.colors.surfaceTint, in: Capsule())
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("a11y.count.streakDays \(days)"))
+        .accessibilityHidden(true)
     }
 
     /// The celebrating screen's own emoji where one is handed in, else the flame

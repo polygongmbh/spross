@@ -185,47 +185,6 @@
         }
       }
     },
-    "a11y.count.streakDays %lld" : {
-      "comment" : "%d — days in a row, the strip's own label",
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Serie: %lld Tag"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Serie: %lld Tage"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak: %lld day"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak: %lld days"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "a11y.glyph.feminineForm" : {
       "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one.",
       "localizations" : {

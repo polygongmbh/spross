@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.AppModel
@@ -60,9 +59,7 @@ internal fun DayMark(mark: DayMarkRule, streak: Int, health: StreakHealth, chrom
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(percent = 50))
             .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md)
-            .semantics(mergeDescendants = true) {
-                contentDescription = countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streak)
-            },
+            .clearAndSetSemantics { },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {

@@ -510,8 +510,6 @@ internal object ChromeDe : Chrome {
         "Mittlerweile sitzt's bei dir",
     )
     override val progressLast14Days = "Letzte 14 Tage"
-    override val a11yCountStreakDays = "Serie: %d Tage"
-    override val a11yCountStreakDaysOne = "Serie: %d Tag"
     override val commonDayOne = "Tag"
     override val commonDayOther = "Tage"
     override val widgetAwaitingTitle = "Spross öffnen"

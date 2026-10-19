@@ -526,8 +526,6 @@ interface Chrome {
 
     // ── Activity strip ──────────────────────────────────────────────────────────
     val progressLast14Days: String
-    val a11yCountStreakDays: String        // %d
-    val a11yCountStreakDaysOne: String
     val commonDayOne: String
     val commonDayOther: String
 

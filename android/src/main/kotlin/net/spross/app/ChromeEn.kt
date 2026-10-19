@@ -501,8 +501,6 @@ internal object ChromeEn : Chrome {
         "Words are settling in",
     )
     override val progressLast14Days = "Last 14 days"
-    override val a11yCountStreakDays = "Streak: %d days"
-    override val a11yCountStreakDaysOne = "Streak: %d day"
     override val commonDayOne = "day"
     override val commonDayOther = "days"
     override val widgetAwaitingTitle = "Open Spross"
