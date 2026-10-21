@@ -22,7 +22,7 @@
   "country": { "text": "country" },
   "in-front": { "text": "in front" },
   "in-front-of": { "text": "in front of" },
-  "at-the-back": { "text": "at the back" },
+  "at-the-back": { "text": "in back", "teaches": ["at the back"], "accepts": ["in the back"] },
   "next-to": { "text": "next to" },
   "to-be-there": { "text": "to be there", "teaches": ["to be present"] },
   "on-the-table": { "text": "on the table" },
