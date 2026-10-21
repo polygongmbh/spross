@@ -41,7 +41,13 @@ val TurnState.question: Question
             // The prompt still stands above the reveal, so whatever form it put on screen is no alternative.
             alternates = alternates(
                 card.target,
-                shown = listOf(if (role == PresentationRole.Recognize) promptForm else answerText),
+                shown = listOf(
+                    when {
+                        role == PresentationRole.Recognize -> promptForm
+                        askedByEar -> card.target.text
+                        else -> answerText
+                    },
+                ),
                 forms = answerForms(card, promptTag).rightForms,
             ),
             note = closingNote(card.target, alsoMeans),

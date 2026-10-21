@@ -68,6 +68,8 @@ class QuestionTests {
         assertEquals("kisu", written.prompt.text)
         val revealed = TurnFixture.state(asking, TurnIntent.Reveal).question
         assertEquals("kisu", revealed.prompt.text)
+        // The word now standing as the prompt is no alternative to itself.
+        assertEquals(emptyList(), revealed.closing.alternates)
     }
 
     @Test
