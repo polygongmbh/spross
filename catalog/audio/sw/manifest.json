@@ -7008,17 +7008,6 @@
       "sha256": "e74e2c8dcc2a78867e21ffbb2293c284955d4418cbb6f0bc3c610e123d863b9b",
       "source": "Sw-ke-matandiko.flac"
     },
-    "matatizo": {
-      "author": "Waithera Were",
-      "file": "words/matatizo.mp3",
-      "gain": -10.1,
-      "gate": -69.5,
-      "lead": 40,
-      "matches": "matatizo",
-      "mos": 3.25,
-      "sha256": "4803c9b86957f3406a1567be2eee08c97ca60e57974e9a6e2addee3d21142ba0",
-      "source": "Sw-ke-matatizo.flac"
-    },
     "matufaha": {
       "author": "Waithera Were",
       "file": "words/matufaha.mp3",
