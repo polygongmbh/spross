@@ -87,6 +87,10 @@ class CatalogCollisionLintTest {
             // different grammar in both es and fr, and de/en/eo/it/sw/uk all split the pair
             // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що).
             ("comparison/than" to "connectors/that-conj") to setOf("es", "fr"),
+            // Reviewed 2026-10-21: de `vor`, eo `antaŭ` and uk `перед` are "before" in time AND
+            // "in front of" in space, while en/es/fr/it/sw split the pair (before/in front of,
+            // antes de/delante de, avant/devant, prima di/davanti a, kabla ya/mbele ya).
+            ("connectors/before" to "place/in-front-of") to setOf("de", "eo", "uk"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -125,6 +129,11 @@ class CatalogCollisionLintTest {
                 // `Etage`/`Stockwerk` name only the floor sense and `Stab`/`Rute` skew formal
                 // or archaic for the stick sense, so `Stock` stays the plain word for both.
                 "de Stock: living/story, nature/stick",
+                // Reviewed 2026-10-21: "before" in time and "in front of" in space are one word
+                // in de/eo/uk and two in en/es/fr/it/sw (noConceptPairCollidesInTwoLanguages).
+                "de vor: connectors/before, place/in-front-of",
+                "eo antaŭ: connectors/before, place/in-front-of",
+                "uk перед: connectors/before, place/in-front-of",
                 // Reviewed 2026-08-29: es `piso` is the apartment/flat AND the building floor
                 // it sits on — de/en/eo/fr/it/sw/uk all split the pair (Wohnung/Stock,
                 // apartment/story, apartamento/etaĝo, appartement/étage, appartamento/piano,

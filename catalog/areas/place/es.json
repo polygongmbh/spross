@@ -25,6 +25,8 @@
   "place": { "text": "lugar", "teaches": ["sitio"], "grammar": { "article": "el" } },
   "country": { "text": "país", "forms": { "pl": "los países" }, "grammar": { "article": "el" } },
   "in-front": { "text": "delante" },
+  "in-front-of": { "text": "delante de" },
+  "at-the-back": { "text": "detrás" },
   "next-to": { "text": "al lado de" },
   "to-be-there": { "text": "estar" },
   "on-the-table": { "text": "sobre la mesa" },
