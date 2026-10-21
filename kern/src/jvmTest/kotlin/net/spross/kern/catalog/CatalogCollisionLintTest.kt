@@ -308,6 +308,11 @@ class CatalogCollisionLintTest {
                 // `-dogo` (small) that qualities/small teaches — one word, since the adverb
                 // is that agreement form; every other language splits the pair (wenig/klein).
                 "sw kidogo: degree/a-little, qualities/small",
+                // Reviewed 2026-10-21: sw `kutembea` is to walk AND to go for a walk — one verb,
+                // de/en/eo/es/fr/it/uk all split the pair (laufen/spazieren gehen, walk/go for a walk,
+                // piediri/promeni, caminar/pasear, marcher/se promener, camminare/fare una passeggiata,
+                // ходити/гуляти). There is no second everyday Swahili word for either, so both stay.
+                "sw kutembea: nature/to-go-for-walk, verbs/to-walk",
                 "sw mpaka: connectors/until, politics/border",
                 "sw mto: bedroom/pillow, water/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`

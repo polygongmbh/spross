@@ -50,6 +50,7 @@
    "text": "estar de pie",
    "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
+  "to-walk": { "text": "caminar", "accepts": ["andar"] },
   "to-send": { "text": "enviar", "teaches": ["mandar"] },
   "to-deliver": {
    "text": "repartir",

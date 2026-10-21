@@ -28,6 +28,7 @@
   "to-close": { "text": "schließen" },
   "to-stop": { "text": "aufhören" },
   "to-stand": { "text": "stehen" },
+  "to-walk": { "text": "laufen", "accepts": ["gehen", "zu Fuß gehen"] },
   "to-send": { "text": "schicken" },
   "to-deliver": { "text": "liefern" },
   "to-use": { "text": "benutzen" },

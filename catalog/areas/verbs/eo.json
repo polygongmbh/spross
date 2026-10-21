@@ -39,6 +39,7 @@
    }
   },
   "to-stand": { "text": "stari", "notes": { "eo": "stari estas la stato · stariĝi estas ekstari." } },
+  "to-walk": { "text": "piediri", "accepts": ["marŝi"] },
   "to-send": { "text": "sendi" },
   "to-deliver": { "text": "liveri" },
   "to-use": { "text": "uzi" },

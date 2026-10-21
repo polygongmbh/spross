@@ -44,6 +44,7 @@
  ["to-give", "to-take"],
  ["to-send", "to-receive"],
  ["to-come", "to-go"],
+ ["to-walk", "to-stand"],
  ["to-arrive", "to-depart"],
  ["to-ask", "to-reply"],
  ["to-start", "to-finish"],

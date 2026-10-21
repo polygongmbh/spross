@@ -39,6 +39,7 @@
    "text": "kusimama",
    "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
   },
+  "to-walk": { "text": "kutembea" },
   "to-send": { "text": "kutuma", "notes": { "sw": "kutuma ujumbe · kutuma msaada" } },
   "to-deliver": { "text": "kupeleka" },
   "to-use": { "text": "kutumia" },

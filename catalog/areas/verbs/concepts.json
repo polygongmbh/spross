@@ -19,6 +19,7 @@
  { "slug": "to-close", "kind": "verb", "emoji": "📁" },
  { "slug": "to-stop", "kind": "verb", "emoji": "⏹️" },
  { "slug": "to-stand", "kind": "verb", "emoji": "🧍" },
+ { "slug": "to-walk", "kind": "verb", "emoji": "🚶" },
  { "slug": "to-deliver", "kind": "verb", "emoji": "🚚" },
  { "slug": "to-use", "kind": "verb", "emoji": "🔧" },
  { "slug": "to-come-back", "kind": "verb", "emoji": "🔙" },

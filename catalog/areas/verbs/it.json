@@ -61,6 +61,7 @@
     "de": "Italienisch hat kein eigenes Verb dafür · alzarsi in piedi = sich hinstellen."
    }
   },
+  "to-walk": { "text": "camminare" },
   "to-send": {
    "text": "inviare",
    "accepts": ["mandare", "spedire"],
