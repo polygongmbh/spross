@@ -468,16 +468,14 @@
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-Ecuador.wav"
     },
     "Egipto": {
-      "author": "Marreromarco",
-      "cap": 2.1,
+      "author": "Rodelar",
       "file": "countries/egipto.mp3",
-      "gain": 15.4,
-      "lead": 440,
-      "license": "CC0",
+      "gain": 4.2,
+      "lead": 190,
       "matches": "Egipto",
-      "mos": 2.61,
-      "sha256": "9cb1c307657561d3a1bac41bd0c6f6999d62bff6b95846fb02547e36a35e10d4",
-      "source": "Es-Egipto.ogg"
+      "mos": 2.75,
+      "sha256": "5d124771264cb930bfee997d83e068d79b443a876c0b11d7d633b4286b982805",
+      "source": "LL-Q1321 (spa)-Rodelar-Egipto.wav"
     },
     "Eslovaquia": {
       "author": "Rodelar",
@@ -5846,15 +5844,15 @@
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-largo.wav"
     },
     "lata": {
-      "author": "Marreromarco",
+      "author": "Rubýñ",
       "file": "words/lata.mp3",
-      "gain": -1.9,
-      "gate": -69.8,
-      "lead": 200,
+      "gain": 11.3,
+      "gate": -86.8,
+      "lead": 180,
       "matches": "lata",
-      "mos": 2.73,
-      "sha256": "0b798767528cf1ca220e6ab05056a7a4f503531a7079f894fe7de5061d3c3a4c",
-      "source": "LL-Q1321 (spa)-Marreromarco-lata.wav"
+      "mos": 2.69,
+      "sha256": "8ce9a610bb785911ed197587b71d8f8739f8d2dd25eb9f447bf275dd36c47e99",
+      "source": "LL-Q1321 (spa)-Rubýñ-lata.wav"
     },
     "lavabo": {
       "author": "Marreromarco",
@@ -7602,17 +7600,6 @@
       "sha256": "a19871e18f6e0da458712751021874ceea25ca0d2b9fca2b9c61aac2399e1e13",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-papel.wav"
     },
-    "papel higiénico": {
-      "author": "Marreromarco",
-      "file": "words/papel_higiu00e9nico.mp3",
-      "gain": 2.4,
-      "gate": -70.8,
-      "lead": 260,
-      "matches": "papel higiénico",
-      "mos": 3.13,
-      "sha256": "34d7c1edd5ba46e1ac760c59b4cb6fadc83f32342ed860a6aaa41f65bf229f14",
-      "source": "LL-Q1321 (spa)-Marreromarco-papel higiénico.wav"
-    },
     "para": {
       "author": "AdrianAbdulBaha",
       "file": "words/para.mp3",
@@ -8535,15 +8522,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-puerto.wav"
     },
     "puesto": {
-      "author": "Marreromarco",
+      "author": "GlyphEnjoyer",
       "file": "words/puesto.mp3",
-      "gain": 1.0,
-      "gate": -69.9,
-      "lead": 180,
+      "gain": 4.6,
+      "gate": -81.2,
+      "lead": 170,
       "matches": "puesto",
-      "mos": 2.29,
-      "sha256": "36a0e0d052c020870b424276146e96959c996874326b98ffde17e4862122d110",
-      "source": "LL-Q1321 (spa)-Marreromarco-puesto.wav"
+      "mos": 2.37,
+      "sha256": "852722d0a57ce2ac6376d60e29f036fcf848409f3d1c63b472e2e00066b108f4",
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-puesto.wav"
     },
     "pulmón": {
       "author": "AdrianAbdulBaha",
