@@ -76,6 +76,21 @@ POOR_VOICES = {
 ONE_SIDED_DB = 5.0
 
 
+# The longest a take's speech (`audio_measure.speech_span`) may run for the text it is filed under:
+# a base for the breath around any word plus a time per letter. Past it a take says more than its
+# key — es Arca's "Argentina" and "Uruguay" are a sentence each — or its hum and clicks reach so far
+# into the file that the span cannot find the word. 6 of 9074 shipped takes ran past it, all heard as
+# wrong or in that run, the next one 0.03 s under (2026-10-22).
+SPEECH_BASE_S = 1.5
+SPEECH_PER_LETTER_S = 0.15
+
+
+def is_overlong(speech, text):
+    """Speaks longer than [text] takes to say: [speech] seconds over SPEECH_BASE_S plus SPEECH_PER_LETTER_S
+    a letter."""
+    return speech > SPEECH_BASE_S + SPEECH_PER_LETTER_S * sum(char.isalpha() for char in text)
+
+
 def is_one_sided(balance):
     """One side near silent: `audio_measure.side_balance` over ONE_SIDED_DB."""
     return balance is not None and balance > ONE_SIDED_DB

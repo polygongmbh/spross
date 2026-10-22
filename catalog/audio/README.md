@@ -38,7 +38,7 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 ```
 
 The fill's own drops are the quality check:
-`poor` (under its language's floor, or heard as bad), `unmeasurable` (clipped), `one-sided` (one channel near silent), `misnamed`, `unreachable` and `shipped-collision` each name the row and why;
+`poor` (under its language's floor, or heard as bad), `unmeasurable` (clipped), `one-sided` (one channel near silent), `overlong` (speech running past 1.5 s plus 0.15 s a letter of its key: it says more, or the word drowns in its noise), `misnamed`, `unreachable` and `shipped-collision` each name the row and why;
 what a take must pass on its own is the take judge's (`../../scripts/audio_judge.py`).
 Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`):
@@ -166,7 +166,7 @@ the script asks `git ls-files` instead.
   so merging, renaming or moving a concept never touches audio:
   a recording stays reachable while some card shows its form.
   Every field is required except `license`, present only on the entries that depart from their author's,
-  and `gain`/`cap`/`lead`/`gate`, absent where they would be zero or unmeasured.
+  and `gain`/`cap`/`lead`/`end`/`gate`, absent where they would be zero or unmeasured.
 - `articles` (optional, de and it today) is keyed by the whole spoken form like `words` and holds recordings that speak an ARTICLE and then the word —
   `die Adresse`, files under `articles/`.
   `matches` is the whole spoken form, `word` the bare form inside it, and the entry is indexed by BOTH:
@@ -226,8 +226,10 @@ the script asks `git ls-files` instead.
   so packs differ in loudness.
   `sha256` is the digest the generator verified after the copy and lint re-hashes what was committed,
   which makes it a gate rather than a promise.
-- `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched bytes, one gain for every output route;
-  `lead` is how much dead air to start past.
+- `gain` (dB), `lead` and `end` (ms) are the generator's own MEASUREMENT of those untouched bytes, one gain for every output route;
+  `lead` is how much dead air to start past, `end` where to stop once the speech is over,
+  so neither a click nor the hum a word sits in plays around it.
+  Both come from the speech span (`../../scripts/audio_measure.py`), which looks past clicks and over a steady edge noise.
   The files stay unmodified and only the player corrects them.
   What was measured, against which target,
   is `../../scripts/audio_index.py`'s `ANALYSIS`.

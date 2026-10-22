@@ -29,7 +29,7 @@ import audio_ship
 import audio_voice
 from audio_fill import fill
 from audio_forms import load_catalog
-from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
+from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index, span_index
 from audio_gates import digest_of, takes
 from audio_manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_manifest
 
@@ -38,8 +38,29 @@ from audio_manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_mani
 FILL_ORDER = ('words', 'letters', 'texts', 'articles', 'calendar', 'countries')
 
 
+def respan(lang):
+    """Re-derive only `lead`/`end` for a language under `catalog/audio/` — one decode a take where
+    [reindex] spends five, for when the speech span alone changed."""
+    out_dir = audio_dir(lang)
+    manifest = read_manifest(out_dir)
+    entries = [take for section in SECTIONS if section in manifest
+               for item in manifest[section].values() for take in takes(item)]
+    for take in entries:
+        if digest_of(os.path.join(out_dir, take['file'])) != take['sha256']:
+            sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert' % take['file'])
+    with concurrent.futures.ThreadPoolExecutor(max_workers=audio_measure.WORKERS) as pool:
+        spans = pool.map(lambda take: audio_measure.speech_span(FFMPEG, os.path.join(out_dir, take['file'])), entries)
+        moved = 0
+        for take, span in zip(entries, spans):
+            was = (take.pop('lead', None), take.pop('end', None))
+            take.update(span_index(span))
+            moved += was != (take.get('lead'), take.get('end'))
+    write_manifest(out_dir, manifest)
+    print('  %s: %d takes, %d re-spanned' % (lang, len(entries), moved))
+
+
 def reindex(lang):
-    """Re-derive `gain`/`cap`/`lead`/`gate`/`mos` for a language already under `catalog/audio/`,
+    """Re-derive `gain`/`cap`/`lead`/`end`/`gate`/`mos` for a language already under `catalog/audio/`,
     out of the bytes it ships — nothing is copied, converted or renamed.
 
     why a second entry point at all: the packs are unversioned research input and may be
@@ -64,7 +85,7 @@ def reindex(lang):
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
         index = playback_index(*measured[path])
         was = item.get('gain', 0)
-        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr', 'mos', 'gate'):
+        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'end', 'snr', 'mos', 'gate'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:
@@ -168,6 +189,8 @@ def main():
     parser.add_argument('--lang', action='append', help='only this language (repeatable)')
     parser.add_argument('--reindex', action='store_true',
                         help='re-measure catalog/audio/<lang>/ in place; no packs needed')
+    parser.add_argument('--respan', action='store_true',
+                        help='re-measure only where each take\'s speech starts and ends (lead/end), in place')
     for section in ('articles', 'calendar', 'countries'):
         parser.add_argument('--' + section, action='store_true',
                             help='--ship --from-packs --section %s, then --fill --section %s' % (section, section))
@@ -221,12 +244,12 @@ def main():
         print('warning: measuring with %s; ANALYSIS was taken on %s — expect drifted decimals'
               % (detected, ANALYSIS['ffmpeg']))
 
-    if args.reindex:
+    if args.reindex or args.respan:
         shipped = sorted(name for name in os.listdir(AUDIO)
                          if os.path.isdir(os.path.join(AUDIO, name)))
         for lang in args.lang or shipped:
-            print('reindex %s' % lang)
-            reindex(lang)
+            print('%s %s' % ('respan' if args.respan else 'reindex', lang))
+            (respan if args.respan else reindex)(lang)
         return
     aliased = [section for section in ('articles', 'calendar', 'countries') if getattr(args, section)]
     if aliased or args.fill:

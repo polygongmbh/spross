@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""ffmpeg measurement of the shipped recordings: how loud they are, when they start, how
-close to full scale they already run.
+"""ffmpeg measurement of the shipped recordings: how loud they are, where their speech starts and
+ends, how close to full scale they already run.
 
 The mechanics behind `audio-catalog.py`'s analysis stage, which turns these numbers into
-the manifest's `gain`/`lead`. NOTHING here writes audio — every run decodes to the null
+the manifest's `gain`/`lead`/`end`. NOTHING here writes audio — every run decodes to the null
 muxer, so the mp3 that ships is byte-for-byte the mp3 that was measured, the "unmodified
 Commons transcode" claim stays true, and the sha256 gate keeps its meaning.
 """
@@ -16,18 +16,30 @@ import sys
 
 import numpy as np
 
-# -40 dB is where a Commons transcode's room tone sits below its speech; 20 ms is long
-# enough that a plosive's own gap is not read as silence, short enough to catch a lead-in.
-SILENCE_THRESHOLD_DB = -40
-SILENCE_MIN_SECONDS = 0.02
+# SPEECH SPAN — where a take's speech starts and ends, read off 10 ms frames' sample peaks.
+# -40 dBFS is where a Commons transcode's room tone sits below its speech. A file whose edge
+# holds a steady noise well under its loudest frame (it frigorifero: two seconds of hum at -24
+# before the word) raises the bar to just over that noise instead. A loud frame with no other
+# within ISOLATED_MS is a click, as is a group at the head under HEAD_CLICK_MS or at the tail under
+# TAIL_CLICK_MS standing MERGE_MS or more off the speech: the head limit stays under the shortest
+# word (it "i genitori"), the tail one can be wider because the player keeps time after the speech.
+SPAN_FRAME_MS = 10
+SPAN_FLOOR_DB = -40
+SPAN_EDGE_MS = 300
+SPAN_STEADY_DB = 6
+SPAN_UNDER_LOUDEST_DB = 12
+SPAN_OVER_NOISE_DB = 6
+SPAN_MERGE_MS = 200
+SPAN_ISOLATED_MS = 50
+SPAN_HEAD_CLICK_MS = 40
+SPAN_TAIL_CLICK_MS = 100
+SPAN_RATE = 16000
 
 # why: the catalog is ~1100 files and each pass is a full decode — measuring them ten at a
 # time keeps the analysis stage off the converter's wall clock (seconds, not minutes).
 WORKERS = 10
 
 INTEGRATED = re.compile(r'^\s+I:\s+(-?[\d.]+|-inf) LUFS', re.M)
-SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
-SILENCE_END = re.compile(r'silence_end:\s*(-?[\d.]+)')
 PEAK_LEVEL = re.compile(r'Peak level dB:\s*(-?[\d.]+|-inf)')
 
 # NOISE — where a playback gate sits, never a verdict on the take (that is MOS) — is
@@ -49,37 +61,72 @@ def version(binary):
 
 
 def measure(binary, path):
-    """(integrated LUFS, leading silence in seconds, sample peak dBFS, dB of speech above its
-    noise, loudest frame RMS dBFS, MOS); a silent file measures None for the levels.
+    """(integrated LUFS, `speech_span`, sample peak dBFS, dB of speech above its noise, loudest
+    frame RMS dBFS, MOS); a silent file measures None for the levels.
 
-    One decode, three filters. `ebur128` reports EBU R128 INTEGRATED loudness, which is
-    gated — the pause a single word sits in does not drag its level down, so two packs can
-    be compared on it. `silencedetect` opens a run at 0 exactly when the file starts with
-    dead air; a first run starting anywhere else means it starts speaking. `astats` reports
-    the loudest DECODED sample, which is the ceiling a player's gain stage runs into — the
-    mp3's own headroom says nothing, the decoder's output is what gets amplified. The noise
-    and the MOS are decodes of their own (`noise`, `mos`).
+    `ebur128` reports EBU R128 INTEGRATED loudness, which is gated — the pause a single word sits
+    in does not drag its level down, so two packs can be compared on it. `astats` reports the
+    loudest DECODED sample, which is the ceiling a player's gain stage runs into — the mp3's own
+    headroom says nothing, the decoder's output is what gets amplified. The span, the noise and
+    the MOS are decodes of their own.
     """
     run = subprocess.run(
         [binary, '-hide_banner', '-nostats', '-i', path, '-af',
-         'silencedetect=noise=%ddB:d=%s,'
-         'astats=measure_overall=Peak_level:measure_perchannel=none,'
-         'ebur128=peak=none' % (SILENCE_THRESHOLD_DB, SILENCE_MIN_SECONDS), '-f', 'null', '-'],
+         'astats=measure_overall=Peak_level:measure_perchannel=none,ebur128=peak=none', '-f', 'null', '-'],
         capture_output=True, text=True)
     if run.returncode != 0:
         raise RuntimeError('%s: ffmpeg failed\n%s' % (path, run.stderr[-800:]))
     loudness = INTEGRATED.findall(run.stderr)
     peak = PEAK_LEVEL.findall(run.stderr)
-    start = SILENCE_START.search(run.stderr)
-    end = SILENCE_END.search(run.stderr)
-    opens_silent = start is not None and abs(float(start.group(1))) < 1e-6
     return (
         float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None,
-        float(end.group(1)) if opens_silent and end else 0.0,
+        speech_span(binary, path),
         float(peak[-1]) if peak and peak[-1] != '-inf' else None,
         *noise(binary, path),
         mos(binary, path),
     )
+
+
+def _span_bar(edge):
+    """The level speech has to pass at one edge of a file, [edge] its frames read from that edge."""
+    frames = SPAN_EDGE_MS // SPAN_FRAME_MS
+    if len(edge) < frames:
+        return SPAN_FLOOR_DB
+    noise = np.median(edge[:frames])
+    steady = np.percentile(edge[:frames], 75) - np.percentile(edge[:frames], 25) < SPAN_STEADY_DB
+    if steady and edge.max() - noise >= SPAN_UNDER_LOUDEST_DB:
+        return max(SPAN_FLOOR_DB, noise + SPAN_OVER_NOISE_DB)
+    return SPAN_FLOOR_DB
+
+
+def speech_span(binary, path):
+    """(start, end, duration) in seconds: where the speech in `path` starts and ends, past clicks
+    and edge noise (SPEECH SPAN), and the file's length; the whole file where nothing is loud."""
+    raw = subprocess.run([binary, '-v', 'error', '-i', path, '-ac', '1', '-ar', str(SPAN_RATE), '-f', 'f32le', '-'],
+                         capture_output=True, check=True).stdout
+    width = SPAN_RATE * SPAN_FRAME_MS // 1000
+    x = np.frombuffer(raw, dtype=np.float32)
+    frames = x[:len(x) // width * width].reshape(-1, width).astype(np.float64)
+    duration = len(x) / SPAN_RATE
+    if not len(frames):
+        return 0.0, duration, duration
+    db = 20 * np.log10(np.abs(frames).max(axis=1) + 1e-10)
+    middle = len(db) // 2
+    loud = np.concatenate([db[:middle] > _span_bar(db), db[middle:] > _span_bar(db[::-1])])
+    near = np.convolve(loud, np.ones(2 * (SPAN_ISOLATED_MS // SPAN_FRAME_MS) + 1), 'same')
+    hits = np.flatnonzero(loud & (near > 1))
+    if not len(hits):
+        return 0.0, duration, duration
+    groups = [[hits[0]]]
+    for hit in hits[1:]:
+        if (hit - groups[-1][-1]) * SPAN_FRAME_MS > SPAN_MERGE_MS:
+            groups.append([])
+        groups[-1].append(hit)
+    while len(groups) > 1 and len(groups[0]) * SPAN_FRAME_MS < SPAN_HEAD_CLICK_MS:
+        groups.pop(0)
+    while len(groups) > 1 and len(groups[-1]) * SPAN_FRAME_MS < SPAN_TAIL_CLICK_MS:
+        groups.pop()
+    return (float(groups[0][0] * SPAN_FRAME_MS) / 1000, float((groups[-1][-1] + 1) * SPAN_FRAME_MS) / 1000, duration)
 
 
 def peak_and_loudness(binary, path):

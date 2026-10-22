@@ -1,6 +1,6 @@
 """The ANALYSIS INDEX: what the players correct a recording by, measured off its untouched bytes.
 
-`gain`/`cap`/`lead`/`gate` plus `mos` per entry, re-derived by `audio-catalog.py --reindex`
+`gain`/`cap`/`lead`/`end`/`gate` plus `mos` per entry, re-derived by `audio-catalog.py --reindex`
 and written by every path that ships a take (`audio_manifest.py`).
 """
 import math
@@ -56,6 +56,10 @@ ANALYSIS = {
 # A recording's first 50 ms of near-silence is its attack, not dead air — starting past it
 # clips the consonant off the front. Everything before that the player may skip.
 LEAD_KEEP_MS = 50
+# After the speech a word still decays, and the gate fades whatever follows (kern `Playback`):
+# the player stops this long past the speech's end. A trim under END_MIN_MS is not worth a field.
+END_KEEP_MS = 300
+END_MIN_MS = 100
 # ±20 dB is 10× amplitude and the point where a measurement is likelier broken than the
 # recording. uk `ж` (-37.4 LUFS, +20.7 measured) is the one entry the clamp catches today.
 GAIN_LIMIT_DB = 20.0
@@ -72,11 +76,13 @@ GATE_MARGIN_DB = 6.0
 GATE_FLOOR_DB = -100.0
 
 # The fields [playback_index] writes onto an entry.
-INDEX_FIELDS = ('gain', 'cap', 'lead', 'gate', 'mos')
+INDEX_FIELDS = ('gain', 'cap', 'lead', 'end', 'gate', 'mos')
 
 
-def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
-    """The optional `gain`/`cap`/`lead`/`gate` plus `mos` for one entry — absent when there is nothing to say.
+def playback_index(loudness, span, peak, noise, loudest, mos, perceived):
+    """The optional `gain`/`cap`/`lead`/`end`/`gate` plus `mos` for one entry — absent when there is
+    nothing to say. [span] is `audio_measure.speech_span`: `lead` skips what comes before the speech,
+    `end` stops where it ends.
 
     `mos` is how good the take sounds (`audio_measure.mos`). Unlike the other fields it changes
     no playback — it is carried so the lint can see the SHAPE of a pack and refuse a rebuild
@@ -97,9 +103,7 @@ def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
     cap = round(full - gain, 1)
     if cap:
         index['cap'] = cap
-    lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
-    if lead:
-        index['lead'] = lead
+    index.update(span_index(span))
     if mos is not None:
         index['mos'] = round(mos, 2)
     if noise is not None:
@@ -108,6 +112,19 @@ def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
         gate = round(loudest - noise + GATE_MARGIN_DB, 1)
         if GATE_FLOOR_DB <= gate < 0:
             index['gate'] = gate
+    return index
+
+
+def span_index(span):
+    """The optional `lead`/`end` out of `audio_measure.speech_span` — absent where they would cut nothing."""
+    start, stop, duration = span
+    index = {}
+    lead = max(0, round(start * 1000) - LEAD_KEEP_MS)
+    if lead:
+        index['lead'] = lead
+    end = round(stop * 1000) + END_KEEP_MS
+    if round(duration * 1000) - end >= END_MIN_MS:
+        index['end'] = end
     return index
 
 

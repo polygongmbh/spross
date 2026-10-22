@@ -7,7 +7,8 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
 
   · `refused` — (reason, detail) of the first of: license refused or unknown, author names
     nobody, a Lingua Libre name that is not its speaker saying its form, decodes to silence,
-    heard as bad or by a POOR voice, under the language's floor, one-sided, gain past the limit;
+    heard as bad or by a POOR voice, under the language's floor, one-sided, speaking longer than its
+    key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
   · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
   · `vouched` — heard as okay or better.
@@ -21,8 +22,8 @@ import audio_index
 import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
-from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_rejected, is_squashed,
-                          is_vouched, mos_floor)
+from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_rejected,
+                          is_squashed, is_vouched, mos_floor)
 
 Judged = collections.namedtuple('Judged', 'mos refused hot doubted vouched')
 
@@ -51,15 +52,17 @@ def source_refusal(take):
 
 def measure(path, scored=True):
     """What [judge] reads off a take's bytes short of its playback gain, in one process:
-    `balance`, `peak`, `loudness` and — [scored] — `mos` and `silent`."""
+    `balance`, `peak`, `loudness`, `speech` seconds and — [scored] — `mos` and `silent`."""
     if scored:
         levels = audio_measure.measure(audio_index.FFMPEG, path)
-        loudness, peak = levels[0], levels[2]
+        loudness, span, peak = levels[0], levels[1], levels[2]
         out = dict(mos=None if levels[5] is None else round(levels[5], 2), silent=loudness is None or peak is None)
     else:
         peak, loudness = audio_measure.peak_and_loudness(audio_index.FFMPEG, path)
+        span = audio_measure.speech_span(audio_index.FFMPEG, path)
         out = {}
-    return dict(out, balance=audio_measure.side_balance(audio_index.FFMPEG, path), peak=peak, loudness=loudness)
+    return dict(out, balance=audio_measure.side_balance(audio_index.FFMPEG, path), peak=peak, loudness=loudness,
+                speech=round(span[1] - span[0], 2))
 
 
 def judge(take, index=False, measured=None):
@@ -86,6 +89,14 @@ def judge(take, index=False, measured=None):
             balance = audio_measure.side_balance(audio_index.FFMPEG, path)
         if is_one_sided(balance):
             refused = 'one-sided', '%.1f dB between its sides' % balance
+    # why: a letter's take says the letter's name, which its glyph key never spells.
+    if not refused and take['section'] != 'letters':
+        speech = (measured or {}).get('speech')
+        if speech is None:
+            start, end, _ = audio_measure.speech_span(audio_index.FFMPEG, path)
+            speech = end - start
+        if is_overlong(speech, take['key']):
+            refused = 'overlong', '%.1f s of speech for "%s"' % (speech, take['key'])
     if not refused and abs(index.get('gain', 0)) > audio_index.GAIN_LIMIT_DB:
         refused = 'unmeasurable', 'gain %.1f dB is past ±%.0f — clipped' % (index['gain'],
                                                                           audio_index.GAIN_LIMIT_DB)

@@ -3,12 +3,12 @@ voice's few takes onto an established one. Both only ever CHOOSE another untouch
 denoising would be an adaptation under BY-SA and break the sha256 the catalog pins.
 
 SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it,
-it scores under `RECONSIDER_MOS`, it is squashed or one-sided — unless a listener vouched for it,
-which only one-sidedness overrules. A challenger the judge refuses or finds squashed, or a listener
+it scores under `RECONSIDER_MOS`, it is squashed, one-sided or overlong — unless a listener vouched
+for it, which only one-sidedness and overlength overrule. A challenger the judge refuses or finds squashed, or a listener
 doubted, never wins.
 The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a voice change and a
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
-clearly worse, and against a refused, doubted, one-sided or under-floor one any passable take
+clearly worse, and against a refused, doubted, one-sided, overlong or under-floor one any passable take
 wins. A voice the language already ships `ESTABLISHED_TAKES` of beats a slightly better stranger.
 
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
@@ -29,7 +29,7 @@ from audio_lingualibre import license_rank
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
-                          is_doubted, is_one_sided, is_squashed, is_vouched, mos_floor)
+                          is_doubted, is_one_sided, is_overlong, is_squashed, is_vouched, mos_floor)
 
 
 def candidates(lang, takes):
@@ -64,6 +64,11 @@ def pending(lang, section, catalog, measures):
             continue
         take['mos'] = take['mos'] if take['mos'] is not None else measured.get('mos')
         take['lopsided'] = is_one_sided(measured['balance'])
+        speech = measured.get('speech')
+        if speech is None and section != 'letters':
+            start, end, _ = audio_measure.speech_span(FFMPEG, take['path'])
+            speech = end - start
+        take['overlong'] = section != 'letters' and is_overlong(speech, take['key'])
         take['squashed'] = is_squashed(measured['peak'], measured['loudness'])
         take['ear'] = is_doubted(take['sha256'], lang, take['author'])
         take['refused'] = audio_judge.source_refusal(take)
@@ -78,10 +83,10 @@ def sweep(lang, section, catalog, measures, only, apply):
         noisy = [take for take in takes if take['key'] in only]
     else:
         noisy = [take for take in takes
-                 if (not is_vouched(take['sha256']) or take['lopsided'])
+                 if (not is_vouched(take['sha256']) or take['lopsided'] or take['overlong'])
                  and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['squashed'] or take['lopsided']
-                      or take['refused'])]
-    print('%d below %.2f, squashed, one-sided or refused' % (len(noisy), RECONSIDER_MOS))
+                      or take['overlong'] or take['refused'])]
+    print('%d below %.2f, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
         return 0, 0
     options, failed = candidates(lang, noisy)
@@ -115,7 +120,7 @@ def sweep(lang, section, catalog, measures, only, apply):
             needed = before + SWAP_MARGIN
             if take['squashed'] or take['lopsided']:
                 needed = before - SWAP_MARGIN
-            if take['ear'] or take['lopsided'] or take['refused']:
+            if take['ear'] or take['lopsided'] or take['overlong'] or take['refused']:
                 needed = floor
             elif before < floor:
                 needed = min(needed, max(floor, before + 0.01))
@@ -141,7 +146,7 @@ def sweep(lang, section, catalog, measures, only, apply):
 
 def reason(take):
     return ('refused: %s' % take['refused'][0] if take['refused'] else 'one-sided' if take['lopsided']
-            else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'mos %.2f' % take['mos'])
+            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'mos %.2f' % take['mos'])
 
 
 def brightness(measures, sha, path):
