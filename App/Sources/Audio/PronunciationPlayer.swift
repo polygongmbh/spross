@@ -153,15 +153,41 @@ final class PronunciationPlayer {
                                                  fadeDb: request.fadeDb))
         self.onFinish = onFinish
         let current = playback
-        node.scheduleSegment(file, startingFrame: head,
-                             frameCount: AVAudioFrameCount(stop - head), at: nil,
-                             completionCallbackType: .dataPlayedBack) { [weak self] _ in
-            // why: the callback lands on an audio thread, and everything it
-            // reaches — the probe's line included — is the main actor's.
+        // why: the callback lands on an audio thread, and everything it
+        // reaches — the probe's line included — is the main actor's.
+        let done: @Sendable (AVAudioPlayerNodeCompletionCallbackType) -> Void = { [weak self] _ in
             Task { @MainActor in self?.finish(current) }
+        }
+        if stop < file.length, let segment = Self.fadedSegment(file, from: head, to: stop) {
+            node.scheduleBuffer(segment, at: nil, options: [], completionCallbackType: .dataPlayedBack,
+                                completionHandler: done)
+        } else {
+            node.scheduleSegment(file, startingFrame: head, frameCount: AVAudioFrameCount(stop - head),
+                                 at: nil, completionCallbackType: .dataPlayedBack, completionHandler: done)
         }
         node.play()
         return true
+    }
+
+    /// The frames from `head` to `stop`, their last `Playback.STOP_FADE_MS` ramped to silence —
+    /// a stop short of the file lands inside whatever follows the word, and a cut there clicks.
+    /// nil where the file will not read; the caller then plays it unfaded.
+    private static func fadedSegment(_ file: AVAudioFile, from head: AVAudioFramePosition,
+                                     to stop: AVAudioFramePosition) -> AVAudioPCMBuffer? {
+        let count = AVAudioFrameCount(stop - head)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: count)
+        else { return nil }
+        file.framePosition = head
+        guard (try? file.read(into: buffer, frameCount: count)) != nil,
+              let channels = buffer.floatChannelData else { return nil }
+        let frames = Int(buffer.frameLength)
+        let fade = min(frames, Int(Double(Playback.shared.STOP_FADE_MS) / 1000 * file.processingFormat.sampleRate))
+        for channel in 0..<Int(buffer.format.channelCount) {
+            for step in 0..<fade {
+                channels[channel][frames - fade + step] *= Float(fade - step) / Float(fade)
+            }
+        }
+        return buffer
     }
 
     func stop() {

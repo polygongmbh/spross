@@ -257,7 +257,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   and the recording is still worth playing whole —
   as is one whose duration the platform will not report.
   `Playback.stopMs(endMs, headMs, durationMs)` answers the measured end only where it lies past the head and inside the file, else the file plays out;
-  Android's MediaPlayer cannot stop at a position, so a timer from the start pauses it there and counts that as the word's end.
+  a stop short of the file fades out over `Playback.STOP_FADE_MS`, since it lands inside whatever follows the word and steady noise the gate misses would click —
+  iOS ramps the samples it schedules, and Android's MediaPlayer, which cannot stop at a position, steps its volume down on a timer from the start and pauses there, counting that as the word's end.
   `Playback.gateThresholdDb(gate, appliedGainDb)` is the threshold for a gate placed after the gain stage (gate + applied gain);
   a gate before the gain takes `gate` as it stands.
   The expander's shape is `Playback`'s too —

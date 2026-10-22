@@ -175,7 +175,7 @@ def key():
 
 def heard(path):
     """ffplay's arguments for [path] as the app plays it, near enough: its speech span at LISTEN_LUFS,
-    faded in and out where the app's noise gate would have quieted the noise a cut lands in."""
+    faded at both edges as the app fades its stop."""
     peak, loudness = audio_measure.peak_and_loudness(FFMPEG, path)
     gain = 0 if loudness is None else min(LISTEN_LUFS - loudness, LISTEN_PEAK_DBFS - peak)
     start, end, _ = audio_measure.speech_span(FFMPEG, path)

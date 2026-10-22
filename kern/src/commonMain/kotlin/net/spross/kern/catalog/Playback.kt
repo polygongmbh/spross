@@ -62,6 +62,12 @@ object Playback {
     fun stopMs(endMs: Long, headMs: Long, durationMs: Long): Long =
         if (endMs > headMs && (durationMs < 0 || endMs < durationMs)) endMs else durationMs
 
+    /**
+     * How long a recording fades out into a [stopMs] short of its file, in ms: a stop inside a steady
+     * noise the gate does not reach (it Algeria's low hum) would otherwise click.
+     */
+    const val STOP_FADE_MS: Long = 30
+
     /** The lowest noise level a measurement may claim: below it the file is digital silence. */
     const val GATE_FLOOR_DB: Double = -100.0
 

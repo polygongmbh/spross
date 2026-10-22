@@ -90,6 +90,9 @@ class PronunciationPlayer {
     /** The token the pending cut at [stop] is posted under. */
     private val cut = Any()
 
+    /** The clip in hand's player volume, which the fade into [stop] ramps down from and restores. */
+    private var volume = 1f
+
     /**
      * Plays [afd] under its analysis index — [gate] included — replacing whatever was sounding. The
      * descriptor is consumed on the worker. A file that will not open simply stays
@@ -124,6 +127,7 @@ class PronunciationPlayer {
         handler.post {
             // why: the fade may have moved since this clip was prepared — the boost on its
             // session is the catalog's correction and stands, the volume is the ramp.
+            this.volume = volume
             player?.setVolume(volume, volume)
             gateBand(gateDb, volume)?.let { gate?.update(it) }
             // why: a prepare still on its way ends in this very clip sounding, so a
@@ -192,6 +196,7 @@ class PronunciationPlayer {
             // The attenuating half of the index rides the player and the boosting half
             // its session; the scheme leaves only one of the two ever doing anything.
             val volume = playbackVolume(gainDb, capDb, fadeDb)
+            this.volume = volume
             player.setVolume(volume, volume)
             boost(player, playbackBoostMillibels(gainDb))
             gateDb = gate
@@ -253,15 +258,24 @@ class PronunciationPlayer {
         player.seekTo(head, MediaPlayer.SEEK_CLOSEST)
         player.start()
         // why: MediaPlayer plays to the file's end, so a click or hum past the word is cut by a
-        // timer, and the cut is the word's end — what a listening run arms its next beat off.
+        // timer, faded in volume steps since a cut inside steady noise clicks, and the cut is the
+        // word's end — what a listening run arms its next beat off.
         if (stop in head + 1 until player.duration) {
             val current = request.get()
-            handler.postAtTime({
-                if (current == request.get() && this.player === player) {
-                    player.pause()
-                    finish(current)
-                }
-            }, cut, SystemClock.uptimeMillis() + stop - head)
+            val fadeAt = SystemClock.uptimeMillis() + maxOf(0L, stop - head - Playback.STOP_FADE_MS)
+            for (step in 1..FADE_STEPS) {
+                handler.postAtTime({
+                    if (current != request.get() || this.player !== player) return@postAtTime
+                    if (step < FADE_STEPS) {
+                        val left = volume * (FADE_STEPS - step) / FADE_STEPS
+                        player.setVolume(left, left)
+                    } else {
+                        player.pause()
+                        player.setVolume(volume, volume)
+                        finish(current)
+                    }
+                }, cut, fadeAt + Playback.STOP_FADE_MS * step / FADE_STEPS)
+            }
         }
     }
 
@@ -281,6 +295,9 @@ class PronunciationPlayer {
     }
 
     private companion object {
+        /** How many volume steps the fade into a measured stop takes — MediaPlayer has no ramp of its own. */
+        const val FADE_STEPS = 6
+
         /**
          * A target word is media — content the learner asked for, not a notification —
          * and it is speech, which is what a car or a hearing aid decides on.
