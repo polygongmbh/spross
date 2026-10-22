@@ -4,7 +4,8 @@ denoising would be an adaptation under BY-SA and break the sha256 the catalog pi
 
 SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it,
 it scores under `RECONSIDER_MOS`, it is squashed or one-sided — unless a listener vouched for it,
-which only one-sidedness overrules. A challenger the judge refuses or finds squashed never wins.
+which only one-sidedness overrules. A challenger the judge refuses or finds squashed, or a listener
+doubted, never wins.
 The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a voice change and a
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
 clearly worse, and against a refused, doubted, one-sided or under-floor one any passable take
@@ -13,7 +14,7 @@ wins. A voice the language already ships `ESTABLISHED_TAKES` of beats a slightly
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
 an established voice's take of the same form — smallest license harm first (CC0 and public domain,
 then attribution, then share-alike), then the biggest voice, then the catalog's casing — unless
-that take is refused, squashed, scores `SWAP_MARGIN` or more under the incumbent (a sweep would win
+that take is refused, squashed, doubted by a listener, scores `SWAP_MARGIN` or more under the incumbent (a sweep would win
 that back, and the two would trade the take forever), or gives up
 more than `DULLNESS_DB` above 6 kHz (a telephone-band take scores clean and sounds dull).
 """
@@ -106,7 +107,8 @@ def sweep(lang, section, catalog, measures, only, apply):
         for name, record, path, verdict in results.get(take['key'], []):
             if verdict.mos is None and not verdict.refused:
                 continue
-            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else None
+            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
+                'heard as mediocre' if is_doubted(digest_of(path), lang, record.get('author')) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], name, why))
                 continue
@@ -184,7 +186,8 @@ def consolidate(lang, section, catalog, measures, only, apply):
                 continue
             sha = digest_of(path)
             verdict = judged(take, name, record, path, measures.result(sha, measures.submit(sha, path)))
-            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else None
+            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
+                'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], record.get('author', '?'), why))
                 continue
