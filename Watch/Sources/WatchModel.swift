@@ -29,6 +29,8 @@ final class WatchModel {
     private(set) var queue: [String] = []
     private(set) var currentID: String?
     private(set) var currentQuestion: WatchPracticeQuestion?
+    /// The last questions' right tiles, newest first, kept off the next tiles.
+    private var recentAnswers: [String] = []
     /// The tapped option index; non-nil freezes the tiles into feedback state.
     private(set) var selectedIndex: Int?
     /// The rating the last tap earned (raw FSRS 1–4), for the tile's badge —
@@ -158,6 +160,7 @@ final class WatchModel {
         self.run = run
         answeredCount = 0
         answerStreak = 0
+        recentAnswers = []
         currentID = queue.first
         makeQuestionForCurrent()
         sessionPresented = true
@@ -171,6 +174,8 @@ final class WatchModel {
               let id = currentID, var snap = snapshot else { return }
         selectedIndex = index
         let correct = index == question.correctIndex
+        recentAnswers = Array(([question.options[question.correctIndex]] + recentAnswers)
+            .prefix(WatchPracticeGenerator.recentAnswerCount))
         answerStreak = correct ? answerStreak + 1 : 0
 
         let elapsedMs = Int(Date().timeIntervalSince(questionShownAt) * 1000)
@@ -281,7 +286,8 @@ final class WatchModel {
             currentQuestion = nil
             return
         }
-        currentQuestion = WatchPracticeGenerator.makeQuestion(promptEntry: entry, using: &rng)
+        currentQuestion = WatchPracticeGenerator.makeQuestion(promptEntry: entry, avoiding: recentAnswers,
+                                                              using: &rng)
         questionShownAt = Date()
         startRecallPause(entry)
     }

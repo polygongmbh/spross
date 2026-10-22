@@ -48,6 +48,8 @@ Neighbors: the snapshots they decode `snapshots.md`, the review card on the phon
   a four-way pick between sentences is exposure, not recall, and exposure is what the phone's own card already does better.
   What the watch drops, it drops from BOTH the entries and the option pool, from one predicate —
   the two can never disagree about what fits.
+- **The last two answers are nobody's distractor.** A word just tapped as right is ruled out on sight,
+  so the watch draws its three tiles from the rest of the phone's shortlist and falls back on a recent answer only when nothing else is left (`WatchPracticeGenerator`).
 - **Every answer answers back, on three channels.** A haptic (a light click for any right answer, the retry buzz for a miss), a quick right answer's speed marked on the tapped tile (⚡⚡ Easy, ⚡ Good), and — on a miss only — the tile and a brief full-screen wash in red.
   **Red is the wrist's alone**: the phone keeps wrong off its cards because the learner stays there and can correct it, while a glance-long wrist answer has no second face to be gentle on.
   The mark names what earned the rating, never the grade: a learner sees why it came.
