@@ -72,7 +72,8 @@ POOR_VOICES = {
 # The most one side of a take may stand over the other. A recorder that took the voice on
 # one channel only plays it in one ear on headphones: fr Clément Bucco-Lechat's country names
 # ran 13–25 dB lopsided, and es UofG Language Modules was heard one-sided at 7–8 dB, while
-# every other shipped take stays under 2.5 (measured 2026-10-22).
+# every other shipped take stays under 2.5 (measured 2026-10-22). Speakers mix the sides in the
+# room, so a lopsided take heard on them passes for good (UofG llave at 8.3 dB): headphones decide.
 ONE_SIDED_DB = 5.0
 
 
