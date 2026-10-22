@@ -69,6 +69,14 @@ POOR_VOICES = {
     "it": ["Francyskus"],
 }
 
+# DOUBTED voices: heard as mediocre across their takes, and still preferred over the device voice
+# (es Marreromarco, echoey on headphones and fine on a phone speaker, 2026-10-22). A sweep swaps
+# their takes for another voice's that is not clearly worse, and never picks one of theirs, except a
+# file a listener passed on its own.
+DOUBTED_VOICES = {
+    "es": ["Marreromarco"],
+}
+
 # The most one side of a take may stand over the other. A recorder that took the voice on
 # one channel only plays it in one ear on headphones: fr Clément Bucco-Lechat's country names
 # ran 13–25 dB lopsided, and es UofG Language Modules was heard one-sided at 7–8 dB, while
@@ -117,6 +125,11 @@ def _poor(sha256, lang, author):
 def is_rejected(sha256, lang=None, author=None):
     """Heard as bad, or by a POOR voice: never ships, whatever it scores."""
     return verdict(sha256) == 'bad' or _poor(sha256, lang, author)
+
+
+def is_voice_doubted(sha256, lang, author):
+    """By a DOUBTED voice, and not passed on its own."""
+    return author in DOUBTED_VOICES.get(lang, ()) and not is_vouched(sha256)
 
 
 def is_doubted(sha256, lang=None, author=None):

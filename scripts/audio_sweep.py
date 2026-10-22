@@ -4,7 +4,8 @@ denoising would be an adaptation under BY-SA and break the sha256 the catalog pi
 
 SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it,
 it scores under `RECONSIDER_MOS`, it is squashed, one-sided or overlong — unless a listener vouched
-for it, which only one-sidedness and overlength overrule. A challenger the judge refuses or finds squashed, or a listener
+for it, which only one-sidedness and overlength overrule. A take by a DOUBTED voice (`audio_voices`) goes up
+too, and is beaten like a squashed one. A challenger the judge refuses or finds squashed, or a listener
 doubted, never wins.
 The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a voice change and a
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
@@ -29,7 +30,8 @@ from audio_lingualibre import license_rank
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
-                          is_doubted, is_one_sided, is_overlong, is_squashed, is_vouched, mos_floor)
+                          is_doubted, is_one_sided, is_overlong, is_squashed, is_voice_doubted, is_vouched,
+                          mos_floor)
 
 
 def candidates(lang, takes):
@@ -71,6 +73,7 @@ def pending(lang, section, catalog, measures):
         take['overlong'] = section != 'letters' and is_overlong(speech, take['key'])
         take['squashed'] = is_squashed(measured['peak'], measured['loudness'])
         take['ear'] = is_doubted(take['sha256'], lang, take['author'])
+        take['voice'] = is_voice_doubted(take['sha256'], lang, take['author'])
         take['refused'] = audio_judge.source_refusal(take)
         ready.append(take)
     return [take for take in ready if take['mos'] is not None]
@@ -84,7 +87,7 @@ def sweep(lang, section, catalog, measures, only, apply):
     else:
         noisy = [take for take in takes
                  if (not is_vouched(take['sha256']) or take['lopsided'] or take['overlong'])
-                 and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['squashed'] or take['lopsided']
+                 and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['voice'] or take['squashed'] or take['lopsided']
                       or take['overlong'] or take['refused'])]
     print('%d below %.2f, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
@@ -112,13 +115,15 @@ def sweep(lang, section, catalog, measures, only, apply):
         for name, record, path, verdict in results.get(take['key'], []):
             if verdict.mos is None and not verdict.refused:
                 continue
+            sha = digest_of(path)
             why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
-                'heard as mediocre' if is_doubted(digest_of(path), lang, record.get('author')) else None
+                'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
+                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], name, why))
                 continue
             needed = before + SWAP_MARGIN
-            if take['squashed'] or take['lopsided']:
+            if take['squashed'] or take['lopsided'] or take['voice']:
                 needed = before - SWAP_MARGIN
             if take['ear'] or take['lopsided'] or take['overlong'] or take['refused']:
                 needed = floor
@@ -146,7 +151,7 @@ def sweep(lang, section, catalog, measures, only, apply):
 
 def reason(take):
     return ('refused: %s' % take['refused'][0] if take['refused'] else 'one-sided' if take['lopsided']
-            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'mos %.2f' % take['mos'])
+            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'a doubted voice' if take['voice'] else 'mos %.2f' % take['mos'])
 
 
 def brightness(measures, sha, path):
@@ -192,7 +197,8 @@ def consolidate(lang, section, catalog, measures, only, apply):
             sha = digest_of(path)
             verdict = judged(take, name, record, path, measures.result(sha, measures.submit(sha, path)))
             why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
-                'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else None
+                'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
+                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], record.get('author', '?'), why))
                 continue
