@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Recordings now play only the spoken word, skipping clicks and hum around it, and recordings that say more than their word no longer ship.
 - The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
