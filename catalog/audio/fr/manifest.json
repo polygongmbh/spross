@@ -72,17 +72,6 @@
       "source": "LL-Q150 (fra)-Julien Baley-la langue.wav",
       "word": "langue"
     },
-    "la main": {
-      "author": "Aurore1212121",
-      "file": "articles/la_main.mp3",
-      "gain": 3.1,
-      "gate": -55.9,
-      "matches": "la main",
-      "mos": 1.88,
-      "sha256": "15c86dd6809b4068c7a84e554affab8e21152d9f812c9df04fa922fdf13c5d36",
-      "source": "LL-Q150 (fra)-Aurore1212121-La main.wav",
-      "word": "main"
-    },
     "la mère": {
       "author": "DenisdeShawi",
       "file": "articles/la_mu00e8re.mp3",
@@ -336,7 +325,6 @@
     "Penegal": "CC BY-SA 4.0",
     "Poslovitch": "CC0",
     "Roptat": "CC BY-SA 4.0",
-    "Sagnamadr": "CC BY-SA 4.0",
     "Sarah2149": "CC BY-SA 4.0",
     "Sartus85": "CC BY-SA 4.0",
     "Tokçon": "CC BY-SA 4.0",
@@ -5478,18 +5466,6 @@
       "mos": 3.13,
       "sha256": "a93eb21a6b145d7e7e194f6caa88fc7431a1aa73f29dec002ad53541c79abb07",
       "source": "LL-Q150 (fra)-Guilhelma-entre.wav"
-    },
-    "entre nous": {
-      "author": "Sagnamadr",
-      "cap": 2.0,
-      "file": "words/entre_nous.mp3",
-      "gain": 16.8,
-      "gate": -92.2,
-      "lead": 186,
-      "matches": "entre nous",
-      "mos": 3.06,
-      "sha256": "2824400a68f9fefd4cdaa56b3f29ccd6b41dc859c6310d47d39e954d341286c8",
-      "source": "LL-Q150 (fra)-Sagnamadr-entre nous.wav"
     },
     "entreprise": {
       "author": "Sartus85",

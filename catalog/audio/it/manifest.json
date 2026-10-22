@@ -864,7 +864,6 @@
     "GerardM": "CC BY-SA 3.0",
     "GiovanniPen": "CC BY-SA 4.0",
     "Happypheasant": "CC BY-SA 4.0",
-    "Icedlake": "CC BY-SA 3.0",
     "Jennum": "CC BY 4.0",
     "LangPao": "CC BY-SA 4.0",
     "Marta Carbone, Association Shtooka": "CC BY 3.0 us",
@@ -4626,17 +4625,6 @@
       "mos": 2.78,
       "sha256": "7913713dad957aba5c205fb9021d1d4019de96613d900a26480bff0f188af60b",
       "source": "LL-Q652 (ita)-LangPao-friggere.wav"
-    },
-    "frigorifero": {
-      "author": "Icedlake",
-      "cap": 4.4,
-      "file": "words/frigorifero.mp3",
-      "gain": -2.0,
-      "gate": -61.5,
-      "matches": "frigorifero",
-      "mos": 2.11,
-      "sha256": "900fbf016c458f4eb3733ab848950fd1472d9384c0d8deb115cb26547681c5ca",
-      "source": "It-frigorifero.oga"
     },
     "frutta": {
       "author": "Happypheasant",

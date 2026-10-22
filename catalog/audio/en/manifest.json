@@ -6927,15 +6927,15 @@
       "source": "LL-Q1860 (eng)-Wodencafe-nothing.wav"
     },
     "noun": {
-      "author": "Samuel Muldoon",
+      "author": "Vealhurl",
       "file": "words/noun.mp3",
-      "gain": 1.7,
-      "gate": -68.0,
-      "lead": 184,
+      "gain": 9.8,
+      "gate": -74.9,
+      "lead": 193,
       "matches": "noun",
-      "mos": 1.62,
-      "sha256": "c85e3e86af05efbee3f86d81fcaedb39c930c8b25932ab014a56990f16b748a4",
-      "source": "LL-Q1860 (eng)-Samuel Muldoon (Muldoonsamuel55)-noun.wav"
+      "mos": 2.53,
+      "sha256": "54d3fffdac29aad9e889d69880fbda7a5752377a31d19307c7c61d3d3232e7ac",
+      "source": "LL-Q1860 (eng)-Vealhurl-noun.wav"
     },
     "now": {
       "author": "Dvortygirl",

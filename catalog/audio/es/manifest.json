@@ -29,7 +29,6 @@
     "Rodrigo5260": "CC0",
     "Rubýñ": "CC0",
     "Sinaloa": "CC0",
-    "TWolfdog": "CC0",
     "Tino no": "CC BY 4.0",
     "Tino_no": "CC BY-SA 4.0",
     "UofG Language Modules": "CC BY-SA 4.0",
@@ -3605,15 +3604,15 @@
       "source": "LL-Q1321 (spa)-Marreromarco-curso.wav"
     },
     "cuál": {
-      "author": "TWolfdog",
+      "author": "Marreromarco",
       "file": "words/cuu00e1l.mp3",
-      "gain": -4.2,
-      "gate": -68.3,
-      "lead": 58,
+      "gain": 3.5,
+      "gate": -70.7,
+      "lead": 184,
       "matches": "cuál",
-      "mos": 2.77,
-      "sha256": "1d3c69640dc603a1c026983a5f3bb1cf6a23453a45b60b7ce6d2765b15404a76",
-      "source": "Es-cuál.oga"
+      "mos": 2.16,
+      "sha256": "d3139fc9edfbeff0b36210193f4158cd0b77e4c6e8fe0459d326ead79e3088f7",
+      "source": "LL-Q1321 (spa)-Marreromarco-cuál.wav"
     },
     "cuándo": {
       "author": "Rodelar",
