@@ -45,10 +45,7 @@
   },
   "to-find": { "text": "trovare" },
   "to-search": { "text": "cercare", "notes": { "it": "cercare una parola, cercare te: cercare non vuole a." } },
-  "to-receive": { "text": "ricevere", "teaches": ["ottenere"] },
   "to-look": { "text": "guardare", "notes": { "it": "guardare la TV · guarda qui!" } },
-  "to-open": { "text": "aprire" },
-  "to-close": { "text": "chiudere" },
   "to-stop": {
    "text": "smettere",
    "accepts": ["smettere di"],
@@ -62,31 +59,15 @@
    }
   },
   "to-walk": { "text": "camminare" },
-  "to-send": {
-   "text": "inviare",
-   "accepts": ["mandare", "spedire"],
-   "notes": { "it": "inviare e mandare sono uguali · spedire è per i pacchi." }
-  },
-  "to-deliver": {
-   "text": "recapitare",
-   "notes": {
-    "it": "recapitare a casa, recapitare in città.",
-    "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt."
-   }
-  },
   "to-use": { "text": "usare" },
   "to-come-back": { "text": "tornare" },
   "to-go-away": { "text": "andare via" },
   "to-lose": { "text": "perdere" },
   "to-break": { "text": "rompere" },
-  "to-push": { "text": "spingere" },
-  "to-pull": { "text": "tirare" },
   "to-have-to": { "text": "dovere" },
   "to-put": { "text": "mettere" },
   "to-carry": { "text": "portare" },
   "to-happen": { "text": "succedere" },
-  "to-turn-on": { "text": "accendere" },
-  "to-turn-off": { "text": "spegnere" },
   "do-you-have-water": { "text": "Ha acqua?", "accepts": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",
@@ -97,8 +78,6 @@
    }
   },
   "can-you-see-him": { "text": "Lo vedi?", "accepts": ["Lo vede?"] },
-  "to-improve": { "text": "migliorare" },
-  "to-suggest": { "text": "suggerire" },
   "what-happened": { "text": "Cos'è successo?", "accepts": ["Che cosa è successo?"] },
   "my-parents-come-from-italy": {
    "text": "I miei genitori vengono dall'Italia.",

@@ -21,6 +21,8 @@
   "to-hire": { "text": "kuajiri" },
   "to-help": { "text": "kusaidia" },
   "to-work-overtime": { "text": "kufanya saa za ziada" },
+  "to-improve": { "text": "kuboresha" },
+  "to-suggest": { "text": "kupendekeza" },
   "profession": {
    "text": "taaluma",
    "grammar": { "plural": "=" },

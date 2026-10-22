@@ -187,7 +187,7 @@ class CatalogCollisionLintTest {
                 // wegwerfen (tirar la basura) — genuine Spanish polysemy; de/en/eo/fr/it/
                 // sw/uk all split the pair. `botar` (throwing away) and `jalar` (pulling)
                 // are Latin American, so both stay the everyday `tirar`.
-                "es tirar: kitchen/to-throw-away, verbs/to-pull",
+                "es tirar: hall/to-pull, kitchen/to-throw-away",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
                 // as their first pick. Repicking picture as `cadre` would teach the

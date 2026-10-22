@@ -79,6 +79,10 @@
    "notes": { "fr": "habiter à Paris, dans une maison · vivre, c'est être en vie." }
   },
   "to-climb-stairs": { "text": "monter les escaliers", "accepts": ["monter l'escalier"] },
+  "to-open": { "text": "ouvrir" },
+  "to-close": { "text": "fermer" },
+  "to-push": { "text": "pousser" },
+  "to-pull": { "text": "tirer" },
   "do-you-have-the-keys": { "text": "Tu as les clés ?", "accepts": ["As-tu les clés ?"] },
   "ill-be-right-back": {
    "text": "Je reviens tout de suite !",

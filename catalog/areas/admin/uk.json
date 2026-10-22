@@ -41,6 +41,8 @@
   "responsible": { "text": "відповіда́льний" },
   "to-submit-application": { "text": "пода́ти зая́ву" },
   "to-take-a-number": { "text": "взя́ти тало́н", "accepts": ["взяти номерок"] },
+  "to-send": { "text": "надсила́ти", "accepts": ["посилати", "відправляти"] },
+  "to-receive": { "text": "отри́мувати" },
   "where-do-i-sign": { "text": "Де мені́ підписа́ти?" },
   "i-want-to-extend-my-residence-permit": {
    "text": "Я хоті́в би продо́вжити по́свідку на прожива́ння.",

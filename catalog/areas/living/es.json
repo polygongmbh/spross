@@ -38,6 +38,8 @@
   "to-move-in": { "text": "irse a vivir", "accepts": ["entrar a vivir", "mudarse"] },
   "to-move-out": { "text": "irse de casa" },
   "to-water-plants": { "text": "regar las plantas" },
+  "to-turn-on": { "text": "encender", "accepts": ["prender"] },
+  "to-turn-off": { "text": "apagar" },
   "to-play": { "text": "jugar" },
   "to-talk": {
    "text": "charlar",

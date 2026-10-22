@@ -41,6 +41,11 @@
   "responsible": { "text": "respondeca", "accepts": ["kompetenta"] },
   "to-submit-application": { "text": "prezenti peton", "accepts": ["submeti peton"] },
   "to-take-a-number": { "text": "preni numeron" },
+  "to-send": { "text": "sendi" },
+  "to-receive": {
+   "text": "ricevi",
+   "notes": { "eo": "iu donas kaj vi ricevas · akiri estas mem havigi al si ion." }
+  },
   "where-do-i-sign": { "text": "Kie mi subskribu?", "accepts": ["Kie mi devas subskribi?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",

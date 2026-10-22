@@ -25,6 +25,8 @@
   "to-move-in": { "text": "enloĝiĝi" },
   "to-move-out": { "text": "elloĝiĝi" },
   "to-water-plants": { "text": "akvumi la plantojn" },
+  "to-turn-on": { "text": "ŝalti", "accepts": ["enŝalti"] },
+  "to-turn-off": { "text": "malŝalti" },
   "to-play": { "text": "ludi" },
   "to-talk": {
    "text": "babili",

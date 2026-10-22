@@ -26,6 +26,8 @@
   "to-hire": { "text": "dungi" },
   "to-help": { "text": "helpi" },
   "to-work-overtime": { "text": "fari kromhorojn", "accepts": ["labori kromhorojn", "fari kromlaborhorojn"] },
+  "to-improve": { "text": "plibonigi" },
+  "to-suggest": { "text": "proponi" },
   "profession": { "text": "profesio", "accepts": ["metio"] },
   "interview": {
    "text": "labora intervjuo",
