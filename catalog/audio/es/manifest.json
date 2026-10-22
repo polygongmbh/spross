@@ -289,14 +289,15 @@
       "source": "LL-Q1321 (spa)-Rodelar-Argelia.wav"
     },
     "Argentina": {
-      "author": "Precision27",
+      "author": "Millars",
+      "cap": 0.3,
       "file": "countries/argentina.mp3",
-      "gain": 1.9,
-      "lead": 190,
+      "gain": 9.1,
+      "lead": 180,
       "matches": "Argentina",
-      "mos": 2.92,
-      "sha256": "c79a089ed3f7ea104f6d4705c5226b7ccda410ffd696ad27274fd5ec4c4b6406",
-      "source": "LL-Q1321 (spa)-Precision27-Argentina.wav"
+      "mos": 2.82,
+      "sha256": "4a0836800022d59fdd5af8da4520226cda5b048f2d305400849c617da3f0504f",
+      "source": "LL-Q1321 (spa)-Millars-argentina.wav"
     },
     "Australia": {
       "author": "Rodelar",
