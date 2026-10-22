@@ -268,8 +268,7 @@ def main():
                 with open(VERDICTS, 'a', encoding='utf-8', newline='') as handle:
                     csv.writer(handle, delimiter='\t', lineterminator='\n').writerow([
                         datetime.date.today().isoformat(), row['lang'], row['word'],
-                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], '',
-                        note, row.get('mos', ''), context(row)])
+                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], note, row.get('mos', ''), context(row)])
                 done.add((row['sha256'], context(row)))
                 at = onward(at + 1)
                 break
