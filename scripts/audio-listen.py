@@ -25,8 +25,7 @@ PER_LANGUAGE = 3
 KEYS = [
     ('1-5', '1 bad  2 mediocre  3 okay  4 good  5 great', 'rate it bad, mediocre, okay, good, great — and move on'),
     ('r', 'r replay', 'play it again (space too)'),
-    ('d', 'd defect', 'tag a defect first (noisy, reverb, hum, one-sided, breathy, extra words …)'),
-    ('n', 'n note', 'add a note first'),
+    ('n', 'n note', 'add a note first, Enter ends it'),
     ('s', 's skip', 'skip it'),
     ('b', 'b back', 'go back one row, withdrawing its rating — across runs too'),
     ('q', 'q quit', 'stop; a later run resumes at the first take not yet rated in this context'),
@@ -234,19 +233,16 @@ def main():
     while at < len(picked):
         row = listed[picked[at]]
         audio = row['file'] if os.path.isabs(row['file']) else os.path.join(base, row['file'])
-        defect = note = ''
+        note = ''
         print('%2d/%d  %s  %s' % (picked[at] + 1, len(listed), row['lang'], row['word']), end='  ', flush=True)
         player = play(audio, player)
         while True:
             pressed = key()
             if pressed in ('r', ' '):
                 player = play(audio, player)
-            elif pressed == 'd':
-                defect = input('\n      defect: ').strip()
-                print('      ', end='', flush=True)
             elif pressed == 'n':
                 note = input('\n      note: ').strip()
-                print('      ', end='', flush=True)
+                print('      rate 1-5: ', end='', flush=True)
             elif pressed == 's':
                 print('skipped')
                 at = onward(at + 1)
@@ -266,13 +262,13 @@ def main():
                 print('stopped')
                 return
             elif pressed in RATINGS:
-                print(RATINGS[pressed] + (' (%s)' % defect if defect else ''))
+                print(RATINGS[pressed])
                 if rated(row):
                     withdraw(row['sha256'], context(row))
                 with open(VERDICTS, 'a', encoding='utf-8', newline='') as handle:
                     csv.writer(handle, delimiter='\t', lineterminator='\n').writerow([
                         datetime.date.today().isoformat(), row['lang'], row['word'],
-                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], defect,
+                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], '',
                         note, row.get('mos', ''), context(row)])
                 done.add((row['sha256'], context(row)))
                 at = onward(at + 1)
