@@ -14,6 +14,7 @@ just that one take, rated already or not. Each take plays on arrival:
     d    tag a defect first (noisy, reverb, hum, one-sided, breathy, extra words …)
     n    add a note first
     s    skip it
+    b    go back one, withdrawing its rating if this run made one
     q    stop; a later run resumes at the first take not yet rated in this context
 
 `sample` writes one to `../data/review/<date>-NAME/` out of takes nobody rated yet: `--from shipped`
@@ -179,6 +180,19 @@ def play(path, player):
     return subprocess.Popen(['afplay', path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
+def withdraw(sha256, context):
+    """Drops the last verdict on [sha256] in [context]."""
+    with open(VERDICTS, encoding='utf-8') as handle:
+        lines = handle.readlines()
+    for at in range(len(lines) - 1, 0, -1):
+        fields = lines[at].rstrip('\n').split('\t')
+        if fields[5] == sha256 and fields[-1] == context:
+            del lines[at]
+            break
+    with open(VERDICTS, 'w', encoding='utf-8') as handle:
+        handle.writelines(lines)
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'sample':
         return sample(sys.argv[2:])
@@ -201,9 +215,13 @@ def main():
         todo = [row for row in rows
                 if (row['sha256'], row.get('context') or default_context) not in done]
     print('%d of %d takes to rate\n  1 bad  2 mediocre  3 okay  4 good  5 great'
-          '  ·  r replay  d defect  n note  s skip  q quit\n' % (len(todo), len(rows)))
+          '  ·  r replay  d defect  n note  s skip  b back  q quit\n' % (len(todo), len(rows)))
     player = None
-    for number, row in enumerate(todo, 1):
+    rated = [False] * len(todo)
+    at = 0
+    while at < len(todo):
+        row, number = todo[at], at + 1
+        context = row.get('context') or default_context
         audio = row['file'] if os.path.isabs(row['file']) else os.path.join(base, row['file'])
         defect = note = ''
         print('%2d/%d  %s  %s' % (number, len(todo), row['lang'], row['word']), end='  ', flush=True)
@@ -220,6 +238,16 @@ def main():
                 print('      ', end='', flush=True)
             elif pressed == 's':
                 print('skipped')
+                at += 1
+                break
+            elif pressed == 'b':
+                if at == 0:
+                    continue
+                print('back')
+                at -= 1
+                if rated[at]:
+                    withdraw(todo[at]['sha256'], todo[at].get('context') or default_context)
+                    rated[at] = False
                 break
             elif pressed == 'q':
                 player.terminate()
@@ -231,7 +259,9 @@ def main():
                     csv.writer(handle, delimiter='\t', lineterminator='\n').writerow([
                         datetime.date.today().isoformat(), row['lang'], row['word'],
                         row['speaker'], row['source'], row['sha256'], RATINGS[pressed], defect,
-                        note, row.get('mos', ''), row.get('context') or default_context])
+                        note, row.get('mos', ''), context])
+                rated[at] = True
+                at += 1
                 break
     if player:
         player.terminate()
