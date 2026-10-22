@@ -31,7 +31,6 @@
     "Sinaloa": "CC0",
     "Tino no": "CC BY 4.0",
     "Tino_no": "CC BY-SA 4.0",
-    "UofG Language Modules": "CC BY-SA 4.0",
     "Wikipedian-walker": "CC0",
     "unjourparfait": "Public domain"
   },
@@ -290,14 +289,14 @@
       "source": "LL-Q1321 (spa)-Rodelar-Argelia.wav"
     },
     "Argentina": {
-      "author": "Arca~commonswiki",
+      "author": "Precision27",
       "file": "countries/argentina.mp3",
-      "gain": -4.6,
-      "gate": -46.7,
+      "gain": 1.9,
+      "lead": 193,
       "matches": "Argentina",
-      "mos": 2.8,
-      "sha256": "136f96ef6816fa71684736ae102ec66ab6f2b60a9dd54d126fbfdd7812ac75d4",
-      "source": "Es-Argentina.ogg"
+      "mos": 2.92,
+      "sha256": "c79a089ed3f7ea104f6d4705c5226b7ccda410ffd696ad27274fd5ec4c4b6406",
+      "source": "LL-Q1321 (spa)-Precision27-Argentina.wav"
     },
     "Australia": {
       "author": "Rodelar",
@@ -944,14 +943,16 @@
       "source": "LL-Q1321 (spa)-Rodelar-Uganda.wav"
     },
     "Uruguay": {
-      "author": "Arca~commonswiki",
+      "author": "Rodrigo5260",
       "file": "countries/uruguay.mp3",
-      "gain": -4.5,
-      "gate": -48.4,
+      "gain": -1.2,
+      "gate": -81.1,
+      "lead": 210,
+      "license": "CC BY-SA 4.0",
       "matches": "Uruguay",
-      "mos": 2.73,
-      "sha256": "e010467e79d84730b920a024b6ae54a600ce17b5d83b76deb4166377511fd30c",
-      "source": "Es-Uruguay.ogg"
+      "mos": 2.97,
+      "sha256": "bc7bf598a26fe4a1b025dd37dae6e3a5ca36cc9182237ecad433bb27910d426e",
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Uruguay.wav"
     },
     "Venezuela": {
       "author": "Arca~commonswiki",
@@ -3264,15 +3265,15 @@
       "source": "LL-Q1321 (spa)-Marreromarco-consulta.wav"
     },
     "contar": {
-      "author": "UofG Language Modules",
+      "author": "Guergana",
       "file": "words/contar.mp3",
-      "gain": 0.9,
-      "gate": -68.5,
-      "lead": 12,
+      "gain": 5.7,
+      "gate": -73.1,
+      "lead": 67,
       "matches": "contar",
-      "mos": 3.17,
-      "sha256": "c866a1890c9cbbdb026b4884cc0df56f2cb1c3589bddf877db13d9fc21484fd0",
-      "source": "Es-contar.wav"
+      "mos": 2.99,
+      "sha256": "cde5509d9bc78316cd34270fd2d7f6c0391d047f36b72c87f9878ccc03c9ec72",
+      "source": "LL-Q1321 (spa)-Guergana-contar.wav"
     },
     "contraseña": {
       "author": "AdrianAbdulBaha",
@@ -3571,15 +3572,15 @@
       "source": "LL-Q1321 (spa)-Marreromarco-cuidado.wav"
     },
     "cuidar": {
-      "author": "UofG Language Modules",
+      "author": "Marreromarco",
       "file": "words/cuidar.mp3",
-      "gain": 1.5,
-      "gate": -68.0,
-      "lead": 49,
+      "gain": -4.3,
+      "gate": -68.4,
+      "lead": 217,
       "matches": "cuidar",
-      "mos": 2.91,
-      "sha256": "7dfbe8d2b8de760249400538458fdb0f765215ee1d03c8d44e72168c6458e0a5",
-      "source": "Es-cuidar.wav"
+      "mos": 2.27,
+      "sha256": "93c84be3449725d145475f1e46a12e25e482f36070b802e2458b13c4a8f21c71",
+      "source": "LL-Q1321 (spa)-Marreromarco-cuidar.wav"
     },
     "cumpleaños": {
       "author": "AdrianAbdulBaha",
@@ -6072,15 +6073,15 @@
       "source": "Es-Llamarse.ogg"
     },
     "llave": {
-      "author": "UofG Language Modules",
+      "author": "Eavqwiki",
       "file": "words/llave.mp3",
-      "gain": 0.6,
-      "gate": -73.6,
-      "lead": 107,
+      "gain": 5.4,
+      "gate": -89.7,
+      "lead": 257,
       "matches": "llave",
-      "mos": 3.07,
-      "sha256": "13ebaf8eb698b1550c80208b86ea3b75e664b977d8bf497ff0c2b6721d897794",
-      "source": "Es-llave.wav"
+      "mos": 2.44,
+      "sha256": "6c589edf234ddeac612e3bf651abb0624d87510d7b10b7aea91d8fb5b29d5f63",
+      "source": "LL-Q1321 (spa)-Eavqwiki-llave.wav"
     },
     "llegar": {
       "author": "GlyphEnjoyer",
@@ -8039,15 +8040,15 @@
       "source": "LL-Q1321 (spa)-Eavqwiki-pijama.wav"
     },
     "pizarra": {
-      "author": "UofG Language Modules",
+      "author": "Marreromarco",
       "file": "words/pizarra.mp3",
-      "gain": 2.3,
-      "gate": -70.5,
-      "lead": 50,
+      "gain": 1.7,
+      "gate": -69.7,
+      "lead": 230,
       "matches": "pizarra",
-      "mos": 2.99,
-      "sha256": "72ea0f305e8ac8ab36d4446204bf41d1c496997e67825663d9aa8407d57dc068",
-      "source": "Es-pizarra.wav"
+      "mos": 2.29,
+      "sha256": "6b2a26d400e927ebb03fda4bcd44403cefc734632e61fc62ffa5e85a1ba2358e",
+      "source": "LL-Q1321 (spa)-Marreromarco-pizarra.wav"
     },
     "plan": {
       "author": "GlyphEnjoyer",
