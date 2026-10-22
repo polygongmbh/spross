@@ -347,3 +347,11 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context
 2026-10-22	es	zumo	Marreromarco	LL-Q1321 (spa)-Marreromarco-zumo.wav	12c3b14eb935939fb70f327a1cf1902d14b24013761300155d2c9bd52ac05b61	good		1.84	2026-10-22 speech cuts (words, end drops 100 ms of sound)
 2026-10-22	fr	réchauffer	Vion Nicolas	Fr-réchauffer.ogg	6b83227a298711c2ed9bb3af42c93ac515bfde93bd1c7776136664ee36139ff6	good		3.14	2026-10-22 speech cuts (words, end drops 100 ms of sound)
 2026-10-22	fr	pull	Vion Nicolas	Fr-pull.ogg	213d82c87c4c24a63c41def4afa0f113bfd9a234e8bf248c0329be04d3d737f2	bad	says an article before pull (two syllables), so it is not a recording of pull; sound good	2.76	2026-10-22 notes processed
+2026-10-22	es	llave	UofG Language Modules	Es-llave.wav	13ebaf8eb698b1550c80208b86ea3b75e664b977d8bf497ff0c2b6721d897794	good		3.07	2026-10-22 removed unheard (words, one-sided at 8.3 dB)
+2026-10-22	es	contar	UofG Language Modules	Es-contar.wav	c866a1890c9cbbdb026b4884cc0df56f2cb1c3589bddf877db13d9fc21484fd0	good		3.17	2026-10-22 removed unheard (words, one-sided at 6.3 dB)
+2026-10-22	fr	le lit	Aurore1212121	LL-Q150 (fra)-Aurore1212121-Le lit.wav	838aa09d2f8e419b8536dcb12c986ad1713c6f40951f490fb2282709c173e38f	bad		1.9	2026-10-22 removed unheard (articles, overlong: 3.8 s of speech)
+2026-10-22	de	wie	Sebastian Wallroth	LL-Q188 (deu)-Sebastian Wallroth-wie.wav	200efd35b6b0e28f8bc815ad88c83687df4b351af83620da542b62d14db719df	mediocre		2.8	2026-10-22 mediocre, recording or device voice (words)
+2026-10-22	de	der Arzt	Natschoba	LL-Q188 (deu)-Natschoba-der Arzt.wav	1a8fc5059342882560dae7361e393026ebb83e85cec12bfcb8a34e58dc94d37e	mediocre		2.99	2026-10-22 mediocre, recording or device voice (articles)
+2026-10-22	de	der Finger	Natschoba	LL-Q188 (deu)-Natschoba-der Finger.wav	5d3024cee0a7cfa1bc15b5d0752656cc9a7575015ec5fb0f9285e8d974cf0277	okay		3.22	2026-10-22 mediocre, recording or device voice (articles)
+2026-10-22	eo	atestilo	Citoyenovice	LL-Q143 (epo)-Citoyenovice-atestilo.wav	712bf566be8b3276db3aee3ae7d996d3ef67167556ca23a6e81b8f977f521b6d	good		2.85	2026-10-22 mediocre, recording or device voice (words)
+2026-10-22	de	wie	Natschoba	LL-Q188 (deu)-Natschoba-wie.wav	9fff5430fd8de95e7282faf0d5484b9417af6178dcd3fb6933902d07a9d055a0	good		2.7	2026-10-22 mediocre, recording or device voice (words, the challenger a sweep would stage)

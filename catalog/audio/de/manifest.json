@@ -20018,16 +20018,15 @@
       "source": "De-wichtig.ogg"
     },
     "wie": {
-      "author": "Sebastian Wallroth",
-      "cap": 0.2,
+      "author": "Natschoba",
       "file": "words/wie.mp3",
-      "gain": 15.0,
-      "gate": -90.2,
-      "lead": 170,
+      "gain": 7.4,
+      "gate": -81.9,
+      "lead": 230,
       "matches": "wie",
-      "mos": 2.8,
-      "sha256": "200efd35b6b0e28f8bc815ad88c83687df4b351af83620da542b62d14db719df",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-wie.wav"
+      "mos": 2.7,
+      "sha256": "9fff5430fd8de95e7282faf0d5484b9417af6178dcd3fb6933902d07a9d055a0",
+      "source": "LL-Q188 (deu)-Natschoba-wie.wav"
     },
     "wie bitte": {
       "author": "Jeuwre",
