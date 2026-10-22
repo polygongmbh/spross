@@ -11,7 +11,9 @@ import sys
 import termios
 import tty
 
+import audio_measure
 from audio_gates import takes
+from audio_index import END_KEEP_MS, FFMPEG, LEAD_KEEP_MS
 from audio_routes import WORKSPACE
 from audio_voices import ESTABLISHED_TAKES
 
@@ -21,6 +23,11 @@ RATINGS = {'1': 'bad', '2': 'mediocre', '3': 'okay', '4': 'good', '5': 'great'}
 AUDIO = os.path.join(ROOT, 'catalog', 'audio')
 REVIEW = os.path.normpath(os.path.join(ROOT, '..', 'data', 'review'))
 PER_LANGUAGE = 3
+# Where every take plays, so a quiet one and a loud one sound alike without touching the volume —
+# integrated LUFS rather than the app's perceived loudness, which is close enough by ear.
+LISTEN_LUFS = -20
+LISTEN_PEAK_DBFS = -1
+LISTEN_FADE_S = 0.03
 # (key, in the legend, in --help)
 KEYS = [
     ('1-5', '1 bad  2 mediocre  3 okay  4 good  5 great', 'rate it bad, mediocre, okay, good, great — and move on'),
@@ -166,10 +173,23 @@ def key():
         termios.tcsetattr(fd, termios.TCSADRAIN, saved)
 
 
+def heard(path):
+    """ffplay's arguments for [path] as the app plays it, near enough: its speech span at LISTEN_LUFS,
+    faded in and out where the app's noise gate would have quieted the noise a cut lands in."""
+    peak, loudness = audio_measure.peak_and_loudness(FFMPEG, path)
+    gain = 0 if loudness is None else min(LISTEN_LUFS - loudness, LISTEN_PEAK_DBFS - peak)
+    start, end, _ = audio_measure.speech_span(FFMPEG, path)
+    head = max(0.0, start - LEAD_KEEP_MS / 1000)
+    length = end + END_KEEP_MS / 1000 - head
+    fades = 'afade=t=in:d=%.3f,afade=t=out:st=%.3f:d=%.3f' % (LISTEN_FADE_S, length - LISTEN_FADE_S, LISTEN_FADE_S)
+    return ['-ss', '%.3f' % head, '-t', '%.3f' % length, '-af', 'volume=%.1fdB,%s' % (gain, fades), path]
+
+
 def play(path, player):
     if player:
         player.terminate()
-    return subprocess.Popen(['afplay', path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return subprocess.Popen(['ffplay', '-nodisp', '-autoexit', '-loglevel', 'quiet'] + heard(path),
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def withdraw(sha256, context):
