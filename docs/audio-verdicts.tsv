@@ -367,4 +367,4 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context
 2026-10-22	en	noun	Vealhurl	LL-Q1860 (eng)-Vealhurl-noun.wav	54d3fffdac29aad9e889d69880fbda7a5752377a31d19307c7c61d3d3232e7ac	good		2.53	2026-10-22 todays swaps (words)
 2026-10-22	en	reserve	Knabrupt	LL-Q1860 (eng)-Knabrupt-reserve.wav	453b7d29beff187f2f6eea6255222f8dc0917a14281b16df1aa3a228583a67b4	okay		2.8	2026-10-22 todays swaps (words)
 2026-10-22	fr	pull	LoquaxFR	LL-Q150 (fra)-LoquaxFR-pull.wav	cf5542c8610fbc4de0495a6508114065cc1fe0a2d006dafc363604a70efad01e	good		3.0	2026-10-22 todays swaps (words)
-2026-10-22	es	papel higiénico	Marreromarco	LL-Q1321 (spa)-Marreromarco-papel higiénico.wav	34d7c1edd5ba46e1ac760c59b4cb6fadc83f32342ed860a6aaa41f65bf229f14	bad	too echoey even on a phone speaker; one of Marreromarco's few takes past mediocre	3.13	2026-10-22 Marreromarco on a phone
+2026-10-22	es	papel higiénico	Marreromarco	LL-Q1321 (spa)-Marreromarco-papel higiénico.wav	34d7c1edd5ba46e1ac760c59b4cb6fadc83f32342ed860a6aaa41f65bf229f14	good	less echoey than his other takes	3.13	2026-10-22 Marreromarco on a phone

@@ -7600,6 +7600,17 @@
       "sha256": "a19871e18f6e0da458712751021874ceea25ca0d2b9fca2b9c61aac2399e1e13",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-papel.wav"
     },
+    "papel higiénico": {
+      "author": "Marreromarco",
+      "file": "words/papel_higiu00e9nico.mp3",
+      "gain": 2.4,
+      "gate": -70.8,
+      "lead": 260,
+      "matches": "papel higiénico",
+      "mos": 3.13,
+      "sha256": "34d7c1edd5ba46e1ac760c59b4cb6fadc83f32342ed860a6aaa41f65bf229f14",
+      "source": "LL-Q1321 (spa)-Marreromarco-papel higiénico.wav"
+    },
     "para": {
       "author": "AdrianAbdulBaha",
       "file": "words/para.mp3",
