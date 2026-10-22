@@ -115,6 +115,10 @@ class CatalogCollisionLintTest {
                 // `Etage`/`Stockwerk` name only the floor sense and `Stab`/`Rute` skew formal
                 // or archaic for the stick sense, so `Stock` stays the plain word for both.
                 "de Stock: living/story, nature/stick",
+                // Reviewed 2026-10-22: de `gehen` is to go AND to walk (Janek's ruling) —
+                // en/es/fr/it/sw/uk all split the pair (go/walk, ir/caminar, aller/marcher,
+                // andare/camminare, kwenda/kutembea, йти/ходити); either answer is right.
+                "de gehen: verbs/to-go, verbs/to-walk",
                 // Reviewed 2026-10-21: "before" in time and "in front of" in space are one word
                 // in de/eo/uk and two in en/es/fr/it/sw (noConceptPairCollidesInTwoLanguages).
                 "de vor: connectors/before, place/in-front-of",
