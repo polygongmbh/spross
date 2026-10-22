@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """Rate a listening set by ear, one key per take, straight into `docs/audio-verdicts.tsv`.
 
-    scripts/audio-listen.py <set.tsv> [FILE]
+    scripts/audio-listen.py <set.tsv> [ROW]
     scripts/audio-listen.py sample NAME --from shipped|journal|voices [--lang L] [--section S] [--voice V]
                                         [--mos-below X] [-n 15]
 
 A set is a TSV beside its mp3s (or naming absolute paths), columns `file lang word speaker
-source sha256 mos` and an optional `context` (default: the set's folder name). [FILE] re-rates
-just that one take, rated already or not. Each take plays on arrival:
+source sha256 mos` and an optional `context` (default: the set's folder name). [ROW] re-rates
+just the takes it names, rated already or not: a row number as the prompt shows it, else every
+take whose word contains it. A new rating replaces the take's earlier one in this context.
+Each take plays on arrival:
 
     1-5  rate it bad, mediocre, okay, good, great — and move on
     r    play it again (space too)
     d    tag a defect first (noisy, reverb, hum, one-sided, breathy, extra words …)
     n    add a note first
     s    skip it
-    b    go back one, withdrawing its rating if this run made one
+    b    go back one row, withdrawing its rating — across runs too
     q    stop; a later run resumes at the first take not yet rated in this context
 
 `sample` writes one to `../data/review/<date>-NAME/` out of takes nobody rated yet: `--from shipped`
@@ -181,16 +183,22 @@ def play(path, player):
 
 
 def withdraw(sha256, context):
-    """Drops the last verdict on [sha256] in [context]."""
-    with open(VERDICTS, encoding='utf-8') as handle:
+    """Drops every verdict on [sha256] in [context]."""
+    with open(VERDICTS, encoding='utf-8', newline='') as handle:
         lines = handle.readlines()
-    for at in range(len(lines) - 1, 0, -1):
-        fields = lines[at].rstrip('\n').split('\t')
-        if fields[5] == sha256 and fields[-1] == context:
-            del lines[at]
-            break
-    with open(VERDICTS, 'w', encoding='utf-8') as handle:
-        handle.writelines(lines)
+    kept = lines[:1] + [line for line in lines[1:]
+                        if (lambda fields: (fields[5], fields[-1]))(next(csv.reader([line], delimiter='\t')))
+                        != (sha256, context)]
+    with open(VERDICTS, 'w', encoding='utf-8', newline='') as handle:
+        handle.writelines(kept)
+
+
+def named(rows, wanted):
+    """Indices of the rows [wanted] names: a row number, else every row whose word contains it."""
+    if wanted.isdigit():
+        return [int(wanted) - 1] if 0 < int(wanted) <= len(rows) else []
+    return [at for at, row in enumerate(rows)
+            if wanted.lower() in row['word'].lower() or wanted == row['file']]
 
 
 def main():
@@ -200,31 +208,35 @@ def main():
         sys.exit(__doc__)
     path = sys.argv[1]
     base = os.path.dirname(os.path.abspath(path))
-    rows = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
+    listed = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
     default_context = os.path.basename(base)
-    if len(sys.argv) == 3:
-        rerate = sys.argv[2]
-        todo = [row for row in rows if row['file'] == rerate]
-        if not todo:
-            sys.exit('%s names no row in %s' % (rerate, path))
+    context = lambda row: row.get('context') or default_context
+    done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
+    rated = lambda row: (row['sha256'], context(row)) in done
+    picking = len(sys.argv) == 3
+    if picking:
+        picked = named(listed, sys.argv[2])
+        if not picked:
+            sys.exit('%s names no row in %s' % (sys.argv[2], path))
     else:
-        with open(VERDICTS, encoding='utf-8') as handle:
-            fields = handle.readline().rstrip('\n').split('\t')
-            done = {(row['sha256'], row['context'])
-                    for row in csv.DictReader(handle, fieldnames=fields, delimiter='\t')}
-        todo = [row for row in rows
-                if (row['sha256'], row.get('context') or default_context) not in done]
+        picked = list(range(len(listed)))
+
+    def onward(at):
+        """The next position to play: every pick, else the next take not rated yet."""
+        while at < len(picked) and not picking and rated(listed[picked[at]]):
+            at += 1
+        return at
+
     print('%d of %d takes to rate\n  1 bad  2 mediocre  3 okay  4 good  5 great'
-          '  ·  r replay  d defect  n note  s skip  b back  q quit\n' % (len(todo), len(rows)))
+          '  ·  r replay  d defect  n note  s skip  b back  q quit\n'
+          % (len(picked) if picking else sum(1 for row in listed if not rated(row)), len(listed)))
     player = None
-    rated = [False] * len(todo)
-    at = 0
-    while at < len(todo):
-        row, number = todo[at], at + 1
-        context = row.get('context') or default_context
+    at = onward(0)
+    while at < len(picked):
+        row = listed[picked[at]]
         audio = row['file'] if os.path.isabs(row['file']) else os.path.join(base, row['file'])
         defect = note = ''
-        print('%2d/%d  %s  %s' % (number, len(todo), row['lang'], row['word']), end='  ', flush=True)
+        print('%2d/%d  %s  %s' % (picked[at] + 1, len(listed), row['lang'], row['word']), end='  ', flush=True)
         player = play(audio, player)
         while True:
             pressed = key()
@@ -238,16 +250,17 @@ def main():
                 print('      ', end='', flush=True)
             elif pressed == 's':
                 print('skipped')
-                at += 1
+                at = onward(at + 1)
                 break
             elif pressed == 'b':
                 if at == 0:
                     continue
                 print('back')
                 at -= 1
-                if rated[at]:
-                    withdraw(todo[at]['sha256'], todo[at].get('context') or default_context)
-                    rated[at] = False
+                previous = listed[picked[at]]
+                if rated(previous):
+                    withdraw(previous['sha256'], context(previous))
+                    done.discard((previous['sha256'], context(previous)))
                 break
             elif pressed == 'q':
                 player.terminate()
@@ -255,13 +268,15 @@ def main():
                 return
             elif pressed in RATINGS:
                 print(RATINGS[pressed] + (' (%s)' % defect if defect else ''))
+                if rated(row):
+                    withdraw(row['sha256'], context(row))
                 with open(VERDICTS, 'a', encoding='utf-8', newline='') as handle:
                     csv.writer(handle, delimiter='\t', lineterminator='\n').writerow([
                         datetime.date.today().isoformat(), row['lang'], row['word'],
                         row['speaker'], row['source'], row['sha256'], RATINGS[pressed], defect,
-                        note, row.get('mos', ''), context])
-                rated[at] = True
-                at += 1
+                        note, row.get('mos', ''), context(row)])
+                done.add((row['sha256'], context(row)))
+                at = onward(at + 1)
                 break
     if player:
         player.terminate()
