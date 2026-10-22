@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- On the watch, the words you just answered no longer turn up as wrong options in the next questions.
+- On the watch, the words you just answered no longer turn up as wrong options in the next questions, and the letter and calendar drills keep the last answer off the next tiles too.
 - The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
