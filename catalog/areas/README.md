@@ -218,7 +218,7 @@ Every area's name must answer *what gets in*,
 and the answer must be able to say no:
 a room (`kitchen`), an errand (`admin`), a kind of word (`colors`, `qualities`),
 a shelf of sentence machinery (`place`),
-or the deliberately narrow `verbs`, which admits a word only when no scene claims it.
+or the deliberately narrow `verbs`, which admits a verb only when it has no topic of its own -- needed in every room and on every errand.
 A word that fits none of them is evidence that a shelf is missing.
 
 The area is the folder, and three things ride on it:

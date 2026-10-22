@@ -60,6 +60,8 @@
   "responsible": { "text": "zuständig" },
   "to-submit-application": { "text": "einen Antrag stellen" },
   "to-take-a-number": { "text": "eine Nummer ziehen" },
+  "to-send": { "text": "schicken" },
+  "to-receive": { "text": "bekommen" },
   "where-do-i-sign": { "text": "Wo unterschreibe ich?", "accepts": ["Wo muss ich unterschreiben?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Ich möchte den Aufenthaltstitel verlängern.",

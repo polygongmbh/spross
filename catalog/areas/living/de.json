@@ -29,6 +29,8 @@
   "to-move-in": { "text": "einziehen" },
   "to-move-out": { "text": "ausziehen" },
   "to-water-plants": { "text": "die Pflanzen gießen" },
+  "to-turn-on": { "text": "einschalten", "accepts": ["anschalten", "anmachen"] },
+  "to-turn-off": { "text": "ausschalten", "accepts": ["abschalten", "ausmachen"] },
   "to-play": { "text": "spielen" },
   "to-talk": { "text": "reden", "accepts": ["plaudern", "sprechen"] },
   "room": { "text": "Zimmer", "grammar": { "article": "das", "plural": "=" } },

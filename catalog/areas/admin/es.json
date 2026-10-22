@@ -92,6 +92,8 @@
   "responsible": { "text": "responsable", "accepts": ["competente"] },
   "to-submit-application": { "text": "presentar una solicitud" },
   "to-take-a-number": { "text": "sacar número", "accepts": ["sacar un número"] },
+  "to-send": { "text": "enviar", "teaches": ["mandar"] },
+  "to-receive": { "text": "recibir", "teaches": ["conseguir"] },
   "where-do-i-sign": { "text": "¿Dónde firmo?", "accepts": ["¿Dónde tengo que firmar?", "¿Dónde debo firmar?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Quiero renovar el permiso de residencia.",

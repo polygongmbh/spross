@@ -32,6 +32,8 @@
  { "slug": "responsible", "kind": "adjective" },
  { "slug": "to-submit-application", "kind": "verb" },
  { "slug": "to-take-a-number", "kind": "verb" },
+ { "slug": "to-send", "kind": "verb", "emoji": "📤" },
+ { "slug": "to-receive", "kind": "verb", "emoji": "📦" },
  { "slug": "where-do-i-sign", "kind": "phrase", "emoji": "🖊️", "components": ["to-sign"] },
  {
   "slug": "i-want-to-extend-my-residence-permit",

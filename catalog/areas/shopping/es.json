@@ -23,6 +23,13 @@
    "teaches": ["ir de compras"],
    "notes": { "es": "hacer la compra es la comida; ir de compras es mirar tiendas." }
   },
+  "to-deliver": {
+   "text": "repartir",
+   "notes": {
+    "es": "repartir casa por casa · repartir la ayuda",
+    "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt."
+   }
+  },
   "store": { "text": "tienda", "grammar": { "article": "la" } },
   "open": { "text": "abierto", "forms": { "f": "abierta" } },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta.", "orders": ["Todavía está abierta la tienda."] },

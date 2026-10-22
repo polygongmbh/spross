@@ -40,6 +40,8 @@
   "responsible": { "text": "husika", "teaches": ["mhusika", "wahusika"] },
   "to-submit-application": { "text": "kuwasilisha ombi", "accepts": ["kutuma ombi"] },
   "to-take-a-number": { "text": "kuchukua namba" },
+  "to-send": { "text": "kutuma", "notes": { "sw": "kutuma ujumbe · kutuma msaada" } },
+  "to-receive": { "text": "kupokea", "notes": { "sw": "kupokea jibu, kupokea msaada" } },
   "where-do-i-sign": { "text": "Nitie sahihi wapi?" },
   "i-want-to-extend-my-residence-permit": { "text": "Ningependa kuhuisha kibali cha ukaaji." },
   "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi.", "orders": ["Kwa ombi nahitaji mkalimani."] },

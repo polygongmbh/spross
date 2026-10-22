@@ -25,6 +25,8 @@
   "to-move-in": { "text": "в'їжджа́ти" },
   "to-move-out": { "text": "виїжджа́ти" },
   "to-water-plants": { "text": "полива́ти росли́ни" },
+  "to-turn-on": { "text": "вмика́ти", "accepts": ["умикати"] },
+  "to-turn-off": { "text": "вимика́ти" },
   "to-play": { "text": "гра́ти" },
   "to-talk": { "text": "розмовля́ти", "accepts": ["балака́ти", "спілкува́тися"] },
   "room": { "text": "кімна́та" },

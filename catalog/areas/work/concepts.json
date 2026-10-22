@@ -28,6 +28,8 @@
  { "slug": "work-permit", "kind": "noun", "emoji": "📗" },
  { "slug": "notice", "kind": "noun", "emoji": "📤" },
  { "slug": "to-work-overtime", "kind": "verb", "emoji": "🕘" },
+ { "slug": "to-improve", "kind": "verb", "emoji": "📈" },
+ { "slug": "to-suggest", "kind": "verb", "emoji": "💡" },
  {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",

@@ -37,10 +37,7 @@
   "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "to-find": { "text": "encontrar" },
   "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: buscar ayuda, buscar un lugar." } },
-  "to-receive": { "text": "recibir", "teaches": ["conseguir"] },
   "to-look": { "text": "mirar", "notes": { "es": "¡Mira aquí! · Miro la ciudad." } },
-  "to-open": { "text": "abrir" },
-  "to-close": { "text": "cerrar" },
   "to-stop": {
    "text": "dejar de",
    "accepts": ["parar de"],
@@ -51,27 +48,15 @@
    "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
   "to-walk": { "text": "caminar", "accepts": ["andar"] },
-  "to-send": { "text": "enviar", "teaches": ["mandar"] },
-  "to-deliver": {
-   "text": "repartir",
-   "notes": {
-    "es": "repartir casa por casa · repartir la ayuda",
-    "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt."
-   }
-  },
   "to-use": { "text": "usar" },
   "to-come-back": { "text": "volver" },
   "to-go-away": { "text": "irse" },
   "to-lose": { "text": "perder" },
   "to-break": { "text": "romper" },
-  "to-push": { "text": "empujar" },
-  "to-pull": { "text": "tirar" },
   "to-have-to": { "text": "tener que", "teaches": ["deber"] },
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
   "to-happen": { "text": "pasar", "accepts": ["ocurrir"] },
-  "to-turn-on": { "text": "encender", "accepts": ["prender"] },
-  "to-turn-off": { "text": "apagar" },
   "do-you-have-water": { "text": "¿Tiene agua?", "accepts": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
@@ -82,8 +67,6 @@
    }
   },
   "can-you-see-him": { "text": "¿Lo ves?", "accepts": ["¿Le ves?"] },
-  "to-improve": { "text": "mejorar" },
-  "to-suggest": { "text": "sugerir" },
   "what-happened": { "text": "¿Qué ha pasado?", "accepts": ["¿Qué pasó?"] },
   "my-parents-come-from-italy": {
    "text": "Mis padres vienen de Italia.",

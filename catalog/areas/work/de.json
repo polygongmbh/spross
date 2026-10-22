@@ -37,6 +37,8 @@
    }
   },
   "to-work-overtime": { "text": "Überstunden machen" },
+  "to-improve": { "text": "verbessern" },
+  "to-suggest": { "text": "vorschlagen" },
   "profession": { "text": "Beruf", "forms": { "pl": "die Berufe" }, "grammar": { "article": "der" } },
   "interview": {
    "text": "Vorstellungsgespräch",

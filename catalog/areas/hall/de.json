@@ -40,6 +40,10 @@
   "house": { "text": "Haus", "forms": { "pl": "die Häuser" }, "grammar": { "article": "das" } },
   "to-live": { "text": "wohnen" },
   "to-climb-stairs": { "text": "Treppen steigen", "accepts": ["Treppe steigen", "die Treppe hochgehen"] },
+  "to-open": { "text": "öffnen" },
+  "to-close": { "text": "schließen" },
+  "to-push": { "text": "schieben" },
+  "to-pull": { "text": "ziehen" },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?", "orders": ["Du hast die Schlüssel?"] },
   "ill-be-right-back": {
    "text": "Ich komme gleich zurück!",

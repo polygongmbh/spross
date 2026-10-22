@@ -24,6 +24,8 @@
   "to-move-in": { "text": "kuhamia" },
   "to-move-out": { "text": "kuhama" },
   "to-water-plants": { "text": "kumwagilia mimea" },
+  "to-turn-on": { "text": "kuwasha" },
+  "to-turn-off": { "text": "kuzima" },
   "to-play": { "text": "kucheza" },
   "to-talk": { "text": "kuongea" },
   "room": { "text": "chumba", "forms": { "pl": "vyumba" } },

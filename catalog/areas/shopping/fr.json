@@ -21,6 +21,7 @@
    "teaches": ["faire les magasins"],
    "notes": { "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener." }
   },
+  "to-deliver": { "text": "livrer" },
   "store": { "text": "magasin", "accepts": ["boutique"], "grammar": { "article": "le" } },
   "open": { "text": "ouvert", "forms": { "f": "ouverte" } },
   "the-store-is-still-open": { "text": "Le magasin est encore ouvert." },

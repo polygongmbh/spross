@@ -66,6 +66,8 @@
   "to-hire": { "text": "assumere" },
   "to-help": { "text": "aiutare" },
   "to-work-overtime": { "text": "fare gli straordinari", "accepts": ["fare straordinari"] },
+  "to-improve": { "text": "migliorare" },
+  "to-suggest": { "text": "suggerire" },
   "profession": {
    "text": "professione",
    "teaches": ["mestiere"],

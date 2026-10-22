@@ -14,6 +14,7 @@
    "accepts": ["fari aĉetojn"],
    "notes": { "eo": "butikumi = iri de butiko al butiko · aĉeti = preni unu aĵon." }
   },
+  "to-deliver": { "text": "liveri" },
   "store": { "text": "vendejo", "teaches": ["butiko"] },
   "open": { "text": "malfermita" },
   "the-store-is-still-open": {

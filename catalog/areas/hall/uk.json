@@ -49,6 +49,10 @@
    }
   },
   "to-climb-stairs": { "text": "підніма́тися схо́дами" },
+  "to-open": { "text": "відкрива́ти" },
+  "to-close": { "text": "закрива́ти" },
+  "to-push": { "text": "штовха́ти" },
+  "to-pull": { "text": "тягну́ти" },
   "do-you-have-the-keys": { "text": "У те́бе є ключі́?", "orders": ["Ключі у тебе є?"] },
   "ill-be-right-back": {
    "text": "Я за́раз поверну́ся!",

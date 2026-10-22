@@ -23,6 +23,7 @@
   },
   "size": { "text": "Größe", "forms": { "pl": "die Größen" }, "grammar": { "article": "die" } },
   "to-shop": { "text": "einkaufen" },
+  "to-deliver": { "text": "liefern" },
   "store": {
    "text": "Laden",
    "accepts": ["Geschäft"],

@@ -34,6 +34,8 @@
   "to-move-in": { "text": "andare a vivere", "accepts": ["andare ad abitare", "trasferirsi"] },
   "to-move-out": { "text": "andare via di casa" },
   "to-water-plants": { "text": "annaffiare le piante", "accepts": ["innaffiare le piante", "bagnare le piante"] },
+  "to-turn-on": { "text": "accendere" },
+  "to-turn-off": { "text": "spegnere" },
   "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano a carte." } },
   "to-talk": {
    "text": "chiacchierare",

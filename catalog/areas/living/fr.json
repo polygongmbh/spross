@@ -44,6 +44,8 @@
   "to-move-in": { "text": "emménager" },
   "to-move-out": { "text": "déménager" },
   "to-water-plants": { "text": "arroser les plantes" },
+  "to-turn-on": { "text": "allumer" },
+  "to-turn-off": { "text": "éteindre" },
   "to-play": { "text": "jouer" },
   "to-talk": {
    "text": "bavarder",
