@@ -1,31 +1,5 @@
 #!/usr/bin/env python3
-"""Rate a listening set by ear, one key per take, straight into `docs/audio-verdicts.tsv`.
-
-    scripts/audio-listen.py <set.tsv> [ROW]
-    scripts/audio-listen.py sample NAME --from shipped|journal|voices [--lang L] [--section S] [--voice V]
-                                        [--mos-below X] [-n 15]
-
-A set is a TSV beside its mp3s (or naming absolute paths), columns `file lang word speaker
-source sha256 mos` and an optional `context` (default: the set's folder name). [ROW] re-rates
-just the takes it names, rated already or not: a row number as the prompt shows it, else every
-take whose word contains it. A new rating replaces the take's earlier one in this context.
-Each take plays on arrival:
-
-    1-5  rate it bad, mediocre, okay, good, great — and move on
-    r    play it again (space too)
-    d    tag a defect first (noisy, reverb, hum, one-sided, breathy, extra words …)
-    n    add a note first
-    s    skip it
-    b    go back one row, withdrawing its rating — across runs too
-    q    stop; a later run resumes at the first take not yet rated in this context
-
-`sample` writes one to `../data/review/<date>-NAME/` out of takes nobody rated yet: `--from shipped`
-the lowest scorers of what ships, `--from journal` the swaps staged or shipped (`$W/staged.tsv`,
-`$W/shipped.tsv`) most likely to be wrong — a voice new to its language first, then the smallest
-gains — and `--from voices` one take per voice nobody heard yet in its language, its lowest scorer,
-the voices shipping most first. Out of shipped or journal takes from more than one language, at most
-three come from each.
-"""
+"""Rates listening sets by ear into `docs/audio-verdicts.tsv`, and draws new ones."""
 import argparse
 import csv
 import datetime
@@ -47,6 +21,16 @@ RATINGS = {'1': 'bad', '2': 'mediocre', '3': 'okay', '4': 'good', '5': 'great'}
 AUDIO = os.path.join(ROOT, 'catalog', 'audio')
 REVIEW = os.path.normpath(os.path.join(ROOT, '..', 'data', 'review'))
 PER_LANGUAGE = 3
+# (key, in the legend, in --help)
+KEYS = [
+    ('1-5', '1 bad  2 mediocre  3 okay  4 good  5 great', 'rate it bad, mediocre, okay, good, great — and move on'),
+    ('r', 'r replay', 'play it again (space too)'),
+    ('d', 'd defect', 'tag a defect first (noisy, reverb, hum, one-sided, breathy, extra words …)'),
+    ('n', 'n note', 'add a note first'),
+    ('s', 's skip', 'skip it'),
+    ('b', 'b back', 'go back one row, withdrawing its rating — across runs too'),
+    ('q', 'q quit', 'stop; a later run resumes at the first take not yet rated in this context'),
+]
 
 
 def rows(path):
@@ -115,15 +99,22 @@ def from_voices(shipped, heard):
 
 
 def sample(argv):
-    parser = argparse.ArgumentParser(prog='audio-listen.py sample', description='write a listening set')
+    parser = argparse.ArgumentParser(
+        prog='audio-listen.py sample',
+        description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet.')
     parser.add_argument('name')
-    parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'),
-                        required=True)
+    parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'), required=True,
+                        help='shipped: the lowest scorers of what ships; journal: the swaps staged or shipped '
+                             '($W/staged.tsv, $W/shipped.tsv) most likely to be wrong, a voice new to its language '
+                             'first, then the smallest gains; voices: one take per voice nobody heard yet in its '
+                             'language, its lowest scorer, the voices shipping most first')
     parser.add_argument('--lang')
     parser.add_argument('--section')
     parser.add_argument('--voice')
-    parser.add_argument('--mos-below', type=float)
-    parser.add_argument('-n', type=int, default=15)
+    parser.add_argument('--mos-below', type=float, metavar='MOS')
+    parser.add_argument('-n', type=int, default=15,
+                        help='takes in the set (default 15); out of shipped or journal takes from more than one '
+                             'language, at most %d come from each' % PER_LANGUAGE)
     args = parser.parse_args(argv)
     verdicts = rows(VERDICTS)
     heard = {row['sha256'] for row in verdicts}
@@ -204,20 +195,28 @@ def named(rows, wanted):
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'sample':
         return sample(sys.argv[2:])
-    if len(sys.argv) not in (2, 3):
-        sys.exit(__doc__)
-    path = sys.argv[1]
+    parser = argparse.ArgumentParser(
+        prog='audio-listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
+        description='Plays each take of a set and rates it with one key. A new rating replaces the take\'s '
+                    'earlier one in its context. `audio-listen.py sample -h` draws a new set.',
+        epilog='keys, each take playing on arrival:\n' + '\n'.join('  %-4s %s' % (key, text) for key, _, text in KEYS))
+    parser.add_argument('set', help='a TSV beside its mp3s (or naming absolute paths), columns file lang word '
+                                    'speaker source sha256 mos and an optional context (default: its folder name)')
+    parser.add_argument('row', nargs='?', help='re-rate just the takes it names, rated already or not: a row number '
+                                               'as the prompt shows it, else every take whose word contains it')
+    args = parser.parse_args()
+    path = args.set
     base = os.path.dirname(os.path.abspath(path))
     listed = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
     default_context = os.path.basename(base)
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
     rated = lambda row: (row['sha256'], context(row)) in done
-    picking = len(sys.argv) == 3
+    picking = args.row is not None
     if picking:
-        picked = named(listed, sys.argv[2])
+        picked = named(listed, args.row)
         if not picked:
-            sys.exit('%s names no row in %s' % (sys.argv[2], path))
+            sys.exit('%s names no row in %s' % (args.row, path))
     else:
         picked = list(range(len(listed)))
 
@@ -227,9 +226,9 @@ def main():
             at += 1
         return at
 
-    print('%d of %d takes to rate\n  1 bad  2 mediocre  3 okay  4 good  5 great'
-          '  ·  r replay  d defect  n note  s skip  b back  q quit\n'
-          % (len(picked) if picking else sum(1 for row in listed if not rated(row)), len(listed)))
+    print('%d of %d takes to rate\n  %s\n'
+          % (len(picked) if picking else sum(1 for row in listed if not rated(row)), len(listed),
+             KEYS[0][1] + '  ·  ' + '  '.join(legend for _, legend, _ in KEYS[1:])))
     player = None
     at = onward(0)
     while at < len(picked):
