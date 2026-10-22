@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import net.spross.app.AppModel
 import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
-import net.spross.app.areaTitle
 import net.spross.app.newTurn
 import net.spross.kern.session.Coaching
 
@@ -76,7 +75,6 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
                     model.chrome,
                     surface = QuestionSurface.Review,
                     voice = model.cardVoice,
-                    areaTitle = model::areaTitle,
                 )
             }
         }

@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- On a typing card whose prompt has two meanings, the word for either now counts as right, and the area label above such prompts is gone.
 - A word asked by ear no longer lists itself again under "also" once the card opens.
 - The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.

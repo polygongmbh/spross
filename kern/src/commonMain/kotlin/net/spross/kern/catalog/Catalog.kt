@@ -7,7 +7,6 @@ import net.spross.kern.model.IDIOM_EMOJI
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
-import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.splitArticle
 import net.spross.kern.trainer.PhraseTemplate
 import net.spross.kern.trainer.Numbers
@@ -159,16 +158,8 @@ class Catalog internal constructor(
                 )
             }
         }
-        // why: a produce prompt two cards share is unanswerable without a cue, so flag
-        // it once per join and let the UI add the area label. Keyed on what the learner
-        // SEES — citation conventions (de noun capitals, en "to ", sw ku-) keep
-        // noun/verb homographs apart.
-        val promptCounts = cards.groupingBy(::promptKey).eachCount()
-        return cards.map { it.copy(promptAmbiguous = promptCounts.getValue(promptKey(it)) > 1) }
+        return cards
     }
-
-    private fun promptKey(card: Card): String =
-        nfcNormalized(card.source.text).trim()
 
     /**
      * The frames' half of [join]: one [PhraseTemplate] per frame realized in BOTH languages,

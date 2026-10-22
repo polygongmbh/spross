@@ -13,9 +13,8 @@ import net.spross.kern.model.TaggedForm
 
 class QuestionTests {
 
-    /** A noun with a plural and a note, asked in an area it shares with another card. */
+    /** A noun with a plural and a note. */
     private val knife = TurnFixture.knife.copy(
-        promptAmbiguous = true,
         target = TurnFixture.knife.target.copy(forms = listOf(TaggedForm(FormTag.PLURAL, "visu")), note = "also a blade"),
     )
 
@@ -23,9 +22,8 @@ class QuestionTests {
     fun recognitionAsksWithTheTargetAndOpensOntoTheMeaning() {
         val asking = TurnFixture.recognize(knife).question
         assertEquals("kisu", asking.prompt.text)
-        // The cited form carries its plural, article or not; no context cue rides on the target.
+        // The cited form carries its plural, article or not.
         assertEquals(PluralForm.Form("visu"), asking.prompt.plural)
-        assertNull(asking.prompt.context)
         assertFalse(asking.opens)
 
         val revealed = TurnFixture.state(TurnFixture.recognize(knife), TurnIntent.Reveal).question
@@ -49,7 +47,6 @@ class QuestionTests {
     fun productionAsksWithTheSourceAndOpensOnlyOnAMiss() {
         val asking = TurnFixture.produce(knife)
         assertEquals("Messer", asking.question.prompt.text)
-        assertEquals("test", asking.question.prompt.context)
         assertEquals("kisu", asking.question.answer.text)
 
         assertFalse(TurnFixture.state(asking, TurnIntent.Submit("kisu")).question.opens)

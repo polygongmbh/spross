@@ -24,7 +24,7 @@ internal const val FORM_JOIN = " / "
  * Its prompt and answer by role:
  * - recognize asks with the rotated target form and opens onto the meaning, with no context cue,
  *   since any cue precise enough to disambiguate would hand over the answer;
- * - produce asks with the source word (the area named where it is ambiguous) and opens onto the target;
+ * - produce asks with the source word and opens onto the target;
  * - produce asked by ear asks with a sound and opens onto the meaning; the word takes the sound's
  *   place once nothing is left to withhold — the learner cannot listen, or the card has opened.
  */
@@ -66,10 +66,7 @@ private val TurnState.promptSide: Question.Side
             text = null, lang = card.target.lang, form = Question.Form.Sound,
             saying = targetSide(card.target.text).saying,
         )
-        else -> Question.Side(
-            text = promptForm, lang = card.source.lang, form = Question.Form.Word,
-            context = card.area.takeIf { card.promptAmbiguous },
-        )
+        else -> Question.Side(text = promptForm, lang = card.source.lang, form = Question.Form.Word)
     }
 
 private val TurnState.answerSide: Question.Side

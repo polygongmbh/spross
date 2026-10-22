@@ -171,8 +171,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
         return questionPage { question in
             // why: the input, the button and the keyboard share this
             // screen with the card — the picture goes beside the words.
-            QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
-                             areaTitle: model.areaTitle)
+            QuestionCardView(question: question, surface: .review, voice: model.cardVoice)
                 // why: only once the answer is out — before it, the learner has
                 // not seen the translation they would be reporting, and a menu
                 // over the prompt is a menu over a question. A typo's hold counts:

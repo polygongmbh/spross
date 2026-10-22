@@ -110,17 +110,9 @@ extension QuestionCardView {
 
     // MARK: - One side
 
-    /// The word itself, under the area named over an ambiguous prompt.
+    /// The word itself.
     func headwordBlock(_ side: Question.Side, emphasized: Bool) -> some View {
         VStack(spacing: Theme.spacing.xs) {
-            // why: ABOVE the headword, so it reads as a label on the prompt and never
-            // sits in the plural/alternates region that belongs to the reveal.
-            if let context = side.context {
-                Text(areaTitle(context))
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-                    .multilineTextAlignment(.center)
-            }
             headline(side, emphasized: emphasized)
                 .multilineTextAlignment(.center)
                 // why: overflow insurance for a word wider than the line even at the

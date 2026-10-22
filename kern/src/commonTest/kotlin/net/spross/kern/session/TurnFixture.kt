@@ -62,8 +62,12 @@ internal object TurnFixture {
     val leave = card("leave", "verlassen", "kuacha", CardKind.Verb, seedIndex = 5)
     val quit = card("quit", "aufhören", "kuacha", CardKind.Verb, seedIndex = 6)
 
+    /** The mirror merge: one German prompt shown by two concepts with a Swahili word each. */
+    val go = card("go", "gehen", "kwenda", CardKind.Verb, seedIndex = 7)
+    val walk = card("walk", "gehen", "kutembea", CardKind.Verb, seedIndex = 8)
+
     private val machine = TurnMachine(
-        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car, leave, quit)),
+        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car, leave, quit, go, walk)),
         normalizer,
         meaningNormalizer,
     )

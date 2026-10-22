@@ -11,9 +11,9 @@ import kotlin.test.assertTrue
  * same string. A sibling file because the pinned cross-area list is content, and content
  * grows: kept here it never pushes the rest of the catalog rules past the file budget.
  *
- * The three rules differ only in what they do about a collision: inside one area it is
- * unanswerable and forbidden, one concept pair colliding in two languages is an authoring
- * duplicate, and a cross-area single-language merge is legitimate and therefore pinned.
+ * The two rules differ only in what they do about a collision: one concept pair colliding
+ * in two languages is an authoring duplicate, and a single-language merge is legitimate and
+ * therefore pinned.
  */
 class CatalogCollisionLintTest {
     private val catalog get() = RealCatalog.catalog
@@ -43,19 +43,6 @@ class CatalogCollisionLintTest {
     }
 
     /**
-     * A display-identical prompt INSIDE one area is unfixable at runtime: the engine's
-     * disambiguator is the area label, which would be identical. Repick the word.
-     */
-    @Test
-    fun noPromptCollisionWithinAnArea() {
-        for ((key, ids) in collisionClusters()) {
-            val (lang, form) = key
-            val perArea = ids.groupBy { it.substringBefore('/') }.filterValues { it.size > 1 }
-            assertTrue(perArea.isEmpty(), "$lang \"$form\": same-area collision ${perArea.values}")
-        }
-    }
-
-    /**
      * One concept PAIR colliding in two languages is one meaning authored twice — unify it
      * (the `variantOf` ruling). Exception, when this fires: if de/en genuinely distinguish
      * the two and only both targets merge them, fix the imprecise realization instead
@@ -74,7 +61,7 @@ class CatalogCollisionLintTest {
         }
         // Reviewed 2026-08-15: weather/time is the Romance family merge (es tiempo,
         // fr temps, it tempo) — one linguistic fact per language, each pinned in
-        // [crossAreaPromptCollisionsAreKnown], not the same meaning authored twice.
+        // [promptCollisionsAreKnown], not the same meaning authored twice.
         // Re-realizing weather as meteo/météo would teach the forecast, not the weather.
         // Reviewed 2026-09-05: that-conj/what is fr `que` and uk `що` — in each language the
         // relative-conjunction and the object interrogative share one word, and de/en/eo/es/it/sw
@@ -99,14 +86,13 @@ class CatalogCollisionLintTest {
     }
 
     /**
-     * Cross-area, single-language collisions are legitimate target-language merges (Swahili
-     * has one word where German has two) — tolerated at runtime, where the join sets
-     * `promptAmbiguous` and the UI adds the area label to the produce prompt. Pinned so a
-     * NEW one (adding `nature/river` beside `bedroom/pillow`, both sw `mto`) fails here
-     * instead of silently shipping an unanswerable prompt.
+     * Single-language collisions are legitimate merges (Swahili has one word where German
+     * has two) — answered at runtime, where every concept a prompt stands for answers it
+     * (`docs/grading.md`). Pinned so a NEW one (adding `nature/river` beside `bedroom/pillow`,
+     * both sw `mto`) is reviewed as a merge rather than shipped as an authoring slip.
      */
     @Test
-    fun crossAreaPromptCollisionsAreKnown() {
+    fun promptCollisionsAreKnown() {
         val actual = collisionClusters()
             .map { (key, ids) -> "${key.first} ${key.second}: ${ids.sorted().joinToString(", ")}" }
             .toSortedSet()
