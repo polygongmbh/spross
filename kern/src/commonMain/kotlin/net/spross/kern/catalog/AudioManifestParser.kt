@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "author", "source", "sha256",
-              "gain", "cap", "lead", "mos", "gate")
+              "gain", "cap", "lead", "end", "mos", "gate")
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
@@ -133,6 +133,7 @@ internal object AudioManifestParser {
             gain = entry.gain(path, context, "gain"),
             cap = entry.optionalCap(path, context, "cap") ?: 0.0,
             leadMs = entry.leadMs(path, context),
+            endMs = entry.endMs(path, context),
             mos = entry.optionalDouble(path, context, "mos") ?: 0.0,
             gate = entry.gate(path, context),
             alternates = alternates,
@@ -195,5 +196,13 @@ internal object AudioManifestParser {
             parseError(path, "$context: lead $lead ms is outside 0..$LEAD_LIMIT_MS")
         }
         return lead
+    }
+
+    /** Absent means the file plays out; an end at or before the lead would play nothing. */
+    private fun JsonObject.endMs(path: String, context: String): Long {
+        val end = optionalLong(path, context, "end") ?: return 0
+        val lead = leadMs(path, context)
+        if (end <= lead) parseError(path, "$context: end $end ms is not past lead $lead ms")
+        return end
     }
 }

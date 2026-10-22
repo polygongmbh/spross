@@ -5,7 +5,7 @@ import kotlin.math.pow
 /**
  * How far a player may trust a recording's ANALYSIS INDEX.
  *
- * The index (`gain`, `lead`, `gate`) is a MEASUREMENT of the shipped bytes and never an edit to
+ * The index (`gain`, `lead`, `end`, `gate`) is a MEASUREMENT of the shipped bytes and never an edit to
  * them (`docs/audio.md`), so every number can only ever be as good as the measurement:
  * the bounds below are what a broken one is held to, stated once so the manifest parser,
  * an iOS equalizer and an Android loudness enhancer cannot drift apart about them.
@@ -50,6 +50,17 @@ object Playback {
      */
     fun headMs(leadMs: Long, durationMs: Long): Long =
         if (leadMs > 0 && leadMs < durationMs) leadMs else 0
+
+    /**
+     * Where playback stops in a recording of [durationMs] started at [headMs]: the measured [endMs]
+     * where its speech ended, or the end of the file.
+     *
+     * An end at or before the head, or one past the file, is a broken measurement, and the
+     * recording plays out — as one does whose duration the platform will not report (a negative
+     * [durationMs], answered as itself) once it has no end of its own.
+     */
+    fun stopMs(endMs: Long, headMs: Long, durationMs: Long): Long =
+        if (endMs > headMs && (durationMs < 0 || endMs < durationMs)) endMs else durationMs
 
     /** The lowest noise level a measurement may claim: below it the file is digital silence. */
     const val GATE_FLOOR_DB: Double = -100.0

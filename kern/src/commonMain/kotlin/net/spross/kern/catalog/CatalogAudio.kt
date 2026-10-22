@@ -60,6 +60,7 @@ fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String?,
         cap = recording?.cap ?: 0.0,
         leadMs = recording?.leadMs ?: 0,
         gate = recording?.gate,
+        endMs = recording?.endMs ?: 0,
     )
 }
 
@@ -74,7 +75,7 @@ fun Catalog.letterRecording(lang: Language, glyph: String, take: Int): LetterRec
     val manifest = audio[lang] ?: return null
     val recording = manifest.letterRecording(glyph)?.take(take) ?: return null
     return LetterRecording(manifest.path(recording), recording.gain,
-                           recording.cap, recording.leadMs, recording.gate)
+                           recording.cap, recording.leadMs, recording.gate, recording.endMs)
 }
 
 /** Just the path, for the callers that only ask whether a letter CAN be played. */
@@ -172,6 +173,7 @@ private fun AudioManifest.creditPronunciation(label: String, recording: AudioRec
     cap = recording.cap,
     leadMs = recording.leadMs,
     gate = recording.gate,
+    endMs = recording.endMs,
 )
 
 /** Credit identity: one author's work in one language under one license. */

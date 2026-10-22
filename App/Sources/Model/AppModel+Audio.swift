@@ -77,7 +77,8 @@ extension AppModel {
                              gain: recording?.gain ?? 0,
                              cap: recording?.cap ?? 0,
                              leadMs: recording?.leadMs ?? 0,
-                             gate: recording?.gate)
+                             gate: recording?.gate,
+                             endMs: recording?.endMs ?? 0)
     }
 
     /// A visible target form, through the same matched-form lookup the review
@@ -105,7 +106,8 @@ extension AppModel {
                       gain: 0,
                       cap: 0,
                       leadMs: 0,
-                      gate: nil)
+                      gate: nil,
+                      endMs: 0)
     }
 
     // MARK: - Tap-to-replay

@@ -52,6 +52,20 @@ class PlaybackTest {
         assertEquals(0L, Playback.headMs(1285, -1)) // an unreported duration
     }
 
+    @Test
+    fun playbackStopsWhereTheSpeechEnded() {
+        assertEquals(1700L, Playback.stopMs(1700, 1069, 2500))
+        assertEquals(1700L, Playback.stopMs(1700, 0, -1)) // an unreported duration
+    }
+
+    /** No end, or a broken one, plays the file out. */
+    @Test
+    fun anEndOutsideTheSpokenFileIsNotObeyed() {
+        assertEquals(2500L, Playback.stopMs(0, 1069, 2500))
+        assertEquals(2500L, Playback.stopMs(900, 1069, 2500)) // before the head
+        assertEquals(2500L, Playback.stopMs(3000, 1069, 2500)) // past the file
+    }
+
     /** A gate after the gain stage follows the noise to wherever the gain moved it. */
     @Test
     fun aGateAfterTheGainMovesWithTheGain() {

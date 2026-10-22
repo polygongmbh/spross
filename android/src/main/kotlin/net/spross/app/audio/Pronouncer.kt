@@ -238,7 +238,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
                 // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
                 // that stay the untouched transcode — playback is the one place they are ever
                 // applied, and never the file.
-                player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, ended)
+                player.play(
+                    recording, indexDb, capDb, pronunciation.leadMs, pronunciation.endMs, fadeDb, pronunciation.gate, ended,
+                )
                 loaded = path
                 return
             }

@@ -256,6 +256,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   a lead that would swallow the whole recording is a broken measurement,
   and the recording is still worth playing whole —
   as is one whose duration the platform will not report.
+  `Playback.stopMs(endMs, headMs, durationMs)` answers the measured end only where it lies past the head and inside the file, else the file plays out;
+  Android's MediaPlayer cannot stop at a position, so a timer from the start pauses it there and counts that as the word's end.
   `Playback.gateThresholdDb(gate, appliedGainDb)` is the threshold for a gate placed after the gain stage (gate + applied gain);
   a gate before the gain takes `gate` as it stands.
   The expander's shape is `Playback`'s too —

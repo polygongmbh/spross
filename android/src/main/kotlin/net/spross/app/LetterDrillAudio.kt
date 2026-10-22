@@ -87,6 +87,7 @@ fun AppModel.letterName(name: String, glyph: String, lang: Language, take: Int =
         cap = recording?.cap ?: 0.0,
         leadMs = recording?.leadMs ?: 0,
         gate = recording?.gate,
+        endMs = recording?.endMs ?: 0,
     )
 }
 

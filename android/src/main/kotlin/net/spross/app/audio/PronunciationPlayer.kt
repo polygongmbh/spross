@@ -7,13 +7,15 @@ import android.media.audiofx.LoudnessEnhancer
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
+import android.os.SystemClock
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicInteger
 import net.spross.kern.catalog.Playback
 
 /**
  * Plays one bundled recording at a time, under the catalog's ANALYSIS INDEX: `gainDb`
- * decibels from the analysis target, and `leadMs` of dead air to skip at its head.
+ * decibels from the analysis target, `leadMs` of dead air to skip at its head, and `endMs`
+ * where its speech has ended.
  *
  * why MediaPlayer where clips of a second or two would suit SoundPool: what ships is the
  * untouched Commons transcode — re-encoding it is an adaptation under BY-SA — so the
@@ -82,6 +84,12 @@ class PronunciationPlayer {
     /** Where the clip in hand starts speaking, ms. */
     private var head = 0L
 
+    /** Where the clip in hand stops, ms — its own length where nothing earlier was measured. */
+    private var stop = 0L
+
+    /** The token the pending cut at [stop] is posted under. */
+    private val cut = Any()
+
     /**
      * Plays [afd] under its analysis index — [gate] included — replacing whatever was sounding. The
      * descriptor is consumed on the worker. A file that will not open simply stays
@@ -92,6 +100,7 @@ class PronunciationPlayer {
         gainDb: Double,
         capDb: Double,
         leadMs: Long,
+        endMs: Long = 0,
         fadeDb: Double = 0.0,
         gate: Double? = null,
         onFinish: (() -> Unit)? = null,
@@ -101,7 +110,7 @@ class PronunciationPlayer {
         pending = onFinish?.let { current to it }
         handler.post {
             clear()
-            load(current, afd, gainDb, capDb, leadMs, fadeDb, gate)
+            load(current, afd, gainDb, capDb, leadMs, endMs, fadeDb, gate)
         }
     }
 
@@ -147,6 +156,7 @@ class PronunciationPlayer {
         gainDb: Double,
         capDb: Double,
         leadMs: Long,
+        endMs: Long,
         fadeDb: Double,
         gate: Double?,
     ) {
@@ -162,6 +172,7 @@ class PronunciationPlayer {
             if (current != request.get()) return@setOnPreparedListener
             preparing = 0
             head = Playback.headMs(leadMs, prepared.duration.toLong())
+            stop = Playback.stopMs(endMs, head, prepared.duration.toLong())
             sound(prepared)
         }
         player.setOnCompletionListener {
@@ -216,6 +227,8 @@ class PronunciationPlayer {
     private fun clear() {
         preparing = 0
         head = 0
+        stop = 0
+        handler.removeCallbacksAndMessages(cut)
         // why: the effects first — they hang on the session this player owns. And release
         // rather than stop: it halts playback from EVERY state, the error one included,
         // and a two-second clip's codec is not worth holding past the card that asked.
@@ -236,8 +249,20 @@ class PronunciationPlayer {
      * it exists to skip. minSdk 26 carries the mode.
      */
     private fun sound(player: MediaPlayer) {
+        handler.removeCallbacksAndMessages(cut)
         player.seekTo(head, MediaPlayer.SEEK_CLOSEST)
         player.start()
+        // why: MediaPlayer plays to the file's end, so a click or hum past the word is cut by a
+        // timer, and the cut is the word's end — what a listening run arms its next beat off.
+        if (stop in head + 1 until player.duration) {
+            val current = request.get()
+            handler.postAtTime({
+                if (current == request.get() && this.player === player) {
+                    player.pause()
+                    finish(current)
+                }
+            }, cut, SystemClock.uptimeMillis() + stop - head)
+        }
     }
 
     /** Hangs the boost on [player]'s own session — no volume on this platform can give it. */

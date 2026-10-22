@@ -83,7 +83,7 @@ internal object AudioFixture {
               "letters": {
                 "ж": { "file": "letters/u0436.mp3",
                        "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "u3",
-                       "gain": 20.0, "lead": 1069 },
+                       "gain": 20.0, "lead": 1069, "end": 1700 },
                 "і": { "file": "letters/u0456.mp3",
                        "author": "Tabrus", "source": "Іі – ukrainian.ogg", "sha256": "u4",
                        "gain": 12.5, "lead": 604 } },

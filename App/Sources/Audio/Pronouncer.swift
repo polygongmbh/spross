@@ -159,7 +159,7 @@ final class Pronouncer {
             // place they are ever applied, and never the file.
             playingKey = key
             let started = player.play(url: recordingURL, gainDb: pronunciation.gain, capDb: pronunciation.cap,
-                                      leadMs: pronunciation.leadMs,
+                                      leadMs: pronunciation.leadMs, endMs: pronunciation.endMs,
                                       gate: pronunciation.gate?.doubleValue, fadeDb: fadeDb) { [weak self] in
                 self?.ended(key)
             }
@@ -256,7 +256,8 @@ final class Pronouncer {
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent
             player.play(url: recordingURL, gainDb: pronunciation.gain,
-                        leadMs: pronunciation.leadMs, gate: pronunciation.gate?.doubleValue) {
+                        leadMs: pronunciation.leadMs, endMs: pronunciation.endMs,
+                        gate: pronunciation.gate?.doubleValue) {
                 print("Pronounce probe: recording \(path) played to completion")
             }
             return

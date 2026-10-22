@@ -2,8 +2,8 @@ import AVFoundation
 import SprossKern
 
 /// Plays one bundled recording at a time, under the catalog's ANALYSIS INDEX:
-/// `gainDb` decibels from the analysis target, and `leadMs` of dead air to
-/// skip at its head.
+/// `gainDb` decibels from the analysis target, `leadMs` of dead air to skip at
+/// its head, and `endMs` where its speech has ended.
 ///
 /// why an engine and not `AVAudioPlayer`: what ships is the untouched Commons
 /// transcode — re-encoding it is an adaptation under BY-SA — so the loudness
@@ -65,6 +65,7 @@ final class PronunciationPlayer {
         /// fade, which is the one thing that opens the headroom again (`fadedGainDb`).
         let capDb: Double
         let leadMs: Int64
+        let endMs: Int64
         /// The recording's noise level in dBFS of the raw file; nil plays it ungated.
         let gate: Double?
         /// The listening run's bedtime ramp, applied OVER the analysis index —
@@ -104,11 +105,11 @@ final class PronunciationPlayer {
     /// may be trusted and the floor is a level kern chose. 0 everywhere outside
     /// a listening run.
     @discardableResult
-    func play(url: URL, gainDb: Double = 0, capDb: Double = 0, leadMs: Int64 = 0,
+    func play(url: URL, gainDb: Double = 0, capDb: Double = 0, leadMs: Int64 = 0, endMs: Int64 = 0,
               gate: Double? = nil, fadeDb: Double = 0,
               onFinish: (@MainActor () -> Void)? = nil) -> Bool {
         rearms = 0
-        return play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, gate: gate,
+        return play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, endMs: endMs, gate: gate,
                             fadeDb: fadeDb, onFinish: onFinish))
     }
 
@@ -136,9 +137,11 @@ final class PronunciationPlayer {
         let rate = file.processingFormat.sampleRate
         // How far a player may trust the analysis index is kern's (`catalog/Playback.kt`);
         // frames and the EQ's own ±24 dB headroom are this device's business.
-        let headMs = Playback.shared.headMs(leadMs: request.leadMs,
-                                            durationMs: Int64(Double(file.length) / rate * 1000))
+        let durationMs = Int64(Double(file.length) / rate * 1000)
+        let headMs = Playback.shared.headMs(leadMs: request.leadMs, durationMs: durationMs)
+        let stopMs = Playback.shared.stopMs(endMs: request.endMs, headMs: headMs, durationMs: durationMs)
         let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
+        let stop = min(file.length, AVAudioFramePosition(Double(stopMs) / 1000 * rate))
         // why: each recording carries its own noise level — a gated one expands below it,
         // an ungated one passes the unit untouched.
         if let threshold = request.gate {
@@ -151,7 +154,7 @@ final class PronunciationPlayer {
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,
-                             frameCount: AVAudioFrameCount(file.length - head), at: nil,
+                             frameCount: AVAudioFrameCount(stop - head), at: nil,
                              completionCallbackType: .dataPlayedBack) { [weak self] _ in
             // why: the callback lands on an audio thread, and everything it
             // reaches — the probe's line included — is the main actor's.

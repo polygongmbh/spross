@@ -99,6 +99,13 @@ interface AudioIndex {
     val leadMs: Long
 
     /**
+     * Where the speech has ended, in ms from the file's start — stop here and what follows the word
+     * (a click, the hum it sat in) never plays. 0 plays the file out; [Playback.stopMs] holds a
+     * broken one to the file.
+     */
+    val endMs: Long
+
+    /**
      * The recording's own noise level plus a margin, in dBFS of the RAW decoded file before
      * any gain: a downward expander with its threshold here quiets the hiss in pauses and
      * between syllables and leaves the word alone. A player whose gate sits after its gain
@@ -124,6 +131,7 @@ data class Pronunciation( // data class: Swift sees value equality
     override val cap: Double = 0.0,
     override val leadMs: Long = 0,
     override val gate: Double? = null,
+    override val endMs: Long = 0,
 ) : AudioIndex
 
 /**
@@ -138,6 +146,7 @@ data class LetterRecording(
     override val cap: Double = 0.0,
     override val leadMs: Long,
     override val gate: Double? = null,
+    override val endMs: Long = 0,
 ) : AudioIndex
 
 /** One credited recording: [label] is the form it speaks, or the letter's glyph. */

@@ -47,6 +47,8 @@ internal data class AudioRecording(
      */
     val cap: Double,
     val leadMs: Long,
+    /** Where the speech has ended, in ms from the file's start; 0 plays the file out. A measurement too. */
+    val endMs: Long,
     /**
      * How good the take sounds, as a predicted mean opinion score from 1 to 5.
      * A MEASUREMENT like the other two, but one nothing plays: it exists so lint can see
