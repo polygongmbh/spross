@@ -47,6 +47,16 @@ if [ -z "${JAVA_HOME:-}" ] && [ -x /usr/libexec/java_home ]; then
   [ -n "$JAVA_HOME" ] && export JAVA_HOME
 fi
 
+# why: Xcode script phases skip the login shell's env files too, so a
+# GRADLE_USER_HOME or KONAN_DATA_DIR relocated there falls back to ~/.gradle and
+# ~/.konan — a second Kotlin/Native next to the terminal's, whose platform klibs
+# then clash in the shared build state ("same 'unique_name' … in more than one library").
+for var in GRADLE_USER_HOME KONAN_DATA_DIR; do
+  eval "[ -n \"\${$var:-}\" ]" && continue
+  val="$("${SHELL:-/bin/zsh}" -c "printf %s \"\$$var\"" 2>/dev/null || true)"
+  [ -n "$val" ] && export "$var=$val"
+done
+
 mkdir -p "$DEST"
 STARTED="$DEST/.started"
 touch "$STARTED"
