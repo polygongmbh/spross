@@ -29,6 +29,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
 - A German or French reflexive verb with no good recording of its own now plays one of the verb without "sich" or "se".
 - German "sich irren" now plays a clearer recording.
+- The new clothes words and "to appear" play a recording in all eight languages, and about 300 more words across them play one instead of the device voice.
 
 ## 8.7.0 — 2026-10-09
 
