@@ -32,7 +32,15 @@ struct HomeView: View {
                               title: "error.title",
                               message: failure.text)
                 } else if lead == .drill, let pick {
-                    drillLeadCard(pick) { drillDestination = hub.destination(for: pick.drill) }
+                    leadCard(emoji: pick.drill.emoji,
+                             title: Text("home.suggestion.title \(ChromeStrings.string(pick.drill.titleKeyName, locale: locale))"),
+                             reason: pick.reasonText) { drillDestination = hub.destination(for: pick.drill) }
+                } else if lead == .listening {
+                    leadCard(emoji: "🎧", title: Text("home.suggestion.listening"),
+                             reason: Text("listen.subtitle")) { listeningPresented = true }
+                } else if lead == .conversation {
+                    leadCard(emoji: "💬", title: Text("home.suggestion.conversation"),
+                             reason: Text("briefing.row.subtitle")) { briefingPresented = true }
                 } else if lead == .round {
                     sessionCard(offer)
                 } else {
@@ -75,7 +83,8 @@ struct HomeView: View {
             return .drill
         }
         #endif
-        return model.home?.lead(pick: pick) ?? .done
+        return model.home?.lead(pick: pick, listening: model.listeningOffered, conversation: model.hasBriefing,
+                                nowEpochMillis: Date().epochMillis, tzId: currentTzId()) ?? .done
     }
 
     // MARK: - Conversation

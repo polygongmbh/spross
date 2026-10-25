@@ -488,6 +488,8 @@ interface Chrome {
 
     // ── The suggested drill (Home's one card naming a drill, and why) ─────────
     val homeSuggestionTitle: String   // %s = the drill's hub name
+    val homeSuggestionListening: String
+    val homeSuggestionConversation: String
     val homeSuggestionReasonNewScript: String
     val homeSuggestionReasonEarlyNumbers: String
     val homeSuggestionReasonWordsSettled: String
@@ -502,7 +504,7 @@ interface Chrome {
     val listenPause: String
     val listenResume: String
     val listenSkip: String
-    val listenRepeat: String
+    val listenBack: String
     val listenTimer: String
     val listenMinutesLeft: String   // %d
 

@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// The one drill Home names (`docs/drills.md` § The suggestion), which leads
-/// the day's card wherever it is named (`HomeView.drillLeadCard`). WHICH drill,
+/// the day's card in its turn (`HomeView.leadCard`). WHICH drill,
 /// WHEN and WHY are kern's `DrillSuggestion`; this side reads the stores it is
 /// asked about and words the answer. It hangs off the hub because what it
 /// opens is a chip's own destination.

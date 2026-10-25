@@ -149,19 +149,10 @@ object SprossIcons {
         moveTo(16.5f, 5f); lineTo(19f, 5f); lineTo(19f, 19f); lineTo(16.5f, 19f); close()
     }
 
-    /**
-     * That one again. The ring runs BACKWARDS — counterclockwise, opening at the top — so
-     * the glyph says "over again" rather than "onward", which a clockwise loop would.
-     *
-     * Both endpoints sit on the circle around (12,12), and the SWEEP is what picks which of
-     * the two circles through them is drawn: taken the other way it centers at (16.95, 0.05),
-     * almost entirely outside the box, and what survives the viewport is a crescent.
-     * `res/drawable/ic_listen_again.xml` carries the same path for the lock screen.
-     */
-    val Again = stroked("Again") {
-        moveTo(12f, 5f)
-        arcTo(7f, 7f, 0f, true, false, 18.58f, 9.61f)
-        moveTo(15f, 3.2f); lineTo(12f, 5f); lineTo(15f, 6.8f)
+    /** Back: the word on air from its start, then the one before. [SkipNext], mirrored. */
+    val SkipPrevious = filled("SkipPrevious") {
+        moveTo(18.5f, 5f); lineTo(9f, 12f); lineTo(18.5f, 19f); close()
+        moveTo(7.5f, 5f); lineTo(5f, 5f); lineTo(5f, 19f); lineTo(7.5f, 19f); close()
     }
 
     /** Talk it over — the words a round just left warm. `bubble.left.and.bubble.right` on iOS. */

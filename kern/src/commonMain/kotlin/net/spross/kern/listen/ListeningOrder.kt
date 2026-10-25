@@ -104,8 +104,8 @@ private class Lane(val members: List<ListeningCandidate>, val priority: Int, val
  * the very first one, and it closes once every unseen word has been said once. Each open lane
  * is due every `1 / share` turns on one shared clock; the earliest due plays, a tie going to
  * the higher priority. The deal ends when every held lane has played through once and the
- * unseen lane is spent, and the run laps it from the head — so a box holding nothing scheduled
- * hears its unseen words once through, basics first.
+ * unseen lane is spent, and the run deals again from there — so a box holding nothing scheduled
+ * hears its unseen words once through, basics first, before any comes back.
  *
  * WITHIN a lane the order depends on what the lane is. Queued words lead the unseen lane,
  * most-recently-queued first ([queuedOrder]) — the same order `Growth.queuedEligible`

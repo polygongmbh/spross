@@ -40,7 +40,7 @@ object ListeningBridge {
 interface ListeningControls {
     fun togglePause()
     fun skip()
-    fun repeat()
+    fun back()
     fun close()
 }
 
@@ -68,7 +68,7 @@ data class ListeningNowPlaying(
     val pauseLabel: String,
     val resumeLabel: String,
     val skipLabel: String,
-    val repeatLabel: String,
+    val backLabel: String,
     val closeLabel: String,
 )
 

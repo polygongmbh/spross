@@ -21,6 +21,8 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
+import net.spross.app.hasBriefing
+import net.spross.app.startListening
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.chromePart
 import net.spross.kern.box.dayPart
@@ -77,7 +79,8 @@ fun HomeScreen(model: AppModel) {
             PageTitle(hello, eyebrow = today)
 
             val pick = rememberSuggestedDrill(model, standing)
-            val lead = standing?.lead(pick) ?: DayLead.Done
+            val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
+                ?: DayLead.Done
             val card = homeCard(failed = model.loadFailure != null, lead = lead)
             when (card) {
                 HomeCard.Failure -> StateCard(
@@ -94,8 +97,24 @@ fun HomeScreen(model: AppModel) {
                     SessionCard(model, it, stats?.streak ?: 0, health)
                 }
 
-                HomeCard.Drill -> if (standing != null && pick != null) {
-                    DrillLeadCard(model, standing, pick, stats?.streak ?: 0, health)
+                HomeCard.Lead -> if (standing != null) {
+                    val streak = stats?.streak ?: 0
+                    when (lead) {
+                        DayLead.Listening -> LeadCard(
+                            model, standing, "🎧", chrome.homeSuggestionListening, chrome.listenSubtitle,
+                            streak, health,
+                        ) { model.startListening() }
+                        DayLead.Conversation -> LeadCard(
+                            model, standing, "💬", chrome.homeSuggestionConversation, chrome.briefingRowSubtitle,
+                            streak, health,
+                        ) { briefingOpen = true }
+                        else -> pick?.let {
+                            LeadCard(
+                                model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
+                                reason(chrome, it), streak, health,
+                            ) { model.open(it.drill) }
+                        }
+                    }
                 }
 
                 HomeCard.Done -> standing?.let {

@@ -2,23 +2,24 @@ import SwiftUI
 import SprossKern
 
 /// The day's card once the day has answered more than it still owes and kern
-/// names a drill (`DayLead.drill`, `docs/drills.md` § The suggestion): what the
-/// day has done on top, the drill as the card's body and first action, and the
-/// round still one button away.
+/// leads with a way in other than the round (`DayLead`, `docs/drills.md`
+/// § The suggestion): what the day has done on top, the drill, listening or the
+/// conversation as the card's body and first action, and the round still one
+/// button away.
 extension HomeView {
 
-    func drillLeadCard(_ pick: DrillSuggestion.Pick, open: @escaping () -> Void) -> some View {
+    func leadCard(emoji: String, title: Text, reason: Text, open: @escaping () -> Void) -> some View {
         VStack(spacing: Theme.spacing.lg) {
             dayHeader
             Divider()
-            Text(verbatim: pick.drill.emoji)
+            Text(verbatim: emoji)
                 .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
                 .accessibilityHidden(true)
-            Text("home.suggestion.title \(ChromeStrings.string(pick.drill.titleKeyName, locale: locale))")
+            title
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
-            pick.reasonText
+            reason
                 .font(Theme.typography.body)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)

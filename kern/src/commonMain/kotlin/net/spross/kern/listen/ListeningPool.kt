@@ -39,15 +39,7 @@ object ListeningPool {
         /** The playlist itself — the whole sayable join in the order a run will walk it,
          *  dealt by `listeningOrder`. */
         val candidates: List<ListeningCandidate>,
-    ) {
-        /**
-         * Whether listening exists at all — what the entry card is shown on.
-         *
-         * Non-empty is the whole bar. Whatever the learner's join holds is the pool; a short
-         * one simply laps, which is what a playlist does anyway.
-         */
-        val available: Boolean get() = candidates.isNotEmpty()
-    }
+    )
 
     /**
      * The full pool. [hasTargetVoice] / [hasSourceVoice] are whether this device can say

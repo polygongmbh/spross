@@ -148,18 +148,6 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: `available` is the pool being non-empty.
-     * WHY: it gates the entry card, and the pool is already the whole sayable join — so
-     * whatever survives IS everything there is to hear, and a short pool simply laps, which
-     * is what a playlist does anyway.
-     */
-    @Test
-    fun availabilityIsThePoolHavingAnythingToSay() {
-        assertTrue(spoken(box(total = 4, scheduled = 1)).available)
-        assertFalse(spoken(Box.state(emptyList())).available)
-    }
-
-    /**
      * RULE: an empty box's basics — the earliest `LISTENING_BASICS_WORDS` concepts — lead the
      * whole lap, ahead of everything past them, whichever order they land in among themselves.
      * WHY: the beginner case. A first session should still open on greetings and thanks rather
