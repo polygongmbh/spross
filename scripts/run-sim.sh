@@ -42,17 +42,10 @@ while [ $# -gt 0 ]; do
 done
 
 # why: `booted` is ambiguous once the paired watch simulator is up too — every
-# simctl call here targets one resolved UDID instead. An exact name beats a
-# case-insensitive substring ("duo" finds "iPhone Duo"), and the LAST match wins:
-# simctl lists runtimes oldest first, so that is the newest, the one `name=` in the build gate picks.
+# simctl call here targets one resolved UDID instead. The LAST match is the newest
+# runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
 UDID=$(xcrun simctl list devices available \
-  | awk -v want="$DEVICE" -F'[()]' '
-      BEGIN { w = tolower(want) }
-      { n = $1; gsub(/^ +| +$/, "", n); l = tolower(n) }
-      n == "" || n ~ /^Apple Watch/ || NF < 3 { next }
-      l == w { exact = $2 }
-      index(l, w) { part = $2 }
-      END { print (exact != "" ? exact : part) }')
+  | awk -v want="$DEVICE" -F'[()]' 'index(tolower($1), tolower(want)) { udid = $2 } END { print udid }')
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
   echo "       xcrun simctl list devices available" >&2
