@@ -110,7 +110,7 @@ internal object Fixture {
         "languages.json" to """
             {
              "de": { "name": "Deutsch", "englishName": "German", "flag": "🇩🇪",
-                     "articles": ["der", "die", "das", "ein", "eine"] },
+                     "detachableParticles": ["sich "], "articles": ["der", "die", "das", "ein", "eine"] },
              "en": { "name": "English", "englishName": "English", "flag": "🇬🇧",
                      "optionalVerbPrefixes": ["to "], "articles": ["the", "a", "an"] },
              "pt": { "name": "Português", "englishName": "Portuguese", "flag": "🇵🇹" },

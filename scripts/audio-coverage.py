@@ -12,7 +12,7 @@ like one that ships — the manifests once named 517 files that existed on one m
 no checkout, and nothing caught it. Reading `git ls-files` is the only way to tell.
 
 Coverage is measured per realization against the form its card shows, the way playback
-finds a recording: by the spoken form, bare or inside an article recording, or the verb's
+finds a recording: by the spoken form, bare or inside an article recording, or its
 bare stem. It is counted over SINGLE-WORD realizations as well as all of them: the word packs
 resolve one word at a time, so a phrase is not a gap they could ever close.
 """
@@ -23,7 +23,7 @@ import os
 import subprocess
 import sys
 
-from audio_gates import speech_key, takes
+from audio_gates import speech_key, takes, unsaid_prefixes, verb_stem
 from audio_routes import SECTIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,14 +63,13 @@ def recorded_forms(manifest):
 
 
 def heard(text, recorded, prefixes):
-    """Whether playback finds a recording for [text] — itself, or its bare verb stem."""
-    stem = next((text.strip()[len(p):] for p in prefixes
-                 if len(text.strip()) > len(p) and text.strip().lower().startswith(p.lower())), None)
+    """Whether playback finds a recording for [text] — itself, or its bare stem."""
+    stem = verb_stem(text, prefixes)
     return speech_key(text) in recorded or (stem is not None and speech_key(stem) in recorded)
 
 
 def verb_prefixes():
-    return {code: info.get('optionalVerbPrefixes', [])
+    return {code: unsaid_prefixes(info)
             for code, info in read_json(CATALOG, 'languages.json').items()}
 
 

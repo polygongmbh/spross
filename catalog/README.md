@@ -132,6 +132,10 @@ the content only supplies the default.
   Omit for languages with no such prefix (de `-en` suffix, uk `-ти` suffix).
   Harmless to over-list: every verb is stored in infinitive form,
   so stripping a listed prefix only ever yields the same stem.
+- `detachableParticles` —
+  leading particles a citation form carries that are not the word itself (de `"sich "`, fr `"se "`/`"s'"`).
+  Grading keeps them; a recording of the form without one plays where the form itself ships none (`../docs/audio.md`).
+  A trailing reflexive is part of the word (es `-se`, it `-si`, uk `-ся`) and is never listed.
 - `diacriticDigraphs` —
   established lossless ASCII spellings of single letters, keyed by the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`);
   grading folds them on both sides like `ß`→`ss` (`../docs/grading.md`).

@@ -17,11 +17,11 @@ private fun Catalog.taggedForms(lang: Language, raw: RawRealization): List<Pair<
 
 /**
  * Every bare form a card in [lang] may show or grade — `text`, `teaches`, `accepts`, each
- * tagged form without its article — plus each one's bare verb stem ([verbStem]), the
+ * tagged form without its article — plus each one's bare stem ([verbStem]), the
  * lookup's own fallback.
  */
 internal fun Catalog.shownForms(lang: Language): Set<String> {
-    val prefixes = languages[lang]?.optionalVerbPrefixes.orEmpty()
+    val prefixes = languages[lang]?.unsaidPrefixes.orEmpty()
     val shown = realizationsIn(lang).flatMap { raw ->
         listOf(raw.text) + raw.teaches + raw.accepts + taggedForms(lang, raw).map { it.second }
     }

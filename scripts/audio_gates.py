@@ -126,8 +126,14 @@ def takes(item):
     return [item] + item.get('alternates', [])
 
 
+def unsaid_prefixes(info):
+    """kern `LanguageInfo.unsaidPrefixes` of a `languages.json` entry: what a recording may leave off a
+    form's front — its citation prefixes, then its detachable particles (de `sich `)."""
+    return info.get('optionalVerbPrefixes', []) + info.get('detachableParticles', [])
+
+
 def verb_stem(form, prefixes):
-    """kern `verbStem`: [form] without the first optional verb prefix it starts with, else None."""
+    """kern `verbStem`: [form] without the first of [prefixes] it starts with, else None."""
     trimmed = form.strip()
     return next((trimmed[len(p):] for p in prefixes
                  if len(trimmed) > len(p) and trimmed.lower().startswith(p.lower())), None)

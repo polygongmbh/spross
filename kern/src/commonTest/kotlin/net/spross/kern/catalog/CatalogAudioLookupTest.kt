@@ -59,6 +59,25 @@ class CatalogAudioLookupTest {
         assertNull(pack.pronunciation("sw", "kusoma").recordingPath)
     }
 
+    /** A form with no recording of its own is heard without its detachable particle; an exact one still wins. */
+    @Test
+    fun aParticledFormFallsBackToTheBareForm() {
+        val pack = AudioFixture.catalogWith("audio/de/manifest.json", """
+            { "language": "de",
+              "authors": { "Anna": "CC BY-SA 4.0" },
+              "licenses": { "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/" },
+              "words": {
+                "irren":        { "file": "irren.mp3", "matches": "irren",
+                                  "author": "Anna", "source": "De-irren.ogg", "sha256": "p1" },
+                "sich waschen": { "file": "sich_waschen.mp3", "matches": "sich waschen",
+                                  "author": "Anna", "source": "De-sich waschen.ogg", "sha256": "p2" },
+                "waschen":      { "file": "waschen.mp3", "matches": "waschen",
+                                  "author": "Anna", "source": "De-waschen.ogg", "sha256": "p3" } } }
+        """.trimIndent())
+        assertEquals("audio/de/irren.mp3", pack.pronunciation("de", "sich irren").recordingPath)
+        assertEquals("audio/de/sich_waschen.mp3", pack.pronunciation("de", "sich waschen").recordingPath)
+    }
+
     /**
      * A key with several takes plays the one its draw picks, wraps past the last, and
      * credits every take under its own voice.

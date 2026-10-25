@@ -7,7 +7,7 @@ import re
 import sys
 import unicodedata
 
-from audio_gates import speech_key, split_article, spoken_target_form, stress_free, verb_stem
+from audio_gates import speech_key, split_article, spoken_target_form, stress_free, unsaid_prefixes, verb_stem
 from audio_manifest import ROOT, read_json
 
 CATALOG = os.path.join(ROOT, 'catalog')
@@ -25,7 +25,7 @@ def load_catalog():
     """
     areas = [area['area'] for group in read_json(CATALOG, 'areas.json') for area in group['areas']]
     languages = read_json(CATALOG, 'languages.json')
-    prefixes = {code: info.get('optionalVerbPrefixes', []) for code, info in languages.items()}
+    prefixes = {code: unsaid_prefixes(info) for code, info in languages.items()}
     shown = {}
     articled = {}
     for area in areas:
@@ -43,8 +43,8 @@ def load_catalog():
                           for value in word.get('forms', {}).values()
                           for form in (value if isinstance(value, list) else [value])]
                 shown_by += [form for _, form in tagged]
-                # why: kern's lookup falls back to a verb's bare stem (`verbStem`), so a
-                # recording of `piga simu` reaches a card showing `kupiga simu`.
+                # why: kern's lookup falls back to a form's bare stem (`verbStem`), so a recording
+                # of `piga simu` reaches a card showing `kupiga simu`, and `irren` one showing `sich irren`.
                 shown_here = shown_by + [
                     stem for stem in (verb_stem(form, prefixes.get(lang, [])) for form in shown_by) if stem]
                 shown.setdefault(lang, set()).update(speech_key(form) for form in shown_here)
@@ -151,9 +151,10 @@ def titled_as(name, form):
 
 def variants(text, lang):
     """Surface forms to try against the recording index, best first; a stressed form's own
-    spelling first, then the same forms without the stress mark. A verb's citation prefix
-    (`optionalVerbPrefixes`: sw `ku-`/`kw-`, en `to `) is one the recordings lack, as is a
-    Swahili adjective's leading `-`; Spanish opens exclamations with `¡`/`¿`, which nobody pronounces."""
+    spelling first, then the same forms without the stress mark. A verb's citation prefix or a
+    detachable particle (`unsaid_prefixes`: sw `ku-`/`kw-`, en `to `, de `sich `) is one the
+    recordings may lack, tried after the whole form, as is a Swahili adjective's leading `-`;
+    Spanish opens exclamations with `¡`/`¿`, which nobody pronounces."""
     t = re.sub(r'[!?.,;:]+$', '', unicodedata.normalize('NFC', text.strip()))
     out = [t.lower()]
     stem = verb_stem(t, verb_prefixes(lang))
@@ -171,7 +172,7 @@ _PREFIXES = {}
 
 def verb_prefixes(lang):
     if not _PREFIXES:
-        _PREFIXES.update({code: info.get('optionalVerbPrefixes', [])
+        _PREFIXES.update({code: unsaid_prefixes(info)
                           for code, info in read_json(CATALOG, 'languages.json').items()})
     return _PREFIXES.get(lang, [])
 

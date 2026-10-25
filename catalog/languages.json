@@ -3,6 +3,7 @@
   "name": "Deutsch",
   "englishName": "German",
   "flag": "🇩🇪",
+  "detachableParticles": ["sich "],
   "articles": ["der", "die", "das", "ein", "eine"],
   "diacriticDigraphs": { "ä": "ae", "ö": "oe", "ü": "ue" }
  },
@@ -24,6 +25,7 @@
   "name": "Français",
   "englishName": "French",
   "flag": "🇫🇷",
+  "detachableParticles": ["se ", "s'"],
   "articles": ["le", "la", "les", "l'", "un", "une"]
  },
  "it": {

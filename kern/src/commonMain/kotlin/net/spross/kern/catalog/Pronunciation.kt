@@ -32,9 +32,9 @@ fun speechKey(form: String): String {
 }
 
 /**
- * [form] without the leading optional verb prefix it starts with (sw `kupiga simu` →
- * `piga simu`, from `LanguageInfo.optionalVerbPrefixes`), else null: the bare stem a
- * recording may say where none says the citation form the card shows.
+ * [form] without the leading prefix it starts with (sw `kupiga simu` → `piga simu`,
+ * de `sich irren` → `irren`, from `LanguageInfo.unsaidPrefixes`), else null: the bare stem
+ * a recording may say where none says the citation form the card shows.
  */
 fun verbStem(form: String, prefixes: List<String>): String? {
     val trimmed = form.trim()

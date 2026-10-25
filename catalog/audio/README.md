@@ -22,7 +22,9 @@ The packs (`pack-<lang>-words`, `pack-<lang>-articles` and their siblings) are k
 a concept's text, a synonym and a tagged form (a plural, a feminine, an agreement form) are one kind of row,
 so a form moving between those roles keeps its recording.
 Every form is looked for bare in the words pack and,
-where a card shows it with an article, with that article in the articles pack.
+where a card shows it with an article, with that article in the articles pack;
+a form Commons has no take of is looked for without its leading citation prefix or detachable particle (`../languages.json`),
+the form playback falls back to.
 Where each language's recordings are on Commons is one table, `../../scripts/audio_routes.py`,
 and every request goes through one client, `../../scripts/audio_commons.py`,
 which waits out a dropped network or a throttling Commons for up to 15 minutes before an item counts as failed.

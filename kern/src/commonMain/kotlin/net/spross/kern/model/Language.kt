@@ -18,6 +18,11 @@ data class LanguageInfo(
      * Entries preserve authored whitespace (`"to "` keeps its trailing space).
      */
     val optionalVerbPrefixes: List<String> = emptyList(),
+    /**
+     * Leading particles a citation form carries that are not the word itself (de `"sich "`,
+     * fr `"se "`/`"s'"`). Grading leaves them alone; only a recording may leave one out.
+     */
+    val detachableParticles: List<String> = emptyList(),
     /** The language's articles; ONE leading listed article is optional when grading. */
     val articles: List<String> = emptyList(),
     /**
@@ -27,4 +32,7 @@ data class LanguageInfo(
      * none (every one but German today) folds nothing.
      */
     val diacriticDigraphs: Map<String, String> = emptyMap(),
-)
+) {
+    /** What a recording may leave off a form's front and still answer for it ([net.spross.kern.catalog.verbStem]). */
+    val unsaidPrefixes: List<String> get() = optionalVerbPrefixes + detachableParticles
+}

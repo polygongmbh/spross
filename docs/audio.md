@@ -7,8 +7,9 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 - **Words are read aloud; a recording is only played for the word it actually says.**
   Kern matches recordings by the form on screen, never by concept,
   so a rotated synonym is never answered with the canonical word.
-  One exception: a verb with no recording of its citation form plays one of its bare stem
-  (sw `piga simu` under `kupiga simu`, `LanguageInfo.optionalVerbPrefixes`).
+  One exception: a form with no recording of its own plays one of itself without its leading citation prefix or particle
+  (sw `piga simu` under `kupiga simu`, de `irren` under `sich irren`;
+  `LanguageInfo.unsaidPrefixes`, the `optionalVerbPrefixes` and `detachableParticles` of `languages.json`).
   Unmatched forms fall to the device voice;
   a target with neither stays silent.
   The drills' generated readings ("dreihundertsiebenundvierzig") use the voice.

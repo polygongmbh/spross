@@ -72,7 +72,8 @@ internal object CatalogParser {
             o.rejectUnknownKeys(
                 path,
                 code,
-                setOf("name", "englishName", "flag", "optionalVerbPrefixes", "articles", "diacriticDigraphs"),
+                setOf("name", "englishName", "flag", "optionalVerbPrefixes", "detachableParticles", "articles",
+                      "diacriticDigraphs"),
             )
             val name = o.requireString(path, code, "name")
             if (name.isBlank()) parseError(path, "$code: blank name")
@@ -91,6 +92,7 @@ internal object CatalogParser {
                 englishName = englishName,
                 flag = flag,
                 optionalVerbPrefixes = o.stringList(path, code, "optionalVerbPrefixes"),
+                detachableParticles = o.stringList(path, code, "detachableParticles"),
                 articles = o.stringList(path, code, "articles"),
                 diacriticDigraphs = o.stringMap(path, code, "diacriticDigraphs"),
             )
