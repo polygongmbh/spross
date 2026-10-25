@@ -62,7 +62,7 @@
    }
   },
   "to-carry": { "text": "kubeba" },
-  "to-happen": { "text": "kutokea" },
+  "to-happen": { "text": "kutukia", "accepts": ["kutokea", "kufanyika"] },
   "to-turn-on": { "text": "kuwasha" },
   "to-turn-off": { "text": "kuzima" },
   "do-you-have-water": { "text": "Una maji?" },
@@ -70,7 +70,7 @@
   "can-you-see-him": { "text": "Unamwona?" },
   "to-improve": { "text": "kuboresha" },
   "to-suggest": { "text": "kupendekeza" },
-  "what-happened": { "text": "Nini kimetokea?", "accepts": ["Kumetokea nini?"] },
+  "what-happened": { "text": "Nini kimetukia?", "accepts": ["Nini kimetokea?", "Kumetokea nini?"] },
   "my-parents-come-from-italy": { "text": "Wazazi wangu wanatoka Italia." }
  }
 }
