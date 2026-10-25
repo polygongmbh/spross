@@ -5,6 +5,7 @@ import csv
 import datetime
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -12,7 +13,7 @@ import termios
 import tty
 
 import audio_measure
-from audio_gates import takes
+from audio_gates import speech_key, takes
 from audio_index import END_KEEP_MS, FFMPEG, LEAD_KEEP_MS
 from audio_routes import WORKSPACE
 from audio_voices import ESTABLISHED_TAKES
@@ -107,7 +108,8 @@ def from_voices(shipped, heard):
 def sample(argv):
     parser = argparse.ArgumentParser(
         prog='audio-listen.py sample',
-        description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet.')
+        description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet, '
+                    'or out of the takes --word names, rated or not.')
     parser.add_argument('name')
     parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'), required=True,
                         help='shipped: the lowest scorers of what ships; journal: the swaps staged or shipped '
@@ -118,22 +120,40 @@ def sample(argv):
     parser.add_argument('--section')
     parser.add_argument('--voice')
     parser.add_argument('--mos-below', type=float, metavar='MOS')
+    parser.add_argument('--word', action='append', default=[], metavar='[LANG:]FORM',
+                        help='draw every take of this key instead, rated already or not, in the order named, '
+                             'with no cap; repeatable, LANG: narrows it to one language')
+    parser.add_argument('--words', metavar='FILE', help='--word for each line of FILE')
     parser.add_argument('-n', type=int, default=15,
                         help='takes in the set (default 15); out of shipped or journal takes from more than one '
                              'language, at most %d come from each' % PER_LANGUAGE)
     args = parser.parse_args(argv)
+    if args.words:
+        with open(args.words, encoding='utf-8') as handle:
+            args.word += [line.strip() for line in handle if line.strip() and not line.startswith('#')]
     verdicts = rows(VERDICTS)
     heard = {row['sha256'] for row in verdicts}
     shipped = shipped_entries()
     drawn = from_voices(shipped, {(row['lang'], row['speaker']) for row in verdicts}) \
         if args.source == 'voices' else (from_shipped if args.source == 'shipped' else from_journal)(shipped)
-    takes = [take for take in drawn
-             if take['sha256'] not in heard
-             and (not args.lang or take['lang'] == args.lang)
-             and (not args.section or take['section'] == args.section)
-             and (not args.voice or take['speaker'] == args.voice)
-             and (args.mos_below is None or (take['mos'] is not None and take['mos'] < args.mos_below))]
-    capped = args.source != 'voices' and len({take['lang'] for take in takes}) > 1
+    matching = [take for take in drawn
+                if (not args.lang or take['lang'] == args.lang)
+                and (not args.section or take['section'] == args.section)
+                and (not args.voice or take['speaker'] == args.voice)
+                and (args.mos_below is None or (take['mos'] is not None and take['mos'] < args.mos_below))]
+    if args.word:
+        takes = []
+        for wanted in args.word:
+            lang, form = wanted.split(':', 1) if re.match(r'^[a-z]{2,3}:', wanted) else (None, wanted)
+            found = [take for take in matching
+                     if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
+            if not found:
+                print('no take of %s' % wanted, file=sys.stderr)
+            takes += found
+        args.n = len(takes)
+    else:
+        takes = [take for take in matching if take['sha256'] not in heard]
+    capped = args.source != 'voices' and not args.word and len({take['lang'] for take in takes}) > 1
     picked, per, seen = [], {}, set()
     for take in takes:
         if len(picked) == args.n:

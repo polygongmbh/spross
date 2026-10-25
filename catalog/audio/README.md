@@ -110,7 +110,9 @@ A listening set is takes beside a TSV naming them, rated one key per take with `
 which writes the verdicts itself;
 `audio-listen.py sample NAME --from shipped|journal|voices` draws one out of unrated takes —
 the lowest scorers that ship, the staged and shipped swaps most likely to be wrong,
-or one take of each voice nobody heard yet.
+or one take of each voice nobody heard yet —
+and with `--word [LANG:]FORM` (repeatable, or `--words FILE`, one per line) every take of the keys it names instead, rated or not,
+so a listener is handed what a run shipped as one set rather than files opened one by one.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are unversioned research input;
 what is committed here is the shipped bytes and the license record that has to travel with them.
