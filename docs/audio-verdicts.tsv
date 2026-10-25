@@ -371,3 +371,6 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context
 2026-10-25	sw	juu	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-juu.wav	de2cbe581a80a51fe2e8192e4d7fb9979a6324b96b6fe915d180592ffc6d7c2d	bad	mispronounced: says "yuu"; a small click, inside the word	2.5	heard in the app
 2026-10-25	sw	juu	Waithera Were	Sw-ke-juu.flac	f4422bc1b6768ba994b46b097082d75cf55f0da75513d07a26b3a671e6ebf9f2	good	says "dschuu" correctly; better than the shipped take despite measuring squashed	2.73	the listener's pick over the shipped take
 2026-10-25	de	sich irren	Natschoba	LL-Q188 (deu)-Natschoba-sich irren.wav	a65021950bbf990b810116370a77f2a30792a32eeab38e80fec5b811d9acfada	mediocre	echoey; a bit echoey	3.03	heard in the app
+2026-10-25	es	bota	Marreromarco	LL-Q1321 (spa)-Marreromarco-bota.wav	ce93d630f12b64f06961db8ae6e9c761f73b576d7c64fb40e521ee0f03bf3b38	mediocre	still a bit echoey	1.63	heard in the app
+2026-10-25	es	impermeable	Marreromarco	LL-Q1321 (spa)-Marreromarco-impermeable.wav	1d80d462669b2505fa627cd16ee1748ba4a644f4a19922265973b5633d7b4a89	mediocre	still a bit echoey	1.99	heard in the app
+2026-10-25	es	gorra	Marreromarco	LL-Q1321 (spa)-Marreromarco-gorra.wav	12fab594261798fe4489197f27a1979a27ec667f73eec5dbb56337f6e355c560	mediocre	still a bit echoey	2.12	heard in the app
