@@ -10,6 +10,7 @@
   "offer": { "text": "special offer", "accepts": ["offer", "deal"] },
   "size": { "text": "size" },
   "to-shop": { "text": "to go shopping" },
+  "to-deliver": { "text": "to deliver" },
   "store": { "text": "store", "teaches": ["shop"] },
   "open": { "text": "open" },
   "the-store-is-still-open": { "text": "The store is still open.", "accepts": ["The shop is still open."] },

@@ -25,6 +25,8 @@
   "to-move-in": { "text": "to move in" },
   "to-move-out": { "text": "to move out" },
   "to-water-plants": { "text": "to water the plants" },
+  "to-turn-on": { "text": "to turn on", "teaches": ["to switch on"] },
+  "to-turn-off": { "text": "to turn off", "teaches": ["to switch off"] },
   "to-play": { "text": "to play" },
   "to-talk": { "text": "to talk" },
   "room": { "text": "room" },

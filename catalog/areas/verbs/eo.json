@@ -21,16 +21,10 @@
   "to-want": { "text": "voli" },
   "to-find": { "text": "trovi" },
   "to-search": { "text": "serĉi" },
-  "to-receive": {
-   "text": "ricevi",
-   "notes": { "eo": "iu donas kaj vi ricevas · akiri estas mem havigi al si ion." }
-  },
   "to-look": {
    "text": "rigardi",
    "notes": { "eo": "vidi okazas mem · rigardi estas atenta: Mi rigardas vin." }
   },
-  "to-open": { "text": "malfermi" },
-  "to-close": { "text": "fermi" },
   "to-stop": {
    "text": "ĉesi",
    "notes": {
@@ -39,22 +33,17 @@
    }
   },
   "to-stand": { "text": "stari", "notes": { "eo": "stari estas la stato · stariĝi estas ekstari." } },
-  "to-send": { "text": "sendi" },
-  "to-deliver": { "text": "liveri" },
+  "to-walk": { "text": "piediri", "accepts": ["marŝi"] },
   "to-use": { "text": "uzi" },
   "to-come-back": { "text": "reveni" },
   "to-go-away": { "text": "foriri" },
   "to-lose": { "text": "perdi" },
   "to-break": { "text": "rompi" },
-  "to-push": { "text": "puŝi" },
-  "to-pull": { "text": "tiri" },
   "to-have-to": { "text": "devi" },
   "to-put": { "text": "meti" },
   "to-carry": { "text": "porti" },
   "to-happen": { "text": "okazi" },
   "to-appear": { "text": "aperi" },
-  "to-turn-on": { "text": "ŝalti", "accepts": ["enŝalti"] },
-  "to-turn-off": { "text": "malŝalti" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
   "where-are-you-from": { "text": "De kie vi venas?", "orders": ["De kie venas vi?"] },
   "can-you-see-him": {
@@ -62,8 +51,6 @@
    "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas lin." },
    "orders": ["Ĉu lin vi vidas?"]
   },
-  "to-improve": { "text": "plibonigi" },
-  "to-suggest": { "text": "proponi" },
   "what-happened": { "text": "Kio okazis?" },
   "my-parents-come-from-italy": { "text": "Miaj gepatroj venas el Italio.", "orders": ["El Italio venas miaj gepatroj."] }
  }

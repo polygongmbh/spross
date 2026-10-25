@@ -60,14 +60,12 @@ fun QuestionCard(
     modifier: Modifier = Modifier,
     surface: QuestionSurface = QuestionSurface.Drill,
     voice: CardVoice = CardVoice.Silent,
-    /** The title of the area an ambiguous prompt names ([Question.Side.context] is its key). */
-    areaTitle: (String) -> String = { it },
     /** What a screen reader hears for the prompt where its text is no word to read — a mixed word, spelled out. */
     promptLabel: String? = null,
     /** TalkBack lands on the replay control as each question goes up, where the prompt is a sound. */
     replayFocus: FocusRequester? = null,
 ) {
-    val card = CardContext(question, chrome, voice, areaTitle, promptLabel, replayFocus)
+    val card = CardContext(question, chrome, voice, promptLabel, replayFocus)
     when (surface) {
         QuestionSurface.Drill -> card.DrillFace(modifier)
         QuestionSurface.Review -> card.ReviewFace(modifier)
@@ -104,7 +102,6 @@ internal class CardContext(
     val question: Question,
     val chrome: Chrome,
     val voice: CardVoice,
-    val areaTitle: (String) -> String,
     val promptLabel: String?,
     val replayFocus: FocusRequester?,
 ) {

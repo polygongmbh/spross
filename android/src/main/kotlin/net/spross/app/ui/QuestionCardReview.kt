@@ -83,12 +83,9 @@ private fun CardContext.ClosingLines() {
     }
 }
 
-/** The word itself, under the area named over an ambiguous prompt. */
+/** The word itself. */
 @Composable
 internal fun CardContext.HeadwordBlock(side: Question.Side, emphasized: Boolean) {
-    // why: ABOVE the headword, so it reads as a label on the prompt and never
-    // sits in the plural/alternates region that belongs to the reveal.
-    side.context?.let { CardCue(areaTitle(it)) }
     if (side.form == Question.Form.Sound) {
         ReplayGlyph(pronounce(side), chrome, replayFocus)
         return

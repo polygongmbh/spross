@@ -74,9 +74,9 @@ struct ListeningView: View {
     /// as what VoiceOver reads, which is where they are needed.
     private var transport: some View {
         HStack(spacing: Theme.spacing.xl) {
-            transportButton(symbol: "arrow.counterclockwise",
+            transportButton(symbol: "backward.end.fill",
                             size: 56,
-                            label: Text("listen.repeat")) { driver.again() }
+                            label: Text("listen.back")) { driver.back() }
             // why: the LABEL flips with the state, unlike the read-aloud switch
             // one screen over. These are buttons that name an ACTION — what the
             // next tap does — not switches naming a condition, so "Pause" on a

@@ -130,6 +130,8 @@
   "responsible": { "text": "responsable", "accepts": ["compétent"] },
   "to-submit-application": { "text": "déposer une demande", "accepts": ["faire une demande"] },
   "to-take-a-number": { "text": "prendre un ticket", "accepts": ["prendre un numéro"] },
+  "to-send": { "text": "envoyer" },
+  "to-receive": { "text": "recevoir", "teaches": ["obtenir"] },
   "where-do-i-sign": {
    "text": "Où est-ce que je signe ?",
    "accepts": ["Où dois-je signer ?", "Où est-ce que je dois signer ?", "Je signe où ?"]

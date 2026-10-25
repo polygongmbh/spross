@@ -29,6 +29,8 @@
   "place": { "text": "loko" },
   "country": { "text": "lando" },
   "in-front": { "text": "antaŭe" },
+  "in-front-of": { "text": "antaŭ" },
+  "at-the-back": { "text": "malantaŭe" },
   "next-to": { "text": "apud" },
   "to-be-there": { "text": "ĉeesti" },
   "on-the-table": { "text": "sur la tablo" },

@@ -63,8 +63,6 @@ data class Question(
         val plural: PluralForm? = null,
         /** Which form [text] stands for where it cannot show it itself (`teacher` ♀ for `Lehrerin`); null marks none. */
         val marker: FormTag? = null,
-        /** The area key named over an ambiguous prompt; the app shows that area's title. */
-        val context: String? = null,
         /** How many letters at the head of [text] stand as written — a word scramble's kept opening. */
         val fixedLeading: Int = 0,
         /** What the speaker beside [text] says; null draws no speaker. */

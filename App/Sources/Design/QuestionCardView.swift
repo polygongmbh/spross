@@ -26,8 +26,6 @@ struct QuestionCardView: View {
     let question: Question
     var surface: Surface = .drill
     var voice: CardVoice = .silent
-    /// The title of the area an ambiguous prompt names (`Side.context` is its key).
-    var areaTitle: (String) -> String = { $0 }
     /// What a screen reader hears for the prompt where its text is no word to read — a mixed word, spelled out.
     var promptLabel: Text?
     /// VoiceOver lands on the replay control as each question goes up, where the prompt is a sound.

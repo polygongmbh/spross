@@ -75,23 +75,32 @@ internal class TurnGrading(
      * language's normalizer, whose articles and typo budget are the ones the learner is
      * writing under. Every other turn owes the target word, with the whole join in view.
      *
-     * The meaning side reads the join too, from the other end: the form that played may be
-     * printed by more than one concept, because the target language merges what the source
-     * splits (sw `kuacha` is verlassen AND aufhören), and every meaning it carries is a
-     * right answer to what it means. The prompted card leads — its own verdict wins where
-     * it has one — and a borrowed one comes back [Graded.merged], for the turn to hold on.
+     * Either way the prompt may stand for more than one concept: the target writes alike what
+     * the source splits (sw `kuacha` is verlassen AND aufhören), or the source writes alike what
+     * the target splits (de `gehen` is kwenda AND kutembea), and every concept the prompt stands
+     * for answers it. The prompted card leads — its own verdict wins where it has one — and a
+     * borrowed one comes back [Graded.merged], for the turn to hold on.
      */
     fun grade(state: TurnState, text: String): Graded {
-        if (state.prompt != ProducePrompt.Sound) return Graded(grader.grade(text, state.card, state.promptTag))
-        val own = meaningNormalizer.evaluate(text, meaningSide(state.card))
+        if (state.prompt != ProducePrompt.Sound) {
+            return merged(
+                own = grader.grade(text, state.card, state.promptTag),
+                shared = grader.promptSharers(state.card).map { grader.grade(text, it, state.promptTag) },
+            )
+        }
+        return merged(
+            own = meaningNormalizer.evaluate(text, meaningSide(state.card)),
+            shared = grader.conceptsSharing(state.promptForm, state.card).map { meaningNormalizer.evaluate(text, meaningSide(it)) },
+        )
+    }
+
+    private fun merged(own: Match, shared: List<Match>): Graded {
         if (own == Match.Exact) return Graded(own)
-        val shared = grader.conceptsSharing(state.promptForm, state.card)
-            .map { meaningNormalizer.evaluate(text, meaningSide(it)) }
         shared.firstOrNull { it == Match.Exact }?.let { return Graded(it, merged = true) }
         // A slip is forgiven against the word it was aiming at, and the prompted card owns
         // its own slips first — the same order the normalizer keeps a card's text ahead of
         // its `accepts` in.
-        if (own != Match.Wrong) return Graded(own)
+        if (own is Match.Typo) return Graded(own)
         shared.firstOrNull { it is Match.Typo }?.let { return Graded(it, merged = true) }
         return Graded(own)
     }

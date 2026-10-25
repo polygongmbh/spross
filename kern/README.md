@@ -71,15 +71,11 @@ the rules the declarations cannot state are here.
   moving or reclassifying a concept keeps its schedule.
   `components` are card ids (bare slugs).
 - **Join rule**: emit iff both TARGET and source realize the concept.
-- **Homonyms / target-language merges**: after emitting, the join counts cards per
-  *displayed* prompt key -- NFC-normalized `source.text` --
-  and sets `promptAmbiguous` on every member of a key shared by >1 card.
-  Keying on what the learner SEES means citation conventions
-  (de noun capitals, en `"to "`, sw `ku-`) correctly keep noun/verb homographs apart.
-  From the TARGET side the same merge is not a residue but a fact of the word:
-  a form more than one concept prints means all of what they mean
-  (sw `ndege` is Vogel AND Flugzeug),
-  so a card asked what it MEANS credits any of them (`../docs/grading.md`).
+- **Merges**: a prompt more than one concept shows stands for all of them, from either side --
+  sw `ndege` is Vogel AND Flugzeug, de `gehen` is kwenda AND kutembea --
+  so every concept it stands for answers it (`../docs/grading.md`).
+  Keyed on what the learner SEES, so citation conventions
+  (de noun capitals, en `"to "`, sw `ku-`) keep noun/verb homographs apart.
 - **Grammar display is target-side only**:
   the plural line and the article coloring render for the target realization alone
   (`model/DisplayText.kt`).
@@ -97,13 +93,8 @@ production and recognition are PRESENTATIONS of the same memory,
 both feeding the one schedule ("every answer event is an FSRS review" holds).
 
 - **PRODUCE**: prompt = source text (+ female badge when marked), typed answer in target.
-  When `promptAmbiguous`, the prompt carries the card's **area label** as a secondary
-  context line -- free of leakage because it is in the PROMPT language while the answer
-  is in the other. Never graded.
 - **RECOGNIZE**: prompt = one target form, **reveal + self-grade** (section 6) -- never typed.
   Phrases alternate too: self-graded sentence recognition is legitimate comprehension practice.
-  **Never carries the `promptAmbiguous` area cue**: the prompt is the target form,
-  so any cue strong enough to identify the concept would reveal the answer.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
   - First exposure (`count == 0`) is ALWAYS recognition --
     the learner cannot produce a word never seen;

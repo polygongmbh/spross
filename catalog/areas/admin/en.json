@@ -38,6 +38,8 @@
    "accepts": ["to file an application", "to make an application"]
   },
   "to-take-a-number": { "text": "to take a number" },
+  "to-send": { "text": "to send" },
+  "to-receive": { "text": "to receive", "accepts": ["to get"] },
   "where-do-i-sign": { "text": "Where do I sign?" },
   "i-want-to-extend-my-residence-permit": { "text": "I would like to extend the residence permit." },
   "i-need-an-interpreter-for-the-application": {

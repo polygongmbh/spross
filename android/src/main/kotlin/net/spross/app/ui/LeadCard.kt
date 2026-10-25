@@ -22,39 +22,42 @@ import net.spross.kern.session.DayMark as DayMarkRule
 import net.spross.kern.session.HomeStanding
 import net.spross.kern.session.RoundStart
 import net.spross.kern.trainer.DayLead
-import net.spross.kern.trainer.DrillSuggestion
 
 /**
- * The day's card once the day has answered more than it still owes and kern names a drill
- * ([DayLead.Drill], `docs/drills.md` § The suggestion): what the day has done on top, the drill
- * as the card's body and first action, and the round still one button away.
+ * The day's card once the day has answered more than it still owes and kern leads with a way
+ * in other than the round ([DayLead], `docs/drills.md` § The suggestion): what the day has done
+ * on top, the drill, listening or the conversation as the card's body and first action, and
+ * the round still one button away.
  */
 @Composable
-fun DrillLeadCard(
+fun LeadCard(
     model: AppModel,
     standing: HomeStanding,
-    pick: DrillSuggestion.Pick,
+    glyph: String,
+    title: String,
+    reason: String,
     streak: Int,
     health: StreakHealth,
+    onOpen: () -> Unit,
 ) {
     val chrome = model.chrome
     DayCard {
         DayHeader(model, standing, streak, health)
         HorizontalDivider()
-        Text(pick.drill.emoji, style = MaterialTheme.typography.displaySmall)
+        Text(glyph, style = MaterialTheme.typography.displaySmall)
         Text(
-            chrome.homeSuggestionTitle.format(pick.drill.title(chrome)),
+            title,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
         Text(
-            reason(chrome, pick),
+            reason,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
         )
         Button(
-            onClick = { model.open(pick.drill) },
+            onClick = onOpen,
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
         ) {

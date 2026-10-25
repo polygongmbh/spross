@@ -15,10 +15,7 @@
   "to-want": { "text": "хоті́ти" },
   "to-find": { "text": "знахо́дити" },
   "to-search": { "text": "шука́ти" },
-  "to-receive": { "text": "отри́мувати" },
   "to-look": { "text": "диви́тися", "notes": { "uk": "дивитися на щось: дивлюся на тебе, дивлюся на слово." } },
-  "to-open": { "text": "відкрива́ти" },
-  "to-close": { "text": "закрива́ти" },
   "to-stop": {
    "text": "припиня́ти",
    "teaches": ["перестава́ти"],
@@ -28,22 +25,17 @@
    }
   },
   "to-stand": { "text": "стоя́ти" },
-  "to-send": { "text": "надсила́ти", "accepts": ["посилати", "відправляти"] },
-  "to-deliver": { "text": "доставля́ти" },
+  "to-walk": { "text": "ходи́ти", "accepts": ["ходити пішки"] },
   "to-use": { "text": "використо́вувати" },
   "to-come-back": { "text": "поверта́тися" },
   "to-go-away": { "text": "йти геть", "accepts": ["піти геть"] },
   "to-lose": { "text": "губи́ти" },
   "to-break": { "text": "лама́ти" },
-  "to-push": { "text": "штовха́ти" },
-  "to-pull": { "text": "тягну́ти" },
   "to-have-to": { "text": "му́сити", "teaches": ["пови́нен"] },
   "to-put": { "text": "кла́сти", "teaches": ["ста́вити"] },
   "to-carry": { "text": "нести́" },
   "to-happen": { "text": "ста́тися", "accepts": ["трапитися"] },
   "to-appear": { "text": "з'яви́тися", "accepts": ["з'являтися"] },
-  "to-turn-on": { "text": "вмика́ти", "accepts": ["умикати"] },
-  "to-turn-off": { "text": "вимика́ти" },
   "do-you-have-water": { "text": "У вас є вода́?", "accepts": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
   "where-are-you-from": { "text": "Зві́дки ви?" },
   "can-you-see-him": {
@@ -52,8 +44,6 @@
    "notes": { "uk": "Бачиш його, але допомагаєш йому — форма залежить від дієслова." },
    "orders": ["Ти бачиш його?"]
   },
-  "to-improve": { "text": "покра́щувати" },
-  "to-suggest": { "text": "пропонува́ти" },
   "what-happened": { "text": "Що ста́лося?" },
   "my-parents-come-from-italy": {
    "text": "Мої́ батьки́ з Іта́лії.",

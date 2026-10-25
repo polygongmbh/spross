@@ -19,8 +19,8 @@ enum class HomeCard {
     /** There is a round to sit down to. */
     Session,
 
-    /** The day has done most of its work, and the named drill leads ([DayLead.Drill]). */
-    Drill,
+    /** The day has done most of its work, and a way in other than the round leads ([DayLead]). */
+    Lead,
 
     /** Nothing due — worked or merely clear, which the card itself distinguishes. */
     Done,
@@ -33,8 +33,8 @@ enum class HomeCard {
 fun homeCard(failed: Boolean, lead: DayLead): HomeCard = when {
     failed -> HomeCard.Failure
     lead == DayLead.Round -> HomeCard.Session
-    lead == DayLead.Drill -> HomeCard.Drill
-    else -> HomeCard.Done
+    lead == DayLead.Done -> HomeCard.Done
+    else -> HomeCard.Lead
 }
 
 /** The separator between the spelled-out parts of an offer or a tally. */

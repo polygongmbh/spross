@@ -33,6 +33,7 @@
   "place": { "text": "posto", "teaches": ["luogo"], "grammar": { "article": "il" } },
   "country": { "text": "nazione", "grammar": { "article": "la" } },
   "in-front": { "text": "davanti" },
+  "in-front-of": { "text": "davanti a" },
   "next-to": { "text": "accanto a" },
   "to-be-there": { "text": "esserci" },
   "on-the-table": { "text": "sopra il tavolo", "accepts": ["sul tavolo"] },

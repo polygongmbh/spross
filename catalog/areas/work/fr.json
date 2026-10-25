@@ -61,6 +61,8 @@
   "to-hire": { "text": "embaucher", "accepts": ["recruter"] },
   "to-help": { "text": "aider" },
   "to-work-overtime": { "text": "faire des heures supplémentaires", "accepts": ["faire des heures sup"] },
+  "to-improve": { "text": "améliorer" },
+  "to-suggest": { "text": "proposer" },
   "profession": {
    "text": "métier",
    "teaches": ["profession"],

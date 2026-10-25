@@ -83,7 +83,7 @@ object DateDrill {
             val task = when (kind) {
                 DateTaskKind.NameChoice ->
                     samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
-                        ?.let { DateDrillChoices.tiles(content, it, reverse, rng) }
+                        ?.let { DateDrillChoices.tiles(content, it, reverse, rng, avoid) }
                 DateTaskKind.Weekday, DateTaskKind.Month ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
                 else -> AssembledDates.sample(content, kind, reverse, avoid, solved, rng)

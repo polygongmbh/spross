@@ -32,6 +32,9 @@ internal object LetterDrillChoices {
      * the homophone rule: two entries with the same IPA sound identical, so offering both
      * against a NAME prompt is unanswerable and they are excluded — but in a gap word the
      * spelling is what decides, which makes them the sharpest distractor there is.
+     *
+     * [previousGlyph] is the last question's answer, drawn into a pool only once nothing else
+     * in it is left: the learner just picked it as right, which rules it out on sight.
      */
     fun tiles(
         alphabet: Alphabet,
@@ -40,6 +43,7 @@ internal object LetterDrillChoices {
         sprosse: Int,
         gapText: String?,
         rng: Random,
+        previousGlyph: String? = null,
     ): List<String>? {
         if (format != LetterFormat.ChoiceEasy && format != LetterFormat.ChoiceConfusable) return null
         val answerGlyph = key(answer.glyph)
@@ -58,15 +62,23 @@ internal object LetterDrillChoices {
         val confusable = answerable.filter { key(it) in closure || key(it) in homophones }
         val fillers = answerable.filter { key(it) !in closure && key(it) !in homophones }
 
+        val previous = previousGlyph?.let(::key)
         val chosen = LinkedHashSet<String>()
         if (format == LetterFormat.ChoiceConfusable) {
-            draw(chosen, confusable, (sprosse - 2).coerceIn(1, DISTRACTORS), rng)
+            drawShunning(chosen, confusable, (sprosse - 2).coerceIn(1, DISTRACTORS), previous, rng)
         }
-        draw(chosen, fillers, DISTRACTORS - chosen.size, rng)
+        drawShunning(chosen, fillers, DISTRACTORS - chosen.size, previous, rng)
         // why: a degenerate alphabet (or an entry whose whole file looks like it) can leave
         // the pools empty — then any non-answer glyph beats a one-tile question.
         if (chosen.size < MIN_DISTRACTORS) draw(chosen, eligible, MIN_DISTRACTORS - chosen.size, rng)
         return (listOf(answer.glyph) + chosen).shuffled(rng)
+    }
+
+    /** [draw], with the [shunned] glyph taken only once nothing else in [from] is left. */
+    private fun drawShunning(into: MutableSet<String>, from: List<String>, count: Int, shunned: String?, rng: Random) {
+        val before = into.size
+        draw(into, from.filter { key(it) != shunned }, count, rng)
+        draw(into, from, count - (into.size - before), rng)
     }
 
     /** Adds up to [count] glyphs drawn uniformly without replacement. */

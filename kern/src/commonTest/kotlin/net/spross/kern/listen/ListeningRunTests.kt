@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -38,16 +39,18 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: a lapped pool starts over at its head, in the same order.
-     * WHY: the walk is a playlist, not a shuffle — a learner with three sayable words still
-     * gets a run, it simply rotates, and what it must never do is hand back two of the same
-     * word in a row.
+     * RULE: past the playlist's end the run deals the same words again, never opening on the
+     * word it just closed with.
+     * WHY: a run outlasting its deal should hear a fresh order rather than the old one again,
+     * and what it must never do is hand back the same word twice in a row.
      */
     @Test
-    fun aLappedPoolRestartsAtTheHead() {
-        val ids = heard(candidates(3), turns = 9)
+    fun aRunPastItsDealDealsTheSameWordsAgain() {
+        val pool = candidates(6)
+        val ids = heard(pool, turns = 12)
 
-        assertEquals(List(3) { listOf("w01", "w02", "w03") }.flatten(), ids)
+        assertEquals(pool.map { it.card.id }.toSet(), ids.drop(6).toSet())
+        assertNotEquals(ids[5], ids[6])
     }
 
     /**
@@ -124,20 +127,33 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: Repeat replays the current turn and draws nothing.
-     * WHY: "again" is asked for when the word did not land — a fresh draw would be the run
-     * answering a different question. The replay is an EFFECT because the state does not
-     * move, and a driver watching for a changed turn would go deaf on exactly this button.
+     * RULE: Back restarts the turn on air; pressed again before the run moves on, it steps to
+     * the turn before, and keeps stepping.
+     * WHY: the word just missed is the likelier ask, and a press on a turn already restarted
+     * can only mean the one before it. The restart is an EFFECT because the turn does not
+     * change, and a driver watching for a changed turn would go deaf on exactly this button.
      */
     @Test
-    fun repeatReplaysTheSameTurnWithoutDrawing() {
-        val started = run(candidates(20))
+    fun backRestartsTheTurnThenStepsBehindIt() {
+        var state = run(candidates(20))
+        repeat(3) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
 
-        val again = ListeningRun.reduce(started, ListeningIntent.Repeat)
+        val restarted = ListeningRun.reduce(state, ListeningIntent.Back)
+        assertEquals(listOf(ListeningEffect.Play(assertNotNull(state.turn))), restarted.effects)
 
-        assertEquals(started.turn, again.state.turn)
-        assertEquals(started.played, again.state.played)
-        assertEquals(listOf(ListeningEffect.Play(assertNotNull(started.turn))), again.effects)
+        val once = ListeningRun.reduce(restarted.state, ListeningIntent.Back).state
+        val twice = ListeningRun.reduce(once, ListeningIntent.Back).state
+        assertEquals(listOf("w03", "w02"), listOf(once, twice).map { assertNotNull(it.turn).cardId })
+        assertEquals("w03", assertNotNull(ListeningRun.reduce(twice, ListeningIntent.Advance).state.turn).cardId)
+    }
+
+    /**
+     * RULE: Back at the head of a run restarts it, having nothing before it.
+     */
+    @Test
+    fun backAtTheHeadRestartsIt() {
+        val restarted = ListeningRun.reduce(run(candidates(3)), ListeningIntent.Back).state
+        assertEquals("w01", assertNotNull(ListeningRun.reduce(restarted, ListeningIntent.Back).state.turn).cardId)
     }
 
     /**

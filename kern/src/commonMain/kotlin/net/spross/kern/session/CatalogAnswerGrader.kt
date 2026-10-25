@@ -4,6 +4,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.SharedTargetForms
+import net.spross.kern.model.nfcNormalized
 
 /**
  * Produce grading with the whole join in view (`docs/grading.md`).
@@ -26,6 +27,7 @@ import net.spross.kern.model.SharedTargetForms
  * The join answers a second question from the other side — which concepts a target form is
  * LISTED by, for a card asked what it means ([conceptsSharing]) — and that one is literal
  * rather than lenient, so the two indexes are built separately.
+ * A third reads the prompt: which concepts the source writes alike ([promptSharers]).
  */
 class CatalogAnswerGrader(
     private val normalizer: AnswerNormalizer,
@@ -37,6 +39,9 @@ class CatalogAnswerGrader(
 
     /** The same join read literally: which concepts print a target form (`SharedTargetForms`). */
     private val sharedForms = SharedTargetForms(cards)
+
+    /** Displayed source prompt → the concepts that show it, seed order. */
+    private val prompts: Map<String, List<Card>> = cards.sortedBy { it.seedIndex }.groupBy { promptKey(it) }
 
     /**
      * [Match.Exact] whenever this card accepts the input — a form two concepts
@@ -55,6 +60,16 @@ class CatalogAnswerGrader(
      * [SharedTargetForms]; this is the same join, already built.
      */
     fun conceptsSharing(form: String, card: Card): List<Card> = sharedForms.concepts(form, card)
+
+    /**
+     * Every OTHER concept whose source the learner sees written exactly as [card]'s —
+     * a source-language merge (de `gehen` is to go AND to walk), so a typed answer to the
+     * prompt may be any of their words. Keyed on what the learner SEES: citation conventions
+     * (de noun capitals, en "to ", sw ku-) keep noun/verb homographs apart.
+     */
+    fun promptSharers(card: Card): List<Card> = prompts[promptKey(card)].orEmpty().filter { it.id != card.id }
+
+    private fun promptKey(card: Card): String = nfcNormalized(card.source.text).trim()
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
         // why: a form the prompted card accepts belongs to it first (see [grade]), and a

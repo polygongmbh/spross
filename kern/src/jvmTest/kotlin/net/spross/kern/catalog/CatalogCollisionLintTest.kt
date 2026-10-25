@@ -11,9 +11,9 @@ import kotlin.test.assertTrue
  * same string. A sibling file because the pinned cross-area list is content, and content
  * grows: kept here it never pushes the rest of the catalog rules past the file budget.
  *
- * The three rules differ only in what they do about a collision: inside one area it is
- * unanswerable and forbidden, one concept pair colliding in two languages is an authoring
- * duplicate, and a cross-area single-language merge is legitimate and therefore pinned.
+ * The two rules differ only in what they do about a collision: one concept pair colliding
+ * in two languages is an authoring duplicate, and a single-language merge is legitimate and
+ * therefore pinned.
  */
 class CatalogCollisionLintTest {
     private val catalog get() = RealCatalog.catalog
@@ -43,19 +43,6 @@ class CatalogCollisionLintTest {
     }
 
     /**
-     * A display-identical prompt INSIDE one area is unfixable at runtime: the engine's
-     * disambiguator is the area label, which would be identical. Repick the word.
-     */
-    @Test
-    fun noPromptCollisionWithinAnArea() {
-        for ((key, ids) in collisionClusters()) {
-            val (lang, form) = key
-            val perArea = ids.groupBy { it.substringBefore('/') }.filterValues { it.size > 1 }
-            assertTrue(perArea.isEmpty(), "$lang \"$form\": same-area collision ${perArea.values}")
-        }
-    }
-
-    /**
      * One concept PAIR colliding in two languages is one meaning authored twice — unify it
      * (the `variantOf` ruling). Exception, when this fires: if de/en genuinely distinguish
      * the two and only both targets merge them, fix the imprecise realization instead
@@ -74,7 +61,7 @@ class CatalogCollisionLintTest {
         }
         // Reviewed 2026-08-15: weather/time is the Romance family merge (es tiempo,
         // fr temps, it tempo) — one linguistic fact per language, each pinned in
-        // [crossAreaPromptCollisionsAreKnown], not the same meaning authored twice.
+        // [promptCollisionsAreKnown], not the same meaning authored twice.
         // Re-realizing weather as meteo/météo would teach the forecast, not the weather.
         // Reviewed 2026-09-05: that-conj/what is fr `que` and uk `що` — in each language the
         // relative-conjunction and the object interrogative share one word, and de/en/eo/es/it/sw
@@ -94,6 +81,10 @@ class CatalogCollisionLintTest {
             // Reviewed 2026-10-25: bag/pocket is de `Tasche` and sw `mfuko`, while
             // en/eo/es/fr/it/uk split it — two languages' polysemy, pinned below.
             ("clothes/pocket" to "hall/bag") to setOf("de", "sw"),
+            // Reviewed 2026-10-21: de `vor`, eo `antaŭ` and uk `перед` are "before" in time AND
+            // "in front of" in space, while en/es/fr/it/sw split the pair (before/in front of,
+            // antes de/delante de, avant/devant, prima di/davanti a, kabla ya/mbele ya).
+            ("connectors/before" to "place/in-front-of") to setOf("de", "eo", "uk"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -102,14 +93,13 @@ class CatalogCollisionLintTest {
     }
 
     /**
-     * Cross-area, single-language collisions are legitimate target-language merges (Swahili
-     * has one word where German has two) — tolerated at runtime, where the join sets
-     * `promptAmbiguous` and the UI adds the area label to the produce prompt. Pinned so a
-     * NEW one (adding `nature/river` beside `bedroom/pillow`, both sw `mto`) fails here
-     * instead of silently shipping an unanswerable prompt.
+     * Single-language collisions are legitimate merges (Swahili has one word where German
+     * has two) — answered at runtime, where every concept a prompt stands for answers it
+     * (`docs/grading.md`). Pinned so a NEW one (adding `nature/river` beside `bedroom/pillow`,
+     * both sw `mto`) is reviewed as a merge rather than shipped as an authoring slip.
      */
     @Test
-    fun crossAreaPromptCollisionsAreKnown() {
+    fun promptCollisionsAreKnown() {
         val actual = collisionClusters()
             .map { (key, ids) -> "${key.first} ${key.second}: ${ids.sorted().joinToString(", ")}" }
             .toSortedSet()
@@ -146,6 +136,15 @@ class CatalogCollisionLintTest {
                 // `Etage`/`Stockwerk` name only the floor sense and `Stab`/`Rute` skew formal
                 // or archaic for the stick sense, so `Stock` stays the plain word for both.
                 "de Stock: living/story, nature/stick",
+                // Reviewed 2026-10-22: de `gehen` is to go AND to walk (Janek's ruling) —
+                // en/es/fr/it/sw/uk all split the pair (go/walk, ir/caminar, aller/marcher,
+                // andare/camminare, kwenda/kutembea, йти/ходити); either answer is right.
+                "de gehen: verbs/to-go, verbs/to-walk",
+                // Reviewed 2026-10-21: "before" in time and "in front of" in space are one word
+                // in de/eo/uk and two in en/es/fr/it/sw (noConceptPairCollidesInTwoLanguages).
+                "de vor: connectors/before, place/in-front-of",
+                "eo antaŭ: connectors/before, place/in-front-of",
+                "uk перед: connectors/before, place/in-front-of",
                 // Reviewed 2026-08-29: es `piso` is the apartment/flat AND the building floor
                 // it sits on — de/en/eo/fr/it/sw/uk all split the pair (Wohnung/Stock,
                 // apartment/story, apartamento/etaĝo, appartement/étage, appartamento/piano,
@@ -201,7 +200,7 @@ class CatalogCollisionLintTest {
                 // wegwerfen (tirar la basura) — genuine Spanish polysemy; de/en/eo/fr/it/
                 // sw/uk all split the pair. `botar` (throwing away) and `jalar` (pulling)
                 // are Latin American, so both stay the everyday `tirar`.
-                "es tirar: kitchen/to-throw-away, verbs/to-pull",
+                "es tirar: hall/to-pull, kitchen/to-throw-away",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
                 // as their first pick. Repicking picture as `cadre` would teach the
@@ -327,6 +326,11 @@ class CatalogCollisionLintTest {
                 // `-dogo` (small) that qualities/small teaches — one word, since the adverb
                 // is that agreement form; every other language splits the pair (wenig/klein).
                 "sw kidogo: degree/a-little, qualities/small",
+                // Reviewed 2026-10-21: sw `kutembea` is to walk AND to go for a walk — one verb,
+                // de/en/eo/es/fr/it/uk all split the pair (laufen/spazieren gehen, walk/go for a walk,
+                // piediri/promeni, caminar/pasear, marcher/se promener, camminare/fare una passeggiata,
+                // ходити/гуляти). There is no second everyday Swahili word for either, so both stay.
+                "sw kutembea: nature/to-go-for-walk, verbs/to-walk",
                 "sw mpaka: connectors/until, politics/border",
                 // Reviewed 2026-10-25: sw `mfuko` is the bag AND the pocket (kaikki: bag, purse, pocket);
                 // hall/bag teaches it beside `begi`, and there is no other word for the pocket.

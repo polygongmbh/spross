@@ -165,6 +165,28 @@ class LetterDrillChoiceTests {
         assertTrue("f" in task.choices.orEmpty(), "the last resort is any non-answer glyph")
     }
 
+    /**
+     * The letter just answered is ruled out on sight, so where fillers are plenty it never
+     * stands beside the next one; a thin look-alike set may still need it.
+     */
+    @Test
+    fun thePreviousAnswerStaysOffTheTiles() {
+        val previous = LetterDrillFixture.entry(LetterDrillFixture.allRefs.first())
+        for (sprosse in 1..2) {
+            for (seed in 1..200) {
+                val task = assertNotNull(
+                    LetterDrill.sample(
+                        alphabet, LetterDrillFixture.example, sprosse, LetterDrillFixture.allRefs,
+                        previous.ref, null, emptySet(), Random(seed),
+                    ),
+                )
+                if (task.display.equals(previous.glyph, ignoreCase = true)) continue
+                val tiles = task.choices.orEmpty()
+                assertFalse(tiles.any { it.equals(previous.glyph, ignoreCase = true) }, "Sprosse $sprosse: $tiles")
+            }
+        }
+    }
+
     /** The tiles the confusable draw may take: closure, plus homophones where a gap decides. */
     private fun nearGlyphs(answer: AlphabetEntry, gapText: String?): Set<String> {
         val homophones = homophoneGlyphs(answer.ref)

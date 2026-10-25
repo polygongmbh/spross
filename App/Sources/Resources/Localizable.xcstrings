@@ -3496,6 +3496,38 @@
         }
       }
     },
+    "home.suggestion.conversation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute mal plaudern?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How about a chat?"
+          }
+        }
+      }
+    },
+    "home.suggestion.listening" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute mal zuhören?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How about some listening?"
+          }
+        }
+      }
+    },
     "home.suggestion.reason.earlyNumbers" : {
       "comment" : "Why the numbers drill is suggested: the box is young.",
       "localizations" : {
@@ -4175,6 +4207,22 @@
         }
       }
     },
+    "listen.back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
     "listen.minutesLeft %lld" : {
       "comment" : "The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched.",
       "localizations" : {
@@ -4228,22 +4276,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pause"
-          }
-        }
-      }
-    },
-    "listen.repeat" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch einmal"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Again"
           }
         }
       }
@@ -6978,13 +7010,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spielerisches Üben — so oft du magst"
+            "value" : "Minispiele, so oft du magst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Playful practice, whenever you are up for it"
+            "value" : "Mini games, whenever you're up for it"
           }
         }
       }

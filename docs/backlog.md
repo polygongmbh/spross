@@ -18,6 +18,8 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Needs a decision
 
+- A learner who never wants the AI chat still sees it take its turn leading Home (`DayLead`) —
+  a Settings switch that hides the conversation card and drops it from the rotation?
 - A missed letter-name tile question opens its card although the tiles already mark the answer (`DrillRunProgress.showsAnswer`) —
   keep it closed there, as iOS once did?
 - The repo grants nobody anything —

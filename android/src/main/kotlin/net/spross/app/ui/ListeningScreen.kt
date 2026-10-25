@@ -98,7 +98,7 @@ fun ListeningScreen(model: AppModel) {
                 ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                TransportButton(SprossIcons.Again, chrome.listenRepeat, big = false) { run.repeat() }
+                TransportButton(SprossIcons.SkipPrevious, chrome.listenBack, big = false) { run.back() }
                 TransportButton(
                     if (run.paused) SprossIcons.Play else SprossIcons.Pause,
                     if (run.paused) chrome.listenResume else chrome.listenPause,

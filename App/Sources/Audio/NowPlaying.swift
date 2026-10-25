@@ -19,7 +19,7 @@ final class NowPlaying {
     struct Commands {
         let toggle: () -> Void
         let next: () -> Void
-        let again: () -> Void
+        let back: () -> Void
     }
 
     /// What the run IS, for as long as it runs: the app and the mode over the
@@ -83,11 +83,8 @@ final class NowPlaying {
             self?.commands?.next()
             return .success
         }
-        // why: there is no track behind this one — a playlist that laps has no
-        // "back", and the nearest thing a learner reaching for it wants is the
-        // word they just heard, said again.
         center.previousTrackCommand.addTarget { [weak self] _ in
-            self?.commands?.again()
+            self?.commands?.back()
             return .success
         }
         for command in [center.togglePlayPauseCommand, center.playCommand, center.pauseCommand,

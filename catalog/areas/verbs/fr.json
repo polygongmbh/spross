@@ -45,10 +45,7 @@
    "text": "chercher",
    "notes": { "fr": "je cherche un train, je te cherche : chercher n'a pas de à." }
   },
-  "to-receive": { "text": "recevoir", "teaches": ["obtenir"] },
   "to-look": { "text": "regarder", "notes": { "fr": "regarde à gauche, à droite · regarder, c'est exprès." } },
-  "to-open": { "text": "ouvrir" },
-  "to-close": { "text": "fermer" },
   "to-stop": {
    "text": "arrêter",
    "accepts": ["s'arrêter", "arrêter de"],
@@ -61,22 +58,17 @@
     "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen."
    }
   },
-  "to-send": { "text": "envoyer" },
-  "to-deliver": { "text": "livrer" },
+  "to-walk": { "text": "marcher" },
   "to-use": { "text": "utiliser" },
   "to-come-back": { "text": "revenir" },
   "to-go-away": { "text": "s'en aller", "notes": { "fr": "je m'en vais, il s'en va." } },
   "to-lose": { "text": "perdre" },
   "to-break": { "text": "casser" },
-  "to-push": { "text": "pousser" },
-  "to-pull": { "text": "tirer" },
   "to-have-to": { "text": "devoir" },
   "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
   "to-happen": { "text": "se passer", "accepts": ["arriver"] },
   "to-appear": { "text": "apparaître" },
-  "to-turn-on": { "text": "allumer" },
-  "to-turn-off": { "text": "éteindre" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "accepts": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
@@ -87,8 +79,6 @@
    "accepts": ["Vous venez d'où ?", "D'où viens-tu ?", "Tu viens d'où ?"]
   },
   "can-you-see-him": { "text": "Tu le vois ?", "accepts": ["Vous le voyez ?"] },
-  "to-improve": { "text": "améliorer" },
-  "to-suggest": { "text": "proposer" },
   "what-happened": { "text": "Qu'est-ce qui s'est passé ?" },
   "my-parents-come-from-italy": { "text": "Mes parents viennent d'Italie.", "orders": ["D'Italie viennent mes parents."] }
  }

@@ -111,6 +111,12 @@
   "responsible": { "text": "responsabile", "accepts": ["competente"] },
   "to-submit-application": { "text": "presentare una domanda", "accepts": ["presentare una richiesta", "fare domanda"] },
   "to-take-a-number": { "text": "prendere il numero", "accepts": ["prendere un numero"] },
+  "to-send": {
+   "text": "inviare",
+   "accepts": ["mandare", "spedire"],
+   "notes": { "it": "inviare e mandare sono uguali · spedire è per i pacchi." }
+  },
+  "to-receive": { "text": "ricevere", "teaches": ["ottenere"] },
   "where-do-i-sign": { "text": "Dove firmo?", "accepts": ["Dove devo firmare?", "Dove si firma?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Vorrei rinnovare il permesso di soggiorno.",

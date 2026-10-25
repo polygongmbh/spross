@@ -34,10 +34,10 @@ Neighbors: app and code issues `../docs/backlog.md`.
   llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
   meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
   have to be re-cut to phone/telefonear/téléphoner/telefonare first.
-- `verbs/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
+- `shopping/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
   somewhere), not liefern; an honest re-cut touches all eight languages.
-- sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
-  stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
+- sw `admin/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
+  stays lost: `kupeleka` is `shopping/to-deliver`'s own card, so naming it here would break "a note
   explains its own word and no other". The pair wants a contrast card if it wants anything.
 - The catalog-wide gap sweep reaches only plain digraphs, so two gaps stay one word deep:
   Ukrainian gains nothing (33 of its 35 rows are `letter` rows asked by spoken name, and it
