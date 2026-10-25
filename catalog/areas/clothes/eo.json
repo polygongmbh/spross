@@ -45,7 +45,6 @@
   "pocket": { "text": "poŝo" },
   "button": { "text": "butono" },
   "zipper": { "text": "fulmofermilo", "accepts": ["zipo"] },
-  "put-on-the-jacket": { "text": "surmeti la jakon" },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
   "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" },
   "the-pants-are-too-big": { "text": "La pantalono estas tro granda." }

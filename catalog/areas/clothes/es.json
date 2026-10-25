@@ -55,7 +55,6 @@
   "pocket": { "text": "bolsillo", "grammar": { "article": "el" } },
   "button": { "text": "botón", "forms": { "pl": "los botones" }, "grammar": { "article": "el" } },
   "zipper": { "text": "cremallera", "accepts": ["cierre", "zíper"], "grammar": { "article": "la" } },
-  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
   "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
   "children-where-are-your-shoes": {
    "text": "Niños, ¿dónde están vuestros zapatos?",

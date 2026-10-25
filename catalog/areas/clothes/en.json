@@ -38,7 +38,6 @@
   "pocket": { "text": "pocket" },
   "button": { "text": "button" },
   "zipper": { "text": "zipper", "accepts": ["zip"] },
-  "put-on-the-jacket": { "text": "to put on the jacket" },
   "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
   "children-where-are-your-shoes": { "text": "Children, where are your shoes?" },
   "the-pants-are-too-big": { "text": "The pants are too big.", "accepts": ["The trousers are too big."] }

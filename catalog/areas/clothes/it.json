@@ -65,7 +65,6 @@
    "accepts": ["cerniera lampo", "lampo", "zip"],
    "grammar": { "article": "la" }
   },
-  "put-on-the-jacket": { "text": "mettersi la giacca" },
   "dont-forget-your-jacket": {
    "text": "Non dimenticare la giacca!",
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]

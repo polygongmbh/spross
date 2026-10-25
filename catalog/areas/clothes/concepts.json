@@ -35,12 +35,6 @@
  { "slug": "pocket", "kind": "noun" },
  { "slug": "button", "kind": "noun" },
  { "slug": "zipper", "kind": "noun" },
- {
-  "slug": "put-on-the-jacket",
-  "kind": "phrase",
-  "emoji": "🧥",
-  "components": ["to-get-dressed", "jacket"]
- },
  { "slug": "dont-forget-your-jacket", "kind": "phrase", "emoji": "🧥", "components": ["jacket"] },
  { "slug": "children-where-are-your-shoes", "kind": "phrase", "components": ["shoe"] },
  { "slug": "the-pants-are-too-big", "kind": "phrase", "emoji": "👖", "components": ["pants"] }

@@ -36,7 +36,6 @@
   "pocket": { "text": "mfuko", "forms": { "pl": "mifuko" } },
   "button": { "text": "kifungo", "forms": { "pl": "vifungo" } },
   "zipper": { "text": "zipu", "grammar": { "plural": "=" } },
-  "put-on-the-jacket": { "text": "kuvaa jaketi" },
   "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
   "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" },
   "the-pants-are-too-big": { "text": "Suruali ni kubwa mno.", "accepts": ["Suruali ni kubwa sana."] }
