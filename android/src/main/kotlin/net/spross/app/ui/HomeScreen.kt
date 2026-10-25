@@ -34,8 +34,7 @@ import net.spross.kern.trainer.DayLead
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
  * trainers, the companion card, the fortnight behind it, and the trees. Which state card is kern's
- * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one,
- * and a way in that leads stands there alone.
+ * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
 @Composable
 fun HomeScreen(model: AppModel) {
@@ -123,11 +122,11 @@ fun HomeScreen(model: AppModel) {
                 }
             }
 
-            if (lead != DayLead.Listening) ListenCard(model)
+            ListenCard(model)
 
             TrainerHubCard(model)
 
-            if (lead != DayLead.Conversation) TalkCard(model) { briefingOpen = true }
+            TalkCard(model) { briefingOpen = true }
 
             // The same fortnight the streak was counted from, on the very refresh that
             // produced it — the strip reads kern's walk, never one of its own. It names

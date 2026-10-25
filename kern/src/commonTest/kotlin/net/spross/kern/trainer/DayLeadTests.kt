@@ -45,8 +45,8 @@ class DayLeadTests {
     /**
      * RULE: past the round, the drill, listening and the conversation take turns, one per
      * stretch of the day, among those Home offers.
-     * WHY: a card that always named a drill would hide the two ways in that need no hands
-     * and no screen; one that offered what Home has no card for would lead to nothing.
+     * WHY: a card that always named a drill would keep listening and the chat out of sight;
+     * one that offered what Home has no card for would lead to nothing.
      */
     @Test
     fun theWaysInTakeTurnsAmongWhatIsOffered() {

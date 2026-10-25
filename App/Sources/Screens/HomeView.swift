@@ -46,10 +46,9 @@ struct HomeView: View {
                 } else {
                     doneCard
                 }
-                // The way in that leads stands there alone.
-                if lead != .listening { listeningCard }
+                listeningCard
                 hub
-                if lead != .conversation { briefingCard }
+                briefingCard
                 Trees(model: model, open: { openBox($0) })
             }
             .padding(Theme.spacing.xl)

@@ -89,8 +89,8 @@ Nothing wears a prefix one scope wider than what it serves.
   the rest of the due reviews while any are left, an extra round once none are.
 - **Listening and the conversation take that slot in turn with the drill**,
   one per stretch of the day the greeting turns with, among those Home offers at all,
-  so the two ways in that need no screen are advertised as often as the drills are.
-  The way in that leads stands nowhere else on Home;
+  so they are advertised as often as the drills are.
+  Each keeps its own card further down meanwhile, as the drills keep their chips;
   with nothing to name, the round card or the done card holds the slot as before.
 - **The candidates are the chips the hub offers, less every ladder that is mastered**,
   however long ago it last ran:
