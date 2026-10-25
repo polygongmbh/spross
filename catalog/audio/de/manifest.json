@@ -17552,16 +17552,6 @@
       "sha256": "feca6eb08557dda91de346aaa38c64344d4aff543d40b685e8102999e5e03516",
       "source": "LL-Q188 (deu)-Natschoba-sich fühlen.wav"
     },
-    "sich verabschieden": {
-      "author": "Natschoba",
-      "file": "words/sich_verabschieden.mp3",
-      "gain": 2.1,
-      "lead": 60,
-      "matches": "sich verabschieden",
-      "mos": 2.73,
-      "sha256": "ff4fd60c788cf234a1dcf469819d89e239c7e175321637b7c5c1af27be84749a",
-      "source": "LL-Q188 (deu)-Natschoba-sich verabschieden.wav"
-    },
     "sich vorstellen": {
       "author": "Natschoba",
       "file": "words/sich_vorstellen.mp3",
@@ -19612,6 +19602,16 @@
       "mos": 2.9,
       "sha256": "966dbe4c0abeb2a68402b03da6d15b9df5c748f4ca57e63a6aab368720983a47",
       "source": "De-Venen.ogg"
+    },
+    "verabschieden": {
+      "author": "Jeuwre",
+      "file": "words/verabschieden.mp3",
+      "gain": -4.3,
+      "lead": 300,
+      "matches": "verabschieden",
+      "mos": 3.05,
+      "sha256": "75074d396b0aa8cc85dc6c57fd25cbf56f15b41802b88d6f2a6ffe1f99e3d328",
+      "source": "De-verabschieden.ogg"
     },
     "verb": {
       "author": "Jeuwre",
