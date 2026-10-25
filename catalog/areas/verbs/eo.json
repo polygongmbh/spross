@@ -52,6 +52,7 @@
   "to-put": { "text": "meti" },
   "to-carry": { "text": "porti" },
   "to-happen": { "text": "okazi" },
+  "to-appear": { "text": "aperi" },
   "to-turn-on": { "text": "ŝalti", "accepts": ["enŝalti"] },
   "to-turn-off": { "text": "malŝalti" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },

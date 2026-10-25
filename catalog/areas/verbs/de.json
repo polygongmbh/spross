@@ -45,6 +45,7 @@
   },
   "to-carry": { "text": "tragen" },
   "to-happen": { "text": "passieren", "accepts": ["geschehen"] },
+  "to-appear": { "text": "erscheinen", "accepts": ["auftauchen"] },
   "to-turn-on": { "text": "einschalten", "accepts": ["anschalten", "anmachen"] },
   "to-turn-off": { "text": "ausschalten", "accepts": ["abschalten", "ausmachen"] },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "accepts": ["Hast du Wasser?"], "orders": ["Sie haben Wasser?"] },

@@ -84,6 +84,7 @@
   "to-put": { "text": "mettere" },
   "to-carry": { "text": "portare" },
   "to-happen": { "text": "succedere" },
+  "to-appear": { "text": "apparire", "accepts": ["comparire"] },
   "to-turn-on": { "text": "accendere" },
   "to-turn-off": { "text": "spegnere" },
   "do-you-have-water": { "text": "Ha acqua?", "accepts": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },

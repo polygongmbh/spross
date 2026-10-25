@@ -15,6 +15,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Onboarding now points to where the day's round starts and how to choose what you learn in the Orchard, in place of a page about what Spross is for, and its first-round lines are shorter.
 - Home counts words that settled today among the day's checks again, instead of naming them on their own.
 - Swahili "to happen" now teaches kutukia, accepting kutokea and kufanyika.
+- A new "to appear" card joins the verbs in every language, and carries Swahili kutokea.
 
 ## 8.7.0 — 2026-10-09
 

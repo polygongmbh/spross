@@ -63,6 +63,7 @@
   },
   "to-carry": { "text": "kubeba" },
   "to-happen": { "text": "kutukia", "accepts": ["kutokea", "kufanyika"] },
+  "to-appear": { "text": "kutokea", "accepts": ["kujitokeza"] },
   "to-turn-on": { "text": "kuwasha" },
   "to-turn-off": { "text": "kuzima" },
   "do-you-have-water": { "text": "Una maji?" },

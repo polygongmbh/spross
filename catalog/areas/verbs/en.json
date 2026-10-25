@@ -34,6 +34,7 @@
   "to-put": { "text": "to put" },
   "to-carry": { "text": "to carry" },
   "to-happen": { "text": "to happen" },
+  "to-appear": { "text": "to appear", "accepts": ["to come out"] },
   "to-turn-on": { "text": "to turn on", "teaches": ["to switch on"] },
   "to-turn-off": { "text": "to turn off", "teaches": ["to switch off"] },
   "do-you-have-water": { "text": "Do you have water?" },

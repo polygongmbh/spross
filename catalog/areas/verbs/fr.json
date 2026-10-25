@@ -74,6 +74,7 @@
   "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
   "to-happen": { "text": "se passer", "accepts": ["arriver"] },
+  "to-appear": { "text": "apparaître" },
   "to-turn-on": { "text": "allumer" },
   "to-turn-off": { "text": "éteindre" },
   "do-you-have-water": {

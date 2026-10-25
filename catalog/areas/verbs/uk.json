@@ -41,6 +41,7 @@
   "to-put": { "text": "кла́сти", "teaches": ["ста́вити"] },
   "to-carry": { "text": "нести́" },
   "to-happen": { "text": "ста́тися", "accepts": ["трапитися"] },
+  "to-appear": { "text": "з'яви́тися", "accepts": ["з'являтися"] },
   "to-turn-on": { "text": "вмика́ти", "accepts": ["умикати"] },
   "to-turn-off": { "text": "вимика́ти" },
   "do-you-have-water": { "text": "У вас є вода́?", "accepts": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
