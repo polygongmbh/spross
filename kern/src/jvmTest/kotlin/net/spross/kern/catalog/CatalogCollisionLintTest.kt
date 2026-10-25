@@ -87,6 +87,13 @@ class CatalogCollisionLintTest {
             // different grammar in both es and fr, and de/en/eo/it/sw/uk all split the pair
             // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що).
             ("comparison/than" to "connectors/that-conj") to setOf("es", "fr"),
+            // Reviewed 2026-10-25: carry/wear is one verb in de/eo/es/fr (tragen, porti,
+            // llevar, porter) and two in en/it/sw/uk (carry/wear, portare/indossare,
+            // kubeba/kuvaa, нести/носити) — a family merge, not one meaning twice.
+            ("clothes/to-wear" to "verbs/to-carry") to setOf("de", "eo", "es", "fr"),
+            // Reviewed 2026-10-25: bag/pocket is de `Tasche` and sw `mfuko`, while
+            // en/eo/es/fr/it/uk split it — two languages' polysemy, pinned below.
+            ("clothes/pocket" to "hall/bag") to setOf("de", "sw"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -119,6 +126,20 @@ class CatalogCollisionLintTest {
                 // it), so `school/period` was deliberately authored de/en/sw-only and this
                 // stays one-language.
                 "de Stunde: school/period, time/hour",
+                // Reviewed 2026-10-25: de `Tasche` is the bag AND the pocket — with sw `mfuko` the
+                // pair two languages merge; en/eo/es/fr/it/uk all split it (bag/pocket, sako/poŝo,
+                // bolsa/bolsillo, sac/poche, borsa/tasca, сумка/кишеня). `Hosentasche` names one
+                // pocket only, so it stays an accepts.
+                "de Tasche: clothes/pocket, hall/bag",
+                // Reviewed 2026-10-25: de `ausziehen` is taking a garment off AND moving out of a flat;
+                // en/eo/es/fr/it/sw/uk all split the pair (take off/move out, demeti/elloĝiĝi, quitarse/irse de casa,
+                // enlever/déménager, togliersi/andare via di casa, kuvua/kuhama, знімати/виїжджати).
+                "de ausziehen: clothes/to-take-off, living/to-move-out",
+                // Reviewed 2026-10-25: de `tragen` is to carry AND to wear (clothes) — the merge de tragen,
+                // eo porti, es llevar and fr porter all make, while en/it/sw/uk split the pair
+                // (carry/wear, portare/indossare, kubeba/kuvaa, нести/носити); reviewed in
+                // [noConceptPairCollidesInTwoLanguages].
+                "de tragen: clothes/to-wear, verbs/to-carry",
                 // Reviewed 2026-08-29: de `Stock` is the walking stick AND the building floor
                 // — en/es/fr/it/uk all split the pair (stick/story, palo/piso, bâton/étage,
                 // bastone/piano, палиця/поверх); sw has no shared word either (fimbo/ghorofa).
@@ -157,11 +178,13 @@ class CatalogCollisionLintTest {
                 // en-/el- pair eo builds both from (eniri/eliri); de/en/fr split them (hereinkommen/einsteigen,
                 // to enter/to get on, entrer/monter). `enbusiĝi` names only the bus, so it stays an accepts.
                 "eo eniri: hall/to-enter, transport/to-get-on",
+                "eo porti: clothes/to-wear, verbs/to-carry",
                 "es dirección: directions/direction, personal-details/address",
                 // Reviewed 2026-09-05: es `esperar` is to wait AND to hope — de/en/eo/fr/it/sw/uk
                 // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).
                 // `aguardar` for waiting is literary, so both stay one-language.
                 "es esperar: mind/to-hope, verbs/to-wait",
+                "es llevar: clothes/to-wear, verbs/to-carry",
                 // Reviewed 2026-09-17: es `que` is the comparative conjunction (más grande
                 // que) AND the declarative (sé que) — de/en/eo/it/sw/uk all split the pair
                 // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що). No second
@@ -208,6 +231,11 @@ class CatalogCollisionLintTest {
                 // all split the pair (gleich/sogar, same/even, sama/eĉ, igual/incluso, sawa/hata).
                 // `pareil` for same skews colloquial and `voire` for even is written French, so both stay.
                 "fr même: comparison/same, connectors/even",
+                // Reviewed 2026-10-25: fr `mettre` is to put AND to put on (a garment) — de/en/eo/es/it/uk
+                // all split the pair (legen/anziehen, put/put on, meti/surmeti, poner/ponerse,
+                // mettere/mettersi, класти/одягати); `enfiler` is a slip-on, so it stays an accepts.
+                "fr mettre: clothes/to-put-on, verbs/to-put",
+                "fr porter: clothes/to-wear, verbs/to-carry",
                 // Reviewed 2026-09-05: fr `que` is the conjunction dass AND, as a synonym on
                 // questions/what, the object what — with uk `що` it is the one pair two languages
                 // merge, and both merges are real polysemy, not one meaning authored twice
@@ -300,6 +328,9 @@ class CatalogCollisionLintTest {
                 // is that agreement form; every other language splits the pair (wenig/klein).
                 "sw kidogo: degree/a-little, qualities/small",
                 "sw mpaka: connectors/until, politics/border",
+                // Reviewed 2026-10-25: sw `mfuko` is the bag AND the pocket (kaikki: bag, purse, pocket);
+                // hall/bag teaches it beside `begi`, and there is no other word for the pocket.
+                "sw mfuko: clothes/pocket, hall/bag",
                 "sw mto: bedroom/pillow, water/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language
@@ -348,6 +379,11 @@ class CatalogCollisionLintTest {
                 // outer casing and is not what a driver says, so both stay.
                 "uk шина: illness/splint, transport/tire",
                 "uk з: connectors/with, time/since",
+                // Reviewed 2026-10-25: uk `блискавка` is lightning AND the zipper — de/en/eo/es/fr/it/sw
+                // all split the pair (Blitz/Reißverschluss, lightning/zipper, fulmo/fulmofermilo,
+                // relámpago/cremallera, éclair/fermeture éclair, fulmine/cerniera, umeme/zipu); `змійка`
+                // is colloquial, so both stay.
+                "uk блискавка: clothes/zipper, weather/lightning",
                 // Reviewed 2026-09-14: uk `північ` is midnight AND the north — de/en/eo/es/fr/it/sw
                 // all split the pair (Mitternacht/Norden, midnight/north, noktomezo/nordo,
                 // medianoche/norte, minuit/nord, mezzanotte/nord, usiku wa manane/kaskazini).

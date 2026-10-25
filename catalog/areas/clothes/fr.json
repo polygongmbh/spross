@@ -15,11 +15,13 @@
   "sock": { "text": "chaussette", "grammar": { "article": "la" } },
   "shirt": { "text": "chemise", "grammar": { "article": "la" } },
   "dress": { "text": "robe", "grammar": { "article": "la" } },
+  "to-wear": { "text": "porter" },
+  "to-put-on": { "text": "mettre", "accepts": ["enfiler"] },
+  "to-take-off": { "text": "enlever", "accepts": ["retirer", "ôter"] },
   "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "article": "le" } },
   "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "article": "le" } },
   "hat": {
    "text": "bonnet",
-   "teaches": ["casquette"],
    "grammar": { "article": "le" },
    "notes": {
     "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
@@ -27,12 +29,42 @@
    }
   },
   "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
+  "skirt": { "text": "jupe", "grammar": { "article": "la" } },
+  "jeans": { "text": "jean", "accepts": ["jeans"], "grammar": { "article": "le" } },
   "belt": { "text": "ceinture", "grammar": { "article": "la" } },
   "glove": { "text": "gant", "grammar": { "article": "le" } },
+  "scarf": { "text": "écharpe", "grammar": { "article": "l'", "gender": "f" } },
+  "cap": { "text": "casquette", "grammar": { "article": "la" } },
+  "boot": { "text": "botte", "grammar": { "article": "la" } },
   "to-get-undressed": { "text": "se déshabiller", "accepts": ["enlever ses vêtements"] },
   "to-change-clothes": { "text": "se changer" },
+  "shorts": { "text": "short", "grammar": { "article": "le" } },
+  "blouse": { "text": "chemisier", "accepts": ["blouse"], "grammar": { "article": "le" } },
+  "bra": {
+   "text": "soutien-gorge",
+   "forms": { "pl": "les soutiens-gorge" },
+   "grammar": { "article": "le" }
+  },
+  "suit": { "text": "costume", "grammar": { "article": "le" } },
+  "tie": { "text": "cravate", "grammar": { "article": "la" } },
+  "sandal": { "text": "sandale", "grammar": { "article": "la" } },
+  "raincoat": { "text": "imperméable", "accepts": ["ciré"], "grammar": { "article": "l'", "gender": "m" } },
+  "swimsuit": {
+   "text": "maillot de bain",
+   "forms": { "pl": "les maillots de bain" },
+   "grammar": { "article": "le" }
+  },
+  "pocket": { "text": "poche", "grammar": { "article": "la" } },
+  "button": { "text": "bouton", "grammar": { "article": "le" } },
+  "zipper": {
+   "text": "fermeture éclair",
+   "accepts": ["zip"],
+   "forms": { "pl": "les fermetures éclair" },
+   "grammar": { "article": "la" }
+  },
   "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
-  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
+  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" },
+  "the-pants-are-too-big": { "text": "Le pantalon est trop grand." }
  }
 }

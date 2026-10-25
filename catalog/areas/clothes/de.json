@@ -11,16 +11,65 @@
   "sock": { "text": "Socke", "forms": { "pl": "die Socken" }, "grammar": { "article": "die" } },
   "shirt": { "text": "Hemd", "forms": { "pl": "die Hemden" }, "grammar": { "article": "das" } },
   "dress": { "text": "Kleid", "forms": { "pl": "die Kleider" }, "grammar": { "article": "das" } },
+  "to-wear": { "text": "tragen", "accepts": ["anhaben"] },
+  "to-put-on": { "text": "anziehen" },
+  "to-take-off": { "text": "ausziehen" },
   "sweater": { "text": "Pullover", "grammar": { "article": "der", "plural": "=" } },
   "coat": { "text": "Mantel", "forms": { "pl": "die Mäntel" }, "grammar": { "article": "der" } },
   "hat": { "text": "Mütze", "forms": { "pl": "die Mützen" }, "grammar": { "article": "die" } },
   "underwear": { "text": "Unterwäsche", "grammar": { "article": "die" } },
+  "skirt": { "text": "Rock", "forms": { "pl": "die Röcke" }, "grammar": { "article": "der" } },
+  "jeans": { "text": "Jeans", "grammar": { "article": "die", "plural": "=" } },
   "belt": { "text": "Gürtel", "grammar": { "article": "der", "plural": "=" } },
   "glove": { "text": "Handschuh", "forms": { "pl": "die Handschuhe" }, "grammar": { "article": "der" } },
+  "scarf": { "text": "Schal", "forms": { "pl": "die Schals" }, "grammar": { "article": "der" } },
+  "cap": {
+   "text": "Kappe",
+   "accepts": ["Basecap", "Schirmmütze"],
+   "forms": { "pl": "die Kappen" },
+   "grammar": { "article": "die" }
+  },
+  "boot": { "text": "Stiefel", "grammar": { "article": "der", "plural": "=" } },
   "to-get-undressed": { "text": "sich ausziehen" },
   "to-change-clothes": { "text": "sich umziehen" },
+  "shorts": {
+   "text": "kurze Hose",
+   "accepts": ["Shorts"],
+   "forms": { "pl": "die kurzen Hosen" },
+   "grammar": { "article": "die" }
+  },
+  "blouse": { "text": "Bluse", "forms": { "pl": "die Blusen" }, "grammar": { "article": "die" } },
+  "bra": { "text": "Büstenhalter", "teaches": ["BH"], "grammar": { "article": "der", "plural": "=" } },
+  "suit": { "text": "Anzug", "forms": { "pl": "die Anzüge" }, "grammar": { "article": "der" } },
+  "tie": {
+   "text": "Krawatte",
+   "accepts": ["Schlips"],
+   "forms": { "pl": "die Krawatten" },
+   "grammar": { "article": "die" }
+  },
+  "sandal": { "text": "Sandale", "forms": { "pl": "die Sandalen" }, "grammar": { "article": "die" } },
+  "raincoat": {
+   "text": "Regenjacke",
+   "accepts": ["Regenmantel"],
+   "forms": { "pl": "die Regenjacken" },
+   "grammar": { "article": "die" }
+  },
+  "swimsuit": { "text": "Badeanzug", "forms": { "pl": "die Badeanzüge" }, "grammar": { "article": "der" } },
+  "pocket": {
+   "text": "Tasche",
+   "accepts": ["Hosentasche", "Jackentasche"],
+   "forms": { "pl": "die Taschen" },
+   "grammar": { "article": "die" }
+  },
+  "button": { "text": "Knopf", "forms": { "pl": "die Knöpfe" }, "grammar": { "article": "der" } },
+  "zipper": {
+   "text": "Reißverschluss",
+   "forms": { "pl": "die Reißverschlüsse" },
+   "grammar": { "article": "der" }
+  },
   "put-on-the-jacket": { "text": "die Jacke anziehen" },
   "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
-  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" }
+  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" },
+  "the-pants-are-too-big": { "text": "Die Hose ist zu groß." }
  }
 }

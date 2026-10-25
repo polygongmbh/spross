@@ -21,6 +21,9 @@
   "sock": { "text": "calzino", "grammar": { "article": "il" } },
   "shirt": { "text": "camicia", "grammar": { "article": "la" } },
   "dress": { "text": "vestito", "accepts": ["abito"], "grammar": { "article": "il" } },
+  "to-wear": { "text": "indossare", "accepts": ["portare"] },
+  "to-put-on": { "text": "mettersi" },
+  "to-take-off": { "text": "togliersi", "accepts": ["levarsi"] },
   "sweater": { "text": "maglione", "grammar": { "article": "il" } },
   "coat": { "text": "cappotto", "grammar": { "article": "il" } },
   "hat": {
@@ -30,15 +33,44 @@
    "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
   },
   "underwear": { "text": "biancheria intima", "grammar": { "article": "la" } },
+  "skirt": { "text": "gonna", "grammar": { "article": "la" } },
+  "jeans": { "text": "jeans", "grammar": { "article": "i", "plural": "only" } },
   "belt": { "text": "cintura", "grammar": { "article": "la" } },
   "glove": { "text": "guanto", "grammar": { "article": "il" } },
+  "scarf": { "text": "sciarpa", "grammar": { "article": "la" } },
+  "cap": { "text": "cappellino", "accepts": ["berretto con visiera"], "grammar": { "article": "il" } },
+  "boot": { "text": "stivale", "grammar": { "article": "lo" } },
   "to-get-undressed": { "text": "spogliarsi", "accepts": ["svestirsi"] },
   "to-change-clothes": { "text": "cambiarsi", "accepts": ["cambiarsi i vestiti"] },
+  "shorts": {
+   "text": "pantaloncini",
+   "accepts": ["pantaloni corti", "shorts"],
+   "grammar": { "article": "i", "plural": "only" }
+  },
+  "blouse": { "text": "camicetta", "grammar": { "article": "la" } },
+  "bra": { "text": "reggiseno", "grammar": { "article": "il" } },
+  "suit": { "text": "completo", "accepts": ["abito"], "grammar": { "article": "il" } },
+  "tie": { "text": "cravatta", "grammar": { "article": "la" } },
+  "sandal": { "text": "sandalo", "grammar": { "article": "il" } },
+  "raincoat": { "text": "impermeabile", "grammar": { "article": "l'", "gender": "m" } },
+  "swimsuit": {
+   "text": "costume da bagno",
+   "forms": { "pl": "i costumi da bagno" },
+   "grammar": { "article": "il" }
+  },
+  "pocket": { "text": "tasca", "forms": { "pl": "le tasche" }, "grammar": { "article": "la" } },
+  "button": { "text": "bottone", "grammar": { "article": "il" } },
+  "zipper": {
+   "text": "cerniera",
+   "accepts": ["cerniera lampo", "lampo", "zip"],
+   "grammar": { "article": "la" }
+  },
   "put-on-the-jacket": { "text": "mettersi la giacca" },
   "dont-forget-your-jacket": {
    "text": "Non dimenticare la giacca!",
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
-  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" }
+  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" },
+  "the-pants-are-too-big": { "text": "I pantaloni sono troppo grandi." }
  }
 }

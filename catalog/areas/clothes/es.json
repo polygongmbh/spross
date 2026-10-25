@@ -11,6 +11,9 @@
   "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "article": "el" } },
   "shirt": { "text": "camisa", "grammar": { "article": "la" } },
   "dress": { "text": "vestido", "grammar": { "article": "el" } },
+  "to-wear": { "text": "llevar", "accepts": ["llevar puesto"] },
+  "to-put-on": { "text": "ponerse" },
+  "to-take-off": { "text": "quitarse", "accepts": ["sacarse"] },
   "sweater": {
    "text": "jersey",
    "accepts": ["jerséi", "suéter"],
@@ -20,20 +23,47 @@
   "coat": { "text": "abrigo", "grammar": { "article": "el" } },
   "hat": {
    "text": "gorro",
-   "teaches": ["gorra"],
    "grammar": { "article": "el" },
    "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
   },
   "underwear": { "text": "ropa interior", "grammar": { "article": "la" } },
+  "skirt": { "text": "falda", "accepts": ["pollera"], "grammar": { "article": "la" } },
+  "jeans": {
+   "text": "vaqueros",
+   "accepts": ["jeans", "pantalones vaqueros", "tejanos"],
+   "grammar": { "article": "los" }
+  },
   "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "article": "el" } },
   "glove": { "text": "guante", "grammar": { "article": "el" } },
+  "scarf": { "text": "bufanda", "grammar": { "article": "la" } },
+  "cap": { "text": "gorra", "grammar": { "article": "la" } },
+  "boot": { "text": "bota", "grammar": { "article": "la" } },
   "to-get-undressed": { "text": "desvestirse", "teaches": ["quitarse la ropa"], "accepts": ["desnudarse"] },
   "to-change-clothes": { "text": "cambiarse", "accepts": ["cambiarse de ropa"] },
+  "shorts": {
+   "text": "pantalones cortos",
+   "accepts": ["pantalón corto", "shorts"],
+   "grammar": { "article": "los" }
+  },
+  "blouse": { "text": "blusa", "grammar": { "article": "la" } },
+  "bra": { "text": "sujetador", "accepts": ["sostén", "brasier"], "grammar": { "article": "el" } },
+  "suit": { "text": "traje", "grammar": { "article": "el" } },
+  "tie": { "text": "corbata", "grammar": { "article": "la" } },
+  "sandal": { "text": "sandalia", "grammar": { "article": "la" } },
+  "raincoat": { "text": "impermeable", "accepts": ["chubasquero"], "grammar": { "article": "el" } },
+  "swimsuit": { "text": "bañador", "accepts": ["traje de baño"], "grammar": { "article": "el" } },
+  "pocket": { "text": "bolsillo", "grammar": { "article": "el" } },
+  "button": { "text": "botón", "forms": { "pl": "los botones" }, "grammar": { "article": "el" } },
+  "zipper": { "text": "cremallera", "accepts": ["cierre", "zíper"], "grammar": { "article": "la" } },
   "put-on-the-jacket": { "text": "ponerse la chaqueta" },
   "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
   "children-where-are-your-shoes": {
    "text": "Niños, ¿dónde están vuestros zapatos?",
    "accepts": ["Niños, ¿dónde están sus zapatos?"]
+  },
+  "the-pants-are-too-big": {
+   "text": "Los pantalones son demasiado grandes.",
+   "accepts": ["Los pantalones me quedan grandes."]
   }
  }
 }

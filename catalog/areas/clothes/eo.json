@@ -11,6 +11,9 @@
   "sock": { "text": "ŝtrumpeto" },
   "shirt": { "text": "ĉemizo" },
   "dress": { "text": "robo" },
+  "to-wear": { "text": "porti", "accepts": ["surhavi"] },
+  "to-put-on": { "text": "surmeti" },
+  "to-take-off": { "text": "demeti" },
   "sweater": { "text": "pulovero" },
   "coat": { "text": "mantelo" },
   "hat": {
@@ -22,12 +25,29 @@
    }
   },
   "underwear": { "text": "subvestoj", "accepts": ["subvesto"] },
+  "skirt": { "text": "jupo" },
+  "jeans": { "text": "ĝinzo", "accepts": ["ĝinzoj"] },
   "belt": { "text": "zono" },
   "glove": { "text": "ganto" },
+  "scarf": { "text": "skarpo", "accepts": ["ŝalo", "kolskarpo"] },
+  "cap": { "text": "kaskedo" },
+  "boot": { "text": "boto" },
   "to-get-undressed": { "text": "senvestiĝi", "accepts": ["malvestiĝi", "senvestigi sin"] },
   "to-change-clothes": { "text": "alivestiĝi", "accepts": ["ŝanĝi la vestojn", "alivesti sin"] },
+  "shorts": { "text": "ŝorto", "accepts": ["ŝortoj", "kuloto"] },
+  "blouse": { "text": "bluzo" },
+  "bra": { "text": "mamzono" },
+  "suit": { "text": "kompleto", "accepts": ["vestokompleto"] },
+  "tie": { "text": "kravato" },
+  "sandal": { "text": "sandalo" },
+  "raincoat": { "text": "pluvmantelo" },
+  "swimsuit": { "text": "bankostumo", "accepts": ["naĝkostumo"] },
+  "pocket": { "text": "poŝo" },
+  "button": { "text": "butono" },
+  "zipper": { "text": "fulmofermilo", "accepts": ["zipo"] },
   "put-on-the-jacket": { "text": "surmeti la jakon" },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
-  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" }
+  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" },
+  "the-pants-are-too-big": { "text": "La pantalono estas tro granda." }
  }
 }
