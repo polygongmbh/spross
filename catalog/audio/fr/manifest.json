@@ -317,7 +317,9 @@
     "Pamputt": "CC0",
     "Penegal": "CC BY-SA 4.0",
     "Poslovitch": "CC0",
+    "ProjetSamantha": "CC BY-SA 4.0",
     "Roptat": "CC BY-SA 4.0",
+    "Sagnamadr": "CC BY-SA 4.0",
     "Sarah2149": "CC BY-SA 4.0",
     "Sartus85": "CC BY-SA 4.0",
     "Tokçon": "CC BY-SA 4.0",
@@ -326,6 +328,7 @@
     "Vion Nicolas": "CC BY 2.0 fr",
     "Vive la Rosière": "CC0",
     "WikiLucas00": "CC BY-SA 4.0",
+    "X-Javier": "CC BY-SA 4.0",
     "Yug": "CC BY 4.0"
   },
   "calendar": {
@@ -2135,6 +2138,17 @@
       "sha256": "5fd6fc743db75b801a16e2c25c34a138d33143fef017cce3c7d0374685e0b6c5",
       "source": "LL-Q150 (fra)-Poslovitch-ail.wav"
     },
+    "aimer": {
+      "author": "Poslovitch",
+      "file": "words/aimer.mp3",
+      "gain": 1.8,
+      "gate": -71.6,
+      "lead": 220,
+      "matches": "aimer",
+      "mos": 2.91,
+      "sha256": "d775ebc7a5053db149b997d5d14fa46637967ccebe4ea544fb75dd905cd19d92",
+      "source": "LL-Q150 (fra)-Poslovitch-aimer.wav"
+    },
     "aimer bien": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "words/aimer_bien.mp3",
@@ -2167,6 +2181,17 @@
       "mos": 3.09,
       "sha256": "3de07fdf5210f04bf8c318cc63cfc87190fe01f404f57b835ee764b344a817b3",
       "source": "LL-Q150 (fra)-Mecanautes-allergie.wav"
+    },
+    "allumer": {
+      "author": "Sartus85",
+      "file": "words/allumer.mp3",
+      "gain": 3.9,
+      "gate": -88.3,
+      "lead": 190,
+      "matches": "allumer",
+      "mos": 3.03,
+      "sha256": "c3e791ff8751f91d0cf12f5184e9d1fde746bde93f66e9ebe33a4be519ed7d5d",
+      "source": "LL-Q150 (fra)-Sartus85-allumer.wav"
     },
     "ambulance": {
       "author": "Sartus85",
@@ -2287,6 +2312,17 @@
       "mos": 2.82,
       "sha256": "6d4945838f830951989501f1b80f3e24970345ff4c186ecac2a291cfcad57489",
       "source": "LL-Q150 (fra)-Lepticed7-annuler.wav"
+    },
+    "apparaître": {
+      "author": "Vion Nicolas",
+      "file": "words/apparau00eetre.mp3",
+      "gain": -4.6,
+      "gate": -64.4,
+      "lead": 160,
+      "matches": "apparaître",
+      "mos": 3.23,
+      "sha256": "4fcb1f6b2ecf8f52def18e384880cf066394818c15c257636e04f45e5f0d124c",
+      "source": "Fr-apparaître.ogg"
     },
     "appartement": {
       "author": "Poslovitch",
@@ -2473,6 +2509,17 @@
       "mos": 3.2,
       "sha256": "7b7e838eb2975b287c79c97d63ea59dc6b10552a03a84af69d7ec218d9c6f10b",
       "source": "LL-Q150 (fra)-Poslovitch-artère.wav"
+    },
+    "assaisonner": {
+      "author": "Poslovitch",
+      "file": "words/assaisonner.mp3",
+      "gain": -0.5,
+      "gate": -69.9,
+      "lead": 180,
+      "matches": "assaisonner",
+      "mos": 3.11,
+      "sha256": "6b2cc1a65b53bdb851a2992891bb5ecbebddf8e42cf51bf3961bcd746cfbc7c8",
+      "source": "LL-Q150 (fra)-Poslovitch-assaisonner.wav"
     },
     "assez": {
       "author": "Poslovitch",
@@ -3174,6 +3221,17 @@
       "sha256": "2b6e08882bb8c26d9b0ed8a749008da2f9fd6622a610e45ddf54e5498220ac14",
       "source": "LL-Q150 (fra)-LoquaxFR-bonnet.wav"
     },
+    "botte": {
+      "author": "Vion Nicolas",
+      "file": "words/botte.mp3",
+      "gain": 3.0,
+      "gate": -74.5,
+      "lead": 190,
+      "matches": "botte",
+      "mos": 2.93,
+      "sha256": "2644a8f957a2654c93612227f844a60060c7a7c5579f413319946c7d3cb61f78",
+      "source": "Fr-botte.ogg"
+    },
     "bouche": {
       "author": "Vion Nicolas",
       "file": "words/bouche.mp3",
@@ -3204,6 +3262,17 @@
       "mos": 2.82,
       "sha256": "d27697a2c62aa1020c965bdf059a6eed2ad09dff8ea7fb7e2adbdaace9fb5144",
       "source": "LL-Q150 (fra)-Poslovitch-bouillir.wav"
+    },
+    "bouton": {
+      "author": "Poslovitch",
+      "file": "words/bouton.mp3",
+      "gain": 4.8,
+      "gate": -70.0,
+      "lead": 120,
+      "matches": "bouton",
+      "mos": 2.91,
+      "sha256": "548b2cbf227d9bbed7e739ae9ae4e685b84068d97b84adad682fb6c19a2d9e6c",
+      "source": "LL-Q150 (fra)-Poslovitch-bouton.wav"
     },
     "boîte aux lettres": {
       "author": "Poslovitch",
@@ -3556,6 +3625,17 @@
       "sha256": "1d9d6364c8bc42c0e7da973a54cdbb951bdd8338e73143d49ddf165cda2cc90a",
       "source": "Fr-cas.ogg"
     },
+    "casquette": {
+      "author": "Poslovitch",
+      "file": "words/casquette.mp3",
+      "gain": 2.2,
+      "gate": -77.0,
+      "lead": 230,
+      "matches": "casquette",
+      "mos": 3.17,
+      "sha256": "889d397bebbcc87ba2831805ebb957a62a1981ff108f2ec114f9fd66c4a567ff",
+      "source": "LL-Q150 (fra)-Poslovitch-casquette.wav"
+    },
     "casser": {
       "author": "Poslovitch",
       "file": "words/casser.mp3",
@@ -3697,6 +3777,17 @@
       "sha256": "574ca57b648efe08ebc30a4a7e7039abd088314cfb96fc49f58c3ebf4b6cd3b3",
       "source": "LL-Q150 (fra)-Poslovitch-chanson.wav"
     },
+    "chanter": {
+      "author": "Lepticed7",
+      "file": "words/chanter.mp3",
+      "gain": 9.3,
+      "gate": -78.9,
+      "lead": 70,
+      "matches": "chanter",
+      "mos": 3.24,
+      "sha256": "a64ec161349afb7d093f5bbeaa105637f1ec3410a082c730468e40ff0c8a3160",
+      "source": "LL-Q150 (fra)-Lepticed7-chanter.wav"
+    },
     "chaque": {
       "author": "DenisdeShawi",
       "file": "words/chaque.mp3",
@@ -3827,6 +3918,17 @@
       "mos": 3.33,
       "sha256": "57cfb02c2a20cf7dd75c3d138aae9e4509fb6ffbe945270bfde094139768d248",
       "source": "LL-Q150 (fra)-Lyokoï-chemise.wav"
+    },
+    "chemisier": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "words/chemisier.mp3",
+      "gain": 9.6,
+      "gate": -76.2,
+      "lead": 140,
+      "matches": "chemisier",
+      "mos": 2.97,
+      "sha256": "fe34c60a8f3fe42d22847045e4aa800697a354c194303bb78961491154bd5bf8",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-chemisier.wav"
     },
     "cher": {
       "author": "Poslovitch",
@@ -3990,6 +4092,17 @@
       "mos": 2.85,
       "sha256": "e6bfdbe9b372a5192d0adf3d0a9d0eead2fe7ace6c726ca4d7c7f3d02f5fe128",
       "source": "LL-Q150 (fra)-Poslovitch-client.wav"
+    },
+    "cliquer": {
+      "author": "Poslovitch",
+      "file": "words/cliquer.mp3",
+      "gain": 4.0,
+      "gate": -72.9,
+      "lead": 180,
+      "matches": "cliquer",
+      "mos": 2.95,
+      "sha256": "4548e8aa7d646127a165375287996ea0ddc7d55034e22b429bafbd7b55b3438b",
+      "source": "LL-Q150 (fra)-Poslovitch-cliquer.wav"
     },
     "clé": {
       "author": "Roptat",
@@ -4177,6 +4290,17 @@
       "sha256": "2d5e923f95eedbf5b76e4f36b42e8a51d17997b183989e231821dce4fc63aa49",
       "source": "LL-Q150 (fra)-LoquaxFR-confirmer.wav"
     },
+    "congeler": {
+      "author": "WikiLucas00",
+      "file": "words/congeler.mp3",
+      "gain": 3.2,
+      "gate": -91.7,
+      "lead": 220,
+      "matches": "congeler",
+      "mos": 3.0,
+      "sha256": "dfdc0a32ec47f08f86e1ea68b2389ec6c166b443f3112d36d157419bfc938256",
+      "source": "LL-Q150 (fra)-WikiLucas00-congeler.wav"
+    },
     "conjugaison": {
       "author": "Poslovitch",
       "file": "words/conjugaison.mp3",
@@ -4243,6 +4367,17 @@
       "mos": 3.01,
       "sha256": "53bf268be1fa71eef22dc32afe6bf3f19ce28ca9fc07904d26c479b52a6b637e",
       "source": "LL-Q150 (fra)-LoquaxFR-corriger.wav"
+    },
+    "costume": {
+      "author": "Sartus85",
+      "file": "words/costume.mp3",
+      "gain": 6.8,
+      "gate": -94.4,
+      "lead": 110,
+      "matches": "costume",
+      "mos": 3.06,
+      "sha256": "c41a10c89aa57e75c444a2ee60c2447f75caebdcd57bd804a700e15719c8833b",
+      "source": "LL-Q150 (fra)-Sartus85-costume.wav"
     },
     "cou": {
       "author": "Vion Nicolas",
@@ -4398,6 +4533,17 @@
       "mos": 3.09,
       "sha256": "81a0ff3a0495ab472aaf4bdfc4bb5c20f193859a8caae773920164d82f548682",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-coûter.wav"
+    },
+    "cravate": {
+      "author": "Lepticed7",
+      "file": "words/cravate.mp3",
+      "gain": 1.9,
+      "gate": -81.4,
+      "lead": 120,
+      "matches": "cravate",
+      "mos": 3.29,
+      "sha256": "f0ea70fbcbd0e0a35d955d6fa5dd88809742e9c3355dcf73c204f4c1ed07d77c",
+      "source": "LL-Q150 (fra)-Lepticed7-cravate.wav"
     },
     "crayon": {
       "author": "Poslovitch",
@@ -5012,6 +5158,17 @@
       "sha256": "cefccf2b4c00b6698c07db874604d6bc2ff0ab7ef21d2c9b04d54cf5300b97c0",
       "source": "LL-Q150 (fra)-Pamputt-douce.wav"
     },
+    "douche": {
+      "author": "Lepticed7",
+      "file": "words/douche.mp3",
+      "gain": 5.4,
+      "gate": -81.0,
+      "lead": 70,
+      "matches": "douche",
+      "mos": 3.14,
+      "sha256": "4d76a2b947c27672f8a91770f9a1ce3aa59d78841ffe6c8a5e2dd039e7824905",
+      "source": "LL-Q150 (fra)-Lepticed7-douche.wav"
+    },
     "douleur": {
       "author": "Vion Nicolas",
       "file": "words/douleur.mp3",
@@ -5364,6 +5521,17 @@
       "mos": 3.35,
       "sha256": "4969b95981dbcf0978b8b8123c1e0881fc26e22b85dc207b2e5f5bfc36e0abf3",
       "source": "LL-Q150 (fra)-Mecanautes-enfin.wav"
+    },
+    "enlever": {
+      "author": "Poslovitch",
+      "file": "words/enlever.mp3",
+      "gain": -0.1,
+      "gate": -74.1,
+      "lead": 240,
+      "matches": "enlever",
+      "mos": 2.96,
+      "sha256": "57c61c60fce507561065c165c9c13095d0c8639ec2a6b52411f8d318ece6067d",
+      "source": "LL-Q150 (fra)-Poslovitch-enlever.wav"
     },
     "enregistrer": {
       "author": "Vion Nicolas",
@@ -5837,6 +6005,17 @@
       "mos": 2.94,
       "sha256": "6bb0236f4f546dd3c6a4b060ec0d6ca5aed1a5bcabb7e9ebfa2c3e1d1ee90078",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-fermer à clé.wav"
+    },
+    "fermeture éclair": {
+      "author": "Mecanautes",
+      "file": "words/fermeture_u00e9clair.mp3",
+      "gain": 0.5,
+      "gate": -89.6,
+      "lead": 230,
+      "matches": "fermeture éclair",
+      "mos": 3.33,
+      "sha256": "fb9e7ba7dd7acb7e4024d632cdb794132677a83161c4ccca34266fba2d5a0166",
+      "source": "LL-Q150 (fra)-Mecanautes-fermeture éclair.wav"
     },
     "feu": {
       "author": "Mecanautes",
@@ -6562,6 +6741,17 @@
       "sha256": "a76244432e8a290e884eb2cc0ecca6b7322a8d2dcef275d88668da62f37cd850",
       "source": "LL-Q150 (fra)-Lepticed7-honte.wav"
     },
+    "horloge": {
+      "author": "WikiLucas00",
+      "file": "words/horloge.mp3",
+      "gain": 0.9,
+      "gate": -75.2,
+      "lead": 220,
+      "matches": "horloge",
+      "mos": 3.23,
+      "sha256": "19fe3e17b4272848c5dbef2b644489838abb21b4ada22e3fab3214fd2f811066",
+      "source": "LL-Q150 (fra)-WikiLucas00-horloge.wav"
+    },
     "huile": {
       "author": "Helenou66",
       "file": "words/huile.mp3",
@@ -6669,6 +6859,17 @@
       "mos": 2.88,
       "sha256": "b1a3ab8c3a9acf2c7cca497cae633aa905fa5c2bde157898015918a78d3de245",
       "source": "LL-Q150 (fra)-Sartus85-imaginer.wav"
+    },
+    "imperméable": {
+      "author": "Poslovitch",
+      "file": "words/impermu00e9able.mp3",
+      "gain": -0.8,
+      "gate": -72.3,
+      "lead": 250,
+      "matches": "imperméable",
+      "mos": 3.25,
+      "sha256": "97552bad9bfde08175a7566f7543b44ee99b6aefda4fb88f147ddd039d0e6966",
+      "source": "LL-Q150 (fra)-Poslovitch-imperméable.wav"
     },
     "important": {
       "author": "Lepticed7",
@@ -6920,6 +7121,28 @@
       "sha256": "38848fcd8c4f28fc83aee965ac1db82439a20141bff2c3c1e502ae4d27e2d287",
       "source": "LL-Q150 (fra)-Pamputt-je t'aime.wav"
     },
+    "jean": {
+      "author": "Sartus85",
+      "file": "words/jean.mp3",
+      "gain": 1.6,
+      "gate": -92.3,
+      "lead": 150,
+      "matches": "jean",
+      "mos": 3.24,
+      "sha256": "3fdfa2a8b7367168d5ea43a61a62e565b0c92cd64efe84ba6c59f67988266be7",
+      "source": "LL-Q150 (fra)-Sartus85-Jean.wav"
+    },
+    "jeter": {
+      "author": "X-Javier",
+      "file": "words/jeter.mp3",
+      "gain": 5.8,
+      "gate": -76.0,
+      "lead": 220,
+      "matches": "jeter",
+      "mos": 3.36,
+      "sha256": "c4de3e993152babab758d65872fc8b601fb65cd74e67df65d21ee86a1d301486",
+      "source": "LL-Q150 (fra)-X-Javier-jeter.wav"
+    },
     "jeu": {
       "author": "Sartus85",
       "file": "words/jeu.mp3",
@@ -7039,6 +7262,16 @@
       "mos": 3.07,
       "sha256": "5b1466691ad72dd24488cf34e5a3da713ecdc17ecac65fc84b53d51b3eb03b95",
       "source": "LL-Q150 (fra)-Sartus85-journaux.wav"
+    },
+    "jupe": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "words/jupe.mp3",
+      "gain": 15.0,
+      "gate": -70.2,
+      "matches": "jupe",
+      "mos": 3.05,
+      "sha256": "8aa85cc4ba1c7ee05feff7569f9b3150f2315ad17bb5565a73b49935985e5392",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-jupe.wav"
     },
     "jus": {
       "author": "Poslovitch",
@@ -7478,6 +7711,29 @@
       "sha256": "542bd8e2e58642866c8d5c20118326ae71cbe138b7f40bc717b9660b93934a6e",
       "source": "LL-Q150 (fra)-Sartus85-magasin.wav"
     },
+    "maillot de bain": {
+      "author": "Lepticed7",
+      "file": "words/maillot_de_bain.mp3",
+      "gain": 2.2,
+      "gate": -71.7,
+      "lead": 230,
+      "matches": "maillot de bain",
+      "mos": 3.26,
+      "sha256": "d33f80b2e3bc86094ddd3f34509bd90ef98a831499280afb4aa064a2fec4dbcb",
+      "source": "LL-Q150 (fra)-Lepticed7-maillot de bain.wav"
+    },
+    "maillots de bain": {
+      "author": "Sagnamadr",
+      "cap": 0.9,
+      "file": "words/maillots_de_bain.mp3",
+      "gain": 8.4,
+      "gate": -92.4,
+      "lead": 210,
+      "matches": "maillots de bain",
+      "mos": 2.91,
+      "sha256": "e2b92d59cd4cb25e92e24a709afe0afced592adaad7e50c0ccf00be0348edeab",
+      "source": "LL-Q150 (fra)-Sagnamadr-maillots de bain.wav"
+    },
     "main": {
       "author": "Lepticed7",
       "file": "words/main.mp3",
@@ -7629,6 +7885,17 @@
       "mos": 3.13,
       "sha256": "9dcbfe2a1488ab7f960cb23a8f8aaac369ab108e5d73c60bfb5c2ae5743e2ca2",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-marchander.wav"
+    },
+    "marcher": {
+      "author": "Poslovitch",
+      "file": "words/marcher.mp3",
+      "gain": 2.1,
+      "gate": -71.9,
+      "lead": 90,
+      "matches": "marcher",
+      "mos": 2.83,
+      "sha256": "fef4d6b5ccc55ce4e154b5c58fa79a684711a29bef62c1e418ec6d18a0ee2c7e",
+      "source": "LL-Q150 (fra)-Poslovitch-marcher.wav"
     },
     "marché": {
       "author": "Poslovitch",
@@ -9180,6 +9447,17 @@
       "sha256": "6bdf39a6e1c77169bf2abdfe2ca3e6313a21cbb7b623373a0d9cf334de00d530",
       "source": "LL-Q150 (fra)-Poslovitch-pharmacie.wav"
     },
+    "photographier": {
+      "author": "Sartus85",
+      "file": "words/photographier.mp3",
+      "gain": 7.7,
+      "gate": -90.3,
+      "lead": 70,
+      "matches": "photographier",
+      "mos": 3.21,
+      "sha256": "6b9dc0b8dc4277cee95eac749d4700bbb9c48ac23cf8b087a9545bd96c062d03",
+      "source": "LL-Q150 (fra)-Sartus85-photographier.wav"
+    },
     "phrase": {
       "author": "Poslovitch",
       "file": "words/phrase.mp3",
@@ -9354,6 +9632,17 @@
       "mos": 2.87,
       "sha256": "375826dcdabc4b6717eba8891e5faaab01c66b2f231e69e7b89770f45d734fad",
       "source": "LL-Q150 (fra)-Lepticed7-pneu.wav"
+    },
+    "poche": {
+      "author": "Lepticed7",
+      "file": "words/poche.mp3",
+      "gain": 5.8,
+      "gate": -81.9,
+      "lead": 150,
+      "matches": "poche",
+      "mos": 2.76,
+      "sha256": "d072efb8e3c1ec83433468d9deb1cd2af10d586d981b0cac8e2e10a96c5e646e",
+      "source": "LL-Q150 (fra)-Lepticed7-poche.wav"
     },
     "poisson": {
       "author": "Vion Nicolas",
@@ -10265,6 +10554,17 @@
       "sha256": "139daf55a155d19a54dc1d9c2be8c4ed08f0fa9d05088fed6d084fdca8d002c9",
       "source": "Fr-renouveler.ogg"
     },
+    "repasser": {
+      "author": "Sartus85",
+      "file": "words/repasser.mp3",
+      "gain": 4.9,
+      "gate": -85.7,
+      "lead": 20,
+      "matches": "repasser",
+      "mos": 3.36,
+      "sha256": "117e870ddda05bdf126251e9862b4d6191a1ad15e300815483e00310398d6a62",
+      "source": "LL-Q150 (fra)-Sartus85-repasser.wav"
+    },
     "reporter": {
       "author": "Vion Nicolas",
       "file": "words/reporter.mp3",
@@ -10641,6 +10941,17 @@
       "sha256": "ef746a1edc430ef05bc9aa62ae0ae63092ac4e8605603ebc99f5dc233252e121",
       "source": "LL-Q150 (fra)-WikiLucas00-s'en aller.wav"
     },
+    "s'endormir": {
+      "author": "Poslovitch",
+      "file": "words/su0027endormir.mp3",
+      "gain": -1.2,
+      "gate": -71.2,
+      "lead": 180,
+      "matches": "s'endormir",
+      "mos": 2.91,
+      "sha256": "7de7e1853010b292b615f1158c9c1b5535e26bb7932914852f51138d8c84eab2",
+      "source": "LL-Q150 (fra)-Poslovitch-s'endormir.wav"
+    },
     "s'entraîner": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "words/su0027entrau00eener.mp3",
@@ -10759,6 +11070,17 @@
       "sha256": "c57088347742fa42e5399baaaf0a46b191a2d6e425959c63d79999d790b1bfe9",
       "source": "LL-Q150 (fra)-Bananax47-samoussa.wav"
     },
+    "sandale": {
+      "author": "ProjetSamantha",
+      "file": "words/sandale.mp3",
+      "gain": 5.2,
+      "gate": -82.8,
+      "lead": 110,
+      "matches": "sandale",
+      "mos": 3.12,
+      "sha256": "999027504a8aa0573dea078d55b17ab38eab939cc6b8a61d71fd58426e244afd",
+      "source": "LL-Q150 (fra)-ProjetSamantha (Mathsou)-sandale.wav"
+    },
     "sang": {
       "author": "Poslovitch",
       "file": "words/sang.mp3",
@@ -10835,6 +11157,17 @@
       "sha256": "3116da72f6e93ea79460324d2d40525daf1b40565becd8b5af49c3d0d21d698a",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-se blesser.wav"
     },
+    "se changer": {
+      "author": "Poslovitch",
+      "file": "words/se_changer.mp3",
+      "gain": 2.6,
+      "gate": -59.6,
+      "lead": 100,
+      "matches": "se changer",
+      "mos": 3.27,
+      "sha256": "5f625d143e74218b7dbf1e2dd768f899b357d5e22728d4d756036bf407a12350",
+      "source": "LL-Q150 (fra)-Poslovitch-se changer.wav"
+    },
     "se doucher": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "words/se_doucher.mp3",
@@ -10868,6 +11201,17 @@
       "sha256": "26647178c84c4876a6d888e0874ce5b1568dfe72a37cc0bcd276db4cd6cc93c6",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-se détendre.wav"
     },
+    "se laver": {
+      "author": "Sartus85",
+      "file": "words/se_laver.mp3",
+      "gain": 1.1,
+      "gate": -88.9,
+      "lead": 50,
+      "matches": "se laver",
+      "mos": 3.24,
+      "sha256": "21b92c3ac05173ad03dbab0a70d543df4f19c0aa02942bccca10187b475d1724",
+      "source": "LL-Q150 (fra)-Sartus85-se laver.wav"
+    },
     "se lever": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "words/se_lever.mp3",
@@ -10878,6 +11222,17 @@
       "mos": 3.21,
       "sha256": "b43edde9d839250525ad3e8ed77816a6fc95fcb44fe1ad9bedc80682991ec525",
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-se lever.wav"
+    },
+    "se maquiller": {
+      "author": "Sartus85",
+      "file": "words/se_maquiller.mp3",
+      "gain": 4.1,
+      "gate": -87.5,
+      "lead": 20,
+      "matches": "se maquiller",
+      "mos": 3.23,
+      "sha256": "74e454ad11bef89dd7aa7d297c89f4a91a25363f116d8233dd85b2b5ff22be06",
+      "source": "LL-Q150 (fra)-Sartus85-se maquiller.wav"
     },
     "se marier": {
       "author": "Poslovitch",
@@ -11249,6 +11604,17 @@
       "sha256": "08fcb9646b2eb0c1b33aebbddceff90ab2d2e125a3f037308d0da8495501f2d1",
       "source": "LL-Q150 (fra)-Poslovitch-siècle.wav"
     },
+    "slip": {
+      "author": "Poslovitch",
+      "file": "words/slip.mp3",
+      "gain": 4.9,
+      "gate": -66.0,
+      "lead": 130,
+      "matches": "slip",
+      "mos": 2.79,
+      "sha256": "fe232d86843fdfbb77abe76e591d65c4e534fbf8103345be7918e37e38665436",
+      "source": "LL-Q150 (fra)-Poslovitch-slip.wav"
+    },
     "soif": {
       "author": "Vion Nicolas",
       "file": "words/soif.mp3",
@@ -11425,6 +11791,17 @@
       "mos": 3.31,
       "sha256": "ded6d34a40b2c299394f0b48e93e0e4bc8a23ac86553123ebaf288ea808de0c9",
       "source": "LL-Q150 (fra)-0x010C-sous-vêtements.wav"
+    },
+    "soutien-gorge": {
+      "author": "Vion Nicolas",
+      "file": "words/soutien-gorge.mp3",
+      "gain": -0.4,
+      "gate": -62.4,
+      "lead": 190,
+      "matches": "soutien-gorge",
+      "mos": 3.32,
+      "sha256": "2d2d38cb0b1ac12f6f9302a8a645dfdcd500d1cf2f5c1c85ef9c17fba0889772",
+      "source": "Fr-soutien-gorge.ogg"
     },
     "souvenir": {
       "author": "Sartus85",
@@ -11886,6 +12263,17 @@
       "mos": 2.82,
       "sha256": "55070dd2204577433f4c45ed2cea77c1596344b9e55bbb9f197a04f2ae2be6eb",
       "source": "LL-Q150 (fra)-Poslovitch-tonnerre.wav"
+    },
+    "toujours": {
+      "author": "Jules78120",
+      "file": "words/toujours.mp3",
+      "gain": 8.8,
+      "gate": -96.4,
+      "lead": 210,
+      "matches": "toujours",
+      "mos": 2.93,
+      "sha256": "bc78139007d725f62dc0c2895c629bf7adac6bd3507c8a882e1bba9caa7b727a",
+      "source": "LL-Q150 (fra)-Jules78120-toujours.wav"
     },
     "touriste": {
       "author": "Sartus85",
@@ -12939,6 +13327,17 @@
       "sha256": "d1addc0248ed084502cf68943561e5ad4a520f6cb7149ae33c951197a888d3ab",
       "source": "LL-Q150 (fra)-LoquaxFR-ça marche.wav"
     },
+    "écharpe": {
+      "author": "Poslovitch",
+      "file": "words/u00e9charpe.mp3",
+      "gain": 0.9,
+      "gate": -61.2,
+      "lead": 130,
+      "matches": "écharpe",
+      "mos": 2.97,
+      "sha256": "de3236a3a5e2e30d620f7ef47ab7d7580dfc92c5fec3ccc4c4ad8be13be40f03",
+      "source": "LL-Q150 (fra)-Poslovitch-écharpe.wav"
+    },
     "éclair": {
       "author": "Poslovitch",
       "file": "words/u00e9clair.mp3",
@@ -13071,6 +13470,17 @@
       "sha256": "3eb9fc316df34c255e75be2eb4cc3c73cdf4abb0a42e4773b43317ddd2ca7233",
       "source": "LL-Q150 (fra)-Poslovitch-épaule.wav"
     },
+    "éplucher": {
+      "author": "Sartus85",
+      "file": "words/u00e9plucher.mp3",
+      "gain": 12.2,
+      "gate": -87.3,
+      "lead": 180,
+      "matches": "éplucher",
+      "mos": 3.24,
+      "sha256": "646562dc7b51aac1b175d1ab0f0f3077dc10d0eb22a2dd0ac452b5264c17bb61",
+      "source": "LL-Q150 (fra)-Sartus85-éplucher.wav"
+    },
     "éponge": {
       "author": "Poslovitch",
       "cap": 1.9,
@@ -13125,6 +13535,17 @@
       "mos": 2.61,
       "sha256": "06370bef8d9c66a8477bcfa29d63f0881d87247ff25f9d7586b3369fd8ce467d",
       "source": "LL-Q150 (fra)-VictorDtmtc-étal.wav"
+    },
+    "éteindre": {
+      "author": "Poslovitch",
+      "file": "words/u00e9teindre.mp3",
+      "gain": 4.2,
+      "gate": -74.2,
+      "lead": 190,
+      "matches": "éteindre",
+      "mos": 3.31,
+      "sha256": "52e23e5b6b4950e43a6c74177c63d6831920a0e5d23ca907e45b473feb43c68e",
+      "source": "LL-Q150 (fra)-Poslovitch-éteindre.wav"
     },
     "étoile": {
       "author": "WikiLucas00",
