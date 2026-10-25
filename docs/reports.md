@@ -7,8 +7,6 @@ Neighbors: the engine contract `../kern/README.md` §6, what a screen makes of t
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report, every count read live from the review logs,
   so the numbers hold mid-session —
   a card's FIRST log entry IS the meeting.
-  A settled crossing reads a stability no log entry records,
-  so each card answered today has its log replayed up to each of today's answers through the same step that recorded them (`answered`, `box/Answer.kt`).
   The walk reads raw schedules rather than the join:
   switching the known language must not un-happen a day's work.
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` —
@@ -21,8 +19,9 @@ Neighbors: the engine contract `../kern/README.md` §6, what a screen makes of t
   `Introduced` (a card's first answer, even one that crosses the bar),
   `Settled` (the answer that carried the card across the settled bar),
   or `Reviewed` (every other answer) —
-  so a day's and a round's parts add up to their answers,
-  and Home and the round's summary count alike.
+  so a round's parts add up to its answers.
+  A day names no `Settled` part: its crossings count among its reviews,
+  so Home's tally is new and reviewed alone while a finished round names what settled.
   The total stays `TodayReport.answers`, which `recall` and `worked` read.
   A day is `worked` once something was answered,
   which is what separates "done for today" from "caught up":

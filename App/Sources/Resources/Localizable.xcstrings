@@ -4923,7 +4923,7 @@
       }
     },
     "progress.allSettledCount %lld" : {
-      "comment" : "An area's row of counts: the settled half beside the seal, the growing half beside the leaf. tally.settled is the day's own tally on Home — a different screen's sentence, not this one read twice.",
+      "comment" : "An area's row of counts: the settled half beside the seal, the growing half beside the leaf. tally.settled is a finished round's tally — a different screen's sentence, not this one read twice.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -6536,7 +6536,7 @@
       }
     },
     "tally.settled %lld" : {
-      "comment" : "Words that crossed the settled bar — in Home's day tally and a finished round's alike.",
+      "comment" : "Words that crossed the settled bar in a finished round's tally.",
       "localizations" : {
         "de" : {
           "variations" : {

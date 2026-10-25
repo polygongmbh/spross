@@ -86,8 +86,9 @@ fun todayTally(chrome: Chrome, report: TodayReport): String? {
     val parts = report.tallyParts().map { part ->
         when (part.kind) {
             TallyPartKind.Introduced -> countLine(chrome.homeTallyNewCardsOne, chrome.homeTallyNewCards, part.count)
-            TallyPartKind.Reviewed -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
-            TallyPartKind.Settled -> countLine(chrome.tallySettledOne, chrome.tallySettled, part.count)
+            // The day names no settled part (TodayReport.tallyParts).
+            TallyPartKind.Reviewed, TallyPartKind.Settled ->
+                countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
         }
     }
     return parts.takeIf { it.isNotEmpty() }?.joinToString(PART_JOIN)

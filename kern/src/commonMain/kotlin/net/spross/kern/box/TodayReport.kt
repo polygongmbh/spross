@@ -3,8 +3,6 @@ package net.spross.kern.box
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.plus
-import net.spross.kern.fsrs.FsrsScheduler
-import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.Rating
 
 /**
@@ -12,19 +10,20 @@ import net.spross.kern.model.Rating
  * Every count is read live from the review logs, so the numbers hold mid-session.
  */
 data class TodayReport(
-    /** Answer events today, retries included — the three kinds ([TallyPartKind]) added up. */
+    /** Answer events today, retries included. */
     val answers: Int,
     /** Today's first answers ([TallyPartKind.Introduced]). */
     val introduced: Int,
-    /** Today's answers that carried a card across the settled bar ([TallyPartKind.Settled]). */
-    val settled: Int,
     /** Answers rated Again today. */
     val missed: Int,
     /** The retention the box is scheduling for ([net.spross.kern.model.BoxConfig]). */
     val expectedRecall: Double,
 ) {
-    /** Today's other answers ([TallyPartKind.Reviewed]). */
-    val reviewed: Int get() = answers - introduced - settled
+    /**
+     * Today's other answers ([TallyPartKind.Reviewed]) —
+     * a day counts the answer that settled a card among them, where a round names it apart.
+     */
+    val reviewed: Int get() = answers - introduced
 
     /**
      * Whether the day was WORKED — the difference between a day finished and a day merely clear.
@@ -34,10 +33,10 @@ data class TodayReport(
     val worked: Boolean get() = answers > 0
 
     /**
-     * The day's answers spelled out, as a round's are ([tallyParts]) —
+     * The day's answers spelled out ([tallyParts]), with no settled part —
      * empty on a day that was not [worked]: an unworked day has a state, not a tally.
      */
-    fun tallyParts(): List<TallyPart> = tallyParts(introduced, reviewed, settled)
+    fun tallyParts(): List<TallyPart> = tallyParts(introduced, reviewed, settled = 0)
 
     /**
      * Share of today's answers the learner got.
@@ -103,37 +102,23 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     val zone = zoneOf(tzId)
     val start = localDate(nowEpochMillis, tzId).atStartOfDayIn(zone)
     val end = localDate(nowEpochMillis, tzId).plus(1, DateTimeUnit.DAY).atStartOfDayIn(zone)
-    val scheduler = FsrsScheduler(state.config.fsrsParameters())
 
     var answers = 0
     var missed = 0
     var introduced = 0
-    var settled = 0
     // why: raw schedules rather than the join — an answer really happened, and switching
     // the known language must not un-happen a day's work.
     for (sched in state.scheduling.values) {
-        if (sched.log.none { it.date >= start && it.date < end }) continue
-        // A crossing reads a stability no log entry records, so the card's log is replayed
-        // up to each of today's answers, through the same step that recorded it.
-        var before = CardScheduling(cardId = sched.cardId)
-        for (entry in sched.log) {
-            val after = before.answered(entry.rating, entry.date, scheduler)
-            if (entry.date >= start && entry.date < end) {
-                answers += 1
-                if (entry.rating == Rating.Again) missed += 1
-                when (tallyKind(before, after)) {
-                    TallyPartKind.Introduced -> introduced += 1
-                    TallyPartKind.Settled -> settled += 1
-                    TallyPartKind.Reviewed -> {}
-                }
-            }
-            before = after
+        sched.log.forEachIndexed { index, entry ->
+            if (entry.date < start || entry.date >= end) return@forEachIndexed
+            answers += 1
+            if (entry.rating == Rating.Again) missed += 1
+            if (index == 0) introduced += 1
         }
     }
     return TodayReport(
         answers = answers,
         introduced = introduced,
-        settled = settled,
         missed = missed,
         expectedRecall = state.config.desiredRetention,
     )

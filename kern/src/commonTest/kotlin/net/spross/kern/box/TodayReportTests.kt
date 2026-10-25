@@ -6,11 +6,9 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Rating
-import net.spross.kern.store.StoreCodec
-import net.spross.kern.store.StoredBox
 
 /**
- * The day's own report: what was answered, met, settled — whether it is going badly,
+ * The day's own report: what was answered and met — whether it is going badly,
  * and which parts of it a surface spells out.
  */
 class TodayReportTests {
@@ -31,9 +29,6 @@ class TodayReportTests {
         assertEquals(3, today.answers)
         assertEquals(3, today.introduced)
         assertEquals(1, today.missed)
-        // A single Good answer does not settle on sight (only Easy does) —
-        // none of today's words have proven themselves yet.
-        assertEquals(0, today.settled)
     }
 
     /** Yesterday's work belongs to yesterday — the day boundary is the caller's zone. */
@@ -79,68 +74,22 @@ class TodayReportTests {
         assertFalse(BoxEngine.today(fine, now, Box.TZ).recallStrained)
     }
 
-    /** Only the crossing counts: a word already settled goes on being reviewed for free. */
+    /** A word settling today is one of the day's reviews, never its arrival nor a part of its own. */
     @Test
-    fun aWordCountsOnTheDayItCrossesAndNotAgain() {
-        var state = boxOf(2)
-        // A single Good graduates to Review (stability 2.3065) but doesn't settle yet.
-        state = Box.answered(state, "w01", Rating.Good, now)
-        assertEquals(0, BoxEngine.today(state, now, Box.TZ).settled)
-
-        // A second success, well after the natural interval, pushes stability past the
-        // settled bar — that is the day the crossing is booked.
-        val later = Box.plusDays(now, 30.0)
-        state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.hasSettled(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
-
-        // Already settled — reviewing it again does not cross a second time.
-        val evenLater = Box.plusDays(later, 30.0)
-        state = Box.answered(state, "w01", Rating.Good, evenLater)
-        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
-    }
-
-    /** The crossing is read off the log, so a box reloaded from its file still counts it. */
-    @Test
-    fun todaysCrossingComesBackFromTheStoredLog() {
-        var state = boxOf(1)
-        state = Box.answered(state, "w01", Rating.Good, now)
-        val later = Box.plusDays(now, 30.0)
-        state = Box.answered(state, "w01", Rating.Good, later)
-
-        val reloaded = StoreCodec.decode(StoreCodec.encode(StoredBox.of(state)))
-            .join(state.cards.values.toList(), state.joinStamp)
-        assertEquals(1, BoxEngine.today(reloaded, later, Box.TZ).settled)
-    }
-
-    /** An older word crossing today is the settled tile's news, not today's arrival. */
-    @Test
-    fun anOlderWordSettlingIsNotTodaysIntroduction() {
+    fun aWordSettlingTodayCountsAsAReview() {
         var state = boxOf(2)
         state = Box.answered(state, "w01", Rating.Good, now)
 
+        // A second success, well after the natural interval, carries w01 across the settled bar.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
         state = Box.answered(state, "w02", Rating.Good, later)
-
-        val today = BoxEngine.today(state, later, Box.TZ)
-        assertEquals(1, today.settled) // w01 crossed, having arrived a month ago
-        assertEquals(1, today.introduced) // w02 only — the crossing is no arrival
-    }
-
-    /** A word on its way in crosses the moment its stability reaches the threshold. */
-    @Test
-    fun theCrossingIsBookedOnTheAnswerThatMakesIt() {
-        var state = boxOf(2)
-        state = Box.answered(state, "w01", Rating.Good, now)
-        assertFalse(BoxEngine.hasSettled(state, "w01"))
-
-        // A second success, well after the natural interval, pushes stability past the
-        // settled bar — that is the day the crossing is booked.
-        val later = Box.plusDays(now, 30.0)
-        state = Box.answered(state, "w01", Rating.Good, later)
         assertTrue(BoxEngine.hasSettled(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
+
+        assertEquals(
+            listOf(TallyPart(TallyPartKind.Introduced, 1), TallyPart(TallyPartKind.Reviewed, 1)),
+            BoxEngine.today(state, later, Box.TZ).tallyParts(),
+        )
     }
 
     /** A day nothing was answered on is clear, never finished — and it has no tally to show. */

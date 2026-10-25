@@ -145,7 +145,7 @@ extension HomeView {
         dayMark(.companion.done(worked: worked, streak: Int32(model.stats?.streakDays ?? 0)))
     }
 
-    /// "3 Neue · 24 Checks · 2 gefestigt" — the day's gain, not just
+    /// "3 Neue · 24 Checks" — the day's gain, not just
     /// that it happened. Which counts the day names and in which order is the day's
     /// own report (`TodayReport.tallyParts`); the words are ours.
     func todayTally(_ report: TodayReport) -> Text {
@@ -156,8 +156,8 @@ extension HomeView {
         let count = Int(part.count)
         switch part.kind {
         case .introduced: return Text("home.tally.newCards \(count)")
-        case .reviewed: return Text("home.tally.reviews \(count)")
-        case .settled: return Text("tally.settled \(count)")
+        // The day names no settled part (`TodayReport.tallyParts`).
+        case .reviewed, .settled: return Text("home.tally.reviews \(count)")
         }
     }
 

@@ -458,7 +458,7 @@ interface Chrome {
     val homeTallyNewCards: String       // %d
     val homeTallyNewCardsOne: String
     val homeTallyNewWordsOnly: String    // %d
-    val tallySettled: String       // %d — Home's day tally and a finished round's alike
+    val tallySettled: String       // %d — a finished round's tally
     val tallySettledOne: String
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val homeTallyAhead: String          // %d

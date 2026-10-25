@@ -101,9 +101,9 @@ class SessionRunTests {
         assertEquals(listOf(TallyPartKind.Reviewed), run.tally.answers.map { it.kind })
     }
 
-    /** Every answer is one kind, and a round and the day it lands in tally it alike. */
+    /** Every answer is one kind; a round names what settled, the day counts it among its checks. */
     @Test
-    fun aRoundAndItsDayCountEachAnswerOnce() {
+    fun aRoundNamesWhatSettledWhileItsDayCountsItAsACheck() {
         var state = Box.state((1..3).map { Box.word(it) })
         state = Box.answered(state, "w01", Rating.Good, now)
         state = Box.answered(state, "w02", Rating.Good, now)
@@ -121,7 +121,10 @@ class SessionRunTests {
             TallyPart(TallyPartKind.Settled, 1),
         )
         assertEquals(oneEach, run.tally.parts())
-        assertEquals(oneEach, BoxEngine.today(run.box, later, Box.TZ).tallyParts())
+        assertEquals(
+            listOf(TallyPart(TallyPartKind.Introduced, 1), TallyPart(TallyPartKind.Reviewed, 2)),
+            BoxEngine.today(run.box, later, Box.TZ).tallyParts(),
+        )
     }
 
     /** The summary reads the round against the box it opened on, so a first round opens its area. */

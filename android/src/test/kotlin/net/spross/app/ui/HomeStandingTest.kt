@@ -21,10 +21,9 @@ class HomeStandingTest {
 
     private val chrome = Chrome.forSource("de")
 
-    private fun report(answers: Int, introduced: Int = 0, settled: Int = 0) = TodayReport(
+    private fun report(answers: Int, introduced: Int = 0) = TodayReport(
         answers = answers,
         introduced = introduced,
-        settled = settled,
         missed = 0,
         expectedRecall = 0.9,
     )
