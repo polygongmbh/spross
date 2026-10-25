@@ -28,7 +28,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
 - Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
 - A German, French, Spanish or Italian reflexive verb with no good recording of its own now plays one of the verb without its reflexive "sich", "se" or "si".
-- Most Spanish reflexive verbs, such as "secarse" and "quitarse", now play a recording of their verb instead of the device voice.
+- Most Spanish and Italian reflexive verbs, such as "secarse" and "lavarsi", now play a recording of their verb instead of the device voice.
 - German "sich irren" now plays a clearer recording.
 - The new clothes words and "to appear" play a recording in all eight languages, and about 300 more words across them play one instead of the device voice.
 

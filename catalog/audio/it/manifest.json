@@ -2295,6 +2295,17 @@
       "sha256": "52462efac1178f92fb324be1205f90befb9c5a382b76598d8f6bd81cdef2544b",
       "source": "LL-Q652 (ita)-LangPao-asciugamano.wav"
     },
+    "asciugare": {
+      "author": "LangPao",
+      "file": "words/asciugare.mp3",
+      "gain": 2.0,
+      "gate": -76.9,
+      "lead": 240,
+      "matches": "asciugare",
+      "mos": 3.22,
+      "sha256": "35db9c94627a1b5d21dcce580db5aed738818d33bc3bb32f76f24558c2df7b21",
+      "source": "LL-Q652 (ita)-LangPao-asciugare.wav"
+    },
     "ascoltare": {
       "author": "XANA000",
       "file": "words/ascoltare.mp3",
@@ -4427,6 +4438,17 @@
       "sha256": "f0f7f2efbea70fea4d50643be14e37a0efa1d1f6f58c528c7e90e2c06cad7192",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-esame.wav"
     },
+    "esercitare": {
+      "author": "LangPao",
+      "file": "words/esercitare.mp3",
+      "gain": 5.2,
+      "gate": -80.6,
+      "lead": 220,
+      "matches": "esercitare",
+      "mos": 3.16,
+      "sha256": "497733e29e660e76d7ded698ceb7109f7854b9e8339998c4c1ac51b1bc0d5d0f",
+      "source": "LL-Q652 (ita)-LangPao-esercitare.wav"
+    },
     "esercizio": {
       "author": "LangPao",
       "cap": 1.4,
@@ -5312,6 +5334,16 @@
       "sha256": "a321529697ffa5ab90f8e676573fbda7e8994f62dfd2e6810961565bdc19aab0",
       "source": "LL-Q652 (ita)-XANA000-in.wav"
     },
+    "incontrare": {
+      "author": "LangPao",
+      "file": "words/incontrare.mp3",
+      "gain": 4.9,
+      "lead": 190,
+      "matches": "incontrare",
+      "mos": 2.75,
+      "sha256": "e64a0acb3ca4553b544f3ce4fa8189da5fb275404316cbb339dc1c7827503fa5",
+      "source": "LL-Q652 (ita)-LangPao-incontrare.wav"
+    },
     "indirizzo": {
       "author": "LangPao",
       "file": "words/indirizzo.mp3",
@@ -5442,6 +5474,16 @@
       "sha256": "d17b56437d3b02d7e655c64f377b67a2a8183a8014df4b05f1988474c3b280ec",
       "source": "LL-Q652 (ita)-XANA000-io.wav"
     },
+    "iscrivere": {
+      "author": "LangPao",
+      "file": "words/iscrivere.mp3",
+      "gain": 8.6,
+      "lead": 260,
+      "matches": "iscrivere",
+      "mos": 3.04,
+      "sha256": "b0e260bb71d678433f36e118cee7fb77e35866dd01d5006a9b2d0c23655f5eb1",
+      "source": "LL-Q652 (ita)-LangPao-iscrivere.wav"
+    },
     "isola": {
       "author": "LangPao",
       "file": "words/isola.mp3",
@@ -5526,6 +5568,17 @@
       "mos": 2.91,
       "sha256": "42cc082443279d835936d08564cc4a99df4606645a67e5b4130b37dc86a3409c",
       "source": "LL-Q652 (ita)-LangPao-lavandino.wav"
+    },
+    "lavare": {
+      "author": "LangPao",
+      "cap": 0.1,
+      "file": "words/lavare.mp3",
+      "gain": 4.4,
+      "lead": 250,
+      "matches": "lavare",
+      "mos": 3.04,
+      "sha256": "dc5fc45f940b94d48d427d6e0d057757da9e32ced925b490a9001e691141d354",
+      "source": "LL-Q652 (ita)-LangPao-lavare.wav"
     },
     "lavastoviglie": {
       "author": "LangPao",
@@ -8107,6 +8160,17 @@
       "sha256": "044b38c4c8a1323c1026105416c171550d5bc42d5b74be04a0276bc6bfe05112",
       "source": "LL-Q652 (ita)-LangPao-ridere.wav"
     },
+    "rilassare": {
+      "author": "LangPao",
+      "file": "words/rilassare.mp3",
+      "gain": -0.2,
+      "gate": -60.1,
+      "lead": 260,
+      "matches": "rilassare",
+      "mos": 2.15,
+      "sha256": "639b4d75e4fd962aa65d9febbd1d3682e7b3225e888ced2873cfdac9631738c2",
+      "source": "LL-Q652 (ita)-LangPao-rilassare.wav"
+    },
     "ringraziare": {
       "author": "LangPao",
       "file": "words/ringraziare.mp3",
@@ -8362,6 +8426,16 @@
       "sha256": "9f107afef959ce8431cdf4acaca5bedfb1926e7252cda41d408bb9c1167f8909",
       "source": "LL-Q652 (ita)-LangPao-sbadigliare.wav"
     },
+    "sbagliare": {
+      "author": "LangPao",
+      "file": "words/sbagliare.mp3",
+      "gain": 2.0,
+      "lead": 220,
+      "matches": "sbagliare",
+      "mos": 3.08,
+      "sha256": "18d8dba86b53f7ef1037292057cc9ba43848b523888c95f50c4f7dd4ec0803c6",
+      "source": "LL-Q652 (ita)-LangPao-sbagliare.wav"
+    },
     "sbucciare": {
       "author": "Happypheasant",
       "file": "words/sbucciare.mp3",
@@ -8541,6 +8615,17 @@
       "mos": 2.61,
       "sha256": "a5d3a0b8b4435cada6b7bf3505a83d377b7da468ae3b9e018d517407df8a1eb7",
       "source": "LL-Q652 (ita)-XANA000-secondo.wav"
+    },
+    "sedere": {
+      "author": "Ciampix",
+      "file": "words/sedere.mp3",
+      "gain": 6.9,
+      "gate": -77.1,
+      "lead": 90,
+      "matches": "sedere",
+      "mos": 2.85,
+      "sha256": "5af8126f6b9b2a03cb36d629c2ffb2883263b8cb1df3ed13fefd6422419a9254",
+      "source": "LL-Q652 (ita)-Ciampix-sedere.wav"
     },
     "sedia": {
       "author": "Crunchy Cloaky Crackdown",
@@ -8948,6 +9033,17 @@
       "mos": 2.83,
       "sha256": "f38107c2727df92b073b2d9719ad3a44a6309a5d8296bdab75b1b52c5b725dd8",
       "source": "LL-Q652 (ita)-LangPao-sporco.wav"
+    },
+    "sposare": {
+      "author": "LangPao",
+      "file": "words/sposare.mp3",
+      "gain": 1.2,
+      "gate": -97.5,
+      "lead": 150,
+      "matches": "sposare",
+      "mos": 2.64,
+      "sha256": "0c349fd3b22b3f7d3ba0691cec477006c4a54ac61531253c8d39e975e99d31c8",
+      "source": "LL-Q652 (ita)-LangPao-sposare.wav"
     },
     "spugna": {
       "author": "LangPao",
@@ -9447,6 +9543,16 @@
       "sha256": "41e83090abbd996aa5484959e40bcfcfe89e3aa6cb30c7f949bcaa5eaa2f889f",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-tirare.wav"
     },
+    "togliere": {
+      "author": "LangPao",
+      "file": "words/togliere.mp3",
+      "gain": 1.1,
+      "lead": 210,
+      "matches": "togliere",
+      "mos": 2.6,
+      "sha256": "03ba8faf2ef503bc7b9b6425e68116c60d1bf76e2562277535970f9a36d7a505",
+      "source": "LL-Q652 (ita)-LangPao-togliere.wav"
+    },
     "tomba": {
       "author": "LangPao",
       "file": "words/tomba.mp3",
@@ -9577,6 +9683,16 @@
       "mos": 2.63,
       "sha256": "57b4f9b63e16774cbc4c4180df56f2e6f6bf4e4f996da3d49bbf2b50a2405335",
       "source": "LL-Q652 (ita)-XANA000-tue.wav"
+    },
+    "tuffare": {
+      "author": "LangPao",
+      "file": "words/tuffare.mp3",
+      "gain": 4.4,
+      "lead": 220,
+      "matches": "tuffare",
+      "mos": 2.99,
+      "sha256": "0e4afe992dce2061ce6bda1114a07df6d4f0365b905c33b60477c8632f9b3376",
+      "source": "LL-Q652 (ita)-LangPao-tuffare.wav"
     },
     "tuo": {
       "author": "XANA000",
@@ -9910,6 +10026,17 @@
       "mos": 2.99,
       "sha256": "8e49d69ce3accefa3bf6126c1bcc41f0b6f914a2be1e3cd26c49650be9a91219",
       "source": "LL-Q652 (ita)-LangPao-vergogna.wav"
+    },
+    "vestire": {
+      "author": "Crunchy Cloaky Crackdown",
+      "file": "words/vestire.mp3",
+      "gain": 2.5,
+      "gate": -85.2,
+      "lead": 180,
+      "matches": "vestire",
+      "mos": 3.03,
+      "sha256": "c84e8fbaeba89f2e1aaf7b1b794b45783f36aecd6c77f617d519c109c965fa60",
+      "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-vestire.wav"
     },
     "vestito": {
       "author": "Crunchy Cloaky Crackdown",
