@@ -50,10 +50,10 @@ final class Reader {
         answerCount += 1
         let count = answerCount
         answerSounding = true
-        pending = Task { @MainActor in
+        pending = Task { @MainActor [weak self] in
             // why: the correct/wrong chime lands first, or the word starts under it.
             try? await Task.sleep(for: .milliseconds(READING_CHIME_CLEARANCE_MS))
-            guard !Task.isCancelled else { return }
+            guard !Task.isCancelled, let self else { return }
             pending = nil
             model.pronounceAloud(answer.form, lang: answer.lang, article: answer.article) { [weak self] in
                 guard let self, count == answerCount else { return }
