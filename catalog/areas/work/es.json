@@ -59,6 +59,8 @@
   "to-hire": { "text": "contratar", "accepts": ["emplear"] },
   "to-help": { "text": "ayudar" },
   "to-work-overtime": { "text": "hacer horas extra", "accepts": ["hacer horas extras", "hacer horas extraordinarias"] },
+  "to-improve": { "text": "mejorar" },
+  "to-suggest": { "text": "sugerir" },
   "profession": { "text": "profesión", "accepts": ["oficio"], "grammar": { "article": "la" } },
   "interview": {
    "text": "entrevista de trabajo",

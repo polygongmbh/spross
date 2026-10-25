@@ -33,21 +33,16 @@ Neighbors: the engine contract `../kern/README.md`, the file format `../catalog/
 - **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, teaches ≠ text, no duplicate `teaches`/`accepts` entries, no `" / "` in text, components resolve same-area, concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field —
-  the area label is the disambiguator, `../kern/README.md` §2/§3).
-  Lint owns what the engine cannot fix, runtime tolerates the rest:
-  - `noPromptCollisionWithinAnArea` —
-    a display-identical prompt inside ONE area is a hard error:
-    the area cue would be identical, so the prompt stays unanswerable.
-    Fix in content.
+  every concept a shared prompt stands for answers it, `grading.md`):
   - `noConceptPairCollidesInTwoLanguages` —
     the same pair colliding in two languages means one meaning authored twice;
     unify (the `variantOf` ruling).
     Caveat when it fires: check it is not simply two languages independently merging a distinction de/en do draw —
     `relax`/`rest` collided in sw AND uk while de (sich entspannen/sich ausruhen) and en keep them apart,
     so the fix was a precise uk realization, not a deletion.
-  - `crossAreaPromptCollisionsAreKnown` —
-    pins the tolerated cross-area set,
-    so adding `nature/river` next to `bedroom/pillow` (both sw `mto`) fails the gate instead of silently minting an ambiguous prompt.
+  - `promptCollisionsAreKnown` —
+    pins the reviewed set of single-language merges,
+    so adding `nature/river` next to `bedroom/pillow` (both sw `mto`) fails the gate until it is reviewed as a merge rather than an authoring slip.
     Comparison is case-SENSITIVE: `Husten`/`husten` is a real visual distinction and must stay legal.
 - `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed on CatalogParser conventions).
   The registry is file presence —

@@ -168,10 +168,10 @@ class TurnMachine(
         // A recalled turn has no field, so its one action can only ever ask for the answer.
         if (trimmed.isEmpty() || state.answer == ProduceAnswer.Recalled) return reveal(state, nowEpochMillis)
         val graded = grading.grade(state, trimmed)
-        // why: a meaning borrowed from the concept next door is right and books as much, but
+        // why: an answer borrowed from the concept next door is right and books as much, but
         // the word this card teaches has still not been said — so it holds on it (§3).
         if (graded.merged) {
-            return holding(state, state.card.source.text, AlmostReason.Merged, graded.match.producedRating())
+            return holding(state, state.answerText, AlmostReason.Merged, graded.match.producedRating())
         }
         return when (val verdict = graded.match) {
             Match.Exact -> accepted(state)

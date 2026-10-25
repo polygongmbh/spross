@@ -90,15 +90,6 @@ data class Card(
     val source: Realization,
     /** Learning-language side (the answer on produce, the prompt on recognize). */
     val target: Realization,
-    /**
-     * True when another emitted card carries an IDENTICAL produce prompt — a
-     * target-language merge (sw `kuvaa` = anziehen AND sich anziehen) or a source
-     * homonym. The UI adds this card's area label as a non-leaking disambiguating
-     * cue. PRODUCE only: on recognize any cue
-     * strong enough to identify the concept would reveal the answer, and
-     * self-grading absorbs the residue (§3).
-     */
-    val promptAmbiguous: Boolean = false,
 )
 
 /** The picture a prompt in [tag] shows: the form's own where the concept gives it one. */

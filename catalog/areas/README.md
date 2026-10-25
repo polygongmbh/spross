@@ -128,8 +128,9 @@ stops reaching the widget.
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`
 (`../../docs/grading.md` catalog-wide collision).
-The bar that does bind is a display-identical prompt inside ONE area,
-where the area label would be the same cue on both -- and lint holds that.
+Two concepts one language writes alike are safe too, in any area:
+every concept the prompt stands for answers it (de `gehen` is to go AND to walk);
+lint pins each such merge for review (`promptCollisionsAreKnown`).
 
 **Ukrainian marks its stress**, which writing leaves out and a reader cannot guess:
 the combining acute U+0301 directly after the stressed vowel (`пі́вніч`),
@@ -217,7 +218,7 @@ Every area's name must answer *what gets in*,
 and the answer must be able to say no:
 a room (`kitchen`), an errand (`admin`), a kind of word (`colors`, `qualities`),
 a shelf of sentence machinery (`place`),
-or the deliberately narrow `verbs`, which admits a word only when no scene claims it.
+or the deliberately narrow `verbs`, which admits a verb only when it has no topic of its own -- needed in every room and on every errand.
 A word that fits none of them is evidence that a shelf is missing.
 
 The area is the folder, and three things ride on it:

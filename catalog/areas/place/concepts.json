@@ -18,6 +18,8 @@
  { "slug": "place", "kind": "noun", "emoji": "📍" },
  { "slug": "country", "kind": "noun", "emoji": "🌍" },
  { "slug": "in-front", "kind": "adjective" },
+ { "slug": "in-front-of", "kind": "adjective" },
+ { "slug": "at-the-back", "kind": "adjective" },
  { "slug": "next-to", "kind": "adjective" },
  { "slug": "to-be-there", "kind": "verb" },
  { "slug": "center", "kind": "noun", "emoji": "🎯" },

@@ -338,6 +338,17 @@ class TurnTest {
     }
 
     @Test
+    fun aPromptTwoConceptsShareTakesEitherAnswerAndHoldsOnItsOwn() {
+        // de gehen is to go AND to walk: either Swahili word answers the prompt.
+        val held = TurnFixture.step(TurnFixture.produce(TurnFixture.walk), TurnIntent.Submit("kwenda"))
+        assertEquals(TurnFeedback.Almost("kutembea", AlmostReason.Merged), held.state.feedback)
+        assertEquals(Rating.Good, held.state.pendingRating)
+        assertEquals(listOf(TurnEffect.Answer(Rating.Good)), TurnFixture.step(held.state, TurnIntent.ConfirmPending).effects)
+        // The card's own word is clean and moves on.
+        assertEquals(TurnFeedback.Correct, TurnFixture.state(TurnFixture.produce(TurnFixture.walk), TurnIntent.Submit("kutembea")).feedback)
+    }
+
+    @Test
     fun aWrongMeaningRevealsAndPrimesAndNamesNoOtherWord() {
         // Only a meaning the played word really carries is credited; nothing else widens,
         // and the meaning side still names no word in the language being learned.

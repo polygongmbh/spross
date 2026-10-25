@@ -7,6 +7,7 @@
  { "slug": "offer", "kind": "noun" },
  { "slug": "size", "kind": "noun" },
  { "slug": "to-shop", "kind": "verb", "emoji": "🛍️" },
+ { "slug": "to-deliver", "kind": "verb", "emoji": "🚚" },
  { "slug": "store", "kind": "noun" },
  { "slug": "open", "kind": "adjective" },
  { "slug": "the-store-is-still-open", "kind": "phrase", "components": ["store", "open"] },

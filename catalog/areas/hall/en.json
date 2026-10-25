@@ -30,6 +30,10 @@
    "text": "to climb stairs",
    "accepts": ["to climb the stairs", "to take the stairs", "to go up the stairs"]
   },
+  "to-open": { "text": "to open" },
+  "to-close": { "text": "to close" },
+  "to-push": { "text": "to push" },
+  "to-pull": { "text": "to pull" },
   "do-you-have-the-keys": { "text": "Do you have the keys?" },
   "ill-be-right-back": { "text": "I'll be right back!" },
   "hurry-were-late": { "text": "Hurry up, we're late!" },

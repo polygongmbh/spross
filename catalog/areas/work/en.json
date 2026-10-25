@@ -19,6 +19,8 @@
   "to-hire": { "text": "to hire" },
   "to-help": { "text": "to help" },
   "to-work-overtime": { "text": "to work overtime" },
+  "to-improve": { "text": "to improve" },
+  "to-suggest": { "text": "to suggest" },
   "profession": { "text": "profession" },
   "interview": { "text": "job interview" },
   "working-hours": { "text": "working hours", "grammar": { "plural": "only" } },

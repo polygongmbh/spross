@@ -19,6 +19,13 @@
    "accepts": ["fare shopping"],
    "notes": { "it": "fare la spesa è al supermercato · fare spese è nei negozi." }
   },
+  "to-deliver": {
+   "text": "recapitare",
+   "notes": {
+    "it": "recapitare a casa, recapitare in città.",
+    "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt."
+   }
+  },
   "store": { "text": "negozio", "forms": { "pl": "i negozi" }, "grammar": { "article": "il" } },
   "open": { "text": "aperto", "forms": { "f": "aperta" } },
   "the-store-is-still-open": { "text": "Il negozio è ancora aperto." },

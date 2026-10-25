@@ -32,7 +32,7 @@
    "grammar": { "article": "l'", "gender": "m" }
   },
   "country": { "text": "pays", "grammar": { "article": "le", "plural": "=" } },
-  "in-front": { "text": "devant" },
+  "in-front-of": { "text": "devant" },
   "next-to": { "text": "à côté de" },
   "to-be-there": { "text": "être là" },
   "on-the-table": { "text": "sur la table" },

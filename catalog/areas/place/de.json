@@ -28,6 +28,8 @@
   "place": { "text": "Ort", "forms": { "pl": "die Orte" }, "grammar": { "article": "der" } },
   "country": { "text": "Land", "forms": { "pl": "die Länder" }, "grammar": { "article": "das" } },
   "in-front": { "text": "vorne" },
+  "in-front-of": { "text": "vor" },
+  "at-the-back": { "text": "hinten" },
   "next-to": { "text": "neben" },
   "to-be-there": { "text": "da sein" },
   "on-the-table": { "text": "auf dem Tisch" },

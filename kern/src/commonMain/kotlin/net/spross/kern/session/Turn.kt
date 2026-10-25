@@ -42,9 +42,9 @@ enum class AlmostReason {
     Typo,
 
     /**
-     * A meaning the word that played really carries, owned by another concept —
-     * the target language merges what the source splits. Full credit; what is owed
-     * back is the meaning THIS card teaches, which is the one still to be learned.
+     * An answer the prompt really carries, owned by another concept —
+     * one language writes alike what the other splits (`TurnGrading.grade`). Full credit;
+     * what is owed back is THIS card's own answer, which is the one still to be learned.
      */
     Merged,
 }

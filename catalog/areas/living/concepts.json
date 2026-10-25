@@ -33,6 +33,8 @@
  { "slug": "song", "kind": "noun", "emoji": "🎶" },
  { "slug": "story", "kind": "noun" },
  { "slug": "to-water-plants", "kind": "verb", "emoji": "🪴" },
+ { "slug": "to-turn-on", "kind": "verb" },
+ { "slug": "to-turn-off", "kind": "verb" },
  { "slug": "come-sit-with-me", "kind": "phrase", "emoji": "💺", "components": ["to-sit"] },
  { "slug": "shall-we-watch-a-movie", "kind": "phrase", "emoji": "🎬", "components": ["movie"] },
  { "slug": "lets-hang-the-picture", "kind": "phrase", "emoji": "🖼️", "components": ["picture"] },
