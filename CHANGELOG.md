@@ -30,6 +30,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A German, French, Spanish or Italian reflexive verb with no good recording of its own now plays one of the verb without its reflexive "sich", "se" or "si".
 - Most Spanish and Italian reflexive verbs, such as "secarse" and "lavarsi", now play a recording of their verb instead of the device voice.
 - German "sich irren" now plays a clearer recording.
+- About two dozen everyday English verbs, such as "to cook" and "to eat", now play clearer recordings.
 - The new clothes words and "to appear" play a recording in all eight languages, and about 300 more words across them play one instead of the device voice.
 
 ## 8.7.0 — 2026-10-09

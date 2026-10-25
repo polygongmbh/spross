@@ -28,6 +28,7 @@
     "PerfectSoundWhatever": "CC0",
     "Persent101": "CC BY-SA 4.0",
     "Qwertygiy": "CC0",
+    "Robust Footman": "CC0",
     "Samuel Muldoon": "CC0",
     "Sapaa": "CC0",
     "Sayoxime": "CC BY-SA 4.0",
@@ -41,6 +42,7 @@
     "Sylvanmoon": "CC BY-SA 4.0",
     "TaxRebate": "CC BY-SA 4.0",
     "TreeMama": "CC BY-SA 3.0",
+    "Usmaan": "CC0",
     "VGPaleontologist": "CC0",
     "Vealhurl": "CC BY-SA 4.0",
     "Vininn126": "CC BY-SA 4.0",
@@ -2488,6 +2490,17 @@
       "sha256": "158f55606143a7ddc4ac928007e801a5f04ce782c03c40395f87fd54d21add73",
       "source": "LL-Q1860 (eng)-Berrely-calendar.wav"
     },
+    "call": {
+      "author": "Wodencafe",
+      "file": "words/call.mp3",
+      "gain": 6.3,
+      "gate": -87.2,
+      "lead": 160,
+      "matches": "call",
+      "mos": 3.34,
+      "sha256": "5700551142727d1df3ace8e009e44eb5c4aa7fefc0add5fb2b6e02cbb2b1fb38",
+      "source": "LL-Q1860 (eng)-Wodencafe-call.wav"
+    },
     "call in sick": {
       "author": "Flame, not lame",
       "file": "words/call_in_sick.mp3",
@@ -3152,6 +3165,17 @@
       "mos": 2.9,
       "sha256": "9f29965eb6e8166dab21d0ae364d1ddbaaa7d5d3842ebbef617e2b4f351da4e1",
       "source": "LL-Q1860 (eng)-Wodencafe-contract.wav"
+    },
+    "cook": {
+      "author": "Wodencafe",
+      "file": "words/cook.mp3",
+      "gain": 6.3,
+      "gate": -71.4,
+      "lead": 170,
+      "matches": "cook",
+      "mos": 3.06,
+      "sha256": "f34d555c6221d9630ad8b26f9700ee082299fc0a88c11f456bd7410e71814085",
+      "source": "LL-Q1860 (eng)-Wodencafe-cook.wav"
     },
     "copy": {
       "author": "Dvortygirl",
@@ -6134,6 +6158,16 @@
       "sha256": "1110be7f199ad42f21f3826878f0cc6eb95e206a10c43c95d0c312c01d542640",
       "source": "LL-Q1860 (eng)-Wodencafe-lightweight.wav"
     },
+    "like": {
+      "author": "Dvortygirl",
+      "file": "words/like.mp3",
+      "gain": -1.0,
+      "gate": -64.9,
+      "matches": "like",
+      "mos": 2.94,
+      "sha256": "dee1a786c63a766ceb3028e53b88126e4acc813cc7cd147658dc5d85ee140ab3",
+      "source": "En-us-like.ogg"
+    },
     "lip": {
       "author": "Dvortygirl",
       "file": "words/lip.mp3",
@@ -6164,6 +6198,18 @@
       "mos": 2.81,
       "sha256": "203f6b1c2b9eadac41e364ea1a831a83bc80ac98b13750fca520914e74a60813",
       "source": "En-us-list.ogg"
+    },
+    "listen": {
+      "author": "Wodencafe",
+      "cap": 0.3,
+      "file": "words/listen.mp3",
+      "gain": 10.7,
+      "gate": -88.1,
+      "lead": 160,
+      "matches": "listen",
+      "mos": 3.15,
+      "sha256": "2fdfe75389b18d2ed64d5c1901a90367915d99af0d85df341faf1713d6d69840",
+      "source": "LL-Q1860 (eng)-Wodencafe-listen.wav"
     },
     "liter": {
       "author": "Vealhurl",
@@ -6251,6 +6297,17 @@
       "mos": 2.74,
       "sha256": "ff956c8086d0a342e276574a8c2d054665d2ab7742398d3bcb7a081301f09993",
       "source": "LL-Q1860 (eng)-Wodencafe-look.wav"
+    },
+    "lose": {
+      "author": "Back ache",
+      "file": "words/lose.mp3",
+      "gain": 5.9,
+      "gate": -92.3,
+      "lead": 270,
+      "matches": "lose",
+      "mos": 3.09,
+      "sha256": "15cc1d8160ba05c380c796b56225b96e9af2822ad988c8f5df230528d955fd20",
+      "source": "LL-Q1860 (eng)-Back ache-lose.wav"
     },
     "loud": {
       "author": "Dvortygirl",
@@ -6453,6 +6510,17 @@
       "mos": 2.89,
       "sha256": "756f4c8886eb8bff7436889d2255e3a7b285bbabf0d2a8ae00fc7eaf0866ed43",
       "source": "En-us-medicine.ogg"
+    },
+    "meet": {
+      "author": "Wodencafe",
+      "file": "words/meet.mp3",
+      "gain": 11.1,
+      "gate": -84.2,
+      "lead": 170,
+      "matches": "meet",
+      "mos": 3.0,
+      "sha256": "f65664a03691b5123df4a9b51b42c9ea51788945d4513b96b48bd1bc94189a11",
+      "source": "LL-Q1860 (eng)-Wodencafe-meet.wav"
     },
     "men": {
       "author": "Dvortygirl",
@@ -8146,6 +8214,16 @@
       "sha256": "5e8291a0f71139b88dd31d397e054070e933af2ef9a05ff3fbe6022014c0100b",
       "source": "En-us-push.ogg"
     },
+    "put": {
+      "author": "Nattes à chat",
+      "file": "words/put.mp3",
+      "gain": 8.2,
+      "lead": 190,
+      "matches": "put",
+      "mos": 3.19,
+      "sha256": "f07ea50c004ec42772efc4f2752a086e89aca96024285cd043478bd6f1914841",
+      "source": "LL-Q1860 (eng)-Nattes à chat-put.wav"
+    },
     "question": {
       "author": "Wodencafe",
       "file": "words/question.mp3",
@@ -8341,6 +8419,17 @@
       "mos": 2.39,
       "sha256": "59bc495a2590356720ea38c31ee01f7d4f9a75330aab016d007d1cde00ec3a8a",
       "source": "En-us-relax.ogg"
+    },
+    "remember": {
+      "author": "Wodencafe",
+      "file": "words/remember.mp3",
+      "gain": 6.3,
+      "gate": -84.0,
+      "lead": 180,
+      "matches": "remember",
+      "mos": 3.2,
+      "sha256": "2a61839351ea82f78cc765b40df32b21f63f77ef903abfff97ff6057f48e251c",
+      "source": "LL-Q1860 (eng)-Wodencafe-remember.wav"
     },
     "remind": {
       "author": "Wodencafe",
@@ -8968,6 +9057,17 @@
       "sha256": "f9e1b6aad469f24511410100aad59fc4e4bf6fc6379970f009f3e76cda1128be",
       "source": "En-us-shoulder.ogg"
     },
+    "show": {
+      "author": "Wodencafe",
+      "file": "words/show.mp3",
+      "gain": 7.2,
+      "gate": -86.2,
+      "lead": 130,
+      "matches": "show",
+      "mos": 3.09,
+      "sha256": "c21fe61df43bf5daa98d302bdf2eb14403ca56ffe41aff8e4ea53502409d4efb",
+      "source": "LL-Q1860 (eng)-Wodencafe-show.wav"
+    },
     "shower": {
       "author": "Wodencafe",
       "file": "words/shower.mp3",
@@ -9443,6 +9543,17 @@
       "sha256": "a5acb5e365c1b17b4bb54ac7b99a3ae077f1a3a3156c419c5d21a6c6cb4c534a",
       "source": "LL-Q1860 (eng)-Vealhurl-souvenir.wav"
     },
+    "speak": {
+      "author": "Wodencafe",
+      "file": "words/speak.mp3",
+      "gain": 10.5,
+      "gate": -83.6,
+      "lead": 90,
+      "matches": "speak",
+      "mos": 2.81,
+      "sha256": "4a9c8dd840c60e82e395b7d558b2a7b7d0c81e8d0c3c395e939d788ce67ef0bc",
+      "source": "LL-Q1860 (eng)-Wodencafe-speak.wav"
+    },
     "speaker": {
       "author": "TreeMama",
       "file": "words/speaker.mp3",
@@ -9667,6 +9778,17 @@
       "sha256": "123c341964905f3549837bb72af39f6d365bd59004230e2be59c53fd842f76d3",
       "source": "En-us-studies.ogg"
     },
+    "study": {
+      "author": "Wodencafe",
+      "file": "words/study.mp3",
+      "gain": 4.9,
+      "gate": -70.3,
+      "lead": 170,
+      "matches": "study",
+      "mos": 2.99,
+      "sha256": "687ff23658472889a313d3afbdafcc3ab2cc1ca5aaaa76c6fe55362e1e56f396",
+      "source": "LL-Q1860 (eng)-Wodencafe-study.wav"
+    },
     "submit": {
       "author": "Dvortygirl",
       "file": "words/submit.mp3",
@@ -9832,6 +9954,17 @@
       "sha256": "b683724baf4910188cc993d9cccd3ca615efcdc291ab3df668a151ae6f2d6c7a",
       "source": "En-us-table.ogg"
     },
+    "take": {
+      "author": "Robust Footman",
+      "file": "words/take.mp3",
+      "gain": 13.1,
+      "gate": -97.4,
+      "lead": 100,
+      "matches": "take",
+      "mos": 3.08,
+      "sha256": "8d74602b39b41e9b1b3b0fc48cd2ad2a5c0bde0bb06651a28bd06369015bbcc9",
+      "source": "LL-Q1860 (eng)-Robust Footman-take.wav"
+    },
     "take out the trash": {
       "author": "Flame, not lame",
       "file": "words/take_out_the_trash.mp3",
@@ -9842,6 +9975,17 @@
       "mos": 3.19,
       "sha256": "52958059a0677ac6fdab77e6837cf3bed02c5b37bb2893c8b95da2817bbc1594",
       "source": "LL-Q1860 (eng)-Flame, not lame-take out the trash.wav"
+    },
+    "talk": {
+      "author": "Wodencafe",
+      "file": "words/talk.mp3",
+      "gain": 7.6,
+      "gate": -83.6,
+      "lead": 190,
+      "matches": "talk",
+      "mos": 3.2,
+      "sha256": "dd18de05ea1b202cb428894d7e32a3d9b3cf34a3f08ae6564ca4e2ab3e4f0a1b",
+      "source": "LL-Q1860 (eng)-Wodencafe-talk.wav"
     },
     "taste": {
       "author": "Dvortygirl",
@@ -10233,18 +10377,6 @@
       "sha256": "074b521fef43db842f5df7fef600dbf4f5afc54e11702b9d0eb46b6fd8b987b1",
       "source": "En-uk-to buy.ogg"
     },
-    "to call": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1100,
-      "file": "words/to_call.mp3",
-      "gain": -2.1,
-      "gate": -68.4,
-      "lead": 80,
-      "matches": "to call",
-      "mos": 2.78,
-      "sha256": "d82102dca878c2607c821f6b07b9330264f563ab01373b0879793ae683f0d975",
-      "source": "En-uk-to call.ogg"
-    },
     "to clean": {
       "author": "Association Shtooka, Judith Franck",
       "end": 1190,
@@ -10270,27 +10402,15 @@
       "source": "En-uk-to close.ogg"
     },
     "to come": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1270,
+      "author": "Wodencafe",
       "file": "words/to_come.mp3",
-      "gain": -2.2,
-      "gate": -69.0,
-      "lead": 220,
+      "gain": 9.4,
+      "gate": -71.2,
+      "lead": 170,
       "matches": "to come",
-      "mos": 2.49,
-      "sha256": "d59f865180dca9d142e79e02166c2bceef3d5faa767ce24218d3a8cb03d4e9d8",
-      "source": "En-uk-to come.ogg"
-    },
-    "to cook": {
-      "author": "Association Shtooka, Judith Franck",
-      "file": "words/to_cook.mp3",
-      "gain": 1.7,
-      "gate": -69.8,
-      "lead": 250,
-      "matches": "to cook",
-      "mos": 1.67,
-      "sha256": "77c8bc6507e1a012635337331a1658bfdd113c647e2e91208205649d2c01df71",
-      "source": "En-uk-to cook.ogg"
+      "mos": 3.33,
+      "sha256": "73e11bc357a532af8971baf16ee97c3f3315fa320f495143d2863ad69928d7e8",
+      "source": "LL-Q1860 (eng)-Wodencafe-to come.wav"
     },
     "to cost": {
       "author": "Association Shtooka, Judith Franck",
@@ -10305,41 +10425,37 @@
       "source": "En-uk-to cost.ogg"
     },
     "to count": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1150,
+      "author": "Wodencafe",
       "file": "words/to_count.mp3",
-      "gain": -4.3,
-      "gate": -66.1,
-      "lead": 130,
+      "gain": 8.9,
+      "gate": -71.2,
+      "lead": 180,
       "matches": "to count",
-      "mos": 2.87,
-      "sha256": "aaeda2d90ae9b4b926d2f16d11484eb1a7dc27abbda9ccb825f57054b5cfc6e8",
-      "source": "En-uk-to count.ogg"
+      "mos": 3.25,
+      "sha256": "0520d24890aef002212b882c477d92271712e9b9d767408dd1bb6b749be35c4b",
+      "source": "LL-Q1860 (eng)-Wodencafe-to count.wav"
     },
     "to drink": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1170,
+      "author": "Wodencafe",
       "file": "words/to_drink.mp3",
-      "gain": 2.3,
-      "gate": -73.8,
-      "lead": 250,
+      "gain": 6.8,
+      "gate": -71.3,
+      "lead": 110,
       "matches": "to drink",
-      "mos": 2.84,
-      "sha256": "9c7725738bb0457cc54427e31b4dbb91794917e06154b0c84ed622bf54177ef6",
-      "source": "En-uk-to drink.ogg"
+      "mos": 3.23,
+      "sha256": "1ee4c7b310ad7cc20ad101258c0b4c16d02f40882ce6ad2bdec6a026cbbd6af3",
+      "source": "LL-Q1860 (eng)-Wodencafe-to drink.wav"
     },
     "to eat": {
-      "author": "Association Shtooka, Judith Franck",
-      "cap": 0.7,
-      "end": 1200,
+      "author": "Wodencafe",
       "file": "words/to_eat.mp3",
-      "gain": 2.7,
-      "gate": -64.6,
-      "lead": 240,
+      "gain": 12.3,
+      "gate": -72.4,
+      "lead": 140,
       "matches": "to eat",
-      "mos": 1.97,
-      "sha256": "0d98287793bb5a0747fb00485b3b13c2623a48742667584294e6a43facf54548",
-      "source": "En-uk-to eat.ogg"
+      "mos": 3.04,
+      "sha256": "68995cad1434fa1975af4ec59c670fbbdfd6afaffc7d98798214a7bb6d349238",
+      "source": "LL-Q1860 (eng)-Wodencafe-to eat.wav"
     },
     "to find": {
       "author": "Association Shtooka, Judith Franck",
@@ -10376,15 +10492,15 @@
       "source": "En-uk-to forget.ogg"
     },
     "to give": {
-      "author": "Association Shtooka, Judith Franck",
+      "author": "Wodencafe",
       "file": "words/to_give.mp3",
-      "gain": -3.3,
-      "gate": -72.4,
+      "gain": 6.2,
+      "gate": -71.3,
       "lead": 180,
       "matches": "to give",
-      "mos": 2.72,
-      "sha256": "e2643feeef4a8bf7e635627a30e4a1c394441ddb8e4133856894f9c22dcc3376",
-      "source": "En-uk-to give.ogg"
+      "mos": 3.41,
+      "sha256": "5f82a15e4f16c80d7146585f87a43607efb4bfe9b27d9d6e1e8ab3643c7178d3",
+      "source": "LL-Q1860 (eng)-Wodencafe-to give.wav"
     },
     "to go": {
       "author": "Association Shtooka, Judith Franck",
@@ -10422,16 +10538,15 @@
       "source": "En-uk-to help.ogg"
     },
     "to know": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1250,
+      "author": "Wodencafe",
       "file": "words/to_know.mp3",
-      "gain": -1.4,
-      "gate": -73.4,
-      "lead": 270,
+      "gain": 7.2,
+      "gate": -74.1,
+      "lead": 190,
       "matches": "to know",
-      "mos": 2.69,
-      "sha256": "0108d93b84d0af0603b18e81d0348174a3652c2f08215ef34bad3dc16ba3cfe8",
-      "source": "En-uk-to know.ogg"
+      "mos": 3.11,
+      "sha256": "a514eecad37dcf47cd95284b25e40c58ba942f3a50d85cfe9c70c3124d4657da",
+      "source": "LL-Q1860 (eng)-Wodencafe-to know.wav"
     },
     "to leave": {
       "author": "Association Shtooka, Judith Franck",
@@ -10445,29 +10560,6 @@
       "sha256": "11ae314c990cc9b531086dfc0cc3318e2ebbbdc648d83a640553cef0f649e70f",
       "source": "En-uk-to leave.ogg"
     },
-    "to like": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1230,
-      "file": "words/to_like.mp3",
-      "gain": -2.7,
-      "gate": -70.7,
-      "lead": 250,
-      "matches": "to like",
-      "mos": 2.49,
-      "sha256": "a562c20a57006b2e0a342cf6eaf30ab3d3c8afb6f3ab77bed1ff6f2a65239dcd",
-      "source": "En-uk-to like.ogg"
-    },
-    "to listen": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1200,
-      "file": "words/to_listen.mp3",
-      "gain": -1.9,
-      "gate": -70.4,
-      "matches": "to listen",
-      "mos": 2.85,
-      "sha256": "6b267a27482ade0d90ddbb1d97ca86301d5fa3acc5605b646e87af9f04dcbb4f",
-      "source": "En-uk-to listen.ogg"
-    },
     "to live": {
       "author": "Wodencafe",
       "file": "words/to_live.mp3",
@@ -10478,18 +10570,6 @@
       "mos": 3.28,
       "sha256": "26d309ccbf27e3ada1206c20409bf0e3dcc549ab4242e8b90a638fdde0766e6e",
       "source": "LL-Q1860 (eng)-Wodencafe-to live.wav"
-    },
-    "to lose": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1310,
-      "file": "words/to_lose.mp3",
-      "gain": -0.8,
-      "gate": -70.1,
-      "lead": 230,
-      "matches": "to lose",
-      "mos": 2.79,
-      "sha256": "19c0222ab8b0c702be1259b4b45281077af15fca3eefc8ed53b87b392021ba17",
-      "source": "En-uk-to lose.ogg"
     },
     "to make": {
       "author": "Association Shtooka, Judith Franck",
@@ -10502,18 +10582,6 @@
       "sha256": "53aa26a3d6009e53042554b08ae0f003482299b28095c7a8b52087f8d11b3f66",
       "source": "En-uk-to make.ogg"
     },
-    "to meet": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1300,
-      "file": "words/to_meet.mp3",
-      "gain": 1.4,
-      "gate": -73.6,
-      "lead": 260,
-      "matches": "to meet",
-      "mos": 2.45,
-      "sha256": "3fe2557f018e0ffa92b27d080b7bef033c77ddc451b02ebff42106e893175f17",
-      "source": "En-uk-to meet.ogg"
-    },
     "to open": {
       "author": "Association Shtooka, Judith Franck",
       "end": 1240,
@@ -10525,18 +10593,6 @@
       "mos": 2.84,
       "sha256": "5c8ab4cbf3d080db4908726bdf91f7b173713f3a4f9aaa6952cb692399f4d7b0",
       "source": "En-uk-to open.ogg"
-    },
-    "to put": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 990,
-      "file": "words/to_put.mp3",
-      "gain": 0.3,
-      "gate": -69.4,
-      "lead": 40,
-      "matches": "to put",
-      "mos": 2.86,
-      "sha256": "1977da3fa88c03a9eaaafaa5d528d41e53c8d40fdd86eb36a6e1a696ced0c9a0",
-      "source": "En-uk-to put.ogg"
     },
     "to put on": {
       "author": "Association Shtooka, Judith Franck",
@@ -10561,27 +10617,16 @@
       "sha256": "6d9db68e2a8ca937b4aa2931b15e8fb322e381afa5f4945fe764d888554fb66b",
       "source": "En-uk-to read.ogg"
     },
-    "to remember": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1410,
-      "file": "words/to_remember.mp3",
-      "gain": -2.4,
-      "gate": -70.3,
-      "lead": 260,
-      "matches": "to remember",
-      "mos": 2.79,
-      "sha256": "c06b3acac9afedc202f7fa9b3785b9f0e0977fb0d91f081b43edec51512a7ee8",
-      "source": "En-uk-to remember.ogg"
-    },
     "to see": {
-      "author": "Association Shtooka, Judith Franck",
+      "author": "Wodencafe",
       "file": "words/to_see.mp3",
-      "gain": -0.8,
-      "gate": -65.8,
+      "gain": 10.6,
+      "gate": -70.3,
+      "lead": 120,
       "matches": "to see",
-      "mos": 2.67,
-      "sha256": "7dcfdbe690f3c8ce77569b8d5a84475f3ece51626c80923c7392f411cfe512d8",
-      "source": "En-uk-to see.ogg"
+      "mos": 3.33,
+      "sha256": "f7e77c9e7910293ef124ef9d202c8a15ef5917407ca35331eb6f1439340f2b9c",
+      "source": "LL-Q1860 (eng)-Wodencafe-to see.wav"
     },
     "to send": {
       "author": "Association Shtooka, Judith Franck",
@@ -10595,39 +10640,16 @@
       "sha256": "1c0686f996865e9617e2aed8b1784b25ecd8168fc25f596573ec5223f97785a3",
       "source": "En-uk-to send.ogg"
     },
-    "to show": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1270,
-      "file": "words/to_show.mp3",
-      "gain": -3.5,
-      "gate": -70.9,
-      "lead": 260,
-      "matches": "to show",
-      "mos": 2.45,
-      "sha256": "2369ced7017ac4301ef4f4209739091dbe0f525aba14b858b48827c8daf45ae8",
-      "source": "En-uk-to show.ogg"
-    },
     "to sleep": {
-      "author": "Association Shtooka, Judith Franck",
+      "author": "Wodencafe",
       "file": "words/to_sleep.mp3",
-      "gain": -0.1,
-      "gate": -64.4,
-      "lead": 230,
+      "gain": 9.9,
+      "gate": -69.2,
+      "lead": 170,
       "matches": "to sleep",
-      "mos": 2.79,
-      "sha256": "d32e311076dc2dbe0a5e8bb029730fc086d085218f17ab071a402bfe3e3b5bc6",
-      "source": "En-uk-to sleep.ogg"
-    },
-    "to speak": {
-      "author": "Association Shtooka, Judith Franck",
-      "file": "words/to_speak.mp3",
-      "gain": 2.2,
-      "gate": -68.8,
-      "lead": 240,
-      "matches": "to speak",
-      "mos": 2.46,
-      "sha256": "6c8f4cf33eb82090f495d0a7b20219978b501be86f6a15a79017301509c17f2e",
-      "source": "En-uk-to speak.ogg"
+      "mos": 3.11,
+      "sha256": "16a2b1e2980ab23d76aaa003174098c9718ab54be08d9335325960d4bb4bf354",
+      "source": "LL-Q1860 (eng)-Wodencafe-to sleep.wav"
     },
     "to start": {
       "author": "Association Shtooka, Judith Franck",
@@ -10653,54 +10675,6 @@
       "sha256": "981cc90464dda746d4e473cf2873c568d4fd54ab8444c72e9bece8f3210179ff",
       "source": "En-uk-to stop.ogg"
     },
-    "to study": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1250,
-      "file": "words/to_study.mp3",
-      "gain": -0.6,
-      "gate": -73.9,
-      "lead": 260,
-      "matches": "to study",
-      "mos": 2.69,
-      "sha256": "c9fef60d6a874d1c0983841c91826564fe0bde4bc93394d3b82cc53e336561c0",
-      "source": "En-uk-to study.ogg"
-    },
-    "to take": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1080,
-      "file": "words/to_take.mp3",
-      "gain": -3.8,
-      "gate": -69.1,
-      "lead": 70,
-      "matches": "to take",
-      "mos": 2.77,
-      "sha256": "4e0b69862541f0f49caa8f68f298e63e8eb60a26c21797b175dcf643b8fb13e6",
-      "source": "En-uk-to take.ogg"
-    },
-    "to talk": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1290,
-      "file": "words/to_talk.mp3",
-      "gain": -1.8,
-      "gate": -70.8,
-      "lead": 270,
-      "matches": "to talk",
-      "mos": 2.88,
-      "sha256": "47e0ff40dad64ecb4cb8a2780c6809e5fab62a4cf08af5cd225b1d48e03e0350",
-      "source": "En-uk-to talk.ogg"
-    },
-    "to translate": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1420,
-      "file": "words/to_translate.mp3",
-      "gain": -0.5,
-      "gate": -65.7,
-      "lead": 130,
-      "matches": "to translate",
-      "mos": 2.81,
-      "sha256": "cf2e9835fe64b4aaf736cbf6544414b58616333162a24344b91f8c8a527eb678",
-      "source": "En-uk-to translate.ogg"
-    },
     "to try": {
       "author": "Association Shtooka, Judith Franck",
       "end": 1270,
@@ -10712,39 +10686,6 @@
       "mos": 3.06,
       "sha256": "63229fb906635f98ceede11b43151ad56cd14612cce6c9977bcebd9d48940241",
       "source": "En-uk-to try.ogg"
-    },
-    "to understand": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1640,
-      "file": "words/to_understand.mp3",
-      "gain": -1.5,
-      "gate": -67.8,
-      "matches": "to understand",
-      "mos": 2.7,
-      "sha256": "9dcaa0eb27b8d10d06cab5e55cf5c9fa76ff0bd85e486c6ee6475dfd6a40a636",
-      "source": "En-uk-to understand.ogg"
-    },
-    "to wait": {
-      "author": "Association Shtooka, Judith Franck",
-      "file": "words/to_wait.mp3",
-      "gain": -1.4,
-      "gate": -71.1,
-      "lead": 240,
-      "matches": "to wait",
-      "mos": 2.25,
-      "sha256": "ef60011b0ce8e5da4491a5b646cae551133f700e9908fdb27c7c31521c2d6ada",
-      "source": "En-uk-to wait.ogg"
-    },
-    "to wake up": {
-      "author": "Association Shtooka, Judith Franck",
-      "file": "words/to_wake_up.mp3",
-      "gain": -0.5,
-      "gate": -69.8,
-      "lead": 260,
-      "matches": "to wake up",
-      "mos": 2.56,
-      "sha256": "5005d9fbc139e0436880469fde8aaa7281ac521eedcfe9fb8fecd8838ab74018",
-      "source": "En-uk-to wake up.ogg"
     },
     "to want": {
       "author": "Association Shtooka, Judith Franck",
@@ -10965,6 +10906,17 @@
       "sha256": "93c9761b095c7387e6a047010d777188e4c4e0866e0a4752012e47bc0f5a7511",
       "source": "En-us-training.ogg"
     },
+    "translate": {
+      "author": "Dvortygirl",
+      "file": "words/translate.mp3",
+      "gain": -2.7,
+      "gate": -63.5,
+      "lead": 290,
+      "matches": "translate",
+      "mos": 3.27,
+      "sha256": "2c84180fa8400dfb6538581806d8aa90a973437a8925defae50f9b7b4b5f1951",
+      "source": "En-us-translate.ogg"
+    },
     "travel": {
       "author": "Dvortygirl",
       "file": "words/travel.mp3",
@@ -11065,6 +11017,17 @@
       "mos": 2.86,
       "sha256": "35c5121c52941ac42019a81ba573d7661577499a713fc4adcd7ffb09d7b1a216",
       "source": "LL-Q1860 (eng)-Flame, not lame-undershirt.wav"
+    },
+    "understand": {
+      "author": "Wodencafe",
+      "file": "words/understand.mp3",
+      "gain": 9.2,
+      "gate": -86.9,
+      "lead": 180,
+      "matches": "understand",
+      "mos": 3.15,
+      "sha256": "0f62a8095a9b86ed355265bf5f24cd02f5bf2770bec24aa40ad06fa2305bdc76",
+      "source": "LL-Q1860 (eng)-Wodencafe-understand.wav"
     },
     "underwear": {
       "author": "Dvortygirl",
@@ -11282,6 +11245,17 @@
       "sha256": "ab2c1216f985b67f396923befd7e4558697c3d40b72c6c000286f41b282078f0",
       "source": "En-us-vote.ogg"
     },
+    "wait": {
+      "author": "Wodencafe",
+      "file": "words/wait.mp3",
+      "gain": 6.3,
+      "gate": -85.9,
+      "lead": 170,
+      "matches": "wait",
+      "mos": 3.07,
+      "sha256": "b5763014a471c1286794cca17a8b96a048b810eee09e3b4ad83c638ff8660077",
+      "source": "LL-Q1860 (eng)-Wodencafe-wait.wav"
+    },
     "waiter": {
       "author": "Dvortygirl",
       "file": "words/waiter.mp3",
@@ -11303,6 +11277,17 @@
       "mos": 2.81,
       "sha256": "5f732656fcbc888b5febefed87bfc927244899991e35870ba7c9aad7765293c7",
       "source": "LL-Q1860 (eng)-Vealhurl-waiting room.wav"
+    },
+    "wake up": {
+      "author": "Usmaan",
+      "file": "words/wake_up.mp3",
+      "gain": 1.5,
+      "gate": -93.2,
+      "lead": 160,
+      "matches": "wake up",
+      "mos": 2.87,
+      "sha256": "d22581648a4849143e104e5f6eb3b295386f245c512ae4ebea221901724f402c",
+      "source": "LL-Q1860 (eng)-Usmaan (Middle river exports)-wake up.wav"
     },
     "walk": {
       "author": "Dvortygirl",
