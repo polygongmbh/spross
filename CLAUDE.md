@@ -51,12 +51,11 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - A user-facing change lands on iOS and Android in the same sweep; a change to shared/parity-bearing UI checks both
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; 
-  an entry only for what the learner needs to know to use the app — a new shelf, a capability, a scheduling change —
-  never a single card, a recording swap or a wording, layout or naming change;
-  one entry per sweep, in the words a learner sees and hears.
+  an entry only for what the learner needs to know - a new shelf, a capability, a major change,
+  never small corrections to the catalog, behavior, audio, layout or naming;
   New entries go under the top `## Unreleased` heading; `docs/release.md` reviews them at the cut.
-- Changelog and backlog entries should be just one line with one sentence for bullet points, 
-  explanations should live in commit messages and only in the file on absolute exceptions.
+- Changelog and backlog entries are one line with one sentence for bullet points, 
+  explanations live in commit messages and only in the file when justified.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Commit with `git commit --only -- <paths>`: `git add` + `git commit` carries every other staged
   path, `--only` skips untracked ones (`git add` those first), and check before touching history.
@@ -107,25 +106,10 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 ## Invariants
 
-> **Pre-production — no live user data.** Byte-exact encoding and scheduling-history
-> continuity are not constraints; migrations need only behavioral (golden-vector) parity.
-> The notes below are current design, not data-preservation vows.
-
-- Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
-  only the app target links Kotlin (`docs/build.md`).
 - A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
   (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
-  nothing is written twice across platforms: any value, proportion, curve, timeline, threshold or random draw
-  both would compute — a shape's geometry and an animation's timing included — lives in kern once;
-  a platform holds only what needs its own API — issuing draw calls, running animations, focus, haptics,
-  audio playback, a11y and string tables — and converts kern's units; sameness is the CONTROLS, never the content they
-  hold, and a second cut is licensed by a parameter attempted, never by an argument.
-- `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
-- **Introduction = first answer**, never at composition — budget accounting relies on this.
-- **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
-  production and recognition are presentations of it; every answer is a review, nothing UI-only.
-- Seed content changes go through verification sweeps before shipping.
-- The kern takes `nowEpochMillis` + `tzId` as parameters, never reads the clock (keeps it pure/testable).
+  nothing is written twice across platforms: any value, proportion, curve, timeline, threshold both need live in kern once;
+  a platform holds only what needs its own API and converts kern's units.
 
 ## Extended docs
 

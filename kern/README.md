@@ -210,7 +210,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   A round's budget reads reviews alone (`answersOn`), so drilling never eats the day's round.
   Every other bucket (`activeCount`, `dueCount`, the areas) stays scoped to the join in view.
   `WidgetSnapshotBuilder.build` takes the same parameter (`../docs/snapshots.md`).
-- **Introduction is the card's first answer.**
+- **Introduction is the card's first answer**, never its composition into a round —
+  budget accounting relies on this.
   `queued` holds card ids, stored oldest-queued first;
   queued cards lead composition **most recently queued first**
   (`Growth.queuedEligible` reverses the list),
