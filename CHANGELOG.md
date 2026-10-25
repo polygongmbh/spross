@@ -28,6 +28,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
 - Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
 - A German or French reflexive verb with no good recording of its own now plays one of the verb without "sich" or "se".
+- German "sich irren" now plays a clearer recording.
 
 ## 8.7.0 — 2026-10-09
 

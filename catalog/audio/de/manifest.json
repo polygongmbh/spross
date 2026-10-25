@@ -11442,6 +11442,17 @@
       "sha256": "a4321b85d5d529775e1ae69d1f659111fb2fd0304e5a101eda7dc444b44530d2",
       "source": "De-irgendjemand.ogg"
     },
+    "irren": {
+      "author": "Jeuwre",
+      "end": 1330,
+      "file": "words/irren.mp3",
+      "gain": -4.2,
+      "lead": 440,
+      "matches": "irren",
+      "mos": 2.88,
+      "sha256": "e349a60f0682cc0e4275614760bc0421c8b75d4ad247ec1102a6f57c48ece53d",
+      "source": "De-Irren.ogg"
+    },
     "ja": {
       "author": "Jeuwre",
       "end": 1450,
@@ -16946,17 +16957,6 @@
       "mos": 2.79,
       "sha256": "feca6eb08557dda91de346aaa38c64344d4aff543d40b685e8102999e5e03516",
       "source": "LL-Q188 (deu)-Natschoba-sich fühlen.wav"
-    },
-    "sich irren": {
-      "author": "Natschoba",
-      "file": "words/sich_irren.mp3",
-      "gain": 0.6,
-      "gate": -73.1,
-      "lead": 100,
-      "matches": "sich irren",
-      "mos": 3.03,
-      "sha256": "a65021950bbf990b810116370a77f2a30792a32eeab38e80fec5b811d9acfada",
-      "source": "LL-Q188 (deu)-Natschoba-sich irren.wav"
     },
     "sich verabschieden": {
       "author": "Natschoba",
