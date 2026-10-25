@@ -1988,6 +1988,17 @@
       "sha256": "6a9b03b750d5117544e7cf2f13040b26db18254e5be9cb8a44190b489c898b0b",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-baja.wav"
     },
+    "bajar": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/bajar.mp3",
+      "gain": 1.3,
+      "gate": -73.4,
+      "lead": 180,
+      "matches": "bajar",
+      "mos": 3.21,
+      "sha256": "dc1d4b147474ea9f32618385c7952d2901691b2903ba2d31b07d9d7862a77b7c",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bajar.wav"
+    },
     "bajo": {
       "author": "Eavqwiki",
       "file": "words/bajo.mp3",
@@ -2656,6 +2667,17 @@
       "mos": 3.23,
       "sha256": "f2eea3bd594a3fe2d8400a0cf07ee69dbb8076ee2e5b3d2267f06e0bfcd16a3a",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camarero.wav"
+    },
+    "cambiar": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/cambiar.mp3",
+      "gain": -1.5,
+      "gate": -70.0,
+      "lead": 280,
+      "matches": "cambiar",
+      "mos": 2.63,
+      "sha256": "5b5b73075159af4a3b2dc604f956f236c20401175b84b71b536c07fd9bf19a68",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cambiar.wav"
     },
     "cambio": {
       "author": "AdrianAbdulBaha",
@@ -4047,6 +4069,18 @@
       "sha256": "b12cbb77c9e0c81c242da9360131ef1f1d21c7d94b00c631403f6f3e0063d0ef",
       "source": "LL-Q1321 (spa)-Marreromarco-despertarse.wav"
     },
+    "desvestir": {
+      "author": "Emanuelps27",
+      "cap": 3.8,
+      "file": "words/desvestir.mp3",
+      "gain": 2.7,
+      "gate": -60.5,
+      "lead": 170,
+      "matches": "desvestir",
+      "mos": 2.83,
+      "sha256": "155d9808d19806fc0341b9a288605b6fe12102c2a0033ecc81a120dac9386ae6",
+      "source": "LL-Q1321 (spa)-Emanuelps27-desvestir.wav"
+    },
     "detrás": {
       "author": "AdrianAbdulBaha",
       "file": "words/detru00e1s.mp3",
@@ -4659,6 +4693,17 @@
       "mos": 2.11,
       "sha256": "c615be1c0687748679f83f8f15bb98ae66624e3cab5ade95a089b9ce86c4ccaf",
       "source": "LL-Q1321 (spa)-Marreromarco-equipaje.wav"
+    },
+    "equivocar": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/equivocar.mp3",
+      "gain": 4.0,
+      "gate": -71.2,
+      "lead": 210,
+      "matches": "equivocar",
+      "mos": 3.16,
+      "sha256": "99c802c0d478a5f5fc0d40ad3d38116533cef3ddc10f7849c8e0ccc20a0723af",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-equivocar.wav"
     },
     "error": {
       "author": "AdrianAbdulBaha",
@@ -6620,6 +6665,17 @@
       "sha256": "3c92e1fe36ee333ecf72c15bdb1a9f9e4a44f988ebe4d7507803a74736bd4ca0",
       "source": "LL-Q1321 (spa)-Eavqwiki-manzana.wav"
     },
+    "maquillar": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/maquillar.mp3",
+      "gain": 1.9,
+      "gate": -75.4,
+      "lead": 220,
+      "matches": "maquillar",
+      "mos": 3.4,
+      "sha256": "5f173a856c741263f3d6f7750e27909d23918dfd622631bd12a8b1f05470b31a",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-maquillar.wav"
+    },
     "mar": {
       "author": "GlyphEnjoyer",
       "file": "words/mar.mp3",
@@ -8084,6 +8140,17 @@
       "sha256": "20b485797f9eba66c5cdcc1c71b01275bb5e0ece994442801af15fefec112bab",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pedir.wav"
     },
+    "peinar": {
+      "author": "Marreromarco",
+      "file": "words/peinar.mp3",
+      "gain": 3.1,
+      "gate": -65.4,
+      "lead": 220,
+      "matches": "peinar",
+      "mos": 1.55,
+      "sha256": "11e298987cbd422e692113f749cc7ecfad58b2531cea0a1ae1914d094fe4791f",
+      "source": "LL-Q1321 (spa)-Marreromarco-peinar.wav"
+    },
     "pelar": {
       "author": "Marreromarco",
       "file": "words/pelar.mp3",
@@ -8909,6 +8976,17 @@
       "sha256": "9b2e5f7b28f57c1f32097936ccd6cb3e0a15858bc69686e7d2d9c331f2480823",
       "source": "LL-Q1321 (spa)-Eavqwiki-queso.wav"
     },
+    "quitar": {
+      "author": "Marreromarco",
+      "file": "words/quitar.mp3",
+      "gain": 1.5,
+      "gate": -62.1,
+      "lead": 200,
+      "matches": "quitar",
+      "mos": 2.22,
+      "sha256": "1c9b0b8067feb5e9a4c35efc6cbad0e1a9dfad39963ab7c508009d12cc09e4ed",
+      "source": "LL-Q1321 (spa)-Marreromarco-quitar.wav"
+    },
     "quizás": {
       "author": "Marreromarco",
       "file": "words/quizu00e1s.mp3",
@@ -9041,6 +9119,17 @@
       "sha256": "1b5b1d4b6d8b28a8fd02be285756c7ad0dbb4187ce5abec6a3bc2110a656bca3",
       "source": "LL-Q1321 (spa)-Marreromarco-recuerdo.wav"
     },
+    "recuperar": {
+      "author": "Marreromarco",
+      "file": "words/recuperar.mp3",
+      "gain": 3.8,
+      "gate": -70.1,
+      "lead": 230,
+      "matches": "recuperar",
+      "mos": 2.39,
+      "sha256": "6a0adcffbc968cd4e2f2d6695b7f39798c9abfe0fedf72b9423d43db06412d4d",
+      "source": "LL-Q1321 (spa)-Marreromarco-recuperar.wav"
+    },
     "regalar": {
       "author": "AdrianAbdulBaha",
       "file": "words/regalar.mp3",
@@ -9073,6 +9162,17 @@
       "mos": 2.85,
       "sha256": "879f2383a0882f73c7f2024bd2e21885a520927e12b1166d1b5fd01db4af454a",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-regatear.wav"
+    },
+    "relajar": {
+      "author": "Wikipedian-walker",
+      "file": "words/relajar.mp3",
+      "gain": 5.7,
+      "gate": -82.7,
+      "lead": 110,
+      "matches": "relajar",
+      "mos": 2.96,
+      "sha256": "0a040c25739329f6e7b751d0ea8b100301d70b75d58720a07cdf77acf4b98f6d",
+      "source": "LL-Q1321 (spa)-Wikipedian-walker-relajar.wav"
     },
     "reloj": {
       "author": "AdrianAbdulBaha",
@@ -9227,6 +9327,28 @@
       "mos": 3.23,
       "sha256": "1abacefc6b5f79bbf1a0270b35017699d7ea11ef1f5a779259fa590119517620",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-restaurante.wav"
+    },
+    "reunir": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/reunir.mp3",
+      "gain": 5.0,
+      "gate": -69.4,
+      "lead": 160,
+      "matches": "reunir",
+      "mos": 2.83,
+      "sha256": "146bc2eb182a61b3beef7243101c6d76c839b64528526e0be64a7abd4c6b2414",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-reunir.wav"
+    },
+    "reír": {
+      "author": "Anonymât",
+      "file": "words/reu00edr.mp3",
+      "gain": 2.9,
+      "gate": -55.9,
+      "lead": 190,
+      "matches": "reír",
+      "mos": 2.7,
+      "sha256": "d80119f6bf1f49d73f1392dec5585f6dd13a340103d1c47cc3d1e946662653ff",
+      "source": "LL-Q1321 (spa)-Anonymât (Kvardek du)-reír.wav"
     },
     "rico": {
       "author": "AdrianAbdulBaha",
@@ -9551,6 +9673,17 @@
       "sha256": "e3ecd6a93fc6e8f72cae23eaf42d265b12246c42aaf7e5524b922f90a46b127b",
       "source": "LL-Q1321 (spa)-Marreromarco-sazonar.wav"
     },
+    "secar": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/secar.mp3",
+      "gain": 0.1,
+      "gate": -72.8,
+      "lead": 190,
+      "matches": "secar",
+      "mos": 3.32,
+      "sha256": "c4a2b6ec0682d574cd525eae55aba8e73a422481415d8705a2ad89654908f325",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-secar.wav"
+    },
     "seco": {
       "author": "Rodelar",
       "file": "words/seco.mp3",
@@ -9650,6 +9783,17 @@
       "mos": 2.88,
       "sha256": "8989cacd83733ea0dfda487a36ec146147c274044fc54c251416342096f02ac8",
       "source": "LL-Q1321 (spa)-Sinaloa-sentarse.wav"
+    },
+    "sentir": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/sentir.mp3",
+      "gain": 5.0,
+      "gate": -71.7,
+      "lead": 220,
+      "matches": "sentir",
+      "mos": 3.23,
+      "sha256": "29306ae04319f0306ab285ee205ea040ee02c55eec73e9670b7c577125c186b5",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sentir.wav"
     },
     "ser humano": {
       "author": "Rodelar",
@@ -9945,6 +10089,17 @@
       "mos": 3.05,
       "sha256": "80ae2fbbe79d578b196d103e122b352ac7e896704dedc39f7bd1c88cdd94626a",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-su.wav"
+    },
+    "subir": {
+      "author": "AdrianAbdulBaha",
+      "file": "words/subir.mp3",
+      "gain": 2.7,
+      "gate": -69.9,
+      "lead": 120,
+      "matches": "subir",
+      "mos": 2.95,
+      "sha256": "6eff6dc53ae74b2e1acddf02a95a746ba1dceca915441e2711c416a0fc38f56b",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-subir.wav"
     },
     "sucio": {
       "author": "Guergana",
