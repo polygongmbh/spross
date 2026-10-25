@@ -63,7 +63,7 @@ class DrillSuggestionTests {
     fun aNewScriptLeadsWithLettersWhileTheBoxIsYoung() {
         val all = Drill.entries.map { standing(it) }
         assertEquals(
-            DrillSuggestion.Pick(Drill.Letters, Reason.NewScript, -1),
+            DrillSuggestion.Pick(Drill.Letters, Reason.NewScript),
             suggest(all, BoxFacts(settledWords = 0, newScript = true)),
         )
         val pick = suggest(all, BoxFacts(settledWords = 0, newScript = false))
@@ -83,7 +83,7 @@ class DrillSuggestionTests {
     fun withNothingSteeringTheReasonIsHowLongAgoItRan() {
         val settled = BoxFacts(settledWords = 400, newScript = false)
         val pick = suggest(listOf(standing(Drill.Countries, ranOn = 15), standing(Drill.Dates, ranOn = 20)), settled)
-        assertEquals(DrillSuggestion.Pick(Drill.Countries, Reason.NotLately, 5), pick)
+        assertEquals(DrillSuggestion.Pick(Drill.Countries, Reason.NotLately), pick)
         val today = suggest(listOf(standing(Drill.Countries, ranOn = 20)), settled)
         assertEquals(Reason.Variety, today?.reason)
     }

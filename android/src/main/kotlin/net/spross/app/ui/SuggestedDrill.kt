@@ -62,6 +62,6 @@ internal fun reason(chrome: Chrome, pick: DrillSuggestion.Pick): String = when (
     DrillSuggestion.Reason.EarlyNumbers -> chrome.homeSuggestionReasonEarlyNumbers
     DrillSuggestion.Reason.WordsSettled -> chrome.homeSuggestionReasonWordsSettled
     DrillSuggestion.Reason.NeverRun -> chrome.homeSuggestionReasonNeverRun
-    DrillSuggestion.Reason.NotLately -> chrome.homeSuggestionReasonNotLately.format(pick.daysSinceRun)
+    DrillSuggestion.Reason.NotLately -> chrome.homeSuggestionReasonNotLately
     DrillSuggestion.Reason.Variety -> chrome.homeSuggestionReasonVariety
 }

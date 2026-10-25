@@ -492,7 +492,7 @@ interface Chrome {
     val homeSuggestionReasonEarlyNumbers: String
     val homeSuggestionReasonWordsSettled: String
     val homeSuggestionReasonNeverRun: String
-    val homeSuggestionReasonNotLately: String   // %d
+    val homeSuggestionReasonNotLately: String
     val homeSuggestionReasonVariety: String
     val homeSuggestionWordsInstead: String
 

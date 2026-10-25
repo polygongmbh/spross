@@ -107,15 +107,15 @@ object DrillSuggestion {
         WordsSettled,
         NeverRun,
 
-        /** Not run for [Pick.daysSinceRun] days, at least two. */
+        /** Not run for two local days or more. */
         NotLately,
 
         /** Nothing stands out: the pick is for the change of pace itself. */
         Variety,
     }
 
-    /** The named drill and why; [daysSinceRun] is -1 where it never ran. */
-    data class Pick(val drill: Drill, val reason: Reason, val daysSinceRun: Int)
+    /** The named drill and why. */
+    data class Pick(val drill: Drill, val reason: Reason)
 
     /** One offered drill as the rule weighs it. */
     data class Standing(
@@ -204,7 +204,7 @@ object DrillSuggestion {
                 days >= 2 -> Reason.NotLately
                 else -> Reason.Variety
             }
-            return Pick(standing.drill, reason, days ?: -1)
+            return Pick(standing.drill, reason)
         }
     }
 

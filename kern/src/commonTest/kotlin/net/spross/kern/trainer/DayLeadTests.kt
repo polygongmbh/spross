@@ -8,7 +8,7 @@ import net.spross.kern.session.SessionOfferKind
 /** What Home offers first, on the three typical days. */
 class DayLeadTests {
 
-    private val pick = DrillSuggestion.Pick(Drill.Numbers, DrillSuggestion.Reason.Variety, -1)
+    private val pick = DrillSuggestion.Pick(Drill.Numbers, DrillSuggestion.Reason.Variety)
 
     private fun offer(kind: SessionOfferKind, due: Int, doneToday: Int) =
         SessionOffer(kind, minOf(due, 20), 0, 0, 0, 0, doneToday, dueNow = due)

@@ -3547,19 +3547,19 @@
         }
       }
     },
-    "home.suggestion.reason.notLately %lld" : {
-      "comment" : "Why a drill is suggested: %lld = local days since its last run, always 2 or more.",
+    "home.suggestion.reason.notLately" : {
+      "comment" : "Why a drill is suggested: it has not run for a couple of days or more — gentle, never a count.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seit %lld Tagen nicht geübt"
+            "value" : "Schon eine Weile her"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not practiced in %lld days"
+            "value" : "It's been a while"
           }
         }
       }

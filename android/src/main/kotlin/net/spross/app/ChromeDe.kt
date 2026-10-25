@@ -471,7 +471,7 @@ internal object ChromeDe : Chrome {
     override val homeSuggestionReasonEarlyNumbers = "Zahlen braucht man von Anfang an"
     override val homeSuggestionReasonWordsSettled = "Genug Wörter sitzen, um damit zu knobeln"
     override val homeSuggestionReasonNeverRun = "Noch nie ausprobiert"
-    override val homeSuggestionReasonNotLately = "Seit %d Tagen nicht geübt"
+    override val homeSuggestionReasonNotLately = "Schon eine Weile her"
     override val homeSuggestionReasonVariety = "Zur Abwechslung"
     override val homeSuggestionWordsInstead = "Lieber Wörter üben"
     override val listenTitle = "Wörter hören"

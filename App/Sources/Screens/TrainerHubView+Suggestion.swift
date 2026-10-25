@@ -54,7 +54,7 @@ extension DrillSuggestion.Pick {
         case .earlyNumbers: return Text("home.suggestion.reason.earlyNumbers")
         case .wordsSettled: return Text("home.suggestion.reason.wordsSettled")
         case .neverRun: return Text("home.suggestion.reason.neverRun")
-        case .notLately: return Text("home.suggestion.reason.notLately \(Int(daysSinceRun))")
+        case .notLately: return Text("home.suggestion.reason.notLately")
         case .variety: return Text("home.suggestion.reason.variety")
         }
     }
