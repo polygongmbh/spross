@@ -76,8 +76,9 @@ BUNDLE_ID=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.pl
 
 xcrun simctl bootstatus "$UDID" -b >/dev/null 2>&1 || xcrun simctl boot "$UDID"
 # why: Xcode 27 replaced Simulator.app with DeviceHub.app; older Xcodes only have the former.
-open -a DeviceHub --args -CurrentDeviceUDID "$UDID" 2>/dev/null ||
-  open -a Simulator --args -CurrentDeviceUDID "$UDID"
+# -g opens the device window without pulling the app over whatever the user is working in.
+open -g -a DeviceHub --args -CurrentDeviceUDID "$UDID" 2>/dev/null ||
+  open -g -a Simulator --args -CurrentDeviceUDID "$UDID"
 
 [ "$CLEAN" = 1 ] && xcrun simctl uninstall "$UDID" "$BUNDLE_ID" >/dev/null 2>&1
 xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
