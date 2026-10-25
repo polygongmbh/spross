@@ -61,7 +61,15 @@ mkdir -p "$DEST"
 STARTED="$DEST/.started"
 touch "$STARTED"
 
-if ! ./gradlew ":kern:${LINK}${SLICE}"; then
+# why: AGP flags every configuration the configuration cache resolves while it builds
+# the task graph (four lines each, no switch through AGP 9.4); dropping them keeps
+# real warnings visible. The subshell carries Gradle's status past the pipe.
+STATUS="$DEST/.gradle-status"
+{ ./gradlew ":kern:${LINK}${SLICE}" 2>&1; echo $? > "$STATUS"; } | awk '
+  / was resolved during configuration time\.$/ { skip = 3; next }
+  skip > 0 { skip--; next }
+  { print; fflush() }'
+if [ "$(cat "$STATUS")" != 0 ]; then
   echo "error: build-kern.sh: Gradle :kern:${LINK}${SLICE} FAILED — SprossKern.framework not updated" >&2
   exit 1
 fi
@@ -76,4 +84,4 @@ printf '%s\n' "$SLICE" > "$STAMP"
 # why: the stamp carries the build's START time, so a source saved while Gradle
 # ran is newer than the stamp and the next build picks it up instead of skipping.
 touch -r "$STARTED" "$STAMP"
-rm -f "$STARTED"
+rm -f "$STARTED" "$STATUS"
