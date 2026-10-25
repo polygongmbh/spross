@@ -5,6 +5,7 @@ What a file says it is (license, speaker, transcode URL) and what it says (a Sht
 and re-asking for every candidate is what Commons throttles; a transcode fetched once is kept in
 `fetch-cache/` by its Commons name, so a rerun of a sweep fetches only what it has not seen.
 """
+import hashlib
 import html
 import http.client
 import json
@@ -227,9 +228,24 @@ def fetch(url, dest):
     return True
 
 
+_cached = None
+
+
 def fetched(name, url):
-    """The transcode of Commons file [name], fetched once into `fetch-cache/`; None where there is none."""
-    dest = os.path.join(WORKSPACE, 'fetch-cache', name.replace('/', '_') + '.mp3')
-    if os.path.exists(dest) or fetch(url, dest):
+    """The transcode of Commons file [name], fetched once into `fetch-cache/`; None where there is none.
+
+    A name another cached one spells in other case is filed under a name of its own: on a
+    case-insensitive disk (APFS) `De-irren.ogg` would otherwise read `De-Irren.ogg`'s bytes.
+    """
+    global _cached
+    folder = os.path.join(WORKSPACE, 'fetch-cache')
+    if _cached is None:
+        _cached = set(os.listdir(folder)) if os.path.isdir(folder) else set()
+    base = name.replace('/', '_') + '.mp3'
+    if base not in _cached and base.lower() in {held.lower() for held in _cached}:
+        base = '%s.%s.mp3' % (name.replace('/', '_'), hashlib.sha1(name.encode('utf-8')).hexdigest()[:8])
+    dest = os.path.join(folder, base)
+    if base in _cached or fetch(url, dest):
+        _cached.add(base)
         return dest
     return None
