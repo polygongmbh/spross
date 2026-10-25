@@ -16,6 +16,8 @@
     "Jelkner": "CC BY-SA 3.0",
     "Jjamesryan": "CC0",
     "Knabrupt": "CC BY-SA 4.0",
+    "Lepticed7": "CC BY-SA 4.0",
+    "Marie-Sarah": "CC BY-SA 4.0",
     "Muke": "Public domain",
     "Mélange a trois": "CC BY-SA 4.0",
     "NaomiAmethyst": "CC BY-SA 4.0",
@@ -1533,6 +1535,17 @@
       "sha256": "b797a3d1e48d72fc5afb1e3636de03f57159b81f05134852ab19988c1443d7c0",
       "source": "En-us-apartment.ogg"
     },
+    "appear": {
+      "author": "Dvortygirl",
+      "file": "words/appear.mp3",
+      "gain": 2.9,
+      "gate": -66.4,
+      "lead": 30,
+      "matches": "appear",
+      "mos": 3.26,
+      "sha256": "fd2850a55779a2a3680e6c3f5675856efd62b09bfd917fb0488777f672776f56",
+      "source": "En-us-appear.ogg"
+    },
     "appendix": {
       "author": "Dvortygirl",
       "file": "words/appendix.mp3",
@@ -2090,6 +2103,17 @@
       "sha256": "1b89cbc7f2968ce505a436b08018ba03c557e33a2ea313743550168ca11406ea",
       "source": "En-us-blood.ogg"
     },
+    "blouse": {
+      "author": "Arlo Barnes",
+      "file": "words/blouse.mp3",
+      "gain": 9.8,
+      "gate": -88.2,
+      "lead": 240,
+      "matches": "blouse",
+      "mos": 3.19,
+      "sha256": "1f177bdd843d96d86c3f1a64204f458e73a71e1475b1c16b7ea82ddbf3d376a7",
+      "source": "LL-Q1860 (eng)-Arlo Barnes-blouse.wav"
+    },
     "blue": {
       "author": "Dvortygirl",
       "file": "words/blue.mp3",
@@ -2152,6 +2176,17 @@
       "sha256": "9d80ddec2ba8b3bc9080014c7f59925fc867848d0fc02bf6b16f02e32357fc93",
       "source": "En-us-book.ogg"
     },
+    "boot": {
+      "author": "Dvortygirl",
+      "file": "words/boot.mp3",
+      "gain": 2.8,
+      "gate": -64.3,
+      "lead": 50,
+      "matches": "boot",
+      "mos": 2.88,
+      "sha256": "eb130643bc7c0d97a5c868e60f9a14030621bd291fa372d95ed8a58517d15c0b",
+      "source": "En-us-boot.ogg"
+    },
     "border": {
       "author": "Dvortygirl",
       "file": "words/border.mp3",
@@ -2193,6 +2228,17 @@
       "mos": 2.86,
       "sha256": "9159474991e501d6d8d28bb297c14bf1dda8711874490e7c13b62c12411e7fdb",
       "source": "En-us-boy.ogg"
+    },
+    "bra": {
+      "author": "Wodencafe",
+      "file": "words/bra.mp3",
+      "gain": 5.4,
+      "gate": -76.7,
+      "lead": 180,
+      "matches": "bra",
+      "mos": 3.02,
+      "sha256": "f1317c04f4c0f405b9262551139046095a474c1afa9a2dcc55961bb57ba62aa7",
+      "source": "LL-Q1860 (eng)-Wodencafe-bra.wav"
     },
     "brain": {
       "author": "Dvortygirl",
@@ -2387,6 +2433,17 @@
       "sha256": "e90f58354b1eeb791415405a60cfeee8f24338c29f120e7cb1b9cdfe114e5761",
       "source": "En-us-butter.ogg"
     },
+    "button": {
+      "author": "Dvortygirl",
+      "file": "words/button.mp3",
+      "gain": -5.9,
+      "gate": -61.7,
+      "lead": 40,
+      "matches": "button",
+      "mos": 2.99,
+      "sha256": "27b687082a97121b1c0fdb93361996831f1634b8f99ddf1ce0b6bfa6ab406c7c",
+      "source": "En-us-button.ogg"
+    },
     "bye": {
       "author": "Dvortygirl",
       "file": "words/bye.mp3",
@@ -2473,6 +2530,17 @@
       "mos": 3.06,
       "sha256": "be31760368939dea36944cdccf190d3e0c3facee409a65113cbe18d605aed456",
       "source": "LL-Q1860 (eng)-Grendelkhan-cancel.wav"
+    },
+    "cap": {
+      "author": "Grendelkhan",
+      "file": "words/cap.mp3",
+      "gain": 0.7,
+      "gate": -77.6,
+      "lead": 150,
+      "matches": "cap",
+      "mos": 2.37,
+      "sha256": "3bb515a7861476f61bc5f96cee79e45b218d836dcc4d03019e0aa4a2e72abdb7",
+      "source": "LL-Q1860 (eng)-Grendelkhan-cap.wav"
     },
     "car": {
       "author": "Dvortygirl",
@@ -2834,6 +2902,28 @@
       "mos": 2.95,
       "sha256": "71e489c38049be849ada1b2a4692595a664c014bae58552695fff2f2e4be3015",
       "source": "En-us-clean.ogg"
+    },
+    "click": {
+      "author": "Lepticed7",
+      "file": "words/click.mp3",
+      "gain": 10.0,
+      "gate": -80.8,
+      "lead": 150,
+      "matches": "click",
+      "mos": 2.52,
+      "sha256": "9caf8aad315b180f0fd4292dc135eaceaaff388871fca40e67e55217e1301e59",
+      "source": "LL-Q1860 (eng)-Lepticed7-click.wav"
+    },
+    "clock": {
+      "author": "Arlo Barnes",
+      "file": "words/clock.mp3",
+      "gain": 10.8,
+      "gate": -91.7,
+      "lead": 210,
+      "matches": "clock",
+      "mos": 2.82,
+      "sha256": "799b951e0a68f01e6bf88cf5a0ceac071f3601b6b88e9c126bb64d380d5dbc2a",
+      "source": "LL-Q1860 (eng)-Arlo Barnes-clock.wav"
     },
     "clothes": {
       "author": "Dvortygirl",
@@ -4076,6 +4166,17 @@
       "sha256": "38f56a274aa5d706983520b11422f3e879c44c12f844b42cbff470cc3a93a814",
       "source": "En-us-face.ogg"
     },
+    "fall asleep": {
+      "author": "Flame, not lame",
+      "file": "words/fall_asleep.mp3",
+      "gain": 4.7,
+      "gate": -63.8,
+      "lead": 120,
+      "matches": "fall asleep",
+      "mos": 2.4,
+      "sha256": "d0f0b37c960bc20e690ab5cd7b89dd02ba70ca4e55f7bd6742ec1c484f4595f8",
+      "source": "LL-Q1860 (eng)-Flame, not lame-fall asleep.wav"
+    },
     "families": {
       "author": "Persent101",
       "file": "words/families.mp3",
@@ -4455,6 +4556,17 @@
       "mos": 2.7,
       "sha256": "cbe9dc0db5297a6b31928c4590c6d05660c45a32023e11bd53e8dd394320395a",
       "source": "En-us-freedom.ogg"
+    },
+    "freeze": {
+      "author": "Grendelkhan",
+      "file": "words/freeze.mp3",
+      "gain": 7.2,
+      "gate": -80.9,
+      "lead": 190,
+      "matches": "freeze",
+      "mos": 2.76,
+      "sha256": "60fcd69e7e5a342378adfae50929fb23373996f92e428cddb7eda7dd2622f776",
+      "source": "LL-Q1860 (eng)-Grendelkhan-freeze.wav"
     },
     "fresh": {
       "author": "Dvortygirl",
@@ -5484,6 +5596,17 @@
       "sha256": "0ebd75bd9f8624c11bc8fb41c1974270e5f277a441f2fd2953ff17d18b241723",
       "source": "En-us-in.ogg"
     },
+    "in front of": {
+      "author": "Association Shtooka, Judith Franck",
+      "file": "words/in_front_of.mp3",
+      "gain": -1.1,
+      "gate": -69.6,
+      "lead": 30,
+      "matches": "in front of",
+      "mos": 2.99,
+      "sha256": "8b586e3f1343ad2f66df74f129bca52ef44a0581817f9bbb34b2ba3d5d211097",
+      "source": "En-uk-in front of.ogg"
+    },
     "in the past": {
       "author": "Steve Shives",
       "file": "words/in_the_past.mp3",
@@ -5572,6 +5695,17 @@
       "sha256": "fb54d4158e088f60566f71c6e41f2c0bbbea0a06ab20d8ef7c112d1f7f4a6c9e",
       "source": "LL-Q1860 (eng)-Wodencafe-invite.wav"
     },
+    "iron": {
+      "author": "Dvortygirl",
+      "file": "words/iron.mp3",
+      "gain": 3.8,
+      "gate": -66.3,
+      "lead": 70,
+      "matches": "iron",
+      "mos": 3.1,
+      "sha256": "f47ffcaf94c4bc5829364323229d2941e5299fa77224f79e0f90daf3ec0a8b81",
+      "source": "En-us-iron.ogg"
+    },
     "island": {
       "author": "Wodencafe",
       "file": "words/island.mp3",
@@ -5615,6 +5749,17 @@
       "mos": 2.76,
       "sha256": "fc93d4529f6b2b1ffbe99b6b3e724919f12b2bffa677c87a8efe96ecad335463",
       "source": "En-us-jealousy.ogg"
+    },
+    "jeans": {
+      "author": "Wodencafe",
+      "file": "words/jeans.mp3",
+      "gain": 10.4,
+      "gate": -67.3,
+      "lead": 160,
+      "matches": "jeans",
+      "mos": 3.01,
+      "sha256": "50bb278d2eaa82f6368a04953f580b6d976223b6497010b9a18ad7cbecc933a5",
+      "source": "LL-Q1860 (eng)-Wodencafe-jeans.wav"
     },
     "job interview": {
       "author": "Vealhurl",
@@ -7504,6 +7649,17 @@
       "sha256": "416a3118a450fec5ed530209e4d7815255fe9728bb9d9cca5c0c207eef0feb63",
       "source": "En-us-peace.ogg"
     },
+    "peel": {
+      "author": "Wodencafe",
+      "file": "words/peel.mp3",
+      "gain": 10.8,
+      "gate": -79.0,
+      "lead": 120,
+      "matches": "peel",
+      "mos": 3.12,
+      "sha256": "be5ddb500f91a96ba224c6f8d0328f8139c2dbbe2d11de5466be50627381a675",
+      "source": "LL-Q1860 (eng)-Wodencafe-peel.wav"
+    },
     "pen": {
       "author": "Dvortygirl",
       "file": "words/pen.mp3",
@@ -7709,6 +7865,17 @@
       "mos": 2.81,
       "sha256": "a2b6c45c0274c5f8a305c8615c089c7169b031029dd80c23223b2af2f6643dcc",
       "source": "En-us-plug.ogg"
+    },
+    "pocket": {
+      "author": "Dvortygirl",
+      "file": "words/pocket.mp3",
+      "gain": 1.7,
+      "gate": -66.3,
+      "lead": 30,
+      "matches": "pocket",
+      "mos": 3.0,
+      "sha256": "c32f49c5e31580a03809fe7a9f1a761c9f3db88ad375493fa4e893afd631e684",
+      "source": "En-us-pocket.ogg"
     },
     "police": {
       "author": "Dvortygirl",
@@ -8033,6 +8200,17 @@
       "mos": 2.82,
       "sha256": "3f44183aa0c287f3c3c68e1d25cd34221246ed52099ba98cd7e962c363ae1b5c",
       "source": "En-us-rain.ogg"
+    },
+    "raincoat": {
+      "author": "Dvortygirl",
+      "file": "words/raincoat.mp3",
+      "gain": -4.5,
+      "gate": -57.5,
+      "lead": 260,
+      "matches": "raincoat",
+      "mos": 3.04,
+      "sha256": "bb236ffa14a3fb69ae801ab0d8b816b7cd46d39bece7a2a5c5b44f4503c51926",
+      "source": "En-us-raincoat.ogg"
     },
     "razor": {
       "author": "Sylvanmoon",
@@ -8437,6 +8615,17 @@
       "sha256": "9317d36f6eca571a61027a89efb95b68d5dceaaca78b00d539a7c42c4f72b913",
       "source": "LL-Q1860 (eng)-Wodencafe-samosa.wav"
     },
+    "sandal": {
+      "author": "Berrely",
+      "file": "words/sandal.mp3",
+      "gain": -2.3,
+      "gate": -72.7,
+      "lead": 90,
+      "matches": "sandal",
+      "mos": 2.41,
+      "sha256": "9df42267d7949e1afd3d6370a91ccaf358badf44fb0eaa3fe9ee10d3c2d77169",
+      "source": "LL-Q1860 (eng)-Berrely-sandal.wav"
+    },
     "sauce": {
       "author": "Dvortygirl",
       "file": "words/sauce.mp3",
@@ -8481,6 +8670,17 @@
       "sha256": "5529acd2b4e84fe451432e7d14b2712779e5b16c75d39e4c5cc7541732f0061e",
       "source": "En-us-scales.ogg"
     },
+    "scarf": {
+      "author": "Marie-Sarah",
+      "file": "words/scarf.mp3",
+      "gain": 10.6,
+      "gate": -77.7,
+      "lead": 70,
+      "matches": "scarf",
+      "mos": 3.24,
+      "sha256": "1504ee8883371e1b70623186955e6417fbaa80c597229cfcede108569d7a1278",
+      "source": "LL-Q1860 (eng)-Marie-Sarah (Opsylac)-scarf.wav"
+    },
     "school": {
       "author": "Association Shtooka, Judith Franck",
       "end": 1170,
@@ -8524,6 +8724,17 @@
       "mos": 2.95,
       "sha256": "7beb4a9da58c611ba203ab15502c972fe6546c95bc68d625124de08eaa4661dd",
       "source": "En-us-search.ogg"
+    },
+    "season": {
+      "author": "Wodencafe",
+      "file": "words/season.mp3",
+      "gain": 10.2,
+      "gate": -65.4,
+      "lead": 140,
+      "matches": "season",
+      "mos": 3.15,
+      "sha256": "713e053a6abcfbd32450047aac0f244c9c269a519c67b4c21d48c64475891c37",
+      "source": "LL-Q1860 (eng)-Wodencafe-season.wav"
     },
     "second": {
       "author": "Dvortygirl",
@@ -8736,6 +8947,17 @@
       "sha256": "37de5985350d9b4deb5b138893488df025889f65c6ce56f825c394d9c6238686",
       "source": "En-us-short.ogg"
     },
+    "shorts": {
+      "author": "Persent101",
+      "file": "words/shorts.mp3",
+      "gain": 0.8,
+      "gate": -68.0,
+      "lead": 10,
+      "matches": "shorts",
+      "mos": 2.81,
+      "sha256": "0cd8b05350a2eb32ec6691981d3782e47c44d30841a3777b1dcaf7e87f44d1e4",
+      "source": "En-us-shorts.ogg"
+    },
     "shoulder": {
       "author": "Dvortygirl",
       "file": "words/shoulder.mp3",
@@ -8821,6 +9043,17 @@
       "sha256": "ccd726a07ae4aa242754e3d7e5d0699cbdbdb3535dbcf07be4cf748ef8a72bf7",
       "source": "En-us-since.ogg"
     },
+    "sing": {
+      "author": "Wodencafe",
+      "file": "words/sing.mp3",
+      "gain": 5.7,
+      "gate": -81.6,
+      "lead": 140,
+      "matches": "sing",
+      "mos": 3.17,
+      "sha256": "f6a22cb999d13d3226bb1c30c32e9b9c1780b05c57f7e8356b69835e5db2bd89",
+      "source": "LL-Q1860 (eng)-Wodencafe-sing.wav"
+    },
     "single": {
       "author": "Dvortygirl",
       "file": "words/single.mp3",
@@ -8874,6 +9107,17 @@
       "sha256": "7f254bb0598bd4f3c7be87a9dd1eb845841956df79bf79d94d7d42ca5f192bcb",
       "source": "En-us-sit.ogg"
     },
+    "sit down": {
+      "author": "Vealhurl",
+      "file": "words/sit_down.mp3",
+      "gain": 15.0,
+      "gate": -73.4,
+      "lead": 60,
+      "matches": "sit down",
+      "mos": 2.64,
+      "sha256": "605de20ab7ead30ddd25c3df10eb7e6f4662df2f9413e5ab57748ba313b2451b",
+      "source": "LL-Q1860 (eng)-Vealhurl-sit down.wav"
+    },
     "size": {
       "author": "Dvortygirl",
       "file": "words/size.mp3",
@@ -8905,6 +9149,16 @@
       "mos": 2.85,
       "sha256": "6119147ebb80cffa0fb57306135c317cdcb43c2d0742920c5bcb18cf5e8a870d",
       "source": "LL-Q1860 (eng)-Wodencafe-skin.wav"
+    },
+    "skirt": {
+      "author": "Dvortygirl",
+      "file": "words/skirt.mp3",
+      "gain": 3.3,
+      "gate": -61.8,
+      "matches": "skirt",
+      "mos": 2.91,
+      "sha256": "2732792c3c12c60c01cbc2818f33a410e17995cabd583af2a0711f1adb872b77",
+      "source": "En-us-skirt.ogg"
     },
     "sky": {
       "author": "Dvortygirl",
@@ -9446,6 +9700,17 @@
       "sha256": "509e6f8562edac6c3eb13a71910503d37c328ac2518b4f86ead792eb19f27597",
       "source": "En-us-suggest.ogg"
     },
+    "suit": {
+      "author": "Dvortygirl",
+      "file": "words/suit.mp3",
+      "gain": -2.9,
+      "gate": -58.1,
+      "lead": 190,
+      "matches": "suit",
+      "mos": 3.08,
+      "sha256": "eb0f1bbedcac811c3dcbdbf47e562ef036d6a4e1a062796f65f0e47a25186077",
+      "source": "En-us-suit.ogg"
+    },
     "sun": {
       "author": "Dvortygirl",
       "file": "words/sun.mp3",
@@ -9532,6 +9797,17 @@
       "mos": 3.06,
       "sha256": "ffe2f87779bb76975b0a6f039806aa970292556d472f62ba82d7d0c32139aafa",
       "source": "En-us-swim.ogg"
+    },
+    "swimsuit": {
+      "author": "Wodencafe",
+      "file": "words/swimsuit.mp3",
+      "gain": 8.1,
+      "gate": -66.2,
+      "lead": 170,
+      "matches": "swimsuit",
+      "mos": 2.89,
+      "sha256": "0ae063a9aa7d05db0a017ddfe018e8391791e084f42cdcc40ebf0f9b40b347fe",
+      "source": "LL-Q1860 (eng)-Wodencafe-swimsuit.wav"
     },
     "t-shirt": {
       "author": "Vealhurl",
@@ -9855,6 +10131,17 @@
       "mos": 3.19,
       "sha256": "c348572a6b5ef29574a9ff5563de8c13270c5abb9b10662348fe5b9b69fe5418",
       "source": "LL-Q1860 (eng)-Flame, not lame-tidy up.wav"
+    },
+    "tie": {
+      "author": "Dvortygirl",
+      "file": "words/tie.mp3",
+      "gain": -2.7,
+      "gate": -66.0,
+      "lead": 50,
+      "matches": "tie",
+      "mos": 3.04,
+      "sha256": "06a0545653afdf8cdfd634e3650d516c2a54eb63ce253aa8ae47942f1f1fa4e8",
+      "source": "En-us-tie.ogg"
     },
     "time": {
       "author": "Dvortygirl",
@@ -10250,6 +10537,18 @@
       "mos": 2.86,
       "sha256": "1977da3fa88c03a9eaaafaa5d528d41e53c8d40fdd86eb36a6e1a696ced0c9a0",
       "source": "En-uk-to put.ogg"
+    },
+    "to put on": {
+      "author": "Association Shtooka, Judith Franck",
+      "end": 1340,
+      "file": "words/to_put_on.mp3",
+      "gain": -0.7,
+      "gate": -70.4,
+      "lead": 250,
+      "matches": "to put on",
+      "mos": 2.97,
+      "sha256": "f93e7fe14e697fce774ac3e071292b0a79a7a23839c556cecd9427b0b9138b29",
+      "source": "En-uk-to put on.ogg"
     },
     "to read": {
       "author": "Association Shtooka, Judith Franck",
@@ -10744,6 +11043,29 @@
       "sha256": "1e9e40019d5d7f5284a268a83f8da15fcf6da9d1b4bcfbf9f4e40a7be409f673",
       "source": "En-us-under.ogg"
     },
+    "underpants": {
+      "author": "Arlo Barnes",
+      "cap": 1.4,
+      "file": "words/underpants.mp3",
+      "gain": 12.9,
+      "gate": -85.4,
+      "lead": 260,
+      "matches": "underpants",
+      "mos": 3.24,
+      "sha256": "d662126ec648741e8dfac0179c84d22e729e14fd9e0b322ee2b3e9d6aebf9a1e",
+      "source": "LL-Q1860 (eng)-Arlo Barnes-underpants.wav"
+    },
+    "undershirt": {
+      "author": "Flame, not lame",
+      "file": "words/undershirt.mp3",
+      "gain": 7.4,
+      "gate": -73.8,
+      "lead": 190,
+      "matches": "undershirt",
+      "mos": 2.86,
+      "sha256": "35c5121c52941ac42019a81ba573d7661577499a713fc4adcd7ffb09d7b1a216",
+      "source": "LL-Q1860 (eng)-Flame, not lame-undershirt.wav"
+    },
     "underwear": {
       "author": "Dvortygirl",
       "file": "words/underwear.mp3",
@@ -10982,6 +11304,17 @@
       "sha256": "5f732656fcbc888b5febefed87bfc927244899991e35870ba7c9aad7765293c7",
       "source": "LL-Q1860 (eng)-Vealhurl-waiting room.wav"
     },
+    "walk": {
+      "author": "Dvortygirl",
+      "file": "words/walk.mp3",
+      "gain": 0.8,
+      "gate": -65.4,
+      "lead": 10,
+      "matches": "walk",
+      "mos": 2.82,
+      "sha256": "0ef69571ca6c4c43ec8881f654e139a16fba6a0bbb38373021fde73d5e7ca04c",
+      "source": "En-us-walk.ogg"
+    },
     "wall": {
       "author": "Dvortygirl",
       "file": "words/wall.mp3",
@@ -11078,6 +11411,28 @@
       "mos": 2.84,
       "sha256": "00f1fb7c2bbd38327089fbfcb4e3d224574e026ff708c317b557336e012ee893",
       "source": "En-us-we.ogg"
+    },
+    "weak": {
+      "author": "Grendelkhan",
+      "file": "words/weak.mp3",
+      "gain": 16.0,
+      "gate": -77.4,
+      "lead": 180,
+      "matches": "weak",
+      "mos": 2.62,
+      "sha256": "f42db9277791528106969a83b342cd00e13cec680eca730fc6036038616a881c",
+      "source": "LL-Q1860 (eng)-Grendelkhan-weak.wav"
+    },
+    "wear": {
+      "author": "Dvortygirl",
+      "file": "words/wear.mp3",
+      "gain": 1.5,
+      "gate": -63.4,
+      "lead": 20,
+      "matches": "wear",
+      "mos": 2.96,
+      "sha256": "cfb6dc4e065e15056229e42fa4e6b946a395c5cb2ac5de818203edca7530728f",
+      "source": "En-us-wear.ogg"
     },
     "weather": {
       "author": "Wodencafe",
@@ -11550,6 +11905,17 @@
       "mos": 2.85,
       "sha256": "da8a47bf358157d6787e02d3c928be469bf3bcd524337db66e7a53ab7d07a101",
       "source": "LL-Q1860 (eng)-Qwertygiy-zip code.wav"
+    },
+    "zipper": {
+      "author": "NaomiAmethyst",
+      "file": "words/zipper.mp3",
+      "gain": 7.7,
+      "gate": -73.0,
+      "lead": 100,
+      "matches": "zipper",
+      "mos": 3.09,
+      "sha256": "d4da3281f5412af5a93536089f48b0e3dff66a6500850f915f7681b0dcdd6d1c",
+      "source": "LL-Q1860 (eng)-NaomiAmethyst-zipper.wav"
     }
   }
 }
