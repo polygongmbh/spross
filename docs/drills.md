@@ -83,12 +83,15 @@ Nothing wears a prefix one scope wider than what it serves.
 - **Home names ONE drill, so seven chips are never the question.**
   It is named once the day has answered more cards than are still due,
   none left being the plain case of that (`DrillSuggestion.shown`).
-- **A named drill leads the day's card** (`DayLead`):
+- **A named drill leads the day's card in its turn** (`DayLead`):
   what the day has done on top, the drill and its reason as the card's body and first action,
   and one more round as the button beneath it --
   the rest of the due reviews while any are left, an extra round once none are.
-  It stands nowhere else on Home;
-  with no drill to name, the round card or the done card holds the slot as before.
+- **Listening and the conversation take that slot in turn with the drill**,
+  one per stretch of the day the greeting turns with, among those Home offers at all,
+  so the two ways in that need no screen are advertised as often as the drills are.
+  The way in that leads stands nowhere else on Home;
+  with nothing to name, the round card or the done card holds the slot as before.
 - **The candidates are the chips the hub offers, less every ladder that is mastered**,
   however long ago it last ran:
   a ladder with nothing left to clear has nothing to suggest.

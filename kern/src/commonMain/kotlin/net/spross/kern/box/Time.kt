@@ -6,6 +6,7 @@ import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 import net.spross.kern.model.Language
@@ -98,12 +99,25 @@ fun dayPart(nowEpochMillis: Long, tzId: String, language: Language?): DayPart =
 fun chromePart(nowEpochMillis: Long, tzId: String): DayPart {
     val hour = Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(zoneOf(tzId)).hour
     return when (hour) {
-        in 5..10 -> DayPart.Morning
+        in MORNING_HOUR..10 -> DayPart.Morning
         in 11..16 -> DayPart.Day
         in 17..21 -> DayPart.Evening
         else -> DayPart.Night
     }
 }
+
+/**
+ * How many [chromePart] stretches have begun since the epoch, locally: consecutive stretches
+ * count consecutively, so a rotation keyed on it moves on at every turn of the greeting.
+ */
+internal fun chromeStretch(nowEpochMillis: Long, tzId: String): Long {
+    val local = Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(zoneOf(tzId))
+    // why: the night runs past midnight, so its small hours count with the evening before.
+    val day = if (local.hour < MORNING_HOUR) local.date.minus(1, DateTimeUnit.DAY) else local.date
+    return day.toEpochDays().toLong() * DayPart.entries.size + chromePart(nowEpochMillis, tzId).ordinal
+}
+
+private const val MORNING_HOUR = 5
 
 /**
  * Which of [count] phrasings a line that renames itself takes right now.

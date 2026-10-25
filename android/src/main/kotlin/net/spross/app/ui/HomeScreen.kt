@@ -21,6 +21,8 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
+import net.spross.app.hasBriefing
+import net.spross.app.startListening
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.chromePart
 import net.spross.kern.box.dayPart
@@ -32,7 +34,8 @@ import net.spross.kern.trainer.DayLead
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
  * trainers, the companion card, the fortnight behind it, and the trees. Which state card is kern's
- * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
+ * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one,
+ * and a way in that leads stands there alone.
  */
 @Composable
 fun HomeScreen(model: AppModel) {
@@ -77,7 +80,8 @@ fun HomeScreen(model: AppModel) {
             PageTitle(hello, eyebrow = today)
 
             val pick = rememberSuggestedDrill(model, standing)
-            val lead = standing?.lead(pick) ?: DayLead.Done
+            val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
+                ?: DayLead.Done
             val card = homeCard(failed = model.loadFailure != null, lead = lead)
             when (card) {
                 HomeCard.Failure -> StateCard(
@@ -94,8 +98,24 @@ fun HomeScreen(model: AppModel) {
                     SessionCard(model, it, stats?.streak ?: 0, health)
                 }
 
-                HomeCard.Drill -> if (standing != null && pick != null) {
-                    DrillLeadCard(model, standing, pick, stats?.streak ?: 0, health)
+                HomeCard.Lead -> if (standing != null) {
+                    val streak = stats?.streak ?: 0
+                    when (lead) {
+                        DayLead.Listening -> LeadCard(
+                            model, standing, "🎧", chrome.homeSuggestionListening, chrome.listenSubtitle,
+                            streak, health,
+                        ) { model.startListening() }
+                        DayLead.Conversation -> LeadCard(
+                            model, standing, "💬", chrome.homeSuggestionConversation, chrome.briefingRowSubtitle,
+                            streak, health,
+                        ) { briefingOpen = true }
+                        else -> pick?.let {
+                            LeadCard(
+                                model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
+                                reason(chrome, it), streak, health,
+                            ) { model.open(it.drill) }
+                        }
+                    }
                 }
 
                 HomeCard.Done -> standing?.let {
@@ -103,11 +123,11 @@ fun HomeScreen(model: AppModel) {
                 }
             }
 
-            ListenCard(model)
+            if (lead != DayLead.Listening) ListenCard(model)
 
             TrainerHubCard(model)
 
-            TalkCard(model) { briefingOpen = true }
+            if (lead != DayLead.Conversation) TalkCard(model) { briefingOpen = true }
 
             // The same fortnight the streak was counted from, on the very refresh that
             // produced it — the strip reads kern's walk, never one of its own. It names

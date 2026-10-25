@@ -31,7 +31,7 @@ class HomeStandingTest {
 
     @Test
     fun aFailureOutranksWhateverLeadsTheDay() {
-        assertEquals(HomeCard.Drill, homeCard(failed = false, lead = DayLead.Drill))
+        assertEquals(HomeCard.Lead, homeCard(failed = false, lead = DayLead.Listening))
         assertEquals(HomeCard.Failure, homeCard(failed = true, lead = DayLead.Drill))
     }
 

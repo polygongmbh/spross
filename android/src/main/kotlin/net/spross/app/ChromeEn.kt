@@ -458,6 +458,8 @@ internal object ChromeEn : Chrome {
     override val homeOfferStart = "Let's go!"
     override val homeOfferShortRound = "Just a short one?"
     override val homeSuggestionTitle = "How about %s?"
+    override val homeSuggestionListening = "How about some listening?"
+    override val homeSuggestionConversation = "How about a chat?"
     override val homeSuggestionReasonNewScript = "A new script is best learned early on"
     override val homeSuggestionReasonEarlyNumbers = "Numbers come in handy from day one"
     override val homeSuggestionReasonWordsSettled = "Enough words have settled to puzzle with"

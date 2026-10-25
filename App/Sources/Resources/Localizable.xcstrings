@@ -3496,6 +3496,38 @@
         }
       }
     },
+    "home.suggestion.conversation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute mal plaudern?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How about a chat?"
+          }
+        }
+      }
+    },
+    "home.suggestion.listening" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute mal zuhören?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How about some listening?"
+          }
+        }
+      }
+    },
     "home.suggestion.reason.earlyNumbers" : {
       "comment" : "Why the numbers drill is suggested: the box is young.",
       "localizations" : {

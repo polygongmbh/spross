@@ -6,7 +6,7 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
 
 - **Listening is not a drill.** Only a skill with a ladder to climb earns a chip on the hub (`drills.md`);
   listening asks nothing, grades nothing and has no Sprosse to reach, so a chip would call it a peer of counting and spelling when it is a different kind of thing.
-  It gets ONE CARD on Home, under the day's round:
+  It gets ONE CARD on Home, under the day's round, and takes its turn leading the day's card once the round is the smaller half (`drills.md` § The suggestion):
   the round is what the box asks of the learner, and this is what the learner can do when answering is not on the table —
   a walk, a commute, the dishes.
   Its title names the mode once, and its second line carries the two facts the name cannot:

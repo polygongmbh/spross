@@ -14,7 +14,7 @@ import net.spross.kern.trainer.DrillSuggestion
 
 /**
  * The one drill Home names (`docs/drills.md` § The suggestion), which leads the day's card
- * wherever it is named ([DrillLeadCard]).
+ * in its turn ([LeadCard]).
  *
  * WHICH drill, WHEN and WHY are kern's [DrillSuggestion]; this side reads the stores it is
  * asked about and words the answer.

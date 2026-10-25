@@ -30,9 +30,15 @@ data class HomeStanding(
     val canPracticeMore: Boolean,
 ) {
     /** What leads Home under the drill the platform's stores name ([DrillSuggestion.suggest]). */
-    fun lead(pick: DrillSuggestion.Pick?): DayLead = DayLead.of(offer, pick)
+    fun lead(
+        pick: DrillSuggestion.Pick?,
+        listening: Boolean,
+        conversation: Boolean,
+        nowEpochMillis: Long,
+        tzId: String,
+    ): DayLead = DayLead.of(offer, pick, listening, conversation, nowEpochMillis, tzId)
 
-    /** The words-instead button under a drill lead; null where the box can compose no round at all. */
+    /** The words-instead button under a lead other than the round; null where the box can compose no round at all. */
     val roundInstead: RoundStart? get() = when {
         offer.hasRound -> RoundStart.Due
         canPracticeMore -> RoundStart.Extra

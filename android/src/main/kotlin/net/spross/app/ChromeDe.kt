@@ -466,6 +466,8 @@ internal object ChromeDe : Chrome {
     override val homeOfferStart = "Los geht's!"
     override val homeOfferShortRound = "Lieber nur kurz?"
     override val homeSuggestionTitle = "Heute mal %s?"
+    override val homeSuggestionListening = "Heute mal zuhören?"
+    override val homeSuggestionConversation = "Heute mal plaudern?"
     override val homeSuggestionReasonNewScript = "Eine neue Schrift – am besten gleich zu " +
         "Beginn"
     override val homeSuggestionReasonEarlyNumbers = "Zahlen braucht man von Anfang an"

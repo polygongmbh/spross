@@ -184,7 +184,8 @@ What licenses a second component is a parameter attempted and found not to carry
     Every chrome line asks — never states.
     Holds through a render, moves on by the next opening.
   - Once the day has answered more than is still due, the day's card leads with ONE drill and why,
-    opening what that drill's chip opens, the round a smaller button under it
+    listening, or the conversation, taking turns,
+    opening what that card opens, the round a smaller button under it
     (`drills.md` § The suggestion).
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.

@@ -54,8 +54,9 @@ object DrillSuggestion {
     private const val STEER_NAMED_FROM: Double = 0.3
 
     /**
-     * Whether Home names a drill at all: once the day has answered more cards than are still
-     * due — none left is the plain case of that — and then only as what leads it ([DayLead]).
+     * Whether the day's card leads with something other than the round: once the day has
+     * answered more cards than are still due — none left is the plain case of that. A drill
+     * is named only then, and only as what leads it, in its turn ([DayLead]).
      */
     fun shown(offer: SessionOffer): Boolean = offer.doneToday > offer.dueNow
 
