@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The Meadow card on Home now says it holds mini games.
 - Once most of the day's reviews are done, Home's first card now takes turns suggesting a mini game, listening or an AI chat.
 - Listening's repeat button is now a back button: one press restarts the word, a second steps back to the word before.
 - Recordings now play only the spoken word, skipping clicks and hum around it, and recordings that say more than their word no longer ship.
