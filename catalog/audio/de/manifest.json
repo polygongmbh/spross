@@ -976,6 +976,18 @@
       "source": "LL-Q188 (deu)-Natschoba-der Affe.wav",
       "word": "Affe"
     },
+    "der Anzug": {
+      "author": "Natschoba",
+      "file": "articles/der_anzug.mp3",
+      "gain": 2.6,
+      "gate": -84.5,
+      "lead": 260,
+      "matches": "der Anzug",
+      "mos": 2.89,
+      "sha256": "89d23e5a2f49277b1f41eb780138323d56849eddb84a1991c54389feb5310b63",
+      "source": "LL-Q188 (deu)-Natschoba-der Anzug.wav",
+      "word": "Anzug"
+    },
     "der Apfel": {
       "author": "Natschoba",
       "file": "articles/der_apfel.mp3",
@@ -1032,6 +1044,18 @@
       "sha256": "fb7595049856a6efc305ba39a6edd031f3e1dac04749d167ebfc33fa50033b9b",
       "source": "LL-Q188 (deu)-Natschoba-der Ausweis.wav",
       "word": "Ausweis"
+    },
+    "der Badeanzug": {
+      "author": "Natschoba",
+      "file": "articles/der_badeanzug.mp3",
+      "gain": 4.3,
+      "gate": -85.4,
+      "lead": 230,
+      "matches": "der Badeanzug",
+      "mos": 3.09,
+      "sha256": "ee20b5b961feda0b3657c147c569409985bce3f9bf161ee994ffad5196a413f0",
+      "source": "LL-Q188 (deu)-Natschoba-der Badeanzug.wav",
+      "word": "Badeanzug"
     },
     "der Bahnhof": {
       "author": "Natschoba",
@@ -1503,6 +1527,17 @@
       "sha256": "4aeb3f7c843d71c9d81f2c101340f7aefb48aecf92e8e541718c9d7786704403",
       "source": "LL-Q188 (deu)-Natschoba-der Knochen.wav",
       "word": "Knochen"
+    },
+    "der Knopf": {
+      "author": "Natschoba",
+      "file": "articles/der_knopf.mp3",
+      "gain": 7.3,
+      "lead": 230,
+      "matches": "der Knopf",
+      "mos": 3.07,
+      "sha256": "052dc323ce7f53c4e2da3020ff89cd17bf05d85f9db3f8b8ca63d18c63416383",
+      "source": "LL-Q188 (deu)-Natschoba-der Knopf.wav",
+      "word": "Knopf"
     },
     "der Kohl": {
       "author": "Natschoba",
@@ -2033,6 +2068,18 @@
       "sha256": "ad1dfd44333dd8e5b1614c443e47222a88f54c3e00c3e8609666383f6581ec71",
       "source": "LL-Q188 (deu)-Natschoba-der Stern.wav",
       "word": "Stern"
+    },
+    "der Stiefel": {
+      "author": "Natschoba",
+      "file": "articles/der_stiefel.mp3",
+      "gain": 8.6,
+      "gate": -88.3,
+      "lead": 250,
+      "matches": "der Stiefel",
+      "mos": 3.22,
+      "sha256": "ac3de1897a61be0eea08c7184cb7fdf290a1108a6bc017e8d9a5af666e431320",
+      "source": "LL-Q188 (deu)-Natschoba-der Stiefel.wav",
+      "word": "Stiefel"
     },
     "der Strand": {
       "author": "Natschoba",
@@ -3189,6 +3236,18 @@
       "source": "LL-Q188 (deu)-Natschoba-die Richtung.wav",
       "word": "Richtung"
     },
+    "die Sandale": {
+      "author": "Natschoba",
+      "file": "articles/die_sandale.mp3",
+      "gain": 1.5,
+      "gate": -81.0,
+      "lead": 200,
+      "matches": "die Sandale",
+      "mos": 3.29,
+      "sha256": "24111e3bf27bb2ee1a7cdbbc8a6f95344ec26450e4cbc4eef3baf1b285f5d8a2",
+      "source": "LL-Q188 (deu)-Natschoba-die Sandale.wav",
+      "word": "Sandale"
+    },
     "die Schlange": {
       "author": "Natschoba",
       "file": "articles/die_schlange.mp3",
@@ -3471,6 +3530,18 @@
       "sha256": "e765e668b69026570ca7866f5ad2410f4802006edf8bf5dd602e5d31ede2233d",
       "source": "LL-Q188 (deu)-Natschoba-die Tür.wav",
       "word": "Tür"
+    },
+    "die Uhr": {
+      "author": "Natschoba",
+      "file": "articles/die_uhr.mp3",
+      "gain": 5.1,
+      "gate": -81.3,
+      "lead": 220,
+      "matches": "die Uhr",
+      "mos": 2.93,
+      "sha256": "2ecf0f4d4e2246a069f4dbfcb2494d9fdac5f30b31529941cdb46cb3b0a05614",
+      "source": "LL-Q188 (deu)-Natschoba-die Uhr.wav",
+      "word": "Uhr"
     },
     "die Universität": {
       "author": "Natschoba",
@@ -5480,6 +5551,17 @@
       "sha256": "7901e41052576018f7a57a62bcca3c0c191c73bae6ab0104530fdb1de66a8783",
       "source": "De-abschließen.ogg"
     },
+    "abtrocknen": {
+      "author": "Jeuwre",
+      "end": 1670,
+      "file": "words/abtrocknen.mp3",
+      "gain": -0.8,
+      "lead": 440,
+      "matches": "abtrocknen",
+      "mos": 3.41,
+      "sha256": "47fbc20dbee3f08aa5d5338d88fe42f84ceebe6fe05f4a8094e378f7fc46bec4",
+      "source": "De-abtrocknen.ogg"
+    },
     "adjektiv": {
       "author": "Jeuwre",
       "file": "words/adjektiv.mp3",
@@ -5804,6 +5886,17 @@
       "sha256": "47e9504966e3124b4dd0c5c2fc9d9d0c9b7483c4c8df69bbb72dddf709274ee8",
       "source": "De-ankommen2.ogg"
     },
+    "anmelden": {
+      "author": "Jeuwre",
+      "file": "words/anmelden.mp3",
+      "gain": 0.8,
+      "gate": -87.3,
+      "lead": 90,
+      "matches": "anmelden",
+      "mos": 2.7,
+      "sha256": "9f0934862455243d69fac7215fd086eaf689243454ba0b7909e4a0109c634f42",
+      "source": "De-anmelden2.ogg"
+    },
     "anmeldung": {
       "author": "Jeuwre",
       "file": "words/anmeldung.mp3",
@@ -5877,6 +5970,37 @@
       "mos": 3.28,
       "sha256": "66dad066805db52f393ae2320a0ec952aacd7763661641a9449367059a5f2ab5",
       "source": "De-antworten2.ogg"
+    },
+    "anziehen": {
+      "author": "Kampy",
+      "file": "words/anziehen.mp3",
+      "gain": 1.7,
+      "gate": -56.7,
+      "matches": "anziehen",
+      "mos": 3.06,
+      "sha256": "27a4d5d1fab3c56054e219f13271ee297bba0aea5699df461aec38d49ae6990f",
+      "source": "De-anziehen.ogg"
+    },
+    "anzug": {
+      "author": "Jeuwre",
+      "file": "words/anzug.mp3",
+      "gain": 3.1,
+      "lead": 90,
+      "matches": "anzug",
+      "mos": 2.93,
+      "sha256": "4f40e49eb8cb69d15ac73b6d91e764bd1ca51c38a20dbfb8c1946a6dd7a0df7b",
+      "source": "De-Anzug.ogg"
+    },
+    "anzüge": {
+      "author": "Jeuwre",
+      "end": 1570,
+      "file": "words/anzu00fcge.mp3",
+      "gain": 2.7,
+      "lead": 60,
+      "matches": "anzüge",
+      "mos": 3.07,
+      "sha256": "f1f5a378e80339a87ad12343aad864dbf997303a13f1a8b4b043f319f50fede8",
+      "source": "De-Anzüge.ogg"
     },
     "apfel": {
       "author": "Jeuwre",
@@ -6241,6 +6365,27 @@
       "sha256": "a51f95a7640cfbda24c848054281597edac0dae354f14a186709ea18ec521675",
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Ausgänge.wav"
     },
+    "ausruhen": {
+      "author": "Jeuwre",
+      "end": 1640,
+      "file": "words/ausruhen.mp3",
+      "gain": -2.8,
+      "lead": 440,
+      "matches": "ausruhen",
+      "mos": 3.13,
+      "sha256": "ec5fdc064d4ef0e92772e948bcaf5504576cc0487b22013c3e897a67bab2b6b4",
+      "source": "De-ausruhen.ogg"
+    },
+    "ausschalten": {
+      "author": "Jeuwre",
+      "file": "words/ausschalten.mp3",
+      "gain": -3.2,
+      "lead": 340,
+      "matches": "ausschalten",
+      "mos": 3.16,
+      "sha256": "78ace3bc831ef9bd314ae8f9e3f9433cb4e86d1a89b6fec6f07aa74dffa1a117",
+      "source": "De-Ausschalten.ogg"
+    },
     "aussprechen": {
       "author": "Jeuwre",
       "end": 2000,
@@ -6373,6 +6518,27 @@
       "mos": 3.31,
       "sha256": "b744d0c011c67c699d2a49b72040793a01b3079b11ccd3ef29281eb5b8db40a7",
       "source": "De-Backöfen.ogg"
+    },
+    "badeanzug": {
+      "author": "Jeuwre",
+      "file": "words/badeanzug.mp3",
+      "gain": -4.0,
+      "lead": 340,
+      "matches": "badeanzug",
+      "mos": 3.21,
+      "sha256": "04d1ec580ab30e0122834dabf83ed989ebaed6ffab1f41d3431baa7edb281448",
+      "source": "De-Badeanzug.ogg"
+    },
+    "badeanzüge": {
+      "author": "Jeuwre",
+      "end": 2000,
+      "file": "words/badeanzu00fcge.mp3",
+      "gain": -0.7,
+      "lead": 400,
+      "matches": "badeanzüge",
+      "mos": 3.24,
+      "sha256": "50adc777fea305f407aea6713ace168849cb6155dfa62747b16f8dbb5113004a",
+      "source": "De-Badeanzüge.ogg"
     },
     "badewanne": {
       "author": "Jeuwre",
@@ -7173,6 +7339,28 @@
       "sha256": "13c3a618afd4d6f3b4830759b03a313e15abc484516caa6184bdd2381eba3c74",
       "source": "De-Blumen.ogg"
     },
+    "bluse": {
+      "author": "Jeuwre",
+      "file": "words/bluse.mp3",
+      "gain": -4.5,
+      "gate": -79.4,
+      "lead": 200,
+      "matches": "bluse",
+      "mos": 3.04,
+      "sha256": "d338b9ba5b59d14980d9af0d7a43b7d628caea44488c367a555b92e405a02226",
+      "source": "De-Bluse.ogg"
+    },
+    "blusen": {
+      "author": "Jeuwre",
+      "end": 1410,
+      "file": "words/blusen.mp3",
+      "gain": -1.6,
+      "lead": 440,
+      "matches": "blusen",
+      "mos": 2.82,
+      "sha256": "60e961ce236bda8dc627490107e13d4c8f5f86a9b6c9a9725274559f53b8d326",
+      "source": "De-Blusen.ogg"
+    },
     "blut": {
       "author": "Patrick Strasser-Mikhail",
       "file": "words/blut.mp3",
@@ -7554,6 +7742,17 @@
       "sha256": "fedea5c6cd0163567949ee13287abfbaa720b0bc934fbb8264f98edd2481ded5",
       "source": "De-Bücher.ogg"
     },
+    "bügeln": {
+      "author": "Jeuwre",
+      "end": 1640,
+      "file": "words/bu00fcgeln.mp3",
+      "gain": -4.4,
+      "lead": 440,
+      "matches": "bügeln",
+      "mos": 2.99,
+      "sha256": "a1475862426e67bd17e766fd6f540f20defb3cbbe0bacb4f840512c04fa2fcf4",
+      "source": "De-bügeln.ogg"
+    },
     "büro": {
       "author": "Jeuwre",
       "end": 1570,
@@ -7575,6 +7774,16 @@
       "mos": 3.33,
       "sha256": "a7e310c053e2535bb398202fd1ad78e43bba303f0d0985b731bad9dcd9089462",
       "source": "De-Büros2.ogg"
+    },
+    "büstenhalter": {
+      "author": "Jeuwre",
+      "file": "words/bu00fcstenhalter.mp3",
+      "gain": -3.5,
+      "lead": 330,
+      "matches": "büstenhalter",
+      "mos": 3.09,
+      "sha256": "9a8d6f56b06323781e6505e103cba0781e295a9f93c8521d8aa991974d8d691c",
+      "source": "De-Büstenhalter.ogg"
     },
     "campingplatz": {
       "author": "Jeuwre",
@@ -8323,6 +8532,18 @@
       "sha256": "f6a627ffbd09089984f1523db6125b724d5be01b18e78ca18e9337ca45715131",
       "source": "De-einfach.ogg"
     },
+    "einfrieren": {
+      "author": "Jeuwre",
+      "end": 1440,
+      "file": "words/einfrieren.mp3",
+      "gain": -2.3,
+      "gate": -87.3,
+      "lead": 210,
+      "matches": "einfrieren",
+      "mos": 3.05,
+      "sha256": "2a1e321c522bcbfc998a128b34ee45a15fb2c6715b828c63e7418dcc02381124",
+      "source": "De-einfrieren.ogg"
+    },
     "eingang": {
       "author": "Jeuwre",
       "end": 1430,
@@ -8433,6 +8654,27 @@
       "mos": 3.34,
       "sha256": "47ca42b089a49999220a0ffa7a650241297ec744f257817774a00bfb1466c6ae",
       "source": "De-einreichen2.ogg"
+    },
+    "einschalten": {
+      "author": "Jeuwre",
+      "end": 1630,
+      "file": "words/einschalten.mp3",
+      "gain": 0.2,
+      "lead": 430,
+      "matches": "einschalten",
+      "mos": 3.27,
+      "sha256": "3c757a68f546d869f03fc2130b81dcbe6b3a88c660055d68c4eba5b6441f4cc0",
+      "source": "De-einschalten2.ogg"
+    },
+    "einschlafen": {
+      "author": "Jeuwre",
+      "file": "words/einschlafen.mp3",
+      "gain": -4.5,
+      "lead": 220,
+      "matches": "einschlafen",
+      "mos": 3.47,
+      "sha256": "5527ee9a0800dabc896cd1aa51d5621a6876cfa9334e30b55808121a3aab8f89",
+      "source": "De-einschlafen.ogg"
     },
     "einsteigen": {
       "author": "Jeuwre",
@@ -8564,6 +8806,17 @@
       "sha256": "9e8e5c29721b2adc4bd0ee81247f34b0a231df88b499931f9a4ec6c209c54e52",
       "source": "De-Entschuldigung.ogg"
     },
+    "entspannen": {
+      "author": "Jeuwre",
+      "end": 1700,
+      "file": "words/entspannen.mp3",
+      "gain": -2.5,
+      "lead": 400,
+      "matches": "entspannen",
+      "mos": 2.8,
+      "sha256": "9feefbd5fcba3afe8ca0205c587768f7a89dba72573225bb246458ba281851be",
+      "source": "De-entspannen.ogg"
+    },
     "er": {
       "author": "Jeuwre",
       "end": 1190,
@@ -8574,6 +8827,16 @@
       "mos": 2.87,
       "sha256": "90dae7eace5dce14611d4b5738e6ec6deb3de1194ba6d57505d3cac627372579",
       "source": "De-er2.ogg"
+    },
+    "erinnern": {
+      "author": "Jeuwre",
+      "end": 1780,
+      "file": "words/erinnern.mp3",
+      "lead": 440,
+      "matches": "erinnern",
+      "mos": 3.0,
+      "sha256": "1359c2dab2a8f3a7e8844ed4d902d7c92e8d4ed400a4245ffc4b645f08f19399",
+      "source": "De-erinnern.ogg"
     },
     "erklären": {
       "author": "Jeuwre",
@@ -8628,6 +8891,17 @@
       "mos": 3.24,
       "sha256": "f0048ba51903cb7dc01ae42d2e54e379b5a917dd35ff15423c7ab3c86bd77406",
       "source": "De-erreichen2.ogg"
+    },
+    "erscheinen": {
+      "author": "Jeuwre",
+      "end": 1510,
+      "file": "words/erscheinen.mp3",
+      "gain": -4.7,
+      "lead": 440,
+      "matches": "erscheinen",
+      "mos": 3.4,
+      "sha256": "eead18c81ccfe45cb761f59881884bb52101870455e6e09850a56154283640f5",
+      "source": "De-Erscheinen.ogg"
     },
     "erste": {
       "author": "Jeuwre",
@@ -9346,6 +9620,17 @@
       "mos": 3.02,
       "sha256": "3335fe8e12c4ada3f7951b22964b0cd8c62d169ca8214a26e7b42d5f4ce442f8",
       "source": "De-Formulare.ogg"
+    },
+    "fotografieren": {
+      "author": "Jeuwre",
+      "end": 1770,
+      "file": "words/fotografieren.mp3",
+      "gain": 0.2,
+      "lead": 420,
+      "matches": "fotografieren",
+      "mos": 3.26,
+      "sha256": "11472b352b2fbd188bba894c72c5e8bccc89bc103c23f37a5d085393ad3f0707",
+      "source": "De-fotografieren.ogg"
     },
     "frage": {
       "author": "Jeuwre",
@@ -11004,6 +11289,18 @@
       "sha256": "e4a3fd8832e8b90f5949bebb00ac8b0897a812bb55cf1b3c44f48101a595d97e",
       "source": "De-himmel.ogg"
     },
+    "hinten": {
+      "author": "Jeuwre",
+      "end": 1450,
+      "file": "words/hinten.mp3",
+      "gain": -1.1,
+      "gate": -85.7,
+      "lead": 360,
+      "matches": "hinten",
+      "mos": 2.4,
+      "sha256": "b315a05f26ee7ec49cd3defeb0e577c2b11bec36e4803e783a9d5a66fcb31eea",
+      "source": "De-hinten.ogg"
+    },
     "hinter": {
       "author": "Jeuwre",
       "end": 1470,
@@ -11571,6 +11868,17 @@
       "sha256": "4a0365bd4683d8ddfbccee7f6fe81fa799b8686f73138ed6638773a4590d2efa",
       "source": "De-Jahrzehnte2.ogg"
     },
+    "jeans": {
+      "author": "Jeuwre",
+      "end": 1690,
+      "file": "words/jeans.mp3",
+      "gain": -1.9,
+      "lead": 430,
+      "matches": "jeans",
+      "mos": 3.23,
+      "sha256": "2ce754b75b44d966f0d93c4af94ed205bfb6c292ca168e076045c8cc404c2774",
+      "source": "De-Jeans.ogg"
+    },
     "jede": {
       "author": "Jeuwre",
       "end": 1410,
@@ -11745,6 +12053,28 @@
       "mos": 3.18,
       "sha256": "82dab259b022b83cbfb521f1507efd0eb4e5296a67c9ba384881e69e54d2e159",
       "source": "De-kalt2.ogg"
+    },
+    "kappe": {
+      "author": "Jeuwre",
+      "end": 1370,
+      "file": "words/kappe.mp3",
+      "gain": -2.9,
+      "lead": 440,
+      "matches": "kappe",
+      "mos": 3.22,
+      "sha256": "401cd4d34c27caeaa70734763e07d3b543adf525716224995d45b7ee5fe064ae",
+      "source": "De-kappe.ogg"
+    },
+    "kappen": {
+      "author": "Jeuwre",
+      "end": 1390,
+      "file": "words/kappen.mp3",
+      "gain": -1.3,
+      "lead": 440,
+      "matches": "kappen",
+      "mos": 3.11,
+      "sha256": "b289ab37b0d722608802c173fbd7a18ac6a36ef08bcc1947ef5b4394ed7bb9bc",
+      "source": "De-kappen.ogg"
     },
     "kaputt": {
       "author": "Jeuwre",
@@ -12078,6 +12408,17 @@
       "sha256": "6bb74fdc630571cf1ce411c20bb563df168366033de3191725abede513908abc",
       "source": "De-klein2.ogg"
     },
+    "klicken": {
+      "author": "Jeuwre",
+      "end": 1470,
+      "file": "words/klicken.mp3",
+      "gain": 1.2,
+      "lead": 500,
+      "matches": "klicken",
+      "mos": 3.21,
+      "sha256": "7741c6f7664cfb0e0f4142ec2917478af8c59c6c6091055d90e0d01660fd5629",
+      "source": "De-Klicken.ogg"
+    },
     "klingel": {
       "author": "Jeuwre",
       "end": 1560,
@@ -12133,6 +12474,28 @@
       "mos": 3.23,
       "sha256": "93572ffb1a26485b6505132893520ea1a6634be4334fa7d073dc3de046009481",
       "source": "De-Knochen2.ogg"
+    },
+    "knopf": {
+      "author": "Jeuwre",
+      "end": 1270,
+      "file": "words/knopf.mp3",
+      "gain": 0.3,
+      "lead": 440,
+      "matches": "knopf",
+      "mos": 3.09,
+      "sha256": "2038d2531e10466278ae67b0f8a13e261a3ae7186775258daffde58d41262dca",
+      "source": "De-Knopf2.ogg"
+    },
+    "knöpfe": {
+      "author": "Jeuwre",
+      "end": 1600,
+      "file": "words/knu00f6pfe.mp3",
+      "gain": -2.7,
+      "lead": 430,
+      "matches": "knöpfe",
+      "mos": 3.15,
+      "sha256": "0b397d2ec52f80a886f19bc66ffc2d19385302e4695bbb4e716cabb58e3997fb",
+      "source": "De-knöpfe.ogg"
     },
     "kochen": {
       "author": "Jeuwre",
@@ -12446,6 +12809,16 @@
       "sha256": "583484a0a001ecedc448f7fe5a34056d141f90ef7203b1c47299ca67d6505853",
       "source": "De-Krankheiten.ogg"
     },
+    "krankmelden": {
+      "author": "Jeuwre",
+      "end": 1900,
+      "file": "words/krankmelden.mp3",
+      "lead": 500,
+      "matches": "krankmelden",
+      "mos": 3.22,
+      "sha256": "1cd09765f65e48f01994a5e2f973a7ae2e406c104fc2ad62a50cd57a6687ba39",
+      "source": "De-krankmelden.ogg"
+    },
     "krankmeldung": {
       "author": "Jeuwre",
       "end": 2010,
@@ -12467,6 +12840,28 @@
       "mos": 3.37,
       "sha256": "02c8206cc822cca656cf864424526ce929541697e60d532cd87e7a8796b9c429",
       "source": "De-Krankmeldungen.ogg"
+    },
+    "krawatte": {
+      "author": "Jeuwre",
+      "end": 1420,
+      "file": "words/krawatte.mp3",
+      "gain": 0.2,
+      "lead": 440,
+      "matches": "krawatte",
+      "mos": 3.34,
+      "sha256": "0aa87faa5e31247cfdb354a477bc362bc388285ead7a511b021716a202f34e05",
+      "source": "De-Krawatte.ogg"
+    },
+    "krawatten": {
+      "author": "Jeuwre",
+      "end": 1450,
+      "file": "words/krawatten.mp3",
+      "gain": -0.8,
+      "lead": 440,
+      "matches": "krawatten",
+      "mos": 3.29,
+      "sha256": "9a7b74ae71bee30d7a270006885d02ca5cd9c40c99ce35ae5a10fca18f8a9359",
+      "source": "De-Krawatten.ogg"
     },
     "kreuzung": {
       "author": "Jeuwre",
@@ -12732,6 +13127,28 @@
       "sha256": "bc4f04f376c16d92037d6c3222c75bbb9027f70c488a0dddc009bf2abc87307a",
       "source": "De-lachen2.ogg"
     },
+    "ladegerät": {
+      "author": "Jeuwre",
+      "end": 1880,
+      "file": "words/ladegeru00e4t.mp3",
+      "gain": -5.4,
+      "lead": 430,
+      "matches": "ladegerät",
+      "mos": 3.28,
+      "sha256": "27a8bdceed698ac2e1b93ce22bb6711c5d2e764ed3d6061b9057ab91354768e0",
+      "source": "De-Ladegerät.ogg"
+    },
+    "ladegeräte": {
+      "author": "Jeuwre",
+      "end": 1950,
+      "file": "words/ladegeru00e4te.mp3",
+      "gain": -4.3,
+      "lead": 430,
+      "matches": "ladegeräte",
+      "mos": 3.4,
+      "sha256": "eac9099bd9be45abbb3ef2cc0e6413d4d3ebcd3413c416628f8ec447c8c87a2a",
+      "source": "De-Ladegeräte.ogg"
+    },
     "ladekabel": {
       "author": "Jeuwre",
       "end": 1650,
@@ -12995,6 +13412,16 @@
       "sha256": "ec292b0c4ff41777cb35e3740d6cb9e5c37d77ff10132b28a5296177532bd9f6",
       "source": "De-leer.ogg"
     },
+    "legen": {
+      "author": "Kampy",
+      "file": "words/legen.mp3",
+      "gain": -3.8,
+      "gate": -48.4,
+      "matches": "legen",
+      "mos": 2.76,
+      "sha256": "8cb4ce13d21ec018a4ff60f9fd71a3ac4a716cfc23fc29fe4a51b98f3367f98d",
+      "source": "De-legen.ogg"
+    },
     "lehrer": {
       "author": "Jeuwre",
       "end": 1300,
@@ -13137,6 +13564,18 @@
       "mos": 3.02,
       "sha256": "5c2e31307e17aae8084040b10c614ab4a54be63ad48fcfb412fa653d0ec76ea9",
       "source": "De-liebe2.ogg"
+    },
+    "lieben": {
+      "author": "Leni Berlin",
+      "cap": 1.3,
+      "file": "words/lieben.mp3",
+      "gain": 14.3,
+      "gate": -59.3,
+      "lead": 470,
+      "matches": "lieben",
+      "mos": 2.61,
+      "sha256": "9ec52ce6ee5e539497175cc6c5971c842a70ec29122f18ece64b1a004cd6991e",
+      "source": "De-lieben.ogg"
     },
     "lied": {
       "author": "Jeuwre",
@@ -15506,6 +15945,18 @@
       "sha256": "8900fada6d70e7625ee37b56af3be0ed31e5a20d279abe8bce3ed9f2243686bc",
       "source": "De-Radios2.ogg"
     },
+    "rasieren": {
+      "author": "Jeuwre",
+      "end": 1720,
+      "file": "words/rasieren.mp3",
+      "gain": 0.4,
+      "gate": -98.2,
+      "lead": 550,
+      "matches": "rasieren",
+      "mos": 2.9,
+      "sha256": "b7601fe495c308bf48285f6e009d9c1078ebb5fa53a63008901be6bd5eb2c71a",
+      "source": "De-rasieren.ogg"
+    },
     "rasierer": {
       "author": "Jeuwre",
       "file": "words/rasierer.mp3",
@@ -15594,6 +16045,28 @@
       "mos": 3.02,
       "sha256": "bb66118a3751d011ab0cc680328b12377b35af917c96c8553f5dcab9cdeeba45",
       "source": "De-regen.ogg"
+    },
+    "regenjacke": {
+      "author": "Jeuwre",
+      "end": 1870,
+      "file": "words/regenjacke.mp3",
+      "gain": -3.1,
+      "lead": 440,
+      "matches": "regenjacke",
+      "mos": 3.36,
+      "sha256": "328022bf5a8550672c1d4a0e53dbbbe2835c8bffccb8a60df2fb0280a4c7d0a7",
+      "source": "De-Regenjacke.ogg"
+    },
+    "regenjacken": {
+      "author": "Jeuwre",
+      "end": 1860,
+      "file": "words/regenjacken.mp3",
+      "gain": -2.7,
+      "lead": 430,
+      "matches": "regenjacken",
+      "mos": 3.34,
+      "sha256": "a52645e05af943becd20f2dde8c7015ff8d56f519c7d6269fb2b49918344a8c1",
+      "source": "De-Regenjacken.ogg"
     },
     "regenschirm": {
       "author": "Jeuwre",
@@ -15727,6 +16200,29 @@
       "sha256": "a3cb57993931c7059acc85320b749ef90831bd63a2060597b6b7d13d9406bbe3",
       "source": "De-Reisepässe.ogg"
     },
+    "reißverschluss": {
+      "author": "Jeuwre",
+      "end": 1760,
+      "file": "words/reiu00dfverschluss.mp3",
+      "gain": -3.7,
+      "gate": -96.1,
+      "lead": 260,
+      "matches": "reißverschluss",
+      "mos": 3.38,
+      "sha256": "a8cf0bcbc1f1997a75a9036c3ad757038cbf035dcd2b7a55f516da4828c56d74",
+      "source": "De-Reißverschluss.ogg"
+    },
+    "reißverschlüsse": {
+      "author": "Jeuwre",
+      "end": 2050,
+      "file": "words/reiu00dfverschlu00fcsse.mp3",
+      "gain": -2.4,
+      "lead": 440,
+      "matches": "reißverschlüsse",
+      "mos": 3.32,
+      "sha256": "ea1b7a17fee359a685eb293563de31fcb70c6cf23da94e50155ab2184218ccf6",
+      "source": "De-Reißverschlüsse.ogg"
+    },
     "reparieren": {
       "author": "Jeuwre",
       "file": "words/reparieren.mp3",
@@ -15817,6 +16313,17 @@
       "sha256": "85ee5ada2d8616e40af21d47f0cb9feb60b235887d2e3a0b6d1b74096c9e12f7",
       "source": "De-Richtungen.ogg"
     },
+    "rock": {
+      "author": "Jeuwre",
+      "end": 1340,
+      "file": "words/rock.mp3",
+      "gain": -2.7,
+      "lead": 430,
+      "matches": "rock",
+      "mos": 3.16,
+      "sha256": "53642a7c4c9ef654d5708e47228da2e233bf8a4f80e0f325e078ed5e2c9c80ff",
+      "source": "De-rock.ogg"
+    },
     "rot": {
       "author": "Jeuwre",
       "end": 1450,
@@ -15837,6 +16344,16 @@
       "mos": 2.94,
       "sha256": "82890f1ae2bc2ab13cd1492e5b20c68927be7651434d6fec2765fed9ce2885db",
       "source": "De-Räder.ogg"
+    },
+    "röcke": {
+      "author": "Kampy",
+      "file": "words/ru00f6cke.mp3",
+      "gain": 0.7,
+      "gate": -66.1,
+      "matches": "röcke",
+      "mos": 3.33,
+      "sha256": "237eaeb31fb33a3f0b37c8ffa5e2b4ba490b8d8154a320066ef7d754036cf2ab",
+      "source": "De-Röcke.ogg"
     },
     "rücken": {
       "author": "Jeuwre",
@@ -15915,6 +16432,28 @@
       "sha256": "c90e5eb4fdb2633f8f2b5919c41b7a946435bf89604d34f7bddac64eb1b3e007",
       "source": "De-salz.ogg"
     },
+    "sandale": {
+      "author": "Kampy",
+      "end": 1520,
+      "file": "words/sandale.mp3",
+      "gain": -4.0,
+      "lead": 430,
+      "matches": "sandale",
+      "mos": 3.11,
+      "sha256": "4b303df1dc66cdd5b2d9b4ebab73b076a7df5fa311e094b965ae0d4ce261452b",
+      "source": "De-Sandale.ogg"
+    },
+    "sandalen": {
+      "author": "Kampy",
+      "end": 1590,
+      "file": "words/sandalen.mp3",
+      "gain": -2.0,
+      "lead": 430,
+      "matches": "sandalen",
+      "mos": 3.05,
+      "sha256": "4d56ab798d8d759f0b1c07bb195cb9b5cd29666a3e904763dab279a2ff792e7d",
+      "source": "De-Sandalen.ogg"
+    },
     "satz": {
       "author": "Jeuwre",
       "file": "words/satz.mp3",
@@ -15958,6 +16497,29 @@
       "mos": 3.02,
       "sha256": "35c9a1b918bbf8365aa85a771a9f23e5852b687557e0e059eb6b1c146277aee0",
       "source": "De-Schafe.ogg"
+    },
+    "schal": {
+      "author": "Jeuwre",
+      "end": 1530,
+      "file": "words/schal.mp3",
+      "gain": -2.6,
+      "gate": -86.9,
+      "lead": 500,
+      "matches": "schal",
+      "mos": 2.97,
+      "sha256": "a0c47ff6a5c52e7c2c75d0b43b8a5059849680e57fe7906213ce711dea73d888",
+      "source": "De-schal.ogg"
+    },
+    "schals": {
+      "author": "Sebastian Wallroth",
+      "file": "words/schals.mp3",
+      "gain": 6.0,
+      "gate": -78.6,
+      "lead": 210,
+      "matches": "schals",
+      "mos": 3.17,
+      "sha256": "ad00a8da67b26c665ca55ca4f71244bb20206ac24fae8702bfa34586e5be1b88",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Schals.wav"
     },
     "scham": {
       "author": "Jeuwre",
@@ -16231,6 +16793,17 @@
       "mos": 2.86,
       "sha256": "09dacad8c0f3376bf08890c21406010558ed4f415976d3ecc200b4ea75ed1019",
       "source": "De-Schmerzen.ogg"
+    },
+    "schminken": {
+      "author": "Jeuwre",
+      "end": 1680,
+      "file": "words/schminken.mp3",
+      "gain": -2.1,
+      "lead": 420,
+      "matches": "schminken",
+      "mos": 3.25,
+      "sha256": "7a6186c8eb8b71e87c66e727a6fd4eec1a4127b34e5411d40791f0278c886699",
+      "source": "De-Schminken.ogg"
     },
     "schmutzig": {
       "author": "Jeuwre",
@@ -16617,6 +17190,16 @@
       "sha256": "b7f49cb2856c67d435ac0cc35e7fecb3dcf4a20e90c3bf5cea925beec8d90514",
       "source": "De-Schwämme.ogg"
     },
+    "schälen": {
+      "author": "Jeuwre",
+      "file": "words/schu00e4len.mp3",
+      "gain": -7.4,
+      "lead": 300,
+      "matches": "schälen",
+      "mos": 2.96,
+      "sha256": "b31efee0a922cc771181a9e889b924e2d1470c7bcea4b5be45dc44929c60786e",
+      "source": "De-schälen.ogg"
+    },
     "schön": {
       "author": "Jeuwre",
       "end": 1200,
@@ -16925,6 +17508,17 @@
       "sha256": "1d1a4171d2f3713db276de09b35e365a911651fff15de0c9a75b4e286743004b",
       "source": "De-Servietten.ogg"
     },
+    "setzen": {
+      "author": "Jeuwre",
+      "end": 1430,
+      "file": "words/setzen.mp3",
+      "gain": 2.8,
+      "lead": 410,
+      "matches": "setzen",
+      "mos": 3.15,
+      "sha256": "5bbca96d9c8629fb78d8bfca886020a6810f6019950e7ca85edc5b10c5567e2f",
+      "source": "De-setzen2.ogg"
+    },
     "shampoo": {
       "author": "Jeuwre",
       "end": 1550,
@@ -16999,6 +17593,16 @@
       "mos": 3.04,
       "sha256": "cad93e12f80606b34232ea836b8836c513e63daec9d0ee07efd80e02d679879b",
       "source": "De-sie.ogg"
+    },
+    "singen": {
+      "author": "MiER",
+      "file": "words/singen.mp3",
+      "gain": -1.4,
+      "gate": -48.5,
+      "matches": "singen",
+      "mos": 2.95,
+      "sha256": "07b75fd03b5bca784f18363a5ec010bbc046f778942aa02322e4f705edaade09",
+      "source": "De-singen.ogg"
     },
     "sitzen": {
       "author": "Jeuwre",
@@ -17582,6 +18186,17 @@
       "mos": 3.21,
       "sha256": "c8929e447ce6e53112fb2610c256f846864980117d563d1ab4d40fef722fc673",
       "source": "De-Steuern2.ogg"
+    },
+    "stiefel": {
+      "author": "Jeuwre",
+      "end": 1640,
+      "file": "words/stiefel.mp3",
+      "gain": -0.3,
+      "lead": 420,
+      "matches": "stiefel",
+      "mos": 3.07,
+      "sha256": "aa1a6aef8e0c4885d6399ca3e5aeace6f1926bbb7d9bc99dcc1cdd364f0d6c05",
+      "source": "De-stiefel.ogg"
     },
     "stift": {
       "author": "Jeuwre",
@@ -18486,6 +19101,17 @@
       "sha256": "e6b6697031dfae56ea6ff2b4562fbfff0141211fbce2e132d9af19330abd2523",
       "source": "De-Traurigkeit.ogg"
     },
+    "treffen": {
+      "author": "Jeuwre",
+      "end": 1430,
+      "file": "words/treffen.mp3",
+      "gain": -1.3,
+      "lead": 440,
+      "matches": "treffen",
+      "mos": 3.34,
+      "sha256": "ef261d8f2519b9fb1e419b8f25b2101ade42c77bc30e7d4c5539fb0917e1ffba",
+      "source": "De-Treffen.ogg"
+    },
     "treppe": {
       "author": "Jeuwre",
       "file": "words/treppe.mp3",
@@ -18615,6 +19241,26 @@
       "sha256": "e1693f1b94cf054a2e76d3840267f50cf2365d60ce2c9b4e9d4654e7f0418935",
       "source": "De-Türen.ogg"
     },
+    "uhr": {
+      "author": "Kampy",
+      "file": "words/uhr.mp3",
+      "gain": -1.9,
+      "gate": -54.3,
+      "matches": "uhr",
+      "mos": 2.89,
+      "sha256": "c234c6c6f92083614e3a2b55203457d05bf26227cc1cc2692fd9a99f06d0e890",
+      "source": "De-Uhr.ogg"
+    },
+    "uhren": {
+      "author": "Kampy",
+      "file": "words/uhren.mp3",
+      "gain": 4.0,
+      "gate": -53.3,
+      "matches": "uhren",
+      "mos": 2.88,
+      "sha256": "d408ace0394b324cc4a265af3105ac1c946a4dd78b8e8eb2ae16453d2a20aed8",
+      "source": "De-Uhren.ogg"
+    },
     "umrühren": {
       "author": "Jeuwre",
       "end": 1830,
@@ -18625,6 +19271,19 @@
       "mos": 2.98,
       "sha256": "ab3f5c0f695d7c7c29fc64b5a6e3be4e3e69a962a6377b14543b1e2d36b68cf9",
       "source": "De-umrühren.ogg"
+    },
+    "umziehen": {
+      "author": "Jeuwre",
+      "cap": 0.3,
+      "end": 1790,
+      "file": "words/umziehen.mp3",
+      "gain": 2.0,
+      "gate": -99.8,
+      "lead": 430,
+      "matches": "umziehen",
+      "mos": 3.06,
+      "sha256": "1f026c2a59c67b101fd9ea2e8ee22aedf4849b4e012845a4227e99048063bd73",
+      "source": "LL-Q188 (deu)-Jeuwre-Umziehen.wav"
     },
     "und": {
       "author": "Jeuwre",
@@ -18746,6 +19405,47 @@
       "mos": 3.09,
       "sha256": "ad9e308e9d07b9d5f65a32523b4f4f8ac297903e1f5b10543c22b87cd1f0b7d4",
       "source": "De-unter3.ogg"
+    },
+    "unterhemd": {
+      "author": "Jeuwre",
+      "end": 1690,
+      "file": "words/unterhemd.mp3",
+      "gain": -1.7,
+      "lead": 440,
+      "matches": "unterhemd",
+      "mos": 3.22,
+      "sha256": "25939349eab87ecbdb69aabe7514893fb16b00ecdf192cc4c0026f50e9187361",
+      "source": "De-Unterhemd.ogg"
+    },
+    "unterhemden": {
+      "author": "Jeuwre",
+      "file": "words/unterhemden.mp3",
+      "gain": -1.9,
+      "lead": 440,
+      "matches": "unterhemden",
+      "mos": 3.13,
+      "sha256": "062c7f3cf21d03e96958807d3cb2b0851d27859d7136c52b1fe1d3875de47a89",
+      "source": "De-Unterhemden.ogg"
+    },
+    "unterhose": {
+      "author": "Kampy",
+      "file": "words/unterhose.mp3",
+      "gain": 0.1,
+      "gate": -58.0,
+      "matches": "unterhose",
+      "mos": 3.14,
+      "sha256": "ace2d74112ec0a318786cdfcc3b82bd86aca757d93c69ecdefaaaa725c5dfd00",
+      "source": "De-Unterhose.ogg"
+    },
+    "unterhosen": {
+      "author": "Kampy",
+      "file": "words/unterhosen.mp3",
+      "gain": 2.8,
+      "gate": -62.8,
+      "matches": "unterhosen",
+      "mos": 3.16,
+      "sha256": "efc9ee3b9578d492b87217c3bcd40418b0a82176329470b58ca1de0ef2264490",
+      "source": "De-Unterhosen.ogg"
     },
     "unterlagen": {
       "author": "Jeuwre",
@@ -19045,6 +19745,16 @@
       "sha256": "359173e5427250d9281817e6b38eeb01342828575af9bb58da3ed71915cd7d5d",
       "source": "De-verheiratet.ogg"
     },
+    "verirren": {
+      "author": "Jeuwre",
+      "file": "words/verirren.mp3",
+      "gain": -3.8,
+      "lead": 240,
+      "matches": "verirren",
+      "mos": 3.0,
+      "sha256": "268d3c63ea76a7e37c7daa72f05b70908870a37092716e2b69ec54e088dc0f22",
+      "source": "De-verirren.ogg"
+    },
     "verkaufen": {
       "author": "Jeuwre",
       "end": 1790,
@@ -19099,6 +19809,17 @@
       "mos": 3.19,
       "sha256": "f94a60b93dcb97706903123a9098e3840aa127de9e874e4a8a92e3fae177b5c2",
       "source": "De-verlassen2.ogg"
+    },
+    "verletzen": {
+      "author": "Jeuwre",
+      "end": 1640,
+      "file": "words/verletzen.mp3",
+      "gain": -2.0,
+      "lead": 480,
+      "matches": "verletzen",
+      "mos": 3.17,
+      "sha256": "b9ced00cd8cf1406be0de200e2b282d87f41df41b2ef6d25098db89547dca21c",
+      "source": "De-verletzen2.ogg"
     },
     "verlieren": {
       "author": "Jeuwre",
@@ -19155,6 +19876,18 @@
       "mos": 3.42,
       "sha256": "2fcaf7f39ecf99fc004c91880ab0225e44204aa898f649df7658d20ab665fdc9",
       "source": "De-Versichertenkarten.ogg"
+    },
+    "verspäten": {
+      "author": "Jeuwre",
+      "end": 1350,
+      "file": "words/verspu00e4ten.mp3",
+      "gain": -2.7,
+      "gate": -85.1,
+      "lead": 170,
+      "matches": "verspäten",
+      "mos": 3.0,
+      "sha256": "4a4e879ae5f5708512eabbc202d6b7a79c8c8bece44d5683094c230f77170d28",
+      "source": "De-verspäten.ogg"
     },
     "verstehen": {
       "author": "Jeuwre",
@@ -19665,6 +20398,17 @@
       "sha256": "305b2ce2bc2c2d97f93aa51ece229a01112518158ab4da7c588c40a3c02292ae",
       "source": "De-Waschbecken.ogg"
     },
+    "waschen": {
+      "author": "Jeuwre",
+      "end": 1240,
+      "file": "words/waschen.mp3",
+      "gain": 0.4,
+      "lead": 400,
+      "matches": "waschen",
+      "mos": 3.23,
+      "sha256": "19dec082c6a45f86b6ff024b9e55296dd8d64b4b10c5ce795a5f1c8f7fc1e38c",
+      "source": "De-waschen2.ogg"
+    },
     "waschmaschine": {
       "author": "Jeuwre",
       "end": 1610,
@@ -19786,6 +20530,17 @@
       "mos": 3.01,
       "sha256": "1edd05a0e3c05e7b7690e70dae38f0b1d0b7d9ea8c05df6482a2495f24153b56",
       "source": "De-weggehen2.ogg"
+    },
+    "wegwerfen": {
+      "author": "Jeuwre",
+      "end": 1760,
+      "file": "words/wegwerfen.mp3",
+      "gain": 0.1,
+      "lead": 490,
+      "matches": "wegwerfen",
+      "mos": 3.32,
+      "sha256": "e4e9374b3b18fa14ae4dd7a18f9f94118210c832939dfc62deb11d5592d4ffe7",
+      "source": "De-wegwerfen2.ogg"
     },
     "wehtun": {
       "author": "Jeuwre",
@@ -20409,6 +21164,28 @@
       "mos": 3.31,
       "sha256": "a2638d4130fd9f3fb7276ecf3f06bd4a5a1af77e15b9059f36b46731d580c0a0",
       "source": "De-Wörterbücher.ogg"
+    },
+    "wünschen": {
+      "author": "Jeuwre",
+      "end": 1730,
+      "file": "words/wu00fcnschen.mp3",
+      "gain": -2.0,
+      "lead": 430,
+      "matches": "wünschen",
+      "mos": 3.24,
+      "sha256": "923221cfa84a87f38ccc6ab6caaa221249168c081c35f35256ad031305e7134e",
+      "source": "De-wünschen.ogg"
+    },
+    "würzen": {
+      "author": "Jeuwre",
+      "end": 1580,
+      "file": "words/wu00fcrzen.mp3",
+      "gain": -4.1,
+      "lead": 430,
+      "matches": "würzen",
+      "mos": 3.29,
+      "sha256": "078c0a9d50abea491005b75699bde047abbed101df2a7eeff7677a92c2a0854e",
+      "source": "De-würzen.ogg"
     },
     "zahn": {
       "author": "Jeuwre",
