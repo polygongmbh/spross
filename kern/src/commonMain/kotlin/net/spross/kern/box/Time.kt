@@ -114,7 +114,7 @@ internal fun chromeStretch(nowEpochMillis: Long, tzId: String): Long {
     val local = Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(zoneOf(tzId))
     // why: the night runs past midnight, so its small hours count with the evening before.
     val day = if (local.hour < MORNING_HOUR) local.date.minus(1, DateTimeUnit.DAY) else local.date
-    return day.toEpochDays().toLong() * DayPart.entries.size + chromePart(nowEpochMillis, tzId).ordinal
+    return day.toEpochDays() * DayPart.entries.size + chromePart(nowEpochMillis, tzId).ordinal
 }
 
 private const val MORNING_HOUR = 5
