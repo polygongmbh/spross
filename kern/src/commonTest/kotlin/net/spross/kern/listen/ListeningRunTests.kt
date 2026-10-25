@@ -124,20 +124,39 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: Repeat replays the current turn and draws nothing.
-     * WHY: "again" is asked for when the word did not land — a fresh draw would be the run
-     * answering a different question. The replay is an EFFECT because the state does not
-     * move, and a driver watching for a changed turn would go deaf on exactly this button.
+     * RULE: Back restarts the turn on air; pressed again before the run moves on, it steps to
+     * the turn before, and keeps stepping.
+     * WHY: the word just missed is the likelier ask, and a press on a turn already restarted
+     * can only mean the one before it. The restart is an EFFECT because the turn does not
+     * change, and a driver watching for a changed turn would go deaf on exactly this button.
      */
     @Test
-    fun repeatReplaysTheSameTurnWithoutDrawing() {
-        val started = run(candidates(20))
+    fun backRestartsTheTurnThenStepsBehindIt() {
+        var state = run(candidates(20))
+        repeat(3) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
 
-        val again = ListeningRun.reduce(started, ListeningIntent.Repeat)
+        val restarted = ListeningRun.reduce(state, ListeningIntent.Back)
+        assertEquals(listOf(ListeningEffect.Play(assertNotNull(state.turn))), restarted.effects)
 
-        assertEquals(started.turn, again.state.turn)
-        assertEquals(started.played, again.state.played)
-        assertEquals(listOf(ListeningEffect.Play(assertNotNull(started.turn))), again.effects)
+        val once = ListeningRun.reduce(restarted.state, ListeningIntent.Back).state
+        val twice = ListeningRun.reduce(once, ListeningIntent.Back).state
+        assertEquals(listOf("w03", "w02"), listOf(once, twice).map { assertNotNull(it.turn).cardId })
+        assertEquals("w03", assertNotNull(ListeningRun.reduce(twice, ListeningIntent.Advance).state.turn).cardId)
+    }
+
+    /**
+     * RULE: the head of a run steps back to the playlist's last turn only once it has lapped.
+     * WHY: before a lap nothing was heard ahead of the head; after one, the last word is.
+     */
+    @Test
+    fun backPastTheHeadReachesTheLastTurnOnlyOnceLapped() {
+        val fresh = ListeningRun.reduce(run(candidates(3)), ListeningIntent.Back).state
+        assertEquals("w01", assertNotNull(ListeningRun.reduce(fresh, ListeningIntent.Back).state.turn).cardId)
+
+        var lapped = run(candidates(3))
+        repeat(3) { lapped = ListeningRun.reduce(lapped, ListeningIntent.Advance).state }
+        lapped = ListeningRun.reduce(lapped, ListeningIntent.Back).state
+        assertEquals("w03", assertNotNull(ListeningRun.reduce(lapped, ListeningIntent.Back).state.turn).cardId)
     }
 
     /**

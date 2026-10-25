@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Listening's repeat button is now a back button: one press restarts the word, a second steps back to the word before.
 - Recordings now play only the spoken word, skipping clicks and hum around it, and recordings that say more than their word no longer ship.
 - The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.

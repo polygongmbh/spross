@@ -36,8 +36,8 @@ import net.spross.kern.listen.sayings
  * A word that never reports (an engine that dropped it, a clip that never decoded) is caught
  * by the ceiling below, so a run can stall on nothing.
  *
- * The audio is driven off the reduction's EFFECTS, never off a state diff: `Repeat` returns
- * an identical state and its whole observable is the `Play` it asks for.
+ * The audio is driven off the reduction's EFFECTS, never off a state diff: a first `Back`
+ * leaves the turn as it was and its whole observable is the `Play` it asks for.
  *
  * It touches no box. Nothing here books a review, writes a schedule or moves the streak —
  * listening answers nothing, so it costs the box nothing (`docs/listening.md`).
@@ -112,7 +112,7 @@ class ListeningDriver(
 
     override fun skip() = dispatch(ListeningIntent.Skip)
 
-    override fun repeat() = dispatch(ListeningIntent.Repeat)
+    override fun back() = dispatch(ListeningIntent.Back)
 
     /**
      * The ✕ as the lock screen and a headphone stop button reach it. It goes through the
@@ -198,7 +198,7 @@ class ListeningDriver(
                 pauseLabel = chrome.listenPause,
                 resumeLabel = chrome.listenResume,
                 skipLabel = chrome.listenSkip,
-                repeatLabel = chrome.listenRepeat,
+                backLabel = chrome.listenBack,
                 closeLabel = chrome.commonClose,
             )
         }

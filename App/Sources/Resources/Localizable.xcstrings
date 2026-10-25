@@ -4175,6 +4175,22 @@
         }
       }
     },
+    "listen.back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
     "listen.minutesLeft %lld" : {
       "comment" : "The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched.",
       "localizations" : {
@@ -4228,22 +4244,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pause"
-          }
-        }
-      }
-    },
-    "listen.repeat" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch einmal"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Again"
           }
         }
       }

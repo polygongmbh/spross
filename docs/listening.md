@@ -85,7 +85,10 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   that is what makes "listening books nothing" structural rather than promised.
   It walks the playlist it was handed by position and laps at its end;
   repeats are the deal's business, never the run's.
-  `ListeningEffect` says `Play`/`Stop` because `Repeat` leaves the state identical and must still make the sound fire.
+- **Back works like a music player's**: the first press restarts the word on air,
+  a press before the run moves on steps to the word before it, and further presses keep stepping;
+  the head steps to the playlist's end only once the run has lapped.
+  `ListeningEffect` says `Play`/`Stop` because a first Back leaves the turn as it was and must still make the sound fire.
 - **Every beat is kern's** (`ListeningTurn.sayings`):
   target, meaning, target again, the article on the target sayings only, and the meaning shown from its own saying on.
   The recall gap is long for a word answered before and short for a new one,

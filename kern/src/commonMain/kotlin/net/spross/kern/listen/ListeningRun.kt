@@ -37,8 +37,11 @@ sealed class ListeningIntent {
     /** "Next", asked for: draw the next turn now. */
     data object Skip : ListeningIntent()
 
-    /** "Again": the same turn from its first beat. */
-    data object Repeat : ListeningIntent()
+    /**
+     * "Back": the turn on air from its first beat; asked again before the run moves on, the
+     * turn before it.
+     */
+    data object Back : ListeningIntent()
 
     data object TogglePause : ListeningIntent()
     data object Close : ListeningIntent()
@@ -48,8 +51,8 @@ sealed class ListeningIntent {
  * What the reduction asks the platform to do about the sound, which is the only thing outside
  * the run's own state.
  *
- * An effect rather than a state diff, because [ListeningIntent.Repeat] leaves the state
- * identical and must still make the audio fire — a driver watching the turn change would go
+ * An effect rather than a state diff, because a first [ListeningIntent.Back] leaves the turn
+ * as it was and must still make the audio fire — a driver watching the turn change would go
  * deaf on exactly the button that asks to hear something.
  */
 sealed class ListeningEffect {
@@ -83,6 +86,10 @@ data class ListeningRunState(
     val active: Boolean,
     /** Turns drawn so far — what a run's own progress line reads, never a box figure. */
     val played: Int,
+    /** Whether the walk has passed the playlist's end, so the turn before its head is its last. */
+    val lapped: Boolean,
+    /** A Back restarted the turn on air and nothing has moved since, so the next one steps back. */
+    val rewound: Boolean,
 ) {
     val currentCardId: String? get() = turn?.cardId
 }
@@ -102,7 +109,7 @@ object ListeningRun {
     /** No run yet: a closed shell around the pool. */
     fun idle(candidates: List<ListeningCandidate>): ListeningRunState = ListeningRunState(
         candidates = candidates, turn = null, position = -1,
-        paused = false, active = false, played = 0,
+        paused = false, active = false, played = 0, lapped = false, rewound = false,
     )
 
     fun reduce(state: ListeningRunState, intent: ListeningIntent): ListeningReduction =
@@ -110,7 +117,7 @@ object ListeningRun {
             ListeningIntent.Start -> start(state)
             ListeningIntent.Advance -> advance(state)
             ListeningIntent.Skip -> skip(state)
-            ListeningIntent.Repeat -> repeat(state)
+            ListeningIntent.Back -> back(state)
             ListeningIntent.TogglePause -> togglePause(state)
             ListeningIntent.Close -> close(state)
         }
@@ -139,11 +146,25 @@ object ListeningRun {
         return played(draw(state.copy(paused = false)))
     }
 
-    /** "Again" — the same turn, replayed; it lifts a pause for the same reason a skip does. */
-    private fun repeat(state: ListeningRunState): ListeningReduction {
-        val turn = state.turn
-        if (!state.active || turn == null) return unchanged(state)
-        return ListeningReduction(state.copy(paused = false), listOf(ListeningEffect.Play(turn)))
+    /**
+     * "Back" — the way a music player's is: the first press restarts the word on air, since
+     * the one just missed is the likelier ask, and a press after it steps to the turn before.
+     * The head of an unlapped run has nothing before it and restarts instead. It lifts a pause
+     * for the same reason a skip does.
+     */
+    private fun back(state: ListeningRunState): ListeningReduction {
+        if (!state.active || state.turn == null) return unchanged(state)
+        val pool = state.candidates
+        val position = when {
+            !state.rewound -> state.position
+            state.position > 0 -> state.position - 1
+            state.lapped -> pool.size - 1
+            else -> state.position
+        }
+        val stepped = state.copy(
+            turn = turnFor(pool[position]), position = position, paused = false, rewound = true,
+        )
+        return played(stepped)
     }
 
     /**
@@ -174,7 +195,10 @@ object ListeningRun {
         val pool = state.candidates
         if (pool.isEmpty()) return state.copy(turn = null)
         val position = (state.position + 1) % pool.size
-        return state.copy(turn = turnFor(pool[position]), position = position, played = state.played + 1)
+        return state.copy(
+            turn = turnFor(pool[position]), position = position, played = state.played + 1,
+            lapped = state.lapped || (state.position >= 0 && position == 0), rewound = false,
+        )
     }
 
     /** Play what was drawn, or fall silent where there was nothing to draw. */

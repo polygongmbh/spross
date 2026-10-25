@@ -502,7 +502,7 @@ interface Chrome {
     val listenPause: String
     val listenResume: String
     val listenSkip: String
-    val listenRepeat: String
+    val listenBack: String
     val listenTimer: String
     val listenMinutesLeft: String   // %d
 

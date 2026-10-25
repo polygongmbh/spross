@@ -62,7 +62,7 @@ final class ListeningDriver {
         NowPlaying.shared.take(run: nowPlayingRun, commands: .init(
             toggle: { [weak self] in self?.togglePause() },
             next: { [weak self] in self?.skip() },
-            again: { [weak self] in self?.again() }
+            back: { [weak self] in self?.back() }
         ))
         watchInterruptions()
         pausedByInterruption = false
@@ -124,7 +124,7 @@ final class ListeningDriver {
         dispatch(ListeningIntent.TogglePause.shared)
     }
     func skip() { dispatch(ListeningIntent.Skip.shared) }
-    func again() { dispatch(ListeningIntent.Repeat.shared) }
+    func back() { dispatch(ListeningIntent.Back.shared) }
 
     /// A bedtime was set, extended or cleared: the lock screen's progress bar
     /// is the same clock the chip is, so it is redrawn on the tap rather than
@@ -165,8 +165,8 @@ final class ListeningDriver {
         let was = (paused: state.paused, active: state.active)
         let reduction = ListeningRun.shared.reduce(state: state, intent: intent)
         state = reduction.state
-        // why: the EFFECTS, never a diff of the turn — Repeat leaves the state
-        // identical and its only observable is the Play it asks for.
+        // why: the EFFECTS, never a diff of the turn — a first Back leaves the
+        // turn as it was and its only observable is the Play it asks for.
         for effect in reduction.effects { apply(effect) }
         // why: the card carries nothing that moves with a turn, so a turn is not
         // a reason to push one — only a run that started, stopped or changed its

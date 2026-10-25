@@ -479,7 +479,7 @@ internal object ChromeDe : Chrome {
     override val listenPause = "Pause"
     override val listenResume = "Weiter"
     override val listenSkip = "Nächstes Wort"
-    override val listenRepeat = "Noch einmal"
+    override val listenBack = "Zurück"
     override val listenTimer = "Timer"
     override val listenMinutesLeft = "%d Min."
     override val errorTitle = "Ups"

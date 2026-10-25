@@ -68,10 +68,8 @@ class ListeningService : Service() {
                     ListeningBridge.controls?.skip()
                 }
 
-                // why: "previous" is the nearest thing a transport bar has to "again", and a
-                // playlist with no history has nothing else to give it.
                 override fun onSkipToPrevious() {
-                    ListeningBridge.controls?.repeat()
+                    ListeningBridge.controls?.back()
                 }
 
                 override fun onStop() {
@@ -92,7 +90,7 @@ class ListeningService : Service() {
         when (intent?.action) {
             ACTION_TOGGLE -> ListeningBridge.controls?.togglePause()
             ACTION_SKIP -> ListeningBridge.controls?.skip()
-            ACTION_AGAIN -> ListeningBridge.controls?.repeat()
+            ACTION_BACK -> ListeningBridge.controls?.back()
             ACTION_CLOSE -> ListeningBridge.controls?.close()
         }
         // why: a service started with startForegroundService owes a notification within
@@ -227,7 +225,7 @@ class ListeningService : Service() {
             .setOnlyAlertOnce(true)
             .setShowWhen(false)
         if (now != null) {
-            builder.addAction(action(R.drawable.ic_listen_again, now.repeatLabel, ACTION_AGAIN))
+            builder.addAction(action(R.drawable.ic_listen_back, now.backLabel, ACTION_BACK))
             builder.addAction(
                 if (now.paused) {
                     action(R.drawable.ic_listen_play, now.resumeLabel, ACTION_TOGGLE)
@@ -284,7 +282,7 @@ class ListeningService : Service() {
 
         private const val ACTION_TOGGLE = "net.spross.app.listen.TOGGLE"
         private const val ACTION_SKIP = "net.spross.app.listen.SKIP"
-        private const val ACTION_AGAIN = "net.spross.app.listen.AGAIN"
+        private const val ACTION_BACK = "net.spross.app.listen.BACK"
         private const val ACTION_CLOSE = "net.spross.app.listen.CLOSE"
 
         /**
