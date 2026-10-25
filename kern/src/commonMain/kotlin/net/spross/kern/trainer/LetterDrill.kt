@@ -118,7 +118,10 @@ object LetterDrill {
             promptKind = prompt.kind,
             promptSlug = prompt.slug,
             promptGlyph = prompt.glyph,
-            choices = LetterDrillChoices.tiles(alphabet, entry, format, sprosse, prompt.gap, rng),
+            choices = LetterDrillChoices.tiles(
+                alphabet, entry, format, sprosse, prompt.gap, rng,
+                previousGlyph = alphabet.entries.firstOrNull { it.ref == avoidRef }?.glyph,
+            ),
             gapText = prompt.gap,
             accepted = listOf(entry.glyph),
             display = entry.glyph,

@@ -393,6 +393,18 @@ class DateDrillTests {
         )
     }
 
+    /** The name just answered is ruled out on sight, so it never stands beside the next one. */
+    @Test
+    fun theWarmUpKeepsThePreviousAnswerOffTheTiles() {
+        val previous = german.weekdays.first()
+        val avoid = "${DateTaskKind.NameChoice}:w${previous.index}"
+        for (seed in 1..40) {
+            val task = assertNotNull(DateDrill.sample(german, 1, false, avoid, emptySet(), Random(seed.toLong())))
+            if (task.display == previous.target.text) continue
+            assertFalse(previous.target.text in task.choices.orEmpty(), "${task.choices}")
+        }
+    }
+
     /** Tapping a name and writing it are two questions, so neither answers the other out. */
     @Test
     fun theWarmUpKeepsSolvedKeysOfItsOwn() {

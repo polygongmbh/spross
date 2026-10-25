@@ -42,19 +42,24 @@ internal object DateDrillChoices {
      * The drawn name with its company. Filled at DRAW time rather than in the pool, so
      * meeting a name again in the next run is not the same question with the same three
      * neighbors standing beside it.
+     *
+     * [avoid] is the previous task's [DrillSolved.key]: the name the learner just picked as
+     * right is ruled out on sight, so it stands beside this one only if its group runs short.
      */
     fun tiles(
         content: DateDrillContent,
         task: DateDrillTask,
         reverse: Boolean,
         rng: Random,
+        avoid: String? = null,
     ): DateDrillTask {
-        val group = if (task.id.startsWith(WEEKDAY)) content.weekdays else content.months
-        val others = group
-            .map { answerText(it, reverse) }
-            .filter { it != task.display }
+        val tag = if (task.id.startsWith(WEEKDAY)) WEEKDAY else MONTH
+        val group = if (tag == WEEKDAY) content.weekdays else content.months
+        val (previous, rest) = group
+            .filter { answerText(it, reverse) != task.display }
             .shuffled(rng)
-            .take(COUNT - 1)
+            .partition { DrillSolved.key(question(tag, it, reverse)) == avoid }
+        val others = (rest + previous).map { answerText(it, reverse) }.take(COUNT - 1)
         return task.copy(choices = (others + task.display).shuffled(rng))
     }
 

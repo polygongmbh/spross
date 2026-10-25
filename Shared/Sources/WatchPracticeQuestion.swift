@@ -23,6 +23,10 @@ enum WatchPracticeGenerator {
     /// Tiles per question: the answer plus three distractors.
     static let optionCount = 4
 
+    /// Answers just asked that stay off the next tiles: a word the learner tapped
+    /// as right a moment ago is ruled out on sight.
+    static let recentAnswerCount = 2
+
     /// The text the learner must MATCH for this entry's role (the option side),
     /// in the form the phone offers it: `optionForm` where a word would otherwise
     /// be told apart from its company by a class marker rather than by meaning.
@@ -31,14 +35,18 @@ enum WatchPracticeGenerator {
     }
 
     /// A question, or `nil` when the phone shipped no distractor for the entry
-    /// (a lone card, or a pre-v3 snapshot).
+    /// (a lone card, or a pre-v3 snapshot). `recentAnswers` go last in line, so they
+    /// only stand as a tile when the shortlist has nothing else left.
     static func makeQuestion(promptEntry prompt: WatchSnapshot.Entry,
+                             avoiding recentAnswers: [String] = [],
                              using rng: inout some RandomNumberGenerator) -> WatchPracticeQuestion? {
         var shortlist = prompt.distractors ?? []
         guard !shortlist.isEmpty else { return nil }
         // why: the phone ranks a handful by shape — jitter within it so the
         // same card doesn't always draw the same three tiles.
         shortlist.shuffle(using: &rng)
+        shortlist = shortlist.filter { !recentAnswers.contains($0) }
+            + shortlist.filter { recentAnswers.contains($0) }
 
         let correct = answerText(for: prompt)
         var options = Array(shortlist.prefix(optionCount - 1)) + [correct]

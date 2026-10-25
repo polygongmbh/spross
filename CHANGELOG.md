@@ -11,6 +11,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Recordings now play only the spoken word, skipping clicks and hum around it, and recordings that say more than their word no longer ship.
 - On a typing card whose prompt has two meanings, the word for either now counts as right, and the area label above such prompts is gone.
 - A word asked by ear no longer lists itself again under "also" once the card opens.
+- On the watch, the words you just answered no longer turn up as wrong options in the next questions, and the letter and calendar drills keep the last answer off the next tiles too.
 - The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
