@@ -17,6 +17,8 @@
   "coat": { "text": "koti", "forms": { "pl": "makoti" } },
   "hat": { "text": "kofia", "grammar": { "plural": "=" } },
   "underwear": { "text": "nguo ya ndani", "forms": { "pl": "nguo za ndani" } },
+  "underpants": { "text": "chupi", "grammar": { "plural": "=" } },
+  "undershirt": { "text": "fulana ya ndani", "forms": { "pl": "fulana za ndani" } },
   "skirt": { "text": "sketi", "grammar": { "plural": "=" } },
   "jeans": { "text": "jinzi", "forms": { "pl": "majinzi" } },
   "belt": { "text": "mkanda", "forms": { "pl": "mikanda" } },

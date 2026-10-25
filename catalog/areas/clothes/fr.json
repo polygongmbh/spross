@@ -29,6 +29,8 @@
    }
   },
   "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
+  "underpants": { "text": "slip", "accepts": ["culotte", "caleçon"], "grammar": { "article": "le" } },
+  "undershirt": { "text": "maillot de corps", "grammar": { "article": "le" } },
   "skirt": { "text": "jupe", "grammar": { "article": "la" } },
   "jeans": { "text": "jean", "accepts": ["jeans"], "grammar": { "article": "le" } },
   "belt": { "text": "ceinture", "grammar": { "article": "la" } },

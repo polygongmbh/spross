@@ -33,6 +33,8 @@
    "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
   },
   "underwear": { "text": "biancheria intima", "grammar": { "article": "la" } },
+  "underpants": { "text": "mutande", "grammar": { "article": "le", "plural": "only" } },
+  "undershirt": { "text": "canottiera", "grammar": { "article": "la" } },
   "skirt": { "text": "gonna", "grammar": { "article": "la" } },
   "jeans": { "text": "jeans", "grammar": { "article": "i", "plural": "only" } },
   "belt": { "text": "cintura", "grammar": { "article": "la" } },

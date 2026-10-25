@@ -18,6 +18,8 @@
   "coat": { "text": "пальто́", "forms": { "pl": "па́льта" } },
   "hat": { "text": "ша́пка" },
   "underwear": { "text": "спі́дня біли́зна" },
+  "underpants": { "text": "труси́", "grammar": { "plural": "only" } },
+  "undershirt": { "text": "ма́йка" },
   "skirt": { "text": "спідни́ця" },
   "jeans": { "text": "джи́нси", "grammar": { "plural": "only" } },
   "belt": { "text": "ре́мінь", "forms": { "pl": "ре́мені" } },

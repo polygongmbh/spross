@@ -18,6 +18,8 @@
   "coat": { "text": "Mantel", "forms": { "pl": "die Mäntel" }, "grammar": { "article": "der" } },
   "hat": { "text": "Mütze", "forms": { "pl": "die Mützen" }, "grammar": { "article": "die" } },
   "underwear": { "text": "Unterwäsche", "grammar": { "article": "die" } },
+  "underpants": { "text": "Unterhose", "forms": { "pl": "die Unterhosen" }, "grammar": { "article": "die" } },
+  "undershirt": { "text": "Unterhemd", "forms": { "pl": "die Unterhemden" }, "grammar": { "article": "das" } },
   "skirt": { "text": "Rock", "forms": { "pl": "die Röcke" }, "grammar": { "article": "der" } },
   "jeans": { "text": "Jeans", "grammar": { "article": "die", "plural": "=" } },
   "belt": { "text": "Gürtel", "grammar": { "article": "der", "plural": "=" } },

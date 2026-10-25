@@ -16,7 +16,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Home counts words that settled today among the day's checks again, instead of naming them on their own.
 - Swahili "to happen" now teaches kutukia, accepting kutokea and kufanyika.
 - A new "to appear" card joins the verbs in every language, and carries Swahili kutokea.
-- A new Clothes area holds 36 garments and dressing verbs, from underwear to the raincoat, gathering the bedroom's and the hallway's garments with their progress kept.
+- A new Clothes area holds the garments from underpants to the raincoat and the verbs for dressing, gathering the bedroom's and the hallway's garments with their progress kept.
 - Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
 - A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
 

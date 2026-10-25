@@ -18,6 +18,8 @@
   "coat": { "text": "coat" },
   "hat": { "text": "hat" },
   "underwear": { "text": "underwear" },
+  "underpants": { "text": "underpants" },
+  "undershirt": { "text": "undershirt" },
   "skirt": { "text": "skirt" },
   "jeans": { "text": "jeans", "grammar": { "plural": "only" } },
   "belt": { "text": "belt" },

@@ -27,6 +27,12 @@
    "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
   },
   "underwear": { "text": "ropa interior", "grammar": { "article": "la" } },
+  "underpants": {
+   "text": "calzoncillos",
+   "accepts": ["calzoncillo", "bragas", "braga"],
+   "grammar": { "article": "los" }
+  },
+  "undershirt": { "text": "camiseta interior", "grammar": { "article": "la" } },
   "skirt": { "text": "falda", "accepts": ["pollera"], "grammar": { "article": "la" } },
   "jeans": {
    "text": "vaqueros",

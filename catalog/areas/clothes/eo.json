@@ -25,6 +25,8 @@
    }
   },
   "underwear": { "text": "subvestoj", "accepts": ["subvesto"] },
+  "underpants": { "text": "kalsono", "accepts": ["kalsonoj"] },
+  "undershirt": { "text": "subĉemizo" },
   "skirt": { "text": "jupo" },
   "jeans": { "text": "ĝinzo", "accepts": ["ĝinzoj"] },
   "belt": { "text": "zono" },

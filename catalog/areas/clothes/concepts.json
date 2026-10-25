@@ -15,6 +15,8 @@
  { "slug": "coat", "kind": "noun", "emoji": "🥼" },
  { "slug": "hat", "kind": "noun" },
  { "slug": "underwear", "kind": "noun", "emoji": "🩲" },
+ { "slug": "underpants", "kind": "noun" },
+ { "slug": "undershirt", "kind": "noun", "emoji": "🎽" },
  { "slug": "skirt", "kind": "noun" },
  { "slug": "jeans", "kind": "noun" },
  { "slug": "belt", "kind": "noun", "emoji": "🪢" },
