@@ -3040,14 +3040,14 @@
       "source": "Sw-ke-jumbe.flac"
     },
     "juu": {
-      "author": "Ismail Ibn Ahmed",
+      "author": "Waithera Were",
       "file": "words/juu.mp3",
-      "gain": 8.6,
-      "lead": 100,
+      "gain": -6.8,
+      "gate": -64.6,
       "matches": "juu",
-      "mos": 2.5,
-      "sha256": "de2cbe581a80a51fe2e8192e4d7fb9979a6324b96b6fe915d180592ffc6d7c2d",
-      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-juu.wav"
+      "mos": 2.73,
+      "sha256": "f4422bc1b6768ba994b46b097082d75cf55f0da75513d07a26b3a671e6ebf9f2",
+      "source": "Sw-ke-juu.flac"
     },
     "juu ya": {
       "author": "Waithera Were",

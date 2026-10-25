@@ -26,6 +26,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A new Clothes area holds the garments from underpants to the raincoat and the verbs for dressing, gathering the bedroom's and the hallway's garments with their progress kept.
 - Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
 - A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
+- Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
 
 ## 8.7.0 — 2026-10-09
 
