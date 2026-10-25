@@ -61,9 +61,9 @@ mkdir -p "$DEST"
 STARTED="$DEST/.started"
 touch "$STARTED"
 
-# why: AGP flags every configuration the configuration cache resolves while it builds
-# the task graph (four lines each, no switch through AGP 9.4); dropping them keeps
-# real warnings visible. The subshell carries Gradle's status past the pipe.
+# why: AGP's KMP library plugin flags every configuration Gradle resolves while it
+# calculates the task graph — kern's own jvm/ios ones included, four lines each,
+# no switch through AGP 9.5; dropping them keeps real warnings visible. The subshell carries Gradle's status past the pipe.
 STATUS="$DEST/.gradle-status"
 { ./gradlew ":kern:${LINK}${SLICE}" 2>&1; echo $? > "$STATUS"; } | awk '
   / was resolved during configuration time\.$/ { skip = 3; next }
