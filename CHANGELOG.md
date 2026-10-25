@@ -6,18 +6,18 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## 9.0.0 — 2026-10-26
 
-- A new Clothes area holds the garments from underpants to the raincoat and the verbs for dressing, gathering the bedroom's and the hallway's garments with their progress kept.
+- A new Clothes area teaches everything from underpants to the raincoat and the verbs for getting dressed, and clothes you already learned elsewhere keep their progress.
 - Once most of the day's reviews are done, Home's first card now takes turns suggesting a mini game, listening or an AI chat.
-- Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
-- Listening's repeat button is now a back button, and a run that plays through its whole playlist carries on in a fresh order.
-- A numbers challenge is now the one race against the clock, replacing the Timed switch, and moves straight on after every answer with Skip in place of Reveal and no hints.
-- Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.
-- On a typing card whose prompt has two meanings, the word for either now counts as right.
+- Every drill now reads its question aloud when it appears, and the answer once you have answered.
+- In Listening, the repeat button now takes you back a word when pressed twice, and once every word has played they continue in a new order.
+- To race the clock in the numbers drill, start a challenge, which now moves straight on after every answer and gives no hints.
+- Word scramble now always keeps a word's first letter in place, so harder levels mean longer words rather than guessing blind.
+- When you type an answer to a word with two meanings, the translation of either now counts as right.
 - The letter drill now says many letters in more than one voice, changing voice from question to question.
-- On the watch, the words you just answered no longer turn up as wrong options, and a word to produce shows alone for a moment before its options appear.
-- Recordings now play only the spoken word, recordings that say more than their word no longer ship, and a reflexive verb without its own recording plays the bare verb.
-- Hundreds more words across all eight languages, the new clothes words among them, now play a real speaker's recording instead of the device voice.
-- French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
+- On the watch, words you just answered no longer show up again as wrong choices, and every word now shows alone for a moment before its choices appear.
+- Recordings sound cleaner, without clicks, hum or extra words around the word you are learning.
+- Hundreds more words in every language, verbs like sich waschen among them, are now spoken by a real person instead of your phone's voice.
+- Nouns like French l'eau and Spanish el agua now show the color of their real gender.
 
 ## 8.7.0 — 2026-10-09
 

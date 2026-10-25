@@ -59,6 +59,7 @@ Android's `versionCode` is derived from the name:
   if not, fold it in —
   one headline, the sharpest example or two.
 - A bullet is ONE plain sentence, written for a release-notes reader, not a maintainer.
+  Read it as a learner who has never seen the code: say what they see and hear, never the pipeline's terms (ship, take, prompt, produce, verdict).
   No bold lead, no explanation clause after it: name what the learner can now do.
   Reasoning, mechanism and examples belong in the commit message.
   An explanation earns its place only where the sentence means nothing without it.
