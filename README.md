@@ -56,7 +56,6 @@ The drills stand on both phones too, each run on kern's rules.
 
 **iPhone and Apple Watch** — [**Spross on the App Store**](https://apps.apple.com/app/id6810577722) (`net.spross.app`).
 Android is not in a store yet, so it is sideloaded.
-How a build is cut, signed and published is `docs/distribution.md`.
 
 **Android** — [**Add Spross to Obtainium**](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https%3A%2F%2Fgithub.com%2Fpolygongmbh%2Fspross),
 opened **on the phone**.
@@ -77,6 +76,9 @@ is the same file, installed by hand and updated the same way.
 Registered test devices only, and updates arrive as new builds rather than in place.
 Each release carries an `itms-services://` link to open in Safari **on the device**;
 internal TestFlight testers get the same build minutes after the tag, without review.
+
+How a release is cut is `docs/release.md`;
+how it is signed and published is `docs/distribution.md`.
 
 ## Structure
 

@@ -1,14 +1,11 @@
 #!/bin/sh
-# Cut a release: the changelog heading, the version, the gates, the tag, the push.
+# Cut a release: changelog heading, version increment, build verification, tag, push.
 #
 #   scripts/release.sh 5.7.2            cut it and push
 #   scripts/release.sh --check 5.7.2    everything up to the tag, nothing written to origin
 #   scripts/release.sh --no-app 5.7.2   skip the app build (Linux/cloud, no Xcode)
 #
-# The tag is the trigger AND the version (docs/distribution.md), so every gate runs
-# BEFORE it exists: a red found afterwards costs a release, not a rerun.
-# What this cannot decide stays yours — which version number, and what the changelog
-# entries say. Write those first; this refuses an empty '## Unreleased'.
+# Review and order changelog entries first (docs/release.md); this refuses an empty '## Unreleased'.
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -54,7 +51,7 @@ if ! grep -q "^## $VERSION\( \|$\)" CHANGELOG.md; then
   BODY=$(awk '/^## Unreleased/ { inside = 1; next } inside && /^## / { exit } inside' CHANGELOG.md | tr -d ' \n')
   if [ -z "$BODY" ]; then
     echo "error: '## Unreleased' is empty — write what moved for the LEARNER first" >&2
-    echo "       (what earns an entry: docs/distribution.md)" >&2
+    echo "       (what earns an entry: docs/release.md)" >&2
     exit 1
   fi
   awk -v v="$VERSION" -v d="$(date +%F)" '

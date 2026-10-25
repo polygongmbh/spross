@@ -1,6 +1,6 @@
 # Changelog
 Curated user-facing changes by version, newest first, one sentence per entry.
-Neighbors: what earns an entry and its wording `docs/distribution.md`.
+Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 

@@ -23,7 +23,7 @@ scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's for
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
 scripts/audio-listen.py <set>     # takes for the user's ear: `sample NAME --from shipped --word es:bota` builds a set, hand the user its path to run as `! scripts/audio-listen.py <set>`, never files one by one
-scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/distribution.md)
+scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/release.md)
 ```
 
 Xcode/`xcodegen`/simctl lines above and the `verify` skill are Mac-only — on Linux/cloud sessions skip them silently, never report their absence.
@@ -51,10 +51,10 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - A user-facing change lands on iOS and Android in the same sweep; a change to shared/parity-bearing UI checks both
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; 
-  what earns an entry and how it is worded: `docs/distribution.md`.
-  New entries always land under the top `## Unreleased` heading.
-  At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
-  Its head carries every heading you need, prefer to only read that.
+  an entry only for what the learner needs to know to use the app — a new shelf, a capability, a scheduling change —
+  never a single card, a recording swap or a wording, layout or naming change;
+  one entry per sweep, in the words a learner sees and hears.
+  New entries go under the top `## Unreleased` heading; `docs/release.md` reviews them at the cut.
 - Changelog and backlog entries should be just one line with one sentence for bullet points, 
   explanations should live in commit messages and only in the file on absolute exceptions.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
