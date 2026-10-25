@@ -105,6 +105,11 @@ data class LetterDrillRunState(
     /** Nothing: the question already was the sound, and the answer is the glyph or the word it said. */
     override val answerSaying: Saying? get() = null
 
+    /** A sound asks and a letter answers: neither side is in the learner's own language. */
+    override val promptMeaning: Saying? get() = null
+
+    override val answerMeaning: Saying? get() = null
+
     /**
      * The question is a sound, over the word with its grapheme blanked where it asks one;
      * its replay says [LetterDrillTask.promptText], through the recording the drill's own player resolves.

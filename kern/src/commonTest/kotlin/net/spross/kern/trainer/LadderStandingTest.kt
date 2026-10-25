@@ -31,6 +31,8 @@ class LadderStandingTest {
         override val finished: Boolean = false
         override val promptSaying: Saying? = null
         override val answerSaying: Saying? = null
+        override val promptMeaning: Saying? = null
+        override val answerMeaning: Saying? = null
         override val question: Question? = null
         override val controls: AnswerControls? = null
     }

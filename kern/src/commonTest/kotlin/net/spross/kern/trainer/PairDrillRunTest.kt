@@ -83,7 +83,7 @@ class PairDrillRunTest {
     fun aKeystrokeIsGradedForTheLiveApprove() {
         val finished = open().reduce(PairDrillIntent.InputChanged("Ujerumani"))
         assertEquals(TurnFeedback.Correct, finished.state.feedback)
-        assertEquals(saysUjerumani, finished.state.reading.answer)
+        assertEquals(saysUjerumani, finished.state.reading(saysMeaning = true).answer)
 
         val slipped = open().reduce(PairDrillIntent.InputChanged("Ujerumami"))
         assertEquals(TurnFeedback.Neutral, slipped.state.feedback, "a slip mid-word is not an answer yet")
@@ -100,15 +100,20 @@ class PairDrillRunTest {
     }
 
     /**
-     * A reversed run asks in the language being learned, so its prompt is said as it goes up;
-     * it answers in the learner's own, which no verdict reads out.
+     * Each side is said in the language it is written in: the learned one always,
+     * the learner's own only where the meaning may be heard — a forward prompt, a reversed answer.
      */
     @Test
-    fun aReversedRunSaysItsPromptAndNotItsVerdict() {
+    fun eachSideIsSaidInItsOwnLanguage() {
         val reversed = open(reverse = true)
-        assertEquals(Saying(assertNotNull(reversed.task.promptText), "sw"), reversed.reading.prompt)
-        assertNull(reversed.reduce(PairDrillIntent.Submit(reversed.task.display)).state.reading.answer)
-        assertNull(open().reading.prompt)
+        val answered = reversed.reduce(PairDrillIntent.Submit(reversed.task.display)).state
+        assertEquals(Saying(assertNotNull(reversed.task.promptText), "sw"), reversed.reading(saysMeaning = false).prompt)
+        assertEquals(Saying(reversed.task.display, "de"), answered.reading(saysMeaning = true).answer)
+        assertNull(answered.reading(saysMeaning = false).answer)
+
+        val forward = open()
+        assertEquals(Saying(assertNotNull(forward.task.promptText), "de"), forward.reading(saysMeaning = true).prompt)
+        assertNull(forward.reading(saysMeaning = false).prompt)
     }
 
     /** An empty field reveals and books a miss; Check with nothing typed is the same ask. */

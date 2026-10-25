@@ -111,6 +111,9 @@ class DateDrillRunConfig(
 
     override fun answeredOut(solved: Set<String>): Set<Int> = DateDrill.cleared(content, reverse, solved)
 
+    /** A date owed in digits is in no language. */
+    override fun answerSpoken(task: DateDrillTask): Boolean = !task.digits
+
     /** Each assembled kind is introduced with its pattern word once. */
     override fun firstSight(task: DateDrillTask): String = task.kind.name
 

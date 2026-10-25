@@ -94,6 +94,11 @@ data class OppositesRunState(
     override val answerSaying: Saying?
         get() = task?.let { t -> Saying(t.answers.joinToString(", ") { it.text }, t.language) }
 
+    /** Both sides are in the language being learned. */
+    override val promptMeaning: Saying? get() = null
+
+    override val answerMeaning: Saying? get() = null
+
     /**
      * Every opposite on the answer, and the closing line pairing what the prompt means with what each of them does —
      * the one line an accepted opposite grows.

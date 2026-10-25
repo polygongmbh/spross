@@ -11,7 +11,8 @@ extension DrillRunning {
 
     var controls: AnswerControls? { run.controls }
 
-    var reading: Reading? { run.reading }
+    /// The learner's own side is said where the audio setting lets a review card say its meaning.
+    var reading: Reading? { run.reading(saysMeaning: Pronouncer.shared.saysMeaning) }
 
     /// The field's text, where the drill has one — the driver clears it itself.
     var answerText: Binding<String> { Binding(get: { input }, set: { input = $0 }) }
@@ -39,7 +40,7 @@ extension DrillRunning {
         }
         // why: the first question, and the one a pause hands back, arrive
         // without a dispatch — this says their prompt as they show.
-        .onChange(of: run.reading, initial: true) { _, _ in readAloud() }
+        .onChange(of: reading, initial: true) { _, _ in readAloud() }
     }
 
     /// The run on its endless chrome — kern's tally as the counter, its outcomes as

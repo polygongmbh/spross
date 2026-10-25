@@ -110,6 +110,11 @@ data class SentenceScrambleRunState(
     /** The phrase as authored, whichever order was accepted. */
     override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
 
+    /** Both sides are in the language being learned; the meaning is a note under the answer, not a side. */
+    override val promptMeaning: Saying? get() = null
+
+    override val answerMeaning: Saying? get() = null
+
     /**
      * The bank is the prompt, so no words stand on it.
      * A missed arrangement opens onto the authored order and its meaning;

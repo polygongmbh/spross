@@ -194,6 +194,18 @@ data class NumbersRunState(
         get() = if (currentReversed || timed) null else Saying(currentTask.display, currentTask.language)
 
     /**
+     * A forward sentence, written in the learner's own language around its digits; a bare numeral is in no
+     * language, and a challenge reads nothing out but its answers' tones.
+     */
+    override val promptMeaning: Saying?
+        get() = mode.phraseSource
+            ?.takeIf { currentExercise == NumbersExercise.Phrases && !currentReversed && !timed }
+            ?.let { Saying(currentTask.prompt, it) }
+
+    /** A reversed task owes digits, which are in no language. */
+    override val answerMeaning: Saying? get() = null
+
+    /**
      * A prompt made of words is set like one, wrapped, where a numeral gets the one big line —
      * asked of the prompt, so a composed sentence and a reversed reading read as what they are.
      * A reversed task owes digits. One first-sight hint at a time, the form's winning over the place's;

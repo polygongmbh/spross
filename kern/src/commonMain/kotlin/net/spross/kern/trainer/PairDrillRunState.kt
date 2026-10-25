@@ -78,6 +78,9 @@ abstract class PairDrillRunConfig<T : PairDrillTask> internal constructor(
     /** The Sprossen [solved] answers out ([DrillSolved.cleared]). */
     internal abstract fun answeredOut(solved: Set<String>): Set<Int>
 
+    /** Whether [task]'s answer is written in a language at all — false where it is owed in digits, which is not said. */
+    internal open fun answerSpoken(task: T): Boolean = true
+
     /** The first-sight hint [task] shows once per run, by the key [PairDrillRunState.hinted] keeps; null where none. */
     internal open fun firstSight(task: T): String? = null
 
@@ -134,13 +137,21 @@ data class PairDrillRunState<T : PairDrillTask>(
     internal val newSprossen: Int
         get() = (config.answeredOut(core.solvedClean) - config.cleared).size
 
-    /** A reversed run's prompt, which is then the form in the language being learned; a forward one says nothing until the reveal. */
+    /** A reversed run's prompt, in the language being learned; a forward prompt is the learner's own side ([promptMeaning]). */
     override val promptSaying: Saying?
         get() = if (config.reverse) task.promptText?.let { Saying(it, promptLanguage) } else null
 
     /** The answer, where it is owed in the language being learned; a reversed run answers in the learner's own. */
     override val answerSaying: Saying?
         get() = if (config.reverse) null else Saying(task.display, answerLanguage)
+
+    /** A forward run's prompt, written in the learner's own language; none where a flag asks alone. */
+    override val promptMeaning: Saying?
+        get() = if (config.reverse) null else task.promptText?.let { Saying(it, promptLanguage) }
+
+    /** A reversed run's answer, owed in the learner's own language; none where it is owed in digits. */
+    override val answerMeaning: Saying?
+        get() = if (config.reverse && config.answerSpoken(task)) Saying(task.display, answerLanguage) else null
 
     override val question: Question get() = config.question(this)
 

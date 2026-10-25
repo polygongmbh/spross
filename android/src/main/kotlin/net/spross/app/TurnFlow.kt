@@ -42,8 +42,6 @@ class TurnFlow(
     onReleaseFocus: () -> Unit = {},
     /** Whether a screen reader is reading the screen ([DrillBeat]). */
     screenReaderOn: () -> Boolean = { false },
-    /** Whether the meaning may be read aloud too ([TurnState.reading]). */
-    private val saysMeaning: () -> Boolean = { false },
 ) : QuestionDriver {
 
     var state by mutableStateOf(start)
@@ -78,7 +76,7 @@ class TurnFlow(
 
     override val controls: AnswerControls get() = state.controls
 
-    override val reading: Reading get() = state.reading(saysMeaning())
+    override fun reading(saysMeaning: Boolean): Reading = state.reading(saysMeaning)
 
     /** Only ever one field is mounted: the write-out's while it stands, else the answer's. */
     override val fieldText: String get() = if (copyStep != null) copyInput else input
@@ -231,6 +229,5 @@ fun AppModel.newTurn(
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         screenReaderOn = { pronouncer.readsScreenAloud },
-        saysMeaning = { pronouncer.saysMeaning },
     )
 }

@@ -67,10 +67,10 @@ class OppositesRunTest {
     fun theWordIsSaidAsItGoesUpAndItsOppositesOnceJudged() {
         val asking = OppositesRun.open(config(), Random(1))
         val task = assertNotNull(asking.task)
-        assertEquals(Saying(task.prompt, task.language), asking.reading.prompt)
-        assertNull(asking.reading.answer)
+        assertEquals(Saying(task.prompt, task.language), asking.reading(saysMeaning = true).prompt)
+        assertNull(asking.reading(saysMeaning = true).answer)
         val revealed = OppositesRun.reduce(asking, OppositesIntent.Reveal, Random(1)).state
-        assertEquals(task.answers.map { it.text }, assertNotNull(revealed.reading.answer).form.split(", "))
+        assertEquals(task.answers.map { it.text }, assertNotNull(revealed.reading(saysMeaning = true).answer).form.split(", "))
     }
 
     @Test

@@ -159,11 +159,27 @@ class NumbersRunTest {
         val rng = Random(31)
         val untimed = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)
-        assertEquals(Saying(untimed.currentTask.display, "de"), said.state.reading.answer)
+        assertEquals(Saying(untimed.currentTask.display, "de"), said.state.reading(saysMeaning = true).answer)
 
         val timed = requireNotNull(NumbersChallenge.create(numbers(), rng)).open()
         val unsaid = reduce(timed, NumbersIntent.Submit(timed.currentTask.accepted.first()), rng)
-        assertNull(unsaid.state.reading.answer)
+        assertNull(unsaid.state.reading(saysMeaning = true).answer)
+    }
+
+    /** A sentence asks in the learner's own language, so it is said in that language as it goes up; a bare numeral is in none. */
+    @Test
+    fun aSentencePromptIsSaidInTheLearnersOwnLanguage() {
+        val rng = Random(41)
+        val frame = PhraseTemplate(
+            id = "frame", source = "de", target = "uk",
+            sourceTemplate = "Um {slot}.", targetTemplate = "О {slot}.", slotKind = NumbersReading.Clock,
+        )
+        val mode = NumbersMode(listOf(NumbersExercise.Phrases), "uk", "de", listOf(frame), emptySet())
+        val opened = NumbersRun.open(mode, 0, emptyMap(), rng)
+        val sentence = opened.copy(current = opened.current.copy(reversed = false))
+        assertEquals(Saying(sentence.currentTask.prompt, "de"), sentence.reading(saysMeaning = true).prompt)
+        assertNull(sentence.reading(saysMeaning = false).prompt)
+        assertNull(NumbersRun.open(numbers(), 0, emptyMap(), rng).reading(saysMeaning = true).prompt)
     }
 
     /** A reversed task says its reading as the question, and has nothing left to say after it. */
@@ -173,9 +189,9 @@ class NumbersRunTest {
         val back = NumbersRun.open(numbers("sw"), 0, emptyMap(), rng).copy(
             current = DrawnTask(NumbersExercise.Counting, Numbers.reversed(Numbers.number(347, "sw")), reversed = true),
         )
-        assertEquals(Saying(back.currentTask.prompt, "sw"), back.reading.prompt)
+        assertEquals(Saying(back.currentTask.prompt, "sw"), back.reading(saysMeaning = true).prompt)
         val revealed = NumbersRun.reduce(back, NumbersIntent.Reveal, null, rng).state
-        assertNull(revealed.reading.answer)
+        assertNull(revealed.reading(saysMeaning = true).answer)
     }
 
     // MARK: - The ramp inside a run

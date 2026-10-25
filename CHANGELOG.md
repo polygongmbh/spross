@@ -17,6 +17,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Swahili "to happen" now teaches kutukia, accepting kutokea and kufanyika.
 - A new "to appear" card joins the verbs in every language, and carries Swahili kutokea.
 - A new Clothes area holds 36 garments and dressing verbs, from underwear to the raincoat, gathering the bedroom's and the hallway's garments with their progress kept.
+- Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
 
 ## 8.7.0 — 2026-10-09
 

@@ -10,6 +10,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
 import net.spross.kern.session.QuestionHint
+import net.spross.kern.session.Saying
 
 /**
  * What the calendar brings to the shared run ([PairDrillRunTest] steps through that): the
@@ -118,6 +119,23 @@ class DateDrillRunTest {
         assertEquals("en", run.answerLanguage, "the digits are written in the learner's own format")
         assertEquals(Match.Exact, DateDrillRun.grade(run.task.display, run.task, config(reverse = true)))
         assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", run.task, config(reverse = true)))
+    }
+
+    /** A reversed run says a name it is answered with, never the digits a date is owed in. */
+    @Test
+    fun aReversedRunSaysItsNamesButNotItsDigits() {
+        fun PairDrillRunState<DateDrillTask>.saidAnswer() =
+            reduce(PairDrillIntent.Submit(task.display)).state.reading(saysMeaning = true).answer
+        var run = open(reverse = true)
+        assertEquals(false, run.task.digits)
+        assertEquals(Saying(run.task.display, "en"), run.saidAnswer())
+        run = open(reverse = true, sprosse = 3)
+        repeat(30) {
+            if (run.task.digits) return@repeat
+            run = run.answered(run.task.display)
+        }
+        assertTrue(run.task.digits, "the run never reached a date to parse")
+        assertNull(run.saidAnswer())
     }
 
     // MARK: - Answering out

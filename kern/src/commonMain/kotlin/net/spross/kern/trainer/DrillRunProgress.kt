@@ -84,6 +84,16 @@ interface DrillRunProgress {
     val answerSaying: Saying?
 
     /**
+     * The learner's own side of the prompt — a prompt written in the language they know,
+     * said as it goes up as a review card says the meaning it asks by. No default;
+     * null where the prompt is in the language being learned, or in no language at all.
+     */
+    val promptMeaning: Saying?
+
+    /** The learner's own side of the answer, said after the verdict; null where the answer is in the language being learned. */
+    val answerMeaning: Saying?
+
+    /**
      * What the card shows for the question on screen ([Question]), as a review card has one;
      * null once nothing is left to ask. No default — every drill rules on its card, as on its sayings.
      */
@@ -96,14 +106,16 @@ interface DrillRunProgress {
     val controls: AnswerControls?
 
     /**
-     * The question's [Reading], as a review card has one: the prompt held back while a pause
-     * stands in for the question, the answer once a verdict is out, a hold saying its correction.
+     * The question's [Reading], as a review card has one: each side in the language it is written in,
+     * the learner's own only where [saysMeaning] (the audio setting a review card reads too);
+     * the prompt held back while a pause stands in for the question, the answer once a verdict is out,
+     * a hold saying its correction.
      */
-    val reading: Reading
-        get() = Reading(
+    fun reading(saysMeaning: Boolean): Reading =
+        Reading(
             key = index.toString(),
-            prompt = promptSaying.takeIf { pause == null },
-            answer = answerSaying.takeUnless { owesAnswer }?.let { said ->
+            prompt = (promptSaying ?: promptMeaning.takeIf { saysMeaning }).takeIf { pause == null },
+            answer = (answerSaying ?: answerMeaning.takeIf { saysMeaning }).takeUnless { owesAnswer }?.let { said ->
                 (feedback as? TurnFeedback.Almost)?.let { said.copy(form = it.correctForm) } ?: said
             },
         )

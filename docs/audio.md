@@ -22,9 +22,11 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   and points at the download while the compact voice is active:
   a line in the audio setting and one dismissible notice on Home.
   The voice table is dropped on every foreground.
-- **A review card says both its sides, each once: the word and its meaning.**
-  Hearing them paired binds them, and each side is said where the card shows it.
-  The meaning is the learner's own language, on until the audio setting's "Say the meaning too" turns it off.
+- **A review card and a drill say both their sides, each once, each in the language it is written in.**
+  Hearing them paired binds them, and each side is said where the card shows it:
+  the prompt as it goes up, the answer once it is out.
+  The learner's own language is on until the audio setting's "Say the meaning too" turns it off;
+  a side in no language (a bare numeral, a clock, the digits a numbers or calendar task owes) is not said.
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).
   Where a pack recorded the article too, the recording says it
@@ -35,7 +37,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   A review card and a drill task read aloud through ONE mechanism:
   kern hands each question a `Reading` (its prompt saying and its answer saying),
   and one reader per app fires it (iOS `Reader`, Android `rememberReadAloud`).
-  Every drill state must rule on both sayings (`DrillRunProgress`), so no screen decides what is heard.
+  Every drill state must rule on both sides in both languages (`DrillRunProgress`), so no screen decides what is heard.
 - **Autoplay fires only where the card holds the learner.**
   A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling (`READING_CEILING_MS`);
   a word cut off teaches nothing.
@@ -57,13 +59,13 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 | produce correct | yes, after chime; the flip waits for it | the target word, or the meaning on a card asked by ear |
 | near miss (typo, other form) | yes, after chime | the correction box form |
 | produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
-| trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
+| trainer drill prompt (bare numeral, clock) | no | the reading IS the answer |
 | reversed numbers prompt (the reading) | yes, at once; not again after the verdict | the reading |
 | drill prompt in learning language (reversed run, opposites) | yes, at once | the form on the card |
-| drill prompt in known language (forward run) | no | the reveal carries the voice |
+| drill prompt in known language (forward atlas and calendar, a numbers sentence) | yes, at once | the prompt in the known language |
 | trainer drill graded answer (right, slip, miss, reveal) | yes, after chime | the answer in the learned language: the reading, the name, the word, the authored phrase (usually voice; weekday/month/country/nationality recorded) |
 | listening mode (between two sayings) | yes, unattended | the meaning in the known language |
-| drill answer in known language (reversed atlas) | no | prompt carries the voice instead |
+| drill answer in known language (reversed atlas, a reversed calendar name) | yes, after chime | the answer in the known language |
 
 - **Tapping a word says it again, past both mutes.**
   A tap is a request, so it plays under `.playback`.

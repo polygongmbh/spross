@@ -23,8 +23,8 @@ interface QuestionDriver {
     /** What stands under it — kern's call. */
     val controls: AnswerControls?
 
-    /** What the question says aloud, and when. */
-    val reading: Reading?
+    /** What the question says aloud, and when; the learner's own side only where [saysMeaning]. */
+    fun reading(saysMeaning: Boolean): Reading?
 
     /** The text in the field the slot asks for. */
     val fieldText: String

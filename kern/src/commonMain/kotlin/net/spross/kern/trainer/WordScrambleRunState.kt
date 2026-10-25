@@ -118,6 +118,11 @@ data class WordScrambleRunState(
     /** The word whose letters were handed over. */
     override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
 
+    /** Both sides are in the language being learned; the meaning is a note under the answer, not a side. */
+    override val promptMeaning: Saying? get() = null
+
+    override val answerMeaning: Saying? get() = null
+
     /**
      * The mixed letters, the opening ones standing as written; a miss opens onto the word and its meaning,
      * an accepted spelling grows the meaning alone.

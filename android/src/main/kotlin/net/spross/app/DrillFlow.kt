@@ -86,7 +86,7 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
 
     override val controls get() = state.controls
 
-    override val reading get() = state.reading
+    override fun reading(saysMeaning: Boolean) = state.reading(saysMeaning)
 
     override val fieldText: String get() = input
 

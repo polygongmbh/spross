@@ -141,10 +141,10 @@ class SentenceScrambleRunTest {
     @Test
     fun anArrangementSaysTheAuthoredPhrase() {
         val (task, right) = graded(correctly = true)
-        assertEquals(Saying(task.display, "de"), right.state.reading.answer)
+        assertEquals(Saying(task.display, "de"), right.state.reading(saysMeaning = true).answer)
         assertTrue(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)) in right.effects)
         val (wrongTask, wrong) = graded(correctly = false)
-        assertEquals(Saying(wrongTask.display, "de"), wrong.state.reading.answer)
+        assertEquals(Saying(wrongTask.display, "de"), wrong.state.reading(saysMeaning = true).answer)
         assertTrue(wrong.effects.none { (it as? DrillEffect.Cued)?.cue is Cue.ArmAdvance })
     }
 
