@@ -142,6 +142,7 @@
    { "area": "living", "emoji": "🛋️" },
    { "area": "bath", "emoji": "🛁" },
    { "area": "bedroom", "emoji": "🛏️" },
+   { "area": "clothes", "emoji": "👕" },
    { "area": "desk", "emoji": "✏️" },
    { "area": "hall", "emoji": "🚪" }
   ]

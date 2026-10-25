@@ -15,27 +15,12 @@
    "grammar": { "article": "la" }
   },
   "pajamas": { "text": "pijama", "accepts": ["piyama"], "grammar": { "article": "el" } },
-  "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "article": "el" } },
-  "pants": { "text": "pantalones", "accepts": ["pantalón"], "grammar": { "article": "los" } },
-  "t-shirt": { "text": "camiseta", "accepts": ["playera", "remera"], "grammar": { "article": "la" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "despertarse" },
   "to-get-up": { "text": "levantarse" },
-  "to-get-undressed": { "text": "desvestirse", "teaches": ["quitarse la ropa"], "accepts": ["desnudarse"] },
   "to-cuddle": { "text": "acurrucarse", "teaches": ["hacerse mimos"], "accepts": ["achucharse", "abrazarse"] },
   "to-yawn": { "text": "bostezar" },
   "to-snore": { "text": "roncar" },
-  "clothes": { "text": "ropa", "grammar": { "article": "la" } },
-  "shirt": { "text": "camisa", "grammar": { "article": "la" } },
-  "dress": { "text": "vestido", "grammar": { "article": "el" } },
-  "sweater": {
-   "text": "jersey",
-   "accepts": ["jerséi", "suéter"],
-   "forms": { "pl": "los jerséis" },
-   "grammar": { "article": "el" }
-  },
-  "underwear": { "text": "ropa interior", "grammar": { "article": "la" } },
-  "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "article": "el" } },
   "to-make-bed": { "text": "hacer la cama" },
   "soft": {
    "text": "blando",
@@ -44,7 +29,6 @@
    "notes": { "es": "blando = almohada, cojín · suave = piel, tela." }
   },
   "to-rest": { "text": "descansar" },
-  "to-change-clothes": { "text": "cambiarse", "accepts": ["cambiarse de ropa"] },
   "to-fall-asleep": { "text": "dormirse", "accepts": ["quedarse dormido"] },
   "to-iron": { "text": "planchar" },
   "sleep-well": { "text": "¡Que duermas bien!", "accepts": ["¡Duerme bien!"] },

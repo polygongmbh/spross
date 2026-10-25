@@ -1,0 +1,44 @@
+{
+ "title": "I vestiti",
+ "subtitle": "Dai calzini al berretto.",
+ "words": {
+  "clothes": {
+   "text": "vestiti",
+   "accepts": ["abiti", "abbigliamento"],
+   "grammar": { "article": "i", "plural": "only" },
+   "notes": { "it": "i vestiti sono tutta la roba · il vestito è l'abito." }
+  },
+  "to-get-dressed": { "text": "vestirsi" },
+  "shoe": { "text": "scarpa", "grammar": { "article": "la" } },
+  "jacket": { "text": "giacca", "forms": { "pl": "le giacche" }, "grammar": { "article": "la" } },
+  "pants": {
+   "text": "pantaloni",
+   "accepts": ["pantalone"],
+   "grammar": { "article": "i", "plural": "only" },
+   "notes": { "it": "sempre al plurale: i pantaloni sono neri." }
+  },
+  "t-shirt": { "text": "maglietta", "accepts": ["t-shirt"], "grammar": { "article": "la" } },
+  "sock": { "text": "calzino", "grammar": { "article": "il" } },
+  "shirt": { "text": "camicia", "grammar": { "article": "la" } },
+  "dress": { "text": "vestito", "accepts": ["abito"], "grammar": { "article": "il" } },
+  "sweater": { "text": "maglione", "grammar": { "article": "il" } },
+  "coat": { "text": "cappotto", "grammar": { "article": "il" } },
+  "hat": {
+   "text": "berretto",
+   "teaches": ["cappello"],
+   "grammar": { "article": "il" },
+   "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
+  },
+  "underwear": { "text": "biancheria intima", "grammar": { "article": "la" } },
+  "belt": { "text": "cintura", "grammar": { "article": "la" } },
+  "glove": { "text": "guanto", "grammar": { "article": "il" } },
+  "to-get-undressed": { "text": "spogliarsi", "accepts": ["svestirsi"] },
+  "to-change-clothes": { "text": "cambiarsi", "accepts": ["cambiarsi i vestiti"] },
+  "put-on-the-jacket": { "text": "mettersi la giacca" },
+  "dont-forget-your-jacket": {
+   "text": "Non dimenticare la giacca!",
+   "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
+  },
+  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" }
+ }
+}

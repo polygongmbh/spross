@@ -1,0 +1,26 @@
+{
+ "title": "Clothes",
+ "subtitle": "From socks to hats.",
+ "words": {
+  "clothes": { "text": "clothes", "grammar": { "plural": "only" } },
+  "to-get-dressed": { "text": "to get dressed" },
+  "shoe": { "text": "shoe" },
+  "jacket": { "text": "jacket" },
+  "pants": { "text": "pants", "teaches": ["trousers"], "grammar": { "plural": "only" } },
+  "t-shirt": { "text": "t-shirt" },
+  "sock": { "text": "sock" },
+  "shirt": { "text": "shirt" },
+  "dress": { "text": "dress", "forms": { "pl": "dresses" } },
+  "sweater": { "text": "sweater" },
+  "coat": { "text": "coat" },
+  "hat": { "text": "hat" },
+  "underwear": { "text": "underwear" },
+  "belt": { "text": "belt" },
+  "glove": { "text": "glove" },
+  "to-get-undressed": { "text": "to get undressed" },
+  "to-change-clothes": { "text": "to get changed", "accepts": ["to change clothes", "to change one's clothes"] },
+  "put-on-the-jacket": { "text": "to put on the jacket" },
+  "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
+  "children-where-are-your-shoes": { "text": "Children, where are your shoes?" }
+ }
+}

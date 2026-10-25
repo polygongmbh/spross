@@ -1,0 +1,39 @@
+{
+ "title": "La ropa",
+ "subtitle": "De los calcetines al gorro.",
+ "words": {
+  "clothes": { "text": "ropa", "grammar": { "article": "la" } },
+  "to-get-dressed": { "text": "vestirse" },
+  "shoe": { "text": "zapato", "grammar": { "article": "el" } },
+  "jacket": { "text": "chaqueta", "grammar": { "article": "la" } },
+  "pants": { "text": "pantalones", "accepts": ["pantalón"], "grammar": { "article": "los" } },
+  "t-shirt": { "text": "camiseta", "accepts": ["playera", "remera"], "grammar": { "article": "la" } },
+  "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "article": "el" } },
+  "shirt": { "text": "camisa", "grammar": { "article": "la" } },
+  "dress": { "text": "vestido", "grammar": { "article": "el" } },
+  "sweater": {
+   "text": "jersey",
+   "accepts": ["jerséi", "suéter"],
+   "forms": { "pl": "los jerséis" },
+   "grammar": { "article": "el" }
+  },
+  "coat": { "text": "abrigo", "grammar": { "article": "el" } },
+  "hat": {
+   "text": "gorro",
+   "teaches": ["gorra"],
+   "grammar": { "article": "el" },
+   "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
+  },
+  "underwear": { "text": "ropa interior", "grammar": { "article": "la" } },
+  "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "article": "el" } },
+  "glove": { "text": "guante", "grammar": { "article": "el" } },
+  "to-get-undressed": { "text": "desvestirse", "teaches": ["quitarse la ropa"], "accepts": ["desnudarse"] },
+  "to-change-clothes": { "text": "cambiarse", "accepts": ["cambiarse de ropa"] },
+  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
+  "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
+  "children-where-are-your-shoes": {
+   "text": "Niños, ¿dónde están vuestros zapatos?",
+   "accepts": ["Niños, ¿dónde están sus zapatos?"]
+  }
+ }
+}

@@ -10,15 +10,7 @@
   },
   "door": { "text": "puerta", "grammar": { "article": "la" } },
   "key": { "text": "llave", "grammar": { "article": "la" } },
-  "jacket": { "text": "chaqueta", "grammar": { "article": "la" } },
-  "coat": { "text": "abrigo", "grammar": { "article": "el" } },
   "umbrella": { "text": "paraguas", "grammar": { "article": "el", "plural": "=" } },
-  "hat": {
-   "text": "gorro",
-   "teaches": ["gorra"],
-   "grammar": { "article": "el" },
-   "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
-  },
   "mailbox": { "text": "buzón", "grammar": { "article": "el" } },
   "doorbell": { "text": "timbre", "grammar": { "article": "el" } },
   "stairs": { "text": "escalera", "accepts": ["escaleras"], "grammar": { "article": "la" } },
@@ -37,11 +29,9 @@
   },
   "to-take-off-shoes": { "text": "quitarse los zapatos", "accepts": ["sacarse los zapatos", "descalzarse"] },
   "to-set-off": { "text": "salir de casa" },
-  "to-get-dressed": { "text": "vestirse" },
   "to-arrive": { "text": "llegar" },
   "to-greet": { "text": "saludar" },
   "to-say-goodbye": { "text": "despedirse" },
-  "shoe": { "text": "zapato", "grammar": { "article": "el" } },
   "apartment": {
    "text": "piso",
    "teaches": ["apartamento"],
@@ -61,7 +51,6 @@
    "grammar": { "article": "la" },
    "notes": { "es": "La cartera lleva billetes y tarjetas; las monedas, el monedero." }
   },
-  "glove": { "text": "guante", "grammar": { "article": "el" } },
   "letter": { "text": "carta", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "llamar a la puerta", "accepts": ["tocar a la puerta"] },
   "to-enter": { "text": "entrar", "notes": { "es": "Para invitar a entrar: ¡Pasa! · con usted, ¡Pase!" } },
@@ -87,12 +76,6 @@
   },
   "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
   "welcome-home": { "text": "¡Bienvenido a casa!", "forms": { "f": "¡Bienvenida a casa!" } },
-  "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
-  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
-  "children-where-are-your-shoes": {
-   "text": "Niños, ¿dónde están vuestros zapatos?",
-   "accepts": ["Niños, ¿dónde están sus zapatos?"]
-  },
   "someones-ringing-the-doorbell": { "text": "Tocan el timbre.", "accepts": ["Suena el timbre."] }
  }
 }

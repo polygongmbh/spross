@@ -1,0 +1,38 @@
+{
+ "title": "Les vêtements",
+ "subtitle": "Des chaussettes au bonnet.",
+ "words": {
+  "clothes": {
+   "text": "vêtements",
+   "grammar": { "article": "les", "gender": "m" },
+   "notes": { "fr": "presque toujours au pluriel : les vêtements · un seul, un vêtement." }
+  },
+  "to-get-dressed": { "text": "s'habiller" },
+  "shoe": { "text": "chaussure", "grammar": { "article": "la" } },
+  "jacket": { "text": "veste", "grammar": { "article": "la" } },
+  "pants": { "text": "pantalon", "grammar": { "article": "le" } },
+  "t-shirt": { "text": "T-shirt", "accepts": ["tee-shirt"], "grammar": { "article": "le" } },
+  "sock": { "text": "chaussette", "grammar": { "article": "la" } },
+  "shirt": { "text": "chemise", "grammar": { "article": "la" } },
+  "dress": { "text": "robe", "grammar": { "article": "la" } },
+  "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "article": "le" } },
+  "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "article": "le" } },
+  "hat": {
+   "text": "bonnet",
+   "teaches": ["casquette"],
+   "grammar": { "article": "le" },
+   "notes": {
+    "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
+    "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
+   }
+  },
+  "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
+  "belt": { "text": "ceinture", "grammar": { "article": "la" } },
+  "glove": { "text": "gant", "grammar": { "article": "le" } },
+  "to-get-undressed": { "text": "se déshabiller", "accepts": ["enlever ses vêtements"] },
+  "to-change-clothes": { "text": "se changer" },
+  "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] },
+  "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
+  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
+ }
+}

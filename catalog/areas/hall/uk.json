@@ -5,10 +5,7 @@
   "hallway": { "text": "коридо́р", "teaches": ["передпо́кій"] },
   "door": { "text": "две́рі", "grammar": { "plural": "only" } },
   "key": { "text": "ключ" },
-  "jacket": { "text": "ку́ртка" },
-  "coat": { "text": "пальто́", "forms": { "pl": "па́льта" } },
   "umbrella": { "text": "парасо́лька" },
-  "hat": { "text": "ша́пка" },
   "mailbox": { "text": "пошто́ва скри́нька", "forms": { "pl": "пошто́ві скри́ньки" } },
   "doorbell": { "text": "дзвіно́к", "forms": { "pl": "дзвінки́" } },
   "stairs": { "text": "схо́ди", "grammar": { "plural": "only" } },
@@ -17,7 +14,6 @@
   "to-ring": { "text": "дзвони́ти у две́рі" },
   "to-take-off-shoes": { "text": "зніма́ти взуття́" },
   "to-set-off": { "text": "вихо́дити з до́му" },
-  "to-get-dressed": { "text": "одяга́тися" },
   "to-arrive": {
    "text": "прихо́дити",
    "teaches": ["прибува́ти", "приїжджа́ти"],
@@ -25,12 +21,10 @@
   },
   "to-greet": { "text": "віта́тися" },
   "to-say-goodbye": { "text": "проща́тися" },
-  "shoe": { "text": "череви́к" },
   "apartment": { "text": "кварти́ра" },
   "neighbor": { "text": "сусі́д" },
   "guest": { "text": "гість" },
   "wallet": { "text": "гамане́ць", "forms": { "pl": "гаманці́" } },
-  "glove": { "text": "рукави́чка" },
   "letter": { "text": "лист" },
   "to-knock-on-door": { "text": "сту́кати у две́рі" },
   "to-enter": { "text": "захо́дити" },
@@ -58,10 +52,7 @@
   "hurry-were-late": { "text": "Поква́птеся, ми запі́знюємось!", "orders": ["Ми запізнюємось, покваптеся!"] },
   "see-you-later": { "text": "До зу́стрічі!" },
   "welcome-home": { "text": "Ласка́во про́симо додо́му!", "teaches": ["З пове́рненням!"] },
-  "dont-forget-your-jacket": { "text": "Не забу́дь ку́ртку!", "orders": ["Куртку не забудь!"] },
-  "put-on-the-jacket": { "text": "одяга́ти ку́ртку" },
   "take-off-your-shoes": { "text": "Зніми́ своє́ взуття́.", "accepts": ["Роззуйся."], "orders": ["Своє взуття зніми."] },
-  "children-where-are-your-shoes": { "text": "Ді́ти, де ва́ші череви́ки?" },
   "someones-ringing-the-doorbell": { "text": "Дзво́нять у две́рі.", "accepts": ["Хтось дзвонить у двері."] }
  }
 }

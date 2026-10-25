@@ -20,26 +20,12 @@
    "grammar": { "article": "la" }
   },
   "pajamas": { "text": "pyjama", "grammar": { "article": "le" } },
-  "sock": { "text": "chaussette", "grammar": { "article": "la" } },
-  "pants": { "text": "pantalon", "grammar": { "article": "le" } },
-  "t-shirt": { "text": "T-shirt", "accepts": ["tee-shirt"], "grammar": { "article": "le" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "se réveiller" },
   "to-get-up": { "text": "se lever" },
-  "to-get-undressed": { "text": "se déshabiller", "accepts": ["enlever ses vêtements"] },
   "to-cuddle": { "text": "faire un câlin", "accepts": ["se faire un câlin", "câliner"] },
   "to-yawn": { "text": "bâiller" },
   "to-snore": { "text": "ronfler" },
-  "clothes": {
-   "text": "vêtements",
-   "grammar": { "article": "les", "gender": "m" },
-   "notes": { "fr": "presque toujours au pluriel : les vêtements · un seul, un vêtement." }
-  },
-  "shirt": { "text": "chemise", "grammar": { "article": "la" } },
-  "dress": { "text": "robe", "grammar": { "article": "la" } },
-  "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "article": "le" } },
-  "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
-  "belt": { "text": "ceinture", "grammar": { "article": "la" } },
   "to-make-bed": { "text": "faire le lit" },
   "soft": {
    "text": "doux",
@@ -47,7 +33,6 @@
    "notes": { "fr": "une peau douce, une voix douce." }
   },
   "to-rest": { "text": "se reposer" },
-  "to-change-clothes": { "text": "se changer" },
   "to-fall-asleep": { "text": "s'endormir" },
   "to-iron": { "text": "repasser" },
   "sleep-well": { "text": "Dors bien !" },

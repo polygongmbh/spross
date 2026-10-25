@@ -4,10 +4,7 @@
  "words": {
   "door": { "text": "mlango", "forms": { "pl": "milango" } },
   "key": { "text": "ufunguo", "forms": { "pl": "funguo" } },
-  "jacket": { "text": "jaketi", "forms": { "pl": "majaketi" } },
-  "coat": { "text": "koti", "forms": { "pl": "makoti" } },
   "umbrella": { "text": "mwavuli", "forms": { "pl": "miavuli" } },
-  "hat": { "text": "kofia", "grammar": { "plural": "=" } },
   "mailbox": { "text": "sanduku la barua", "forms": { "pl": "masanduku ya barua" } },
   "hallway": { "text": "korido", "grammar": { "plural": "=" } },
   "doorbell": { "text": "kengele", "grammar": { "plural": "=" } },
@@ -17,16 +14,13 @@
   "to-ring": { "text": "kupiga kengele" },
   "to-take-off-shoes": { "text": "kuvua viatu" },
   "to-set-off": { "text": "kuondoka nyumbani" },
-  "to-get-dressed": { "text": "kuvaa" },
   "to-arrive": { "text": "kufika" },
   "to-greet": { "text": "kusalimia" },
   "to-say-goodbye": { "text": "kuaga" },
-  "shoe": { "text": "kiatu", "forms": { "pl": "viatu" } },
   "apartment": { "text": "fleti", "grammar": { "plural": "=" } },
   "neighbor": { "text": "jirani", "forms": { "pl": "majirani" } },
   "guest": { "text": "mgeni", "forms": { "pl": "wageni" } },
   "wallet": { "text": "pochi", "grammar": { "plural": "=" } },
-  "glove": { "text": "glavu", "grammar": { "plural": "=" } },
   "letter": { "text": "barua", "grammar": { "plural": "=" } },
   "to-knock-on-door": { "text": "kugonga mlango" },
   "to-enter": { "text": "kuingia" },
@@ -38,10 +32,7 @@
   "hurry-were-late": { "text": "Fanyeni haraka, tumechelewa!" },
   "see-you-later": { "text": "Tutaonana baadaye!" },
   "welcome-home": { "text": "Karibu nyumbani!" },
-  "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
-  "put-on-the-jacket": { "text": "kuvaa jaketi" },
   "take-off-your-shoes": { "text": "Vua viatu vyako." },
-  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" },
   "someones-ringing-the-doorbell": { "text": "Mtu anapiga kengele.", "accepts": ["Kengele inalia."] }
  }
 }

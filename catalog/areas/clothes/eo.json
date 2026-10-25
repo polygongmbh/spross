@@ -1,0 +1,33 @@
+{
+ "title": "La vestoj",
+ "subtitle": "De la ŝtrumpetoj ĝis la ĉapo.",
+ "words": {
+  "clothes": { "text": "vestoj", "accepts": ["vestaĵoj"] },
+  "to-get-dressed": { "text": "vesti sin", "accepts": ["sin vesti", "vestiĝi"] },
+  "shoe": { "text": "ŝuo" },
+  "jacket": { "text": "jako" },
+  "pants": { "text": "pantalono", "accepts": ["pantalonoj"] },
+  "t-shirt": { "text": "T-ĉemizo", "accepts": ["teĉemizo", "ĉemizeto"] },
+  "sock": { "text": "ŝtrumpeto" },
+  "shirt": { "text": "ĉemizo" },
+  "dress": { "text": "robo" },
+  "sweater": { "text": "pulovero" },
+  "coat": { "text": "mantelo" },
+  "hat": {
+   "text": "ĉapo",
+   "teaches": ["ĉapelo"],
+   "notes": {
+    "eo": "ĉapo estas sen rando · ĉapelo havas randon.",
+    "en": "ĉapo is a brimless cap; ĉapelo is a hat with a brim."
+   }
+  },
+  "underwear": { "text": "subvestoj", "accepts": ["subvesto"] },
+  "belt": { "text": "zono" },
+  "glove": { "text": "ganto" },
+  "to-get-undressed": { "text": "senvestiĝi", "accepts": ["malvestiĝi", "senvestigi sin"] },
+  "to-change-clothes": { "text": "alivestiĝi", "accepts": ["ŝanĝi la vestojn", "alivesti sin"] },
+  "put-on-the-jacket": { "text": "surmeti la jakon" },
+  "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
+  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" }
+ }
+}

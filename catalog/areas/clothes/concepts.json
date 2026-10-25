@@ -1,0 +1,27 @@
+[
+ { "slug": "clothes", "kind": "noun", "emoji": "👚" },
+ { "slug": "to-get-dressed", "kind": "verb" },
+ { "slug": "shoe", "kind": "noun", "emoji": "👟" },
+ { "slug": "jacket", "kind": "noun", "emoji": "🧥" },
+ { "slug": "pants", "kind": "noun", "emoji": "👖" },
+ { "slug": "t-shirt", "kind": "noun", "emoji": "👕" },
+ { "slug": "sock", "kind": "noun", "emoji": "🧦" },
+ { "slug": "shirt", "kind": "noun", "emoji": "👔" },
+ { "slug": "dress", "kind": "noun", "emoji": "👗" },
+ { "slug": "sweater", "kind": "noun" },
+ { "slug": "coat", "kind": "noun", "emoji": "🥼" },
+ { "slug": "hat", "kind": "noun", "emoji": "🧢" },
+ { "slug": "underwear", "kind": "noun", "emoji": "🩲" },
+ { "slug": "belt", "kind": "noun", "emoji": "🪢" },
+ { "slug": "glove", "kind": "noun", "emoji": "🧤" },
+ { "slug": "to-get-undressed", "kind": "verb" },
+ { "slug": "to-change-clothes", "kind": "verb" },
+ {
+  "slug": "put-on-the-jacket",
+  "kind": "phrase",
+  "emoji": "🧥",
+  "components": ["to-get-dressed", "jacket"]
+ },
+ { "slug": "dont-forget-your-jacket", "kind": "phrase", "emoji": "🧥", "components": ["jacket"] },
+ { "slug": "children-where-are-your-shoes", "kind": "phrase", "components": ["shoe"] }
+]

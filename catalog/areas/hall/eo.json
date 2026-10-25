@@ -9,17 +9,7 @@
   },
   "door": { "text": "pordo" },
   "key": { "text": "ŝlosilo" },
-  "jacket": { "text": "jako" },
-  "coat": { "text": "mantelo" },
   "umbrella": { "text": "ombrelo", "accepts": ["pluvombrelo"] },
-  "hat": {
-   "text": "ĉapo",
-   "teaches": ["ĉapelo"],
-   "notes": {
-    "eo": "ĉapo estas sen rando · ĉapelo havas randon.",
-    "en": "ĉapo is a brimless cap; ĉapelo is a hat with a brim."
-   }
-  },
   "mailbox": { "text": "leterkesto", "accepts": ["poŝtkesto"] },
   "doorbell": { "text": "pordosonorilo", "accepts": ["sonorilo", "pordsonorilo"] },
   "stairs": { "text": "ŝtuparo", "accepts": ["ŝtupoj"] },
@@ -39,16 +29,13 @@
   },
   "to-take-off-shoes": { "text": "demeti la ŝuojn", "accepts": ["demeti ŝuojn", "senŝuiĝi"] },
   "to-set-off": { "text": "foriri de hejme", "accepts": ["eliri el la hejmo", "ekiri de hejme"] },
-  "to-get-dressed": { "text": "vesti sin", "accepts": ["sin vesti", "vestiĝi"] },
   "to-arrive": { "text": "alveni" },
   "to-greet": { "text": "saluti" },
   "to-say-goodbye": { "text": "adiaŭi", "accepts": ["diri adiaŭ"] },
-  "shoe": { "text": "ŝuo" },
   "apartment": { "text": "loĝejo", "accepts": ["apartamento"] },
   "neighbor": { "text": "najbaro" },
   "guest": { "text": "gasto" },
   "wallet": { "text": "monujo" },
-  "glove": { "text": "ganto" },
   "letter": { "text": "letero" },
   "to-knock-on-door": { "text": "frapi sur la pordon", "accepts": ["frapi la pordon", "frapi ĉe la pordo"] },
   "to-enter": {
@@ -75,9 +62,6 @@
   "hurry-were-late": { "text": "Rapidu, ni malfruas!", "accepts": ["Rapidu, ni jam malfruas!"] },
   "see-you-later": { "text": "Ĝis poste!", "accepts": ["Ĝis baldaŭ!"] },
   "welcome-home": { "text": "Bonvenon hejmen!" },
-  "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
-  "put-on-the-jacket": { "text": "surmeti la jakon" },
-  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" },
   "someones-ringing-the-doorbell": { "text": "Oni sonorigas ĉe la pordo." }
  }
 }

@@ -14,18 +14,7 @@
   },
   "door": { "text": "porte", "grammar": { "article": "la" } },
   "key": { "text": "clé", "accepts": ["clef"], "grammar": { "article": "la" } },
-  "jacket": { "text": "veste", "grammar": { "article": "la" } },
-  "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "article": "le" } },
   "umbrella": { "text": "parapluie", "grammar": { "article": "le" } },
-  "hat": {
-   "text": "bonnet",
-   "teaches": ["casquette"],
-   "grammar": { "article": "le" },
-   "notes": {
-    "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
-    "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
-   }
-  },
   "mailbox": {
    "text": "boîte aux lettres",
    "forms": { "pl": "les boîtes aux lettres" },
@@ -46,11 +35,9 @@
   },
   "to-take-off-shoes": { "text": "enlever ses chaussures", "accepts": ["retirer ses chaussures", "se déchausser"] },
   "to-set-off": { "text": "partir de chez soi", "accepts": ["partir de la maison"] },
-  "to-get-dressed": { "text": "s'habiller" },
   "to-arrive": { "text": "arriver" },
   "to-greet": { "text": "saluer" },
   "to-say-goodbye": { "text": "dire au revoir", "accepts": ["prendre congé"] },
-  "shoe": { "text": "chaussure", "grammar": { "article": "la" } },
   "apartment": {
    "text": "appartement",
    "accepts": ["l'appartement", "appart"],
@@ -69,7 +56,6 @@
    "grammar": { "article": "le" },
    "notes": { "fr": "le portefeuille pour les billets · le porte-monnaie pour les pièces." }
   },
-  "glove": { "text": "gant", "grammar": { "article": "le" } },
   "letter": { "text": "lettre", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "frapper à la porte", "accepts": ["toquer à la porte"] },
   "to-enter": { "text": "entrer", "notes": { "fr": "on invite : Entre ! ou Entrez !" } },
@@ -92,9 +78,6 @@
   },
   "see-you-later": { "text": "À plus tard !", "teaches": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
-  "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
-  "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] },
-  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" },
   "someones-ringing-the-doorbell": { "text": "On sonne à la porte.", "accepts": ["Ça sonne.", "Quelqu'un sonne à la porte."] }
  }
 }

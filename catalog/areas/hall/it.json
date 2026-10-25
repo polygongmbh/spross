@@ -11,15 +11,7 @@
   },
   "door": { "text": "porta", "grammar": { "article": "la" } },
   "key": { "text": "chiave", "grammar": { "article": "la" } },
-  "jacket": { "text": "giacca", "forms": { "pl": "le giacche" }, "grammar": { "article": "la" } },
-  "coat": { "text": "cappotto", "grammar": { "article": "il" } },
   "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "article": "l'", "gender": "m" } },
-  "hat": {
-   "text": "berretto",
-   "teaches": ["cappello"],
-   "grammar": { "article": "il" },
-   "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
-  },
   "mailbox": {
    "text": "cassetta della posta",
    "accepts": ["cassetta delle lettere", "buca delle lettere"],
@@ -46,7 +38,6 @@
   },
   "to-take-off-shoes": { "text": "togliersi le scarpe", "accepts": ["levarsi le scarpe"] },
   "to-set-off": { "text": "uscire di casa" },
-  "to-get-dressed": { "text": "vestirsi" },
   "to-arrive": { "text": "arrivare" },
   "to-greet": { "text": "salutare" },
   "to-say-goodbye": {
@@ -54,7 +45,6 @@
    "accepts": ["salutare", "congedarsi"],
    "notes": { "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci." }
   },
-  "shoe": { "text": "scarpa", "grammar": { "article": "la" } },
   "apartment": {
    "text": "appartamento",
    "accepts": ["l'appartamento"],
@@ -83,7 +73,6 @@
    "grammar": { "article": "il" },
    "notes": { "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete." }
   },
-  "glove": { "text": "guanto", "grammar": { "article": "il" } },
   "letter": { "text": "lettera", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "bussare alla porta" },
   "to-enter": { "text": "entrare", "notes": { "it": "entra! a un amico · prego, si accomodi! agli altri." } },
@@ -103,12 +92,6 @@
   "hurry-were-late": { "text": "Sbrigatevi, siamo in ritardo!", "accepts": ["Fate presto, siamo in ritardo!"] },
   "see-you-later": { "text": "A dopo!", "accepts": ["Ci vediamo dopo!", "A più tardi!"] },
   "welcome-home": { "text": "Benvenuto a casa!", "forms": { "f": "Benvenuta a casa!" } },
-  "dont-forget-your-jacket": {
-   "text": "Non dimenticare la giacca!",
-   "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
-  },
-  "put-on-the-jacket": { "text": "mettersi la giacca" },
-  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" },
   "someones-ringing-the-doorbell": { "text": "Suonano alla porta.", "accepts": ["Suonano il campanello."] }
  }
 }

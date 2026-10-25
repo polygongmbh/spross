@@ -5,10 +5,7 @@
   "hallway": { "text": "Flur", "forms": { "pl": "die Flure" }, "grammar": { "article": "der" } },
   "door": { "text": "Tür", "forms": { "pl": "die Türen" }, "grammar": { "article": "die" } },
   "key": { "text": "Schlüssel", "grammar": { "article": "der", "plural": "=" } },
-  "jacket": { "text": "Jacke", "forms": { "pl": "die Jacken" }, "grammar": { "article": "die" } },
-  "coat": { "text": "Mantel", "forms": { "pl": "die Mäntel" }, "grammar": { "article": "der" } },
   "umbrella": { "text": "Regenschirm", "forms": { "pl": "die Regenschirme" }, "grammar": { "article": "der" } },
-  "hat": { "text": "Mütze", "forms": { "pl": "die Mützen" }, "grammar": { "article": "die" } },
   "mailbox": { "text": "Briefkasten", "forms": { "pl": "die Briefkästen" }, "grammar": { "article": "der" } },
   "doorbell": { "text": "Klingel", "forms": { "pl": "die Klingeln" }, "grammar": { "article": "die" } },
   "stairs": { "text": "Treppe", "forms": { "pl": "die Treppen" }, "grammar": { "article": "die" } },
@@ -20,11 +17,9 @@
   "to-ring": { "text": "klingeln" },
   "to-take-off-shoes": { "text": "Schuhe ausziehen" },
   "to-set-off": { "text": "von zu Hause losgehen" },
-  "to-get-dressed": { "text": "sich anziehen" },
   "to-arrive": { "text": "ankommen" },
   "to-greet": { "text": "begrüßen" },
   "to-say-goodbye": { "text": "sich verabschieden" },
-  "shoe": { "text": "Schuh", "forms": { "pl": "die Schuhe" }, "grammar": { "article": "der" } },
   "apartment": { "text": "Wohnung", "forms": { "pl": "die Wohnungen" }, "grammar": { "article": "die" } },
   "neighbor": { "text": "Nachbar", "forms": { "pl": "die Nachbarn" }, "grammar": { "article": "der" } },
   "guest": { "text": "Gast", "forms": { "pl": "die Gäste" }, "grammar": { "article": "der" } },
@@ -33,7 +28,6 @@
    "accepts": ["Portemonnaie"],
    "grammar": { "article": "der", "plural": "=" }
   },
-  "glove": { "text": "Handschuh", "forms": { "pl": "die Handschuhe" }, "grammar": { "article": "der" } },
   "letter": { "text": "Brief", "forms": { "pl": "die Briefe" }, "grammar": { "article": "der" } },
   "to-knock-on-door": { "text": "an die Tür klopfen" },
   "to-enter": { "text": "hereinkommen", "accepts": ["reinkommen"] },
@@ -49,10 +43,7 @@
   "hurry-were-late": { "text": "Beeilt euch, wir sind spät dran!" },
   "see-you-later": { "text": "Bis später!" },
   "welcome-home": { "text": "Willkommen zu Hause!" },
-  "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
-  "put-on-the-jacket": { "text": "die Jacke anziehen" },
   "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." },
-  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" },
   "someones-ringing-the-doorbell": { "text": "Es klingelt an der Tür.", "accepts": ["Es klingelt.", "Jemand klingelt an der Tür."] }
  }
 }

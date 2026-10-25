@@ -1,0 +1,26 @@
+{
+ "title": "Mavazi",
+ "subtitle": "Kuanzia soksi hadi kofia.",
+ "words": {
+  "clothes": { "text": "nguo", "grammar": { "plural": "=" } },
+  "to-get-dressed": { "text": "kuvaa" },
+  "shoe": { "text": "kiatu", "forms": { "pl": "viatu" } },
+  "jacket": { "text": "jaketi", "forms": { "pl": "majaketi" } },
+  "pants": { "text": "suruali", "grammar": { "plural": "=" } },
+  "t-shirt": { "text": "fulana", "grammar": { "plural": "=" } },
+  "sock": { "text": "soksi", "grammar": { "plural": "=" } },
+  "shirt": { "text": "shati", "forms": { "pl": "mashati" } },
+  "dress": { "text": "gauni", "forms": { "pl": "magauni" } },
+  "sweater": { "text": "sweta", "grammar": { "plural": "=" } },
+  "coat": { "text": "koti", "forms": { "pl": "makoti" } },
+  "hat": { "text": "kofia", "grammar": { "plural": "=" } },
+  "underwear": { "text": "nguo ya ndani", "forms": { "pl": "nguo za ndani" } },
+  "belt": { "text": "mkanda", "forms": { "pl": "mikanda" } },
+  "glove": { "text": "glavu", "grammar": { "plural": "=" } },
+  "to-get-undressed": { "text": "kuvua nguo" },
+  "to-change-clothes": { "text": "kubadilisha nguo" },
+  "put-on-the-jacket": { "text": "kuvaa jaketi" },
+  "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
+  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" }
+ }
+}
