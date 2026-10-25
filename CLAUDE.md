@@ -1,12 +1,12 @@
 # Spross — curated vocabulary app
-The rules every session pays for on every edit (commands, commit rules, code and text standards, invariants), one terse line each; a topic's own rules live in the `docs/` page that owns it.
+The rules every session pays for on every edit (commands, commit rules, code and text standards), one terse line each; a topic's own rules live in the `docs/` page that owns it.
 
 A curated vocabulary app that supports getting to actually speaking a language;
 what sets it apart — and what every user-facing change answers to — is `README.md` § What sets it apart.
-Native iOS (SwiftUI) app "Spross" in `app/` with a Kotlin Multiplatform core (SprossKern);
+Native iOS (SwiftUI, `App/`) and Android (Compose, `android/`) apps on a Kotlin Multiplatform core (SprossKern, `kern/`);
 scheduling, growth, session and grading rules are `kern/README.md` and the KDoc on the type it names,
 screen and copy rules `docs/design.md` — read the side you are changing.
-Originally German-focused; any catalog language pair (source = known, target = learning; de/en/eo/es/fr/it/sw/uk) works now.
+Any catalog language pair works (source = known, target = learning; de/en/eo/es/fr/it/sw/uk).
 Focus is on breadth of exposure to the language for maximum fluency with minimum effort, not perfect retention for single words.
 
 ## Commands
@@ -36,7 +36,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
 - **A cloud session pushes every commit** to its own `claude/` branch (the SessionStart hook creates one), never leaves work on a detached HEAD or `main`.
 - **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
-  commit your own changes without waiting for an explicit instruction, ignore unrelated uncommitted work in the tree.
+  commit your own changes without waiting for an explicit instruction.
 - **Every commit green**: run the narrowest gate that covers the diff.
   No Kotlin/Swift changed → no build. No behavior changed → no test. No UI changed → no screenshot.
   Red in a file you didn't touch → someone else's break; commit `--only` your paths, move on.
@@ -49,12 +49,13 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   `refactor` changes no behavior at all — a rewrite whose output differs in any way is `enhance` or `fix`.
 - `!` marks a bump of `STORE_SCHEMA_VERSION`, never a catalog edit
 - A user-facing change lands on iOS and Android in the same sweep; a change to shared/parity-bearing UI checks both
-- Keep `README.md` / `docs/` in step with behavior changes in the same series.
+- Keep `README.md` / `docs/` in step with behavior changes, committed with the code they describe, never as a separate docs commit;
+  a backlog ruling or pruning with no code stays uncommitted and rides along with the commit that acts on it.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; 
   an entry only for what the learner needs to know - a new shelf, a capability, a major change,
   never small corrections to the catalog, behavior, audio, layout or naming;
   New entries go under the top `## Unreleased` heading; `docs/release.md` reviews them at the cut.
-- Changelog and backlog entries are one line with one sentence for bullet points, 
+- Changelog and backlog entries are one line with one sentence,
   explanations live in commit messages and only in the file when justified.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Commit with `git commit --only -- <paths>`: `git add` + `git commit` carries every other staged
@@ -67,7 +68,12 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   split where a cohesive topic leaves, keep a file whole when none does. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- Engine APIs name the rule, never the rendering: no screen positions in kern types, bar shared layout data (`net.spross.kern.design`).
+- Docs and comments describe the current state, never justify it against the past;
+  a removal is documented beyond its commit message only when it is likely to be reintroduced.
+- A rule lives in kern once — a platform may READ a kern decision, never MINT one
+  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
+  anything both platforms would compute — a value, proportion, curve, timeline, threshold or shared layout (`net.spross.kern.design`) — lives in kern once;
+  a platform holds only what needs its own API and converts kern's units.
 - Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
 
 ### Text
@@ -99,21 +105,12 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   Use a `python3 -c` one-liner with `str.replace` or `json` to change values, then `scripts/strings.py --fix`.
 - Search with `rg`. Bare `grep` is ugrep here, and given a subdirectory it drops the repo's
   `.gitignore` and walks `kern/build/` — 11 MB where `rg` answers in 448 bytes.
-- For "where does X live" questions, read the module docs — never grow this file.
 - Large mechanical refactors go through a codemod, not hand edits — write it, run it, review the diff.
   `ast-grep -l kotlin|swift -p '<pattern>'` matches the tree rather than the line.
 - Multi-agent orchestration rules live in `docs/orchestration.md`.
 
-## Invariants
-
-- A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
-  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
-  nothing is written twice across platforms: any value, proportion, curve, timeline, threshold both need live in kern once;
-  a platform holds only what needs its own API and converts kern's units.
-
 ## Extended docs
 
-- Decisions, rationale, and major turning points live in `docs/`, not inline; this file points.
 - A checkable rule earns a gate (pre-commit or test, `--fix` and a per-line waiver where it can) and keeps its sentence for the why; no rule lives in an agent's private memory.
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
@@ -121,16 +118,12 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Before editing any `.md` file, read its first three lines — heading, scope and layout, neighbors — keep them true in the same edit,
   put what the scope excludes where the neighbors point, and never add file-describing prose below them.
 - A doc states its content, never its own properties.
-- Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
+- Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md`, with pointers; prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan —
   an audit, triage or sweep result listing work still to do is a plan, never a dated file in docs/ or /tmp;
   a plan or handoff doc stays UNCOMMITTED unless asked since it is working state
-- Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible;
-  a backlog ruling or pruning with no code stays uncommitted and rides along with the commit that acts on it
 - Whenever you are corrected or do extensive research, tighten or replace the line that should
   have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
-- Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
-- In Code comments, always only explain the current state of things, do not justify or illustrate behavior against the past
 - Behavior rulings documented are snapshots, not absolutes - when challenged, most of them can change
