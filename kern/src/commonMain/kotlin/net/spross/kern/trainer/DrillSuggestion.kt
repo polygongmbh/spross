@@ -38,6 +38,9 @@ object DrillSuggestion {
     /** Local days since a run after which recency adds nothing more. */
     const val RECENCY_DAYS: Int = 7
 
+    /** Local days without a run before a drill is named as not run lately. */
+    const val NOT_LATELY_DAYS: Int = 4
+
     /** Settled words by which the box is past "early on" — numbers and a new script stop leading. */
     const val EARLY_WORDS: Int = 150
 
@@ -108,7 +111,7 @@ object DrillSuggestion {
         WordsSettled,
         NeverRun,
 
-        /** Not run for two local days or more. */
+        /** Not run for [NOT_LATELY_DAYS] local days or more. */
         NotLately,
 
         /** Nothing stands out: the pick is for the change of pace itself. */
@@ -202,7 +205,7 @@ object DrillSuggestion {
             val reason = when {
                 benefit - BASE_BENEFIT >= STEER_NAMED_FROM -> steeredBy(standing.drill)
                 days == null -> Reason.NeverRun
-                days >= 2 -> Reason.NotLately
+                days >= NOT_LATELY_DAYS -> Reason.NotLately
                 else -> Reason.Variety
             }
             return Pick(standing.drill, reason)
