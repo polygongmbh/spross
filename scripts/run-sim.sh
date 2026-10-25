@@ -2,8 +2,7 @@
 # Build, install and launch Spross on an iOS Simulator.
 #   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
-#   scripts/run-sim.sh --device 'iPhone 18 Pro Max' — pick another simulator by name
-#                                               (a case-insensitive part is enough: --device duo)
+#   scripts/run-sim.sh duo                    — another simulator, by a case-insensitive part of its name
 #   scripts/run-sim.sh --clean                — the Release app (net.spross.app), uninstalled first
 #                                               (⇒ onboarding runs); the Dev app keeps its data
 #   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
@@ -32,13 +31,13 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --no-build) BUILD=0; shift ;;
     --clean) CLEAN=1; CONFIG=Release; shift ;;
-    --device) DEVICE="$2"; shift 2 ;;
     --shot) SHOT="$2"; shift 2 ;;
     --mute) MUTE='-readAloud off'; shift ;;
     --sound) SOUND=1; shift ;;
     --) shift; break ;;
     -h|--help) awk 'NR > 1 { if (!/^#/) exit; print substr($0, 3) }' "$0"; exit 0 ;;
-    *) echo "error: run-sim: unknown option '$1' (see --help)" >&2; exit 1 ;;
+    -*) echo "error: run-sim: unknown option '$1' (see --help)" >&2; exit 1 ;;
+    *) DEVICE="$1"; shift ;;
   esac
 done
 
