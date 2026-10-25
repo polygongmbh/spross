@@ -10,10 +10,11 @@ An applied row moves to `$W/shipped.tsv`; a row whose incumbent moved, or whose 
 refuses, is named and leaves the journal, so a picker stages it afresh if it still holds.
 An empty `from_sha256` is a take for a form that ships nothing, applied while that still holds.
 A row with `speaks` ships its take under that bare form (de `irren`) and drops the whole form's entry
-(`sich irren`), which playback then answers with the bare one; the pack's row is re-keyed alike, so
-neither a fill nor a resolve brings the whole form's take back.
+(`sich irren`), which playback then answers with the bare one.
+Every applied swap rewrites its pack's row to the take it shipped (re-keyed to the bare form alike),
+so neither a fill, a resolve nor `--from-packs` brings the replaced take back.
 `--from-packs` first stages every pack row naming another Commons file than what ships under
-its form — the swaps a sweep or a consolidation wrote into a pack — in any section but `letters`.
+its form — a row a resolve or a hand-named `--append` wrote — in any section but `letters`.
 """
 import csv
 import datetime
@@ -94,19 +95,27 @@ def from_packs(workspace, langs, sections):
     return staged
 
 
-def rekey_pack(workspace, lang, row):
-    """The pack row of the whole form [row] moved off becomes one of the bare form it now ships."""
+def follow_pack(workspace, lang, row):
+    """The pack row of the form [row] shipped a take for names that take, under the bare form it now speaks if any."""
     pack = os.path.join(workspace, 'pack-%s-%s' % (lang, row['section']))
-    if not os.path.isdir(pack):
+    if row['section'] == 'letters' or not os.path.isdir(pack):
         return
-    rows = [held for held in read_rows(os.path.join(pack, 'manifest.tsv'))
-            if speech_key(held['text']) not in (speech_key(row['key']), speech_key(row['speaks']))]
+    form = row.get('speaks') or row['key']
+    gone = {speech_key(row['key']), speech_key(form)}
+    held = read_rows(os.path.join(pack, 'manifest.tsv'))
+    mine = [old for old in held if speech_key(old['text']) in gone]
+    if mine and all(speech_key(old['text']) == speech_key(form) and same_file(old['file'], row['to_source'])
+                    for old in mine):
+        return
     record = audio_commons.meta([row['to_source']]).get(row['to_source'], {})
-    new = dict(audio_resolve.row_for('text', row['speaks'], ascii_stem(row['speaks']) + '.mp3', row['to_source'], record),
+    new = dict(audio_resolve.row_for('text', form, ascii_stem(form) + '.mp3', row['to_source'], record),
                author=row['author'], license=row['license'])
     os.makedirs(os.path.join(pack, 'mp3'), exist_ok=True)
-    shutil.copyfile(row['mp3'], pack_mp3(pack, new))
-    audio_resolve.write_pack(pack, rows + [new], 'text')
+    if not os.path.exists(pack_mp3(pack, new)) or not os.path.samefile(row['mp3'], pack_mp3(pack, new)):
+        shutil.copyfile(row['mp3'], pack_mp3(pack, new))
+    at = held.index(mine[0]) if mine else len(held)
+    rows = [old for old in held[:at] if old not in mine] + [new] + [old for old in held[at:] if old not in mine]
+    audio_resolve.write_pack(pack, rows, 'text')
 
 
 def article_word(lang, key):
@@ -166,10 +175,10 @@ def ship(workspace, langs, dry_run, packs, section):
                 print('  swap     %s %s/%s %s -> %s (mos %s -> %s)%s' % (
                     lang, row['section'], row['key'], row['from_source'], row['to_source'],
                     row['mos_from'] or '-', row['mos_to'] or '-', ' as %s' % row['speaks'] if row.get('speaks') else ''))
-                if row.get('speaks') and not dry_run:
-                    if row['from_sha256']:
+                if not dry_run:
+                    if row.get('speaks') and row['from_sha256']:
                         remove(lang, row['section'], row['key'])
-                    rekey_pack(workspace, lang, row)
+                    follow_pack(workspace, lang, row)
     print('  %d %s, %d left staged' % (len(shipped), 'would ship' if dry_run else 'shipped',
                                        len(journal) - len(settled)))
     if dry_run:

@@ -52,8 +52,7 @@ A full sweep also re-checks what already ships, in any language:
 anything not clearly good has every other take of its word fetched and compared, and the best one wins.
 Where none of a whole form wins, the takes of its bare form (de `sich irren` → `irren`) compete under the same bar,
 unless the bare form ships a take of its own;
-a winner ships under the bare form in the whole form's place, its pack row re-keyed with it,
-so neither a fill nor a resolve brings the whole form's take back.
+a winner ships under the bare form in the whole form's place.
 The score ranks voices the way the ear does,
 but a single file strays by a few tenths,
 so it picks among takes and refuses only the clearly bad.
@@ -82,8 +81,10 @@ and a form that ships nothing yet is staged against nothing.
 `--ship` replaces a take only while the one it was chosen over still ships,
 and only once the take judge passes the replacement;
 a refused swap leaves the old recording standing.
-Each applied swap is appended to `$W/shipped.tsv`;
-`--from-packs` first stages every pack row naming another Commons file than what ships under its form.
+Each applied swap is appended to `$W/shipped.tsv` and rewrites its pack's row to the take it shipped (under the bare form, for one),
+so neither a fill, a resolve nor `--from-packs` brings the replaced take back;
+`--from-packs` first stages every pack row naming another Commons file than what ships under its form —
+a row a resolve or a hand-named `--append` wrote.
 A new speaker is another voice change on the cards and another credit group,
 so every picker takes an established voice's take over a slightly better stranger's,
 and a voice with three recordings or fewer is moved onto an established one wherever it can be —
