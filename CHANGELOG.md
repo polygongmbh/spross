@@ -4,34 +4,20 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- A listening run that plays through its whole playlist now carries on in a fresh order instead of repeating the old one.
-- The Meadow card on Home now says it holds mini games.
-- Once most of the day's reviews are done, Home's first card now takes turns suggesting a mini game, listening or an AI chat.
-- Listening's repeat button is now a back button: one press restarts the word, a second steps back to the word before.
-- Recordings now play only the spoken word, skipping clicks and hum around it, and recordings that say more than their word no longer ship.
-- On a typing card whose prompt has two meanings, the word for either now counts as right, and the area label above such prompts is gone.
-- A word asked by ear no longer lists itself again under "also" once the card opens.
-- On the watch, the words you just answered no longer turn up as wrong options in the next questions, and the letter and calendar drills keep the last answer off the next tiles too.
-- The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
-- French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
-- On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
-- Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.
-- The numbers page drops its Timed switch: a challenge, started from your picks or from a code, is now the one race against the clock.
-- In a numbers challenge, every answer now moves straight on with only its sound, Skip replaces Reveal, and no hints, notes or spoken answers appear.
-- In a numbers challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
-- Onboarding now points to where the day's round starts and how to choose what you learn in the Orchard, in place of a page about what Spross is for, and its first-round lines are shorter.
-- Home counts words that settled today among the day's checks again, instead of naming them on their own.
-- Swahili "to happen" now teaches kutukia, accepting kutokea and kufanyika.
-- A new "to appear" card joins the verbs in every language, and carries Swahili kutokea.
+## 9.0.0 — 2026-10-26
+
 - A new Clothes area holds the garments from underpants to the raincoat and the verbs for dressing, gathering the bedroom's and the hallway's garments with their progress kept.
+- Once most of the day's reviews are done, Home's first card now takes turns suggesting a mini game, listening or an AI chat.
 - Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
-- A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
-- Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
-- A German, French, Spanish or Italian reflexive verb with no good recording of its own now plays one of the verb without its reflexive "sich", "se" or "si".
-- Most Spanish and Italian reflexive verbs, such as "secarse" and "lavarsi", now play a recording of their verb instead of the device voice.
-- German "sich irren" and "sich verabschieden" now play clearer recordings.
-- About two dozen everyday English verbs, such as "to cook" and "to eat", now play clearer recordings.
-- The new clothes words and "to appear" play a recording in all eight languages, and about 300 more words across them play one instead of the device voice.
+- Listening's repeat button is now a back button, and a run that plays through its whole playlist carries on in a fresh order.
+- A numbers challenge is now the one race against the clock, replacing the Timed switch, and moves straight on after every answer with Skip in place of Reveal and no hints.
+- Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.
+- On a typing card whose prompt has two meanings, the word for either now counts as right.
+- The letter drill now says many letters in more than one voice, changing voice from question to question.
+- On the watch, the words you just answered no longer turn up as wrong options, and a word to produce shows alone for a moment before its options appear.
+- Recordings now play only the spoken word, recordings that say more than their word no longer ship, and a reflexive verb without its own recording plays the bare verb.
+- Hundreds more words across all eight languages, the new clothes words among them, now play a real speaker's recording instead of the device voice.
+- French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
 
 ## 8.7.0 — 2026-10-09
 

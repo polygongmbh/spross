@@ -18,8 +18,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Needs a decision
 
-- A learner who never wants the AI chat still sees it take its turn leading Home (`DayLead`) —
-  a Settings switch that hides the conversation card and drops it from the rotation?
 - A missed letter-name tile question opens its card although the tiles already mark the answer (`DrillRunProgress.showsAnswer`) —
   keep it closed there, as iOS once did?
 - The repo grants nobody anything —
@@ -56,19 +54,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Apps & tooling
 
-- The iOS drill run (`DrillRunView`) still wraps its scaffold by hand,
-  because its run state arrives through `Face.snapshot` rather than kern's run progress —
-  exposing that would let `runScreen` reach it.
-- The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` —
-  one constant in `Shared/Sources`.
-- `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).
-- Over ~300 lines with a seam worth checking:
-  Android `AppModel.kt` (wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
-  iOS `AppModel.swift`, `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
-  Android `Chrome.kt` is a hand-declared field table,
-  and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
-- `targetSdk` sits at 36: re-check the Android 17 behavior changes before raising it,
-  since compiling against 37 does not opt the app into them.
 
 
 ## Revisit when it grows
