@@ -218,10 +218,10 @@ extension View {
             QuestionCardView(question: Question(
                 key: "kijiko", ask: nil,
                 prompt: .init(text: "kijiko", lang: "sw", form: .word, article: nil, gender: nil, plural: nil,
-                              marker: nil, context: nil, fixedLeading: 0, saying: nil),
+                              marker: nil, fixedLeading: 0, saying: nil),
                 answer: .init(text: "Löffel", lang: "de", form: .word, article: "der", gender: .masculine,
                               plural: PluralForm.Form(text: "Löffel"),
-                              marker: nil, context: nil, fixedLeading: 0, saying: nil),
+                              marker: nil, fixedLeading: 0, saying: nil),
                 emoji: "🥄", emojiCue: .upfront, emojiIsQuestion: false, hint: nil,
                 opens: true, growsNote: false, closing: .init(alternates: [], note: nil), otherWord: nil
             ), surface: .review)
