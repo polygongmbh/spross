@@ -195,8 +195,9 @@ def staged_keys():
             for row in (read_rows(path) if os.path.exists(path) else [])}
 
 
-def stage(take, name, record, path, mos_to, picker, why):
-    """Appends one swap to the journal and its bytes to `$W/staged/`."""
+def stage(take, name, record, path, mos_to, picker, why, speaks=''):
+    """Appends one swap to the journal and its bytes to `$W/staged/`; [speaks] is the bare form a take
+    of a particled one says, which it ships under in the whole form's place."""
     sha = digest_of(path)
     target = os.path.join(WORKSPACE, 'staged', '%s.mp3' % sha)
     os.makedirs(os.path.dirname(target), exist_ok=True)
@@ -206,4 +207,4 @@ def stage(take, name, record, path, mos_to, picker, why):
         from_source=take['source'], from_sha256=take['sha256'] if take['shipped'] else '',
         to_source=name, to_sha256=sha, author=record.get('author', '?'), license=record.get('license', '?'),
         mos_from='' if take['mos'] is None else '%.2f' % take['mos'],
-        mos_to='' if mos_to is None else '%.2f' % mos_to, picker=picker, why=why)], append=True)
+        mos_to='' if mos_to is None else '%.2f' % mos_to, picker=picker, why=why, speaks=speaks)], append=True)

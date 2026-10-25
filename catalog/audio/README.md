@@ -50,6 +50,10 @@ and `--prune-poor` hands anything shipped that the judge now refuses to it.
 
 A full sweep also re-checks what already ships, in any language:
 anything not clearly good has every other take of its word fetched and compared, and the best one wins.
+Where none of a whole form wins, the takes of its bare form (de `sich irren` → `irren`) compete under the same bar,
+unless the bare form ships a take of its own;
+a winner ships under the bare form in the whole form's place, its pack row re-keyed with it,
+so neither a fill nor a resolve brings the whole form's take back.
 The score ranks voices the way the ear does,
 but a single file strays by a few tenths,
 so it picks among takes and refuses only the clearly bad.

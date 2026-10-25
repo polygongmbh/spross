@@ -11,12 +11,17 @@ The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a 
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
 clearly worse, and against a refused, doubted, one-sided, overlong or under-floor one any passable take
 wins. A voice the language already ships `ESTABLISHED_TAKES` of beats a slightly better stranger.
+Where no take of a word's whole form wins, the takes of it without its leading citation prefix or
+detachable particle (`unsaid_prefixes`: de `sich irren` → `irren`) compete under the same bar, unless that
+bare form ships a recording of its own; a winner is staged to ship under the bare form, which playback
+falls back to, in place of the whole form's entry.
 
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
 an established voice's take of the same form — smallest license harm first (CC0 and public domain,
 then attribution, then share-alike), then the biggest voice, then the catalog's casing — unless
-that take is refused, squashed (unless a listener vouched for it), doubted by a listener, scores `SWAP_MARGIN` or more under the incumbent (a sweep would win
-that back, and the two would trade the take forever), or gives up
+that take is refused, squashed (unless a listener vouched for it), doubted by a listener,
+scores `SWAP_MARGIN` or more under the incumbent (a sweep would win that back, and the two would
+trade the take forever), or gives up
 more than `DULLNESS_DB` above 6 kHz (a telephone-band take scores clean and sounds dull).
 """
 import collections
@@ -24,9 +29,11 @@ import collections
 import audio_commons
 import audio_judge
 import audio_measure
-from audio_gates import digest_of
+from audio_forms import verb_prefixes
+from audio_gates import digest_of, speech_key, verb_stem
 from audio_index import FFMPEG
 from audio_lingualibre import license_rank
+from audio_manifest import audio_dir, read_manifest
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
@@ -92,9 +99,43 @@ def sweep(lang, section, catalog, measures, only, apply):
     print('%d below %.2f, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
         return 0, 0
-    options, failed = candidates(lang, noisy)
+    results, errors = judged_options(lang, noisy, measures)
+    floor, weight = mos_floor(lang), voices(lang)
+    picks = {take['key']: best_option(take, results.get(take['key'], []), lang, floor, weight) for take in noisy}
+    # why: only where the whole form has no winner does its bare form compete, so a take of
+    # `sich irren` always beats one of `irren`; a bare form shipping its own take already answers.
+    ships = {speech_key(key) for key in read_manifest(audio_dir(lang)).get(section, {})}
+    bare = [dict(take, key=stem, whole=take['key']) for take in noisy if section == 'words' and not picks[take['key']]
+            for stem in [verb_stem(take['key'], verb_prefixes(lang))] if stem and speech_key(stem) not in ships]
+    if bare:
+        print('%d without a winner, trying their bare form' % len(bare))
+        found, failures = judged_options(lang, bare, measures)
+        errors += failures
+        for take in bare:
+            picked = best_option(take, found.get(take['key'], []), lang, floor, weight)
+            picks[take['whole']] = picked and picked + (take['key'],)
+    swaps = 0
+    for take in sorted(noisy, key=lambda take: take['mos']):
+        best = picks[take['key']]
+        if not best:
+            print('  keep   %-18s %5.2f  (no challenger survives)' % (take['key'], take['mos']))
+            continue
+        name, record, path, after, *speaks = best
+        print('  SWAP   %-18s %5.2f -> %5.2f  %s (%s)%s' % (take['key'], take['mos'], after, name,
+                                                     record.get('author', '?'), ' as %s' % speaks[0] if speaks else ''))
+        swaps += 1
+        if apply:
+            stage(take, name, record, path, after, 'sweep', reason(take), *speaks)
+    print('\n%d swap(s) of %d noisy rows%s' % (swaps, len(noisy), '' if apply else ' — dry run, nothing written'))
+    return swaps, errors
+
+
+def judged_options(lang, takes, measures):
+    """{key: [(name, record, path, Judged)]} of every challenger of [takes], fetched and judged, and the
+    count of failures."""
+    options, failed = candidates(lang, takes)
     fetched, errors = [], len(failed)
-    for take in noisy:
+    for take in takes:
         if take['key'] in failed:
             continue
         for name, record in options[take['key']]:
@@ -108,45 +149,37 @@ def sweep(lang, section, catalog, measures, only, apply):
         verdict = judged(take, name, record, path, measures.result(digest_of(path), future))
         results[take['key']].append((name, record, path, verdict))
     measures.save()
+    return results, errors
 
-    floor, weight, swaps = mos_floor(lang), voices(lang), 0
-    for take in sorted(noisy, key=lambda take: take['mos']):
-        before, best, stranger = take['mos'], None, None
-        for name, record, path, verdict in results.get(take['key'], []):
-            if verdict.mos is None and not verdict.refused:
-                continue
-            sha = digest_of(path)
-            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
-                'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
-                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
-            if why:
-                print('  next   %-18s (%s %s)' % (take['key'], name, why))
-                continue
-            needed = before + SWAP_MARGIN
-            if take['squashed'] or take['lopsided'] or take['voice']:
-                needed = before - SWAP_MARGIN
-            if take['ear'] or take['lopsided'] or take['overlong'] or take['refused']:
-                needed = floor
-            elif before < floor:
-                needed = min(needed, max(floor, before + 0.01))
-            if verdict.mos < needed:
-                continue
-            pick = (name, record, path, verdict.mos)
-            if weight[record.get('author')] >= ESTABLISHED_TAKES:
-                best = pick if best is None or verdict.mos > best[3] else best
-            elif stranger is None or verdict.mos > stranger[3]:
-                stranger = pick
-        best = best or stranger
-        if not best:
-            print('  keep   %-18s %5.2f  (no challenger survives)' % (take['key'], before))
+
+def best_option(take, options, lang, floor, weight):
+    """(name, record, path, mos) of the challenger in [options] that beats [take], else None."""
+    before, best, stranger = take['mos'], None, None
+    for name, record, path, verdict in options:
+        if verdict.mos is None and not verdict.refused:
             continue
-        name, record, path, after = best
-        print('  SWAP   %-18s %5.2f -> %5.2f  %s (%s)' % (take['key'], before, after, name, record.get('author', '?')))
-        swaps += 1
-        if apply:
-            stage(take, name, record, path, after, 'sweep', reason(take))
-    print('\n%d swap(s) of %d noisy rows%s' % (swaps, len(noisy), '' if apply else ' — dry run, nothing written'))
-    return swaps, errors
+        sha = digest_of(path)
+        why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
+            'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
+            'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
+        if why:
+            print('  next   %-18s (%s %s)' % (take['key'], name, why))
+            continue
+        needed = before + SWAP_MARGIN
+        if take['squashed'] or take['lopsided'] or take['voice']:
+            needed = before - SWAP_MARGIN
+        if take['ear'] or take['lopsided'] or take['overlong'] or take['refused']:
+            needed = floor
+        elif before < floor:
+            needed = min(needed, max(floor, before + 0.01))
+        if verdict.mos < needed:
+            continue
+        pick = (name, record, path, verdict.mos)
+        if weight[record.get('author')] >= ESTABLISHED_TAKES:
+            best = pick if best is None or verdict.mos > best[3] else best
+        elif stranger is None or verdict.mos > stranger[3]:
+            stranger = pick
+    return best or stranger
 
 
 def reason(take):

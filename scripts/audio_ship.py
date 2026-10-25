@@ -9,6 +9,9 @@ and through `audio_manifest.put`, which judges the take before it replaces anyth
 An applied row moves to `$W/shipped.tsv`; a row whose incumbent moved, or whose take the judge
 refuses, is named and leaves the journal, so a picker stages it afresh if it still holds.
 An empty `from_sha256` is a take for a form that ships nothing, applied while that still holds.
+A row with `speaks` ships its take under that bare form (de `irren`) and drops the whole form's entry
+(`sich irren`), which playback then answers with the bare one; the pack's row is re-keyed alike, so
+neither a fill nor a resolve brings the whole form's take back.
 `--from-packs` first stages every pack row naming another Commons file than what ships under
 its form — the swaps a sweep or a consolidation wrote into a pack — in any section but `letters`.
 """
@@ -18,12 +21,14 @@ import os
 import shutil
 import sys
 
+import audio_commons
+import audio_resolve
 from audio_gates import attribute, digest_of, speech_key
-from audio_manifest import SECTIONS, AUDIO, audio_dir, put, read_manifest
+from audio_manifest import SECTIONS, AUDIO, ascii_stem, audio_dir, put, read_manifest, remove
 from audio_routes import WORKSPACE
 
 FIELDS = ('date lang section key from_source from_sha256 to_source to_sha256 author license '
-          'mos_from mos_to picker why').split()
+          'mos_from mos_to picker why speaks').split()
 
 
 def read_rows(path):
@@ -37,6 +42,12 @@ def pack_mp3(pack, row):
 
 
 def write_rows(path, rows, append=False):
+    if append and os.path.exists(path):
+        with open(path, encoding='utf-8') as f:
+            header = f.readline().rstrip('\n').split('\t')
+        if header != FIELDS:
+            # why: a journal written before a column was added is rewritten under the current header.
+            rows, append = read_rows(path) + list(rows), False
     fresh = not append or not os.path.exists(path)
     with open(path, 'a' if append else 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, FIELDS, delimiter='\t', extrasaction='ignore', lineterminator='\n')
@@ -83,6 +94,21 @@ def from_packs(workspace, langs, sections):
     return staged
 
 
+def rekey_pack(workspace, lang, row):
+    """The pack row of the whole form [row] moved off becomes one of the bare form it now ships."""
+    pack = os.path.join(workspace, 'pack-%s-%s' % (lang, row['section']))
+    if not os.path.isdir(pack):
+        return
+    rows = [held for held in read_rows(os.path.join(pack, 'manifest.tsv'))
+            if speech_key(held['text']) not in (speech_key(row['key']), speech_key(row['speaks']))]
+    record = audio_commons.meta([row['to_source']]).get(row['to_source'], {})
+    new = dict(audio_resolve.row_for('text', row['speaks'], ascii_stem(row['speaks']) + '.mp3', row['to_source'], record),
+               author=row['author'], license=row['license'])
+    os.makedirs(os.path.join(pack, 'mp3'), exist_ok=True)
+    shutil.copyfile(row['mp3'], pack_mp3(pack, new))
+    audio_resolve.write_pack(pack, rows + [new], 'text')
+
+
 def article_word(lang, key):
     """The word a card shows behind the article [key] says — what a new `articles` entry records."""
     from audio_forms import load_catalog
@@ -124,22 +150,26 @@ def ship(workspace, langs, dry_run, packs, section):
             settled += [latest[(row['section'], row['key'])]] if (row['section'], row['key']) in latest else []
             latest[(row['section'], row['key'])] = row
         rows = list(latest.values())
-        outcome = put(lang, [dict(section=row['section'], key=row['key'], mp3=row['mp3'],
+        outcome = put(lang, [dict(section=row['section'], key=row.get('speaks') or row['key'], mp3=row['mp3'],
                                   source=row['to_source'], author=row['author'], license=row['license'],
                                   **({'word': article_word(lang, row['key'])} if row['section'] == 'articles'
                                      and not row['from_sha256'] else {}))
                              for row in rows], dry_run)
         for row in rows:
-            why, mos = outcome[(row['section'], row['key'])]
+            why, mos = outcome[(row['section'], row.get('speaks') or row['key'])]
             row['mos_to'] = '' if mos is None else '%.2f' % mos
             settled.append(row)
             if why:
                 print('  refused  %s %s/%s %s: %s' % (lang, row['section'], row['key'], *why))
             else:
                 shipped.append(row)
-                print('  swap     %s %s/%s %s -> %s (mos %s -> %s)' % (
+                print('  swap     %s %s/%s %s -> %s (mos %s -> %s)%s' % (
                     lang, row['section'], row['key'], row['from_source'], row['to_source'],
-                    row['mos_from'] or '-', row['mos_to'] or '-'))
+                    row['mos_from'] or '-', row['mos_to'] or '-', ' as %s' % row['speaks'] if row.get('speaks') else ''))
+                if row.get('speaks') and not dry_run:
+                    if row['from_sha256']:
+                        remove(lang, row['section'], row['key'])
+                    rekey_pack(workspace, lang, row)
     print('  %d %s, %d left staged' % (len(shipped), 'would ship' if dry_run else 'shipped',
                                        len(journal) - len(settled)))
     if dry_run:
