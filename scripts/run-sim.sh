@@ -3,6 +3,7 @@
 #   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
 #   scripts/run-sim.sh --device 'iPhone 18 Pro Max' — pick another simulator by name
+#                                               (a case-insensitive part is enough: --device duo)
 #   scripts/run-sim.sh --clean                — the Release app (net.spross.app), uninstalled first
 #                                               (⇒ onboarding runs); the Dev app keeps its data
 #   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
@@ -42,10 +43,17 @@ while [ $# -gt 0 ]; do
 done
 
 # why: `booted` is ambiguous once the paired watch simulator is up too — every
-# simctl call here targets one resolved UDID instead. The LAST match is the newest
-# runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
+# simctl call here targets one resolved UDID instead. An exact name beats a
+# case-insensitive substring ("duo" finds "iPhone Duo"), and the LAST match wins:
+# simctl lists runtimes oldest first, so that is the newest, the one `name=` in the build gate picks.
 UDID=$(xcrun simctl list devices available \
-  | awk -v want="$DEVICE" -F'[()]' '$0 ~ "^ *" want " \\(" { udid = $2 } END { print udid }')
+  | awk -v want="$DEVICE" -F'[()]' '
+      BEGIN { w = tolower(want) }
+      { n = $1; gsub(/^ +| +$/, "", n); l = tolower(n) }
+      n == "" || n ~ /^Apple Watch/ || NF < 3 { next }
+      l == w { exact = $2 }
+      index(l, w) { part = $2 }
+      END { print (exact != "" ? exact : part) }')
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
   echo "       xcrun simctl list devices available" >&2
