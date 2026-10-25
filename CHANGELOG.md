@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- A listening run that plays through its whole playlist now carries on in a fresh order instead of repeating the old one.
 - The Meadow card on Home now says it holds mini games.
 - Once most of the day's reviews are done, Home's first card now takes turns suggesting a mini game, listening or an AI chat.
 - Listening's repeat button is now a back button: one press restarts the word, a second steps back to the word before.

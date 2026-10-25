@@ -75,7 +75,7 @@ data class ListeningReduction(val state: ListeningRunState, val effects: List<Li
  * promise.
  */
 data class ListeningRunState(
-    /** The playlist in play order, from `ListeningPool.report`. */
+    /** The playlist in play order: from `ListeningPool.report`, and re-dealt at its end. */
     val candidates: List<ListeningCandidate>,
     /** The turn on air; null before [ListeningIntent.Start] and on an empty pool. */
     val turn: ListeningTurn?,
@@ -84,15 +84,11 @@ data class ListeningRunState(
     val paused: Boolean,
     /** A run exists from [ListeningIntent.Start] until [ListeningIntent.Close]. */
     val active: Boolean,
-    /** Turns drawn so far — what a run's own progress line reads, never a box figure. */
+    /** Turns drawn so far; it salts each re-deal, so no two deals of one run match. */
     val played: Int,
-    /** Whether the walk has passed the playlist's end, so the turn before its head is its last. */
-    val lapped: Boolean,
     /** A Back restarted the turn on air and nothing has moved since, so the next one steps back. */
     val rewound: Boolean,
-) {
-    val currentCardId: String? get() = turn?.cardId
-}
+)
 
 /**
  * The listening run as pure state plus one reducer — the machine both apps would otherwise
@@ -100,8 +96,8 @@ data class ListeningRunState(
  *
  * It needs nothing from outside at all — no clock, because a run has no due dates and books
  * no reviews, and no generator, because the pool arrives already dealt into its play order
- * (`listeningOrder`) and the run only walks it. The same box therefore gives the same run, on
- * both platforms.
+ * (`listeningOrder`) and the run walks it, dealing the same words again at its end. The same
+ * box therefore gives the same run, on both platforms.
  * No default arguments: they do not cross the ObjC boundary, so every entry point is explicit.
  */
 object ListeningRun {
@@ -109,7 +105,7 @@ object ListeningRun {
     /** No run yet: a closed shell around the pool. */
     fun idle(candidates: List<ListeningCandidate>): ListeningRunState = ListeningRunState(
         candidates = candidates, turn = null, position = -1,
-        paused = false, active = false, played = 0, lapped = false, rewound = false,
+        paused = false, active = false, played = 0, rewound = false,
     )
 
     fun reduce(state: ListeningRunState, intent: ListeningIntent): ListeningReduction =
@@ -149,22 +145,13 @@ object ListeningRun {
     /**
      * "Back" — the way a music player's is: the first press restarts the word on air, since
      * the one just missed is the likelier ask, and a press after it steps to the turn before.
-     * The head of an unlapped run has nothing before it and restarts instead. It lifts a pause
-     * for the same reason a skip does.
+     * The head of a deal has nothing before it and restarts instead. It lifts a pause for the
+     * same reason a skip does.
      */
     private fun back(state: ListeningRunState): ListeningReduction {
         if (!state.active || state.turn == null) return unchanged(state)
-        val pool = state.candidates
-        val position = when {
-            !state.rewound -> state.position
-            state.position > 0 -> state.position - 1
-            state.lapped -> pool.size - 1
-            else -> state.position
-        }
-        val stepped = state.copy(
-            turn = turnFor(pool[position]), position = position, paused = false, rewound = true,
-        )
-        return played(stepped)
+        val position = if (state.rewound && state.position > 0) state.position - 1 else state.position
+        return played(state.at(position).copy(paused = false, rewound = true))
     }
 
     /**
@@ -184,22 +171,29 @@ object ListeningRun {
         ListeningReduction(state.copy(active = false, paused = false), listOf(ListeningEffect.Stop))
 
     /**
-     * Walk to the next turn: the playlist's next entry, and past its end the head again.
+     * Walk to the next turn: the playlist's next entry, and past its end the head of a fresh
+     * deal of the same words.
      *
      * Repeats are the deal's business, never the run's — `listeningOrder` already brings a
-     * shaky word back where it should — so the run only keeps its place. A pool shorter than
-     * a run laps cleanly instead of running dry, and a one-word pool keeps saying its word,
-     * which is all it can do.
+     * shaky word back where it should — so the run only keeps its place. A run that outlasts
+     * its deal hears a new order rather than the old one again, and a word that would open it
+     * straight after closing the last one goes to its end instead.
      */
     private fun draw(state: ListeningRunState): ListeningRunState {
-        val pool = state.candidates
-        if (pool.isEmpty()) return state.copy(turn = null)
-        val position = (state.position + 1) % pool.size
-        return state.copy(
-            turn = turnFor(pool[position]), position = position, played = state.played + 1,
-            lapped = state.lapped || (state.position >= 0 && position == 0), rewound = false,
-        )
+        if (state.candidates.isEmpty()) return state.copy(turn = null)
+        val next = state.position + 1
+        val drawn = if (next < state.candidates.size) {
+            state.at(next)
+        } else {
+            val dealt = listeningOrder(state.candidates.distinctBy { it.card.id }, state.played.toLong())
+            val fresh = if (dealt.size > 1 && dealt.first().card.id == state.turn?.cardId) dealt.drop(1) + dealt.first() else dealt
+            state.copy(candidates = fresh).at(0)
+        }
+        return drawn.copy(played = state.played + 1, rewound = false)
     }
+
+    private fun ListeningRunState.at(position: Int): ListeningRunState =
+        copy(turn = turnFor(candidates[position]), position = position)
 
     /** Play what was drawn, or fall silent where there was nothing to draw. */
     private fun played(state: ListeningRunState): ListeningReduction {

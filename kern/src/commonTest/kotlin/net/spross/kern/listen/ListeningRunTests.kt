@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -38,16 +39,18 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: a lapped pool starts over at its head, in the same order.
-     * WHY: the walk is a playlist, not a shuffle — a learner with three sayable words still
-     * gets a run, it simply rotates, and what it must never do is hand back two of the same
-     * word in a row.
+     * RULE: past the playlist's end the run deals the same words again, never opening on the
+     * word it just closed with.
+     * WHY: a run outlasting its deal should hear a fresh order rather than the old one again,
+     * and what it must never do is hand back the same word twice in a row.
      */
     @Test
-    fun aLappedPoolRestartsAtTheHead() {
-        val ids = heard(candidates(3), turns = 9)
+    fun aRunPastItsDealDealsTheSameWordsAgain() {
+        val pool = candidates(6)
+        val ids = heard(pool, turns = 12)
 
-        assertEquals(List(3) { listOf("w01", "w02", "w03") }.flatten(), ids)
+        assertEquals(pool.map { it.card.id }.toSet(), ids.drop(6).toSet())
+        assertNotEquals(ids[5], ids[6])
     }
 
     /**
@@ -145,18 +148,12 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: the head of a run steps back to the playlist's last turn only once it has lapped.
-     * WHY: before a lap nothing was heard ahead of the head; after one, the last word is.
+     * RULE: Back at the head of a run restarts it, having nothing before it.
      */
     @Test
-    fun backPastTheHeadReachesTheLastTurnOnlyOnceLapped() {
-        val fresh = ListeningRun.reduce(run(candidates(3)), ListeningIntent.Back).state
-        assertEquals("w01", assertNotNull(ListeningRun.reduce(fresh, ListeningIntent.Back).state.turn).cardId)
-
-        var lapped = run(candidates(3))
-        repeat(3) { lapped = ListeningRun.reduce(lapped, ListeningIntent.Advance).state }
-        lapped = ListeningRun.reduce(lapped, ListeningIntent.Back).state
-        assertEquals("w03", assertNotNull(ListeningRun.reduce(lapped, ListeningIntent.Back).state.turn).cardId)
+    fun backAtTheHeadRestartsIt() {
+        val restarted = ListeningRun.reduce(run(candidates(3)), ListeningIntent.Back).state
+        assertEquals("w01", assertNotNull(ListeningRun.reduce(restarted, ListeningIntent.Back).state.turn).cardId)
     }
 
     /**
