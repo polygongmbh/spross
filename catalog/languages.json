@@ -19,6 +19,7 @@
   "name": "Español",
   "englishName": "Spanish",
   "flag": "🇪🇸",
+  "reflexiveEndings": { "rse": "r" },
   "articles": ["el", "la", "los", "las", "un", "una"]
  },
  "fr": {
@@ -32,6 +33,7 @@
   "name": "Italiano",
   "englishName": "Italian",
   "flag": "🇮🇹",
+  "reflexiveEndings": { "rsi": "re" },
   "articles": ["il", "lo", "la", "l'", "i", "gli", "le", "un", "uno", "una"]
  },
  "sw": {

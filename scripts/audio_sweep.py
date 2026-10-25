@@ -11,8 +11,8 @@ The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a 
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
 clearly worse, and against a refused, doubted, one-sided, overlong or under-floor one any passable take
 wins. A voice the language already ships `ESTABLISHED_TAKES` of beats a slightly better stranger.
-Where no take of a word's whole form wins, the takes of it without its leading citation prefix or
-detachable particle (`unsaid_prefixes`: de `sich irren` → `irren`) compete under the same bar, unless that
+Where no take of a word's whole form wins, the takes of its bare form (`bare_form`: de `sich irren` →
+`irren`, es `ponerse` → `poner`) compete under the same bar, unless that
 bare form ships a recording of its own; a winner is staged to ship under the bare form, which playback
 falls back to, in place of the whole form's entry.
 
@@ -29,8 +29,8 @@ import collections
 import audio_commons
 import audio_judge
 import audio_measure
-from audio_forms import verb_prefixes
-from audio_gates import digest_of, speech_key, verb_stem
+from audio_forms import language_info
+from audio_gates import bare_form, digest_of, speech_key
 from audio_index import FFMPEG
 from audio_lingualibre import license_rank
 from audio_manifest import audio_dir, read_manifest
@@ -106,7 +106,7 @@ def sweep(lang, section, catalog, measures, only, apply):
     # `sich irren` always beats one of `irren`; a bare form shipping its own take already answers.
     ships = {speech_key(key) for key in read_manifest(audio_dir(lang)).get(section, {})}
     bare = [dict(take, key=stem, whole=take['key']) for take in noisy if section == 'words' and not picks[take['key']]
-            for stem in [verb_stem(take['key'], verb_prefixes(lang))] if stem and speech_key(stem) not in ships]
+            for stem in [bare_form(take['key'], language_info(lang))] if stem and speech_key(stem) not in ships]
     if bare:
         print('%d without a winner, trying their bare form' % len(bare))
         found, failures = judged_options(lang, bare, measures)

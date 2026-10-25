@@ -23,8 +23,8 @@ a concept's text, a synonym and a tagged form (a plural, a feminine, an agreemen
 so a form moving between those roles keeps its recording.
 Every form is looked for bare in the words pack and,
 where a card shows it with an article, with that article in the articles pack;
-a form Commons has no take of is looked for without its leading citation prefix or detachable particle (`../languages.json`),
-the form playback falls back to.
+a form Commons has no take of is looked for as its bare form, the form playback falls back to:
+without its leading citation prefix or detachable particle, or with its reflexive ending traded for the bare infinitive's (`../languages.json`).
 Where each language's recordings are on Commons is one table, `../../scripts/audio_routes.py`,
 and every request goes through one client, `../../scripts/audio_commons.py`,
 which waits out a dropped network or a throttling Commons for up to 15 minutes before an item counts as failed.

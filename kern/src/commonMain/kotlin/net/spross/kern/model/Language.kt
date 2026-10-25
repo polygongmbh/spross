@@ -23,6 +23,13 @@ data class LanguageInfo(
      * fr `"se "`/`"s'"`). Grading leaves them alone; only a recording may leave one out.
      */
     val detachableParticles: List<String> = emptyList(),
+    /**
+     * Trailing reflexive endings of a citation infinitive, each mapped to the ending of the bare
+     * infinitive under it (es `"rse"` → `"r"`: ponerse, poner; it `"rsi"` → `"re"`: lavarsi, lavare).
+     * Keyed past the infinitive's own `r`, so a noun like es `clase` never matches.
+     * Grading leaves them alone; only a recording may say the bare infinitive instead.
+     */
+    val reflexiveEndings: Map<String, String> = emptyMap(),
     /** The language's articles; ONE leading listed article is optional when grading. */
     val articles: List<String> = emptyList(),
     /**
@@ -32,7 +39,4 @@ data class LanguageInfo(
      * none (every one but German today) folds nothing.
      */
     val diacriticDigraphs: Map<String, String> = emptyMap(),
-) {
-    /** What a recording may leave off a form's front and still answer for it ([net.spross.kern.catalog.verbStem]). */
-    val unsaidPrefixes: List<String> get() = optionalVerbPrefixes + detachableParticles
-}
+)

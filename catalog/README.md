@@ -135,7 +135,11 @@ the content only supplies the default.
 - `detachableParticles` —
   leading particles a citation form carries that are not the word itself (de `"sich "`, fr `"se "`/`"s'"`).
   Grading keeps them; a recording of the form without one plays where the form itself ships none (`../docs/audio.md`).
-  A trailing reflexive is part of the word (es `-se`, it `-si`, uk `-ся`) and is never listed.
+- `reflexiveEndings` —
+  a reflexive infinitive's trailing ending mapped to the bare infinitive's (es `"rse": "r"`, it `"rsi": "re"`),
+  keyed past the infinitive's `r` so a noun that merely ends alike (es `clase`) never matches.
+  Grading keeps the ending; a recording of the bare infinitive plays where the reflexive one ships none (es `poner` for `ponerse`).
+  uk `-ся` is never listed: many such verbs have no bare form (`сміятися`), and stripping it leaves a non-word.
 - `diacriticDigraphs` —
   established lossless ASCII spellings of single letters, keyed by the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`);
   grading folds them on both sides like `ß`→`ss` (`../docs/grading.md`).

@@ -27,7 +27,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Every drill now says its prompt when it appears and its answer after the verdict, each in the language it is written in.
 - A drill suggested because you have not run it lately now says "It's been a while" instead of counting the days.
 - Swahili "juu" now plays a recording that says it right instead of one that says "yuu".
-- A German or French reflexive verb with no good recording of its own now plays one of the verb without "sich" or "se".
+- A German, French, Spanish or Italian reflexive verb with no good recording of its own now plays one of the verb without its reflexive "sich", "se" or "si".
 - German "sich irren" now plays a clearer recording.
 - The new clothes words and "to appear" play a recording in all eight languages, and about 300 more words across them play one instead of the device voice.
 

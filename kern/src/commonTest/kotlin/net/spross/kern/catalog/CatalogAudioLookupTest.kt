@@ -1,5 +1,6 @@
 package net.spross.kern.catalog
 
+import net.spross.kern.model.LanguageInfo
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -76,6 +77,14 @@ class CatalogAudioLookupTest {
         """.trimIndent())
         assertEquals("audio/de/irren.mp3", pack.pronunciation("de", "sich irren").recordingPath)
         assertEquals("audio/de/sich_waschen.mp3", pack.pronunciation("de", "sich waschen").recordingPath)
+    }
+
+    /** A reflexive infinitive is heard as its bare infinitive; a word that merely ends alike is not. */
+    @Test
+    fun aReflexiveInfinitiveFallsBackToItsBareInfinitive() {
+        val es = LanguageInfo("es", "Español", "Spanish", "🇪🇸", reflexiveEndings = mapOf("rse" to "r"))
+        assertEquals("poner", es.bareForm("ponerse"))
+        assertNull(es.bareForm("clase"))
     }
 
     /**

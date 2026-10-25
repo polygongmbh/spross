@@ -126,17 +126,18 @@ def takes(item):
     return [item] + item.get('alternates', [])
 
 
-def unsaid_prefixes(info):
-    """kern `LanguageInfo.unsaidPrefixes` of a `languages.json` entry: what a recording may leave off a
-    form's front — its citation prefixes, then its detachable particles (de `sich `)."""
-    return info.get('optionalVerbPrefixes', []) + info.get('detachableParticles', [])
-
-
-def verb_stem(form, prefixes):
-    """kern `verbStem`: [form] without the first of [prefixes] it starts with, else None."""
+def bare_form(form, info):
+    """kern `LanguageInfo.bareForm` of a `languages.json` entry: [form] without the first citation prefix
+    or detachable particle it starts with (de `sich `), else with its reflexive ending traded for the bare
+    infinitive's (es `ponerse` -> `poner`), else None."""
     trimmed = form.strip()
-    return next((trimmed[len(p):] for p in prefixes
+    prefixes = info.get('optionalVerbPrefixes', []) + info.get('detachableParticles', [])
+    lead = next((trimmed[len(p):] for p in prefixes
                  if len(trimmed) > len(p) and trimmed.lower().startswith(p.lower())), None)
+    if lead is not None:
+        return lead
+    return next((trimmed[:-len(ending)] + bare for ending, bare in info.get('reflexiveEndings', {}).items()
+                 if len(trimmed) > len(ending) and trimmed.lower().endswith(ending.lower())), None)
 
 
 def split_article(form, articles):

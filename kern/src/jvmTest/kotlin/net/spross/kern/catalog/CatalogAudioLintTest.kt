@@ -21,7 +21,7 @@ class CatalogAudioLintTest {
     /**
      * The lookup is keyed by what the learner SEES, so a word entry whose spoken form no card
      * in its language shows — no `text`, `teaches`, `accepts` or tagged form of any
-     * realization, nor such a form's bare stem ([verbStem]) — ships bytes that can never
+     * realization, nor such a form's bare form ([bareForm]) — ships bytes that can never
      * play. Which concept the recording was fetched for is not asked: a merge or a move
      * keeps the form on some card, and the recording with it.
      */

@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
+import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.apostropheFolded
 import net.spross.kern.model.articledForm
 import net.spross.kern.model.nfcNormalized
@@ -32,14 +33,19 @@ fun speechKey(form: String): String {
 }
 
 /**
- * [form] without the leading prefix it starts with (sw `kupiga simu` → `piga simu`,
- * de `sich irren` → `irren`, from `LanguageInfo.unsaidPrefixes`), else null: the bare stem
- * a recording may say where none says the citation form the card shows.
+ * [form] as a recording may say it where none says the citation form the card shows, else null:
+ * without the leading citation prefix or detachable particle it starts with (sw `kupiga simu` →
+ * `piga simu`, de `sich irren` → `irren`), else with its reflexive ending traded for the bare
+ * infinitive's (es `ponerse` → `poner`, from [LanguageInfo.reflexiveEndings]).
  */
-fun verbStem(form: String, prefixes: List<String>): String? {
+fun LanguageInfo.bareForm(form: String): String? {
     val trimmed = form.trim()
-    return prefixes.firstOrNull { trimmed.length > it.length && trimmed.startsWith(it, ignoreCase = true) }
-        ?.let { trimmed.substring(it.length) }
+    (optionalVerbPrefixes + detachableParticles)
+        .firstOrNull { trimmed.length > it.length && trimmed.startsWith(it, ignoreCase = true) }
+        ?.let { return trimmed.substring(it.length) }
+    return reflexiveEndings.entries
+        .firstOrNull { (ending, _) -> trimmed.length > ending.length && trimmed.endsWith(ending, ignoreCase = true) }
+        ?.let { (ending, bare) -> trimmed.dropLast(ending.length) + bare }
 }
 
 /**

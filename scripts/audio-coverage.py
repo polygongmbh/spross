@@ -13,7 +13,7 @@ no checkout, and nothing caught it. Reading `git ls-files` is the only way to te
 
 Coverage is measured per realization against the form its card shows, the way playback
 finds a recording: by the spoken form, bare or inside an article recording, or its
-bare stem. It is counted over SINGLE-WORD realizations as well as all of them: the word packs
+bare form. It is counted over SINGLE-WORD realizations as well as all of them: the word packs
 resolve one word at a time, so a phrase is not a gap they could ever close.
 """
 import argparse
@@ -23,7 +23,7 @@ import os
 import subprocess
 import sys
 
-from audio_gates import speech_key, takes, unsaid_prefixes, verb_stem
+from audio_gates import bare_form, speech_key, takes
 from audio_routes import SECTIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -62,25 +62,24 @@ def recorded_forms(manifest):
             {speech_key(item['word']) for item in manifest.get('articles', {}).values()})
 
 
-def heard(text, recorded, prefixes):
-    """Whether playback finds a recording for [text] — itself, or its bare stem."""
-    stem = verb_stem(text, prefixes)
+def heard(text, recorded, info):
+    """Whether playback finds a recording for [text] — itself, or its bare form."""
+    stem = bare_form(text, info)
     return speech_key(text) in recorded or (stem is not None and speech_key(stem) in recorded)
 
 
-def verb_prefixes():
-    return {code: unsaid_prefixes(info)
-            for code, info in read_json(CATALOG, 'languages.json').items()}
+def languages():
+    return read_json(CATALOG, 'languages.json')
 
 
 def coverage(realized, shipped):
-    prefixes = verb_prefixes()
+    infos = languages()
     print('lang  words  realized  covered   single-word  covered   calendar  countries')
     for lang, manifest in shipped.items():
         recorded = recorded_forms(manifest)
         mine = realized.get(lang, {})
         single = {slug for slug, text in mine.items() if ' ' not in text}
-        hit = [slug for slug in mine if heard(mine[slug], recorded, prefixes.get(lang, []))]
+        hit = [slug for slug in mine if heard(mine[slug], recorded, infos.get(lang, {}))]
         hit_single = [slug for slug in single if slug in hit]
         print('%-4s  %5d  %8d   %5.1f%%  %11d   %5.1f%%  %9d  %9d' % (
             lang, len(manifest.get('words', {})), len(mine), 100 * len(hit) / max(1, len(mine)),
@@ -89,11 +88,11 @@ def coverage(realized, shipped):
 
 
 def missing(realized, shipped, langs):
-    prefixes = verb_prefixes()
+    infos = languages()
     for lang in langs or sorted(shipped):
         recorded = recorded_forms(shipped[lang])
         gap = sorted(slug for slug, text in realized.get(lang, {}).items()
-                     if ' ' not in text and not heard(text, recorded, prefixes.get(lang, [])))
+                     if ' ' not in text and not heard(text, recorded, infos.get(lang, {})))
         print('%s: %d single-word realizations with no recording' % (lang, len(gap)))
         for slug in gap:
             print('  %-28s %s' % (slug, realized[lang][slug]))

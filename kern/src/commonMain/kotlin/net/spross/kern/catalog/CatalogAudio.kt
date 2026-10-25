@@ -34,11 +34,11 @@ fun Catalog.hasRecordings(lang: Language): Boolean = audio[lang]?.isEmpty == fal
  * bare recording answers where the pack has none, and on the source side, whose grammar
  * is not what is being taught, it is the only one that can.
  *
- * A form with no recording of its own takes one of itself without its leading citation
- * prefix or detachable particle ([verbStem], [net.spross.kern.model.LanguageInfo.unsaidPrefixes]):
+ * A form with no recording of its own takes one of its bare form ([bareForm]) — without its
+ * leading citation prefix or detachable particle, or its reflexive ending:
  * Commons often has sw `piga simu` where the card shows `kupiga simu`, and the stem said
  * aloud beats a silent card in a language with no device voice; de `irren` stands in for
- * `sich irren` where no decent take of the whole form exists, so none ships.
+ * `sich irren` and es `poner` for `ponerse` where no decent take of the whole form exists.
  */
 fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String? = null): Pronunciation =
     pronunciation(lang, visibleForm, article, take = 0)
@@ -51,7 +51,7 @@ fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String?,
     val manifest = audio[lang]
     val recording = manifest?.let { pack ->
         pack.recording(visibleForm, article)
-            ?: verbStem(visibleForm, languages[lang]?.unsaidPrefixes.orEmpty())?.let(pack::recording)
+            ?: languages[lang]?.bareForm(visibleForm)?.let(pack::recording)
     }?.take(take)
     return Pronunciation(
         form = visibleForm,
