@@ -374,3 +374,22 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context
 2026-10-25	es	bota	Marreromarco	LL-Q1321 (spa)-Marreromarco-bota.wav	ce93d630f12b64f06961db8ae6e9c761f73b576d7c64fb40e521ee0f03bf3b38	mediocre	still a bit echoey	1.63	heard in the app
 2026-10-25	es	impermeable	Marreromarco	LL-Q1321 (spa)-Marreromarco-impermeable.wav	1d80d462669b2505fa627cd16ee1748ba4a644f4a19922265973b5633d7b4a89	mediocre	still a bit echoey	1.99	heard in the app
 2026-10-25	es	gorra	Marreromarco	LL-Q1321 (spa)-Marreromarco-gorra.wav	12fab594261798fe4489197f27a1979a27ec667f73eec5dbb56337f6e355c560	mediocre	still a bit echoey	2.12	heard in the app
+2026-10-25	es	peinar	Marreromarco	LL-Q1321 (spa)-Marreromarco-peinar.wav	11e298987cbd422e692113f749cc7ecfad58b2531cea0a1ae1914d094fe4791f	okay		1.55	2026-10-25 shaky and new (words, mos 1.55)
+2026-10-25	es	quitar	Marreromarco	LL-Q1321 (spa)-Marreromarco-quitar.wav	1c9b0b8067feb5e9a4c35efc6cbad0e1a9dfad39963ab7c508009d12cc09e4ed	okay		2.22	2026-10-25 shaky and new (words, mos 2.22)
+2026-10-25	es	recuperar	Marreromarco	LL-Q1321 (spa)-Marreromarco-recuperar.wav	6a0adcffbc968cd4e2f2d6695b7f39798c9abfe0fedf72b9423d43db06412d4d	mediocre		2.39	2026-10-25 shaky and new (words, mos 2.39)
+2026-10-25	es	cambiar	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-cambiar.wav	5b5b73075159af4a3b2dc604f956f236c20401175b84b71b536c07fd9bf19a68	good		2.63	2026-10-25 shaky and new (words, mos 2.63)
+2026-10-25	it	rilassare	LangPao	LL-Q652 (ita)-LangPao-rilassare.wav	639b4d75e4fd962aa65d9febbd1d3682e7b3225e888ced2873cfdac9631738c2	good		2.15	2026-10-25 shaky and new (words, mos 2.15)
+2026-10-25	it	togliere	LangPao	LL-Q652 (ita)-LangPao-togliere.wav	03ba8faf2ef503bc7b9b6425e68116c60d1bf76e2562277535970f9a36d7a505	okay		2.60	2026-10-25 shaky and new (words, mos 2.6)
+2026-10-25	it	sposare	LangPao	LL-Q652 (ita)-LangPao-sposare.wav	0c349fd3b22b3f7d3ba0691cec477006c4a54ac61531253c8d39e975e99d31c8	mediocre		2.64	2026-10-25 shaky and new (words, mos 2.64)
+2026-10-25	sw	tukia	Waithera Were	Sw-ke-tukia.flac	41aa40c8d34e1f3549a7f6164a231696f433a9f1d539107cd4c748b6352a2b74	good		2.69	2026-10-25 shaky and new (words, mos 2.69)
+2026-10-25	sw	imba	Waithera Were	Sw-ke-imba.flac	3b59fd18301fbf6933aa668cd7be6a1cc2d361219b7c5c26a7d743a6d4957a8c	good		2.53	2026-10-25 shaky and new (words, mos 2.53)
+2026-10-25	de	hinten	Jeuwre	De-hinten.ogg	b315a05f26ee7ec49cd3defeb0e577c2b11bec36e4803e783a9d5a66fcb31eea	good		2.40	2026-10-25 shaky and new (words, mos 2.4)
+2026-10-25	en	cap	Grendelkhan	LL-Q1860 (eng)-Grendelkhan-cap.wav	3bb515a7861476f61bc5f96cee79e45b218d836dcc4d03019e0aa4a2e72abdb7	okay		2.37	2026-10-25 shaky and new (words, mos 2.37)
+2026-10-25	en	fall asleep	Flame, not lame	LL-Q1860 (eng)-Flame, not lame-fall asleep.wav	d0f0b37c960bc20e690ab5cd7b89dd02ba70ca4e55f7bd6742ec1c484f4595f8	okay		2.40	2026-10-25 shaky and new (words, mos 2.4)
+2026-10-25	en	wake up	Usmaan	LL-Q1860 (eng)-Usmaan (Middle river exports)-wake up.wav	d22581648a4849143e104e5f6eb3b295386f245c512ae4ebea221901724f402c	mediocre		2.87	2026-10-25 shaky and new (words, mos 2.87)
+2026-10-25	en	take	Robust Footman	LL-Q1860 (eng)-Robust Footman-take.wav	8d74602b39b41e9b1b3b0fc48cd2ad2a5c0bde0bb06651a28bd06369015bbcc9	mediocre		3.08	2026-10-25 shaky and new (words, mos 3.08)
+2026-10-25	en	scarf	Marie-Sarah	LL-Q1860 (eng)-Marie-Sarah (Opsylac)-scarf.wav	1504ee8883371e1b70623186955e6417fbaa80c597229cfcede108569d7a1278	good		3.24	2026-10-25 shaky and new (words, mos 3.24)
+2026-10-25	en	click	Lepticed7	LL-Q1860 (eng)-Lepticed7-click.wav	9caf8aad315b180f0fd4292dc135eaceaaff388871fca40e67e55217e1301e59	good		2.52	2026-10-25 shaky and new (words, mos 2.52)
+2026-10-25	fr	jeter	X-Javier	LL-Q150 (fra)-X-Javier-jeter.wav	c4de3e993152babab758d65872fc8b601fb65cd74e67df65d21ee86a1d301486	okay		3.36	2026-10-25 shaky and new (words, mos 3.36)
+2026-10-25	fr	sandale	ProjetSamantha	LL-Q150 (fra)-ProjetSamantha (Mathsou)-sandale.wav	999027504a8aa0573dea078d55b17ab38eab939cc6b8a61d71fd58426e244afd	okay		3.12	2026-10-25 shaky and new (words, mos 3.12)
+2026-10-25	fr	maillots de bain	Sagnamadr	LL-Q150 (fra)-Sagnamadr-maillots de bain.wav	e2b92d59cd4cb25e92e24a709afe0afced592adaad7e50c0ccf00be0348edeab	mediocre		2.91	2026-10-25 shaky and new (words, mos 2.91)
