@@ -158,7 +158,10 @@ final class PronunciationPlayer {
         let done: @Sendable (AVAudioPlayerNodeCompletionCallbackType) -> Void = { [weak self] _ in
             Task { @MainActor in self?.finish(current) }
         }
-        if stop < file.length, let segment = Self.fadedSegment(file, from: head, to: stop) {
+        // why: a buffer is never converted — one whose format is not the node's raises an
+        // exception that aborts the app — so a mismatched one plays as an unfaded segment.
+        if stop < file.length, let segment = Self.fadedSegment(file, from: head, to: stop),
+           segment.format == node.outputFormat(forBus: 0) {
             node.scheduleBuffer(segment, at: nil, options: [], completionCallbackType: .dataPlayedBack,
                                 completionHandler: done)
         } else {
@@ -228,6 +231,9 @@ final class PronunciationPlayer {
     /// and one that had not started yet finds the engine stopped here.
     private func running() -> Bool {
         guard wiring != nil else { return false }
+        // why: an output reporting 0 Hz (no hardware path, as on some simulators) makes
+        // scheduling raise and abort; such a device plays nothing instead.
+        guard engine.outputNode.outputFormat(forBus: 0).sampleRate > 0 else { return false }
         if engine.isRunning { return true }
         engine.prepare()
         return (try? engine.start()) != nil
