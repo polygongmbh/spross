@@ -251,6 +251,18 @@ What licenses a second component is a parameter attempted and found not to carry
   The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
   The summary's tree rises, and confetti falls, only while the system's animations are on.
 
+## Wide windows
+
+- **Width alone splits a window** into two panes, halves of its safe area around its center (`WindowPanes`),
+  so a tablet, an unfolded foldable and any wide window answer to one rule, and a phone held upright never splits.
+- Text in a pane keeps a readable column; a screen without a pane design stands in the leading pane.
+- Home puts the day's card, listening and the companion in one pane, the drills hub and the trees in the other;
+  the Box puts its areas in one pane and the chosen area's words in the other;
+  onboarding's pair page puts the welcome in one pane and the two language lists in the other.
+- A sheet becomes a full-screen page in the leading pane, never a form sheet centered over the hinge.
+- **A session's card keeps the whole width**; its chrome — close, progress, counter, read-aloud, status —
+  stands as a narrow column at the trailing edge.
+
 ## Design language
 
 Warm, card-centric, emoji as illustration.

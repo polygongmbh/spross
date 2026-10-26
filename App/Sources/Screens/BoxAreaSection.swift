@@ -24,6 +24,8 @@ struct BoxAreaSection: View {
     let model: AppModel
     let area: String
     @Binding var expanded: Bool
+    /// False in a split window's list, where the words stand in the other pane.
+    var showsCards = true
 
     var body: some View {
         let stats = model.areaStats(area)
@@ -38,7 +40,7 @@ struct BoxAreaSection: View {
                 .buttonStyle(.plain)
                 queueControl
             }
-            if expanded {
+            if expanded && showsCards {
                 cardList
                     .padding(.top, Theme.spacing.md)
             }

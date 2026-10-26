@@ -35,6 +35,9 @@ struct BoxView: View {
     /// the same ROW in view instead, which is the shelf the learner actually
     /// scrolled to.
     @State private var scrollPositionID: String?
+    /// The area whose words the second pane shows, in a split window.
+    @State private var selectedArea: String?
+    @Environment(\.windowPanes) private var panes
 
     init(model: AppModel, revealArea: String? = nil) {
         self.model = model
@@ -43,9 +46,59 @@ struct BoxView: View {
         let opening = model.openingFold(revealArea: revealArea)
         _expandedGroups = State(initialValue: opening.groups)
         _expandedAreas = State(initialValue: opening.areas)
+        _selectedArea = State(initialValue: revealArea
+            ?? model.areaGroupSections.flatMap(\.areas).first(where: opening.areas.contains))
     }
 
+    private var split: Bool { panes?.split == true }
+
     var body: some View {
+        Group {
+            if let panes, panes.split {
+                // The areas in one pane, the chosen area's words in the other.
+                PaneSplit(panes: panes) {
+                    list
+                } trailing: {
+                    detail
+                }
+            } else {
+                list
+            }
+        }
+        .background(Theme.colors.background.ignoresSafeArea())
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    searchPresented = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+                .accessibilityLabel("box.search.button")
+            }
+        }
+        .toolbarBackground(.hidden, for: .navigationBar)
+        // why: the reveal waits for the sheet to be GONE. Unfolding behind it is
+        // harmless, but the scroll is not: the row it names is a lazy one that the
+        // covered box has not laid out, so the proxy finds nothing and the box stays
+        // where it was — the area opened and the learner never saw it.
+        .paneSheet(isPresented: $searchPresented, onDismiss: revealWhatSearchNamed) {
+            BoxSearchView(model: model, reveal: { revealAfterSearch = $0 })
+        }
+    }
+
+    /// The chosen area, opened on its words.
+    @ViewBuilder
+    private var detail: some View {
+        let area = selectedArea ?? model.areaGroupSections.first?.areas.first
+        ScrollView {
+            if let area {
+                BoxAreaSection(model: model, area: area, expanded: .constant(true))
+                    .padding(Theme.spacing.xl)
+            }
+        }
+    }
+
+    private var list: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
@@ -57,7 +110,7 @@ struct BoxView: View {
                             if expandedGroups.contains(group.id) {
                                 ForEach(group.areas, id: \.self) { area in
                                     BoxAreaSection(model: model, area: area,
-                                                   expanded: fold(of: area))
+                                                   expanded: fold(of: area), showsCards: !split)
                                         .id(area)
                                 }
                             }
@@ -105,25 +158,6 @@ struct BoxView: View {
                 if let area { reveal(area: area) }
             }
         }
-        .background(Theme.colors.background.ignoresSafeArea())
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    searchPresented = true
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                }
-                .accessibilityLabel("box.search.button")
-            }
-        }
-        .toolbarBackground(.hidden, for: .navigationBar)
-        // why: the reveal waits for the sheet to be GONE. Unfolding behind it is
-        // harmless, but the scroll is not: the row it names is a lazy one that the
-        // covered box has not laid out, so the proxy finds nothing and the box stays
-        // where it was — the area opened and the learner never saw it.
-        .sheet(isPresented: $searchPresented, onDismiss: revealWhatSearchNamed) {
-            BoxSearchView(model: model, reveal: { revealAfterSearch = $0 })
-        }
     }
 
     private func revealWhatSearchNamed() {
@@ -134,8 +168,13 @@ struct BoxView: View {
 
     /// One area's fold, held by the screen so both the header and a search hit
     /// can move it.
+    /// In a split window an area opens by being chosen, its words standing in the other pane.
     private func fold(of area: String) -> Binding<Bool> {
-        Binding(
+        if split {
+            return Binding(get: { selectedArea == area },
+                           set: { if $0 { selectedArea = area } })
+        }
+        return Binding(
             get: { expandedAreas.contains(area) },
             set: { open in
                 if open { expandedAreas.insert(area) } else { expandedAreas.remove(area) }
@@ -152,6 +191,7 @@ struct BoxView: View {
             expandedGroups = fold.groups
             expandedAreas = fold.areas
         }
+        selectedArea = area
         scrollTarget = area
     }
 

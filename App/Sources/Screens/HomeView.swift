@@ -8,6 +8,7 @@ struct HomeView: View {
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
+    @Environment(\.windowPanes) private var panes
 
     @State private var listeningPresented = false
     /// The conversation the app does not host (`BriefingSheet`).
@@ -23,37 +24,29 @@ struct HomeView: View {
                                  celebrate: { confetti += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
-        ScrollView {
-            VStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                header
-                voiceUpgradeBanner
-                if let failure = model.loadFailure {
-                    stateCard(emoji: "🫤",
-                              title: "error.title",
-                              message: failure.text)
-                } else if lead == .drill, let pick {
-                    leadCard(emoji: pick.drill.emoji,
-                             title: Text("home.suggestion.title \(ChromeStrings.string(pick.drill.titleKeyName, locale: locale))"),
-                             reason: pick.reasonText) { drillDestination = hub.destination(for: pick.drill) }
-                } else if lead == .listening {
-                    leadCard(emoji: "🎧", title: Text("home.suggestion.listening"),
-                             reason: Text("listen.subtitle")) { listeningPresented = true }
-                } else if lead == .conversation {
-                    leadCard(emoji: "💬", title: Text("home.suggestion.conversation"),
-                             reason: Text("briefing.row.subtitle")) { briefingPresented = true }
-                } else if lead == .round {
-                    sessionCard(offer)
-                } else {
-                    doneCard
+        Group {
+            if let panes, panes.split {
+                // The day's card and the ways in on one pane, the drills and the box's days on the other.
+                PaneSplit(panes: panes) {
+                    page {
+                        day(offer: offer, hub: hub, pick: pick, lead: lead)
+                        briefingCard
+                    }
+                } trailing: {
+                    page {
+                        hub
+                        trees
+                    }
                 }
-                listeningCard
-                hub
-                briefingCard
-                Trees(model: model, open: { openBox($0) })
+            } else {
+                page {
+                    day(offer: offer, hub: hub, pick: pick, lead: lead)
+                    hub
+                    briefingCard
+                    trees
+                }
             }
-            .padding(Theme.spacing.xl)
         }
-        .scrollBounceBehavior(.basedOnSize)
         .background(Theme.colors.background.ignoresSafeArea())
         // why: absent until the first celebration — ConfettiView throws a wave on appear.
         .overlay {
@@ -63,7 +56,7 @@ struct HomeView: View {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)
         }
-        .sheet(isPresented: $briefingPresented) {
+        .paneSheet(isPresented: $briefingPresented) {
             BriefingSheet(model: model)
         }
         // why: a challenge link opens the numbers page, which accepts the code itself.
@@ -72,6 +65,48 @@ struct HomeView: View {
             drillDestination = TrainerHubView(model: model, destination: $drillDestination)
                 .destination(for: .numbers) ?? drillDestination
         }
+    }
+
+    private func page<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.spacing.xl) {
+                content()
+            }
+            .padding(Theme.spacing.xl)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+    }
+
+    /// The header, the day's card and listening.
+    @ViewBuilder
+    private func day(offer: SessionOffer, hub: TrainerHubView, pick: DrillSuggestion.Pick?,
+                     lead: DayLead) -> some View {
+        header
+        voiceUpgradeBanner
+        if let failure = model.loadFailure {
+            stateCard(emoji: "🫤",
+                      title: "error.title",
+                      message: failure.text)
+        } else if lead == .drill, let pick {
+            leadCard(emoji: pick.drill.emoji,
+                     title: Text("home.suggestion.title \(ChromeStrings.string(pick.drill.titleKeyName, locale: locale))"),
+                     reason: pick.reasonText) { drillDestination = hub.destination(for: pick.drill) }
+        } else if lead == .listening {
+            leadCard(emoji: "🎧", title: Text("home.suggestion.listening"),
+                     reason: Text("listen.subtitle")) { listeningPresented = true }
+        } else if lead == .conversation {
+            leadCard(emoji: "💬", title: Text("home.suggestion.conversation"),
+                     reason: Text("briefing.row.subtitle")) { briefingPresented = true }
+        } else if lead == .round {
+            sessionCard(offer)
+        } else {
+            doneCard
+        }
+        listeningCard
+    }
+
+    private var trees: some View {
+        Trees(model: model, open: { openBox($0) })
     }
 
     /// Kern's answer to what leads the day (`DayLead`).
