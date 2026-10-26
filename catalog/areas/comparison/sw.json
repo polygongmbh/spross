@@ -7,6 +7,7 @@
   "same": { "text": "sawa", "notes": { "sw": "urefu sawa · Sawa! = ndiyo" } },
   "similar": {
    "text": "kufanana",
+   "accepts": ["fanana"],
    "notes": {
     "sw": "maneno yanafanana · unafanana na mama yako",
     "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich."

@@ -81,7 +81,7 @@
   "empty": { "text": "-tupu", "teaches": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
   "full": {
    "text": "kujaa",
-   "accepts": ["imejaa", "limejaa", "umejaa"],
+   "accepts": ["jaa", "imejaa", "limejaa", "umejaa"],
    "notes": {
     "sw": "nyumba imejaa · mji umejaa",
     "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll."
