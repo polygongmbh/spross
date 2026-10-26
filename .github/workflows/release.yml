@@ -128,6 +128,9 @@ jobs:
 
       # why: -allowProvisioningUpdates plus the API key lets Xcode mint the ad-hoc
       # profile itself, covering the app, the widget and both watch targets.
+      # The archive signs with the imported distribution certificate: left on its
+      # development default, every fresh runner mints a new development certificate
+      # until the team's limit refuses the archive.
       - name: Archive
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
@@ -140,6 +143,7 @@ jobs:
             -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
             MARKETING_VERSION="$SPROSS_VERSION" \
             CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
             -quiet archive
