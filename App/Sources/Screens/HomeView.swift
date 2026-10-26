@@ -26,20 +26,22 @@ struct HomeView: View {
         let lead = dayLead(pick)
         Group {
             if let panes, panes.split {
-                // The day's card and the ways in on one pane, the drills and the box's days on the other.
+                // What is looked at on one pane; what is tapped on the other, beside the system's controls.
                 PaneSplit(panes: panes) {
                     page {
-                        day(offer: offer, hub: hub, pick: pick, lead: lead)
-                        briefingCard
+                        header
+                        trees
                     }
                 } trailing: {
                     page {
+                        day(offer: offer, hub: hub, pick: pick, lead: lead)
                         hub
-                        trees
+                        briefingCard
                     }
                 }
             } else {
                 page {
+                    header
                     day(offer: offer, hub: hub, pick: pick, lead: lead)
                     hub
                     briefingCard
@@ -77,11 +79,10 @@ struct HomeView: View {
         .scrollBounceBehavior(.basedOnSize)
     }
 
-    /// The header, the day's card and listening.
+    /// The day's card and listening.
     @ViewBuilder
     private func day(offer: SessionOffer, hub: TrainerHubView, pick: DrillSuggestion.Pick?,
                      lead: DayLead) -> some View {
-        header
         voiceUpgradeBanner
         if let failure = model.loadFailure {
             stateCard(emoji: "🫤",
