@@ -4,7 +4,8 @@ import SwiftUI
 // MARK: - SessionScaffold
 //
 // Session container chrome: close button + session progress bar on top,
-// arbitrary content below. Pure chrome — knows nothing about cards.
+// arbitrary content below — or, in a wide window, the same chrome as a narrow
+// column at the trailing edge beside full-width content. Pure chrome — knows nothing about cards.
 
 /// One answered item's segment hue — which answer reads as which outcome is kern's (`AnswerOutcome`).
 extension AnswerOutcome {
@@ -44,72 +45,116 @@ struct SessionScaffold<Content: View>: View {
     }
 
     var body: some View {
-        VStack(spacing: Theme.spacing.lg) {
-            VStack(spacing: 0) {
-                topBar
-                VolumeHint(active: speaksPastMute || (showsMuteButton && !Pronouncer.shared.muted))
-                status?.padding(.top, Theme.spacing.md)
+        PanesReader { panes in
+            let side = panes?.split == true
+            // why: one layout that turns, the content always the middle slot — it keeps its
+            // identity, and with it the turn's field and focus, when the window is first measured.
+            let layout = side ? AnyLayout(HStackLayout(alignment: .top, spacing: Theme.spacing.lg))
+                : AnyLayout(VStackLayout(spacing: Theme.spacing.lg))
+            layout {
+                if !side {
+                    VStack(spacing: 0) {
+                        topBar
+                        volumeHint
+                        status?.padding(.top, Theme.spacing.md)
+                    }
+                }
+                content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if side { sideColumn }
             }
-            content
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(Theme.spacing.lg)
         }
-        .padding(Theme.spacing.lg)
         .background(Theme.colors.background.ignoresSafeArea())
+    }
+
+    private var volumeHint: some View {
+        VolumeHint(active: speaksPastMute || (showsMuteButton && !Pronouncer.shared.muted))
     }
 
     private var topBar: some View {
         HStack(spacing: Theme.spacing.md) {
             SessionCloseButton(action: onClose)
-
-            GeometryReader { geo in
-                if outcomes.isEmpty {
-                    ZStack(alignment: .leading) {
-                        Capsule().fill(Theme.colors.separator)
-                        Capsule()
-                            .fill(Theme.colors.accent)
-                            .frame(width: max(geo.size.width * fraction, 10))
-                    }
-                } else {
-                    // The window and the partings are kern's (`SegmentsBar`).
-                    let bar = SegmentsBar(answered: Int32(outcomes.count),
-                                          remaining: Int32(max(total - outcomes.count, 0)))
-                    let visible = outcomes.suffix(Int(bar.shown))
-                    let remaining = Int(bar.remaining)
-                    let slots = Int(bar.slots)
-                    let spacing = CGFloat(bar.gap)
-                    // The partings come off the row before any slot is measured,
-                    // so the remainder takes its share of what is LEFT for
-                    // segments — from the full width it charged every gap to the
-                    // answered side, drawing the fill short of the bar.
-                    let forSegments = max(geo.size.width - CGFloat(visible.count) * spacing, 0)
-                    HStack(spacing: spacing) {
-                        ForEach(Array(visible.enumerated()), id: \.offset) { _, outcome in
-                            Rectangle().fill(outcome.color)
-                        }
-                        if remaining > 0 {
-                            Rectangle()
-                                .fill(Theme.colors.separator)
-                                .frame(width: forSegments * CGFloat(remaining) / CGFloat(slots))
-                        }
-                    }
-                    .clipShape(Capsule())
-                }
-            }
-            .frame(height: 10)
-            .animation(.easeOut(duration: 0.3), value: outcomes.count)
-            .animation(.easeOut(duration: 0.3), value: fraction)
-            .accessibilityHidden(true)
-
-            if let counter {
-                Text(counter)
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-                    .monospacedDigit()
-                    .accessibilityHidden(true)
-            }
-
+            progressBar(vertical: false)
+                .frame(height: 10)
+            counterText
             if showsMuteButton { readAloudButton }
         }
+    }
+
+    /// The top bar turned on its side for a wide window, standing at the trailing edge
+    /// so the card takes all the width there is — the way out on top, the bar running down.
+    private var sideColumn: some View {
+        VStack(spacing: Theme.spacing.md) {
+            SessionCloseButton(action: onClose)
+            status
+            progressBar(vertical: true)
+                .frame(width: 10)
+                .frame(maxHeight: .infinity)
+            counterText
+            if showsMuteButton { readAloudButton }
+            volumeHint
+        }
+        .multilineTextAlignment(.center)
+        .frame(width: CGFloat(WindowPanes.companion.SESSION_RAIL_WIDTH))
+        .frame(maxHeight: .infinity)
+    }
+
+    @ViewBuilder
+    private var counterText: some View {
+        if let counter {
+            Text(counter)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
+                .monospacedDigit()
+                .accessibilityHidden(true)
+        }
+    }
+
+    /// Fills along its length — across on a phone, downward in the side column.
+    private func progressBar(vertical: Bool) -> some View {
+        GeometryReader { geo in
+            let length = vertical ? geo.size.height : geo.size.width
+            if outcomes.isEmpty {
+                ZStack(alignment: vertical ? .top : .leading) {
+                    Capsule().fill(Theme.colors.separator)
+                    Capsule()
+                        .fill(Theme.colors.accent)
+                        .frame(width: vertical ? nil : max(length * fraction, 10),
+                               height: vertical ? max(length * fraction, 10) : nil)
+                }
+            } else {
+                // The window and the partings are kern's (`SegmentsBar`).
+                let bar = SegmentsBar(answered: Int32(outcomes.count),
+                                      remaining: Int32(max(total - outcomes.count, 0)))
+                let visible = outcomes.suffix(Int(bar.shown))
+                let remaining = Int(bar.remaining)
+                let slots = Int(bar.slots)
+                let spacing = CGFloat(bar.gap)
+                // The partings come off the row before any slot is measured,
+                // so the remainder takes its share of what is LEFT for
+                // segments — from the full width it charged every gap to the
+                // answered side, drawing the fill short of the bar.
+                let forSegments = max(length - CGFloat(visible.count) * spacing, 0)
+                let rest = forSegments * CGFloat(remaining) / CGFloat(slots)
+                let stack = vertical ? AnyLayout(VStackLayout(spacing: spacing))
+                    : AnyLayout(HStackLayout(spacing: spacing))
+                stack {
+                    ForEach(Array(visible.enumerated()), id: \.offset) { _, outcome in
+                        Rectangle().fill(outcome.color)
+                    }
+                    if remaining > 0 {
+                        Rectangle()
+                            .fill(Theme.colors.separator)
+                            .frame(width: vertical ? nil : rest, height: vertical ? rest : nil)
+                    }
+                }
+                .clipShape(Capsule())
+            }
+        }
+        .animation(.easeOut(duration: 0.3), value: outcomes.count)
+        .animation(.easeOut(duration: 0.3), value: fraction)
+        .accessibilityHidden(true)
     }
 
     /// Constant chrome, so it costs the card below it not one point of layout —
