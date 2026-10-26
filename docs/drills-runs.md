@@ -121,9 +121,6 @@ Neighbors: the hub and the Sprosse `drills.md`, each drill `drills-tables.md` an
   nothing new is minted where kern already names a rule.
   `AnswerStreakMilestone` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a milestone wears is chrome.
-  `DrillTally` names the counter for every drill at once —
-  clean wins over the answers judged either way, with almost in neither half for `DrillRamp.step`'s reason;
-  the "2/3" string is rendering.
 - **Storage contract**: the answer-streak record under `trainer.record.<key>`,
   per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),

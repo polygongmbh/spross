@@ -60,8 +60,6 @@ interface DrillRunProgress {
     /** The way out, under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
-    val tally: DrillTally get() = DrillTally.of(outcomes)
-
     val pacing: DrillPacing get() = core.pacing
 
     /**

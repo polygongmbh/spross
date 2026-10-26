@@ -1,35 +1,6 @@
 import SprossKern
 import SwiftUI
 
-// MARK: - Drill chrome
-//
-// What the two endless drills — the slot drill and the letter drill — put
-// around whatever they happen to be asking. Their state machines stay apart
-// (a heard glyph and a typed numeral share no grammar); only the frame does.
-
-extension SessionScaffold {
-    /// The chrome of an ENDLESS drill run, which has no total to count
-    /// toward — the counter is the run's own `DrillTally` rather than
-    /// "position/total", which answers each half of it counts is kern's
-    /// rule, and the slash is all this adds (`SessionScaffold.running`).
-    static func endless(tally: DrillTally,
-                        outcomes: [AnswerOutcome],
-                        showsMuteButton: Bool = false,
-                        speaksPastMute: Bool = false,
-                        scoreLine: some View,
-                        onClose: @escaping () -> Void,
-                        @ViewBuilder content: () -> Content) -> SessionScaffold {
-        .running(endless: true,
-                outcomes: outcomes,
-                counter: "\(tally.clean)/\(tally.judged)",
-                showsMuteButton: showsMuteButton,
-                speaksPastMute: speaksPastMute,
-                status: AnyView(scoreLine),
-                onClose: onClose,
-                content: content)
-    }
-}
-
 // MARK: - Streak line
 
 /// The score line above the card: which Sprosse the run stands on and how long

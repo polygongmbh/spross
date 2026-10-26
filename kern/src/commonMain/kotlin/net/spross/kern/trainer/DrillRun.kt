@@ -1,6 +1,5 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Cue
 
 // What the two ENDLESS drills — the slot run and the letter run — put around whatever they
@@ -24,22 +23,6 @@ sealed class DrillEffect {
      * onto the next one.
      */
     data object Silence : DrillEffect()
-}
-
-/**
- * The counter an endless run carries: clean wins over the answers that were judged either way.
- *
- * Almost is in NEITHER half, for the reason the ramp already gives ([DrillRamp.step]) — the
- * counter and the Sprosse read the same answer, so what moves no Sprosse may move no count.
- */
-data class DrillTally(val clean: Int, val judged: Int) {
-
-    companion object {
-        fun of(outcomes: List<AnswerOutcome>): DrillTally = DrillTally(
-            clean = outcomes.count { it == AnswerOutcome.Right },
-            judged = outcomes.count { it != AnswerOutcome.Almost },
-        )
-    }
 }
 
 /**

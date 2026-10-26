@@ -73,7 +73,6 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         run = flow,
         leave = leave,
         outcomes = run.outcomes,
-        tally = run.tally,
         sprosse = chrome.trainerSprosse.format(flow.sprosse),
         answerStreak = run.answerStreak,
         // why: the run says its answers (and, reversed, its prompts) out loud, so it

@@ -20,7 +20,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -29,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -41,7 +39,6 @@ import net.spross.app.Screen
 import net.spross.app.finishDrill
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
-import net.spross.kern.trainer.DrillTally
 
 /**
  * The shell every asking surface stands in — the review round and all five drills: the
@@ -75,8 +72,6 @@ fun RunTopBar(
     outcomes: List<AnswerOutcome>,
     onClose: () -> Unit,
     remaining: Int = 1,
-    /** The figures beside the bar; null where the bar alone says where the round stands. */
-    counter: String? = null,
     closeLabel: String = model.chrome.commonClose,
     showsMuteButton: Boolean = false,
     /** A run whose sound the switch does not silence: the letter drill. */
@@ -89,21 +84,10 @@ fun RunTopBar(
     ) {
         RunCloseButton(onClose, closeLabel)
         SegmentsBar(outcomes, remaining, Modifier.weight(1f))
-        if (counter != null) {
-            Text(
-                counter,
-                style = MaterialTheme.typography.bodySmall,
-                color = Theme.colors.textSecondary,
-                modifier = Modifier.clearAndSetSemantics { },
-            )
-        }
         if (showsMuteButton) ReadAloudSwitch(model)
     }
     VolumeHint(model, active = speaksPastMute || (showsMuteButton && !model.pronouncer.muted))
 }
-
-/** The run's own tally as the bar counts it: how many of the judged answers came clean. */
-fun DrillTally.counter(): String = "$clean/$judged"
 
 /**
  * The way out of a running round — first in the bar, so it is never hunted for, and in the
@@ -198,7 +182,6 @@ fun DrillRunScaffold(
     run: DrillRun,
     leave: () -> Unit,
     outcomes: List<AnswerOutcome>,
-    tally: DrillTally,
     sprosse: String?,
     answerStreak: Int,
     /** False while something stands OVER the run — the number table, which the back gesture closes. */
@@ -223,10 +206,7 @@ fun DrillRunScaffold(
             DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing, cheer = model.cues::cheer)
             return@Column
         }
-        RunTopBar(
-            model, outcomes, leave, counter = tally.counter(),
-            showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute,
-        )
+        RunTopBar(model, outcomes, leave, showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute)
         // why: the score line is chrome — it stays under the bar while the question scrolls.
         DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
         Column(
@@ -240,8 +220,8 @@ fun DrillRunScaffold(
 }
 
 /**
- * The same shell over a run that already says where it stands: the score line, the bar and
- * the tally are read off kern's [DrillRunProgress] rather than handed over one figure at a
+ * The same shell over a run that already says where it stands: the score line and the bar
+ * are read off kern's [DrillRunProgress] rather than handed over one figure at a
  * time. The typed drills reach the shell through the parameters above, since a country and a
  * date are laddered off a view of their own.
  */
@@ -263,7 +243,6 @@ fun DrillRunScaffold(
     run = run,
     leave = leave,
     outcomes = progress.outcomes,
-    tally = progress.tally,
     sprosse = sprosse,
     answerStreak = progress.answerStreak,
     timed = timed,

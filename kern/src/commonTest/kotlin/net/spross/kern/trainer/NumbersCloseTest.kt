@@ -12,7 +12,7 @@ import net.spross.kern.session.TurnFeedback
 
 /**
  * What a closed run leaves behind — the two store writes and the figures the page that started
- * it wears as one tile. The milestone ladder and the clean/answered counter are shared vocabulary
+ * it wears as one tile. The milestone ladder is shared vocabulary
  * ([DrillRunSummary]), so the letter run reads them back the same way.
  */
 class NumbersCloseTest {

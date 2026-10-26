@@ -153,7 +153,7 @@ What licenses a second component is a parameter attempted and found not to carry
 ## Counts & sessions
 
 - Sessions are composed, never configured.
-  **The plan is the whole run**: the counter on screen is a promise,
+  **The plan is the whole run**: the bar on screen is a promise,
   so nothing joins mid-session unless in endless mode.
 - **A round too long for the evening can be taken short:**
   due work alone, a round's worth, no first sights,
@@ -260,7 +260,7 @@ What licenses a second component is a parameter attempted and found not to carry
   the Box puts its areas in one pane and the chosen area's words in the other;
   onboarding's pair page puts the welcome in one pane and the two language lists in the other.
 - A sheet becomes a full-screen page in the leading pane, never a form sheet centered over the hinge.
-- **A session's card keeps the whole width**; its chrome — close, progress, counter, read-aloud, status —
+- **A session's card keeps the whole width**; its chrome — close, progress, read-aloud, status —
   stands as a narrow column at the trailing edge.
 
 ## Design language

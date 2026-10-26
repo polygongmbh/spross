@@ -26,8 +26,6 @@ struct SessionScaffold<Content: View>: View {
     /// segment per answer (green right / amber tough / brick wrong) with
     /// the unanswered remainder neutral.
     var outcomes: [AnswerOutcome] = []
-    /// The figures beside the bar; nil where the bar alone says where the round stands.
-    var counter: String?
     /// Opt-in: only runs that read words aloud show the switch for it.
     var showsMuteButton: Bool = false
     /// A run whose sound no mute reaches (the letter drill): the low-volume
@@ -77,7 +75,6 @@ struct SessionScaffold<Content: View>: View {
             SessionCloseButton(action: onClose)
             progressBar(vertical: false)
                 .frame(height: 10)
-            counterText
             if showsMuteButton { readAloudButton }
         }
     }
@@ -91,24 +88,12 @@ struct SessionScaffold<Content: View>: View {
             progressBar(vertical: true)
                 .frame(width: 10)
                 .frame(maxHeight: .infinity)
-            counterText
             if showsMuteButton { readAloudButton }
             volumeHint
         }
         .multilineTextAlignment(.center)
         .frame(width: CGFloat(WindowPanes.companion.SESSION_RAIL_WIDTH))
         .frame(maxHeight: .infinity)
-    }
-
-    @ViewBuilder
-    private var counterText: some View {
-        if let counter {
-            Text(counter)
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-                .monospacedDigit()
-                .accessibilityHidden(true)
-        }
     }
 
     /// Fills along its length — across on a phone, downward in the side column.
@@ -199,12 +184,11 @@ extension SessionScaffold {
     /// üben" has switched it — shows exactly the one card in front of the
     /// learner as the bar's open segment: kern may pull a whole batch on an
     /// endless refill, but the learner never sees that batch as a plan with
-    /// an end (`DrillChrome.endless`, `SessionView`).
+    /// an end (`DrillRunning.runScreen`, `SessionView`).
     static func running(endless: Bool,
                         position: Int = 1,
                         total: Int = 1,
                         outcomes: [AnswerOutcome],
-                        counter: String? = nil,
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
                         status: AnyView? = nil,
@@ -213,7 +197,6 @@ extension SessionScaffold {
         SessionScaffold(position: endless ? outcomes.count + 1 : position,
                         total: endless ? outcomes.count + 1 : total,
                         outcomes: outcomes,
-                        counter: counter,
                         showsMuteButton: showsMuteButton,
                         speaksPastMute: speaksPastMute,
                         status: status,
