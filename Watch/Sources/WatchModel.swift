@@ -110,6 +110,7 @@ final class WatchModel {
             // why: a switched pair makes the running round's cards the old pair's;
             // answers are saved as they go, so the round simply ends.
             if current.pair != incoming.pair {
+                connectivity.discardPending()
                 endSession()
             } else if current.generated > incoming.generated {
                 return
@@ -244,6 +245,7 @@ final class WatchModel {
         currentID = nil
         currentQuestion = nil
         queue = []
+        connectivity.flush() // why: a finished round reaches the phone while the app stays open.
     }
 
     private func advance() {
