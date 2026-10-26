@@ -110,51 +110,19 @@ struct PaneSplit<Leading: View, Trailing: View>: View {
 // MARK: - Sheets
 
 extension View {
-    /// A sheet on a phone; a full-screen page in the leading pane where the window splits —
-    /// a form sheet centers on the window, which on a foldable is the hinge.
-    /// Every such sheet carries its own way out, so the cover loses nothing the swipe gave.
-    /// `ownsPanes`: the sheet lays out both panes itself (`OnboardingView`) and gets the whole window.
-    func paneSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil, ownsPanes: Bool = false,
+    /// A sheet measured for its own panes; where the system places sheets beside its bar,
+    /// it stands on the trailing side, the bar keeping its controls.
+    func paneSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
                                 @ViewBuilder content: @escaping () -> Sheet) -> some View {
-        modifier(PaneSheet(isPresented: isPresented, onDismiss: onDismiss, ownsPanes: ownsPanes, sheet: content))
+        sheet(isPresented: isPresented, onDismiss: onDismiss) {
+            content().measuresWindowPanes().trailingPresentation()
+        }
     }
 
     func paneSheet<Item: Identifiable, Sheet: View>(item: Binding<Item?>, onDismiss: (() -> Void)? = nil,
                                                     @ViewBuilder content: @escaping (Item) -> Sheet) -> some View {
-        let shown = Binding(get: { item.wrappedValue != nil },
-                            set: { if !$0 { item.wrappedValue = nil } })
-        return paneSheet(isPresented: shown, onDismiss: onDismiss) {
-            if let open = item.wrappedValue { content(open) }
+        sheet(item: item, onDismiss: onDismiss) {
+            content($0).measuresWindowPanes().trailingPresentation()
         }
-    }
-}
-
-private struct PaneSheet<Sheet: View>: ViewModifier {
-    let isPresented: Binding<Bool>
-    let onDismiss: (() -> Void)?
-    let ownsPanes: Bool
-    let sheet: () -> Sheet
-    @Environment(\.windowPanes) private var panes
-
-    func body(content: Content) -> some View {
-        let split = panes?.split == true
-        // why: both presentations always attached, each gated — swapping modifiers would
-        // rebuild the presenting screen and drop its state the moment the window is measured.
-        // Neither opens before that measurement: a sheet already up is never moved into the cover.
-        content
-            .sheet(isPresented: gated(panes != nil && !split), onDismiss: onDismiss) {
-                sheet().measuresWindowPanes()
-            }
-            .fullScreenCover(isPresented: gated(split), onDismiss: onDismiss) {
-                Group {
-                    if ownsPanes { sheet() } else { sheet().readableColumn() }
-                }
-                .measuresWindowPanes()
-                    .background(Theme.colors.background.ignoresSafeArea())
-            }
-    }
-
-    private func gated(_ open: Bool) -> Binding<Bool> {
-        Binding(get: { open && isPresented.wrappedValue }, set: { isPresented.wrappedValue = $0 })
     }
 }

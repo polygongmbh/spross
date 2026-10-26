@@ -30,7 +30,7 @@ struct RootView: View {
         // why: render chrome in the user's KNOWN language (German learners see
         // English) — SwiftUI resolves every Text/LocalizedStringKey against it.
         .environment(\.locale, model.knownLocale)
-        .paneSheet(isPresented: onboardingPresented, ownsPanes: true) {
+        .paneSheet(isPresented: onboardingPresented) {
             // why: onboarding sets its own locale from the language being
             // picked, so it re-renders as the user changes the pick. A box
             // already on disk means this is a restart, not the first run —

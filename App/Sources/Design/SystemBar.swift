@@ -66,3 +66,15 @@ extension View {
         }
     }
 }
+
+extension View {
+    /// A sheet's content asking to stand on the trailing side, where the system's bar is.
+    @ViewBuilder
+    func trailingPresentation() -> some View {
+        if #available(iOS 27.0, *) {
+            presentationPlacement(.trailing)
+        } else {
+            self
+        }
+    }
+}
