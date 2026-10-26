@@ -7,15 +7,15 @@
 #   scripts/release-keystore.sh <key-dir>
 #
 # Writes three files into that directory, readable by you alone:
-#   release.jks         the key
-#   release.env         `source` it to build a signed APK locally
+#   android-release.jks the key
+#   android-release.env `source` it to build a signed APK locally
 #   github-secrets.txt  the values to paste into the repo's Actions secrets
 # Prints nothing secret.
 set -eu
 
 KEYDIR="${1:?usage: release-keystore.sh <directory to keep the key in>}"
-KS="$KEYDIR/release.jks"
-ENVFILE="$KEYDIR/release.env"
+KS="$KEYDIR/android-release.jks"
+ENVFILE="$KEYDIR/android-release.env"
 SECRETS="$KEYDIR/github-secrets.txt"
 ALIAS=spross
 
@@ -30,7 +30,7 @@ fi
 KEYTOOL="${JAVA_HOME:+$JAVA_HOME/bin/}keytool"
 
 mkdir -p "$KEYDIR"
-KS=$(cd "$KEYDIR" && pwd)/release.jks   # absolute, so the env file works from anywhere
+KS=$(cd "$KEYDIR" && pwd)/android-release.jks   # absolute, so the env file works from anywhere
 
 PW=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 40)
 
