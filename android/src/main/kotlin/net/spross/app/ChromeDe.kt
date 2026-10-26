@@ -156,7 +156,6 @@ internal object ChromeDe : Chrome {
     override val trainerPauseTitleStruggling = "Gerade zäh"
     override val trainerPauseStrugglingHint = "Gerade geht viel daneben — hier aufzuhören " +
         "ist völlig in Ordnung, mit frischem Kopf sitzt es besser."
-    override val trainerPauseSprossen = "Sprosse %s → %s"
     override val a11yVerdictCorrect = "Richtig"
     override val a11yVerdictAlmost = "Fast richtig"
     override val a11yVerdictWrong = "Falsch"
@@ -496,6 +495,11 @@ internal object ChromeDe : Chrome {
         "nichts mehr. Morgen geht's leichter."
     override val sessionDoneGrowthGrew = "Auch heute bleibt was hängen"
     override val sessionDoneGrowthOpened = "Deine ersten Wörter in guter Erde"
+    override val pauseSprosse = listOf(
+        "Du bist bis Sprosse %s geklettert!",
+        "Hoch hinaus — bis auf Sprosse %s!",
+        "Sprosse %s erreicht!",
+    )
     override val growthBlooming = listOf(
         "Jetzt sagst du, was du gesät hast",
         "Hier blüht, was du kannst",

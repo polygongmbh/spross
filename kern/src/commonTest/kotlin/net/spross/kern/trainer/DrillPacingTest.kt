@@ -69,6 +69,15 @@ class DrillPacingTest {
         assertEquals(DrillPauseReason.Struggling, run.pause)
     }
 
+    /** The last few going wrong in a stretch that mostly went right is no reason to stop. */
+    @Test
+    fun lateMissesInAMostlyRightStretchDoNotPauseAsStruggling() {
+        val answers = List(12) { true } + listOf(false, true, false, true, false)
+        val core = answers.fold(DrillRunCore()) { run, correct -> run.book(correct, correct, null) }
+            .paced(sprosse = 1, newSprossen = 0, endless = true)
+        assertNull(core.pacing.pause)
+    }
+
     @Test
     fun keepPracticingGoesOnWithTheSameRunAndAFreshStretch() {
         val rng = Random(11)

@@ -25,12 +25,15 @@ struct DrillPauseView: View {
                         celebrated: celebrated) { _, _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
     }
 
-    /// What the stretch reached, only where it reached something: the climb
-    /// from the Sprosse the run opened on, and a record beaten.
+    /// What the stretch reached, only where it reached something: the highest
+    /// Sprosse, where above the one the run opened on, and a record beaten.
     private var milestone: Text? {
         var parts: [Text] = []
-        if let climb = pacing.climbed {
-            parts.append(Text("trainer.pause.sprossen \(Int(climb.from).formatted()) \(Int(climb.to).formatted())"))
+        if let peak = pacing.peak {
+            // why: the key is built as a STRING and only then wrapped, as
+            // `SessionSummaryView.headlineKey` does — three lines in the string table.
+            let key = "trainer.pause.sprosse.\(Int(pacing.peakLine(count: 3))) %@"
+            parts.append(Text(String(format: NSLocalizedString(key, comment: ""), peak.intValue.formatted())))
         }
         if pacing.newRecord { parts.append(Text("trainer.result.newRecord")) }
         return parts.joined()

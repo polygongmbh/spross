@@ -7205,19 +7205,53 @@
         }
       }
     },
-    "trainer.pause.sprossen %@ %@" : {
-      "comment" : "A drill pause: the Sprosse the run opened on, and the highest it reached.",
+    "trainer.pause.sprosse.0 %@" : {
+      "comment" : "A drill pause: the highest Sprosse the run reached, where above the one it opened on; one of three phrasings kern picks (DrillPacing.peakLine).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprosse %@ → %@"
+            "value" : "Du bist bis Sprosse %@ geklettert!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprosse %1$@ → %2$@"
+            "value" : "You climbed up to Sprosse %@!"
+          }
+        }
+      }
+    },
+    "trainer.pause.sprosse.1 %@" : {
+      "comment" : "A drill pause: the highest Sprosse the run reached, where above the one it opened on; one of three phrasings kern picks (DrillPacing.peakLine).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoch hinaus — bis auf Sprosse %@!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Up and up — all the way to Sprosse %@!"
+          }
+        }
+      }
+    },
+    "trainer.pause.sprosse.2 %@" : {
+      "comment" : "A drill pause: the highest Sprosse the run reached, where above the one it opened on; one of three phrasings kern picks (DrillPacing.peakLine).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@ erreicht!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You reached Sprosse %@!"
           }
         }
       }

@@ -7,7 +7,7 @@ enum class DrillPauseReason {
     /** The run did something new: a Sprosse the store did not hold, or the record beaten ([DrillPacing]). */
     Improved,
 
-    /** Most of the last few answers missed. */
+    /** Most of the last few answers missed, and a good share of the stretch with them. */
     Struggling,
 
     /** A stretch's worth of answers since the run opened or last went on. */
@@ -26,9 +26,6 @@ enum class DrillPauseReason {
         }
 }
 
-/** A climb a pause reports: from the Sprosse the run opened on to the higher one it reached. */
-data class SprosseClimb(val from: Int, val to: Int)
-
 /**
  * Where an endless run stands against its next natural stop.
  *
@@ -37,7 +34,8 @@ data class SprosseClimb(val from: Int, val to: Int)
  * [STRETCH] answers since the run opened or last went on;
  * after [IMPROVED_AFTER], something new since the last pause —
  * a Sprosse the store did not hold, or a standing answer-streak record beaten;
- * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers.
+ * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers,
+ * where at least a third of the stretch missed — a few misses late in a stretch that mostly went right are no reason to stop.
  * Where two fall on one answer, improving is named over struggling, and either over the count.
  *
  * A Sprosse the store did not hold is one cleared for the first time:
@@ -71,13 +69,15 @@ data class DrillPacing(
 ) {
     internal val gained: Int get() = newSprossen + if (newRecord) 1 else 0
 
-    /** What the pause reports of the ladder: the climb, only where the run stood higher than it opened. */
-    val climbed: SprosseClimb?
+    /** What the pause reports of the ladder: the highest Sprosse reached, only where the run stood higher than it opened. */
+    val peak: Int?
         get() {
             val from = openedOn ?: return null
-            val to = reached ?: return null
-            return SprosseClimb(from, to).takeIf { to > from }
+            return reached?.takeIf { it > from }
         }
+
+    /** Which of [count] phrasings names the [peak] — it turns from one pause of the run to the next. */
+    fun peakLine(count: Int): Int = ((peak ?: 0) + stretchFrom).mod(count)
 
     /**
      * The pacing after an answer [core] has just booked: the figures brought up to date, and the
@@ -93,10 +93,12 @@ data class DrillPacing(
         )
         val stretch = core.done - stretchFrom
         val misses = core.outcomes.takeLast(STRUGGLING_WINDOW).count { it == AnswerOutcome.Wrong }
+        val stretchMisses = core.outcomes.drop(stretchFrom).count { it == AnswerOutcome.Wrong }
         val due = when {
             !endless -> null
             stretch >= IMPROVED_AFTER && moved.gained > gainedBefore -> DrillPauseReason.Improved
-            stretch >= STRUGGLING_AFTER && misses >= STRUGGLING_MISSES -> DrillPauseReason.Struggling
+            stretch >= STRUGGLING_AFTER && misses >= STRUGGLING_MISSES && stretchMisses * 3 >= stretch ->
+                DrillPauseReason.Struggling
             stretch >= STRETCH -> DrillPauseReason.Count
             else -> null
         }

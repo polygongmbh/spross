@@ -33,11 +33,11 @@ fun DrillPause(
     ) { _, _ -> SummaryGlyph(reason.emoji) }
 }
 
-/** What the stretch reached, only where it reached something: the climb from the Sprosse the run opened on, and a record beaten. */
+/** What the stretch reached, only where it reached something: the highest Sprosse, where above the one the run opened on, and a record beaten. */
 private fun milestone(run: DrillRunProgress, chrome: Chrome): String? {
     val pacing = run.pacing
     return listOfNotNull(
-        pacing.climbed?.let { chrome.trainerPauseSprossen.format(it.from, it.to) },
+        pacing.peak?.let { chrome.pauseSprosse[pacing.peakLine(chrome.pauseSprosse.size)].format(it) },
         chrome.trainerResultNewRecord.takeIf { pacing.newRecord },
     ).joinToString(" · ").ifEmpty { null }
 }

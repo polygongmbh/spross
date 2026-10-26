@@ -166,7 +166,6 @@ interface Chrome {
     val trainerPauseTitleImproved: String
     val trainerPauseTitleStruggling: String
     val trainerPauseStrugglingHint: String
-    val trainerPauseSprossen: String           // %s %s
     val a11yVerdictCorrect: String
     val a11yVerdictAlmost: String
     val a11yVerdictWrong: String
@@ -522,6 +521,7 @@ interface Chrome {
 
     val sessionDoneGrowthGrew: String
     val sessionDoneGrowthOpened: String
+    val pauseSprosse: List<String>             // %s each
     val growthBlooming: List<String>
     val growthSown: List<String>
     val growthGrown: List<String>

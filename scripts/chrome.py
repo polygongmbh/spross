@@ -89,6 +89,7 @@ FAMILIES = {
     'growthBlooming': ['session.done.growth.blooming.%d' % i for i in range(3)],
     'growthGrown': ['session.done.growth.grown.%d' % i for i in range(3)],
     'growthSown': ['session.done.growth.sown.%d' % i for i in range(3)],
+    'pauseSprosse': ['trainer.pause.sprosse.%d %%@' % i for i in range(3)],
     'headlineNewSet': Series('home.offer.headline.newSet'),
     'headlineReviews': Series('home.offer.headline.reviews'),
     'headlineStreak': Series('home.offer.headline.streakReminder'),
