@@ -30,7 +30,7 @@ bundle_id() { /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$IOS_APP/I
 # costs a full Release rebuild — the deploy keeps its own gitignored tree.
 # Shared with release.sh and run-sim.sh: same underlying SDK module cache,
 # and nested under build/ so `./gradlew clean` clears it along with everything else.
-DERIVED="$PWD/build/xcode"
+DERIVED="$PWD/build/xcode.noindex"
 IPHONES="Mars Pluto"   # get Spross.app (opened with --launch)
 WATCHES="Ruby"         # gets SprossWatch.app (install only)
 

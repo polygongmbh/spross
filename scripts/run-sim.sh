@@ -53,8 +53,8 @@ if [ -z "$UDID" ]; then
 fi
 
 # why: shares its derived-data cache with release.sh/deploy-devices.sh
-# (build/xcode) — `./gradlew clean` then clears every build cache at once.
-DERIVED="$PWD/build/xcode"
+# (build/xcode.noindex, a name Spotlight skips) — `./gradlew clean` then clears every build cache at once.
+DERIVED="$PWD/build/xcode.noindex"
 
 if [ "$BUILD" = 1 ]; then
   # why: the .xcodeproj is gitignored, so a checkout or a new source file leaves it
