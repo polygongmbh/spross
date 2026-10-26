@@ -77,8 +77,8 @@ private fun Painter.wood(grown: GrownTree, fit: TreeFit) {
 }
 
 /**
- * The marks along the twigs: buds and fruit under the leaves, which take four tones lit from above,
- * then blossom on top, its eye in the wood's tone.
+ * The marks along the twigs: fruit under the leaves, which take four tones lit from above,
+ * then buds over them and blossom on top, its eye in the wood's tone.
  */
 private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
     val slots = grown.slots
@@ -127,14 +127,15 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
             }
         }
     }
-    // A bud's leaflets take spring's yellow-green and its scale is ochre: the word has not leafed out yet.
-    layer(TreeInk.SHOOT, 0.9, shoots)
-    layer(TreeInk.BUD, 0.9, buds)
     layer(TreeInk.FRUIT, 1.0, fruit)
     layer(TreeInk.LEAF_DEEP, 0.92, tones[0])
     layer(TreeInk.LEAF, 1.0, tones[1])
     layer(TreeInk.LEAF, 0.84, tones[2])
     layer(TreeInk.LEAF, 0.68, tones[3])
+    // why: buds over the leaves — the newest words would otherwise hide in a full crown.
+    // A bud's leaflets take spring's yellow-green and its scale is ochre: the word has not leafed out yet.
+    layer(TreeInk.SHOOT, 0.9, shoots)
+    layer(TreeInk.BUD, 0.9, buds)
     layer(TreeInk.BLOSSOM, 0.9, petals)
     // why: the eye takes the wood's tone; ochre sits too close to the petals.
     layer(TreeInk.WOOD, 1.0, eyes)
