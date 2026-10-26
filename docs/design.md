@@ -260,8 +260,8 @@ What licenses a second component is a parameter attempted and found not to carry
   the Box puts its areas in one pane and the chosen area's words in the other;
   onboarding's pair page puts the welcome in one pane and the two language lists in the other.
 - A sheet becomes a full-screen page in the leading pane, never a form sheet centered over the hinge.
-- **A session's card keeps the whole width**; its chrome — close, progress, read-aloud, status —
-  stands as a narrow column at the trailing edge.
+- **A session's card keeps the whole width**; where the system has a toolbar of its own,
+  close, progress and read-aloud are its items, and the status line stays over the card.
 
 ## Design language
 

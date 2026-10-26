@@ -11,10 +11,6 @@ import kotlin.math.min
  * which keeps a foldable's hinge, at the window's center, between the panes rather than across a line of text.
  * Inside any pane, text stands in a [column] no wider than [READABLE_WIDTH], centered in the pane.
  *
- * A session is the exception: split, its chrome stands as a [SESSION_RAIL_WIDTH] column at the trailing edge
- * and the card takes all the width left, uncapped — a learner who wants it compact folds the device,
- * and one who unfolds it is often after the bigger type.
- *
  * Every figure is points (dp) from the window's leading edge; the insets are the safe area's.
  */
 class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Double) {
@@ -59,8 +55,5 @@ class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Doub
 
         /** The space between two panes, around the window's center. */
         const val GUTTER: Double = 40.0
-
-        /** A split session's chrome column at the trailing edge: room for its buttons and a wrapped status line. */
-        const val SESSION_RAIL_WIDTH: Double = 96.0
     }
 }

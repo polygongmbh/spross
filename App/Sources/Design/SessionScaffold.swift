@@ -4,8 +4,8 @@ import SwiftUI
 // MARK: - SessionScaffold
 //
 // Session container chrome: close button + session progress bar on top,
-// arbitrary content below — or, in a wide window, the same chrome as a narrow
-// column at the trailing edge beside full-width content. Pure chrome — knows nothing about cards.
+// arbitrary content below — or, in a wide window, the same chrome as items in the
+// system's toolbar (`SystemBar`), the content taking the full width. Pure chrome — knows nothing about cards.
 
 /// One answered item's segment hue — which answer reads as which outcome is kern's (`AnswerOutcome`).
 extension AnswerOutcome {
@@ -43,27 +43,29 @@ struct SessionScaffold<Content: View>: View {
     }
 
     var body: some View {
-        PanesReader { panes in
-            let side = panes?.split == true
-            // why: one layout that turns, the content always the middle slot — it keeps its
-            // identity, and with it the turn's field and focus, when the window is first measured.
-            let layout = side ? AnyLayout(HStackLayout(alignment: .top, spacing: Theme.spacing.lg))
-                : AnyLayout(VStackLayout(spacing: Theme.spacing.lg))
-            layout {
-                if !side {
-                    VStack(spacing: 0) {
-                        topBar
-                        volumeHint
-                        status?.padding(.top, Theme.spacing.md)
-                    }
+        NavigationStack {
+            PanesReader { panes in
+                let inBar = SystemBar.hostsChrome(wide: panes?.split == true)
+                VStack(spacing: 0) {
+                    if !inBar { topBar }
+                    volumeHint
+                    status?.padding(.top, Theme.spacing.md)
+                    content
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.top, Theme.spacing.lg)
                 }
-                content
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                if side { sideColumn }
+                .padding(Theme.spacing.lg)
+                .sessionSystemBar(enabled: inBar, readsAloud: showsMuteButton, onClose: onClose) {
+                    VerticalBarReader { vertical in
+                        progressBar(vertical: vertical)
+                            .frame(width: vertical ? 10 : 160, height: vertical ? 240 : 10)
+                    }
+                } readAloud: {
+                    readAloudSwitch(inBar: true)
+                }
             }
-            .padding(Theme.spacing.lg)
+            .background(Theme.colors.background.ignoresSafeArea())
         }
-        .background(Theme.colors.background.ignoresSafeArea())
     }
 
     private var volumeHint: some View {
@@ -79,24 +81,7 @@ struct SessionScaffold<Content: View>: View {
         }
     }
 
-    /// The top bar turned on its side for a wide window, standing at the trailing edge
-    /// so the card takes all the width there is — the way out on top, the bar running down.
-    private var sideColumn: some View {
-        VStack(spacing: Theme.spacing.md) {
-            SessionCloseButton(action: onClose)
-            status
-            progressBar(vertical: true)
-                .frame(width: 10)
-                .frame(maxHeight: .infinity)
-            if showsMuteButton { readAloudButton }
-            volumeHint
-        }
-        .multilineTextAlignment(.center)
-        .frame(width: CGFloat(WindowPanes.companion.SESSION_RAIL_WIDTH))
-        .frame(maxHeight: .infinity)
-    }
-
-    /// Fills along its length — across on a phone, downward in the side column.
+    /// Fills along its length — across on a phone, downward in an upright system bar.
     private func progressBar(vertical: Bool) -> some View {
         GeometryReader { geo in
             let length = vertical ? geo.size.height : geo.size.width
@@ -151,6 +136,11 @@ struct SessionScaffold<Content: View>: View {
     /// Switching it ON is read as a request to hear something and lifts autoplay
     /// past a silenced phone — otherwise the switch would say on and say nothing.
     private var readAloudButton: some View {
+        readAloudSwitch(inBar: false)
+    }
+
+    /// In the system's bar the button takes the bar's own look rather than its circle.
+    private func readAloudSwitch(inBar: Bool) -> some View {
         Button {
             Pronouncer.shared.setReadAloud(on: Pronouncer.shared.muted)
         } label: {
@@ -158,11 +148,16 @@ struct SessionScaffold<Content: View>: View {
             // speaker.wave.2.bubble but no slashed twin for it, and a switch
             // whose two states come from different families reads as two
             // different controls.
-            Image(systemName: Pronouncer.shared.muted ? "speaker.slash" : "speaker.wave.2")
-                .font(.subheadline.weight(.bold))
-                .foregroundStyle(Theme.colors.textSecondary)
-                .frame(width: 44, height: 44)
-                .background(Circle().fill(Theme.colors.surfaceTint))
+            let icon = Image(systemName: Pronouncer.shared.muted ? "speaker.slash" : "speaker.wave.2")
+            if inBar {
+                icon
+            } else {
+                icon
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(Theme.colors.textSecondary)
+                    .frame(width: 44, height: 44)
+                    .background(Circle().fill(Theme.colors.surfaceTint))
+            }
         }
         // why: ONE label, the state as the VALUE — a label that flips with the
         // state leaves VoiceOver announcing the action as if it were the
