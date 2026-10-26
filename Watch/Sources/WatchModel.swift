@@ -106,7 +106,15 @@ final class WatchModel {
     /// back as the phone reschedules it. Stale or out-of-order deliveries are dropped.
     func receiveSnapshot(_ data: Data) {
         guard let incoming = try? WatchSnapshot.decode(data) else { return }
-        if let current = snapshot, current.generated > incoming.generated { return }
+        if let current = snapshot {
+            // why: a switched pair makes the running round's cards the old pair's;
+            // answers are saved as they go, so the round simply ends.
+            if current.pair != incoming.pair {
+                endSession()
+            } else if current.generated > incoming.generated {
+                return
+            }
+        }
         let present = Set(incoming.entries.map(\.cardId))
         snapshot = incoming
         WatchSnapshotStore.save(incoming)

@@ -20,6 +20,11 @@ class WatchSnapshotBuilderTests {
     )
 
     @Test
+    fun snapshotNamesTheLanguagePairItIsWrittenFor() {
+        assertEquals("de-sw", WatchSnapshotBuilder.doc(Snap.state(listOf(fem)), Box.day1).pair)
+    }
+
+    @Test
     fun entryCarriesBothSidesWithNextRoleResolvedFromLogCount() {
         val due = Box.plusSeconds(Box.day1, 600)
         var state = Snap.state(listOf(fem))

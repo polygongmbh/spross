@@ -45,12 +45,14 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     }
 
     /// The one version this build reads (kern `WatchSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 7
+    static let currentSchemaVersion = 8
 
     var schemaVersion: Int
     /// The language the watch's and the complication's chrome is written in,
     /// the one the phone's own chrome follows.
     var chromeLanguage: String
+    /// The language pair the entries are written for (`source-target`).
+    var pair: String
     /// Epoch milliseconds of the build.
     var generated: Int64
     var entries: [Entry]
@@ -60,13 +62,14 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     var answers: [String: WatchRating] = [:]
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, chromeLanguage, generated, entries, answers
+        case schemaVersion, chromeLanguage, pair, generated, entries, answers
     }
 
-    init(schemaVersion: Int, chromeLanguage: String, generated: Int64, entries: [Entry],
+    init(schemaVersion: Int, chromeLanguage: String, pair: String, generated: Int64, entries: [Entry],
          answers: [String: WatchRating] = [:]) {
         self.schemaVersion = schemaVersion
         self.chromeLanguage = chromeLanguage
+        self.pair = pair
         self.generated = generated
         self.entries = entries
         self.answers = answers
@@ -83,6 +86,7 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
                                                    debugDescription: "unsupported schemaVersion")
         }
         chromeLanguage = try container.decode(String.self, forKey: .chromeLanguage)
+        pair = try container.decode(String.self, forKey: .pair)
         generated = try container.decode(Int64.self, forKey: .generated)
         entries = try container.decode([Entry].self, forKey: .entries)
         answers = try container.decodeIfPresent([String: WatchRating].self,

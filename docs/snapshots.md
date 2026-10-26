@@ -63,7 +63,7 @@ Neighbors: the engine contract `../kern/README.md`, what the watch and widgets d
   Each entry's `lengthRank` is where it lands among the rows a tile shows, so a tile sorts its window by it;
   `activityBarWidth` and `activityGutter` carry the strip's fixed columns (`design/WidgetStripColumns`).
 - **WatchSnapshot** (`WatchSnapshotBuilder`): one entry per CARD with BOTH sides pre-resolved,
-  plus `chromeLanguage` and `schemaVersion`;
+  plus `chromeLanguage`, `pair` (`source-target`; a different one ends the watch's running round) and `schemaVersion`;
   the watch refuses any other version whole and waits for the phone's next push, as the widget does.
   The phone resolves `nextRole` and the rotated `promptForm` from the log count at build time;
   presentation is the app layer's, and `make` lives phone-side — the watch stays pure Swift.

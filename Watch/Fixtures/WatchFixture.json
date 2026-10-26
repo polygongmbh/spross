@@ -1,6 +1,7 @@
 {
   "answers": {},
   "chromeLanguage": "de",
+  "pair": "de-sw",
   "entries": [
     {
       "article": "der",
@@ -129,5 +130,5 @@
     }
   ],
   "generated": 1782907200000,
-  "schemaVersion": 7
+  "schemaVersion": 8
 }

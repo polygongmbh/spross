@@ -35,7 +35,7 @@ import net.spross.kern.trainer.letters
  * cannot hold.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 7
+    const val SCHEMA_VERSION: Int = 8
     const val ENTRY_CAP: Int = 120
 
     /**
@@ -106,6 +106,7 @@ object WatchSnapshotBuilder {
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             chromeLanguage = chromeLanguage(state),
+            pair = "${state.joinStamp.source}-${state.joinStamp.target}",
             generated = nowEpochMillis,
             entries = entries.map { offer(it, state, options, shared) },
         )
@@ -228,6 +229,8 @@ internal data class WatchSnapshotDoc(
     val schemaVersion: Int,
     /** The language the watch's and the complication's chrome is written in (`chromeLanguage`). */
     val chromeLanguage: String,
+    /** The language pair the entries are written for (`source-target`), so the watch can tell a switch from a refresh. */
+    val pair: String,
     val generated: Long,
     val entries: List<WatchEntryDto>,
 )
