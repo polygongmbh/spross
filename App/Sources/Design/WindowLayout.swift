@@ -57,8 +57,8 @@ extension View {
         PanesReader { _ in self }
     }
 
-    /// A screen with no two-pane design of its own: one readable column —
-    /// centered where the window stays one pane, in the leading pane where it splits.
+    /// A screen with no two-pane design of its own: one readable column in kern's `single` pane —
+    /// centered where the window stays one pane, in the trailing half where it splits.
     /// A phone passes through untouched.
     func readableColumn() -> some View {
         modifier(ReadableColumn())
@@ -74,11 +74,11 @@ private struct ReadableColumn: ViewModifier {
     @Environment(\.windowPanes) private var panes
 
     func body(content: Content) -> some View {
-        if let panes, panes.split || panes.leading.columnWidth < panes.leading.width {
+        if let panes, panes.split || panes.single.columnWidth < panes.single.width {
             content
-                .frame(maxWidth: panes.leading.columnWidth)
-                .frame(width: panes.leading.width)
-                .frame(maxWidth: .infinity, alignment: panes.split ? .leading : .center)
+                .frame(maxWidth: panes.single.columnWidth)
+                .frame(width: panes.single.width)
+                .frame(maxWidth: .infinity, alignment: panes.split ? .trailing : .center)
         } else {
             content
         }

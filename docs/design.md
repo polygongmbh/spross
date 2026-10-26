@@ -255,7 +255,8 @@ What licenses a second component is a parameter attempted and found not to carry
 
 - **Width alone splits a window** into two panes, halves of its safe area around its center (`WindowPanes`),
   so a tablet, an unfolded foldable and any wide window answer to one rule, and a phone held upright never splits.
-- Text in a pane keeps a readable column; a screen without a pane design stands in the leading pane.
+- Text in a pane keeps a readable column; a screen without a pane design stands in the trailing pane,
+  beside the edge where the system keeps its controls.
 - Home puts the day's card, listening and the companion in one pane, the drills hub and the trees in the other;
   the Box puts its areas in one pane and the chosen area's words in the other.
 - A sheet is the system's, asked to stand on the trailing side, never placed by the app.

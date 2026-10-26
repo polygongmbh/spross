@@ -10,6 +10,8 @@ import kotlin.math.min
  * From there it splits into two halves of the safe area, [GUTTER] apart around its center,
  * which keeps a foldable's hinge, at the window's center, between the panes rather than across a line of text.
  * Inside any pane, text stands in a [column] no wider than [READABLE_WIDTH], centered in the pane.
+ * A screen without a two-pane design stands in the [single] pane: split, the trailing one,
+ * beside the trailing edge where the system keeps its controls.
  *
  * Every figure is points (dp) from the window's leading edge; the insets are the safe area's.
  */
@@ -27,6 +29,9 @@ class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Doub
     val panes: List<Pane>
 
     val split: Boolean get() = panes.size == 2
+
+    /** Where a screen without a two-pane design stands: the one pane, or the trailing half once split. */
+    val single: Pane get() = panes.last()
 
     init {
         val safeWidth = (windowWidth - leadingInset - trailingInset).coerceAtLeast(0.0)

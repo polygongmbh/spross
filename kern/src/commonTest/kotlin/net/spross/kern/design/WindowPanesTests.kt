@@ -31,4 +31,10 @@ class WindowPanesTests {
         assertEquals(951.0 - 84.0, trailing.frame.end)
         assertTrue(leading.column.width <= WindowPanes.READABLE_WIDTH)
     }
+
+    @Test
+    fun aSinglePaneScreenStandsInTheTrailingHalfOnceSplit() {
+        val panes = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0)
+        assertEquals(panes.panes.last(), panes.single)
+    }
 }
