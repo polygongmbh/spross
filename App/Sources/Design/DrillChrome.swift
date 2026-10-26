@@ -104,6 +104,8 @@ struct DrillRunResult: Equatable {
 /// button that starts the next run already is.
 struct DrillResultTile: View {
     let result: DrillRunResult
+    /// Among every drill's chips (the hub), the run's own icon names it in place of its title.
+    var onHub = false
     @Environment(\.locale) private var locale
 
     private var summary: DrillRunSummary { result.summary }
@@ -118,9 +120,11 @@ struct DrillResultTile: View {
                 Text("trainer.result.tasksDone \(Int(summary.done))")
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
-                Text("trainer.result.bestStreak \(Int(summary.bestAnswerStreak).formatted())")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
+                if let highlight = summary.highlight {
+                    highlightLine(highlight)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
                 if let timed = summary.timed {
                     Text("trainer.run.score \(Int(timed.score))")
                         .font(Theme.typography.caption)
@@ -145,13 +149,31 @@ struct DrillResultTile: View {
                 }
             }
             Spacer(minLength: 0)
-            Text(result.title)
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
+            if onHub, let icon = summary.drill?.emoji {
+                Text(verbatim: icon)
+                    .font(.system(size: 30)) // card-parity: the hub chip's own glyph size
+                    .accessibilityLabel(Text(result.title))
+            } else {
+                Text(result.title)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
         }
         .panelSurface(Theme.colors.surfaceTint)
         // why: one VoiceOver stop, unless a share button must stay reachable.
         .accessibilityElement(children: summary.timed?.replyCode == nil ? .combine : .contain)
+    }
+
+    /// Kern's highlight in the string table's words — a Sprosse in one of the pause's phrasings.
+    private func highlightLine(_ highlight: DrillHighlight) -> Text {
+        let value = Int(highlight.value).formatted()
+        switch highlight.kind {
+        case .streak: return Text("trainer.result.bestStreak \(value)")
+        case .sprosse:
+            // why: the key is built as a STRING and only then wrapped, as `DrillPauseView` does.
+            let key = "trainer.pause.sprosse.\(Int(highlight.line(count: 3))) %@"
+            return Text(String(format: NSLocalizedString(key, comment: ""), value))
+        }
     }
 
     /// How the score stands against the one a challenge's code arrived with.
@@ -187,10 +209,12 @@ struct DrillResultTile: View {
 #Preview("Result tile · record") {
     VStack(spacing: Theme.spacing.lg) {
         DrillResultTile(result: DrillRunResult(
-            summary: DrillRunSummary(done: 17, bestAnswerStreak: 12, newRecord: true, timed: nil),
+            summary: DrillRunSummary(done: 17, bestAnswerStreak: 12, newRecord: true, timed: nil,
+                                     drill: nil, peak: nil, newSprosse: false),
             title: "trainer.drill.numbers"))
         DrillResultTile(result: DrillRunResult(
-            summary: DrillRunSummary(done: 4, bestAnswerStreak: 1, newRecord: false, timed: nil),
+            summary: DrillRunSummary(done: 9, bestAnswerStreak: 3, newRecord: false, timed: nil,
+                                     drill: nil, peak: 4, newSprosse: true),
             title: "trainer.drill.letters"))
     }
     .padding(Theme.spacing.xl)

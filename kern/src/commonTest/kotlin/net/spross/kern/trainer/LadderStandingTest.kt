@@ -89,10 +89,10 @@ class LadderStandingTest {
 
     @Test
     fun theSummaryIsNothingUntouchedAndARecordOnlyWhereOneIsKeptAndBeaten() {
-        assertNull(LadderStanding.summary(Run(), standingRecord = 0))
+        assertNull(LadderStanding.summary(Run(), standingRecord = 0, Drill.Letters))
         val answered = Run(core = DrillRunCore().book(correct = true, clean = true, solves = null))
-        assertFalse(LadderStanding.summary(answered, standingRecord = null)!!.newRecord)
-        assertFalse(LadderStanding.summary(answered, standingRecord = 1)!!.newRecord)
-        assertTrue(LadderStanding.summary(answered, standingRecord = 0)!!.newRecord)
+        assertFalse(LadderStanding.summary(answered, standingRecord = null, Drill.Letters)!!.newRecord)
+        assertFalse(LadderStanding.summary(answered, standingRecord = 1, Drill.Letters)!!.newRecord)
+        assertTrue(LadderStanding.summary(answered, standingRecord = 0, Drill.Letters)!!.newRecord)
     }
 }

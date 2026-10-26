@@ -75,7 +75,7 @@ internal data class LadderStanding(
          * What the close reports: nothing for a run never answered, and a record only where the
          * drill keeps one ([standingRecord] non-null) and the run's best answer streak beat it — strictly.
          */
-        fun summary(ended: DrillRunProgress, standingRecord: Int?): DrillRunSummary? =
+        fun summary(ended: DrillRunProgress, standingRecord: Int?, drill: Drill): DrillRunSummary? =
             if (ended.done == 0) {
                 null
             } else {
@@ -83,6 +83,9 @@ internal data class LadderStanding(
                     ended.done,
                     ended.bestAnswerStreak,
                     standingRecord != null && ended.bestAnswerStreak > standingRecord,
+                    drill = drill,
+                    peak = ended.pacing.peak,
+                    newSprosse = ended.pacing.newSprossen > 0,
                 )
             }
     }

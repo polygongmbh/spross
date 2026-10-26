@@ -80,7 +80,7 @@ object SentenceScrambleRun {
      */
     fun close(state: SentenceScrambleRunState): SentenceScrambleClose {
         val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord = null)
+        val summary = LadderStanding.summary(ended, standingRecord = null, Drill.SentenceScramble)
         return SentenceScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 

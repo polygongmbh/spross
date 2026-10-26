@@ -95,7 +95,7 @@ object LetterDrillRun {
     fun close(state: LetterDrillRunState): LetterDrillClose {
         val ended = LadderStanding.closing(state, ::advanced)
             .copy(feedback = TurnFeedback.Neutral, chosen = null, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord = null)
+        val summary = LadderStanding.summary(ended, standingRecord = null, Drill.Letters)
         return LetterDrillClose(ended, summary, ended.keptSprossen, LadderStanding.EFFECTS)
     }
 

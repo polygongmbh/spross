@@ -71,7 +71,7 @@ abstract class PairDrillRun<T : PairDrillTask> internal constructor() {
     fun close(state: PairDrillRunState<T>, standingRecord: Int): PairDrillClose<T> {
         val ended = LadderStanding.closing(state, ::advanced)
             .copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord)
+        val summary = LadderStanding.summary(ended, standingRecord, state.config.drill)
         val cleared = state.config.answeredOut(ended.core.solvedClean)
         return PairDrillClose(ended, summary, ended.bestSprosse, cleared, LadderStanding.EFFECTS)
     }

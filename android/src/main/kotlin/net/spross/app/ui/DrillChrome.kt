@@ -29,6 +29,7 @@ import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.trainer.ChallengeVerdict
+import net.spross.kern.trainer.DrillHighlight
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.AnswerStreakMilestone
 import net.spross.kern.trainer.TimedOutcome
@@ -94,7 +95,7 @@ fun DrillStopOffer(chrome: Chrome, onClick: () -> Unit) {
  * page, and a page they do not earn is one more ✕ between a learner and their next run.
  */
 @Composable
-fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
+fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome, onHub: Boolean = false) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,11 +115,16 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
                 countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, summary.done),
                 style = MaterialTheme.typography.titleMedium,
             )
-            Text(
-                chrome.trainerResultBestStreak.format(summary.bestAnswerStreak),
-                style = MaterialTheme.typography.bodySmall,
-                color = Theme.colors.textSecondary,
-            )
+            summary.highlight?.let { highlight ->
+                Text(
+                    when (highlight.kind) {
+                        DrillHighlight.Kind.Streak -> chrome.trainerResultBestStreak.format(highlight.value)
+                        DrillHighlight.Kind.Sprosse -> chrome.pauseSprosse[highlight.line(chrome.pauseSprosse.size)].format(highlight.value)
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Theme.colors.textSecondary,
+                )
+            }
             summary.timed?.let { timed -> TimedLines(timed, chrome) }
             if (summary.newRecord) {
                 Text(
@@ -128,7 +134,13 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
                 )
             }
         }
-        Text(title, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
+        // Among every drill's chips (the hub), the run's own icon names it in place of its title.
+        val icon = summary.drill?.emoji?.takeIf { onHub }
+        if (icon != null) {
+            Text(icon, fontSize = 30.sp, modifier = Modifier.semantics { contentDescription = title }) // card-parity: the hub chip's own glyph size
+        } else {
+            Text(title, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
+        }
     }
 }
 

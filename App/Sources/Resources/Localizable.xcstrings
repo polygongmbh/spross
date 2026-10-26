@@ -7346,13 +7346,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beste Serie: 🔥 %@ in Folge"
+            "value" : "🔥 %@ in Folge"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Best streak: 🔥 %@ in a row"
+            "value" : "🔥 %@ in a row"
           }
         }
       }
@@ -7382,13 +7382,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Aufgabe 🎯"
+                  "value" : "%lld Aufgabe"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Aufgaben 🎯"
+                  "value" : "%lld Aufgaben"
                 }
               }
             }
@@ -7400,13 +7400,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld task 🎯"
+                  "value" : "%lld task"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tasks 🎯"
+                  "value" : "%lld tasks"
                 }
               }
             }

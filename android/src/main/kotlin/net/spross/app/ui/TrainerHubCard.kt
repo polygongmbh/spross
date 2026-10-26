@@ -74,7 +74,7 @@ fun TrainerHubCard(model: AppModel) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome) }
+        model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome, onHub = true) }
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             chipRows(chips).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {

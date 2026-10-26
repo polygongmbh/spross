@@ -140,7 +140,7 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.hub.subtitle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
-            if let lastRun { DrillResultTile(result: lastRun) }
+            if let lastRun { DrillResultTile(result: lastRun, onHub: true) }
             VStack(spacing: Theme.spacing.md) {
                 ForEach(Array(chipRows.enumerated()), id: \.offset) { _, row in
                     HStack(spacing: Theme.spacing.md) {

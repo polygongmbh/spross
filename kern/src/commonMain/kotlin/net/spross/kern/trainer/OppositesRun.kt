@@ -72,7 +72,7 @@ object OppositesRun {
     /** Leaving the run, on [WordScrambleRun.close]'s terms ([LadderStanding.closing]): no record is kept. */
     fun close(state: OppositesRunState): OppositesClose {
         val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord = null)
+        val summary = LadderStanding.summary(ended, standingRecord = null, Drill.Opposites)
         return OppositesClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 

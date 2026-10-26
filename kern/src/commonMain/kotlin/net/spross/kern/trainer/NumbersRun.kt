@@ -148,7 +148,8 @@ object NumbersRun {
         val timed = state.challenge?.let { TimedOutcome(ended.score, it) }
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && ended.bestAnswerStreak > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && ended.bestAnswerStreak > standingRecord, timed, Drill.Numbers,
+                ended.pacing.peak, ended.pacing.newSprossen > 0),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,

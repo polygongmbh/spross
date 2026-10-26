@@ -102,7 +102,7 @@ object WordScrambleRun {
      */
     fun close(state: WordScrambleRunState): WordScrambleClose {
         val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord = null)
+        val summary = LadderStanding.summary(ended, standingRecord = null, Drill.WordScramble)
         return WordScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 

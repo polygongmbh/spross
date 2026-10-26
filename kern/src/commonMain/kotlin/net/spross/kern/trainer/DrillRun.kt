@@ -49,6 +49,14 @@ data class DrillTally(val clean: Int, val judged: Int) {
  */
 enum class AnswerStreakMilestone { Sprout, Effort, Cheer, Trophy }
 
+/** What a closed run's tile names beside its tally ([DrillRunSummary.highlight]): a Sprosse reached, or an answer streak. */
+data class DrillHighlight(val kind: Kind, val value: Int) {
+    enum class Kind { Sprosse, Streak }
+
+    /** Which of [count] phrasings names it. */
+    fun line(count: Int): Int = value.mod(count)
+}
+
 /**
  * The whole of what a finished run has to say. It travels back to the page that started it
  * rather than filling a screen of its own: three figures do not earn a page, and a page they
@@ -64,6 +72,12 @@ data class DrillRunSummary(
     val newRecord: Boolean,
     /** A challenge's score and the challenge it answered; null for every other run. */
     val timed: TimedOutcome? = null,
+    /** The roster entry the run belongs to — its icon names the run where a tile stands among every drill (the hub). */
+    val drill: Drill? = null,
+    /** The highest Sprosse the run stood on, where above the one it opened on ([DrillPacing.peak]). */
+    val peak: Int? = null,
+    /** The run cleared a Sprosse the store did not hold ([DrillPacing.newSprossen]). */
+    val newSprosse: Boolean = false,
 ) {
     /**
      * Whether the figures are worth reporting where nothing asked for them — a drill with no
@@ -78,6 +92,19 @@ data class DrillRunSummary(
      */
     val celebrated: Boolean get() = newRecord || worthReporting
 
+    /**
+     * The one thing the tile names beside the tally — a highlight, never a statistic:
+     * a Sprosse first cleared outranks the streak, a streak of [HIGHLIGHT_STREAK] or more
+     * outranks a climb the store already knew, and a run with neither names nothing.
+     */
+    val highlight: DrillHighlight?
+        get() {
+            val sprosse = peak?.let { DrillHighlight(DrillHighlight.Kind.Sprosse, it) }
+            val streak = DrillHighlight(DrillHighlight.Kind.Streak, bestAnswerStreak)
+                .takeIf { bestAnswerStreak >= HIGHLIGHT_STREAK }
+            return if (newSprosse) sprosse ?: streak else streak ?: sprosse
+        }
+
     val milestone: AnswerStreakMilestone
         get() = when {
             bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakMilestone.Trophy
@@ -90,5 +117,6 @@ data class DrillRunSummary(
         const val TROPHY_ANSWER_STREAK = 15
         const val CHEER_ANSWER_STREAK = 10
         const val EFFORT_ANSWER_STREAK = 5
+        const val HIGHLIGHT_STREAK = 4
     }
 }
