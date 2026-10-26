@@ -10,9 +10,15 @@ struct SprossWatchApp: App {
             WatchHomeView(model: model)
                 .task { model.start() }
                 // why: leaving the foreground hands the phone the answers held since the last
-                // hand-over, so it applies and reschedules them in one pass.
+                // hand-over, so it applies and reschedules them in one pass; backgrounding also
+                // ends the round — a run resumed hours later is stale, and starting one is a tap.
+                // (`.inactive` is only a wrist drop or an overlay: flush, keep the round.)
                 .onChange(of: scenePhase) { _, phase in
-                    if phase != .active { model.connectivity.flush() }
+                    if phase == .background {
+                        model.endSession()
+                    } else if phase != .active {
+                        model.connectivity.flush()
+                    }
                 }
         }
     }
