@@ -91,7 +91,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
         }
         // why: on the Group rather than on the scaffold's content — the offer it
         // answers stands on the completion screen, which is the other branch.
-        .sheet(isPresented: $briefing) {
+        .paneSheet(isPresented: $briefing) {
             BriefingSheet(model: model).environment(\.locale, locale)
         }
         // why: the order is normative — reset stops whatever is sounding and
@@ -184,7 +184,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
             }
             answerArea(controls)
         }
-        .sheet(item: $reporting) { reported in
+        .paneSheet(item: $reporting) { reported in
             ReportIssueSheet(model: model, card: reported.card, learnerInput: reported.input)
                 .environment(\.locale, locale)
         }

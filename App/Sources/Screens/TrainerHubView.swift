@@ -82,7 +82,7 @@ struct TrainerHubView: View, LanguageNaming {
             }
         }
         // The pages: a sheet, because an overview is read from and swiped away.
-        .sheet(item: presented { !$0.isRun }) { surface($0) }
+        .paneSheet(item: presented { !$0.isRun }) { surface($0) }
     }
 
     /// What a destination opens, under the known language every trainer surface

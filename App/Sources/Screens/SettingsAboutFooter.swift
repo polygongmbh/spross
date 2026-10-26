@@ -38,7 +38,7 @@ struct SettingsAboutFooter: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.top, Theme.spacing.md)
-        .sheet(isPresented: $creditsPresented) {
+        .paneSheet(isPresented: $creditsPresented) {
             // why: a sheet leaves the chrome language behind, and credits are
             // chrome — hand it the locale the settings block renders in.
             CreditsView(model: model).environment(\.locale, locale)

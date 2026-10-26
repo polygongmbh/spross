@@ -59,7 +59,7 @@ struct BoxSearchView: View {
         }
         // why: the reveal waits for the form to be gone — two sheets closing at
         // once leaves the box scrolling behind one of them.
-        .sheet(isPresented: $writingOwnWord, onDismiss: sendToTheNewWord) {
+        .paneSheet(isPresented: $writingOwnWord, onDismiss: sendToTheNewWord) {
             OwnWordFormView(model: model, seed: .query(query)) { _ in wrote = true }
         }
     }

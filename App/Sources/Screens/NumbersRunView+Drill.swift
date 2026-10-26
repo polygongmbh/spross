@@ -12,7 +12,7 @@ extension NumbersRunView {
         } area: { controls in
             answerSection(controls)
         }
-        .sheet(isPresented: $showingReference) {
+        .paneSheet(isPresented: $showingReference) {
             NumberReferenceSheet(language: language, catalog: catalog, voice: referenceVoice)
         }
     }

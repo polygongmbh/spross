@@ -67,6 +67,7 @@ struct SummaryScaffold<Hero: View>: View {
             SessionExitButtons(onDone: onDone, onTalk: onTalk, onPractice: onPractice)
                 .padding(.horizontal, Theme.spacing.xl)
         }
+        .measuredReadableColumn()
         .background(Theme.colors.background.ignoresSafeArea())
         .sessionCloseCorner(label: "common.done", action: onDone)
     }

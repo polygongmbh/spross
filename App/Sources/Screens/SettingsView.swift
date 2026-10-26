@@ -12,6 +12,7 @@ struct SettingsView: View {
             BoxSettingsSection(model: model)
                 .padding(Theme.spacing.xl)
         }
+        .readableColumn()
         .background(Theme.colors.background.ignoresSafeArea())
         .toolbarBackground(.hidden, for: .navigationBar)
     }

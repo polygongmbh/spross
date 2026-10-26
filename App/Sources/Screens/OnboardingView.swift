@@ -37,6 +37,8 @@ struct OnboardingView: View {
     @State var starting = false
     @State var page: Page
 
+    @Environment(\.windowPanes) private var panes
+
     /// The head of the shared scroll, so a page turn opens on the new page's first line.
     private let topAnchor = "onboarding.top"
 
@@ -73,6 +75,40 @@ struct OnboardingView: View {
     }
 
     var body: some View {
+        Group {
+            if let panes, panes.split, page == .languages {
+                // The welcome and the way on in one pane, the two lists in the other.
+                PaneSplit(panes: panes) {
+                    paneScroll {
+                        hero
+                        nameSection
+                        nextButton
+                    }
+                } trailing: {
+                    paneScroll {
+                        sourceSection
+                        targetSection
+                    }
+                }
+            } else {
+                pages.readableColumn()
+            }
+        }
+        .background(Theme.colors.background.ignoresSafeArea())
+        // why: the OUTERMOST view, above the switch — inside a branch, the story pages
+        // would fall back to the persisted profile's locale, empty on a first run.
+        .environment(\.locale, AppModel.chromeLocale(source: source))
+    }
+
+    private func paneScroll<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) { content() }
+                .padding(Theme.spacing.lg)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+    }
+
+    private var pages: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
@@ -92,10 +128,6 @@ struct OnboardingView: View {
             // it kept would open that page mid-sentence at large Dynamic Type.
             .onChange(of: page) { _, _ in proxy.scrollTo(topAnchor, anchor: .top) }
         }
-        .background(Theme.colors.background.ignoresSafeArea())
-        // why: the OUTERMOST view, above the switch — inside a branch, the story pages
-        // would fall back to the persisted profile's locale, empty on a first run.
-        .environment(\.locale, AppModel.chromeLocale(source: source))
     }
 
     // why: internal, not private — the story pages turn to their neighbors themselves.
@@ -110,14 +142,18 @@ struct OnboardingView: View {
     /// which is why it takes the hero alone and not the story pages' scaffold.
     private var languagesPage: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            OnboardingHero(emoji: page.emoji, title: "onboarding.welcome") {
-                // why: a first run only — a restart already has a box the file would replace.
-                if model.targetLanguage == nil { OnboardingImport(model: model, source: source) }
-            }
+            hero
             sourceSection
             targetSection
             nameSection
             nextButton
+        }
+    }
+
+    private var hero: some View {
+        OnboardingHero(emoji: page.emoji, title: "onboarding.welcome") {
+            // why: a first run only — a restart already has a box the file would replace.
+            if model.targetLanguage == nil { OnboardingImport(model: model, source: source) }
         }
     }
 

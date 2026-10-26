@@ -217,6 +217,7 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .measuredReadableColumn()
         .padding(Theme.spacing.lg)
         .background(Theme.colors.background.ignoresSafeArea())
     }

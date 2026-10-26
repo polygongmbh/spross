@@ -30,7 +30,7 @@ struct RootView: View {
         // why: render chrome in the user's KNOWN language (German learners see
         // English) — SwiftUI resolves every Text/LocalizedStringKey against it.
         .environment(\.locale, model.knownLocale)
-        .sheet(isPresented: onboardingPresented) {
+        .paneSheet(isPresented: onboardingPresented, ownsPanes: true) {
             // why: onboarding sets its own locale from the language being
             // picked, so it re-renders as the user changes the pick. A box
             // already on disk means this is a restart, not the first run —
@@ -41,6 +41,7 @@ struct RootView: View {
         .fullScreenCover(isPresented: $model.sessionPresented) {
             SessionView(model: model)
                 .environment(\.locale, model.knownLocale)
+                .measuresWindowPanes()
         }
         .task {
             await model.start()
@@ -50,6 +51,7 @@ struct RootView: View {
             default: break
             }
         }
+        .measuresWindowPanes()
     }
 
     private var home: some View {
@@ -65,18 +67,21 @@ struct RootView: View {
                 })
                 .toolbarBackground(.hidden, for: .navigationBar)
             }
+            .measuresWindowPanes()
             .tabItem { Image(systemName: "house").accessibilityLabel(Text("home.name")) }
             .tag(Tab.home)
 
             NavigationStack {
                 BoxView(model: model, revealArea: boxArea)
             }
+            .measuresWindowPanes()
             .tabItem { Image(systemName: "tree").accessibilityLabel(Text("box.name")) }
             .tag(Tab.box)
 
             NavigationStack {
                 SettingsView(model: model)
             }
+            .measuresWindowPanes()
             .tabItem { Image(systemName: "gearshape").accessibilityLabel(Text("settings.title")) }
             .tag(Tab.settings)
         }

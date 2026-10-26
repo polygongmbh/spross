@@ -64,7 +64,7 @@ struct BoxOwnContentSection: View {
                 card
             }
         }
-        .sheet(item: $sheet) { sheetBody($0) }
+        .paneSheet(item: $sheet) { sheetBody($0) }
     }
 
     private var header: some View {

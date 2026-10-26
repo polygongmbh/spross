@@ -181,7 +181,7 @@ struct BoxCardRow: View {
                 .fill(Theme.colors.surfaceTint)
         )
         .saysOnTap(pronounce)
-        .sheet(item: $sheet) { sheetBody($0) }
+        .paneSheet(item: $sheet) { sheetBody($0) }
     }
 
     /// The row's 💤 and 🚩 in words, spoken as the word's own value.
