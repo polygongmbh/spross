@@ -18,7 +18,7 @@ struct DrillPauseView: View {
         SummaryScaffold(title: Text(title),
                         tally: Text("trainer.result.tasksDone \(Int(run.done))"),
                         milestone: milestone,
-                        hint: run.pause == DrillPauseReason.struggling
+                        hint: run.pause == DrillPauseReason.struggling || pacing.shaky
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
                         onPractice: onKeepPracticing,

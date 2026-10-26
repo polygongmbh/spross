@@ -28,7 +28,7 @@ fun DrillPause(
         onPractice = onKeepPracticing,
         tally = countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
         milestone = milestone(run, chrome),
-        hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling },
+        hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling || run.pacing.shaky },
         cheer = cheer.takeIf { reason.celebrated },
     ) { _, _ -> SummaryGlyph(reason.emoji) }
 }

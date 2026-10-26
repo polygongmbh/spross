@@ -69,13 +69,23 @@ class DrillPacingTest {
         assertEquals(DrillPauseReason.Struggling, run.pause)
     }
 
-    /** The last few going wrong in a stretch that mostly went right is no reason to stop. */
+    private fun stretchOf(answers: List<Boolean>): DrillRunCore =
+        answers.fold(DrillRunCore()) { run, correct -> run.book(correct, correct, null).paced(sprosse = 1, newSprossen = 0, endless = true) }
+
+    /** A rough patch at the end of a stretch that went well is no reason to stop. */
     @Test
-    fun lateMissesInAMostlyRightStretchDoNotPauseAsStruggling() {
-        val answers = List(12) { true } + listOf(false, true, false, true, false)
-        val core = answers.fold(DrillRunCore()) { run, correct -> run.book(correct, correct, null) }
-            .paced(sprosse = 1, newSprossen = 0, endless = true)
-        assertNull(core.pacing.pause)
+    fun lateMissesInAGoodStretchDoNotPauseAsStruggling() {
+        val run = stretchOf(List(12) { true } + listOf(false, true, false, true, false))
+        assertNull(run.pacing.pause)
+        assertTrue(run.pacing.shaky)
+    }
+
+    /** The pause that does fall due is celebrated as usual and only carries the suggestion to rest. */
+    @Test
+    fun aGoodStretchEndingShakilyStillPausesOnTheCount() {
+        val run = stretchOf(List(16) { true } + listOf(false, false, false, true))
+        assertEquals(DrillPauseReason.Count, run.pacing.pause)
+        assertTrue(run.pacing.shaky)
     }
 
     @Test

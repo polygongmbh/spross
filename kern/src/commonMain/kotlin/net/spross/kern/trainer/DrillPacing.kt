@@ -7,7 +7,7 @@ enum class DrillPauseReason {
     /** The run did something new: a Sprosse the store did not hold, or the record beaten ([DrillPacing]). */
     Improved,
 
-    /** Most of the last few answers missed, and a good share of the stretch with them. */
+    /** The stretch went badly: half of it missed, the last few answers among them. */
     Struggling,
 
     /** A stretch's worth of answers since the run opened or last went on. */
@@ -34,8 +34,10 @@ enum class DrillPauseReason {
  * [STRETCH] answers since the run opened or last went on;
  * after [IMPROVED_AFTER], something new since the last pause —
  * a Sprosse the store did not hold, or a standing answer-streak record beaten;
- * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers,
- * where at least a third of the stretch missed — a few misses late in a stretch that mostly went right are no reason to stop.
+ * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers
+ * in a stretch of which at least half missed.
+ * A rough patch at the end of a stretch that went well stops nothing:
+ * the pause that falls due is celebrated as usual and only carries the suggestion to rest ([shaky]).
  * Where two fall on one answer, improving is named over struggling, and either over the count.
  *
  * A Sprosse the store did not hold is one cleared for the first time:
@@ -64,6 +66,8 @@ data class DrillPacing(
     val stretchFrom: Int = 0,
     /** What the run had gained when the current stretch began — improving asks for more than this. */
     val gainedBefore: Int = 0,
+    /** The last few answers went badly — a pause that falls due then carries the suggestion to rest, however the stretch went. */
+    val shaky: Boolean = false,
     /** Why the run waits on the learner; null while it runs on. */
     val pause: DrillPauseReason? = null,
 ) {
@@ -94,15 +98,16 @@ data class DrillPacing(
         val stretch = core.done - stretchFrom
         val misses = core.outcomes.takeLast(STRUGGLING_WINDOW).count { it == AnswerOutcome.Wrong }
         val stretchMisses = core.outcomes.drop(stretchFrom).count { it == AnswerOutcome.Wrong }
+        val shaky = misses >= STRUGGLING_MISSES
         val due = when {
             !endless -> null
             stretch >= IMPROVED_AFTER && moved.gained > gainedBefore -> DrillPauseReason.Improved
-            stretch >= STRUGGLING_AFTER && misses >= STRUGGLING_MISSES && stretchMisses * 3 >= stretch ->
+            stretch >= STRUGGLING_AFTER && misses >= STRUGGLING_MISSES && stretchMisses * 2 >= stretch ->
                 DrillPauseReason.Struggling
             stretch >= STRETCH -> DrillPauseReason.Count
             else -> null
         }
-        return moved.copy(pause = due)
+        return moved.copy(shaky = shaky, pause = due)
     }
 
     companion object {
