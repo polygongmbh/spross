@@ -38,7 +38,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
   commit your own changes without waiting for an explicit instruction.
 - **Every commit green**: run the narrowest gate that covers the diff.
-  No Kotlin/Swift changed → no build. No behavior changed → no test. No UI changed → no screenshot.
+  No Kotlin/Swift changed → no build. No behavior changed → no test.
+  No UI ADDED or rearranged → no screenshot, no `/verify`, no emulator: a removal the compilers cover is green once they are.
   Red in a file you didn't touch → someone else's break; commit `--only` your paths, move on.
   Red in a file nobody touched → stale Kotlin cache; `rm -rf kern/build/kotlin`, rebuild.
   Never stash, diagnose, or broaden the gate on someone else's failure.

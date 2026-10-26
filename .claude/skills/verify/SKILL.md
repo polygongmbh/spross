@@ -6,6 +6,7 @@ description: Runtime-verify Spross iOS changes on the simulator — build, insta
 # Verify Spross on the iOS Simulator
 
 Mac-only. On a Linux/cloud session this skill does nothing: skip it without comment.
+Scope it to the diff: where no UI is added or rearranged (a removal, a rename), the build below is the whole verification — stop there.
 
 Build (also the commit gate):
 
