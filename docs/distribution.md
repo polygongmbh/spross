@@ -48,7 +48,7 @@ The environment names the key —
 the same three variables CI sets, so there is one route in and a locally cut APK installs over a released one:
 
 ```sh
-. ~/keys/spross/release.env      # what release-keystore.sh wrote
+. <key-dir>/release.env         # what release-keystore.sh wrote
 ./gradlew :android:assembleRelease
 ```
 

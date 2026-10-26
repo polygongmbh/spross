@@ -4,7 +4,7 @@
 # app to every device that already has this one, and the only fix is uninstall.
 # So the key goes wherever you keep key files, named here, and never in the repo.
 #
-#   scripts/release-keystore.sh ~/keys/spross
+#   scripts/release-keystore.sh <key-dir>
 #
 # Writes three files into that directory, readable by you alone:
 #   release.jks         the key
