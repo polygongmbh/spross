@@ -257,14 +257,17 @@ What licenses a second component is a parameter attempted and found not to carry
 
 - **Width alone splits a window** into two panes, halves of its safe area around its center (`WindowPanes`),
   so a tablet, an unfolded foldable and any wide window answer to one rule, and a phone held upright never splits.
-- Text in a pane keeps a readable column; a screen without a pane design stands in the trailing pane.
+- Text in a pane keeps a readable column.
+  A screen without a pane design halves only with the hinge: on a foldable half open like a book it stands in the trailing half,
+  on any window lying flat it centers its column across the whole width.
 - The sections switch where each platform keeps its navigation on a wide window:
   iOS in the system's tab bar, Android on a navigation rail at the leading edge in place of the bottom bar.
 - Home puts what is looked at — the greeting, the trees and their days — in the leading pane with listening, an occasional detour,
   and the day's card, the drills and the companion in the trailing one;
   the Box puts its areas in one pane and the chosen area's words in the other.
-- A sheet stands on the trailing side: iOS asks the system to place it there, Android offsets its bottom sheet into the trailing pane's readable column;
-  an alert stays centered.
+- A sheet follows the same hinge: on a half-open book it stands on the trailing side —
+  iOS asks the system to place it there, Android offsets its bottom sheet into the trailing pane's readable column —
+  and lying flat it keeps the system's placement; an alert stays centered.
 - **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols, the way out on top —
   a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ with Done prominent at the bar's foot;
   elsewhere they keep their corners and titles.

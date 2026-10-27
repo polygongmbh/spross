@@ -39,8 +39,16 @@ class WindowPanesTests {
     }
 
     @Test
-    fun aSinglePaneScreenStandsInTheTrailingHalfOnceSplit() {
-        val panes = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0)
+    fun aSinglePaneScreenStandsInTheTrailingHalfOfAHalfOpenBook() {
+        val panes = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0, halfOpen = true)
         assertEquals(panes.panes.last(), panes.single)
+    }
+
+    @Test
+    fun aSinglePaneScreenCentersAcrossAWideWindowLyingFlat() {
+        val panes = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0)
+        assertTrue(panes.split)
+        assertEquals(WindowPanes.Span(0.0, 951.0 - 84.0), panes.single.frame)
+        assertEquals(951.0 - 84.0 - panes.single.column.end, panes.single.column.start)
     }
 }

@@ -24,10 +24,10 @@ extension WindowPanes.Pane {
     var columnWidth: CGFloat { CGFloat(column.width) }
 }
 
-/// Measures the width it is laid out in and hands kern's decision to `content` and the environment.
+/// Measures the width it is laid out in and the hinge, and hands kern's decision to `content` and the environment.
 struct PanesReader<Content: View>: View {
     @ViewBuilder var content: (WindowPanes?) -> Content
-    @State private var panes: WindowPanes?
+    @State private var measure: Measure?
 
     private struct Measure: Equatable {
         var width: CGFloat
@@ -36,19 +36,22 @@ struct PanesReader<Content: View>: View {
     }
 
     var body: some View {
-        content(panes)
-            .environment(\.windowPanes, panes)
-            .typeScaled()
-            // why: the proxy's size already stops at the safe area and its insets lie outside it,
-            // so the window is the two together.
-            .onGeometryChange(for: Measure.self) { proxy in
-                Measure(width: proxy.size.width,
-                        leading: proxy.safeAreaInsets.leading, trailing: proxy.safeAreaInsets.trailing)
-            } action: { measure in
-                panes = WindowPanes(windowWidth: Double(measure.width + measure.leading + measure.trailing),
-                                    leadingInset: Double(measure.leading),
-                                    trailingInset: Double(measure.trailing))
+        HingeReader { halfOpen in
+            let panes = measure.map {
+                WindowPanes(windowWidth: Double($0.width + $0.leading + $0.trailing),
+                            leadingInset: Double($0.leading), trailingInset: Double($0.trailing),
+                            halfOpen: halfOpen)
             }
+            content(panes)
+                .environment(\.windowPanes, panes)
+                .typeScaled()
+        }
+        // why: the proxy's size already stops at the safe area and its insets lie outside it,
+        // so the window is the two together.
+        .onGeometryChange(for: Measure.self) { proxy in
+            Measure(width: proxy.size.width,
+                    leading: proxy.safeAreaInsets.leading, trailing: proxy.safeAreaInsets.trailing)
+        } action: { measure = $0 }
     }
 }
 
@@ -59,7 +62,7 @@ extension View {
     }
 
     /// A screen with no two-pane design of its own: one readable column in kern's `single` pane —
-    /// centered where the window stays one pane, in the trailing half where it splits.
+    /// centered across the window, or in the trailing half of a foldable half open like a book.
     /// A phone passes through untouched.
     func readableColumn() -> some View {
         modifier(ReadableColumn())
@@ -75,13 +78,14 @@ private struct ReadableColumn: ViewModifier {
     @Environment(\.windowPanes) private var panes
 
     func body(content: Content) -> some View {
-        if let panes, panes.split || panes.single.columnWidth < panes.single.width {
+        let inHalf = panes.map { $0.split && $0.single.width == $0.trailing.width } ?? false
+        if let panes, inHalf || panes.single.columnWidth < panes.single.width {
             // why: a max, not a fixed width — a measurement a step behind the presentation's size
             // never lays the column out wider than it stands.
             content
                 .frame(maxWidth: panes.single.columnWidth)
                 .frame(maxWidth: panes.single.width)
-                .frame(maxWidth: .infinity, alignment: panes.split ? .trailing : .center)
+                .frame(maxWidth: .infinity, alignment: inHalf ? .trailing : .center)
         } else {
             content
         }
@@ -114,8 +118,8 @@ struct PaneSplit<Leading: View, Trailing: View>: View {
 // MARK: - Sheets
 
 extension View {
-    /// A sheet measured for its own panes; where the system places sheets beside its bar,
-    /// it stands on the trailing side, the bar keeping its controls.
+    /// A sheet measured for its own panes; on a foldable half open like a book,
+    /// it stands on the trailing side, the system's bar keeping its controls.
     func paneSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
                                 @ViewBuilder content: @escaping () -> Sheet) -> some View {
         sheet(isPresented: isPresented, onDismiss: onDismiss) {

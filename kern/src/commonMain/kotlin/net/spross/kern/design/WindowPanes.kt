@@ -12,12 +12,14 @@ import kotlin.math.min
  * Split, the leading pane stands half a gutter in from the safe area's edge,
  * as far as the trailing pane stands from the center, so neither half runs up against an edge.
  * Inside any pane, text stands in a [column] no wider than [READABLE_WIDTH], centered in the pane.
- * A screen without a two-pane design stands in the [single] pane: split, the trailing one,
- * beside the trailing edge where the system keeps its controls.
+ * A screen without a two-pane design stands in the [single] pane, which halves only where the hinge does:
+ * on a foldable [halfOpen] like a book, the trailing half, beside the edge where the system keeps its controls;
+ * on any window lying flat, the whole safe area, its column centered.
  *
  * Every figure is points (dp) from the window's leading edge; the insets are the safe area's.
+ * [halfOpen] is the platform's reading of its hinge — partly open, as a book, rather than flat or closed.
  */
-class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Double) {
+class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Double, halfOpen: Boolean = false) {
 
     /** One pane's share of the window: its [frame] and the readable [column] centered inside it. */
     data class Pane(val frame: Span, val column: Span)
@@ -32,13 +34,14 @@ class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Doub
 
     val split: Boolean get() = panes.size == 2
 
-    /** Where a screen without a two-pane design stands: the one pane, or the trailing half once split. */
-    val single: Pane get() = panes.last()
+    /** Where a screen without a two-pane design stands: the trailing half of a split book, else the whole safe area. */
+    val single: Pane
 
     init {
         val safeWidth = (windowWidth - leadingInset - trailingInset).coerceAtLeast(0.0)
+        val whole = pane(Span(leadingInset, safeWidth))
         panes = if (safeWidth < SPLIT_MIN_WIDTH) {
-            listOf(pane(Span(leadingInset, safeWidth)))
+            listOf(whole)
         } else {
             val start = leadingInset + GUTTER / 2
             val half = (safeWidth - GUTTER / 2 - GUTTER) / 2
@@ -47,6 +50,7 @@ class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Doub
                 pane(Span(start + half + GUTTER, half)),
             )
         }
+        single = if (split && halfOpen) panes.last() else whole
     }
 
     private fun pane(frame: Span): Pane {

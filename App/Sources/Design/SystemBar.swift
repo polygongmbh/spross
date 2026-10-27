@@ -68,13 +68,15 @@ extension View {
 }
 
 extension View {
-    /// A sheet's content asking to stand on the trailing side, where the system's bar is.
-    @ViewBuilder
+    /// A sheet's content asking to stand on the trailing side, where the system's bar is,
+    /// while the hinge stands half open; a window lying flat keeps the system's own placement.
     func trailingPresentation() -> some View {
-        if #available(iOS 27.0, *) {
-            presentationPlacement(.trailing)
-        } else {
-            self
+        HingeReader { halfOpen in
+            if #available(iOS 27.0, *), halfOpen {
+                presentationPlacement(.trailing)
+            } else {
+                self
+            }
         }
     }
 }
