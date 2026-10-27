@@ -4,9 +4,7 @@ import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -33,7 +31,8 @@ import net.spross.kern.trainer.DayLead
  * The north star screen: one glance = what to do right now.
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
- * trainers, the companion card, the fortnight behind it, and the trees. Which state card is kern's
+ * trainers, the companion card, the fortnight behind it, and the trees — dealt into two panes
+ * where the window splits ([PaneColumns]). Which state card is kern's
  * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
 @Composable
@@ -68,15 +67,20 @@ fun HomeScreen(model: AppModel) {
     var briefingOpen by remember { mutableStateOf(false) }
     val standing = model.numbers.homeStanding
 
+    val split = splitWindow()
     Box(Modifier.fillMaxSize()) {
-        Column(
+        // The phone's order; where the window splits, what is looked at and listening, an
+        // occasional detour, take the leading pane, the day's card, the drills and the
+        // companion the trailing one.
+        PaneColumns(
+            margin = Theme.spacing.xl,
+            spacing = Theme.spacing.xl,
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = Theme.spacing.xl),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+                .padding(bottom = Theme.spacing.xl + Theme.spacing.lg),
         ) {
-            PageTitle(hello, eyebrow = today)
+            Box(Modifier.pane(PaneSide.Leading)) { PageTitle(hello, eyebrow = today) }
 
             val pick = rememberSuggestedDrill(model, standing)
             val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
@@ -122,25 +126,36 @@ fun HomeScreen(model: AppModel) {
                 }
             }
 
-            ListenCard(model)
+            Box(Modifier.pane(PaneSide.Leading)) { ListenCard(model) }
 
             TrainerHubCard(model)
 
             TalkCard(model) { briefingOpen = true }
 
-            // The same fortnight the streak was counted from, on the very refresh that
-            // produced it — the strip reads kern's walk, never one of its own. It names
-            // itself, so nothing announces it a second time above.
-            ActivityStrip(model.numbers.activityWindow, stats?.streak ?: 0, health, chrome, locale)
-
-            HomeTrees(model)
-            Spacer(Modifier.height(Theme.spacing.lg))
+            Box(Modifier.pane(PaneSide.Leading)) {
+                TreesAndDays(model, stats?.streak ?: 0, health, locale, daysLast = split)
+            }
         }
         // why: a celebrated scramble close rains over the whole screen — the hub card wearing
         // its tile cannot hold it.
         ClosedRunConfetti(model.trainer)
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+}
+
+/**
+ * The fortnight and the trees: on a phone the strip over the picture, in the leading pane under it.
+ * The strip is the same fortnight the streak was counted from, on the very refresh that
+ * produced it — it reads kern's walk, never one of its own. It names itself, so nothing
+ * announces it a second time above.
+ */
+@Composable
+private fun TreesAndDays(model: AppModel, streak: Int, health: StreakHealth, locale: Locale, daysLast: Boolean) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl)) {
+        if (!daysLast) ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
+        HomeTrees(model)
+        if (daysLast) ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
+    }
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */

@@ -238,11 +238,11 @@ private fun RowScope.RootScaffold(model: AppModel, screens: ScreenTransition, ta
 }
 
 /**
- * The screens that lay the window's width out themselves — a run gives its card the whole width;
- * every other screen stands in one readable column ([singlePane]).
+ * The screens that lay the window's width out themselves — Home deals its cards into the panes,
+ * a run gives its card the whole width; every other screen stands in one readable column ([singlePane]).
  */
 private fun Screen.laysOutWidth(): Boolean = when (this) {
-    Screen.Session, is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble,
+    Screen.Home, Screen.Session, is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble,
     Screen.Opposites, is Screen.CountryDrill, is Screen.DateDrill -> true
     else -> false
 }
