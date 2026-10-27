@@ -44,7 +44,7 @@ fun PaneColumns(
             listOf(Column(inset, max(0, width - 2 * inset), null))
         } else {
             val leading = panes.panes.first()
-            val trailing = panes.single
+            val trailing = panes.panes.last()
             val trailingStart = width - trailing.frame.width.dp.roundToPx()
             val gutter = (trailing.frame.start - leading.frame.end).dp.roundToPx()
             val leadingStart = trailingStart - gutter - leading.frame.width.dp.roundToPx()
