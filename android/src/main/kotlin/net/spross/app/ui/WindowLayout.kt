@@ -10,9 +10,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -75,6 +79,38 @@ fun Modifier.singlePane(): Modifier {
         val placeable = measurable.measure(constraints.copy(minWidth = min(constraints.minWidth, width), maxWidth = width))
         val x = if (split) max(0, local - gap.roundToPx() - width) else (local - width) / 2
         layout(local, placeable.height) { placeable.placeRelative(x, 0) }
+    }
+}
+
+/**
+ * The two panes side by side, each holding its readable column — only for a split window;
+ * a screen keeps its phone layout where [WindowPanes.split] is false.
+ * The trailing pane ends at the edge, the leading one keeps kern's gutter from it.
+ */
+@Composable
+fun PaneSplit(
+    panes: WindowPanes,
+    modifier: Modifier = Modifier,
+    leading: @Composable () -> Unit,
+    trailing: @Composable () -> Unit,
+) {
+    Layout(listOf(leading, trailing), modifier) { (lead, trail), constraints ->
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+        val first = panes.panes.first()
+        val last = panes.single
+        val trailingStart = width - last.frame.width.dp.roundToPx()
+        val gutter = (last.frame.start - first.frame.end).dp.roundToPx()
+        val leadingStart = trailingStart - gutter - first.frame.width.dp.roundToPx()
+        fun place(pane: WindowPanes.Pane, start: Int, child: Measurable): Pair<Int, Placeable> {
+            val paneWidth = pane.frame.width.dp.roundToPx()
+            val column = min(pane.column.width.dp.roundToPx(), paneWidth)
+            return start + (paneWidth - column) / 2 to child.measure(Constraints.fixed(max(0, column), height))
+        }
+        val placed = listOf(place(first, leadingStart, lead.first()), place(last, trailingStart, trail.first()))
+        layout(width, height) {
+            placed.forEach { (x, placeable) -> placeable.placeRelative(x, 0) }
+        }
     }
 }
 

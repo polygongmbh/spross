@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextOverflow
@@ -98,6 +100,8 @@ internal fun AreaSection(
     onToggle: () -> Unit,
     /** Handed on to every row's menu: writing an own word from one of these. */
     onWriteOwn: (OwnWordDraft) -> Unit,
+    /** False in a split window's list, where [expanded] means chosen and the words stand in the other pane. */
+    showsCards: Boolean = true,
 ) {
     val chrome = model.chrome
     val box = model.box ?: return
@@ -106,18 +110,23 @@ internal fun AreaSection(
     // itself still derives its ids from the state it is about to change, so the
     // count and the action cannot come apart.
     val counts = model.numbers.shelfCounts[area]
-    val cards = remember(box.cards, area, expanded) {
-        if (expanded) BoxBrowser.cardsInArea(box, area) else emptyList()
+    val open = expanded && showsCards
+    val cards = remember(box.cards, area, open) {
+        if (open) BoxBrowser.cardsInArea(box, area) else emptyList()
     }
 
     val shape = MaterialTheme.shapes.medium
     // why: the ripple fills what the tap folds — the whole card while shut, only the heading
     // once the words hang under it, so it never bleeds past the card's own corners.
-    val headingShape = if (expanded) shape.copy(bottomStart = CornerSize(0), bottomEnd = CornerSize(0)) else shape
-    val chevronTurn by animateFloatAsState(if (expanded) 180f else 0f, label = "areaChevron")
+    val headingShape = if (open) shape.copy(bottomStart = CornerSize(0), bottomEnd = CornerSize(0)) else shape
+    val chevronTurn by animateFloatAsState(if (open) 180f else 0f, label = "areaChevron")
     val control = ShelfControl.of(counts, stats)
 
-    Column(Modifier.fillMaxWidth().panel(shape)) {
+    val chosen = expanded && !showsCards
+    Column(
+        Modifier.fillMaxWidth().panel(shape)
+            .then(if (chosen) Modifier.border(2.dp, Theme.colors.accent, shape) else Modifier),
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -125,8 +134,12 @@ internal fun AreaSection(
                 .clip(headingShape)
                 .clickable(onClick = onToggle)
                 .semantics {
-                    stateDescription =
-                        if (expanded) chrome.a11yStateExpanded else chrome.a11yStateCollapsed
+                    if (showsCards) {
+                        stateDescription =
+                            if (expanded) chrome.a11yStateExpanded else chrome.a11yStateCollapsed
+                    } else {
+                        selected = expanded
+                    }
                 }
                 .padding(Theme.spacing.lg),
         ) {
@@ -150,14 +163,14 @@ internal fun AreaSection(
                     },
                     onUnqueue = { model.updateBox { BoxEngine.unqueueArea(it, area) } })
                 Icon(
-                    SprossIcons.ChevronDown,
+                    if (showsCards) SprossIcons.ChevronDown else SprossIcons.ChevronRight,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.rotate(chevronTurn),
                 )
             }
         }
-        if (expanded) {
+        if (open) {
             Column(
                 modifier = Modifier.padding(start = Theme.spacing.lg, end = Theme.spacing.lg, bottom = Theme.spacing.lg),
                 verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),

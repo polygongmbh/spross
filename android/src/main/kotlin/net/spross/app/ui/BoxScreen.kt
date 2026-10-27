@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -88,6 +91,12 @@ private fun BoxBrowserScreen(
     val opening = remember { BoxFold.opening(sections, stats, openAt) }
     var openGroups by remember { mutableStateOf(opening.groups) }
     var openAreas by remember { mutableStateOf(opening.areas) }
+    // The area whose words the second pane shows, in a split window.
+    var chosen by remember {
+        mutableStateOf(openAt?.takeIf { it != OwnWords.AREA } ?: sections.flatMap { it.areas }.firstOrNull { it in opening.areas })
+    }
+    val panes = LocalWindowPanes.current
+    val split = panes?.split == true
     var scrollTo by remember { mutableStateOf(openAt) }
     var searching by remember { mutableStateOf(false) }
     // The own-word form, on whatever draft opened it: blank from the section's add button,
@@ -113,6 +122,7 @@ private fun BoxBrowserScreen(
         val fold = BoxFold(openGroups, openAreas).revealing(area, sections)
         openGroups = fold.groups
         openAreas = fold.areas
+        if (area != OwnWords.AREA) chosen = area
         scrollTo = area
     }
 
@@ -133,27 +143,32 @@ private fun BoxBrowserScreen(
         scrollTo = null
     }
 
+    // The form and the search have no pane design: each stands in one readable column.
     writing?.let { draft ->
-        OwnWordForm(
-            model = model,
-            initial = draft,
-            // why: the box comes back on the section the word landed in — written, rewritten
-            // or still half-written, that is the one place it can now be found.
-            onDone = { writing = null; reveal(OwnWords.AREA) },
-            onCancel = { writing = null },
-        )
+        Box(Modifier.fillMaxSize().singlePane()) {
+            OwnWordForm(
+                model = model,
+                initial = draft,
+                // why: the box comes back on the section the word landed in — written, rewritten
+                // or still half-written, that is the one place it can now be found.
+                onDone = { writing = null; reveal(OwnWords.AREA) },
+                onCancel = { writing = null },
+            )
+        }
         return
     }
 
     if (searching) {
-        BoxSearchScreen(
-            model = model,
-            naming = naming,
-            areas = areaNames,
-            areaStats = areaStats,
-            onReveal = { area -> searching = false; reveal(area) },
-            onClose = { searching = false },
-        )
+        Box(Modifier.fillMaxSize().singlePane()) {
+            BoxSearchScreen(
+                model = model,
+                naming = naming,
+                areas = areaNames,
+                areaStats = areaStats,
+                onReveal = { area -> searching = false; reveal(area) },
+                onClose = { searching = false },
+            )
+        }
         return
     }
 
@@ -166,67 +181,96 @@ private fun BoxBrowserScreen(
             box.cards.values.any { model.boxPronounceAction(it.target) != null }
         }
     }
-    Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-            contentPadding = PaddingValues(bottom = Theme.spacing.lg),
-        ) {
-            // The page's title and its own lines scroll away with the shelves.
-            item(key = PAGE_HEADER_KEY) {
-                Column {
-                    BoxTitle(chrome, onSearch = { searching = true })
-                    Text(
-                        chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    // why: same disclosure as the number and country reference tables —
-                    // said once for the page rather than as a glyph competing with every
-                    // row. Withheld where not one word can be heard, so the box never
-                    // promises a tap that would do nothing.
-                    if (anyWordCanBeHeard) {
-                        TapToHearHint(chrome, chrome.boxTapToHear)
+    val list = @Composable {
+        Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+                contentPadding = PaddingValues(bottom = Theme.spacing.lg),
+            ) {
+                // The page's title and its own lines scroll away with the shelves.
+                item(key = PAGE_HEADER_KEY) {
+                    Column {
+                        BoxTitle(chrome, onSearch = { searching = true })
+                        Text(
+                            chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        // why: same disclosure as the number and country reference tables —
+                        // said once for the page rather than as a glyph competing with every
+                        // row. Withheld where not one word can be heard, so the box never
+                        // promises a tap that would do nothing.
+                        if (anyWordCanBeHeard) {
+                            TapToHearHint(chrome, chrome.boxTapToHear)
+                        }
+                    }
+                }
+                itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
+                    when (item) {
+                        is BoxItem.Group -> GroupHeader(
+                            section = item.section,
+                            emojis = item.section.areas.joinToString("") { naming.emoji(it) },
+                            open = item.section.id in openGroups,
+                            chrome = chrome,
+                            onToggle = {
+                                openGroups = if (item.section.id in openGroups) {
+                                    openGroups - item.section.id
+                                } else {
+                                    openGroups + item.section.id
+                                }
+                            },
+                        )
+
+                        // In a split window an area opens by being chosen, its words standing in the other pane.
+                        is BoxItem.Area -> AreaSection(
+                            model = model,
+                            area = item.area,
+                            naming = naming,
+                            stats = areaStats[item.area],
+                            expanded = if (split) item.area == chosen else item.area in openAreas,
+                            onToggle = {
+                                if (split) {
+                                    chosen = item.area
+                                } else {
+                                    openAreas = if (item.area in openAreas) {
+                                        openAreas - item.area
+                                    } else {
+                                        openAreas + item.area
+                                    }
+                                }
+                            },
+                            onWriteOwn = { writing = it },
+                            showsCards = !split,
+                        )
+
+                        BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
                     }
                 }
             }
-            itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
-                when (item) {
-                    is BoxItem.Group -> GroupHeader(
-                        section = item.section,
-                        emojis = item.section.areas.joinToString("") { naming.emoji(it) },
-                        open = item.section.id in openGroups,
-                        chrome = chrome,
-                        onToggle = {
-                            openGroups = if (item.section.id in openGroups) {
-                                openGroups - item.section.id
-                            } else {
-                                openGroups + item.section.id
-                            }
-                        },
-                    )
-
-                    is BoxItem.Area -> AreaSection(
+        }
+    }
+    if (panes != null && split) {
+        // The areas in one pane, the chosen area's words in the other.
+        PaneSplit(panes, Modifier.fillMaxSize(), leading = list) {
+            val area = chosen ?: sections.firstOrNull()?.areas?.firstOrNull()
+            Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(Theme.spacing.xl)) {
+                if (area != null) {
+                    AreaSection(
                         model = model,
-                        area = item.area,
+                        area = area,
                         naming = naming,
-                        stats = areaStats[item.area],
-                        expanded = item.area in openAreas,
-                        onToggle = {
-                            openAreas = if (item.area in openAreas) {
-                                openAreas - item.area
-                            } else {
-                                openAreas + item.area
-                            }
-                        },
+                        stats = areaStats[area],
+                        expanded = true,
+                        onToggle = {},
                         onWriteOwn = { writing = it },
                     )
-
-                    BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
                 }
             }
         }
+    } else {
+        list()
     }
 }
 
