@@ -59,7 +59,7 @@ so it picks among takes and refuses only the clearly bad.
 
 ```sh
 scripts/audio-packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
-scripts/audio-packs.py sweep <lang>... --apply              # poor, doubted, squashed, one-sided or refused: the best other take
+scripts/audio-packs.py sweep <lang>... --apply              # poor, doubted, squashed, popping, one-sided or refused: the best other take
 scripts/audio-catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
 scripts/audio-catalog.py --ship --lang <lang>               # ships them
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
@@ -71,9 +71,10 @@ One run at a time — Commons throttles a second.
 fetches and measures are cached in the workspace, and a key already staged against what ships is passed over.
 An item Commons stays unreachable for keeps its take, and the run exits nonzero with the count.
 
-A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
-the score hears it as clean, the ear hears it squashed, and no gain undoes that.
-A sweep reconsiders it like a poor take and never swaps one in that no listener passed.
+A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source,
+and one whose plosives thump the microphone, a burst of bass under 80 Hz as loud as the word (`audio_voices.POP_DB`), pops:
+the score hears either as clean, the ear does not, and no gain undoes that.
+A sweep reconsiders such a take like a poor one and never swaps one in that no listener passed.
 
 Both pickers only print until given `--apply`, and never write a pack:
 a swap is a row in `$W/staged.tsv`, its bytes in `$W/staged/`,

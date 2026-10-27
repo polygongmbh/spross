@@ -105,6 +105,22 @@ def is_one_sided(balance):
     return balance is not None and balance > ONE_SIDED_DB
 
 
+# The loudest a burst of bass (`audio_measure.pop`) may reach against the word's own loudest stretch:
+# at it, a plosive's breath thumps the microphone as loud as the vowel is spoken. Of 395 heard takes,
+# de lieben (Leni Berlin), heard "noisy with multiple pop sounds", tops them all at +2.7 dB on its b.
+# Over the line besides stand en screen's k (+2.6) and Leni Berlin's "ich liebe dich" (+0.2), both heard
+# okay, and Goethe-Institut Cameroon's sw takes, heard airy and okay or good (up to +2.4). Every take
+# heard mediocre stays under -8, the cleanest professional voice (de Holunder Gabriel, great) peaks at
+# -4.1 on passagier's p, and the median heard take sits at -32. Of 9540 shipped takes 55 reach it, nearly
+# all on a p or b (de Jeuwre's park, praxen, apotheke; es Eavqwiki's polacos, poder) (2026-10-27).
+POP_DB = 0.0
+
+
+def is_popping(pop):
+    """A plosive thumps the microphone: `audio_measure.pop` at POP_DB or over."""
+    return pop is not None and pop >= POP_DB
+
+
 _verdicts = None
 
 

@@ -2,7 +2,7 @@
 
 A take is a dict `lang section key source author license path` (plus `sha256` where known):
 the Commons file it came from, who is credited under what, and its bytes on disk.
-`judge` answers with the take's `mos` and four findings, and each caller's policy is one line
+`judge` answers with the take's `mos` and five findings, and each caller's policy is one line
 over them — a fill and a ship take what is not `refused`, a prune removes what is.
 
   · `refused` — (reason, detail) of the first of: license refused or unknown, author names
@@ -10,6 +10,7 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
     heard as bad or by a POOR voice, under the language's floor, one-sided, speaking longer than its
     key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
+  · `pops` — a plosive thumps the microphone;
   · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
   · `vouched` — heard as okay or better.
 
@@ -22,10 +23,10 @@ import audio_index
 import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
-from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_rejected,
+from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_popping, is_rejected,
                           is_squashed, is_vouched, mos_floor)
 
-Judged = collections.namedtuple('Judged', 'mos refused hot doubted vouched')
+Judged = collections.namedtuple('Judged', 'mos refused hot pops doubted vouched')
 
 
 def license_refusal(license):
@@ -108,6 +109,7 @@ def judge(take, index=False, measured=None):
                                                                           audio_index.GAIN_LIMIT_DB)
     levels = ((measured['peak'], measured['loudness']) if measured is not None
               else audio_measure.peak_and_loudness(audio_index.FFMPEG, path))
-    return Judged(mos=mos, refused=refused, hot=is_squashed(*levels),
+    pop = (measured if measured is not None and 'pop' in measured else measure_pop(path))['pop']
+    return Judged(mos=mos, refused=refused, hot=is_squashed(*levels), pops=is_popping(pop),
                   doubted=is_doubted(digest, lang, author) or (mos is not None and mos < RECONSIDER_MOS),
                   vouched=is_vouched(digest))
