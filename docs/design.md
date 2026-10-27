@@ -262,8 +262,10 @@ What licenses a second component is a parameter attempted and found not to carry
   the Box puts its areas in one pane and the chosen area's words in the other.
 - A sheet is the system's, asked to stand on the trailing side, never placed by the app.
 - **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols, the way out on top —
-  a sheet's close, cancel, done and start, a round summary's ✕ and ways on, listening's ✕;
-  elsewhere they keep their corners, titles and the summary's bottom pair.
+  a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ with Done prominent at the bar's foot;
+  elsewhere they keep their corners and titles.
+- **Only a symbol that says what it does goes into the bar** (✕, ✓, ▶, send — `BarSymbol`);
+  an action that needs its words, like a summary's Chat about them and Keep practicing, stays a labeled button in the content.
 - **A session's card keeps the whole width**; where the system has a toolbar of its own,
   close, progress and read-aloud are its items, and the status line stays over the card.
 - **A big window enlarges type** whether or not it splits (`TypeScale`):

@@ -204,7 +204,7 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
             if inBar {
                 NavigationStack {
                     page(closes: false)
-                        .presentationActions(close: BarAction("a11y.action.endSession", icon: "xmark",
+                        .presentationActions(close: BarAction("a11y.action.endSession", .close,
                                                               action: onClose))
                 }
             } else {

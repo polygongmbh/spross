@@ -111,9 +111,9 @@ struct OwnWordFormView: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(isEditing ? "box.own.word.edit" : "box.own.word.title")
             .navigationBarTitleDisplayMode(.inline)
-            .presentationActions(close: BarAction("common.cancel", icon: "xmark") { close() },
+            .presentationActions(close: BarAction("common.cancel", .close) { close() },
                                  confirm: BarAction(isEditing ? "box.own.word.save" : "box.own.word.add",
-                                                    icon: "checkmark", enabled: hasAnything) { save() })
+                                                    .done, enabled: hasAnything) { save() })
         }
         .tint(Theme.colors.accent)
     }

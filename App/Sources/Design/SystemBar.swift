@@ -81,31 +81,43 @@ extension View {
 
 // MARK: - A presentation's actions
 
+/// The symbols the system's bar may hold: only those that say what they do without a word.
+/// An action that needs its words stays a titled button in the content.
+enum BarSymbol: String {
+    case close = "xmark"
+    case done = "checkmark"
+    case start = "play.fill"
+    case send = "paperplane"
+}
+
 /// One action a presentation's toolbar offers: its title, and the symbol it is drawn as
 /// in the system's bar, which holds symbols rather than words.
 struct BarAction {
     let title: LocalizedStringKey
-    let icon: String
+    let symbol: BarSymbol
     var enabled = true
     let action: () -> Void
 
-    init(_ title: LocalizedStringKey, icon: String, enabled: Bool = true, action: @escaping () -> Void) {
+    init(_ title: LocalizedStringKey, _ symbol: BarSymbol, enabled: Bool = true, action: @escaping () -> Void) {
         self.title = title
-        self.icon = icon
+        self.symbol = symbol
         self.enabled = enabled
         self.action = action
     }
 }
 
 extension View {
-    /// A presentation's way out, its way through and its ways on, as toolbar items.
-    /// Where the window has the system's vertical bar they stand in it as symbols, the way out on top;
-    /// elsewhere they keep their corners and titles — `closeAsIcon` draws the way out as a ✕ there too.
+    /// A presentation's way out, its way through, its way on and its main way to finish, as toolbar items.
+    /// Where the window has the system's vertical bar they stand in it as symbols, the way out on top
+    /// and `finish` at the foot, prominent; elsewhere they keep their corners and titles —
+    /// `closeAsIcon` draws the way out as a ✕ there too, and `finish` stays out, the content holding it.
     func presentationActions(close: BarAction? = nil, closeAsIcon: Bool = false,
-                             confirm: BarAction? = nil, go: [BarAction] = []) -> some View {
+                             confirm: BarAction? = nil, go: BarAction? = nil,
+                             finish: BarAction? = nil) -> some View {
         VerticalBarReader { inBar in
             self.modifier(PresentationActions(items: ActionItems(close: close, closeAsIcon: closeAsIcon,
-                                                                 confirm: confirm, go: go, inBar: inBar)))
+                                                                 confirm: confirm, go: go,
+                                                                 finish: inBar ? finish : nil, inBar: inBar)))
         }
     }
 }
@@ -127,7 +139,8 @@ private struct ActionItems: ToolbarContent {
     let close: BarAction?
     let closeAsIcon: Bool
     let confirm: BarAction?
-    let go: [BarAction]
+    let go: BarAction?
+    let finish: BarAction?
     let inBar: Bool
 
     var body: some ToolbarContent {
@@ -137,19 +150,31 @@ private struct ActionItems: ToolbarContent {
         if let confirm {
             ToolbarItem(placement: .confirmationAction) { button(confirm, symbol: inBar) }
         }
-        ForEach(go.indices, id: \.self) { index in
-            ToolbarItem(placement: .primaryAction) { button(go[index], symbol: inBar) }
+        if let go {
+            ToolbarItem(placement: .primaryAction) { button(go, symbol: inBar) }
+        }
+        if let finish {
+            ToolbarItem(placement: .bottomBar) { prominent(button(finish, symbol: true)) }
         }
     }
 
     private func button(_ item: BarAction, symbol: Bool) -> some View {
         Button(action: item.action) {
             if symbol {
-                Label(item.title, systemImage: item.icon).labelStyle(.iconOnly)
+                Label(item.title, systemImage: item.symbol.rawValue).labelStyle(.iconOnly)
             } else {
                 Text(item.title)
             }
         }
         .disabled(!item.enabled)
+    }
+
+    @ViewBuilder
+    private func prominent(_ button: some View) -> some View {
+        if #available(iOS 26.0, *) {
+            button.buttonStyle(.glassProminent)
+        } else {
+            button.buttonStyle(.borderedProminent)
+        }
     }
 }

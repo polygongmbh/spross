@@ -40,8 +40,8 @@ struct OwnEntrySheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("box.own.entry.edit")
             .navigationBarTitleDisplayMode(.inline)
-            .presentationActions(close: BarAction("common.cancel", icon: "xmark") { dismiss() },
-                                 confirm: BarAction("box.own.word.save", icon: "checkmark",
+            .presentationActions(close: BarAction("common.cancel", .close) { dismiss() },
+                                 confirm: BarAction("box.own.word.save", .done,
                                                     enabled: hasAnything) { save() })
         }
         .tint(Theme.colors.accent)

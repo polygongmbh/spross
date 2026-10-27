@@ -46,7 +46,7 @@ struct BriefingSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             // why: the paste can grow a long word list, so the accept action sits in
             // the bar rather than below it — nobody scrolls the whole list to keep it.
-            .presentationActions(close: BarAction("common.done", icon: "xmark") { dismiss() },
+            .presentationActions(close: BarAction("common.done", .close) { dismiss() },
                                  confirm: harvested.isEmpty ? nil : keepAction)
         }
         .tint(Theme.colors.accent)
@@ -201,7 +201,7 @@ struct BriefingSheet: View {
     /// Mirrors `bottomKeepButton` in the navigation bar (`.confirmationAction`) — a harvest
     /// long enough to fill the sheet must never make the accept action a scroll away.
     private var keepAction: BarAction {
-        BarAction("briefing.return.keep \(kept.count)", icon: "checkmark", enabled: !kept.isEmpty) {
+        BarAction("briefing.return.keep \(kept.count)", .done, enabled: !kept.isEmpty) {
             model.keepHarvested(kept)
             dismiss()
         }

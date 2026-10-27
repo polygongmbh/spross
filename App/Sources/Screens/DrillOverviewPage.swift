@@ -68,10 +68,10 @@ struct DrillOverviewPage<Sections: View>: View {
             .navigationBarTitleDisplayMode(.inline)
             // why: the start repeats the page's own start button on purpose — it is
             // the one that stays reachable once the reading has been scrolled into.
-            .presentationActions(close: BarAction("common.close", icon: "xmark") { dismiss() },
+            .presentationActions(close: BarAction("common.close", .close) { dismiss() },
                                  closeAsIcon: true,
-                                 go: [BarAction("trainer.overview.start", icon: "play.fill",
-                                                enabled: startable, action: start)])
+                                 go: BarAction("trainer.overview.start", .start,
+                                               enabled: startable, action: start))
         }
         .tint(Theme.colors.accent)
         // why: the confetti rains over the page the run came back to — a wave

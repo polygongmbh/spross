@@ -34,7 +34,7 @@ struct CatalogMatchSheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("box.own.match.title")
             .navigationBarTitleDisplayMode(.inline)
-            .presentationActions(close: BarAction("common.done", icon: "xmark") { dismiss() })
+            .presentationActions(close: BarAction("common.done", .close) { dismiss() })
         }
         .tint(Theme.colors.accent)
         .onAppear(perform: look)

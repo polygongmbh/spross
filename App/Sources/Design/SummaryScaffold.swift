@@ -6,7 +6,7 @@ import SwiftUI
 // The screen a round stops on — the session summary and a drill's pause
 // alike: a hero, one title, the round's tally, a milestone line where
 // something new was reached, an optional hint, and the exit pair on the
-// bottom edge (or in the system's bar). Each fills the slots with words; the layout, the type, the
+// bottom edge. Each fills the slots with words; the layout, the type, the
 // ways out and the celebration are this one's, so the two never drift apart
 // (`docs/design.md` § Counts & sessions).
 
@@ -34,44 +34,24 @@ struct SummaryScaffold<Hero: View>: View {
     @State private var celebration = 0
 
     var body: some View {
-        if celebrated {
-            layout
-                .overlay(ConfettiView(run: celebration).ignoresSafeArea())
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    celebration += 1
-                    Sound.cheer()
-                }
-                .onAppear { Sound.cheer() }
-        } else {
-            layout
-        }
-    }
-
-    /// Where the window has the system's bar, the ways out and on stand in it, the ✕ on top
-    /// where the round's own ✕ was; elsewhere they are the pair on the bottom edge and the corner ✕.
-    private var layout: some View {
         VerticalBarReader { inBar in
             if inBar {
+                // Where the window has the system's bar, it holds the ✕ on top and Done at its foot;
+                // the ways on keep their words in the content.
                 NavigationStack {
-                    page(buttons: false)
-                        .presentationActions(close: BarAction("common.done", icon: "xmark", action: onDone),
-                                             go: barGo)
+                    page(done: false)
+                        .presentationActions(close: BarAction("common.close", .close, action: onDone),
+                                             finish: BarAction("common.done", .done, action: onDone))
                 }
+                .tint(Theme.colors.accent)
             } else {
-                page(buttons: true)
+                page(done: true)
                     .sessionCloseCorner(label: "common.done", action: onDone)
             }
         }
     }
 
-    private var barGo: [BarAction] {
-        [onTalk.map { BarAction("session.done.talk", icon: "bubble.left.and.bubble.right", action: $0) },
-         onPractice.map { BarAction("session.done.keepPracticing", icon: "arrow.right", action: $0) }]
-            .compactMap { $0 }
-    }
-
-    private func page(buttons: Bool) -> some View {
+    private func page(done: Bool) -> some View {
         // why: Spacer()-centered content overflows a fixed frame under large
         // Dynamic Type — a fixed hero height leaves no give, so the caption
         // below it got compressed and truncated instead. A GeometryReader'd
@@ -85,12 +65,12 @@ struct SummaryScaffold<Hero: View>: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
+        // why: inside any toolbar host — a tap gesture around it swallows the bar's buttons.
+        .modifier(Celebration(active: celebrated, run: $celebration))
         // why: the actions stay on the bottom edge however far the results scroll.
         .safeAreaInset(edge: .bottom) {
-            if buttons {
-                SessionExitButtons(onDone: onDone, onTalk: onTalk, onPractice: onPractice)
-                    .padding(.horizontal, Theme.spacing.xl)
-            }
+            SessionExitButtons(onDone: done ? onDone : nil, onTalk: onTalk, onPractice: onPractice)
+                .padding(.horizontal, Theme.spacing.xl)
         }
         .measuredReadableColumn()
         .background(Theme.colors.background.ignoresSafeArea())
@@ -128,6 +108,27 @@ struct SummaryScaffold<Hero: View>: View {
     }
 }
 
+/// Confetti and the cheer as the screen arrives, both replayed by a tap anywhere but the buttons.
+private struct Celebration: ViewModifier {
+    let active: Bool
+    @Binding var run: Int
+
+    func body(content: Content) -> some View {
+        if active {
+            content
+                .overlay(ConfettiView(run: run).ignoresSafeArea())
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    run += 1
+                    Sound.cheer()
+                }
+                .onAppear { Sound.cheer() }
+        } else {
+            content
+        }
+    }
+}
+
 /// The emoji a summary stands under where no tree takes the hero slot.
 struct SummaryGlyph: View {
     let glyph: String
@@ -146,7 +147,8 @@ struct SummaryGlyph: View {
 // is the default one.
 
 struct SessionExitButtons: View {
-    var onDone: () -> Void
+    /// Left out where the system's bar holds Done.
+    var onDone: (() -> Void)?
     /// Left out where there is no box to brief (`AppModel.hasBriefing`).
     var onTalk: (() -> Void)?
     /// Left out when there is nothing more to practice.
@@ -165,10 +167,12 @@ struct SessionExitButtons: View {
             }
             // why: a label that wraps grows its own button only — the pair keeps one height.
             .fixedSize(horizontal: false, vertical: true)
-            Button(action: onDone) {
-                Label("common.done", systemImage: "checkmark").frame(maxWidth: .infinity)
+            if let onDone {
+                Button(action: onDone) {
+                    Label("common.done", systemImage: "checkmark").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(PrimaryButtonStyle())
             }
-            .buttonStyle(PrimaryButtonStyle())
         }
         // why: a celebration ending flush against the bottom edge reads as a
         // form to dismiss; the pair sits off it instead.
