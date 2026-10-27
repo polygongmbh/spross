@@ -26,21 +26,22 @@ fun SessionScreen(model: AppModel) {
 
     val closeLabel = model.chrome.commonDone
     val running = ui.card != null
-    val rail: (@Composable () -> Unit)? = if (!splitWindow()) null else {
+    val side: (@Composable () -> Unit)? = if (!splitWindow()) null else {
         {
-            RunRail(
+            RunSideBar(
                 model, model::finishSession, closeLabel,
                 progress = (ui.segments to ui.remaining).takeIf { running },
                 showsMuteButton = true,
+                onDone = model::finishSession,
             )
         }
     }
-    RunFrame(rail, Theme.spacing.lg) {
+    RunFrame(side, Theme.spacing.lg) {
         if (!running) {
             SessionSummary(model, ui)
             return@RunFrame
         }
-        if (rail == null) {
+        if (side == null) {
             RunTopBar(
                 model, ui.segments, model::finishSession, ui.remaining,
                 closeLabel = closeLabel,

@@ -271,12 +271,12 @@ What licenses a second component is a parameter attempted and found not to carry
 - **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols, the way out on top —
   a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ with Done prominent at the bar's foot;
   elsewhere they keep their corners and titles.
-  Android has no such bar: on a split window a run and a drill's page stand them in a rail at the leading edge,
-  where Material keeps a wide window's navigation — the ✕ heading it, a page's ▶ under it, a summary's Done staying its bottom button;
-  its sheets and listening keep their own bars.
+  Android has no such bar: on a split window a run and a drill's page stand them in a side bar of their own at the leading edge,
+  Material's toolbar of a page's controls turned upright, never the navigation rail —
+  the ✕ heading it, a page's ▶ or a summary's ✓ Done at its foot; its sheets and listening keep their own bars.
 - **Only a symbol that says what it does goes into the bar** (✕, ✓, ▶, send — `BarSymbol`);
   an action that needs its words, like a summary's Chat about them and Keep practicing, stays a labeled button in the content.
-- **A session's card keeps the whole width**; where the system has a toolbar of its own, or on Android's rail,
+- **A session's card keeps the whole width**; where the system has a toolbar of its own, or in Android's side bar,
   close, progress and read-aloud are its items, and the status line stays over the card.
 - **A big window enlarges type** whether or not it splits (`TypeScale`):
   its shorter side decides, so an unfolded foldable counts upright and on its side, and no phone does;

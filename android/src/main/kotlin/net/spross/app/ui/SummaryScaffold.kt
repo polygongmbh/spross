@@ -102,7 +102,8 @@ private fun SummaryLayout(
     heroLabel: String?,
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
-    // A split window's run keeps its way out in its rail ([RunRail]); the rest stands in one readable column.
+    // A split window's run keeps its way out and Done in its side bar ([RunSideBar]);
+    // the rest stands in one readable column.
     val split = splitWindow()
     Column(modifier = Modifier.fillMaxSize().singlePane(), horizontalAlignment = Alignment.CenterHorizontally) {
         // why: nothing is running any more, so the run's bar and read-aloud switch stay
@@ -158,7 +159,7 @@ private fun SummaryLayout(
             }
         }
         Spacer(Modifier.height(16.dp))
-        SessionExitButtons(chrome, onDone = onDone, onTalk = onTalk, onPractice = onPractice)
+        SessionExitButtons(chrome, onDone = onDone.takeIf { !split }, onTalk = onTalk, onPractice = onPractice)
     }
 }
 
@@ -190,12 +191,13 @@ fun SummaryGlyph(glyph: String, celebration: Int = 0) {
 /**
  * The pair every finished round exits through — the session summary and a drill's pause
  * alike, so the two screens never disagree about which way out is the default one.
- * [onTalk] and [onPractice] are left out where there is nothing to offer.
+ * [onTalk] and [onPractice] are left out where there is nothing to offer,
+ * [onDone] where the side bar holds it.
  */
 @Composable
 fun SessionExitButtons(
     chrome: Chrome,
-    onDone: () -> Unit,
+    onDone: (() -> Unit)?,
     onTalk: (() -> Unit)?,
     onPractice: (() -> Unit)?,
 ) {
@@ -206,8 +208,9 @@ fun SessionExitButtons(
             if (onTalk != null) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat, onTalk)
             if (onPractice != null) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.DoubleArrow, onPractice)
         }
-        Spacer(Modifier.height(8.dp))
+        if (onDone != null) Spacer(Modifier.height(8.dp))
     }
+    if (onDone == null) return
     Button(
         onClick = onDone,
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
