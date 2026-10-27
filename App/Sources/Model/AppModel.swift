@@ -91,6 +91,9 @@ final class AppModel {
     /// Each shelf's cards in seed order. One shelf's answer filters and sorts the
     /// whole box, so grouping them all at once costs what a single shelf does.
     private(set) var cardsByArea: [String: [Card]] = [:]
+    /// Which box-drawn drills the box can ask at all — the hub's chips and Home's
+    /// suggestion read them on every redraw, and each is a sweep of the box.
+    private(set) var boxDrills = BoxDrills()
     /// The typed-answer grader over the whole join, held until the box moves.
     /// Building it walks every card's accepted forms through the normalizer, so
     /// a session that rebuilt it per card paid for the entire join on every
@@ -336,6 +339,7 @@ final class AppModel {
         areaStatsByName = Dictionary(uniqueKeysWithValues: (stats?.areas ?? []).map { ($0.name, $0) })
         cardTotal = box?.cards.count ?? 0
         cardsByArea = box.map { BoxBrowser.shared.cardsByArea(state: $0) } ?? [:]
+        boxDrills = BoxDrills(model: self)
     }
 
     /// What the trainer card can offer for this pair. A catalog question, not a

@@ -66,15 +66,13 @@ struct TrainerHubView: View, LanguageNaming {
 
     /// Whether the box holds enough settled single words to be worth
     /// mixing. Kern's own floor, read — this side counts nothing.
-    var wordScrambleAvailable: Bool { WordScrambleAvailability(model: model).drillAvailable }
+    var wordScrambleAvailable: Bool { model.boxDrills.words }
 
     /// Whether the box has unlocked enough long-enough phrases to arrange.
-    var sentenceScrambleAvailable: Bool {
-        SentenceScrambleAvailability(model: model).drillAvailable
-    }
+    var sentenceScrambleAvailable: Bool { model.boxDrills.phrases }
 
     /// Whether the box holds enough pairs whose both words have arrived.
-    var oppositesAvailable: Bool { OppositesAvailability(model: model).drillAvailable }
+    var oppositesAvailable: Bool { model.boxDrills.opposites }
 
     var body: some View {
         if !chips.isEmpty {

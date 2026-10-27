@@ -22,9 +22,8 @@ extension SprossKern.OppositesAvailability.Report: ScrambleReport {}
 /// must be before the drill exists at all and how tall the ladder runs are all
 /// kern's, out of the box alone.
 ///
-/// Deliberately NOT cached: the pool grows as words settle and as the join
-/// unlocks phrases, so the hub rebuilds this rather than deciding once at
-/// launch that a drill is empty.
+/// Taken again wherever the box moves (`BoxDrills`): the pool grows as words
+/// settle and as the join unlocks phrases, so no drill is decided empty once at launch.
 @MainActor
 struct ScrambleAvailability<Report: ScrambleReport> {
 
@@ -68,5 +67,22 @@ extension ScrambleAvailability where Report == SprossKern.OppositesAvailability.
         let pairs = model.catalog?.oppositePairs ?? []
         self.init(model: model, empty: .init(prompts: []),
                   of: { SprossKern.OppositesAvailability.shared.report(box: $0, pairs: pairs) })
+    }
+}
+
+/// Whether each box-drawn drill can ask this box anything, taken with the rest of
+/// the standing in `AppModel.refreshStats`, never per redraw.
+@MainActor
+struct BoxDrills: Equatable {
+    var words = false
+    var phrases = false
+    var opposites = false
+
+    init() {}
+
+    init(model: AppModel) {
+        words = WordScrambleAvailability(model: model).drillAvailable
+        phrases = SentenceScrambleAvailability(model: model).drillAvailable
+        opposites = OppositesAvailability(model: model).drillAvailable
     }
 }
