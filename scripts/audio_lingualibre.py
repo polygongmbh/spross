@@ -14,6 +14,7 @@ import sys
 import unicodedata
 
 import audio_commons
+from audio_gates import apostrophe_folded
 from audio_routes import WORKSPACE
 
 CATEGORY = "Category:Lingua Libre pronunciation-%s"
@@ -111,6 +112,7 @@ def candidates(files, code, wanted):
         if match and match.group("code") == code:
             rests.append((match.group("rest"), name))
     known = speakers([rest for rest, _ in rests])
+    folded = {apostrophe_folded(w): w for w in wanted}
     found = {}
     for rest, name in rests:
         parts = rest.split("-")
@@ -118,8 +120,8 @@ def candidates(files, code, wanted):
         # why: no known speaker heads it → assume the plain one-segment name rather than
         # scanning for a cut that flatters the search, which is the bug this replaced.
         cut = max(cuts) if cuts else 1
-        word = "-".join(parts[cut:]).lower()
-        if word in wanted:
+        word = folded.get(apostrophe_folded("-".join(parts[cut:]).lower()))
+        if word:
             found.setdefault(word, []).append(("-".join(parts[:cut]), name))
     return found
 
