@@ -38,12 +38,15 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Spross">
+        <!-- why: a fold or a window resize changes the size class and the density as well as
+             the size; Compose relays them all, so the composition — a half-typed answer, an
+             open sheet — carries through instead of being rebuilt. -->
         <activity
             android:name=".SprossActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
