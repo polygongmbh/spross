@@ -11129,15 +11129,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-s’habiller.wav"
     },
     "s'il vous plaît": {
-      "author": "DenisdeShawi",
+      "author": "LoquaxFR",
       "file": "words/su0027il_vous_plau00eet.mp3",
-      "gain": 5.0,
-      "gate": -72.4,
-      "lead": 150,
+      "gain": 4.4,
+      "gate": -78.9,
+      "lead": 210,
       "matches": "s'il vous plaît",
-      "mos": 2.57,
-      "sha256": "64e1347166210b6e89c48e5d8fecc1caf26d056b8aff2057516621ee2ed4e3f2",
-      "source": "LL-Q150 (fra)-DenisdeShawi-s’il vous plaît.wav"
+      "mos": 3.27,
+      "sha256": "0951c1d13102a1c77dd512016ff5e881a2b58cbdb5801b1d54fce146c13e6b75",
+      "source": "LL-Q150 (fra)-LoquaxFR-s’il vous plaît.wav"
     },
     "s'inscrire": {
       "author": "Sartus85",
