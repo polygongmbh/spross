@@ -109,7 +109,8 @@ def sample(argv):
     parser = argparse.ArgumentParser(
         prog='audio-listen.py sample',
         description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet, '
-                    'or out of the takes --word names, rated or not.')
+                    'or out of the takes --word names, rated or not, and starts rating it when run from a terminal '
+                    '(an existing set of that NAME resumes).')
     parser.add_argument('name')
     parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'), required=True,
                         help='shipped: the lowest scorers of what ships; journal: the swaps staged or shipped '
@@ -167,7 +168,10 @@ def sample(argv):
         sys.exit('nothing unrated matches')
     out = os.path.join(REVIEW, '%s-%s' % (datetime.date.today().isoformat(), args.name))
     if os.path.exists(os.path.join(out, 'set.tsv')):
-        sys.exit('%s already holds a set' % out)
+        if not sys.stdin.isatty():
+            sys.exit('%s already holds a set' % out)
+        print('%s already holds a set, resuming it\n' % out)
+        return listen(os.path.join(out, 'set.tsv'))
     os.makedirs(out, exist_ok=True)
     context = '%s %s' % (datetime.date.today().isoformat(), args.name.replace('-', ' '))
     with open(os.path.join(out, 'set.tsv'), 'w', encoding='utf-8', newline='') as handle:
@@ -180,6 +184,10 @@ def sample(argv):
                              '' if take['mos'] is None else '%.2f' % take['mos'],
                              '%s (%s, %s)' % (context, take['section'], take['why'])])
             print('%02d %s %-20s %-22s %s' % (number, take['lang'], take['word'][:20], take['speaker'][:22], take['why']))
+    # why: run from a terminal, drawing a set starts rating it; run by a script, it hands back the command.
+    if sys.stdin.isatty():
+        print()
+        return listen(os.path.join(out, 'set.tsv'))
     print('scripts/audio-listen.py %s' % os.path.join(out, 'set.tsv'))
 
 
@@ -244,18 +252,21 @@ def main():
     parser.add_argument('row', nargs='?', help='re-rate just the takes it names, rated already or not: a row number '
                                                'as the prompt shows it, else every take whose word contains it')
     args = parser.parse_args()
-    path = args.set
+    listen(args.set, args.row)
+
+
+def listen(path, row_named=None):
     base = os.path.dirname(os.path.abspath(path))
     listed = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
     default_context = os.path.basename(base)
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
     rated = lambda row: (row['sha256'], context(row)) in done
-    picking = args.row is not None
+    picking = row_named is not None
     if picking:
-        picked = named(listed, args.row)
+        picked = named(listed, row_named)
         if not picked:
-            sys.exit('%s names no row in %s' % (args.row, path))
+            sys.exit('%s names no row in %s' % (row_named, path))
     else:
         picked = list(range(len(listed)))
 

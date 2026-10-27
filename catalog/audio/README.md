@@ -113,6 +113,7 @@ the lowest scorers that ship, the staged and shipped swaps most likely to be wro
 or one take of each voice nobody heard yet —
 and with `--word [LANG:]FORM` (repeatable, or `--words FILE`, one per line) every take of the keys it names instead, rated or not,
 so a listener is handed what a run shipped as one set rather than files opened one by one.
+Run from a terminal it starts rating the set it drew, or resumes the one already under that name.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are unversioned research input;
 what is committed here is the shipped bytes and the license record that has to travel with them.

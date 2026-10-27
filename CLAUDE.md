@@ -22,7 +22,7 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
-scripts/audio-listen.py <set>     # takes for the user's ear: `sample NAME --from shipped --word es:bota` builds a set, hand the user its path to run as `! scripts/audio-listen.py <set>`, never files one by one
+scripts/audio-listen.py <set>     # takes for the user's ear: build the set yourself (`sample NAME --from shipped --word es:bota`) and hand the user only `! scripts/audio-listen.py <set>` — never a `sample` command, never files one by one
 scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/release.md)
 ```
 
