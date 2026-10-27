@@ -148,8 +148,14 @@ extension TrainerHubView {
     /// reach them with `-uitest-trainer numbers -uitest-exercises clock
     /// -uitest-run 1` and `-uitest-trainer letters`, which is also the only way
     /// to photograph a modifier or a mixed selection.
+    /// Once per launch: the card appears again after every return to Home and every rotation,
+    /// and a page reopening each time would read as one the learner never dismissed.
     func uitestDestination(_ raw: String) -> HubDestination? {
-        Drill.allCases.first { $0.uitestName == raw }.flatMap { destination(for: $0) }
+        guard !Self.uitestOpened else { return nil }
+        Self.uitestOpened = true
+        return Drill.allCases.first { $0.uitestName == raw }.flatMap { destination(for: $0) }
     }
+
+    private static var uitestOpened = false
 }
 #endif
