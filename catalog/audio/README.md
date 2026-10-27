@@ -103,7 +103,8 @@ scripts/audio-catalog.py --remove <lang> <section> <key>
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`** with its source, sha256 and `mos`,
 so the next revision of the measure is tested against the ear rather than tuned to a handful of files.
 A verdict also overrules the score for those bytes:
-bad never ships, and bad or mediocre has every other take of its word tried.
+bad never ships, bad or mediocre has every other take of its word tried,
+and a take keeps its place against any challenger a listener rated lower.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.
 `../../scripts/audio-listen.py` plays takes and rates each with one key, writing the verdicts itself:

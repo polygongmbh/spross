@@ -37,7 +37,7 @@ from audio_manifest import audio_dir, read_manifest
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
-                          is_doubted, is_one_sided, is_overlong, is_squashed, is_voice_doubted, is_vouched,
+                          heard_over, is_doubted, is_one_sided, is_overlong, is_squashed, is_voice_doubted, is_vouched,
                           mos_floor)
 
 
@@ -161,7 +161,8 @@ def best_option(take, options, lang, floor, weight):
         sha = digest_of(path)
         why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
             'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
-            'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
+            'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
+            'heard worse' if heard_over(take['sha256'], sha) else None
         if why:
             print('  next   %-18s (%s %s)' % (take['key'], name, why))
             continue
@@ -231,7 +232,8 @@ def consolidate(lang, section, catalog, measures, only, apply):
             verdict = judged(take, name, record, path, measures.result(sha, measures.submit(sha, path)))
             why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
                 'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
-                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else None
+                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
+                'heard worse' if heard_over(take['sha256'], sha) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], record.get('author', '?'), why))
                 continue

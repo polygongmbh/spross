@@ -138,6 +138,13 @@ def is_doubted(sha256, lang=None, author=None):
     return verdict(sha256) in ('bad', 'mediocre') or _poor(sha256, lang, author)
 
 
+def heard_over(sha256, other):
+    """A listener rated [sha256] above [other]: a challenger heard worse than the take it would replace."""
+    ranks = ['bad', 'mediocre', 'okay', 'good', 'great']
+    mine, theirs = verdict(sha256), verdict(other)
+    return mine in ranks and theirs in ranks and ranks.index(mine) > ranks.index(theirs)
+
+
 def is_vouched(sha256):
     """Heard as okay or better: kept whatever the score or the squash measure says of it."""
     return verdict(sha256) in ('okay', 'good', 'great')
