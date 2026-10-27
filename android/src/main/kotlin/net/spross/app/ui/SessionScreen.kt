@@ -24,34 +24,18 @@ fun SessionScreen(model: AppModel) {
     val ui = model.sessionUi ?: return
     BackHandler { model.finishSession() }
 
-    val closeLabel = model.chrome.commonDone
-    val running = ui.card != null
-    val side: (@Composable () -> Unit)? = if (!splitWindow()) null else {
-        {
-            RunSideBar(
-                model, model::finishSession, closeLabel,
-                progress = (ui.segments to ui.remaining).takeIf { running },
-                showsMuteButton = true,
-                onDone = model::finishSession,
-            )
-        }
-    }
-    RunFrame(side, Theme.spacing.lg) {
-        if (!running) {
+    RunFrame(Theme.spacing.lg) {
+        if (ui.card == null) {
             SessionSummary(model, ui)
             return@RunFrame
         }
-        if (side == null) {
-            RunTopBar(
-                model, ui.segments, model::finishSession, ui.remaining,
-                closeLabel = closeLabel,
-                // why: the session reads both prompt and answer aloud, so it owes the
-                // learner a way to silence them here.
-                showsMuteButton = true,
-            )
-        } else {
-            VolumeHint(model, active = !model.pronouncer.muted)
-        }
+        RunTopBar(
+            model, ui.segments, model::finishSession, ui.remaining,
+            closeLabel = model.chrome.commonDone,
+            // why: the session reads both prompt and answer aloud, so it owes the
+            // learner a way to silence them here.
+            showsMuteButton = true,
+        )
         TurnCard(model, ui)
     }
 }

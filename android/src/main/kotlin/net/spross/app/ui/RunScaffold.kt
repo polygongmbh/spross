@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -91,52 +90,20 @@ fun RunTopBar(
 }
 
 /**
- * [RunTopBar] on its side, where the window splits ([TaskSideBar]): the card keeps the whole
- * width beside it. The way out heads the bar, the progress runs down under it, and the
- * read-aloud switch closes it; the low-volume hint and the score line stay over the card,
- * where their words fit. A finished round's bar keeps the way out on top and [onDone], the
- * summary's Done, prominent at its foot ([progress] null).
- */
-@Composable
-fun RunSideBar(
-    model: AppModel,
-    onClose: () -> Unit,
-    closeLabel: String,
-    progress: Pair<List<AnswerOutcome>, Int>? = null,
-    showsMuteButton: Boolean = false,
-    onDone: (() -> Unit)? = null,
-) = TaskSideBar {
-    RunCloseButton(onClose, closeLabel)
-    if (progress != null) {
-        val (outcomes, remaining) = progress
-        SegmentsBar(outcomes, remaining, Modifier.weight(1f).padding(vertical = Theme.spacing.sm), vertical = true)
-        if (showsMuteButton) ReadAloudSwitch(model)
-    } else if (onDone != null) {
-        Spacer(Modifier.weight(1f))
-        SideBarAction(SprossIcons.Check, model.chrome.commonDone, onClick = onDone)
-    }
-}
-
-/**
- * A run's frame: [RunTopBar] over the content on one pane, [RunSideBar] beside it where the
- * window splits ([side] then non-null). One structure either way, so the content keeps its
- * state — the turn's field and focus — through a fold.
- * The card is the one thing on screen, so a big window grows its type most ([TypeScaled]).
+ * A run's frame: [RunTopBar] and the content in one column the whole width of the window,
+ * on a phone and a wide window alike — Material's app bar spans the window, and the card
+ * keeps all of it. The card is the one thing on screen, so a big window grows its type most ([TypeScaled]).
  */
 @Composable
 fun RunFrame(
-    side: (@Composable () -> Unit)?,
     spacing: Dp,
     content: @Composable ColumnScope.() -> Unit,
 ) = TypeScaled(session = true) {
-    Row(Modifier.fillMaxSize().padding(Theme.spacing.lg)) {
-        side?.invoke()
-        Column(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
-            verticalArrangement = Arrangement.spacedBy(spacing),
-            content = content,
-        )
-    }
+    Column(
+        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(spacing),
+        content = content,
+    )
 }
 
 /**
@@ -246,29 +213,14 @@ fun DrillRunScaffold(
     BackHandler(enabled = backLeaves) { leave() }
     DrillRunEffects(run, leave, model)
     val pause = run.progress.pause
-    val closeLabel = model.chrome.commonClose
-    val side: (@Composable () -> Unit)? = if (!splitWindow()) null else {
-        {
-            RunSideBar(
-                model, leave, closeLabel,
-                progress = (outcomes to 1).takeIf { pause == null },
-                showsMuteButton = showsMuteButton,
-                onDone = leave,
-            )
-        }
-    }
-    RunFrame(side, Theme.spacing.md) {
+    RunFrame(Theme.spacing.md) {
         // why: kern's pause stands in place of the run — the body leaves composition, so
         // what it does on a question's arrival (autoplay, focus) waits for the run to go on.
         if (pause != null) {
             DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing, cheer = model.cues::cheer)
             return@RunFrame
         }
-        if (side == null) {
-            RunTopBar(model, outcomes, leave, showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute)
-        } else {
-            VolumeHint(model, active = speaksPastMute || (showsMuteButton && !model.pronouncer.muted))
-        }
+        RunTopBar(model, outcomes, leave, showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute)
         // why: the score line is chrome — it stays under the bar while the question scrolls.
         DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
         Column(

@@ -102,64 +102,64 @@ private fun SummaryLayout(
     heroLabel: String?,
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
-    // A split window's run keeps its way out and Done in its side bar ([RunSideBar]);
-    // the rest stands in one readable column.
-    val split = splitWindow()
-    Column(modifier = Modifier.fillMaxSize().singlePane(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxSize()) {
         // why: nothing is running any more, so the run's bar and read-aloud switch stay
-        // behind and only the way out stands in the corner it held (iOS `sessionCloseCorner`).
-        if (!split) RunCloseButton(onDone, chrome.commonDone, Modifier.align(Alignment.Start))
-        // why: the actions stay on the bottom edge however far the results scroll.
-        BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
-            val ceiling = maxHeight * AreaTree.HERO_SHARE.toFloat()
-            Column(
-                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                hero(ceiling)
-                if (heroLabel != null) {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        heroLabel,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                    )
-                }
-                Spacer(Modifier.height(16.dp))
-                Text(title, style = MaterialTheme.typography.headlineLarge, textAlign = TextAlign.Center)
-                if (tally != null) {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        tally,
-                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                    )
-                }
-                if (milestone != null) {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        milestone,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Theme.colors.accent,
-                        textAlign = TextAlign.Center,
-                    )
-                }
-                if (hint != null) {
+        // behind and only the way out stands in the window's corner it held (iOS `sessionCloseCorner`);
+        // the rest stands in one readable column.
+        RunCloseButton(onDone, chrome.commonDone)
+        Column(modifier = Modifier.weight(1f).fillMaxWidth().singlePane(), horizontalAlignment = Alignment.CenterHorizontally) {
+            // why: the actions stay on the bottom edge however far the results scroll.
+            BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
+                val ceiling = maxHeight * AreaTree.HERO_SHARE.toFloat()
+                Column(
+                    modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    hero(ceiling)
+                    if (heroLabel != null) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            heroLabel,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                     Spacer(Modifier.height(16.dp))
-                    Text(
-                        hint,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                    )
+                    Text(title, style = MaterialTheme.typography.headlineLarge, textAlign = TextAlign.Center)
+                    if (tally != null) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            tally,
+                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                    if (milestone != null) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            milestone,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Theme.colors.accent,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                    if (hint != null) {
+                        Spacer(Modifier.height(16.dp))
+                        Text(
+                            hint,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                 }
             }
+            Spacer(Modifier.height(16.dp))
+            SessionExitButtons(chrome, onDone = onDone, onTalk = onTalk, onPractice = onPractice)
         }
-        Spacer(Modifier.height(16.dp))
-        SessionExitButtons(chrome, onDone = onDone.takeIf { !split }, onTalk = onTalk, onPractice = onPractice)
     }
 }
 
@@ -191,13 +191,12 @@ fun SummaryGlyph(glyph: String, celebration: Int = 0) {
 /**
  * The pair every finished round exits through — the session summary and a drill's pause
  * alike, so the two screens never disagree about which way out is the default one.
- * [onTalk] and [onPractice] are left out where there is nothing to offer,
- * [onDone] where the side bar holds it.
+ * [onTalk] and [onPractice] are left out where there is nothing to offer.
  */
 @Composable
 fun SessionExitButtons(
     chrome: Chrome,
-    onDone: (() -> Unit)?,
+    onDone: () -> Unit,
     onTalk: (() -> Unit)?,
     onPractice: (() -> Unit)?,
 ) {
@@ -208,9 +207,8 @@ fun SessionExitButtons(
             if (onTalk != null) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat, onTalk)
             if (onPractice != null) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.DoubleArrow, onPractice)
         }
-        if (onDone != null) Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(8.dp))
     }
-    if (onDone == null) return
     Button(
         onClick = onDone,
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
