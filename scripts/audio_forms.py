@@ -154,7 +154,7 @@ def variants(text, lang):
     detachable particle or a reflexive ending (`bare_form`: sw `ku-`/`kw-`, en `to `, de `sich `,
     es `-se`) is one the recordings may lack, tried after the whole form, as is a Swahili adjective's leading `-`;
     Spanish opens exclamations with `¡`/`¿`, which nobody pronounces."""
-    t = re.sub(r'[!?.,;:]+$', '', unicodedata.normalize('NFC', text.strip()))
+    t = re.sub(r'[\s!?.,;:]+$', '', unicodedata.normalize('NFC', text.strip()))
     out = [t.lower()]
     stem = bare_form(t, language_info(lang))
     if stem:
