@@ -16,12 +16,12 @@ VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs'
 WELL_VOICED = frozenset({"de", "en", "es", "fr", "it", "uk"})
 
 # The lowest `mos` a recording may ship at. Where the device voice is missing (eo, sw) the
-# bar only refuses the clearly bad; where it is good, the bar is a notch higher and a word
-# under it is left to the voice. Under 1.4 a listener heard only bad takes (it Francyskus);
-# from 1.42 up voices split by speaker, not by score (es Marreromarco okay at 1.42 and good
-# at 1.46, uk Галя Раптова good throughout 2.2–2.4), so the score cannot draw a higher line.
+# bar only refuses the clearly bad: under 1.4 a listener heard only bad takes (it Francyskus).
+# Where it is good, a recording has to beat that voice, and a mediocre one does not: under 1.8
+# most takes were heard bad or mediocre (17 of 25 in the well-voiced languages, 2026-10-27),
+# over it most passed. A take a listener passed ships whatever it scores.
 NO_VOICE_MOS_FLOOR = 1.3
-VOICED_MOS_FLOOR = 1.4
+VOICED_MOS_FLOOR = 1.8
 
 
 def mos_floor(lang):

@@ -81,7 +81,7 @@ def judge(take, index=False, measured=None):
         refused = 'silent', 'decodes to silence'
     if not refused and is_rejected(digest, lang, author):
         refused = 'poor', 'heard as bad'
-    if not refused and mos is not None and mos < mos_floor(lang):
+    if not refused and mos is not None and mos < mos_floor(lang) and not is_vouched(digest):
         refused = 'poor', 'mos %.2f, floor is %.2f' % (mos, mos_floor(lang))
     if not refused:
         balance = (measured or {}).get('balance')

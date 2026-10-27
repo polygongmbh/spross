@@ -45,7 +45,7 @@ what a take must pass on its own is the take judge's (`../../scripts/audio_judge
 Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`):
 where it is missing (eo, sw) only the clearly bad are refused,
-where it is good a recording has to beat it,
+where it is good a recording has to beat it, unless a listener passed it,
 and `--prune-poor` hands anything shipped that the judge now refuses to it.
 
 A full sweep also re-checks what already ships, in any language:
