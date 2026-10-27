@@ -26,11 +26,13 @@ struct HomeView: View {
         let lead = dayLead(pick)
         Group {
             if let panes, panes.split {
-                // What is looked at on one pane; what is tapped on the other, beside the system's controls.
+                // What is looked at, and listening, an occasional detour, on one pane;
+                // the day's card and the drills on the other, beside the system's controls.
                 PaneSplit(panes: panes) {
                     page {
                         header
                         trees
+                        listeningCard
                     }
                 } trailing: {
                     page {
@@ -43,6 +45,7 @@ struct HomeView: View {
                 page {
                     header
                     day(offer: offer, hub: hub, pick: pick, lead: lead)
+                    listeningCard
                     hub
                     briefingCard
                     trees
@@ -79,7 +82,7 @@ struct HomeView: View {
         .scrollBounceBehavior(.basedOnSize)
     }
 
-    /// The day's card and listening.
+    /// The day's card.
     @ViewBuilder
     private func day(offer: SessionOffer, hub: TrainerHubView, pick: DrillSuggestion.Pick?,
                      lead: DayLead) -> some View {
@@ -103,7 +106,6 @@ struct HomeView: View {
         } else {
             doneCard
         }
-        listeningCard
     }
 
     private var trees: some View {
