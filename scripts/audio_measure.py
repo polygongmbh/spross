@@ -18,8 +18,10 @@ import numpy as np
 
 # SPEECH SPAN — where a take's speech starts and ends, read off 10 ms frames' sample peaks.
 # -40 dBFS is where a Commons transcode's room tone sits below its speech. A file whose edge
-# holds a steady noise well under its loudest frame (it frigorifero: two seconds of hum at -24
-# before the word) raises the bar to just over that noise instead. A loud frame with no other
+# holds a steady noise well under its loudest LOUDEST_MS (it frigorifero: two seconds of hum at -24
+# before the word) raises the bar to just over that noise instead. Measured against one burst, a
+# quiet word's own vowel passes for that noise (de lieben: a plosive 15 dB over the rest of the
+# word left a 0.15 s span), so the measure is a stretch as long as a vowel. A loud frame with no other
 # within ISOLATED_MS is a click, as is a group at the head under HEAD_CLICK_MS or at the tail under
 # TAIL_CLICK_MS standing MERGE_MS or more off the speech: the head limit stays under the shortest
 # word (it "i genitori"), the tail one can be wider because the player keeps time after the speech.
@@ -28,6 +30,7 @@ SPAN_FLOOR_DB = -40
 SPAN_EDGE_MS = 300
 SPAN_STEADY_DB = 6
 SPAN_UNDER_LOUDEST_DB = 12
+SPAN_LOUDEST_MS = 100
 SPAN_OVER_NOISE_DB = 6
 SPAN_MERGE_MS = 200
 SPAN_ISOLATED_MS = 50
@@ -94,7 +97,8 @@ def _span_bar(edge):
         return SPAN_FLOOR_DB
     noise = np.median(edge[:frames])
     steady = np.percentile(edge[:frames], 75) - np.percentile(edge[:frames], 25) < SPAN_STEADY_DB
-    if steady and edge.max() - noise >= SPAN_UNDER_LOUDEST_DB:
+    loudest = np.median(np.lib.stride_tricks.sliding_window_view(edge, SPAN_LOUDEST_MS // SPAN_FRAME_MS), axis=1).max()
+    if steady and loudest - noise >= SPAN_UNDER_LOUDEST_DB:
         return max(SPAN_FLOOR_DB, noise + SPAN_OVER_NOISE_DB)
     return SPAN_FLOOR_DB
 
