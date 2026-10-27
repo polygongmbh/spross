@@ -63,14 +63,12 @@ rephrase it as an availability statement or a question.
   Keys name the domain's word, not the code's —
   known/learning over source/target, Sprosse over rung, queue over pack.
   No key is also the stem of a family that means something else.
-- The String Catalog is the one home for copy on both phones:
-  Android's tables are generated from it (`scripts/chrome.py`),
-  and a pre-commit check refuses a catalog edit that leaves them behind.
-  What a string means is its catalog entry's `comment`.
+- The String Catalog is the one home for copy on both phones (`scripts/chrome.py`);
+  what a string means is its catalog entry's `comment`.
   Where the layout differs the reader composes — the catalog holds the caption,
   each phone sets the form beside or below it.
 - The watch, the complication and the iOS widget never see that catalog,
-  so they carry their own (`Shared/Resources/Glance.xcstrings`, same rules)
+  so they carry their own, under the same rules,
   and resolve it in the snapshot's chrome language — never the device's.
 - Area titles and area emoji both come from the catalog; the app carries no map.
   A title is a plain name usable as the produce prompt's area cue;
@@ -206,18 +204,9 @@ What licenses a second component is a parameter attempted and found not to carry
   **The unit is the area, not the word.**
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
-  Which word stands in which `GrowthStage` is kern's `growthByArea`;
-  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`,
-  every mark, outline and layer it is drawn in kern's `TreePicture`, the summary's rise kern's `TreeRise`;
-  a stage is one mark — fresh a bud breaking into two folded leaflets, growing a leaf, settled a blossom, matured fruit.
-  Whether the round summary shows a tree is kern's `RoundSummary.shownTree`, what it claims over it and in which line `growthHeadline`.
-  A tree forks further and its trunk widens the more leaf it carries (the pipe model), a bud counting a quarter of a leafed-out word,
-  so a first round forks once and the wood grows as its words leaf out;
-  each limb is continued by a lead with side branches turning well away from it, and a branch dipping below level grows short;
-  its marks spread along its finest wood, never the trunk or first limbs while there is finer, fruit and blossom on the levelest limbs,
-  no two of them touching while the crown has room, and only wood carrying a shown mark is drawn —
-  a bud hangs beside a grown mark rather than on a twig of its own once three twigs show and each holds three,
-  so a crown still mostly in bud stands as a tree, and nearer the tip than the marks that leafed out.
+  A stage is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit;
+  how a tree stands, grows and is drawn is kern's (`growthByArea`, `TreesLayout`, `AreaTree`, `TreePicture`, `TreeRise`),
+  and whether a round summary shows one, and what it claims over it, `RoundSummary`.
   A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.
@@ -248,10 +237,8 @@ What licenses a second component is a parameter attempted and found not to carry
   Suspending (`SessionIntent.SuspendCurrent`) asks no rating and shrinks the round total.
 - **Android** renders THIS contract with Compose on the same engine facades, so the turn and the drill runs follow the same rules by construction, not by porting discipline.
   The hub ships there whole (`drills.md`).
-  Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers,
-  and Back mirrors ✕ everywhere — inside a run the reference panel eats Back first.
-  The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
-  The summary's tree rises, and confetti falls, only while the system's animations are on.
+  Back mirrors ✕ everywhere — inside a run the reference panel eats Back first —
+  and the summary's tree rises, and confetti falls, only while the system's animations are on.
 
 ## Wide windows
 
@@ -260,25 +247,16 @@ What licenses a second component is a parameter attempted and found not to carry
 - Text in a pane keeps a readable column.
   A screen without a pane design halves only with the hinge: on a foldable half open like a book it stands in the trailing half,
   on any window lying flat it centers its column across the whole width.
-- The sections switch on each platform's own adaptive navigation:
-  iOS in the system's tab bar, Android where Material's navigation suite names — a bottom bar, or a rail at the leading edge on a wide window.
+- **Navigation and a screen's own controls stand where the platform's guidance puts them** on a wide window (`CLAUDE.md`).
 - Home puts what is looked at — the greeting, the trees and their days — in the leading pane with listening, an occasional detour,
   and the day's card, the drills and the companion in the trailing one;
   the Box puts its areas in one pane and the chosen area's words in the other.
-- A sheet follows the same hinge: on a half-open book it stands on the trailing side —
-  iOS asks the system to place it there, Android offsets its bottom sheet into the trailing pane's readable column —
-  and lying flat it keeps the system's placement; an alert stays centered.
-- **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols in the system's own order,
-  the way out on top and the prominent action under it —
-  a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ and Done;
-  elsewhere they keep their corners and titles.
-  Android has no such bar: on a split window a run and a drill's page stand them in a side bar of their own at the leading edge,
-  Material's toolbar of a page's controls turned upright, never the navigation rail —
-  the ✕ heading it, a page's ▶ or a summary's ✓ Done at its foot; its sheets and listening keep their own bars.
-- **Only a symbol that says what it does goes into the bar** (✕, ✓, ▶, send — `BarSymbol`);
+- A sheet follows the same hinge: on a half-open book it stands in the trailing half,
+  lying flat it keeps the platform's placement; an alert stays centered.
+- **Only a symbol that says what it does goes into a bar** (✕, ✓, ▶, send — `BarSymbol`);
   an action that needs its words, like a summary's Chat about them and Keep practicing, stays a labeled button in the content.
-- **A session's card keeps the whole width**; where the system has a toolbar of its own, or in Android's side bar,
-  close, progress and read-aloud are its items, and the status line stays over the card.
+- **A session's card keeps the whole width**; its close, progress and read-aloud stand where the platform puts a task's controls,
+  and the status line stays over the card.
 - **A big window enlarges type** whether or not it splits (`TypeScale`):
   its shorter side decides, so an unfolded foldable counts upright and on its side, and no phone does;
   the whole app grows a little and a session's card more, on top of the reader's own text size.
