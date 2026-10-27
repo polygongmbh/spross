@@ -93,7 +93,8 @@ private fun BoxBrowserScreen(
     var openAreas by remember { mutableStateOf(opening.areas) }
     // The area whose words the second pane shows, in a split window.
     var chosen by remember {
-        mutableStateOf(openAt?.takeIf { it != OwnWords.AREA } ?: sections.flatMap { it.areas }.firstOrNull { it in opening.areas })
+        val areas = sections.flatMap { it.areas }
+        mutableStateOf(openAt?.takeIf { it != OwnWords.AREA } ?: areas.firstOrNull { it in opening.areas } ?: areas.firstOrNull())
     }
     val panes = LocalWindowPanes.current
     val split = panes?.split == true
@@ -254,7 +255,7 @@ private fun BoxBrowserScreen(
     if (panes != null && split) {
         // The areas in one pane, the chosen area's words in the other.
         PaneSplit(panes, Modifier.fillMaxSize(), leading = list) {
-            val area = chosen ?: sections.firstOrNull()?.areas?.firstOrNull()
+            val area = chosen
             Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(Theme.spacing.xl)) {
                 if (area != null) {
                     AreaSection(
