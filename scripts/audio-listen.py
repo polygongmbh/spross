@@ -7,6 +7,7 @@ import glob
 import json
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -291,6 +292,9 @@ def listen_set(path, row_named=None):
 
 def listen(listed, base, row_named=None, path=None):
     """Plays [listed] (`by_word`'s or a set's rows, files relative to [base]) and records each rating."""
+    if not sys.stdin.isatty():
+        sys.exit('rating reads one key at a time, so it needs a terminal: run %s in one' % ' '.join(
+            ['scripts/audio-listen.py'] + [shlex.quote(arg) for arg in sys.argv[1:]]))
     default_context = os.path.basename(base)
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
