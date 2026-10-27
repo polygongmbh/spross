@@ -15,13 +15,15 @@ struct HomeView: View {
     @State private var briefingPresented = false
     /// What the hub has open — here, so the day's card can open a drill too.
     @State private var drillDestination: HubDestination?
+    /// What the last scramble run came to, worn on the hub's card.
+    @State private var lastDrillRun: DrillRunResult?
     /// Bumped by a hub run's celebrated close; each bump throws a wave.
     @State private var confetti = 0
 
     var body: some View {
         let offer = model.homeOffer
         let hub = TrainerHubView(model: model, destination: $drillDestination,
-                                 celebrate: { confetti += 1 })
+                                 lastRun: $lastDrillRun, celebrate: { confetti += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
         Group {
@@ -31,7 +33,7 @@ struct HomeView: View {
                 PaneSplit(panes: panes) {
                     page {
                         header
-                        trees
+                        trees()
                         listeningCard
                     }
                 } trailing: {
@@ -48,11 +50,12 @@ struct HomeView: View {
                     listeningCard
                     hub
                     briefingCard
-                    trees
+                    trees()
                 }
             }
         }
         .background(Theme.colors.background.ignoresSafeArea())
+        .hubPresentations(hub)
         // why: absent until the first celebration — ConfettiView throws a wave on appear.
         .overlay {
             if confetti > 0 { ConfettiView(run: confetti).ignoresSafeArea() }
@@ -67,7 +70,8 @@ struct HomeView: View {
         // why: a challenge link opens the numbers page, which accepts the code itself.
         .onChange(of: model.pendingChallengeCode, initial: true) { _, code in
             guard code != nil else { return }
-            drillDestination = TrainerHubView(model: model, destination: $drillDestination)
+            drillDestination = TrainerHubView(model: model, destination: $drillDestination,
+                                              lastRun: $lastDrillRun)
                 .destination(for: .numbers) ?? drillDestination
         }
     }
@@ -108,7 +112,7 @@ struct HomeView: View {
         }
     }
 
-    private var trees: some View {
+    private func trees() -> some View {
         Trees(model: model, open: { openBox($0) })
     }
 
