@@ -5,6 +5,8 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
 
 - Offload open-ended research and large implementations to subagents;
   hand each the relevant spec + the relevant `docs/` pointer.
+- A new device or form factor hands the assessment and the builders the platform's guidance (`CLAUDE.md`; also WWDC and SDK doc comments)
+  before any layout is designed.
 - Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
 - The conductor merges, gates and commits; 
   code changes and research goes through builders,
@@ -28,6 +30,10 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   `xcodebuild`'s pre-build phase also reads/writes the kern framework, so it is a cache writer too.
 - iOS runs on `scripts/run-sim.sh`'s default `iPhone 17`; `iPhone 18 Pro Max` only when a change is about screen size,
   and an agent never creates a simulator.
+  An assessment launches the app once and walks it with `idb ui` (`describe-all`, `tap`, `swipe`, `text`);
+  a relaunch is only for a clean state, never to reach the next screen.
+  A builder verifies on screen once, after its last step, on one booted simulator;
+  that pass saves its captures for the store when a release is near.
 - `scripts/dup-scan.py` ranks duplicated Swift/Kotlin code (never a gate; `--why` lists repeated `// why:` comments) — the report to hand a cleanup wave.
 - `scripts/catalog-format.py --fix` rewrites the WHOLE repo — only the conductor runs it,
   after all agents are done. Agents that need valid JSON write through the formatter's own

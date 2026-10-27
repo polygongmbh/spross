@@ -109,17 +109,15 @@ struct BarAction {
 }
 
 extension View {
-    /// A presentation's way out, its way through, its way on and its main way to finish, as toolbar items.
+    /// A presentation's way out, its way through and its way on, as toolbar items in the system's own order.
     /// Where the window has the system's vertical bar they stand in it as symbols, the way out on top
-    /// and `finish` at the foot, prominent; elsewhere they keep their corners and titles —
-    /// `closeAsIcon` draws the way out as a ✕ there too, and `finish` stays out, the content holding it.
+    /// and the prominent action under it (HIG, Designing for iPhone Duo); elsewhere they keep their corners
+    /// and titles — `closeAsIcon` draws the way out as a ✕ there too.
     func presentationActions(close: BarAction? = nil, closeAsIcon: Bool = false,
-                             confirm: BarAction? = nil, go: BarAction? = nil,
-                             finish: BarAction? = nil) -> some View {
+                             confirm: BarAction? = nil, go: BarAction? = nil) -> some View {
         VerticalBarReader { inBar in
             self.modifier(PresentationActions(items: ActionItems(close: close, closeAsIcon: closeAsIcon,
-                                                                 confirm: confirm, go: go,
-                                                                 finish: inBar ? finish : nil, inBar: inBar)))
+                                                                 confirm: confirm, go: go, inBar: inBar)))
         }
     }
 }
@@ -142,7 +140,6 @@ private struct ActionItems: ToolbarContent {
     let closeAsIcon: Bool
     let confirm: BarAction?
     let go: BarAction?
-    let finish: BarAction?
     let inBar: Bool
 
     var body: some ToolbarContent {
@@ -155,9 +152,6 @@ private struct ActionItems: ToolbarContent {
         if let go {
             ToolbarItem(placement: .primaryAction) { button(go, symbol: inBar) }
         }
-        if let finish {
-            ToolbarItem(placement: .bottomBar) { prominent(button(finish, symbol: true)) }
-        }
     }
 
     private func button(_ item: BarAction, symbol: Bool) -> some View {
@@ -169,14 +163,5 @@ private struct ActionItems: ToolbarContent {
             }
         }
         .disabled(!item.enabled)
-    }
-
-    @ViewBuilder
-    private func prominent(_ button: some View) -> some View {
-        if #available(iOS 26.0, *) {
-            button.buttonStyle(.glassProminent)
-        } else {
-            button.buttonStyle(.borderedProminent)
-        }
     }
 }

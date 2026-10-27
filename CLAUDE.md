@@ -6,6 +6,8 @@ what sets it apart — and what every user-facing change answers to — is `READ
 Native iOS (SwiftUI, `App/`) and Android (Compose, `android/`) apps on a Kotlin Multiplatform core (SprossKern, `kern/`);
 scheduling, growth, session and grading rules are `kern/README.md` and the KDoc on the type it names,
 screen and copy rules `docs/design.md` — read the side you are changing.
+A screen's layout and controls answer to the platform's own design guidance first (Apple HIG, Material and Android's large-screen guides):
+read it before designing, keep the system's default placements, and name the conflict when a request goes against it.
 Any catalog language pair works (source = known, target = learning; de/en/eo/es/fr/it/sw/uk).
 Focus is on breadth of exposure to the language for maximum fluency with minimum effort, not perfect retention for single words.
 

@@ -268,8 +268,9 @@ What licenses a second component is a parameter attempted and found not to carry
 - A sheet follows the same hinge: on a half-open book it stands on the trailing side —
   iOS asks the system to place it there, Android offsets its bottom sheet into the trailing pane's readable column —
   and lying flat it keeps the system's placement; an alert stays centered.
-- **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols, the way out on top —
-  a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ with Done prominent at the bar's foot;
+- **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols in the system's own order,
+  the way out on top and the prominent action under it —
+  a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ and Done;
   elsewhere they keep their corners and titles.
   Android has no such bar: on a split window a run and a drill's page stand them in a side bar of their own at the leading edge,
   Material's toolbar of a page's controls turned upright, never the navigation rail —

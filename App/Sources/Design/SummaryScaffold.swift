@@ -36,12 +36,12 @@ struct SummaryScaffold<Hero: View>: View {
     var body: some View {
         VerticalBarReader { inBar in
             if inBar {
-                // Where the window has the system's bar, it holds the ✕ on top and Done at its foot;
+                // Where the window has the system's bar, it holds the ✕ on top and Done under it;
                 // the ways on keep their words in the content.
                 NavigationStack {
                     page(done: false)
                         .presentationActions(close: BarAction("common.close", .close, action: onDone),
-                                             finish: BarAction("common.done", .done, action: onDone))
+                                             confirm: BarAction("common.done", .done, action: onDone))
                 }
                 .tint(Theme.colors.accent)
             } else {
