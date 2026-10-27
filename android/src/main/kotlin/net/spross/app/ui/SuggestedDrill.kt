@@ -22,9 +22,9 @@ import net.spross.kern.trainer.DrillSuggestion
 /** Kern's pick for [standing], while one is named. */
 @Composable
 fun rememberSuggestedDrill(model: AppModel, standing: HomeStanding?): DrillSuggestion.Pick? =
-    // why: the facts and both scramble reports are walks over the box — asked once per box
+    // why: the facts and the ladders are walks over the box — asked once per box
     // and offer, never once per frame.
-    remember(model.box, standing?.offer, model.dates) { model.suggestedDrill(standing) }
+    remember(model.box, model.numbers.boxDrills, standing?.offer, model.dates) { model.suggestedDrill(standing) }
 
 /** Kern's pick among the chips this profile offers, while one is named. */
 private fun AppModel.suggestedDrill(standing: HomeStanding?): DrillSuggestion.Pick? {

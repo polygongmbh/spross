@@ -3,10 +3,7 @@ package net.spross.app
 import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillAvailability
-import net.spross.kern.trainer.OppositesAvailability
-import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.Numbers
-import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
  * The platform half of what free practice can offer.
@@ -37,9 +34,7 @@ fun AppModel.offers(drill: Drill): Boolean = when (drill) {
  * file exists for the target, the atlas joins, the calendars do, or the box itself holds
  * enough to scramble. Any one entry is reason enough.
  *
- * Asked in roster order and answered by the first yes, which is why the two scrambles stand
- * LAST there: each is a walk of the whole join, and a profile with any of the four cheap
- * entries never pays for them.
+ * Asked in roster order and answered by the first yes.
  */
 val AppModel.trainerHubOffered: Boolean
     get() = Drill.entries.any { offers(it) }
@@ -77,25 +72,19 @@ val AppModel.datesOffered: Boolean
 /**
  * The word scramble rides on the BOX: enough settled words to be worth spelling
  * back out of their own letters. Kern's own floor, read — nothing here counts words.
- *
- * Deliberately uncached: the pool grows as words settle, so the card asks again rather
- * than deciding once at launch that the drill is empty. It walks the whole join, so the
- * caller asks once per box and not once per frame.
+ * The pool grows as words settle, so it is taken again with the rest of the standing
+ * ([BoxNumbers.boxDrills]) rather than decided once at launch, and never per frame.
  */
 val AppModel.wordScrambleOffered: Boolean
-    get() = box?.let { WordScrambleAvailability.drillExists(it) } == true
+    get() = numbers.boxDrills.words
 
-/**
- * The sentence scramble rides on the box too: enough phrases unlocked, and long enough to
- * have a word order worth putting back. Kern's own floor, read — and the same walk of the
- * whole join its word sibling pays for, so it is asked once per box.
- */
+/** The sentence scramble rides on the box too: enough phrases unlocked, long enough to reorder. */
 val AppModel.sentenceScrambleOffered: Boolean
-    get() = box?.let { SentenceScrambleAvailability.drillExists(it) } == true
+    get() = numbers.boxDrills.phrases
 
 /** The opposites drill rides on the box too: enough pairs whose both words have arrived. */
 val AppModel.oppositesOffered: Boolean
-    get() = box?.let { OppositesAvailability.drillExists(it, catalog?.oppositePairs.orEmpty()) } == true
+    get() = numbers.boxDrills.opposites
 
 /**
  * What the letter drill can ASK here, freshly swept.

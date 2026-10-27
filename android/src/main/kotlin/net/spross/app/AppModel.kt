@@ -365,7 +365,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: the grader snapshots the join, and this runs wherever the join, the
         // queue or the profile's languages can have moved — the one place it goes stale.
         grading?.retire()
-        numbers.refresh(state, now(), tz(), otherLanguagesAnswerDays)
+        numbers.refresh(state, now(), tz(), otherLanguagesAnswerDays, catalog?.oppositePairs.orEmpty())
     }
 
     override fun onCleared() {

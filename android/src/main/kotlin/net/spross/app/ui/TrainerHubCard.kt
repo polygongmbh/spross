@@ -65,7 +65,7 @@ fun TrainerHubCard(model: AppModel) {
     val chrome = model.chrome
     // why: what the card offers is worked out once per BOX rather than once per frame — a
     // chip's press spring recomposes this card for the whole of its spring.
-    val chips = remember(model.box, chrome) { model.hubChips(chrome) }
+    val chips = remember(model.box, model.numbers.boxDrills, chrome) { model.hubChips(chrome) }
     if (chips.isEmpty()) return
     Panel(spacing = Theme.spacing.md) {
         Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
