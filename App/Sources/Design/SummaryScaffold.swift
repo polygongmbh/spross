@@ -6,7 +6,7 @@ import SwiftUI
 // The screen a round stops on — the session summary and a drill's pause
 // alike: a hero, one title, the round's tally, a milestone line where
 // something new was reached, an optional hint, and the exit pair on the
-// bottom edge. Each fills the slots with words; the layout, the type, the
+// bottom edge (or in the system's bar). Each fills the slots with words; the layout, the type, the
 // ways out and the celebration are this one's, so the two never drift apart
 // (`docs/design.md` § Counts & sessions).
 
@@ -48,7 +48,30 @@ struct SummaryScaffold<Hero: View>: View {
         }
     }
 
+    /// Where the window has the system's bar, the ways out and on stand in it, the ✕ on top
+    /// where the round's own ✕ was; elsewhere they are the pair on the bottom edge and the corner ✕.
     private var layout: some View {
+        VerticalBarReader { inBar in
+            if inBar {
+                NavigationStack {
+                    page(buttons: false)
+                        .presentationActions(close: BarAction("common.done", icon: "xmark", action: onDone),
+                                             go: barGo)
+                }
+            } else {
+                page(buttons: true)
+                    .sessionCloseCorner(label: "common.done", action: onDone)
+            }
+        }
+    }
+
+    private var barGo: [BarAction] {
+        [onTalk.map { BarAction("session.done.talk", icon: "bubble.left.and.bubble.right", action: $0) },
+         onPractice.map { BarAction("session.done.keepPracticing", icon: "arrow.right", action: $0) }]
+            .compactMap { $0 }
+    }
+
+    private func page(buttons: Bool) -> some View {
         // why: Spacer()-centered content overflows a fixed frame under large
         // Dynamic Type — a fixed hero height leaves no give, so the caption
         // below it got compressed and truncated instead. A GeometryReader'd
@@ -64,12 +87,13 @@ struct SummaryScaffold<Hero: View>: View {
         }
         // why: the actions stay on the bottom edge however far the results scroll.
         .safeAreaInset(edge: .bottom) {
-            SessionExitButtons(onDone: onDone, onTalk: onTalk, onPractice: onPractice)
-                .padding(.horizontal, Theme.spacing.xl)
+            if buttons {
+                SessionExitButtons(onDone: onDone, onTalk: onTalk, onPractice: onPractice)
+                    .padding(.horizontal, Theme.spacing.xl)
+            }
         }
         .measuredReadableColumn()
         .background(Theme.colors.background.ignoresSafeArea())
-        .sessionCloseCorner(label: "common.done", action: onDone)
     }
 
     private func content(ceiling: CGFloat) -> some View {

@@ -199,10 +199,25 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
+        // why: where the window has the system's bar, the ✕ stands in it like a session's.
+        VerticalBarReader { inBar in
+            if inBar {
+                NavigationStack {
+                    page(closes: false)
+                        .presentationActions(close: BarAction("a11y.action.endSession", icon: "xmark",
+                                                              action: onClose))
+                }
+            } else {
+                page(closes: true)
+            }
+        }
+    }
+
+    private func page(closes: Bool) -> some View {
         VStack(spacing: Theme.spacing.lg) {
             VStack(spacing: 0) {
                 HStack(spacing: Theme.spacing.md) {
-                    SessionCloseButton(action: onClose)
+                    if closes { SessionCloseButton(action: onClose) }
                     Spacer(minLength: 0)
                     Text("listen.title")
                         .font(Theme.typography.headline)
