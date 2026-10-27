@@ -105,11 +105,11 @@ fun HomeScreen(model: AppModel) {
                     val streak = stats?.streak ?: 0
                     when (lead) {
                         DayLead.Listening -> LeadCard(
-                            model, standing, "🎧", chrome.homeSuggestionListening, chrome.listenSubtitle,
+                            model, standing, "🎧", chrome.homeSuggestionListening, chrome.homeSuggestionReasonListening,
                             streak, health,
                         ) { model.startListening() }
                         DayLead.Conversation -> LeadCard(
-                            model, standing, "💬", chrome.homeSuggestionConversation, chrome.briefingRowSubtitle,
+                            model, standing, "💬", chrome.homeSuggestionConversation, chrome.homeSuggestionReasonConversation,
                             streak, health,
                         ) { briefingOpen = true }
                         else -> pick?.let {

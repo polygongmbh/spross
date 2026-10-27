@@ -465,6 +465,8 @@ internal object ChromeEn : Chrome {
     override val homeSuggestionReasonNeverRun = "Not tried yet"
     override val homeSuggestionReasonNotLately = "It's been a while"
     override val homeSuggestionReasonVariety = "For a change of pace"
+    override val homeSuggestionReasonListening = "Reinforces shaky words, hands-free"
+    override val homeSuggestionReasonConversation = "See how far your words take you"
     override val homeSuggestionWordsInstead = "Practice words instead"
     override val listenTitle = "Hear Your Words"
     override val listenSubtitle = "Reinforces shaky words\nhands-free or at bedtime"

@@ -75,10 +75,10 @@ struct HomeView: View {
                      reason: pick.reasonText) { drillDestination = hub.destination(for: pick.drill) }
         } else if lead == .listening {
             leadCard(emoji: "🎧", title: Text("home.suggestion.listening"),
-                     reason: Text("listen.subtitle")) { listeningPresented = true }
+                     reason: Text("home.suggestion.reason.listening")) { listeningPresented = true }
         } else if lead == .conversation {
             leadCard(emoji: "💬", title: Text("home.suggestion.conversation"),
-                     reason: Text("briefing.row.subtitle")) { briefingPresented = true }
+                     reason: Text("home.suggestion.reason.conversation")) { briefingPresented = true }
         } else if lead == .round {
             sessionCard(offer)
         } else {

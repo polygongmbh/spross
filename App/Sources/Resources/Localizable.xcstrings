@@ -3528,6 +3528,23 @@
         }
       }
     },
+    "home.suggestion.reason.conversation" : {
+      "comment" : "Why the conversation is suggested when it leads the day's card: one line under the title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mal sehen, wie weit deine Wörter tragen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See how far your words take you"
+          }
+        }
+      }
+    },
     "home.suggestion.reason.earlyNumbers" : {
       "comment" : "Why the numbers drill is suggested: the box is young.",
       "localizations" : {
@@ -3541,6 +3558,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numbers come in handy from day one"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.listening" : {
+      "comment" : "Why listening is suggested when it leads the day's card: one line under the title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Festigt wacklige Wörter ganz nebenbei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinforces shaky words, hands-free"
           }
         }
       }
