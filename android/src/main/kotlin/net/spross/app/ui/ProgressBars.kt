@@ -6,11 +6,13 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -47,43 +49,62 @@ fun SegmentsBar(
     segments: List<AnswerOutcome>,
     remaining: Int,
     modifier: Modifier = Modifier,
+    /** Running down rather than across, for a run's chrome standing on its side. */
+    vertical: Boolean = false,
 ) {
-    val palette = Theme.colors
     val bar = KernSegmentsBar(segments.size, remaining)
-    Row(
-        modifier = modifier.fillMaxWidth().height(10.dp)
-            .clip(CircleShape).background(palette.separator)
-            .clearAndSetSemantics { },
-        horizontalArrangement = Arrangement.spacedBy(bar.gap.dp),
-    ) {
-        segments.takeLast(bar.shown).forEachIndexed { offset, tone ->
-            val index = bar.firstShown + offset
-            val color = when (tone) {
-                AnswerOutcome.Right -> palette.success
-                AnswerOutcome.Almost -> palette.amber
-                AnswerOutcome.Wrong -> palette.wrong
-            }
-            // why: keyed on the run-wide index, so a segment already on screen holds its settled
-            // weight and color instead of replaying the entrance on every answer that
-            // follows it — only the newest slot grows in and eases into its tone.
-            key(index) {
-                val grown = remember { Animatable(0.001f) }
-                var settled by remember { mutableStateOf(false) }
-                LaunchedEffect(Unit) {
-                    settled = true
-                    grown.animateTo(1f, turnTween())
-                }
-                val eased by animateColorAsState(
-                    if (settled) color else palette.separator,
-                    turnTween(),
-                    label = "segmentColor",
-                )
-                Box(Modifier.weight(grown.value).fillMaxHeight().background(eased))
-            }
+    if (vertical) {
+        Column(
+            modifier = modifier.fillMaxHeight().width(10.dp)
+                .clip(CircleShape).background(Theme.colors.separator)
+                .clearAndSetSemantics { },
+            verticalArrangement = Arrangement.spacedBy(bar.gap.dp),
+        ) {
+            Segments(segments, bar) { weight -> Modifier.weight(weight).fillMaxWidth() }
         }
-        if (bar.remaining > 0) {
-            Box(Modifier.weight(bar.remaining.toFloat()).fillMaxHeight().background(palette.separator))
+    } else {
+        Row(
+            modifier = modifier.fillMaxWidth().height(10.dp)
+                .clip(CircleShape).background(Theme.colors.separator)
+                .clearAndSetSemantics { },
+            horizontalArrangement = Arrangement.spacedBy(bar.gap.dp),
+        ) {
+            Segments(segments, bar) { weight -> Modifier.weight(weight).fillMaxHeight() }
         }
+    }
+}
+
+/** The answered segments and the unanswered rest, each sized along the bar by [cell]. */
+@Composable
+private fun Segments(segments: List<AnswerOutcome>, bar: KernSegmentsBar, cell: (Float) -> Modifier) {
+    val palette = Theme.colors
+    segments.takeLast(bar.shown).forEachIndexed { offset, tone ->
+        val index = bar.firstShown + offset
+        val color = when (tone) {
+            AnswerOutcome.Right -> palette.success
+            AnswerOutcome.Almost -> palette.amber
+            AnswerOutcome.Wrong -> palette.wrong
+        }
+        // why: keyed on the run-wide index, so a segment already on screen holds its settled
+        // weight and color instead of replaying the entrance on every answer that
+        // follows it — only the newest slot grows in and eases into its tone.
+        key(index) {
+            val grown = remember { Animatable(0.001f) }
+            var settled by remember { mutableStateOf(false) }
+            LaunchedEffect(Unit) {
+                settled = true
+                grown.animateTo(1f, turnTween())
+            }
+            val eased by animateColorAsState(
+                if (settled) color else palette.separator,
+                turnTween(),
+                label = "segmentColor",
+            )
+            Box(cell(grown.value).background(eased))
+        }
+    }
+    if (bar.remaining > 0) {
+        Box(cell(bar.remaining.toFloat()).background(palette.separator))
     }
 }
 

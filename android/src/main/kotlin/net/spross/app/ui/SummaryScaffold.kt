@@ -98,10 +98,12 @@ private fun SummaryLayout(
     heroLabel: String?,
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+    // A split window's run keeps its way out in its rail ([RunRail]); the rest stands in one readable column.
+    val split = splitWindow()
+    Column(modifier = Modifier.fillMaxSize().singlePane(), horizontalAlignment = Alignment.CenterHorizontally) {
         // why: nothing is running any more, so the run's bar and read-aloud switch stay
         // behind and only the way out stands in the corner it held (iOS `sessionCloseCorner`).
-        RunCloseButton(onDone, chrome.commonDone, Modifier.align(Alignment.Start))
+        if (!split) RunCloseButton(onDone, chrome.commonDone, Modifier.align(Alignment.Start))
         // why: the actions stay on the bottom edge however far the results scroll.
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
             val ceiling = maxHeight * AreaTree.HERO_SHARE.toFloat()

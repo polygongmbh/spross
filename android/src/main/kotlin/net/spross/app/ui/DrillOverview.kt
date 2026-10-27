@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -19,7 +21,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -29,8 +34,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -64,37 +72,63 @@ fun OverviewScaffold(
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
 
+    // Split, the ✕ and the start stand as symbols in a rail at the leading edge, where Material
+    // keeps a wide window's navigation, and the page in one readable column.
+    val split = splitWindow()
     Box(Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                RunCloseButton(onClose, chrome.commonClose)
-                Text(
-                    title,
-                    style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
-                )
-                TextButton(onClick = onStart, enabled = startEnabled) {
-                    Text(chrome.trainerOverviewStart)
+        Row(Modifier.fillMaxSize()) {
+            if (split) OverviewRail(chrome, onClose, startEnabled, onStart)
+            Column(modifier = Modifier.weight(1f).fillMaxHeight().singlePane()) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    if (!split) RunCloseButton(onClose, chrome.commonClose)
+                    Text(
+                        title,
+                        style = MaterialTheme.typography.titleMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
+                    )
+                    if (!split) {
+                        TextButton(onClick = onStart, enabled = startEnabled) {
+                            Text(chrome.trainerOverviewStart)
+                        }
+                    }
                 }
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scroll)
-                    .padding(Theme.spacing.xl),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-            ) {
-                result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-                OverviewHeading(chrome.trainerOverviewPractice)
-                content()
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scroll)
+                        .padding(Theme.spacing.xl),
+                    verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+                ) {
+                    result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
+                    OverviewHeading(chrome.trainerOverviewPractice)
+                    content()
+                }
             }
         }
         // why: a celebrated close rains over the page the run came back to.
         ClosedRunConfetti(model.trainer)
+    }
+}
+
+/** The overview's ✕ heading the rail and its start under it, a ▶ named for TalkBack as the button would be. */
+@Composable
+private fun OverviewRail(chrome: Chrome, onClose: () -> Unit, startEnabled: Boolean, onStart: () -> Unit) {
+    NavigationRail(
+        containerColor = Color.Transparent,
+        header = { RunCloseButton(onClose, chrome.commonClose) },
+        windowInsets = WindowInsets(0),
+    ) {
+        FilledIconButton(
+            onClick = onStart,
+            enabled = startEnabled,
+            modifier = Modifier.size(48.dp).semantics { contentDescription = chrome.trainerOverviewStart },
+        ) {
+            Icon(SprossIcons.Play, contentDescription = null)
+        }
     }
 }
 

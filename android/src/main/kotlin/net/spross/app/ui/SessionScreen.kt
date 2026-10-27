@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -25,21 +24,33 @@ fun SessionScreen(model: AppModel) {
     val ui = model.sessionUi ?: return
     BackHandler { model.finishSession() }
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-    ) {
-        if (ui.card == null) {
-            SessionSummary(model, ui)
-            return@Column
+    val closeLabel = model.chrome.commonDone
+    val running = ui.card != null
+    val rail: (@Composable () -> Unit)? = if (!splitWindow()) null else {
+        {
+            RunRail(
+                model, model::finishSession, closeLabel,
+                progress = (ui.segments to ui.remaining).takeIf { running },
+                showsMuteButton = true,
+            )
         }
-        RunTopBar(
-            model, ui.segments, model::finishSession, ui.remaining,
-            closeLabel = model.chrome.commonDone,
-            // why: the session reads both prompt and answer aloud, so it owes the
-            // learner a way to silence them here.
-            showsMuteButton = true,
-        )
+    }
+    RunFrame(rail, Theme.spacing.lg) {
+        if (!running) {
+            SessionSummary(model, ui)
+            return@RunFrame
+        }
+        if (rail == null) {
+            RunTopBar(
+                model, ui.segments, model::finishSession, ui.remaining,
+                closeLabel = closeLabel,
+                // why: the session reads both prompt and answer aloud, so it owes the
+                // learner a way to silence them here.
+                showsMuteButton = true,
+            )
+        } else {
+            VolumeHint(model, active = !model.pronouncer.muted)
+        }
         TurnCard(model, ui)
     }
 }
