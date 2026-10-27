@@ -1572,17 +1572,6 @@
       "sha256": "eac10491d89d1e842f4865e221aabd265180491a826ec2e5a84da3fedd137407",
       "source": "Es-alto.oga"
     },
-    "alumna": {
-      "author": "Marreromarco",
-      "file": "words/alumna.mp3",
-      "gain": 0.3,
-      "gate": -65.6,
-      "lead": 210,
-      "matches": "alumna",
-      "mos": 1.63,
-      "sha256": "889d67174025672fa3fb36694a41b96a04a4e9e206ecbd9b402b56e70f9533af",
-      "source": "LL-Q1321 (spa)-Marreromarco-alumna.wav"
-    },
     "alumno": {
       "author": "AdrianAbdulBaha",
       "file": "words/alumno.mp3",
@@ -2326,17 +2315,6 @@
       "sha256": "38f49c9ef465561aa2343323819c00b5c8e451d842504f8a53d0aa6629e13fe2",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bostezar.wav"
     },
-    "bota": {
-      "author": "Marreromarco",
-      "file": "words/bota.mp3",
-      "gain": 6.5,
-      "gate": -67.8,
-      "lead": 210,
-      "matches": "bota",
-      "mos": 1.63,
-      "sha256": "ce93d630f12b64f06961db8ae6e9c761f73b576d7c64fb40e521ee0f03bf3b38",
-      "source": "LL-Q1321 (spa)-Marreromarco-bota.wav"
-    },
     "bote": {
       "author": "AdrianAbdulBaha",
       "file": "words/bote.mp3",
@@ -2413,17 +2391,6 @@
       "mos": 2.34,
       "sha256": "762f404274186ee1cf429c11f3d96c02fbf5e258c0878a37d4e9c48a9dcc9003",
       "source": "LL-Q1321 (spa)-Marreromarco-buenas noches.wav"
-    },
-    "buenas tardes": {
-      "author": "Marreromarco",
-      "file": "words/buenas_tardes.mp3",
-      "gain": 5.3,
-      "gate": -68.8,
-      "lead": 210,
-      "matches": "buenas tardes",
-      "mos": 1.67,
-      "sha256": "151accd4e468d19015a4b863c12fb2c3d95966c7c11023bd623c1c481d6edb4d",
-      "source": "LL-Q1321 (spa)-Marreromarco-buenas tardes.wav"
     },
     "bueno": {
       "author": "Sinaloa",
@@ -4485,17 +4452,6 @@
       "sha256": "3ce2dab66a75ca55d4d68bf7d9e165011f7e3e434b894497c221b3207118644b",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-encender.wav"
     },
-    "enchufe": {
-      "author": "Marreromarco",
-      "file": "words/enchufe.mp3",
-      "gain": 5.8,
-      "gate": -61.7,
-      "lead": 170,
-      "matches": "enchufe",
-      "mos": 1.78,
-      "sha256": "a575733f61bf595b90b7dab964337fafef6cd79caff7ecf47860d6968d29255a",
-      "source": "LL-Q1321 (spa)-Marreromarco-enchufe.wav"
-    },
     "encontrar": {
       "author": "GlyphEnjoyer",
       "file": "words/encontrar.mp3",
@@ -4594,17 +4550,6 @@
       "mos": 3.37,
       "sha256": "fbb5b7c330fae4af4db8088c491c1a0df5d712efcb04af02599e0915c25ef326",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-enterrar.wav"
-    },
-    "entierro": {
-      "author": "Marreromarco",
-      "file": "words/entierro.mp3",
-      "gain": 1.8,
-      "gate": -61.9,
-      "lead": 200,
-      "matches": "entierro",
-      "mos": 1.59,
-      "sha256": "bed1b6fd5c082cbde28a5c4d26adf9f923bf83bd0fba20f11cb8d73f1326c39e",
-      "source": "LL-Q1321 (spa)-Marreromarco-entierro.wav"
     },
     "entrada": {
       "author": "AdrianAbdulBaha",
@@ -5835,28 +5780,6 @@
       "sha256": "f7ff7b4dce93ed662b45742f2b3e0f89d393309665b97601ac808309dc6d068b",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-impresora.wav"
     },
-    "imprimir": {
-      "author": "Marreromarco",
-      "file": "words/imprimir.mp3",
-      "gain": 7.7,
-      "gate": -58.9,
-      "lead": 270,
-      "matches": "imprimir",
-      "mos": 1.63,
-      "sha256": "adcce38720fb1b6e8b9d8139cb90af08ded7abf7d45f9b52027e4c8202de105b",
-      "source": "LL-Q1321 (spa)-Marreromarco-imprimir.wav"
-    },
-    "impuesto": {
-      "author": "Marreromarco",
-      "file": "words/impuesto.mp3",
-      "gain": 3.4,
-      "gate": -62.5,
-      "lead": 230,
-      "matches": "impuesto",
-      "mos": 1.67,
-      "sha256": "35151efbe037229b165c4ed3d40fb870952f15b4301d99d5249c8fd1c99cb5a2",
-      "source": "LL-Q1321 (spa)-Marreromarco-impuesto.wav"
-    },
     "incluso": {
       "author": "GlyphEnjoyer",
       "file": "words/incluso.mp3",
@@ -5877,17 +5800,6 @@
       "mos": 1.92,
       "sha256": "95f945e474b6abefbf5a04418da9e1a5dfcafbc37c016b845da34ab327198cef",
       "source": "LL-Q1321 (spa)-Marreromarco-infancia.wav"
-    },
-    "inodoro": {
-      "author": "Marreromarco",
-      "file": "words/inodoro.mp3",
-      "gain": 3.4,
-      "gate": -64.0,
-      "lead": 250,
-      "matches": "inodoro",
-      "mos": 1.71,
-      "sha256": "f5b7d40b119e61bb034b44e3a37ec55d4580124f73c5c4b04419015bcb266f4d",
-      "source": "LL-Q1321 (spa)-Marreromarco-inodoro.wav"
     },
     "insecto": {
       "author": "AdrianAbdulBaha",
@@ -5977,17 +5889,6 @@
       "mos": 3.13,
       "sha256": "5b14e92d8a98aadab05c04289376751c0b9c6bb92e0946b9109e5aec71911d2c",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ira.wav"
-    },
-    "irse": {
-      "author": "Marreromarco",
-      "file": "words/irse.mp3",
-      "gain": 4.6,
-      "gate": -59.1,
-      "lead": 220,
-      "matches": "irse",
-      "mos": 1.72,
-      "sha256": "2874f9cc771cc0984c3f4510343daa4767dd82b5f4f4b726a389bc5ded25afcc",
-      "source": "LL-Q1321 (spa)-Marreromarco-irse.wav"
     },
     "isla": {
       "author": "GlyphEnjoyer",
@@ -6175,17 +6076,6 @@
       "mos": 3.22,
       "sha256": "32a2ac5fbae36c0582fb1063d0528f776bd625154fce6536c222c81acb98182a",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-lavarse.wav"
-    },
-    "lavavajillas": {
-      "author": "Marreromarco",
-      "file": "words/lavavajillas.mp3",
-      "gain": 3.2,
-      "gate": -61.3,
-      "lead": 250,
-      "matches": "lavavajillas",
-      "mos": 1.77,
-      "sha256": "997db4e2d535c43fb658f2e8c0f51097b92b4fb3fac68c59539eefbdf15053ab",
-      "source": "LL-Q1321 (spa)-Marreromarco-lavavajillas.wav"
     },
     "leche": {
       "author": "Julie Samothrace",
@@ -6928,17 +6818,6 @@
       "sha256": "ea0070de4011ffeabe18b173abb2ced64b726ef92c781dc448fe39adf16ece8f",
       "source": "LL-Q1321 (spa)-Rodrigo5260-mirar.wav"
     },
-    "mis": {
-      "author": "Marreromarco",
-      "file": "words/mis.mp3",
-      "gain": 1.9,
-      "gate": -56.6,
-      "lead": 230,
-      "matches": "mis",
-      "mos": 1.56,
-      "sha256": "803f86b7b542448d55b810484e6dc6bdc48527ff18013859991277a891f6a473",
-      "source": "LL-Q1321 (spa)-Marreromarco-mis.wav"
-    },
     "mismo": {
       "author": "Rodrigo5260",
       "cap": 5.6,
@@ -7329,17 +7208,6 @@
       "mos": 2.97,
       "sha256": "077951d14fd233cddc60e5b9b2e761086439c74e346f48547dc1bf72b04ff8e1",
       "source": "LL-Q1321 (spa)-Marreromarco-negativa.wav"
-    },
-    "negativo": {
-      "author": "Marreromarco",
-      "file": "words/negativo.mp3",
-      "gain": 4.1,
-      "gate": -59.0,
-      "lead": 270,
-      "matches": "negativo",
-      "mos": 1.72,
-      "sha256": "be1f86f9d3ba82d2afb33b9d301b2bf289fadc857bf1375e0a33b7e67371888f",
-      "source": "LL-Q1321 (spa)-Marreromarco-negativo.wav"
     },
     "negra": {
       "author": "AdrianAbdulBaha",
@@ -7770,17 +7638,6 @@
       "mos": 1.89,
       "sha256": "03e4c5bb513b1f6321cb5931c078ee76dde77b3d60538cb0636815d6f165e657",
       "source": "LL-Q1321 (spa)-Precision27-otros.wav"
-    },
-    "ovario": {
-      "author": "Marreromarco",
-      "file": "words/ovario.mp3",
-      "gain": 1.2,
-      "gate": -71.0,
-      "lead": 210,
-      "matches": "ovario",
-      "mos": 1.63,
-      "sha256": "c8cd6e2ad26cdde316d114a250af179b9b0491f0111c0e3e589f34256f710a5d",
-      "source": "LL-Q1321 (spa)-Marreromarco-ovario.wav"
     },
     "oveja": {
       "author": "AdrianAbdulBaha",
@@ -8602,17 +8459,6 @@
       "sha256": "4adb93c43eab2e8f5b7958ccd7d0ec2b77032b583b97a95e0b22c88d3b726a5d",
       "source": "LL-Q1321 (spa)-Marreromarco-positivo.wav"
     },
-    "postre": {
-      "author": "Marreromarco",
-      "file": "words/postre.mp3",
-      "gain": 4.1,
-      "gate": -68.7,
-      "lead": 210,
-      "matches": "postre",
-      "mos": 1.56,
-      "sha256": "c862ff3b92ede27d17b107477e868cf78150aced87de14a6c13f6e9be6d0537b",
-      "source": "LL-Q1321 (spa)-Marreromarco-postre.wav"
-    },
     "practicar": {
       "author": "Marreromarco",
       "file": "words/practicar.mp3",
@@ -8756,17 +8602,6 @@
       "sha256": "29cc6ca790227864513f86a53b7465e9b7dbe17039028cd9c7af79754d38d7b2",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-problema.wav"
     },
-    "profesión": {
-      "author": "Marreromarco",
-      "file": "words/profesiu00f3n.mp3",
-      "gain": 1.0,
-      "gate": -59.7,
-      "lead": 260,
-      "matches": "profesión",
-      "mos": 1.54,
-      "sha256": "7c1ac08d6cffc921447508f7e5ab28663fd4f230d2a0833f9896dd0f3cbd6dfd",
-      "source": "LL-Q1321 (spa)-Marreromarco-profesión.wav"
-    },
     "profesor": {
       "author": "AdrianAbdulBaha",
       "file": "words/profesor.mp3",
@@ -8788,17 +8623,6 @@
       "mos": 2.03,
       "sha256": "12c0ee737e7f8b291afb50a45a6b25cdd99059f27aa5758e536dd83ab21e0651",
       "source": "LL-Q1321 (spa)-Marreromarco-profesora.wav"
-    },
-    "pronto": {
-      "author": "Marreromarco",
-      "file": "words/pronto.mp3",
-      "gain": 3.1,
-      "gate": -68.4,
-      "lead": 200,
-      "matches": "pronto",
-      "mos": 1.63,
-      "sha256": "2e56021a1a02773fac0c59bdfc88abf33ef0d5c27e5f42e2efb1ddb938525dd7",
-      "source": "LL-Q1321 (spa)-Marreromarco-pronto.wav"
     },
     "pronunciar": {
       "author": "Marreromarco",
@@ -8931,17 +8755,6 @@
       "mos": 3.14,
       "sha256": "f5e28c6eccf21c7aafa2bb984022c4fb010aa79dfddf092c12cc5c49b9b6edce",
       "source": "LL-Q1321 (spa)-Wikipedian-walker-pájaro.wav"
-    },
-    "páncreas": {
-      "author": "Marreromarco",
-      "file": "words/pu00e1ncreas.mp3",
-      "gain": 5.1,
-      "gate": -70.5,
-      "lead": 240,
-      "matches": "páncreas",
-      "mos": 1.55,
-      "sha256": "f0a2c7c29ecf7d7da25d82776943371d92ceb7bca2e770690d9709b72874ddab",
-      "source": "LL-Q1321 (spa)-Marreromarco-páncreas.wav"
     },
     "que": {
       "author": "Guergana",
@@ -9251,28 +9064,6 @@
       "sha256": "21410a5fe784776a14b5cc083970281ce739ab80d652584fba22b2bd3b35990e",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-resfriado.wav"
     },
-    "resolución": {
-      "author": "Marreromarco",
-      "file": "words/resoluciu00f3n.mp3",
-      "gain": 2.3,
-      "gate": -63.4,
-      "lead": 160,
-      "matches": "resolución",
-      "mos": 1.62,
-      "sha256": "4e133430b1fd45e291dd265ecdac049367d407e844761dce6d458e0d26622c9e",
-      "source": "LL-Q1321 (spa)-Marreromarco-resolución.wav"
-    },
-    "resolver": {
-      "author": "Marreromarco",
-      "file": "words/resolver.mp3",
-      "gain": 3.1,
-      "gate": -64.4,
-      "lead": 150,
-      "matches": "resolver",
-      "mos": 1.68,
-      "sha256": "aed4f6752a7a258f8ab76f8993eb897bf18de564004f8b240aec74749852259b",
-      "source": "LL-Q1321 (spa)-Marreromarco-resolver.wav"
-    },
     "respirar": {
       "author": "Guergana",
       "file": "words/respirar.mp3",
@@ -9489,16 +9280,6 @@
       "mos": 3.16,
       "sha256": "1b927e04bacc100a5e74e135c492733026c4a9ba0a459598e69ca6bce877cd35",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-rueda.wav"
-    },
-    "ruido": {
-      "author": "Marreromarco",
-      "file": "words/ruido.mp3",
-      "gain": 0.1,
-      "gate": -56.7,
-      "matches": "ruido",
-      "mos": 1.53,
-      "sha256": "8bddcdb284cde69c3797d333be8e95272e63c7a980a7099ffb0d21138ca1b061",
-      "source": "LL-Q1321 (spa)-Marreromarco-ruido.wav"
     },
     "rápido": {
       "author": "Rodrigo5260",
@@ -9760,18 +9541,6 @@
       "mos": 3.09,
       "sha256": "29f70039dd4eaac2ba088beecca224a5df1efca90cb7e62e6a24df0d9c61404a",
       "source": "LL-Q1321 (spa)-Eavqwiki-semana.wav"
-    },
-    "semáforo": {
-      "author": "Marreromarco",
-      "cap": 0.7,
-      "file": "words/semu00e1foro.mp3",
-      "gain": 6.5,
-      "gate": -62.8,
-      "lead": 230,
-      "matches": "semáforo",
-      "mos": 1.71,
-      "sha256": "b1f4ce02882916eccae1c0daf10049c55600b99d0fe6b5152578de389a0bebd3",
-      "source": "LL-Q1321 (spa)-Marreromarco-semáforo.wav"
     },
     "sentarse": {
       "author": "Sinaloa",
@@ -10757,17 +10526,6 @@
       "sha256": "e42dfe01a64293e9c5f20f083d14e1a468cf5926c7f90b1970c3adb424877f59",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-universidad.wav"
     },
-    "urgente": {
-      "author": "Marreromarco",
-      "file": "words/urgente.mp3",
-      "gain": 9.1,
-      "gate": -64.0,
-      "lead": 240,
-      "matches": "urgente",
-      "mos": 1.59,
-      "sha256": "0495813ef7f883d2fb98fef7f55fdc3a2fd6614e4729dacf911f811e40b91bf8",
-      "source": "LL-Q1321 (spa)-Marreromarco-urgente.wav"
-    },
     "usar": {
       "author": "AdrianAbdulBaha",
       "file": "words/usar.mp3",
@@ -10897,17 +10655,6 @@
       "mos": 2.91,
       "sha256": "fee3549fa1a1cdf61a423a6d900c13e4842f38e43d5776620f26e930643bcef8",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-vena.wav"
-    },
-    "venda": {
-      "author": "Marreromarco",
-      "file": "words/venda.mp3",
-      "gain": 3.9,
-      "gate": -65.8,
-      "lead": 210,
-      "matches": "venda",
-      "mos": 1.66,
-      "sha256": "4daafaed1b85f3d7700e7392efa54107f378bb71181dcee24e4e6e0172203d87",
-      "source": "LL-Q1321 (spa)-Marreromarco-venda.wav"
     },
     "vender": {
       "author": "AdrianAbdulBaha",
@@ -11049,17 +10796,6 @@
       "mos": 2.54,
       "sha256": "7179ac9ff3dfc1803259bedc49ad70588071ed8b2de1b067424b1fe17726c81e",
       "source": "LL-Q1321 (spa)-Precision27-vida.wav"
-    },
-    "vieja": {
-      "author": "Marreromarco",
-      "file": "words/vieja.mp3",
-      "gain": 3.1,
-      "gate": -64.1,
-      "lead": 150,
-      "matches": "vieja",
-      "mos": 1.46,
-      "sha256": "bfa1fe70b860ce1a83a00fbc86b0d22afea581436da756bb1170e0a9d80952ea",
-      "source": "LL-Q1321 (spa)-Marreromarco-vieja.wav"
     },
     "viejo": {
       "author": "Rodelar",

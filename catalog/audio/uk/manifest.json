@@ -1165,17 +1165,6 @@
       "source": "Нн – ukrainian.ogg"
     },
     "о": {
-      "alternates": [
-        {
-          "author": "Tohaomg",
-          "file": "letters/u043e.2.mp3",
-          "gain": -3.9,
-          "lead": 50,
-          "mos": 1.7,
-          "sha256": "1d53517efc3a37651e6b1346c7d8440cc0ccadc7ea6280d95481c1585d9cd5dd",
-          "source": "LL-Q8798 (ukr)-Tohaomg-О.wav"
-        }
-      ],
       "author": "Tabrus",
       "cap": 2.7,
       "end": 2110,
@@ -1438,15 +1427,6 @@
     },
     "і": {
       "alternates": [
-        {
-          "author": "Tohaomg",
-          "file": "letters/u0456.2.mp3",
-          "gain": -1.5,
-          "lead": 150,
-          "mos": 1.59,
-          "sha256": "1395a2eacd5090da6b81d21b18059a47c685ec2592ab0015f2f1944c2a368156",
-          "source": "LL-Q8798 (ukr)-Tohaomg-І.wav"
-        },
         {
           "author": "UnconcernedCape",
           "file": "letters/u0456.3.mp3",

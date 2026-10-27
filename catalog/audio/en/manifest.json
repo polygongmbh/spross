@@ -2883,16 +2883,6 @@
       "sha256": "e7e5156ecb43eeef88018f5e867961c50f614572bcd99b99f2de702eef63e2d1",
       "source": "En-us-cities.ogg"
     },
-    "city": {
-      "author": "Muke",
-      "file": "words/city.mp3",
-      "gain": 3.4,
-      "gate": -46.6,
-      "matches": "city",
-      "mos": 1.68,
-      "sha256": "7bffd32a2c9f16a670f16d204c748bf046dbaeaae68758626913653fbb66659c",
-      "source": "En-us-city.ogg"
-    },
     "classroom": {
       "author": "Association Shtooka, Judith Franck",
       "end": 1350,
@@ -4155,17 +4145,6 @@
       "mos": 2.78,
       "sha256": "0fb43fdb18d4dc5388eb97641bb8946a324a2613b5ad3a15f985475060186a6a",
       "source": "En-us-explain.ogg"
-    },
-    "extend": {
-      "author": "Vealhurl",
-      "file": "words/extend.mp3",
-      "gain": 2.9,
-      "gate": -73.0,
-      "lead": 200,
-      "matches": "extend",
-      "mos": 1.65,
-      "sha256": "a7b8342a42b0546741a5971ef9282e567fe1d783ed34a82a3087d3f2bfc9c585",
-      "source": "LL-Q1860 (eng)-Vealhurl-extend.wav"
     },
     "eye": {
       "author": "Wodencafe",
