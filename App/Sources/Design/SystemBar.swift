@@ -78,3 +78,78 @@ extension View {
         }
     }
 }
+
+// MARK: - A presentation's actions
+
+/// One action a presentation's toolbar offers: its title, and the symbol it is drawn as
+/// in the system's bar, which holds symbols rather than words.
+struct BarAction {
+    let title: LocalizedStringKey
+    let icon: String
+    var enabled = true
+    let action: () -> Void
+
+    init(_ title: LocalizedStringKey, icon: String, enabled: Bool = true, action: @escaping () -> Void) {
+        self.title = title
+        self.icon = icon
+        self.enabled = enabled
+        self.action = action
+    }
+}
+
+extension View {
+    /// A presentation's way out, its way through and its ways on, as toolbar items.
+    /// Where the window has the system's vertical bar they stand in it as symbols, the way out on top;
+    /// elsewhere they keep their corners and titles — `closeAsIcon` draws the way out as a ✕ there too.
+    func presentationActions(close: BarAction? = nil, closeAsIcon: Bool = false,
+                             confirm: BarAction? = nil, go: [BarAction] = []) -> some View {
+        VerticalBarReader { inBar in
+            self.modifier(PresentationActions(items: ActionItems(close: close, closeAsIcon: closeAsIcon,
+                                                                 confirm: confirm, go: go, inBar: inBar)))
+        }
+    }
+}
+
+private struct PresentationActions: ViewModifier {
+    let items: ActionItems
+
+    func body(content: Content) -> some View {
+        if #available(iOS 27.1, *) {
+            // why: a titled item counts as horizontal-only and stays in the sheet's own bar.
+            content.toolbar { items.axisBehavior(.verticalPreferred) }
+        } else {
+            content.toolbar { items }
+        }
+    }
+}
+
+private struct ActionItems: ToolbarContent {
+    let close: BarAction?
+    let closeAsIcon: Bool
+    let confirm: BarAction?
+    let go: [BarAction]
+    let inBar: Bool
+
+    var body: some ToolbarContent {
+        if let close {
+            ToolbarItem(placement: .cancellationAction) { button(close, symbol: inBar || closeAsIcon) }
+        }
+        if let confirm {
+            ToolbarItem(placement: .confirmationAction) { button(confirm, symbol: inBar) }
+        }
+        ForEach(go.indices, id: \.self) { index in
+            ToolbarItem(placement: .primaryAction) { button(go[index], symbol: inBar) }
+        }
+    }
+
+    private func button(_ item: BarAction, symbol: Bool) -> some View {
+        Button(action: item.action) {
+            if symbol {
+                Label(item.title, systemImage: item.icon).labelStyle(.iconOnly)
+            } else {
+                Text(item.title)
+            }
+        }
+        .disabled(!item.enabled)
+    }
+}

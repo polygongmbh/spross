@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// The page a drill is started from, whichever drill it is: the tile a closed run
-/// left, the sections the drill fills, and the two corners — the way out on the
-/// left, the way in on the right, still in reach from deep inside the reading.
+/// left, the sections the drill fills, and the way out and the way in — in the
+/// top corners or the system's bar, still in reach from deep inside the reading.
 ///
 /// What every overview owes and none of them decides for itself: a run's result
 /// arrives as a tile ABOVE the content, so the page comes up to meet it rather
@@ -66,19 +66,12 @@ struct DrillOverviewPage<Sections: View>: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
-                        .accessibilityLabel(Text("common.close"))
-                }
-                // why: the right corner repeats the page's own start button on
-                // purpose — it is the one that stays reachable once the reading has
-                // been scrolled into.
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("trainer.overview.start", action: start)
-                        .disabled(!startable)
-                }
-            }
+            // why: the start repeats the page's own start button on purpose — it is
+            // the one that stays reachable once the reading has been scrolled into.
+            .presentationActions(close: BarAction("common.close", icon: "xmark") { dismiss() },
+                                 closeAsIcon: true,
+                                 go: [BarAction("trainer.overview.start", icon: "play.fill",
+                                                enabled: startable, action: start)])
         }
         .tint(Theme.colors.accent)
         // why: the confetti rains over the page the run came back to — a wave
