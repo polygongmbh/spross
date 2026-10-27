@@ -109,7 +109,9 @@ targets:
         # Xcode-declared outputs; user-script sandboxing would kill it.
         ENABLE_USER_SCRIPT_SANDBOXING: NO
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        # why: a folding phone closed from upright turns its cover screen over, and a portrait-only
+        # app stays drawn upside down there; phones without a home button never turn upside down.
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: "$(APP_DISPLAY_NAME)"
         # why: files the app under Education on the App Store and in the
