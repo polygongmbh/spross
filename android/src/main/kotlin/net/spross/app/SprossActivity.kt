@@ -44,6 +44,7 @@ import net.spross.app.ui.DateDrillScreen
 import net.spross.app.ui.DatesOverviewScreen
 import net.spross.app.ui.HomeScreen
 import net.spross.app.ui.LetterDrillScreen
+import net.spross.app.ui.MeasuresWindowPanes
 import net.spross.app.ui.LettersOverviewScreen
 import net.spross.app.ui.ListeningScreen
 import net.spross.app.ui.NumbersOverviewScreen
@@ -52,6 +53,7 @@ import net.spross.app.ui.OppositesScreen
 import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SettingsScreen
+import net.spross.app.ui.singlePane
 import net.spross.app.ui.SprossTheme
 import net.spross.app.ui.Theme
 import net.spross.app.ui.NumbersRunScreen
@@ -167,14 +169,18 @@ private fun Root(model: AppModel = viewModel()) {
         bottomBar = { if (tab != null) TabBar(model, tab) },
         contentWindowInsets = WindowInsets.safeDrawing,
     ) { insets ->
-        Box(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
+        MeasuresWindowPanes(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
             screens.transition.AnimatedContent(transitionSpec = screens.motion) { screen ->
                 // The screen is the lambda's own parameter rather than a property read, so the Box
                 // case can hand its area on: a `mutableStateOf` property is never smart-cast — and
                 // an outgoing screen keeps drawing the state it left with instead of the new one.
                 // why: each screen is its own page of paper, so a screen being backed out of
                 // hides the one behind it rather than showing through it.
-                Box(Modifier.fillMaxSize().clip(screenShape).background(MaterialTheme.colorScheme.background)) {
+                // why: a screen with no pane design of its own stands in kern's single pane.
+                Box(
+                    Modifier.fillMaxSize().clip(screenShape).background(MaterialTheme.colorScheme.background)
+                        .then(if (screen.laysOutWidth()) Modifier else Modifier.singlePane()),
+                ) {
                     when (screen) {
                         Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                             CircularProgressIndicator()
@@ -202,6 +208,16 @@ private fun Root(model: AppModel = viewModel()) {
             }
         }
     }
+}
+
+/**
+ * The screens that lay the window's width out themselves — a run gives its card the whole width;
+ * every other screen stands in one readable column ([singlePane]).
+ */
+private fun Screen.laysOutWidth(): Boolean = when (this) {
+    Screen.Session, is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble,
+    Screen.Opposites, is Screen.CountryDrill, is Screen.DateDrill -> true
+    else -> false
 }
 
 /**

@@ -260,7 +260,8 @@ What licenses a second component is a parameter attempted and found not to carry
 - Home puts what is looked at — the greeting, the trees and their days — in the leading pane with listening, an occasional detour,
   and the day's card, the drills and the companion in the trailing one;
   the Box puts its areas in one pane and the chosen area's words in the other.
-- A sheet is the system's, asked to stand on the trailing side, never placed by the app.
+- A sheet stands on the trailing side: iOS asks the system to place it there, Android offsets its bottom sheet into the trailing pane's readable column;
+  an alert stays centered.
 - **Where the system has a vertical bar, a presentation's way out and ways on are its items**, as symbols, the way out on top —
   a sheet's close, cancel, done and start, listening's ✕, a round summary's ✕ with Done prominent at the bar's foot;
   elsewhere they keep their corners and titles.
