@@ -106,14 +106,14 @@ A verdict also overrules the score for those bytes:
 bad never ships, and bad or mediocre has every other take of its word tried.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.
-A listening set is takes beside a TSV naming them, rated one key per take with `../../scripts/audio-listen.py`,
-which writes the verdicts itself;
-`audio-listen.py sample NAME --from shipped|journal|voices` draws one out of unrated takes —
+`../../scripts/audio-listen.py` plays takes and rates each with one key, writing the verdicts itself:
+`audio-listen.py fr:bonjour 'fr:au revoir'` every shipped take of the words it names,
+so a listener is handed what a run shipped in one command rather than files opened one by one,
+and `audio-listen.py SET` a listening set, takes beside a TSV naming them.
+`audio-listen.py sample NAME --from shipped|journal|voices` draws a set out of unrated takes —
 the lowest scorers that ship, the staged and shipped swaps most likely to be wrong,
 or one take of each voice nobody heard yet —
-and with `--word [LANG:]FORM` (repeatable, or `--words FILE`, one per line) every take of the keys it names instead, rated or not,
-so a listener is handed what a run shipped as one set rather than files opened one by one.
-Run from a terminal it starts rating the set it drew, or resumes the one already under that name.
+and, run from a terminal, starts rating it, or resumes the one already under that name.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are unversioned research input;
 what is committed here is the shipped bytes and the license record that has to travel with them.

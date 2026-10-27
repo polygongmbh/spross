@@ -109,8 +109,7 @@ def sample(argv):
     parser = argparse.ArgumentParser(
         prog='audio-listen.py sample',
         description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet, '
-                    'or out of the takes --word names, rated or not, and starts rating it when run from a terminal '
-                    '(an existing set of that NAME resumes).')
+                    'and starts rating it when run from a terminal (an existing set of that NAME resumes).')
     parser.add_argument('name')
     parser.add_argument('--from', dest='source', choices=('shipped', 'journal', 'voices'), required=True,
                         help='shipped: the lowest scorers of what ships; journal: the swaps staged or shipped '
@@ -121,17 +120,10 @@ def sample(argv):
     parser.add_argument('--section')
     parser.add_argument('--voice')
     parser.add_argument('--mos-below', type=float, metavar='MOS')
-    parser.add_argument('--word', action='append', default=[], metavar='[LANG:]FORM',
-                        help='draw every take of this key instead, rated already or not, in the order named, '
-                             'with no cap; repeatable, LANG: narrows it to one language')
-    parser.add_argument('--words', metavar='FILE', help='--word for each line of FILE')
     parser.add_argument('-n', type=int, default=15,
                         help='takes in the set (default 15); out of shipped or journal takes from more than one '
                              'language, at most %d come from each' % PER_LANGUAGE)
     args = parser.parse_args(argv)
-    if args.words:
-        with open(args.words, encoding='utf-8') as handle:
-            args.word += [line.strip() for line in handle if line.strip() and not line.startswith('#')]
     verdicts = rows(VERDICTS)
     heard = {row['sha256'] for row in verdicts}
     shipped = shipped_entries()
@@ -142,19 +134,8 @@ def sample(argv):
                 and (not args.section or take['section'] == args.section)
                 and (not args.voice or take['speaker'] == args.voice)
                 and (args.mos_below is None or (take['mos'] is not None and take['mos'] < args.mos_below))]
-    if args.word:
-        takes = []
-        for wanted in args.word:
-            lang, form = wanted.split(':', 1) if re.match(r'^[a-z]{2,3}:', wanted) else (None, wanted)
-            found = [take for take in matching
-                     if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
-            if not found:
-                print('no take of %s' % wanted, file=sys.stderr)
-            takes += found
-        args.n = len(takes)
-    else:
-        takes = [take for take in matching if take['sha256'] not in heard]
-    capped = args.source != 'voices' and not args.word and len({take['lang'] for take in takes}) > 1
+    takes = [take for take in matching if take['sha256'] not in heard]
+    capped = args.source != 'voices' and len({take['lang'] for take in takes}) > 1
     picked, per, seen = [], {}, set()
     for take in takes:
         if len(picked) == args.n:
@@ -171,7 +152,7 @@ def sample(argv):
         if not sys.stdin.isatty():
             sys.exit('%s already holds a set' % out)
         print('%s already holds a set, resuming it\n' % out)
-        return listen(os.path.join(out, 'set.tsv'))
+        return listen_set(os.path.join(out, 'set.tsv'))
     os.makedirs(out, exist_ok=True)
     context = '%s %s' % (datetime.date.today().isoformat(), args.name.replace('-', ' '))
     with open(os.path.join(out, 'set.tsv'), 'w', encoding='utf-8', newline='') as handle:
@@ -187,7 +168,7 @@ def sample(argv):
     # why: run from a terminal, drawing a set starts rating it; run by a script, it hands back the command.
     if sys.stdin.isatty():
         print()
-        return listen(os.path.join(out, 'set.tsv'))
+        return listen_set(os.path.join(out, 'set.tsv'))
     print('scripts/audio-listen.py %s' % os.path.join(out, 'set.tsv'))
 
 
@@ -231,6 +212,23 @@ def withdraw(sha256, context):
         handle.writelines(kept)
 
 
+def by_word(words):
+    """Set rows for every shipped take of [words], each `[LANG:]FORM`, in the order named."""
+    shipped = from_shipped(shipped_entries())
+    listed, today = [], datetime.date.today().isoformat()
+    for wanted in words:
+        lang, form = wanted.split(':', 1) if re.match(r'^[a-z]{2,3}:', wanted) else (None, wanted)
+        found = [take for take in shipped
+                 if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
+        if not found:
+            print('no take of %s' % wanted, file=sys.stderr)
+        listed += [dict(file=take['path'], lang=take['lang'], word=take['word'], speaker=take['speaker'],
+                        source=take['source'], sha256=take['sha256'],
+                        mos='' if take['mos'] is None else '%.2f' % take['mos'],
+                        context='%s by word (%s, %s)' % (today, take['section'], take['why'])) for take in found]
+    return listed
+
+
 def named(rows, wanted):
     """Indices of the rows [wanted] names: a row number, else every row whose word contains it."""
     if wanted.isdigit():
@@ -244,20 +242,38 @@ def main():
         return sample(sys.argv[2:])
     parser = argparse.ArgumentParser(
         prog='audio-listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
-        description='Plays each take of a set and rates it with one key. A new rating replaces the take\'s '
-                    'earlier one in its context. `audio-listen.py sample -h` draws a new set.',
+        usage='%(prog)s SET [ROW] | [LANG:]FORM ...',
+        description='Plays each take of a set, or every shipped take of the words named, and rates it with one key. '
+                    'A new rating replaces the take\'s earlier one in its context, and a rerun resumes at the first '
+                    'take not yet rated. `audio-listen.py sample -h` draws a new set.',
         epilog='keys, each take playing on arrival:\n' + '\n'.join('  %-4s %s' % (key, text) for key, _, text in KEYS))
-    parser.add_argument('set', help='a TSV beside its mp3s (or naming absolute paths), columns file lang word '
-                                    'speaker source sha256 mos and an optional context (default: its folder name)')
-    parser.add_argument('row', nargs='?', help='re-rate just the takes it names, rated already or not: a row number '
-                                               'as the prompt shows it, else every take whose word contains it')
+    parser.add_argument('target', nargs='+', metavar='TARGET',
+                        help='a set: a TSV beside its mp3s (or naming absolute paths), columns file lang word speaker '
+                             'source sha256 mos and an optional context (default: its folder name), then optionally '
+                             'a ROW to re-rate just the takes it names, rated already or not: a row number as the '
+                             'prompt shows it, else every take whose word contains it; '
+                             'or words, `fr:bonjour \'fr:au revoir\'`, LANG: narrowing one to a language')
     args = parser.parse_args()
-    listen(args.set, args.row)
+    first = args.target[0]
+    if first.endswith('.tsv') or os.path.isfile(first):
+        if len(args.target) > 2:
+            parser.error('a set takes at most one ROW')
+        listen_set(first, args.target[1] if len(args.target) > 1 else None)
+    else:
+        listed = by_word(args.target)
+        if not listed:
+            sys.exit('no take of any word named')
+        listen(listed, ROOT)
 
 
-def listen(path, row_named=None):
+def listen_set(path, row_named=None):
     base = os.path.dirname(os.path.abspath(path))
     listed = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
+    listen(listed, base, row_named, path)
+
+
+def listen(listed, base, row_named=None, path=None):
+    """Plays [listed] (`by_word`'s or a set's rows, files relative to [base]) and records each rating."""
     default_context = os.path.basename(base)
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
