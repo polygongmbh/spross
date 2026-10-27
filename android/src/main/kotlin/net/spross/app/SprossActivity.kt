@@ -21,7 +21,6 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.WideNavigationRail
 import androidx.compose.material3.WideNavigationRailDefaults
 import androidx.compose.material3.WideNavigationRailItem
-import net.spross.app.ui.windowPanes
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -32,6 +31,9 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -176,9 +178,9 @@ private fun Root(model: AppModel = viewModel()) {
     LaunchedEffect(linked, tab != null) {
         if (linked && tab != null && model.screen != Screen.Numbers) model.openNumbers()
     }
-    // The sections switch on a bar along the bottom, or on a rail along the leading edge
-    // where the window splits — Material's navigation for a wide window.
-    val rail = windowPanes().split
+    // The sections switch on a bar along the bottom, or on a rail along the leading edge —
+    // whichever Material's adaptive navigation names for this window.
+    val rail = sectionsOnRail()
     Row(Modifier.fillMaxSize()) {
         if (tab != null && rail) TabRail(model, tab)
         RootScaffold(model, screens, tab, rail)
@@ -270,6 +272,15 @@ private fun TabBar(model: AppModel, current: Tab) {
         }
     }
 }
+
+/** Whether Material's adaptive navigation puts the sections on a rail rather than a bottom bar. */
+@Composable
+private fun sectionsOnRail(): Boolean =
+    when (NavigationSuiteScaffoldDefaults.navigationSuiteType(currentWindowAdaptiveInfo())) {
+        NavigationSuiteType.ShortNavigationBarCompact, NavigationSuiteType.ShortNavigationBarMedium,
+        NavigationSuiteType.NavigationBar, NavigationSuiteType.None -> false
+        else -> true
+    }
 
 /** The same three sections on a rail at the leading edge, glyphs only, as the bar wears them. */
 @Composable

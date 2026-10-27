@@ -23,6 +23,8 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-ui = { module = "androidx.compose.ui:ui" }
+# Material's adaptive navigation and window posture (NavigationSuiteScaffoldDefaults, WindowAdaptiveInfo).
+compose-material3-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
