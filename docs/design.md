@@ -161,6 +161,8 @@ What licenses a second component is a parameter attempted and found not to carry
 - **The session end raises the tree of the hardest-worked area,
   whatever the round did to the counts.**
   Only the round's own marks move; Reduce Motion draws the finished tree at once.
+  Where no tree stands, one glyph does, springing in as the screen arrives;
+  nothing else decorates the hero.
 - **A record is named, a number is only counted.**
 - **A finished stretch is celebrated, record or not** — confetti and the cheer, as one:
   every round summary, every drill pause but the one suggesting a stop,

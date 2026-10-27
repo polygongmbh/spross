@@ -22,7 +22,9 @@ struct DrillPauseView: View {
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
                         onPractice: onKeepPracticing,
-                        celebrated: celebrated) { _, _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
+                        celebrated: celebrated) { _, celebration in
+            SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji, celebration: celebration)
+        }
     }
 
     /// What the stretch reached, only where it reached something: the highest

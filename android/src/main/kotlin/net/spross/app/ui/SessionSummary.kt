@@ -75,7 +75,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
             }
         } else {
-            SummaryGlyph("🎉")
+            SummaryGlyph("🎉", celebration)
         }
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }

@@ -30,7 +30,7 @@ fun DrillPause(
         milestone = milestone(run, chrome),
         hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling || run.pacing.shaky },
         cheer = cheer.takeIf { reason.celebrated },
-    ) { _, _ -> SummaryGlyph(reason.emoji) }
+    ) { _, celebration -> SummaryGlyph(reason.emoji, celebration) }
 }
 
 /** What the stretch reached, only where it reached something: the highest Sprosse, where above the one the run opened on, and a record beaten. */

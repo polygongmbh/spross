@@ -1,5 +1,8 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -158,11 +162,29 @@ private fun SummaryLayout(
     }
 }
 
-/** The emoji a summary stands under where no tree takes the hero slot. */
+/**
+ * The emoji a summary stands under where no tree takes the hero slot,
+ * springing in as the screen arrives and again on every [celebration] replay.
+ */
 @Composable
-fun SummaryGlyph(glyph: String) {
-    // why: purely celebratory; the title carries the message.
-    Text(glyph, fontSize = 88.sp, modifier = Modifier.clearAndSetSemantics { }) // card-parity: the summary's own glyph, not a card prompt
+fun SummaryGlyph(glyph: String, celebration: Int = 0) {
+    val pop = remember(celebration) { Animatable(0f) }
+    LaunchedEffect(celebration) {
+        pop.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow))
+    }
+    Text(
+        glyph,
+        fontSize = 88.sp, // card-parity: the summary's own glyph, not a card prompt
+        modifier = Modifier
+            .graphicsLayer {
+                val t = pop.value
+                scaleX = 0.4f + 0.6f * t
+                scaleY = scaleX
+                rotationZ = -25f * (1 - t)
+            }
+            // why: purely celebratory; the title carries the message.
+            .clearAndSetSemantics { },
+    )
 }
 
 /**

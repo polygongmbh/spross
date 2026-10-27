@@ -4,8 +4,8 @@ import SprossKern
 // MARK: - SessionSummaryView
 //
 // "Geschafft!" — warm and playful. Confetti falls over the whole screen
-// (ConfettiView) while an emoji burst opens under it; the cheer sounds once
-// as the screen arrives. Tapping anywhere but the buttons replays all three.
+// (ConfettiView) while the hero — the grown tree, or the popper — rises under it;
+// the cheer sounds once as the screen arrives. Tapping anywhere but the buttons replays all three.
 
 struct SessionSummaryView: View {
     /// The round's answers spelled out (`RoundSummary.parts`).
@@ -32,20 +32,8 @@ struct SessionSummaryView: View {
     var onPractice: () -> Void = {}
     var onDone: () -> Void = {}
 
-    @State private var burst = false
+    @State private var risen = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    /// The ring around the popper — one sign per idea (sprout, star, hands,
-    /// sparkle, arm, balloon), so no two read as the same thing at a glance.
-    /// The radius keeps them against the popper's own edge: further out they
-    /// stop reading as its burst and start floating on their own.
-    private static let pieces: [(emoji: String, angle: Double, distance: CGFloat)] = [
-        ("🌱", -184, 78), ("⭐️", -146, 84), ("🙌", -110, 88),
-        ("✨", -70, 88), ("💪", -34, 84), ("🎈", 4, 78),
-    ]
-
-    private static func swayAngle(_ index: Int) -> Double { 5 + Double(index % 3) * 2 }
-    private static func swayPeriod(_ index: Int) -> Double { 2.1 + Double(index) * 0.27 }
 
     /// "3 neu · 8 wiederholt · 2 gefestigt" under the title — which parts a finished
     /// round names, and in which order, is the box's (`RoundSummary.parts`); the
@@ -82,21 +70,22 @@ struct SessionSummaryView: View {
                         heroLabel: showsTree ? Text(verbatim: grownAreaLabel) : nil,
                         onDone: onDone, onTalk: onTalk,
                         onPractice: canPracticeMore ? onPractice : nil) { ceiling, celebration in
-            Group {
-                if showsTree { grownAreaHero(ceiling: ceiling) } else { burstHero }
+            if showsTree {
+                grownAreaHero(ceiling: ceiling).onChange(of: celebration) { replayRise() }
+            } else {
+                SummaryGlyph(glyph: "🎉", celebration: celebration)
             }
-            .onChange(of: celebration) { replayBurst() }
         }
-        .onAppear { burst = true }
+        .onAppear { risen = true }
     }
 
-    /// Snaps the burst back to rest with no animation, then re-triggers it
-    /// on the next runloop turn so the spring actually replays.
-    private func replayBurst() {
+    /// Snaps the tree back to its crouch with no animation, then re-triggers
+    /// the rise on the next runloop turn so the spring actually replays.
+    private func replayRise() {
         var reset = Transaction()
         reset.disablesAnimations = true
-        withTransaction(reset) { burst = false }
-        DispatchQueue.main.async { burst = true }
+        withTransaction(reset) { risen = false }
+        DispatchQueue.main.async { risen = true }
     }
 
     /// The area the round moved most, as it stood before this round and as it stands now.
@@ -104,13 +93,13 @@ struct SessionSummaryView: View {
     private func grownAreaHero(ceiling: CGFloat) -> some View {
         if let grownArea {
             GrowingTreeView(transition: grownArea, garden: garden,
-                            progress: burst || reduceMotion ? 1 : 0)
+                            progress: risen || reduceMotion ? 1 : 0)
                 .frame(height: AreaTree.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil
                             : .spring(response: TreeRise.companion.SPRING_RESPONSE,
                                       dampingFraction: TreeRise.companion.SPRING_DAMPING)
                                 .delay(Double(TreeRise.companion.DELAY_MILLIS) / 1000),
-                           value: burst)
+                           value: risen)
         }
     }
 
@@ -135,38 +124,6 @@ struct SessionSummaryView: View {
         case .held, .grew: key = "session.done.growth.grown.\(line)"
         }
         return LocalizedStringKey(key)
-    }
-
-    private var burstHero: some View {
-        ZStack {
-            ForEach(Array(Self.pieces.enumerated()), id: \.offset) { index, piece in
-                let radians = piece.angle * .pi / 180
-                Text(piece.emoji)
-                    .font(.title2)
-                    .offset(
-                        x: burst ? piece.distance * cos(radians) : 0,
-                        y: burst ? piece.distance * sin(radians) : 0
-                    )
-                    .scaleEffect(burst ? 1 : 0.2)
-                    .rotationEffect(.degrees(burst ? 0 : index.isMultiple(of: 2) ? -70 : 70))
-                    .opacity(burst ? 1 : 0)
-                    .animation(
-                        .spring(response: 0.6, dampingFraction: 0.6)
-                        .delay(0.15 + Double(index) * 0.06),
-                        value: burst
-                    )
-                    .sway(angle: Self.swayAngle(index), period: Self.swayPeriod(index))
-            }
-            SummaryGlyph(glyph: "🎉")
-                .scaleEffect(burst ? 1 : 0.4)
-                .rotationEffect(.degrees(burst ? 0 : -25))
-                .animation(.spring(response: 0.5, dampingFraction: 0.5), value: burst)
-                // why: the popper carries the least of it — a big shape rocking
-                // as far as a small one reads as the screen itself tilting.
-                .sway(angle: 3, period: 3.7)
-        }
-        .frame(height: 180)
-        .accessibilityHidden(true) // why: purely celebratory; the title below carries the message
     }
 }
 

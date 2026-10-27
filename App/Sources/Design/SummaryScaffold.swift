@@ -129,14 +129,33 @@ private struct Celebration: ViewModifier {
     }
 }
 
-/// The emoji a summary stands under where no tree takes the hero slot.
+/// The emoji a summary stands under where no tree takes the hero slot,
+/// springing in as the screen arrives and again on every replay.
 struct SummaryGlyph: View {
     let glyph: String
+    /// The scaffold's replay count.
+    var celebration = 0
+
+    @State private var popped = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Text(verbatim: glyph)
             .font(.system(size: 88)) // card-parity: the summary's own glyph, not a card prompt
+            .scaleEffect(popped || reduceMotion ? 1 : 0.4)
+            .rotationEffect(.degrees(popped || reduceMotion ? 0 : -25))
+            .animation(reduceMotion ? nil : .bouncy, value: popped)
             .accessibilityHidden(true) // why: purely celebratory; the title carries the message
+            .onAppear { popped = true }
+            .onChange(of: celebration) { replay() }
+    }
+
+    /// Snaps back to rest with no animation, then pops again on the next runloop turn so the spring actually replays.
+    private func replay() {
+        var reset = Transaction()
+        reset.disablesAnimations = true
+        withTransaction(reset) { popped = false }
+        DispatchQueue.main.async { popped = true }
     }
 }
 
