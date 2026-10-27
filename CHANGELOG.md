@@ -4,6 +4,11 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.1.0 — 2026-10-27
+
+- On an unfolded foldable or a tablet, Home and the Box now use both halves of the screen, and text is larger, most of all during a session.
+- Starting a session no longer crashes on a device whose audio output is unavailable.
+
 ## 9.0.0 — 2026-10-26
 
 - A new Clothes area teaches everything from underpants to the raincoat and the verbs for getting dressed, and clothes you already learned elsewhere keep their progress.
