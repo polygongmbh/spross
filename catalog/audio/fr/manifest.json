@@ -304,6 +304,7 @@
     "Hanavaï C.": "CC BY-SA 4.0",
     "Helenou66": "CC0",
     "Issakaf": "CC0",
+    "JackPotte": "CC BY-SA 3.0",
     "Jules78120": "CC0",
     "Julien Baley": "CC BY-SA 4.0",
     "Justforoc": "CC BY-SA 4.0",
@@ -329,6 +330,7 @@
     "Vive la Rosière": "CC0",
     "WikiLucas00": "CC BY-SA 4.0",
     "X-Javier": "CC BY-SA 4.0",
+    "XANA000": "CC0",
     "Yug": "CC BY 4.0"
   },
   "calendar": {
@@ -2608,6 +2610,16 @@
       "sha256": "8451191e2ecd535cb6fe8842b2d4116f2d167dcf65a080bca82077ab7a76e180",
       "source": "LL-Q150 (fra)-Poslovitch-attestation.wav"
     },
+    "au revoir": {
+      "author": "Helenou66",
+      "file": "words/au_revoir.mp3",
+      "gain": 1.3,
+      "lead": 190,
+      "matches": "au revoir",
+      "mos": 2.9,
+      "sha256": "1b3ce9d864f5db917168caed75ad595591f31c2c408df37fa83777ca700427c6",
+      "source": "LL-Q150 (fra)-Helenou66-au revoir.wav"
+    },
     "aujourd'hui": {
       "author": "Poslovitch",
       "file": "words/aujourdu0027hui.mp3",
@@ -3057,6 +3069,17 @@
       "sha256": "6db2918a15b3129563855dbef07bf4fa3f6432b55be8ba7143d2e2fe2f425236",
       "source": "Fr-bientôt.ogg"
     },
+    "bienvenue": {
+      "author": "XANA000",
+      "file": "words/bienvenue.mp3",
+      "gain": -2.7,
+      "gate": -74.5,
+      "lead": 160,
+      "matches": "bienvenue",
+      "mos": 2.8,
+      "sha256": "288e33807e8f0923e35b3ebfe81f5fe93541c795f64831a73b7c215e70a4b7a7",
+      "source": "LL-Q150 (fra)-XANA000-bienvenue.wav"
+    },
     "bile": {
       "author": "LoquaxFR",
       "file": "words/bile.mp3",
@@ -3199,6 +3222,27 @@
       "sha256": "ad9627bb477994090880356c39f4f6b45a747e64516930ba2f0dde8b184892b9",
       "source": "LL-Q150 (fra)-Jules78120-bon marché.wav"
     },
+    "bon voyage": {
+      "author": "LoquaxFR",
+      "file": "words/bon_voyage.mp3",
+      "gain": 2.4,
+      "gate": -71.0,
+      "matches": "bon voyage",
+      "mos": 2.92,
+      "sha256": "b3c03a72f788319d893483075c8ab4e5eed8ec37c076223db998d7d0ea28a791",
+      "source": "LL-Q150 (fra)-LoquaxFR-bon voyage.wav"
+    },
+    "bonjour": {
+      "author": "Poslovitch",
+      "file": "words/bonjour.mp3",
+      "gain": 4.0,
+      "gate": -70.9,
+      "lead": 130,
+      "matches": "bonjour",
+      "mos": 2.69,
+      "sha256": "992070c65d6aa185662d4b3b394d324ebb366ac9888c3ec70eb37eb72981e6bb",
+      "source": "LL-Q150 (fra)-Poslovitch-bonjour.wav"
+    },
     "bonne": {
       "author": "Vion Nicolas",
       "file": "words/bonne.mp3",
@@ -3210,6 +3254,17 @@
       "sha256": "f41bb6faab46fe08a7656cce043280b96cf9cd4edad4c16bbbdd6d0c79ce6353",
       "source": "Fr-bonne.ogg"
     },
+    "bonne nuit": {
+      "author": "XANA000",
+      "file": "words/bonne_nuit.mp3",
+      "gain": 2.9,
+      "gate": -96.2,
+      "lead": 160,
+      "matches": "bonne nuit",
+      "mos": 2.43,
+      "sha256": "393bde371f8abe8da13f1a1e5e4212c554e603c13b935e55041afe420bc85991",
+      "source": "LL-Q150 (fra)-XANA000-bonne nuit.wav"
+    },
     "bonnet": {
       "author": "LoquaxFR",
       "file": "words/bonnet.mp3",
@@ -3220,6 +3275,17 @@
       "mos": 3.04,
       "sha256": "2b6e08882bb8c26d9b0ed8a749008da2f9fd6622a610e45ddf54e5498220ac14",
       "source": "LL-Q150 (fra)-LoquaxFR-bonnet.wav"
+    },
+    "bonsoir": {
+      "author": "Poslovitch",
+      "file": "words/bonsoir.mp3",
+      "gain": 4.1,
+      "gate": -71.6,
+      "lead": 170,
+      "matches": "bonsoir",
+      "mos": 3.17,
+      "sha256": "33ab7f840a216b268b7196fe5f88f05937dc87bcb2da5761dcaeb1141eaeed87",
+      "source": "LL-Q150 (fra)-Poslovitch-bonsoir.wav"
     },
     "botte": {
       "author": "Vion Nicolas",
@@ -4202,6 +4268,28 @@
       "mos": 2.86,
       "sha256": "4a99c1d0da2600467498ba0e6c9054162606ce1e819500d5de6b956d7765b2b0",
       "source": "Fr-comment.ogg"
+    },
+    "comment allez-vous": {
+      "author": "LoquaxFR",
+      "cap": 0.4,
+      "file": "words/comment_allez-vous.mp3",
+      "gain": 7.1,
+      "lead": 160,
+      "matches": "comment allez-vous",
+      "mos": 3.23,
+      "sha256": "82ba83a2a1f5c79cd6e140d168ec887121c27c6b8733464e3a92362e9b3ddf78",
+      "source": "LL-Q150 (fra)-LoquaxFR-comment allez-vous.wav"
+    },
+    "comment vous appelez-vous": {
+      "author": "JackPotte",
+      "file": "words/comment_vous_appelez-vous.mp3",
+      "gain": -4.4,
+      "gate": -57.1,
+      "lead": 680,
+      "matches": "comment vous appelez-vous",
+      "mos": 3.09,
+      "sha256": "0af8cb712715e669f484d4ba3ca1c2a08d782814c4bab05527f63a5a3409fabb",
+      "source": "Fr-comment vous appelez-vous.ogg"
     },
     "commerçante": {
       "author": "Pamputt",
@@ -5655,6 +5743,17 @@
       "sha256": "891537cc6ad37b726659f1d96288d5ec82d5fb4a955106e6e3593dabdf528603",
       "source": "LL-Q150 (fra)-Lepticed7-entrer.wav"
     },
+    "entretien d'embauche": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "words/entretien_du0027embauche.mp3",
+      "gain": 7.3,
+      "gate": -77.6,
+      "lead": 180,
+      "matches": "entretien d'embauche",
+      "mos": 3.39,
+      "sha256": "bec51cd1d9dada4fce84a3c786e69dba41add97dbf63273c7f39fde4bd61e0e9",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-entretien d’embauche.wav"
+    },
     "entrée": {
       "author": "Poslovitch",
       "file": "words/entru00e9e.mp3",
@@ -5785,6 +5884,17 @@
       "mos": 3.14,
       "sha256": "c348775103863db7fafdb4471c4d4d3663efe99f5057ee97fcd3e58b7a3362b3",
       "source": "LL-Q150 (fra)-Sartus85-examiner.wav"
+    },
+    "excusez-moi": {
+      "author": "LoquaxFR",
+      "file": "words/excusez-moi.mp3",
+      "gain": 5.6,
+      "gate": -96.1,
+      "lead": 170,
+      "matches": "excusez-moi",
+      "mos": 3.22,
+      "sha256": "11322e55c2624051c10129f6d1fbe6aa4d10a54337c059b16c2990238efe2159",
+      "source": "LL-Q150 (fra)-LoquaxFR-excusez-moi.wav"
     },
     "exercice": {
       "author": "Sartus85",
@@ -7306,6 +7416,17 @@
       "sha256": "03c39b8c5e9a7f6696c6cefa7c9d0bb9eda164e974ffae05bf7ba86ff3b3c646",
       "source": "LL-Q150 (fra)-LoquaxFR-kilo.wav"
     },
+    "l'addition, s'il vous plaît": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "words/lu0027additionu002c_su0027il_vous_plau00eet.mp3",
+      "gain": 7.1,
+      "gate": -78.7,
+      "lead": 180,
+      "matches": "l'addition, s'il vous plaît",
+      "mos": 3.23,
+      "sha256": "9ac891c8610e1e9abec8ce93c02a2175d1135e9849841481d926e8bd9b0cd046",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-l’addition, s’il vous plaît.wav"
+    },
     "lac": {
       "author": "LoquaxFR",
       "file": "words/lac.mp3",
@@ -8026,6 +8147,18 @@
       "mos": 3.03,
       "sha256": "3534ea29dac93d2063454bbad4e79e6f232c38383199562e38f0200b4f78bbb4",
       "source": "Fr-mer.ogg"
+    },
+    "merci beaucoup": {
+      "author": "LoquaxFR",
+      "cap": 1.1,
+      "file": "words/merci_beaucoup.mp3",
+      "gain": 7.2,
+      "gate": -99.3,
+      "lead": 80,
+      "matches": "merci beaucoup",
+      "mos": 3.1,
+      "sha256": "c54b8e83ba55d1d3048b81bf55a2562a0781aba4a3457b11489115963963667e",
+      "source": "LL-Q150 (fra)-LoquaxFR-merci beaucoup.wav"
     },
     "message": {
       "author": "Poslovitch",
@@ -9137,6 +9270,17 @@
       "sha256": "189347a8265fbe504596d2ef74a546525c729ebf20d74e0c280a8be564f1dc43",
       "source": "LL-Q150 (fra)-Poslovitch-parce que.wav"
     },
+    "pardon": {
+      "author": "Poslovitch",
+      "file": "words/pardon.mp3",
+      "gain": 1.0,
+      "gate": -62.2,
+      "lead": 200,
+      "matches": "pardon",
+      "mos": 2.64,
+      "sha256": "c9a20b8ac01641ff322e42d7f9166ef20c2739156e4d4b8246b96d7c622cfef5",
+      "source": "LL-Q150 (fra)-Poslovitch-pardon.wav"
+    },
     "parents": {
       "author": "Vion Nicolas",
       "file": "words/parents.mp3",
@@ -9202,6 +9346,17 @@
       "mos": 2.92,
       "sha256": "38505ebbfe97145e9d35602ade79043724012714d255c3044eedbabfd850632d",
       "source": "Fr-pas.ogg"
+    },
+    "pas de problème": {
+      "author": "XANA000",
+      "file": "words/pas_de_problu00e8me.mp3",
+      "gain": -2.5,
+      "gate": -65.1,
+      "lead": 190,
+      "matches": "pas de problème",
+      "mos": 2.67,
+      "sha256": "b6c6a1418b0cbb34dd4ae640a148231bf9f2d1cc4599f2296c5202e1a80f1970",
+      "source": "LL-Q150 (fra)-XANA000-pas de problème.wav"
     },
     "passager": {
       "author": "Vion Nicolas",
@@ -10973,6 +11128,17 @@
       "sha256": "a2bea74a1171f1c04b29643a9056dfe1ea8823ab0fecbf77324a40de2db1a036",
       "source": "LL-Q150 (fra)-Poslovitch-s’habiller.wav"
     },
+    "s'il vous plaît": {
+      "author": "DenisdeShawi",
+      "file": "words/su0027il_vous_plau00eet.mp3",
+      "gain": 5.0,
+      "gate": -72.4,
+      "lead": 150,
+      "matches": "s'il vous plaît",
+      "mos": 2.57,
+      "sha256": "64e1347166210b6e89c48e5d8fecc1caf26d056b8aff2057516621ee2ed4e3f2",
+      "source": "LL-Q150 (fra)-DenisdeShawi-s’il vous plaît.wav"
+    },
     "s'inscrire": {
       "author": "Sartus85",
       "file": "words/su0027inscrire.mp3",
@@ -10983,6 +11149,18 @@
       "mos": 3.13,
       "sha256": "a3fb7a16d90bb176fdf97bced6adc085d614d98d0050fc343e4b30ef835abe26",
       "source": "LL-Q150 (fra)-Sartus85-s’inscrire.wav"
+    },
+    "s'occuper de": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "cap": 0.8,
+      "file": "words/su0027occuper_de.mp3",
+      "gain": 14.3,
+      "gate": -73.7,
+      "lead": 20,
+      "matches": "s'occuper de",
+      "mos": 2.51,
+      "sha256": "f647405eb302c75cc212fe15c0a387a3997d8fbcb592a5ab3df8a0a15c2a5dd2",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-s’occuper de.wav"
     },
     "sac": {
       "author": "Jérémy-Günther-Heinz Jähnick",
@@ -11038,6 +11216,17 @@
       "sha256": "2614d0e18096bd478ffccaf5a9ecf437718164304ea356a61a862b64b3374d0a",
       "source": "Fr-sale.ogg"
     },
+    "salle d'attente": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "words/salle_du0027attente.mp3",
+      "gain": 8.8,
+      "gate": -71.8,
+      "lead": 30,
+      "matches": "salle d'attente",
+      "mos": 3.16,
+      "sha256": "3033bc56c5aa573d0c64e1d2242109f1ee5d737d5bc4244574438732a3577fe9",
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-salle d’attente.wav"
+    },
     "salle de classe": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "words/salle_de_classe.mp3",
@@ -11059,6 +11248,16 @@
       "mos": 3.16,
       "sha256": "8044f791d02a82427cd265cdc62e4a852e929052360339455f1ff0627d76a9ff",
       "source": "LL-Q150 (fra)-LoquaxFR-saluer.wav"
+    },
+    "salut": {
+      "author": "XANA000",
+      "file": "words/salut.mp3",
+      "gain": -1.4,
+      "gate": -96.4,
+      "matches": "salut",
+      "mos": 2.49,
+      "sha256": "fd8e725a037bb342dd1554ad89ea30872dc17f90e57836f5b3d4a41fd15d47ae",
+      "source": "LL-Q150 (fra)-XANA000-salut.wav"
     },
     "samoussa": {
       "author": "Bananax47",
@@ -13294,6 +13493,17 @@
       "mos": 2.78,
       "sha256": "ae83dd295bbed822a3df66f3e442b4424069a4a22e5b97989da6d7c1fad442ef",
       "source": "LL-Q150 (fra)-WikiLucas00-à la maison.wav"
+    },
+    "à plus tard": {
+      "author": "LoquaxFR",
+      "file": "words/u00e0_plus_tard.mp3",
+      "gain": 5.3,
+      "gate": -91.3,
+      "lead": 170,
+      "matches": "à plus tard",
+      "mos": 3.18,
+      "sha256": "303442afc92276f09296c747ff800ce325d4b1b7aa7a606a710667da6997ad57",
+      "source": "LL-Q150 (fra)-LoquaxFR-à plus tard.wav"
     },
     "âge": {
       "author": "Poslovitch",
