@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// The bottom of Home: the 14-day strip,
-/// then the box as one picture —
+/// then the box as one picture (the strip under it in a wide window's own pane) —
 /// one tree per area, in catalog order with the learner's own words last,
 /// standing in rows on shared ground —
 /// and the standing split in words under it.
@@ -23,6 +23,9 @@ import SprossKern
 struct Trees: View {
     let model: AppModel
     let open: (String) -> Void
+    /// Whether the strip stands under the picture rather than over it —
+    /// where the picture leads a pane of its own.
+    var stripLast = false
 
     /// Measured once and reused: the picture has to know its width before it can say how tall it is.
     @State private var width: CGFloat = 0
@@ -34,12 +37,17 @@ struct Trees: View {
             // Both pieces name themselves —
             // the strip in its own header, the tree picture in the caption under it —
             // so a section title above says the word a third time.
-            ActivityStripView(days: model.activity,
-                              streakDays: model.stats?.streakDays ?? 0,
-                              health: model.stats?.streakHealth ?? .noRun)
+            if !stripLast { strip }
             picture
             caption
+            if stripLast { strip }
         }
+    }
+
+    private var strip: some View {
+        ActivityStripView(days: model.activity,
+                          streakDays: model.stats?.streakDays ?? 0,
+                          health: model.stats?.streakHealth ?? .noRun)
     }
 
     private var widthProbe: some View {

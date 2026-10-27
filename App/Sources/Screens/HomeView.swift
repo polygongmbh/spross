@@ -28,13 +28,13 @@ struct HomeView: View {
         let lead = dayLead(pick)
         Group {
             if let panes, panes.split {
-                // What is looked at, and listening, an occasional detour, on one pane;
+                // Listening, an occasional detour, and what is looked at on one pane;
                 // the day's card and the drills on the other, beside the system's controls.
                 PaneSplit(panes: panes) {
                     page {
                         header
-                        trees()
                         listeningCard
+                        trees(stripLast: true)
                     }
                 } trailing: {
                     page {
@@ -112,8 +112,8 @@ struct HomeView: View {
         }
     }
 
-    private func trees() -> some View {
-        Trees(model: model, open: { openBox($0) })
+    private func trees(stripLast: Bool = false) -> some View {
+        Trees(model: model, open: { openBox($0) }, stripLast: stripLast)
     }
 
     /// Kern's answer to what leads the day (`DayLead`).
