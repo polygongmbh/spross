@@ -133,6 +133,40 @@ def speech_span(binary, path):
     return (float(groups[0][0] * SPAN_FRAME_MS) / 1000, float((groups[-1][-1] + 1) * SPAN_FRAME_MS) / 1000, duration)
 
 
+# POPS — a plosive's breath striking the microphone: a burst of bass under POP_HZ, where a voice
+# carries next to nothing. The noise-and-reverb model behind MOS does not hear it (de lieben: mos 2.61,
+# heard as popping), and a burst's sample peak alone is a loud consonant as often as a pop.
+# Read as RMS over the speech span's frames, against the same vowel-length SPAN_LOUDEST_MS stretch the
+# span's edge bar measures, so a quiet take and a loud one compare.
+POP_HZ = (20, 80)
+
+
+def pop(binary, path, span=None):
+    """dB the loudest frame of bass under POP_HZ inside the speech stands over the speech's loudest
+    SPAN_LOUDEST_MS (median frame RMS above 20 Hz); [span] is `speech_span`'s, measured here where not
+    given; None where the span holds no frame."""
+    start, end, _ = span or speech_span(binary, path)
+    x = _decode(binary, path, SPAN_RATE).astype(np.float64)
+    width = SPAN_RATE * SPAN_FRAME_MS // 1000
+    first, last = round(start * 1000) // SPAN_FRAME_MS, round(end * 1000) // SPAN_FRAME_MS
+    if last - first < 1:
+        return None
+    spectrum = np.fft.rfft(x)
+    hz = np.fft.rfftfreq(len(x), 1 / SPAN_RATE)
+
+    def level(band):
+        y = np.fft.irfft(np.where(band, spectrum, 0), len(x))
+        frames = y[:len(y) // width * width].reshape(-1, width)[first:last]
+        return 10 * np.log10((frames ** 2).mean(axis=1) + 1e-12)
+
+    voice, bass = level(hz >= POP_HZ[0]), level((hz >= POP_HZ[0]) & (hz < POP_HZ[1]))
+    if not len(voice):
+        return None
+    stretch = min(SPAN_LOUDEST_MS // SPAN_FRAME_MS, len(voice))
+    loudest = np.median(np.lib.stride_tricks.sliding_window_view(voice, stretch), axis=1).max()
+    return float(bass.max() - loudest)
+
+
 def peak_and_loudness(binary, path):
     """(sample peak dBFS, integrated LUFS) of `path` alone — `measure`'s two levels without
     its slower passes, for asking whether a take is squashed (`audio_voices.is_squashed`)."""

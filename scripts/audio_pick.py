@@ -49,6 +49,8 @@ class Measures:
         """A future of the measures of [path]; an unreadable take answers None rather than raising."""
         held = self.known.get(sha)
         if held and 'balance' in held and ('mos' in held or not scored):
+            if 'pop' not in held:
+                return self.pool.submit(audio_judge.measure_pop, path)
             done = concurrent.futures.Future()
             done.set_result(held)
             return done

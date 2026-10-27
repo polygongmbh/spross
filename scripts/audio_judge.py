@@ -52,7 +52,7 @@ def source_refusal(take):
 
 def measure(path, scored=True):
     """What [judge] reads off a take's bytes short of its playback gain, in one process:
-    `balance`, `peak`, `loudness`, `speech` seconds and — [scored] — `mos` and `silent`."""
+    `balance`, `peak`, `loudness`, `speech` seconds, `pop` and — [scored] — `mos` and `silent`."""
     if scored:
         levels = audio_measure.measure(audio_index.FFMPEG, path)
         loudness, span, peak = levels[0], levels[1], levels[2]
@@ -62,7 +62,13 @@ def measure(path, scored=True):
         span = audio_measure.speech_span(audio_index.FFMPEG, path)
         out = {}
     return dict(out, balance=audio_measure.side_balance(audio_index.FFMPEG, path), peak=peak, loudness=loudness,
-                speech=round(span[1] - span[0], 2))
+                speech=round(span[1] - span[0], 2), **measure_pop(path, span))
+
+
+def measure_pop(path, span=None):
+    """`{'pop': dB}` of `audio_measure.pop`, for [measure] and for a take cached before it read pops."""
+    pop = audio_measure.pop(audio_index.FFMPEG, path, span)
+    return dict(pop=None if pop is None else round(pop, 1))
 
 
 def judge(take, index=False, measured=None):
