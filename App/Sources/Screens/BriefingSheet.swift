@@ -44,18 +44,10 @@ struct BriefingSheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("briefing.title")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("common.done") { dismiss() }
-                }
-                // why: the paste can grow a long word list, so the accept action sits in
-                // the bar rather than below it — nobody scrolls the whole list to keep it.
-                if !harvested.isEmpty {
-                    ToolbarItem(placement: .confirmationAction) {
-                        keepButton
-                    }
-                }
-            }
+            // why: the paste can grow a long word list, so the accept action sits in
+            // the bar rather than below it — nobody scrolls the whole list to keep it.
+            .presentationActions(close: BarAction("common.done", icon: "xmark") { dismiss() },
+                                 confirm: harvested.isEmpty ? nil : keepAction)
         }
         .tint(Theme.colors.accent)
         .onAppear { briefing = model.makeBriefing() }
@@ -208,14 +200,11 @@ struct BriefingSheet: View {
 
     /// Mirrors `bottomKeepButton` in the navigation bar (`.confirmationAction`) — a harvest
     /// long enough to fill the sheet must never make the accept action a scroll away.
-    private var keepButton: some View {
-        Button {
+    private var keepAction: BarAction {
+        BarAction("briefing.return.keep \(kept.count)", icon: "checkmark", enabled: !kept.isEmpty) {
             model.keepHarvested(kept)
             dismiss()
-        } label: {
-            Text("briefing.return.keep \(kept.count)")
         }
-        .disabled(kept.isEmpty)
     }
 
     /// Repeated below the list for a short harvest, where reaching up to the bar is

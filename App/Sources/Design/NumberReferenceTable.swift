@@ -143,11 +143,7 @@ struct NumberReferenceSheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(Text("numbers.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
-                }
-            }
+            .presentationActions(confirm: BarAction("common.done", icon: "checkmark") { dismiss() })
         }
         .tint(Theme.colors.accent)
     }

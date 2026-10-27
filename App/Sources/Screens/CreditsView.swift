@@ -29,11 +29,7 @@ struct CreditsView: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("credits.title")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
-                }
-            }
+            .presentationActions(confirm: BarAction("common.done", icon: "checkmark") { dismiss() })
         }
         .tint(Theme.colors.accent)
     }

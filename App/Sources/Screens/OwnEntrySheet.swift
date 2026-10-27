@@ -40,15 +40,9 @@ struct OwnEntrySheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("box.own.entry.edit")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("common.cancel") { dismiss() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("box.own.word.save") { save() }
-                        .disabled(!hasAnything)
-                }
-            }
+            .presentationActions(close: BarAction("common.cancel", icon: "xmark") { dismiss() },
+                                 confirm: BarAction("box.own.word.save", icon: "checkmark",
+                                                    enabled: hasAnything) { save() })
         }
         .tint(Theme.colors.accent)
         .onAppear {

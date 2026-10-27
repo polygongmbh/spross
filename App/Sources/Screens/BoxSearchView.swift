@@ -42,11 +42,7 @@ struct BoxSearchView: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("box.search.button")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("common.done") { dismiss() }
-                }
-            }
+            .presentationActions(confirm: BarAction("common.done", icon: "checkmark") { dismiss() })
         }
         .tint(Theme.colors.accent)
         // why: searching in the body would re-run on every unrelated redraw —

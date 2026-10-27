@@ -111,15 +111,9 @@ struct OwnWordFormView: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(isEditing ? "box.own.word.edit" : "box.own.word.title")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("common.cancel") { close() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(isEditing ? "box.own.word.save" : "box.own.word.add") { save() }
-                        .disabled(!hasAnything)
-                }
-            }
+            .presentationActions(close: BarAction("common.cancel", icon: "xmark") { close() },
+                                 confirm: BarAction(isEditing ? "box.own.word.save" : "box.own.word.add",
+                                                    icon: "checkmark", enabled: hasAnything) { save() })
         }
         .tint(Theme.colors.accent)
     }

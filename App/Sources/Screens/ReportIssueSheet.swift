@@ -50,14 +50,8 @@ struct ReportIssueSheet: View {
             .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("report.title")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("common.cancel") { dismiss() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("report.send") { file() }
-                }
-            }
+            .presentationActions(close: BarAction("common.cancel", icon: "xmark") { dismiss() },
+                                 confirm: BarAction("report.send", icon: "paperplane") { file() })
         }
         .tint(Theme.colors.accent)
         .onAppear {
