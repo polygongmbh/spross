@@ -6298,15 +6298,15 @@
       "source": "LL-Q1860 (eng)-Wodencafe-look.wav"
     },
     "lose": {
-      "author": "Wodencafe",
+      "author": "Back ache",
       "file": "words/lose.mp3",
-      "gain": 7.8,
-      "gate": -82.4,
-      "lead": 170,
+      "gain": 5.9,
+      "gate": -92.3,
+      "lead": 270,
       "matches": "lose",
-      "mos": 3.04,
-      "sha256": "4d493918bf58efbb51228d384b7504ca4c92df634bc33d645e81c064df21bef3",
-      "source": "LL-Q1860 (eng)-Wodencafe-lose.wav"
+      "mos": 3.09,
+      "sha256": "15cc1d8160ba05c380c796b56225b96e9af2822ad988c8f5df230528d955fd20",
+      "source": "LL-Q1860 (eng)-Back ache-lose.wav"
     },
     "loud": {
       "author": "Dvortygirl",
