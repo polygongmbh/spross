@@ -9,6 +9,8 @@ import kotlin.math.min
  * A safe area narrower than [SPLIT_MIN_WIDTH] is one pane — every phone held upright passes through untouched.
  * From there it splits into two halves of the safe area, [GUTTER] apart around its center,
  * which keeps a foldable's hinge, at the window's center, between the panes rather than across a line of text.
+ * Split, the leading pane stands half a gutter in from the safe area's edge,
+ * as far as the trailing pane stands from the center, so neither half runs up against an edge.
  * Inside any pane, text stands in a [column] no wider than [READABLE_WIDTH], centered in the pane.
  * A screen without a two-pane design stands in the [single] pane: split, the trailing one,
  * beside the trailing edge where the system keeps its controls.
@@ -38,10 +40,11 @@ class WindowPanes(windowWidth: Double, leadingInset: Double, trailingInset: Doub
         panes = if (safeWidth < SPLIT_MIN_WIDTH) {
             listOf(pane(Span(leadingInset, safeWidth)))
         } else {
-            val half = (safeWidth - GUTTER) / 2
+            val start = leadingInset + GUTTER / 2
+            val half = (safeWidth - GUTTER / 2 - GUTTER) / 2
             listOf(
-                pane(Span(leadingInset, half)),
-                pane(Span(leadingInset + half + GUTTER, half)),
+                pane(Span(start, half)),
+                pane(Span(start + half + GUTTER, half)),
             )
         }
     }

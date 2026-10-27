@@ -33,6 +33,12 @@ class WindowPanesTests {
     }
 
     @Test
+    fun aSplitWindowsLeadingPaneStandsInFromTheEdgeAsFarAsTheTrailingFromTheCenter() {
+        val (leading, trailing) = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0).panes
+        assertEquals(trailing.frame.start - leading.frame.end, 2 * leading.frame.start)
+    }
+
+    @Test
     fun aSinglePaneScreenStandsInTheTrailingHalfOnceSplit() {
         val panes = WindowPanes(windowWidth = 951.0, leadingInset = 0.0, trailingInset = 84.0)
         assertEquals(panes.panes.last(), panes.single)

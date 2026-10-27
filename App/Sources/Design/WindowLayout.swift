@@ -104,7 +104,8 @@ struct PaneSplit<Leading: View, Trailing: View>: View {
                 .frame(maxWidth: panes.trailing.columnWidth, maxHeight: .infinity)
                 .frame(width: panes.trailing.width)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        // why: the trailing pane ends at the safe area's edge, so the leading one keeps kern's margin.
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
     }
 }
 
