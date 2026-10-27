@@ -76,9 +76,11 @@ private struct ReadableColumn: ViewModifier {
 
     func body(content: Content) -> some View {
         if let panes, panes.split || panes.single.columnWidth < panes.single.width {
+            // why: a max, not a fixed width — a measurement a step behind the presentation's size
+            // never lays the column out wider than it stands.
             content
                 .frame(maxWidth: panes.single.columnWidth)
-                .frame(width: panes.single.width)
+                .frame(maxWidth: panes.single.width)
                 .frame(maxWidth: .infinity, alignment: panes.split ? .trailing : .center)
         } else {
             content
@@ -117,14 +119,84 @@ extension View {
     func paneSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
                                 @ViewBuilder content: @escaping () -> Sheet) -> some View {
         sheet(isPresented: isPresented, onDismiss: onDismiss) {
-            content().measuresWindowPanes().trailingPresentation()
+            content().measuresWindowPanes().clearsWindowBars().trailingPresentation()
         }
     }
 
     func paneSheet<Item: Identifiable, Sheet: View>(item: Binding<Item?>, onDismiss: (() -> Void)? = nil,
                                                     @ViewBuilder content: @escaping (Item) -> Sheet) -> some View {
         sheet(item: item, onDismiss: onDismiss) {
-            content($0).measuresWindowPanes().trailingPresentation()
+            content($0).measuresWindowPanes().clearsWindowBars().trailingPresentation()
+        }
+    }
+}
+
+extension View {
+    /// Keeps a sheet's content out of the window's own bars where the sheet stands over them
+    /// without the system reporting them as its safe area — a trailing sheet moved beside the system's bar
+    /// keeps the insets of where it was first laid out.
+    fileprivate func clearsWindowBars() -> some View {
+        modifier(ClearsWindowBars())
+    }
+}
+
+private struct ClearsWindowBars: ViewModifier {
+    /// The window's safe area, in the window's coordinates.
+    @State private var windowSafeArea: CGRect?
+    /// The sheet's own safe area, in the window's coordinates.
+    @State private var safeArea: CGRect?
+
+    private var covered: EdgeInsets {
+        guard let windowSafeArea, let safeArea else { return EdgeInsets() }
+        return EdgeInsets(top: 0, leading: max(0, windowSafeArea.minX - safeArea.minX),
+                          bottom: 0, trailing: max(0, safeArea.maxX - windowSafeArea.maxX))
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .safeAreaPadding(covered)
+            // why: the sheet's move to its placement lays nothing out again, so only its geometry sees it.
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { safeArea = $0 }
+            .background { WindowSafeAreaProbe { windowSafeArea = $0 }.ignoresSafeArea() }
+    }
+}
+
+/// Reports the safe area of the window the view stands in.
+private struct WindowSafeAreaProbe: UIViewRepresentable {
+    let report: (CGRect) -> Void
+
+    func makeUIView(context: Context) -> Probe { Probe() }
+
+    func updateUIView(_ view: Probe, context: Context) {
+        view.report = report
+    }
+
+    final class Probe: UIView {
+        var report: ((CGRect) -> Void)?
+        private var last: CGRect?
+
+        override func didMoveToWindow() {
+            super.didMoveToWindow()
+            measure()
+        }
+
+        override func safeAreaInsetsDidChange() {
+            super.safeAreaInsetsDidChange()
+            measure()
+        }
+
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            measure()
+        }
+
+        private func measure() {
+            guard let window else { return }
+            let safeArea = window.bounds.inset(by: window.safeAreaInsets)
+            guard safeArea != last else { return }
+            last = safeArea
+            // why: this runs inside a layout pass, where SwiftUI must not change state; it lands a turn later.
+            DispatchQueue.main.async { [report] in report?(safeArea) }
         }
     }
 }
