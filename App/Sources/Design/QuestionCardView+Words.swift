@@ -10,11 +10,11 @@ extension QuestionCardView {
     /// Digits stand at one width, save in a name or a dated line, which reads as text.
     func promptFont(_ form: Question.Form) -> Font {
         switch form {
-        case .numeral: return Theme.prompt.digits.monospacedDigit()
-        case .sentence: return Theme.prompt.sentence.monospacedDigit()
-        case .name: return Theme.prompt.name
-        case .glyph: return Theme.prompt.letter.monospacedDigit()
-        default: return Theme.prompt.word.monospacedDigit()
+        case .numeral: return prompt.digits.monospacedDigit()
+        case .sentence: return prompt.sentence.monospacedDigit()
+        case .name: return prompt.name
+        case .glyph: return prompt.letter.monospacedDigit()
+        default: return prompt.word.monospacedDigit()
         }
     }
 

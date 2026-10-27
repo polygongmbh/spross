@@ -38,6 +38,7 @@ struct PanesReader<Content: View>: View {
     var body: some View {
         content(panes)
             .environment(\.windowPanes, panes)
+            .typeScaled()
             // why: the proxy's size already stops at the safe area and its insets lie outside it,
             // so the window is the two together.
             .onGeometryChange(for: Measure.self) { proxy in

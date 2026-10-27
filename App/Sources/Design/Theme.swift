@@ -29,7 +29,6 @@ enum Theme {
     static let radius = Radius()
     static let reserve = Reserve()
     static let typography = Typography()
-    static let prompt = Prompt()
     static let colors = Colors()
 
     // MARK: Spacing (pt)
@@ -106,18 +105,21 @@ enum Theme {
     /// there is none for a whole sentence — and every face steps down to fit
     /// rather than taking a size of its own.
     struct Prompt {
+        /// The window's session scale (`TypeScale`); the reader's text size never reaches these.
+        var scale: CGFloat = 1
+
         /// A numeral the whole card is about ("1 978", "14:35").
-        let digits = Font.system(size: 56, weight: .bold, design: .rounded)
+        var digits: Font { .system(size: 56 * scale, weight: .bold, design: .rounded) }
         /// A picture standing where the name would: a flag that IS the question.
-        let glyph = Font.system(size: 64)
+        var glyph: Font { .system(size: 64 * scale) }
         /// A letterform offered as an answer, read as a picture rather than as text.
-        let letter = Font.system(size: 44, weight: .bold, design: .rounded)
+        var letter: Font { .system(size: 44 * scale, weight: .bold, design: .rounded) }
         /// One word with a blank in it ("Ge l＿").
-        let word = Font.system(size: 40, weight: .bold, design: .rounded)
+        var word: Font { .system(size: 40 * scale, weight: .bold, design: .rounded) }
         /// A name asked about ("Deutschland") — words run longer than numerals.
-        let name = Font.system(size: 32, weight: .bold, design: .rounded)
+        var name: Font { .system(size: 32 * scale, weight: .bold, design: .rounded) }
         /// A prompt made of words, laid out like one: wrapped over lines.
-        let sentence = Font.system(size: 28, weight: .bold, design: .rounded)
+        var sentence: Font { .system(size: 28 * scale, weight: .bold, design: .rounded) }
     }
 
     // MARK: Adaptive colors

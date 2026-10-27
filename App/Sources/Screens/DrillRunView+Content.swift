@@ -36,7 +36,7 @@ extension DrillRunView {
                               isPlaying: { model.isPronouncing($0, lang: language) }),
                           nextLocale: model.targetChromeLocale) { options, answer in
             DrillChoiceGrid(options: options, answer: answer, chosen: chosen,
-                            font: Theme.typography.headline, pick: choose)
+                            font: { _ in Theme.typography.headline }, pick: choose)
         }
     }
 }

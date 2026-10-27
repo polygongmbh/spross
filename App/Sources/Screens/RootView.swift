@@ -52,6 +52,7 @@ struct RootView: View {
             }
         }
         .measuresWindowPanes()
+        .measuresWindowType()
     }
 
     private var home: some View {

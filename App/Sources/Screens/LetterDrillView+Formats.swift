@@ -68,7 +68,7 @@ extension LetterDrillView {
         DrillChoiceGrid(options: options,
                         answer: answer,
                         chosen: run.chosen,
-                        font: Theme.prompt.letter,
+                        font: \.letter,
                         label: { glyph in
                             Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
                                                                                locale: locale),

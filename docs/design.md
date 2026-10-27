@@ -263,6 +263,9 @@ What licenses a second component is a parameter attempted and found not to carry
 - A sheet is the system's, asked to stand on the trailing side, never placed by the app.
 - **A session's card keeps the whole width**; where the system has a toolbar of its own,
   close, progress and read-aloud are its items, and the status line stays over the card.
+- **A big window enlarges type** whether or not it splits (`TypeScale`):
+  its shorter side decides, so an unfolded foldable counts upright and on its side, and no phone does;
+  the whole app grows a little and a session's card more, on top of the reader's own text size.
 
 ## Design language
 

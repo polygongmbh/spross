@@ -23,12 +23,13 @@ struct DrillChoiceGrid: View {
     let answer: String
     /// What was picked, or nil while the question is still owed.
     let chosen: String?
-    /// How one option is set on its tile.
-    let font: Font
+    /// How one option is set on its tile, from the question's sizes where it is read as a picture.
+    let font: (Theme.Prompt) -> Font
     /// What a screen reader hears in place of the bare text, where the bare
     /// text is not a word. nil ⇒ the text reads as itself.
     var label: ((String) -> Text)?
     let pick: (String) -> Void
+    @Environment(\.prompt) private var prompt
 
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: Theme.spacing.md),
@@ -48,7 +49,7 @@ struct DrillChoiceGrid: View {
             pick(option)
         } label: {
             Text(verbatim: option)
-                .font(font)
+                .font(font(prompt))
                 .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.4)

@@ -32,6 +32,7 @@ struct QuestionCardView: View {
     var replayFocus: AccessibilityFocusState<Bool>.Binding?
 
     @Environment(\.locale) var locale
+    @Environment(\.prompt) var prompt
 
     var body: some View {
         switch surface {
@@ -86,7 +87,7 @@ struct QuestionCardView: View {
         .frame(maxWidth: .infinity)
         // why: one height for every drill's ordinary question — the field below never jumps,
         // and a learner moving between drills meets one layout. A gap word may still grow it.
-        .frame(minHeight: Theme.reserve.drillCard)
+        .frame(minHeight: Theme.reserve.drillCard * prompt.scale)
         .cardSurface()
         .animation(revealAnimation, value: opens)
         .animation(revealAnimation, value: growsNote)
@@ -124,7 +125,7 @@ struct QuestionCardView: View {
                 // why: the flag IS the question here, so it takes the place and size the name
                 // would have had, and stays readable to VoiceOver for the same reason.
                 Text(verbatim: emoji)
-                    .font(Theme.prompt.glyph)
+                    .font(prompt.glyph)
             } else if let text = side.text {
                 SpokenWord(pronounce: pronounce(side), isPlaying: isPlaying(side)) {
                     promptText(side, text)
@@ -145,7 +146,7 @@ struct QuestionCardView: View {
         let word = opens ? question.answer.text : question.prompt.text
         if let word {
             Text(verbatim: word)
-                .font(Theme.prompt.word)
+                .font(prompt.word)
                 .foregroundStyle(opens ? Theme.colors.accent : Theme.colors.textPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)

@@ -54,6 +54,7 @@ struct SessionScaffold<Content: View>: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.top, Theme.spacing.lg)
                 }
+                .typeScaled(session: true)
                 .padding(Theme.spacing.lg)
                 .sessionSystemBar(enabled: inBar, readsAloud: showsMuteButton, onClose: onClose) {
                     VerticalBarReader { vertical in
