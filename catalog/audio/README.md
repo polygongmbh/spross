@@ -107,7 +107,8 @@ bad never ships, and bad or mediocre has every other take of its word tried.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.
 `../../scripts/audio-listen.py` plays takes and rates each with one key, writing the verdicts itself:
-`audio-listen.py fr:bonjour 'fr:au revoir'` every shipped take of the words it names,
+`audio-listen.py bonjour fr:salut fr:goodbye` every shipped take of the words it names —
+in every language that has one, in one language, or what that language's card of a concept slug shows —
 so a listener is handed what a run shipped in one command rather than files opened one by one,
 and `audio-listen.py SET` a listening set, takes beside a TSV naming them.
 `audio-listen.py sample NAME --from shipped|journal|voices` draws a set out of unrated takes —

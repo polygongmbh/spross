@@ -3,6 +3,7 @@
 import argparse
 import csv
 import datetime
+import glob
 import json
 import os
 import re
@@ -212,14 +213,29 @@ def withdraw(sha256, context):
         handle.writelines(kept)
 
 
+def slug_texts(lang, slug):
+    """What [lang]'s cards for the concept [slug] show, in every area that has it."""
+    out = []
+    for path in sorted(glob.glob(os.path.join(ROOT, 'catalog', 'areas', '*', '%s.json' % lang))):
+        with open(path, encoding='utf-8') as handle:
+            word = (json.load(handle).get('words') or {}).get(slug)
+        if word and word.get('text'):
+            out.append(word['text'])
+    return out
+
+
 def by_word(words):
-    """Set rows for every shipped take of [words], each `[LANG:]FORM`, in the order named."""
+    """Set rows for every shipped take of [words], in the order named: `FORM` in any language,
+    `LANG:FORM` in one, and `LANG:SLUG` for what that language's card of the concept shows."""
     shipped = from_shipped(shipped_entries())
     listed, today = [], datetime.date.today().isoformat()
     for wanted in words:
         lang, form = wanted.split(':', 1) if re.match(r'^[a-z]{2,3}:', wanted) else (None, wanted)
         found = [take for take in shipped
                  if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
+        if not found and lang:
+            keys = {speech_key(text) for text in slug_texts(lang, form)}
+            found = [take for take in shipped if take['lang'] == lang and speech_key(take['word']) in keys]
         if not found:
             print('no take of %s' % wanted, file=sys.stderr)
         listed += [dict(file=take['path'], lang=take['lang'], word=take['word'], speaker=take['speaker'],
@@ -252,7 +268,8 @@ def main():
                              'source sha256 mos and an optional context (default: its folder name), then optionally '
                              'a ROW to re-rate just the takes it names, rated already or not: a row number as the '
                              'prompt shows it, else every take whose word contains it; '
-                             'or words, `fr:bonjour \'fr:au revoir\'`, LANG: narrowing one to a language')
+                             'or words: `bonjour` in every language that has it, `fr:bonjour` in one, '
+                             '`fr:goodbye` what that language\'s card of the concept slug shows')
     args = parser.parse_args()
     first = args.target[0]
     if first.endswith('.tsv') or os.path.isfile(first):
