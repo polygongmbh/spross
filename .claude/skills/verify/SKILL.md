@@ -15,7 +15,8 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
 
-Install + launch (app binary lands in DerivedData `Build/Products/Debug-iphonesimulator/Spross.app`):
+Install + launch (the app binary lands in the `BUILT_PRODUCTS_DIR` that `xcodebuild -showBuildSettings` reports —
+Xcode's DerivedData location may be a `.noindex` one, and an older folder beside it holds stale builds):
 
 ```sh
 xcrun simctl boot "iPhone 17"; open -a DeviceHub || open -a Simulator  # DeviceHub from Xcode 27

@@ -109,7 +109,7 @@ COMPOSED = (
 def compiler_keys():
     """Keys from the per-file .stringsdata the Swift compiler emitted."""
     pattern = os.path.expanduser(
-        '~/Library/Developer/Xcode/DerivedData/Spross-*/Build/Intermediates.noindex'
+        '~/Library/Developer/Xcode/DerivedData*/Spross-*/Build/Intermediates.noindex'
         '/Spross.build/*-iphonesimulator/Spross.build/Objects-normal/*/*.stringsdata')
     keys = set()
     for path in glob.glob(pattern):
