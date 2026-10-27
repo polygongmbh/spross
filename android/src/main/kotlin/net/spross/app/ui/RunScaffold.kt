@@ -126,13 +126,14 @@ fun RunRail(
  * A run's frame: [RunTopBar] over the content on one pane, [RunRail] beside it where the
  * window splits ([rail] then non-null). One structure either way, so the content keeps its
  * state — the turn's field and focus — through a fold.
+ * The card is the one thing on screen, so a big window grows its type most ([TypeScaled]).
  */
 @Composable
 fun RunFrame(
     rail: (@Composable () -> Unit)?,
     spacing: Dp,
     content: @Composable ColumnScope.() -> Unit,
-) {
+) = TypeScaled(session = true) {
     Row(Modifier.fillMaxSize().padding(Theme.spacing.lg)) {
         rail?.invoke()
         Column(

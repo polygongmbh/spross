@@ -118,8 +118,9 @@ internal class CardContext(
 private fun CardContext.DrillFace(modifier: Modifier) {
     val beside = question.emoji?.takeIf { it.isNotEmpty() && !question.emojiIsQuestion }
     val slot = with(LocalDensity.current) { EMOJI_SLOT.toDp() }
-    // why: one height for every drill's ordinary question — the field below never jumps.
-    CardFace(modifier.heightIn(min = Theme.reserve.drillCard)) {
+    // why: one height for every drill's ordinary question — the field below never jumps;
+    // it grows with the type a big window stands at.
+    CardFace(modifier.heightIn(min = Theme.reserve.drillCard * LocalTypeFactor.current)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,

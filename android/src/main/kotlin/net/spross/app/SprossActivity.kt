@@ -55,6 +55,7 @@ import net.spross.app.ui.DatesOverviewScreen
 import net.spross.app.ui.HomeScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.MeasuresWindowPanes
+import net.spross.app.ui.MeasuresWindowType
 import net.spross.app.ui.LettersOverviewScreen
 import net.spross.app.ui.ListeningScreen
 import net.spross.app.ui.NumbersOverviewScreen
@@ -111,11 +112,13 @@ class SprossActivity : ComponentActivity() {
         if (savedInstanceState == null) model.openChallengeLink(intent?.data?.toString())
         setContent {
             SprossTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
-                ) {
-                    Root(model)
+                MeasuresWindowType {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background,
+                    ) {
+                        Root(model)
+                    }
                 }
             }
         }
