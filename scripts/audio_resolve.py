@@ -10,6 +10,7 @@ that already ships. `--full` re-resolves every form. The route per language and 
 Shtooka take saying more than its form, an articled take titled as a name) is no match, so the
 next route gets its turn. Each run writes `missing.txt` beside the manifest: what nobody recorded.
 """
+import collections
 import csv
 import os
 import sys
@@ -110,6 +111,7 @@ def resolve_words(lang, kind, pack, full):
         else:
             kept.append(row)
     said = {speech_key(row['text']) for row in kept}
+    voices = collections.Counter(row['author'] for row in kept)
     todo = [(area, form) for area, form in entries
             if not any(speech_key(v) in said for v in own_variants(form, lang))]
     texts = list(dict.fromkeys(form for _, form in todo))
@@ -123,7 +125,7 @@ def resolve_words(lang, kind, pack, full):
         rest = unmatched()
         if rest and way.get('lingualibre'):
             wanted = {v for t in rest for v in variants(t, lang)}
-            index.update({k: (k, name) for k, name in audio_lingualibre.resolve(wanted, way['lingualibre']).items()
+            index.update({k: (k, name) for k, name in audio_lingualibre.resolve(wanted, way['lingualibre'], voices).items()
                           if k not in index})
 
     def convention():
@@ -184,7 +186,8 @@ def resolve_forms(lang, kind, pack, full):
         if name is None and way.get('forms_lingualibre'):
             if index is None:
                 index = audio_lingualibre.resolve({v for f in todo for v in variants(f, lang)},
-                                                  way['forms_lingualibre'])
+                                                  way['forms_lingualibre'],
+                                                  collections.Counter(row['author'] for row in kept.values()))
             name = index.get(form.lower())
             picked = audio_commons.meta([name]) if name else {}
             name = None if name and refused(name, form, lang, picked[name], False) else name

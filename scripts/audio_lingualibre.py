@@ -134,10 +134,12 @@ def license_rank(license):
     return 1 if license.startswith("CC BY ") else 2 if license.startswith("CC BY-SA") else 3
 
 
-def pick(cand, meta):
+def pick(cand, meta, voices=None):
     """word -> filename. The cheaper license wins outright; inside one rank the speaker
-    covering most of what is still uncovered goes first, so the pack rides as few voices
-    as coverage allows without ever trading a CC0 recording for a share-alike one."""
+    covering most goes first — what is still uncovered plus the takes [voices] says the pack
+    already holds of theirs — so the pack rides as few voices as coverage allows without
+    ever trading a CC0 recording for a share-alike one."""
+    voices = voices or {}
     chosen, remaining = {}, set(cand)
     for rank in range(4):
         while True:
@@ -148,7 +150,7 @@ def pick(cand, meta):
                         covers.setdefault(speaker, []).append((word, name))
             if not covers:
                 break
-            speaker = max(sorted(covers), key=lambda s: len(covers[s]))
+            speaker = max(sorted(covers), key=lambda s: len(covers[s]) + voices.get(s, 0))
             license = meta[covers[speaker][0][1]].get("license", "?")
             print(f"  {license:<12} {speaker}: {len(covers[speaker])} words", file=sys.stderr)
             for word, name in covers[speaker]:
@@ -157,7 +159,8 @@ def pick(cand, meta):
     return chosen
 
 
-def resolve(wanted, code):
-    """word -> filename for every wanted surface form the category can speak."""
+def resolve(wanted, code, voices=None):
+    """word -> filename for every wanted surface form the category can speak, [voices]
+    (speaker -> takes the pack holds) leaning a choice toward a voice the pack already has."""
     cand = candidates(files(code), code, wanted)
-    return pick(cand, audio_commons.meta(sorted({n for rows in cand.values() for _, n in rows})))
+    return pick(cand, audio_commons.meta(sorted({n for rows in cand.values() for _, n in rows})), voices)
