@@ -329,7 +329,6 @@
     "Vion Nicolas": "CC BY 2.0 fr",
     "Vive la Rosière": "CC0",
     "WikiLucas00": "CC BY-SA 4.0",
-    "X-Javier": "CC BY-SA 4.0",
     "XANA000": "CC0",
     "Yug": "CC BY 4.0"
   },
@@ -7243,15 +7242,15 @@
       "source": "LL-Q150 (fra)-Sartus85-Jean.wav"
     },
     "jeter": {
-      "author": "X-Javier",
+      "author": "Mecanautes",
       "file": "words/jeter.mp3",
-      "gain": 5.8,
-      "gate": -76.0,
-      "lead": 220,
+      "gain": 5.0,
+      "gate": -84.0,
+      "lead": 170,
       "matches": "jeter",
-      "mos": 3.36,
-      "sha256": "c4de3e993152babab758d65872fc8b601fb65cd74e67df65d21ee86a1d301486",
-      "source": "LL-Q150 (fra)-X-Javier-jeter.wav"
+      "mos": 3.11,
+      "sha256": "bb7bf07507fd7c48c775d31c39ba77de64d304c93afe5fe47b7d93abc1a9a27c",
+      "source": "LL-Q150 (fra)-Mecanautes-jeter.wav"
     },
     "jeu": {
       "author": "Sartus85",

@@ -3763,7 +3763,6 @@
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
     "Leni Berlin": "CC BY-SA 2.5",
-    "Lucas Werkmeister": "CC0",
     "Mathieu Kappler": "CC BY-SA 4.0",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
@@ -12565,15 +12564,14 @@
       "source": "De-Kolleginnen.ogg"
     },
     "kommen": {
-      "author": "Lucas Werkmeister",
+      "author": "User:Tosca",
       "file": "words/kommen.mp3",
-      "gain": 9.1,
-      "gate": -71.0,
-      "lead": 270,
+      "gain": 7.2,
+      "gate": -58.7,
       "matches": "kommen",
-      "mos": 3.16,
-      "sha256": "753d1746f268e882e1d15c34f1ec37ab4dcf5e59162f048ace9536256c404278",
-      "source": "LL-Q188 (deu)-Lucas Werkmeister-kommen.wav"
+      "mos": 2.89,
+      "sha256": "d51d047c98f66daa912135bd0b68b03a354cc6953c2b3ea0f5de639b224143a1",
+      "source": "De-kommen.ogg"
     },
     "konjugation": {
       "author": "Jeuwre",
@@ -13566,16 +13564,16 @@
       "source": "De-liebe2.ogg"
     },
     "lieben": {
-      "author": "Leni Berlin",
-      "cap": 1.3,
+      "author": "Sebastian Wallroth",
+      "cap": 1.5,
       "file": "words/lieben.mp3",
-      "gain": 14.3,
-      "gate": -59.3,
-      "lead": 470,
+      "gain": 12.8,
+      "gate": -78.0,
+      "lead": 120,
       "matches": "lieben",
-      "mos": 2.61,
-      "sha256": "9ec52ce6ee5e539497175cc6c5971c842a70ec29122f18ece64b1a004cd6991e",
-      "source": "De-lieben.ogg"
+      "mos": 2.46,
+      "sha256": "59a4eed0d4a176c4d2d861404d4879b16828af8fb0dc34a9feecb6c7d58cf13c",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Lieben.wav"
     },
     "lied": {
       "author": "Jeuwre",

@@ -28,7 +28,6 @@
     "PerfectSoundWhatever": "CC0",
     "Persent101": "CC BY-SA 4.0",
     "Qwertygiy": "CC0",
-    "Robust Footman": "CC0",
     "Samuel Muldoon": "CC0",
     "Sapaa": "CC0",
     "Sayoxime": "CC BY-SA 4.0",
@@ -6299,15 +6298,15 @@
       "source": "LL-Q1860 (eng)-Wodencafe-look.wav"
     },
     "lose": {
-      "author": "Back ache",
+      "author": "Wodencafe",
       "file": "words/lose.mp3",
-      "gain": 5.9,
-      "gate": -92.3,
-      "lead": 270,
+      "gain": 7.8,
+      "gate": -82.4,
+      "lead": 170,
       "matches": "lose",
-      "mos": 3.09,
-      "sha256": "15cc1d8160ba05c380c796b56225b96e9af2822ad988c8f5df230528d955fd20",
-      "source": "LL-Q1860 (eng)-Back ache-lose.wav"
+      "mos": 3.04,
+      "sha256": "4d493918bf58efbb51228d384b7504ca4c92df634bc33d645e81c064df21bef3",
+      "source": "LL-Q1860 (eng)-Wodencafe-lose.wav"
     },
     "loud": {
       "author": "Dvortygirl",
@@ -9955,15 +9954,15 @@
       "source": "En-us-table.ogg"
     },
     "take": {
-      "author": "Robust Footman",
+      "author": "Wodencafe",
       "file": "words/take.mp3",
-      "gain": 13.1,
-      "gate": -97.4,
-      "lead": 100,
+      "gain": 15.3,
+      "gate": -72.0,
+      "lead": 170,
       "matches": "take",
-      "mos": 3.08,
-      "sha256": "8d74602b39b41e9b1b3b0fc48cd2ad2a5c0bde0bb06651a28bd06369015bbcc9",
-      "source": "LL-Q1860 (eng)-Robust Footman-take.wav"
+      "mos": 2.99,
+      "sha256": "64e40470ce0cc248390ffeda6dfbba278872870c91260448482cd4f3734d25e8",
+      "source": "LL-Q1860 (eng)-Wodencafe-take.wav"
     },
     "take out the trash": {
       "author": "Flame, not lame",
