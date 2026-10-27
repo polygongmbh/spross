@@ -5,9 +5,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -20,6 +20,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
@@ -32,6 +34,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -65,41 +69,44 @@ fun OverviewScaffold(
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
 
-    // Split, the ✕ and the start stand as symbols in a side bar at the leading edge ([TaskSideBar]),
-    // and the page in one readable column.
-    val split = splitWindow()
     Box(Modifier.fillMaxSize()) {
-        Row(Modifier.fillMaxSize()) {
-            if (split) OverviewSideBar(chrome, onClose, startEnabled, onStart)
-            Column(modifier = Modifier.weight(1f).fillMaxHeight().singlePane()) {
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    if (!split) RunCloseButton(onClose, chrome.commonClose)
-                    Text(
-                        title,
-                        style = MaterialTheme.typography.titleMedium,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
-                    )
-                    if (!split) {
-                        TextButton(onClick = onStart, enabled = startEnabled) {
-                            Text(chrome.trainerOverviewStart)
-                        }
+        Column(Modifier.fillMaxSize()) {
+            // why: Material's app bar — the way out leading, the title, the start trailing —
+            // spans the whole window; a wide window gives the start its symbol, a phone its word,
+            // and keeps the ✕ in the corner a run's own stands in ([RunFrame]).
+            val split = splitWindow()
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(if (split) PaddingValues(Theme.spacing.lg) else PaddingValues(horizontal = Theme.spacing.sm)),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                RunCloseButton(onClose, chrome.commonClose)
+                Text(
+                    title,
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
+                )
+                if (split) {
+                    StartSymbol(chrome.trainerOverviewStart, startEnabled, onStart)
+                } else {
+                    TextButton(onClick = onStart, enabled = startEnabled) {
+                        Text(chrome.trainerOverviewStart)
                     }
                 }
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(scroll)
-                        .padding(Theme.spacing.xl),
-                    verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-                ) {
-                    result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-                    OverviewHeading(chrome.trainerOverviewPractice)
-                    content()
-                }
+            }
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .singlePane()
+                    .verticalScroll(scroll)
+                    .padding(Theme.spacing.xl),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+            ) {
+                result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
+                OverviewHeading(chrome.trainerOverviewPractice)
+                content()
             }
         }
         // why: a celebrated close rains over the page the run came back to.
@@ -107,13 +114,17 @@ fun OverviewScaffold(
     }
 }
 
-/** The overview's ✕ heading its side bar and its start, a ▶, under it ([TaskSideBar]). */
+/** The bar's start as a ▶, filled as an app bar's one emphasized action, named for TalkBack as its word. */
 @Composable
-private fun OverviewSideBar(chrome: Chrome, onClose: () -> Unit, startEnabled: Boolean, onStart: () -> Unit) =
-    TaskSideBar {
-        RunCloseButton(onClose, chrome.commonClose)
-        SideBarAction(SprossIcons.Play, chrome.trainerOverviewStart, startEnabled, onStart)
+private fun StartSymbol(label: String, enabled: Boolean, onStart: () -> Unit) {
+    FilledIconButton(
+        onClick = onStart,
+        enabled = enabled,
+        modifier = Modifier.size(48.dp).semantics { contentDescription = label },
+    ) {
+        Icon(SprossIcons.Play, contentDescription = null)
     }
+}
 
 /** The `Los` under the picks — the same run the corner opens, where the thumb already is. */
 @Composable

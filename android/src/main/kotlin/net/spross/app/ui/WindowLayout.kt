@@ -72,7 +72,7 @@ fun splitWindow(): Boolean = LocalWindowPanes.current?.split == true
 /**
  * A screen with no two-pane design of its own: one readable column in kern's `single` pane.
  * In the trailing half of a book, it keeps as far from its own trailing edge as the pane's
- * column does from the window's, so a side bar on the leading side moves nothing; lying flat,
+ * column does from the window's, whatever stands beside it; lying flat,
  * it centers across the width it is given. A phone passes through untouched.
  */
 @Composable

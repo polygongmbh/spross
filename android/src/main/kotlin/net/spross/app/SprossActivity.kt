@@ -244,7 +244,7 @@ private fun RowScope.RootScaffold(model: AppModel, screens: ScreenTransition, ta
 
 /**
  * The screens that lay the window's width out themselves — Home and the Box into the panes,
- * a run gives its card the whole width, a drill's page keeps its rail beside its column;
+ * a run gives its card the whole width, a drill's page spans its bar across the window over its column;
  * every other screen stands in one readable column ([singlePane]).
  */
 private fun Screen.laysOutWidth(): Boolean = when (this) {
