@@ -255,8 +255,9 @@ What licenses a second component is a parameter attempted and found not to carry
 
 - **Width alone splits a window** into two panes, halves of its safe area around its center (`WindowPanes`),
   so a tablet, an unfolded foldable and any wide window answer to one rule, and a phone held upright never splits.
-- Text in a pane keeps a readable column; a screen without a pane design stands in the trailing pane,
-  beside the edge where the system keeps its controls.
+- Text in a pane keeps a readable column; a screen without a pane design stands in the trailing pane.
+- The sections switch where each platform keeps its navigation on a wide window:
+  iOS in the system's tab bar, Android on a navigation rail at the leading edge in place of the bottom bar.
 - Home puts what is looked at — the greeting, the trees and their days — in the leading pane with listening, an occasional detour,
   and the day's card, the drills and the companion in the trailing one;
   the Box puts its areas in one pane and the chosen area's words in the other.

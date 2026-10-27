@@ -12,6 +12,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.only
+import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.WideNavigationRail
+import androidx.compose.material3.WideNavigationRailDefaults
+import androidx.compose.material3.WideNavigationRailItem
+import net.spross.app.ui.windowPanes
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -163,11 +173,28 @@ private fun Root(model: AppModel = viewModel()) {
     LaunchedEffect(linked, tab != null) {
         if (linked && tab != null && model.screen != Screen.Numbers) model.openNumbers()
     }
+    // The sections switch on a bar along the bottom, or on a rail along the leading edge
+    // where the window splits — Material's navigation for a wide window.
+    val rail = windowPanes().split
+    Row(Modifier.fillMaxSize()) {
+        if (tab != null && rail) TabRail(model, tab)
+        RootScaffold(model, screens, tab, rail)
+    }
+}
+
+@Composable
+private fun RowScope.RootScaffold(model: AppModel, screens: ScreenTransition, tab: Tab?, rail: Boolean) {
     // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
     // under the system navigation area instead of leaving a strip of paper below it.
     Scaffold(
-        bottomBar = { if (tab != null) TabBar(model, tab) },
-        contentWindowInsets = WindowInsets.safeDrawing,
+        modifier = Modifier.weight(1f),
+        bottomBar = { if (tab != null && !rail) TabBar(model, tab) },
+        // why: the rail stands over the leading inset itself.
+        contentWindowInsets = if (tab != null && rail) {
+            WindowInsets.safeDrawing.only(WindowInsetsSides.Vertical + WindowInsetsSides.End)
+        } else {
+            WindowInsets.safeDrawing
+        },
     ) { insets ->
         MeasuresWindowPanes(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
             screens.transition.AnimatedContent(transitionSpec = screens.motion) { screen ->
@@ -240,18 +267,46 @@ private fun TabBar(model: AppModel, current: Tab) {
     }
 }
 
+/** The same three sections on a rail at the leading edge, glyphs only, as the bar wears them. */
+@Composable
+private fun TabRail(model: AppModel, current: Tab) {
+    val chrome = model.chrome
+    Row(Modifier.fillMaxHeight()) {
+        WideNavigationRail(colors = WideNavigationRailDefaults.colors(containerColor = Theme.colors.surface)) {
+            RailItem(model, current, Tab.Home, "\uD83C\uDFE0", chrome.homeName)
+            RailItem(model, current, Tab.Box, "\uD83E\uDEB4", chrome.boxName)
+            RailItem(model, current, Tab.Settings, "\u2699\uFE0F", chrome.settingsTitle)
+        }
+        VerticalDivider(color = Theme.colors.separator)
+    }
+}
+
+@Composable
+private fun RailItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
+    WideNavigationRailItem(
+        railExpanded = false,
+        selected = current == tab,
+        onClick = { model.selectTab(tab) },
+        label = null,
+        icon = { TabGlyph(glyph, name) },
+    )
+}
+
+@Composable
+private fun TabGlyph(glyph: String, name: String) {
+    Text(
+        glyph,
+        Modifier.clearAndSetSemantics { contentDescription = name },
+        style = MaterialTheme.typography.titleLarge,
+    )
+}
+
 @Composable
 private fun TabItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
     ShortNavigationBarItem(
         selected = current == tab,
         onClick = { model.selectTab(tab) },
         label = null,
-        icon = {
-            Text(
-                glyph,
-                Modifier.clearAndSetSemantics { contentDescription = name },
-                style = MaterialTheme.typography.titleLarge,
-            )
-        },
+        icon = { TabGlyph(glyph, name) },
     )
 }
