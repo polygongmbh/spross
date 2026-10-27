@@ -25,9 +25,8 @@ struct TrainerHubView: View, LanguageNaming {
 
     /// The figures a scramble run handed back as it closed — the scrambles have
     /// no page of their own, so the hub wears their tile. A run too short to
-    /// report clears it rather than leaving an older one standing. Home holds it
-    /// with `destination`, beside the presentations (`hubPresentations`).
-    @Binding var lastRun: DrillRunResult?
+    /// report clears it rather than leaving an older one standing.
+    @State private var lastRun: DrillRunResult?
     /// Rains confetti over the screen the hub stands on — a card cannot hold it.
     var celebrate: () -> Void = {}
 
@@ -75,15 +74,19 @@ struct TrainerHubView: View, LanguageNaming {
     var oppositesAvailable: Bool { model.boxDrills.opposites }
 
     var body: some View {
-        if !chips.isEmpty {
-            card
+        Group {
+            if !chips.isEmpty {
+                card
+            }
         }
+        // The pages: a sheet, because an overview is read from and swiped away.
+        .paneSheet(item: presented { !$0.isRun }) { surface($0) }
     }
 
     /// What a destination opens, under the known language every trainer surface
     /// is chromed in.
     @ViewBuilder
-    func surface(_ destination: HubDestination) -> some View {
+    private func surface(_ destination: HubDestination) -> some View {
         Group {
             switch destination {
             case let .numbers(language):
@@ -115,7 +118,7 @@ struct TrainerHubView: View, LanguageNaming {
     /// holds it only while it belongs there, so the sheet and the cover cannot
     /// both claim the same tap and a dismissal from either clears the state.
     /// Two `@State`s would be two sources of truth for one chip.
-    func presented(
+    private func presented(
         _ belongs: @escaping (HubDestination) -> Bool
     ) -> Binding<HubDestination?> {
         Binding(get: {
@@ -145,6 +148,13 @@ struct TrainerHubView: View, LanguageNaming {
             }
         }
         .homeCard(alignment: .leading)
+        // The runs: a cover, so the drill is a full screen whose corner ✕ is
+        // the one way out — a swipe would leave the run without booking the
+        // Sprosse it reached, which is what the ✕ does (`WordScrambleView`).
+        // why: on the CARD rather than beside the sheet above — a second
+        // presentation stacked on the same view is not reliably honored by
+        // SwiftUI, and the symptom is a chip that does nothing.
+        .fullScreenCover(item: presented { $0.isRun }) { surface($0) }
         #if DEBUG
         // UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
         // wordscramble|sentencescramble` opens that surface (in the learned
@@ -215,23 +225,5 @@ struct TrainerHubView: View, LanguageNaming {
             RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                 .fill(Theme.colors.surfaceTint)
         )
-    }
-}
-
-extension View {
-    /// The hub's presentations, on a view that stays put while the card moves between
-    /// Home's layouts — a presentation on the card would fall away with it and come back unasked.
-    /// The pages: a sheet, because an overview is read from and swiped away.
-    /// The runs: a cover, so the drill is a full screen whose corner ✕ is the one way out —
-    /// a swipe would leave the run without booking the Sprosse it reached (`WordScrambleView`).
-    func hubPresentations(_ hub: TrainerHubView) -> some View {
-        // why: each on a view of its own — two presentations stacked on one view are
-        // not reliably honored by SwiftUI, and the symptom is a chip that does nothing.
-        background {
-            ZStack {
-                Color.clear.paneSheet(item: hub.presented { !$0.isRun }) { hub.surface($0) }
-                Color.clear.fullScreenCover(item: hub.presented { $0.isRun }) { hub.surface($0) }
-            }
-        }
     }
 }

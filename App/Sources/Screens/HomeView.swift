@@ -15,47 +15,32 @@ struct HomeView: View {
     @State private var briefingPresented = false
     /// What the hub has open — here, so the day's card can open a drill too.
     @State private var drillDestination: HubDestination?
-    /// What the last scramble run came to, worn on the hub's card.
-    @State private var lastDrillRun: DrillRunResult?
     /// Bumped by a hub run's celebrated close; each bump throws a wave.
     @State private var confetti = 0
 
     var body: some View {
         let offer = model.homeOffer
         let hub = TrainerHubView(model: model, destination: $drillDestination,
-                                 lastRun: $lastDrillRun, celebrate: { confetti += 1 })
+                                 celebrate: { confetti += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
-        Group {
-            if let panes, panes.split {
-                // Listening, an occasional detour, and what is looked at on one pane;
-                // the day's card and the drills on the other, beside the system's controls.
-                PaneSplit(panes: panes) {
-                    page {
-                        header
-                        listeningCard
-                        trees(stripLast: true)
-                    }
-                } trailing: {
-                    page {
-                        day(offer: offer, hub: hub, pick: pick, lead: lead)
-                        hub
-                        briefingCard
-                    }
-                }
-            } else {
-                page {
-                    header
+        // The phone's order; where the window splits, listening, an occasional detour, and what is
+        // looked at take one pane, the day's card and the drills the other, beside the system's controls.
+        ScrollView {
+            PaneColumns(panes: panes, margin: Theme.spacing.xl, spacing: Theme.spacing.xl) {
+                header.pane(.leading)
+                VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     day(offer: offer, hub: hub, pick: pick, lead: lead)
-                    listeningCard
-                    hub
-                    briefingCard
-                    trees()
                 }
+                listeningCard.pane(.leading)
+                hub
+                briefingCard
+                trees(stripLast: panes?.split == true).pane(.leading)
             }
+            .padding(.vertical, Theme.spacing.xl)
         }
+        .scrollBounceBehavior(.basedOnSize)
         .background(Theme.colors.background.ignoresSafeArea())
-        .hubPresentations(hub)
         // why: absent until the first celebration — ConfettiView throws a wave on appear.
         .overlay {
             if confetti > 0 { ConfettiView(run: confetti).ignoresSafeArea() }
@@ -70,20 +55,9 @@ struct HomeView: View {
         // why: a challenge link opens the numbers page, which accepts the code itself.
         .onChange(of: model.pendingChallengeCode, initial: true) { _, code in
             guard code != nil else { return }
-            drillDestination = TrainerHubView(model: model, destination: $drillDestination,
-                                              lastRun: $lastDrillRun)
+            drillDestination = TrainerHubView(model: model, destination: $drillDestination)
                 .destination(for: .numbers) ?? drillDestination
         }
-    }
-
-    private func page<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                content()
-            }
-            .padding(Theme.spacing.xl)
-        }
-        .scrollBounceBehavior(.basedOnSize)
     }
 
     /// The day's card.
