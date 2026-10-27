@@ -3534,13 +3534,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mal sehen, wie weit deine Wörter tragen"
+            "value" : "Ein lockeres Gespräch mit deinen Wörtern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "See how far your words take you"
+            "value" : "Talk with the words you already know"
           }
         }
       }
