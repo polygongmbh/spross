@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -67,6 +64,10 @@ fun HomeScreen(model: AppModel) {
     var briefingOpen by remember { mutableStateOf(false) }
     val standing = model.numbers.homeStanding
 
+    val pick = rememberSuggestedDrill(model, standing)
+    val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
+        ?: DayLead.Done
+    val card = homeCard(failed = model.loadFailure != null, lead = lead)
     val split = splitWindow()
     Box(Modifier.fillMaxSize()) {
         // The phone's order; where the window splits, what is looked at and listening, an
@@ -75,64 +76,60 @@ fun HomeScreen(model: AppModel) {
         PaneColumns(
             margin = Theme.spacing.xl,
             spacing = Theme.spacing.xl,
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(bottom = Theme.spacing.xl + Theme.spacing.lg),
+            bottom = Theme.spacing.xl + Theme.spacing.lg,
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Box(Modifier.pane(PaneSide.Leading)) { PageTitle(hello, eyebrow = today) }
+            item(PaneSide.Leading) { PageTitle(hello, eyebrow = today) }
 
-            val pick = rememberSuggestedDrill(model, standing)
-            val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
-                ?: DayLead.Done
-            val card = homeCard(failed = model.loadFailure != null, lead = lead)
-            when (card) {
-                HomeCard.Failure -> StateCard(
-                    emoji = "🫤",
-                    title = chrome.errorTitle,
-                    // The catalog is present — the box is what could not be read, so the card
-                    // names the reason the decode gave rather than a missing content pack.
-                    message = model.loadFailure
-                        ?.let { chrome.errorContentUnavailable.format(it) }
-                        ?: chrome.errorCatalogMissing,
-                )
+            item {
+                when (card) {
+                    HomeCard.Failure -> StateCard(
+                        emoji = "🫤",
+                        title = chrome.errorTitle,
+                        // The catalog is present — the box is what could not be read, so the card
+                        // names the reason the decode gave rather than a missing content pack.
+                        message = model.loadFailure
+                            ?.let { chrome.errorContentUnavailable.format(it) }
+                            ?: chrome.errorCatalogMissing,
+                    )
 
-                HomeCard.Session -> standing?.let {
-                    SessionCard(model, it, stats?.streak ?: 0, health)
-                }
+                    HomeCard.Session -> standing?.let {
+                        SessionCard(model, it, stats?.streak ?: 0, health)
+                    }
 
-                HomeCard.Lead -> if (standing != null) {
-                    val streak = stats?.streak ?: 0
-                    when (lead) {
-                        DayLead.Listening -> LeadCard(
-                            model, standing, "🎧", chrome.homeSuggestionListening, chrome.homeSuggestionReasonListening,
-                            streak, health,
-                        ) { model.startListening() }
-                        DayLead.Conversation -> LeadCard(
-                            model, standing, "💬", chrome.homeSuggestionConversation, chrome.homeSuggestionReasonConversation,
-                            streak, health,
-                        ) { briefingOpen = true }
-                        else -> pick?.let {
-                            LeadCard(
-                                model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
-                                reason(chrome, it), streak, health,
-                            ) { model.open(it.drill) }
+                    HomeCard.Lead -> if (standing != null) {
+                        val streak = stats?.streak ?: 0
+                        when (lead) {
+                            DayLead.Listening -> LeadCard(
+                                model, standing, "🎧", chrome.homeSuggestionListening, chrome.homeSuggestionReasonListening,
+                                streak, health,
+                            ) { model.startListening() }
+                            DayLead.Conversation -> LeadCard(
+                                model, standing, "💬", chrome.homeSuggestionConversation, chrome.homeSuggestionReasonConversation,
+                                streak, health,
+                            ) { briefingOpen = true }
+                            else -> pick?.let {
+                                LeadCard(
+                                    model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
+                                    reason(chrome, it), streak, health,
+                                ) { model.open(it.drill) }
+                            }
                         }
                     }
-                }
 
-                HomeCard.Done -> standing?.let {
-                    DoneCard(model, it, stats?.streak ?: 0, health)
+                    HomeCard.Done -> standing?.let {
+                        DoneCard(model, it, stats?.streak ?: 0, health)
+                    }
                 }
             }
 
-            Box(Modifier.pane(PaneSide.Leading)) { ListenCard(model) }
+            item(PaneSide.Leading) { ListenCard(model) }
 
-            TrainerHubCard(model)
+            item { TrainerHubCard(model) }
 
-            TalkCard(model) { briefingOpen = true }
+            item { TalkCard(model) { briefingOpen = true } }
 
-            Box(Modifier.pane(PaneSide.Leading)) {
+            item(PaneSide.Leading) {
                 TreesAndDays(model, stats?.streak ?: 0, health, locale, daysLast = split)
             }
         }
