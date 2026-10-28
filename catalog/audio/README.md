@@ -73,7 +73,7 @@ An item Commons stays unreachable for keeps its take, and the run exits nonzero 
 
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
-A sweep reconsiders it like a poor take and never swaps one in that no listener passed.
+A sweep reconsiders it like a poor take and never swaps one in that no listener rated good.
 
 Both pickers only print until given `--apply`, and never write a pack:
 a swap is a row in `$W/staged.tsv`, its bytes in `$W/staged/`,
@@ -104,6 +104,8 @@ scripts/audio-catalog.py --remove <lang> <section> <key>
 so the next revision of the measure is tested against the ear rather than tuned to a handful of files.
 A verdict also overrules the score for those bytes:
 bad never ships, bad or mediocre has every other take of its word tried,
+okay ships and still has them tried against the usual margin,
+good or great keeps its place whatever the measures say,
 and a take keeps its place against any challenger a listener rated lower.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.

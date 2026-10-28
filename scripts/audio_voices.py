@@ -119,7 +119,7 @@ def verdict(sha256):
 
 
 def _poor(sha256, lang, author):
-    return author in POOR_VOICES.get(lang, ()) and not is_vouched(sha256)
+    return author in POOR_VOICES.get(lang, ()) and not is_passed(sha256)
 
 
 def is_rejected(sha256, lang=None, author=None):
@@ -145,6 +145,16 @@ def heard_over(sha256, other):
     return mine in ranks and theirs in ranks and ranks.index(mine) > ranks.index(theirs)
 
 
-def is_vouched(sha256):
-    """Heard as okay or better: kept whatever the score or the squash measure says of it."""
+def is_passed(sha256):
+    """Heard as okay or better: ships under the floor and from a POOR voice."""
     return verdict(sha256) in ('okay', 'good', 'great')
+
+
+def is_fair(sha256):
+    """Heard as okay, which leans to mediocre: it ships, and a sweep tries every other take of its word."""
+    return verdict(sha256) == 'okay'
+
+
+def is_vouched(sha256):
+    """Heard as good or better: kept whatever the score or the squash measure says of it."""
+    return verdict(sha256) in ('good', 'great')

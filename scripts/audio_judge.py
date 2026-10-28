@@ -11,7 +11,7 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
     key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
   · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
-  · `vouched` — heard as okay or better.
+  · `vouched` — heard as good or better.
 
 The source checks need no bytes (`source_refusal`); `measure` reads everything else a judgement
 needs off the bytes in one process, so a picker measures its takes in a pool and caches them.
@@ -23,7 +23,7 @@ import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
 from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_rejected,
-                          is_squashed, is_vouched, mos_floor)
+                          is_passed, is_squashed, is_vouched, mos_floor)
 
 Judged = collections.namedtuple('Judged', 'mos refused hot doubted vouched')
 
@@ -81,7 +81,7 @@ def judge(take, index=False, measured=None):
         refused = 'silent', 'decodes to silence'
     if not refused and is_rejected(digest, lang, author):
         refused = 'poor', 'heard as bad'
-    if not refused and mos is not None and mos < mos_floor(lang) and not is_vouched(digest):
+    if not refused and mos is not None and mos < mos_floor(lang) and not is_passed(digest):
         refused = 'poor', 'mos %.2f, floor is %.2f' % (mos, mos_floor(lang))
     if not refused:
         balance = (measured or {}).get('balance')

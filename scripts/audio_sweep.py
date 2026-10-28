@@ -2,8 +2,8 @@
 voice's few takes onto an established one. Both only ever CHOOSE another untouched Commons transcode —
 denoising would be an adaptation under BY-SA and break the sha256 the catalog pins.
 
-SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it,
-it scores under `RECONSIDER_MOS`, it is squashed, one-sided or overlong — unless a listener vouched
+SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it
+or heard it as only okay, it scores under `RECONSIDER_MOS`, it is squashed, one-sided or overlong — unless a listener vouched
 for it, which only one-sidedness and overlength overrule. A take by a DOUBTED voice (`audio_voices`) goes up
 too, and is beaten like a squashed one. A challenger the judge refuses, or finds squashed unless a
 listener vouched for it, or a listener doubted, never wins.
@@ -37,8 +37,8 @@ from audio_manifest import audio_dir, read_manifest
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
-                          heard_over, is_doubted, is_one_sided, is_overlong, is_squashed, is_voice_doubted, is_vouched,
-                          mos_floor)
+                          heard_over, is_doubted, is_fair, is_one_sided, is_overlong, is_squashed, is_voice_doubted,
+                          is_vouched, mos_floor)
 
 
 def candidates(lang, takes):
@@ -80,6 +80,7 @@ def pending(lang, section, catalog, measures):
         take['overlong'] = section != 'letters' and is_overlong(speech, take['key'])
         take['squashed'] = is_squashed(measured['peak'], measured['loudness'])
         take['ear'] = is_doubted(take['sha256'], lang, take['author'])
+        take['fair'] = is_fair(take['sha256'])
         take['voice'] = is_voice_doubted(take['sha256'], lang, take['author'])
         take['refused'] = audio_judge.source_refusal(take)
         ready.append(take)
@@ -94,9 +95,9 @@ def sweep(lang, section, catalog, measures, only, apply):
     else:
         noisy = [take for take in takes
                  if (not is_vouched(take['sha256']) or take['lopsided'] or take['overlong'])
-                 and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['voice'] or take['squashed'] or take['lopsided']
-                      or take['overlong'] or take['refused'])]
-    print('%d below %.2f, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
+                 and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['fair'] or take['voice'] or take['squashed']
+                      or take['lopsided'] or take['overlong'] or take['refused'])]
+    print('%d below %.2f, heard as okay, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
         return 0, 0
     results, errors = judged_options(lang, noisy, measures)
@@ -185,7 +186,7 @@ def best_option(take, options, lang, floor, weight):
 
 def reason(take):
     return ('refused: %s' % take['refused'][0] if take['refused'] else 'one-sided' if take['lopsided']
-            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'a doubted voice' if take['voice'] else 'mos %.2f' % take['mos'])
+            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'heard as okay' if take['fair'] else 'a doubted voice' if take['voice'] else 'mos %.2f' % take['mos'])
 
 
 def brightness(measures, sha, path):
