@@ -28,7 +28,7 @@ import net.spross.kern.trainer.DayLead
  * The north star screen: one glance = what to do right now.
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
- * trainers, the companion card, the fortnight behind it, and the trees — dealt into two panes
+ * trainers, the companion card, the fortnight behind it over the trees — dealt into two panes
  * where the window splits ([PaneColumns]). Which state card is kern's
  * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
@@ -68,7 +68,6 @@ fun HomeScreen(model: AppModel) {
     val lead = standing?.lead(pick, model.listeningOffered, model.hasBriefing, greetingNow, greetingZone)
         ?: DayLead.Done
     val card = homeCard(failed = model.loadFailure != null, lead = lead)
-    val split = splitWindow()
     Box(Modifier.fillMaxSize()) {
         // The phone's order; where the window splits, what is looked at and listening, an
         // occasional detour, take the leading pane, the day's card, the drills and the
@@ -130,7 +129,7 @@ fun HomeScreen(model: AppModel) {
             item { TalkCard(model) { briefingOpen = true } }
 
             item(PaneSide.Leading) {
-                TreesAndDays(model, stats?.streak ?: 0, health, locale, daysLast = split)
+                TreesAndDays(model, stats?.streak ?: 0, health, locale)
             }
         }
         // why: a celebrated scramble close rains over the whole screen — the hub card wearing
@@ -141,17 +140,16 @@ fun HomeScreen(model: AppModel) {
 }
 
 /**
- * The fortnight and the trees: on a phone the strip over the picture, in the leading pane under it.
+ * The fortnight and the trees, the strip over the picture in either layout, so it is seen.
  * The strip is the same fortnight the streak was counted from, on the very refresh that
  * produced it — it reads kern's walk, never one of its own. It names itself, so nothing
  * announces it a second time above.
  */
 @Composable
-private fun TreesAndDays(model: AppModel, streak: Int, health: StreakHealth, locale: Locale, daysLast: Boolean) {
+private fun TreesAndDays(model: AppModel, streak: Int, health: StreakHealth, locale: Locale) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl)) {
-        if (!daysLast) ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
+        ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
         HomeTrees(model)
-        if (daysLast) ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
     }
 }
 
