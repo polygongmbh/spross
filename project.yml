@@ -17,6 +17,10 @@ settings:
     MARKETING_VERSION: 9.1.0
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
+    # why: the release CI signs manually with the distribution certificate and passes each
+    # target's profile as SPROSS_PROFILE_<target> (scripts/asc-profiles.py); unset locally,
+    # this stays empty and automatic signing is untouched.
+    PROVISIONING_PROFILE_SPECIFIER: "$(SPROSS_PROFILE_$(TARGET_NAME))"
     # why: SprossKern ships ONE simulator slice, arm64 (scripts/build-kern.sh).
     # A scheme built without a concrete destination — the watch-widgets scheme is
     # one — falls back to the generic simulator, whose standard ARCHS adds

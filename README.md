@@ -74,7 +74,7 @@ is the same file, installed by hand and updated the same way.
 
 **iPhone test builds.**
 Registered test devices only, and updates arrive as new builds rather than in place.
-Each release carries an `itms-services://` link to open in Safari **on the device**;
+A release whose ad-hoc build came out carries an `itms-services://` link to open in Safari **on the device**;
 internal TestFlight testers get the same build minutes after the tag, without review.
 
 How a release is cut is `docs/release.md`;

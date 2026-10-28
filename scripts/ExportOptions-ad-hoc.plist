@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Ad-hoc export for scripts/../.github/workflows/release.yml.
+<!-- Ad-hoc export for .github/workflows/release.yml, re-signed off the App Store archive.
      "release-testing" is what Xcode 15.3 renamed ad-hoc to: signed for the team's
-     registered devices, installable over the air, no App Store review. -->
+     registered devices, installable over the air, no App Store review.
+     scripts/asc-profiles.py copies it with provisioningProfiles filled in. -->
 <plist version="1.0">
 <dict>
 	<key>method</key>
@@ -10,7 +11,9 @@
 	<key>teamID</key>
 	<string>AF77U46UQ6</string>
 	<key>signingStyle</key>
-	<string>automatic</string>
+	<string>manual</string>
+	<key>signingCertificate</key>
+	<string>Apple Distribution</string>
 	<key>destination</key>
 	<string>export</string>
 	<!-- The archive already carries the tag's version; leave it alone. -->

@@ -65,7 +65,7 @@ jobs:
           if-no-files-found: error
 
   ios:
-    name: IPA
+    name: App Store
     runs-on: macos-26
     steps:
       - uses: actions/checkout@v7
@@ -103,16 +103,16 @@ jobs:
           fi
           printf '%s' "$ASC_PRIVATE_KEY" | base64 -d > "$RUNNER_TEMP/asc.p8"
 
-      # why: with the team's distribution certificate in a keychain, the export signs
-      # locally — Xcode's fallback is Apple's cloud-managed certificate, which only an
-      # Admin API key may use.
+      # why: the archive and both exports sign with the team's distribution certificate
+      # and nothing else — automatic signing would mint a development certificate on every
+      # fresh runner, and Apple's cloud-managed fallback is refused to an App Manager key.
       - name: Distribution certificate from secret
         env:
           DIST_P12: ${{ secrets.APPLE_DISTRIBUTION_P12 }}
           DIST_P12_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_P12_PASSWORD }}
         run: |
           if [ -z "$DIST_P12" ]; then
-            echo "::error::APPLE_DISTRIBUTION_P12 is unset — the export has no certificate to sign with"
+            echo "::error::APPLE_DISTRIBUTION_P12 is unset — the archive has no certificate to sign with"
             exit 1
           fi
           keychain="$RUNNER_TEMP/signing.keychain-db"
@@ -126,74 +126,81 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -k "$password" "$keychain" > /dev/null
           security list-keychains -d user -s "$keychain" $(security list-keychains -d user | tr -d '"')
 
-      # why: -allowProvisioningUpdates plus the API key lets Xcode mint the ad-hoc
-      # profile itself, covering the app, the widget and both watch targets.
-      # The archive signs with the imported distribution certificate: left on its
-      # development default, every fresh runner mints a new development certificate
-      # until the team's limit refuses the archive.
-      - name: Archive
+      # why: finds or creates an App Store profile per target on that certificate, installs
+      # them, and sets SPROSS_PROFILE_<target>, which project.yml's specifier reads.
+      - name: App Store profiles
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+          ASC_KEY_PATH: ${{ runner.temp }}/asc.p8
+        run: python3 scripts/asc-profiles.py app-store --export-options "$RUNNER_TEMP/app-store.plist" >> "$GITHUB_ENV"
+
+      - name: Archive
+        id: archive
         run: |
           xcodebuild -project Spross.xcodeproj -scheme Spross \
             -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
-            -authenticationKeyID "$ASC_KEY_ID" \
-            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="Apple Distribution" \
+            SPROSS_PROFILE_Spross="$SPROSS_PROFILE_Spross" \
+            SPROSS_PROFILE_SprossWidgets="$SPROSS_PROFILE_SprossWidgets" \
+            SPROSS_PROFILE_SprossWatch="$SPROSS_PROFILE_SprossWatch" \
+            SPROSS_PROFILE_SprossWatchWidgets="$SPROSS_PROFILE_SprossWatchWidgets" \
             MARKETING_VERSION="$SPROSS_VERSION" \
             CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
             -quiet archive
 
-      - name: Export ad-hoc IPA
+      # why: the iOS job's purpose — App Store Connect receives the build, internal TestFlight
+      # testers have it minutes later, and the same build goes to App Review from there.
+      # A failure here fails this job; the GitHub release still goes out with the APK.
+      - name: Upload to App Store Connect
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
         run: |
           xcodebuild -exportArchive \
             -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
-            -exportPath "$RUNNER_TEMP/export" \
-            -exportOptionsPlist scripts/ExportOptions.plist \
+            -exportPath "$RUNNER_TEMP/app-store" \
+            -exportOptionsPlist "$RUNNER_TEMP/app-store.plist" \
             -allowProvisioningUpdates \
             -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
             -quiet
+
+      # why: an extra for registered devices, re-signed off the same archive with an ad-hoc
+      # profile per target that the script keeps in step with the registered devices.
+      # It never fails the run: without it the release simply carries no IPA.
+      - name: Ad-hoc IPA
+        id: adhoc
+        if: ${{ !cancelled() && steps.archive.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+          ASC_KEY_PATH: ${{ runner.temp }}/asc.p8
+        run: |
+          python3 scripts/asc-profiles.py ad-hoc --export-options "$RUNNER_TEMP/ad-hoc.plist" > /dev/null
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
+            -exportPath "$RUNNER_TEMP/ad-hoc" \
+            -exportOptionsPlist "$RUNNER_TEMP/ad-hoc.plist" \
+            -quiet
           mkdir -p dist
-          cp "$RUNNER_TEMP/export/Spross.ipa" "dist/spross-$SPROSS_VERSION.ipa"
+          cp "$RUNNER_TEMP/ad-hoc/Spross.ipa" "dist/spross-$SPROSS_VERSION.ipa"
 
       - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() && steps.adhoc.outcome == 'success' }}
+        continue-on-error: true
         with:
           name: ipa
           path: dist/*.ipa
           if-no-files-found: error
 
-      # why: the same archive, re-signed and handed to App Store Connect — internal
-      # testers have it minutes later without any review, while external review runs
-      # on its own clock. continue-on-error because the GitHub release is the primary
-      # delivery: a missing app record or an ASC outage must not sink the APK with it.
-      - name: Upload to TestFlight
-        continue-on-error: true
-        env:
-          ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
-        run: |
-          xcodebuild -exportArchive \
-            -archivePath "$RUNNER_TEMP/Spross.xcarchive" \
-            -exportPath "$RUNNER_TEMP/testflight" \
-            -exportOptionsPlist scripts/ExportOptions-testflight.plist \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$RUNNER_TEMP/asc.p8" \
-            -authenticationKeyID "$ASC_KEY_ID" \
-            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            -quiet
-
   publish:
     name: GitHub Release
-    # why: it waits for the IPA but does not depend on it — an Apple-side failure must
+    # why: it waits for the iOS job but does not depend on it — an Apple-side failure must
     # not take the Android release with it, and Obtainium can only offer what a release
     # actually carries.
     needs: [android, ios]

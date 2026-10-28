@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- TestFlight export for .github/workflows/release.yml, re-signed off the same archive
-     the ad-hoc IPA comes from (scripts/ExportOptions.plist). "destination: upload" hands
-     the build to App Store Connect during the export, so no separate upload tool runs. -->
+<!-- App Store export for .github/workflows/release.yml: "destination: upload" hands the build
+     to App Store Connect during the export, so no separate upload tool runs.
+     scripts/asc-profiles.py copies it with provisioningProfiles filled in. -->
 <plist version="1.0">
 <dict>
 	<key>method</key>
@@ -10,7 +10,9 @@
 	<key>teamID</key>
 	<string>AF77U46UQ6</string>
 	<key>signingStyle</key>
-	<string>automatic</string>
+	<string>manual</string>
+	<key>signingCertificate</key>
+	<string>Apple Distribution</string>
 	<key>destination</key>
 	<string>upload</string>
 	<!-- The archive already carries the tag's version and the run number; leave both. -->
