@@ -245,7 +245,8 @@ def slug_texts(lang, slug):
 def by_word(words):
     """Set rows for every shipped take of [words], in the order named: `FORM` in any language,
     `LANG:FORM` in one, `LANG:SLUG` for what that language's card of the concept shows, and
-    `@SPEAKER` (or `LANG:@SPEAKER`) for PER_SPEAKER of a voice's takes, those nobody rated first."""
+    `@SPEAKER` (or `LANG:@SPEAKER`) for PER_SPEAKER of a voice's takes, those nobody rated first.
+    A form nothing matches is tried on its letters alone (`nom-de-famille`, `nomdefamille`)."""
     shipped = from_shipped(shipped_entries())
     listed, today = [], datetime.date.today().isoformat()
     for wanted in words:
@@ -258,6 +259,9 @@ def by_word(words):
         if not found and lang and not form.startswith('@'):
             keys = {speech_key(text) for text in slug_texts(lang, form)}
             found = [take for take in shipped if take['lang'] == lang and speech_key(take['word']) in keys]
+        if not found and not form.startswith('@'):
+            found = [take for take in shipped
+                     if letters(take['word']) == letters(form) and (lang is None or take['lang'] == lang)]
         if not found:
             print('no take of %s' % wanted, file=sys.stderr)
         listed += [dict(file=take['path'], lang=take['lang'], word=take['word'], speaker=take['speaker'],
@@ -267,12 +271,17 @@ def by_word(words):
     return listed
 
 
+def letters(text):
+    """[text] casefolded down to its letters and digits."""
+    return ''.join(c for c in text.casefold() if c.isalnum())
+
+
 def by_speaker(shipped, speaker, lang):
     """PER_SPEAKER of [speaker]'s shipped takes at random, unrated ones first: named exactly, else
-    every voice whose name contains it, ignoring case."""
+    every voice whose name contains its letters (`LeniBerlin`, `leni-berlin`, `Leni`), ignoring case."""
     own = [take for take in shipped if lang is None or take['lang'] == lang]
     found = ([take for take in own if take['speaker'].lower() == speaker.lower()]
-             or [take for take in own if speaker.lower() in take['speaker'].lower()])
+             or [take for take in own if letters(speaker) in letters(take['speaker'])])
     rated = {row['sha256'] for row in rows(VERDICTS)}
     random.shuffle(found)
     found.sort(key=lambda take: take['sha256'] in rated)

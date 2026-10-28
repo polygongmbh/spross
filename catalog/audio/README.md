@@ -120,6 +120,7 @@ and every take of it counts as bad unless a listener passed that file.
 `audio-listen.py bonjour fr:salut fr:goodbye` every shipped take of the words it names —
 in every language that has one, in one language, or what that language's card of a concept slug shows —
 and `audio-listen.py @Jeuwre` (or `de:@Jeuwre`) ten of a voice's takes, those nobody rated first,
+each form or name that matches nothing tried on its letters alone (`nomdefamille`, `@LeniBerlin`),
 so a listener is handed what a run shipped in one command rather than files opened one by one,
 and `audio-listen.py SET` a listening set, takes beside a TSV naming them.
 `audio-listen.py sample NAME --from shipped|journal|voices` draws a set out of unrated takes —
