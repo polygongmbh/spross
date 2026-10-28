@@ -11,7 +11,7 @@ package net.spross.app
  */
 internal object ChromeEn : Chrome {
     override val greetMorning = listOf(
-        "%s with your first coffee?",
+        "Some %s to wake up to?",
         "A spoonful of %s with breakfast?",
         "%s for the early bird?",
     )
@@ -25,7 +25,7 @@ internal object ChromeEn : Chrome {
     )
     override val greetNight = listOf(
         "%s under the stars?",
-        "A bedtime story in %s?",
+        "A little %s before lights out?",
         "%s for the night owl?",
     )
     override val homeName = "Home"

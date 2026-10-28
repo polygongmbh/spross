@@ -9,7 +9,7 @@ package net.spross.app
  */
 internal object ChromeDe : Chrome {
     override val greetMorning = listOf(
-        "%s zum ersten Kaffee?",
+        "%s zum Wachwerden?",
         "Ein Löffel %s zum Frühstück?",
         "%s für die Lerche?",
     )

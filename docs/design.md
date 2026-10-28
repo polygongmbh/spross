@@ -182,6 +182,7 @@ What licenses a second component is a parameter attempted and found not to carry
     Two registers: the target speaking for itself, or the known language asking about it.
     The spoken lines lead and may address the learner by name (`Greetings.addressed`).
     Every chrome line invites with a question that pictures its hour — never states.
+    No line pictures coffee, alcohol or any other drug.
     Holds through a render, moves on by the next opening.
   - Once the day has answered more than is still due, the day's card leads with ONE drill and why,
     listening, or the conversation, taking turns,
