@@ -25,23 +25,21 @@ struct HomeView: View {
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
         let split = panes?.split == true
-        // Two panes each scroll on their own; one column joins the leading cards into the trailing page.
-        // why: the hub keeps one place in either layout, so its sheet and cover survive a fold or a rotation.
+        let columns = HomeColumns(split: split)
+        let column = { (sections: [HomeSection]) in
+            ForEach(sections, id: \.self) { section($0, offer: offer, hub: hub, pick: pick, lead: lead) }
+        }
+        // why: the primary page holds the one column too, so the hub keeps its place
+        // and its sheet and cover survive a fold or a rotation.
         HStack(alignment: .top, spacing: panes?.gutter ?? 0) {
-            if let panes, split {
-                page(panes.leading) {
-                    header
-                    listeningCard
-                    trees()
-                }
+            if let panes, split, Self.primaryEdge == .trailing {
+                page(panes.leading) { column(columns.secondary) }
             }
-            page(split ? panes?.trailing : nil) {
-                if !split { header }
-                day(offer: offer, hub: hub, pick: pick, lead: lead)
-                if !split { listeningCard }
-                hub
-                briefingCard
-                if !split { trees() }
+            page(split ? (Self.primaryEdge == .trailing ? panes?.trailing : panes?.leading) : nil) {
+                column(columns.primary)
+            }
+            if let panes, split, Self.primaryEdge == .leading {
+                page(panes.trailing) { column(columns.secondary) }
             }
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -65,11 +63,29 @@ struct HomeView: View {
         }
     }
 
+    /// Home's primary pane stands beside the system's vertical bar.
+    private static let primaryEdge: HorizontalEdge = .trailing
+
+    /// One of kern's sections (`HomeSection`).
+    @ViewBuilder
+    private func section(_ section: HomeSection, offer: SessionOffer, hub: TrainerHubView,
+                         pick: DrillSuggestion.Pick?, lead: DayLead) -> some View {
+        switch section {
+        case .header: header
+        case .voiceUpgrade: voiceUpgradeBanner
+        case .day: day(offer: offer, hub: hub, pick: pick, lead: lead)
+        case .listening: listeningCard
+        case .drills: hub
+        case .conversation: briefingCard
+        case .trees: trees()
+        default: EmptyView()
+        }
+    }
+
     /// The day's card.
     @ViewBuilder
     private func day(offer: SessionOffer, hub: TrainerHubView, pick: DrillSuggestion.Pick?,
                      lead: DayLead) -> some View {
-        voiceUpgradeBanner
         if let failure = model.loadFailure {
             stateCard(emoji: "🫤",
                       title: "error.title",
