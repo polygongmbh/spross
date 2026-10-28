@@ -25,7 +25,8 @@ An empty `## Unreleased` is refused rather than cut.
 The number is a judgment call; `release.sh` prints commit counts as guidance.
 
 - A major introduces a non-reversible breaking storage format change.
-- A minor changes something a learner meets without going looking for it.
+- A minor adds something the learner can do or learn that was not there: a new area, drill, screen or mode.
+- A patch refines what was there — fixes, wording, layout, look, recordings — however many learners meet it.
 - The counts are a prompt, not a rule:
   a feature reached from one button in a corner is a patch, however many `feat:` commits it took.
 
@@ -50,6 +51,7 @@ Android's `versionCode` is derived from the name:
   new areas, phrases unlocking differently, progress surviving a card-id change.
   A change that only alters language, wording, layout, order, naming or a celebration's thresholds is carried by its commit message.
   The test: does the learner need to know it to use the app? If not, no entry.
+  A release where nothing clears this bar still gets short entries, one line per screen the learner sees changed.
 - Content earns an entry by the SHELF, not by the CARD.
   A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the learner meets;
   a single concept added, split or reworded is not,
