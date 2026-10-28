@@ -4,6 +4,12 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.1.1 — 2026-10-28
+
+- Home now greets you with a fresh line for each time of day, and its first card tells you what to do next.
+- On Android, the section bar has new icons, and on a big screen its rail names each section.
+- On an unfolded foldable or a tablet, each half of Home scrolls on its own.
+
 ## 9.1.0 — 2026-10-27
 
 - On an unfolded foldable or a tablet, Home and the Box now use both halves of the screen, and text is larger, most of all during a session.
