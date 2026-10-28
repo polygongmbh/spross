@@ -38,15 +38,16 @@ enum AudioSession {
     static func useListening() {
         guard !listening else { return }
         listening = true
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [])
-        try? session.setActive(true)
+        change { session in
+            try? session.setCategory(.playback, mode: .spokenAudio, options: [])
+            try? session.setActive(true)
+        }
     }
 
     /// Reactivates the run's session after an interruption, which keeps the category but ends the activation.
     static func resumeListening() {
         guard listening else { return }
-        try? AVAudioSession.sharedInstance().setActive(true)
+        change { try? $0.setActive(true) }
     }
 
     /// Hands the audio back: `notifyOthersOnDeactivation` lets interrupted audio resume,
@@ -54,10 +55,12 @@ enum AudioSession {
     static func endListening() {
         guard listening else { return }
         listening = false
-        let session = AVAudioSession.sharedInstance()
-        try? session.setActive(false, options: .notifyOthersOnDeactivation)
-        try? session.setCategory(standing,
-                                 options: standing == .playback ? [.mixWithOthers] : [])
+        let standing = standing
+        change { session in
+            try? session.setActive(false, options: .notifyOthersOnDeactivation)
+            try? session.setCategory(standing,
+                                     options: standing == .playback ? [.mixWithOthers] : [])
+        }
     }
 
     /// `.playback` gets `.mixWithOthers` so one word does not stop other audio;
@@ -65,10 +68,19 @@ enum AudioSession {
     private static func use(_ category: AVAudioSession.Category) {
         // why: a sound fired during a run would otherwise hand the run's session back.
         guard !listening else { return }
-        let session = AVAudioSession.sharedInstance()
-        // why: a redundant set still posts a route change.
-        guard session.category != category else { return }
-        try? session.setCategory(category, options: category == .playback ? [.mixWithOthers] : [])
+        change { session in
+            // why: a redundant set still posts a route change.
+            guard session.category != category else { return }
+            try? session.setCategory(category, options: category == .playback ? [.mixWithOthers] : [])
+        }
+    }
+
+    /// Changes to the session run in call order on one serial queue, off the main thread:
+    /// setting a category on an active session or activating it blocks until the system answers.
+    private nonisolated static let queue = DispatchQueue(label: "spross.audio-session", qos: .userInitiated)
+
+    private nonisolated static func change(_ body: @escaping @Sendable (AVAudioSession) -> Void) {
+        queue.async { body(.sharedInstance()) }
     }
 }
 
