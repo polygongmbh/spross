@@ -67,7 +67,7 @@ There, `./gradlew :kern:jvmTest` is the whole gate; the Android gates and the em
 
 - Past ~300 lines a file is due a look for a natural seam:
   split where a cohesive topic leaves, keep a file whole when none does. Modularity over bloat.
-- Comments only for non-obvious constraints;
+- Comments only for non-obvious constraints, in the fewest plain words — a fact and its reason, without contrasts, asides or flourish;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
 - Docs and comments describe the current state on its own terms;
   a removal is documented beyond its commit message only when it is likely to be reintroduced.
