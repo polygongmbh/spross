@@ -90,6 +90,12 @@ class AreaTreeTests {
         assertEquals(spots.map { it.baseline }.sorted(), spots.map { it.baseline })
     }
 
+    @Test
+    fun thePictureStartsAtItsHighestTapTarget() {
+        val seedlings = List(5) { tree("area$it", met = 1) }
+        assertEquals(0.0, TreesLayout.place(seedlings, width = 380.0).spots.minOf { it.cellY })
+    }
+
     private fun tree(area: String, met: Int) =
         AreaGrowth(area, StageCounts(growing = met), 1, false, List(met) { 0.5 })
 }

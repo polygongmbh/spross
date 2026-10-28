@@ -89,8 +89,13 @@ object TreesLayout {
             // why: rows stand HALF a row apart, so a row's trees grow up through the gaps of the rows around them.
             base += (band + LABEL_HEIGHT + ROW_GAP) / 2
         }
+        // why: the first row's band leaves air above trees shorter than it; the picture starts at its highest tap target.
+        val top = spots.minOf { it.cellY }
         // why: once rows interleave, the tree in front may belong to another row —
         // only one order across all of them layers them right.
-        return TreesPlan(spots.sortedBy { it.baseline }, spots.maxOf { it.cellY + it.cellHeight })
+        return TreesPlan(
+            spots.map { it.copy(baseline = it.baseline - top, cellY = it.cellY - top) }.sortedBy { it.baseline },
+            spots.maxOf { it.cellY + it.cellHeight } - top,
+        )
     }
 }
