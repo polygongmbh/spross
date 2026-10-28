@@ -175,7 +175,7 @@ class TurnMachine(
         }
         return when (val verdict = graded.match) {
             Match.Exact -> accepted(state)
-            is Match.Typo -> holding(state, verdict.corrected, AlmostReason.Typo, verdict.producedRating())
+            is Match.Typo -> holding(state, verdict.corrected, AlmostReason.Typo, verdict.producedRating(), verdict.shown)
             is Match.OtherWord -> missed(state, text, verdict)
             Match.Wrong -> missed(state, text, null)
         }
@@ -195,8 +195,9 @@ class TurnMachine(
         correctForm: String,
         reason: AlmostReason,
         rating: Rating?,
+        shownForm: String = correctForm,
     ): TurnReduction = TurnReduction(
-        state.copy(feedback = TurnFeedback.Almost(correctForm, reason), pendingRating = rating),
+        state.copy(feedback = TurnFeedback.Almost(correctForm, reason, shownForm), pendingRating = rating),
         listOf(
             TurnEffect.Cued(Cue.Tone(if (reason == AlmostReason.Typo) ToneKind.Almost else ToneKind.Correct)),
             TurnEffect.Cued(Cue.ReleaseFocus),

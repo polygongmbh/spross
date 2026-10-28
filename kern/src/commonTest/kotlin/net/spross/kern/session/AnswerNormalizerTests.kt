@@ -248,8 +248,8 @@ class AnswerNormalizerTests {
         val waiter = joined(swToDe, "waiter") // "Kellner", gender "der"
         assertEquals(Match.Exact, de.evaluate("der Kellner", waiter))
         assertEquals(Match.Exact, de.evaluate("Kellner", waiter)) // missing article stays exact
-        assertEquals(Match.Typo("Kellner"), de.evaluate("die Kellner", waiter))
-        assertEquals(Match.Typo("Kellner"), de.evaluate("dee Kellner", waiter)) // stray-word rescue
+        assertEquals(Match.Typo("Kellner", "der Kellner"), de.evaluate("die Kellner", waiter))
+        assertEquals(Match.Typo("Kellner", "der Kellner"), de.evaluate("dee Kellner", waiter)) // stray-word rescue
         // No gender in the grammar → the article is never checked.
         assertEquals(Match.Exact, de.evaluate("das Tisch", card("de", "Tisch")))
     }
@@ -260,13 +260,13 @@ class AnswerNormalizerTests {
         val vaccine = card("it", "vaccino", grammar = mapOf("article" to "il"), teaches = listOf("vaccinazione"))
         assertEquals(Match.Exact, it.evaluate("la vaccinazione", vaccine))
         assertEquals(Match.Exact, it.evaluate("il vaccino", vaccine))
-        assertEquals(Match.Typo("vaccino"), it.evaluate("la vaccino", vaccine))
+        assertEquals(Match.Typo("vaccino", "il vaccino"), it.evaluate("la vaccino", vaccine))
         val medicine = card("it", "medicina", grammar = mapOf("article" to "la"), teaches = listOf("farmaco"))
         assertEquals(Match.Exact, it.evaluate("il farmaco", medicine))
         // A variant is a surface of the same word, so the card's article still binds it.
         val water = card("it", "acqua", grammar = mapOf("article" to "l'"), accepts = listOf("l'acqua"))
         assertEquals(Match.Exact, it.evaluate("l'acqua", water))
-        assertEquals(Match.Typo("acqua"), it.evaluate("la acqua", water))
+        assertEquals(Match.Typo("acqua", "l'acqua"), it.evaluate("la acqua", water))
     }
 
     /** An `accepts` entry authored with its own article is read back against that article, not the card's. */
@@ -277,6 +277,14 @@ class AnswerNormalizerTests {
         assertEquals(Match.Exact, fr.evaluate("vaccin", vaccination))
         assertEquals(Match.Typo("le vaccin"), fr.evaluate("la vaccin", vaccination))
         assertEquals(Match.Exact, fr.evaluate("la vaccination", vaccination))
+    }
+
+    /** The correction reads back as the learner wrote it: with the card's article where one was typed. */
+    @Test
+    fun aCorrectionKeepsTheTypedArticle() {
+        val certificate = card("de", "Zeugnis", grammar = mapOf("article" to "das"))
+        assertEquals(Match.Typo("Zeugnis", "das Zeugnis"), de.evaluate("das Zeugniss", certificate))
+        assertEquals(Match.Typo("Zeugnis"), de.evaluate("Zeugniss", certificate))
     }
 
     @Test

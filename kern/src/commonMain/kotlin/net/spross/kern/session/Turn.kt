@@ -24,9 +24,14 @@ sealed interface TurnFeedback {
     /**
      * Accepted, but not cleanly.
      * [correctForm] is the form the card owes back, and the turn holds here until it has been seen —
-     * which is why no beat is armed for it.
+     * which is why no beat is armed for it. [shownForm] is how the correction reads on screen
+     * ([Match.Typo.shown]); the voice says [correctForm].
      */
-    data class Almost(val correctForm: String, val reason: AlmostReason) : TurnFeedback
+    data class Almost(
+        val correctForm: String,
+        val reason: AlmostReason,
+        val shownForm: String = correctForm,
+    ) : TurnFeedback
 
     /**
      * The word was NOT produced: the card carries the answer and the retry stays open.

@@ -50,8 +50,9 @@ struct AnswerInputView: View {
                 inputField
             }
             if case .almost(let hold) = state {
-                correctionBox(form: hold.correctForm, caption: LocalizedStringKey(hold.reason.caption))
-                    .onAppear { announceCorrection(form: hold.correctForm, reason: hold.reason) }
+                correctionBox(shown: hold.shownForm, form: hold.correctForm,
+                              caption: LocalizedStringKey(hold.reason.caption))
+                    .onAppear { announceCorrection(form: hold.shownForm, reason: hold.reason) }
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
@@ -161,7 +162,8 @@ struct AnswerInputView: View {
     ///
     /// Leading-aligned, so no mirrored ballast is needed — `SpokenWord`
     /// centers, which is a different problem.
-    private func correctionBox(form: String, caption: LocalizedStringKey) -> some View {
+    /// `shown` is what the box reads, `form` what its voice says (`TurnFeedback.Almost`).
+    private func correctionBox(shown: String, form: String, caption: LocalizedStringKey) -> some View {
         HStack(spacing: Theme.spacing.md) {
             Image(systemName: "arrow.turn.down.right")
                 .font(.subheadline.weight(.semibold))
@@ -170,7 +172,7 @@ struct AnswerInputView: View {
                 Text(caption)
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
-                Text(form)
+                Text(shown)
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -262,7 +264,7 @@ private struct AnswerInputPreviewHost: View {
             AnswerInputView(text: $neutral, placeholder: "type here")
             AnswerInputView(text: $right, feedback: TurnFeedbackCorrect.shared, placeholder: "type here")
             AnswerInputView(text: $slip,
-                            feedback: TurnFeedbackAlmost(correctForm: "kisu", reason: .typo),
+                            feedback: TurnFeedbackAlmost(correctForm: "kisu", reason: .typo, shownForm: "kisu"),
                             placeholder: "type here",
                             correctionVoice: .init(pronounce: { _ in {} }, isPlaying: { _ in false }))
             AnswerInputView(text: $wrong, feedback: TurnFeedbackRevealed.shared, placeholder: "type here")

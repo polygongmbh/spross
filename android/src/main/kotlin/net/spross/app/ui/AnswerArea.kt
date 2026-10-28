@@ -96,7 +96,7 @@ fun AnswerArea(
             (controls.fieldFeedback as? TurnFeedback.Almost)?.let { almost ->
                 AlmostCorrection(
                     almostCaption(almost.reason, chrome),
-                    almost.correctForm,
+                    almost.shownForm,
                     chrome,
                     correctionVoice?.pronounce?.invoke(almost.correctForm),
                     playing = correctionVoice?.isPlaying?.invoke(almost.correctForm) == true,

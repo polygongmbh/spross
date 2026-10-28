@@ -42,7 +42,7 @@ extension NumbersRunView {
         if misses > 0 { run = run.seeded(missRun: Int32(misses)) }
         if defaults.bool(forKey: "uitest-typo") {
             run = run.seeded(feedback: TurnFeedbackAlmost(correctForm: run.currentTask.display,
-                                                         reason: .typo))
+                                                         reason: .typo, shownForm: run.currentTask.display))
         }
         if defaults.bool(forKey: "uitest-reference") {
             // why: a sheet raised while the run under it is still animating in is

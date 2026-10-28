@@ -6,6 +6,7 @@ import net.spross.kern.model.FormTag
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.answerForms
 import net.spross.kern.model.article
+import net.spross.kern.model.articledForm
 
 /**
  * Typed-answer grading for PRODUCE units, configured per ANSWER language (the
@@ -115,12 +116,25 @@ class AnswerNormalizer(
         val genderedForms = listOf(card.target.text) + card.target.accepts +
             card.target.forms.filter { it.article != null }.map { it.written }
         val result = evaluate(input, forms.right, prefixes, expectedArticle, genderedForms)
+        if (result is Match.Typo) return withTypedArticle(result, input, card)
         if (result != Match.Wrong) return result
         // The word in a form the prompt did not ask for corrects to the one it did.
         if (forms.almost.isNotEmpty() && evaluate(input, forms.almost, prefixes, expectedArticle = null) != Match.Wrong) {
-            return Match.Typo(corrected = forms.right.first())
+            return withTypedArticle(Match.Typo(corrected = forms.right.first()), input, card)
         }
         return result
+    }
+
+    /**
+     * The correction as the learner wrote it: an answer typed with a leading article
+     * reads back with the card's article ("das Zeugniss" → "das Zeugnis").
+     * Only the card's text takes it; every other form carries its own article or one the catalog does not know.
+     */
+    private fun withTypedArticle(typo: Match.Typo, input: String, card: Card): Match.Typo {
+        val article = card.target.article
+        if (article == null || typo.corrected != card.target.text) return typo
+        if (leadingArticle(input) == null && articlePeeledRemainder(input) == null) return typo
+        return typo.copy(shown = articledForm(article, typo.corrected))
     }
 
     /** [genderedForms] are the accepted forms that share [expectedArticle]; a match elsewhere is never demoted. */

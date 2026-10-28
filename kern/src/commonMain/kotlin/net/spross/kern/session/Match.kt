@@ -10,8 +10,10 @@ sealed interface Match {
      * Accepted with a small slip; carries the accepted form as authored in the
      * catalog (proper spelling for the UI's correction display, not the
      * lowercased/stripped comparison form).
+     * [shown] is how the correction reads: [corrected] with the card's article in front
+     * where the learner typed one ([AnswerNormalizer.evaluate]).
      */
-    data class Typo(val corrected: String) : Match
+    data class Typo(val corrected: String, val shown: String = corrected) : Match
 
     /**
      * The typed answer IS a different concept's word in the answer language —
