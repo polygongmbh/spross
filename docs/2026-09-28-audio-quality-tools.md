@@ -1,6 +1,6 @@
 # Audio quality tools: a survey of established no-reference methods
 Established no-reference speech-quality tools tried against a listener's verdicts, and why DNSMOS was adopted.
-Neighbors: the hand-built attempt `2026-09-28-audio-quality-measure.md`, the verdicts `audio-verdicts.tsv`, the fields `../catalog/audio/README.md`.
+Neighbors: the hand-built attempt `2026-09-28-audio-quality-measure.md`, the October evaluations `2026-10-audio-evaluations.md`, the verdicts `audio-verdicts.tsv`, the fields `../catalog/audio/README.md`.
 
 Research spike: does an established no-reference speech-quality tool agree with a human
 listener better than the hand-rolled measures in `scripts/audio_measure.py`

@@ -1,6 +1,6 @@
 # Audio quality measure: an alternative to `noise_margin`
 A hand-built recording-quality score tried against a listener's verdicts, and why it was not adopted.
-Neighbors: the survey that replaced it `2026-09-28-audio-quality-tools.md`, the verdicts `audio-verdicts.tsv`.
+Neighbors: the survey that replaced it `2026-09-28-audio-quality-tools.md`, the October evaluations `2026-10-audio-evaluations.md`, the verdicts `audio-verdicts.tsv`.
 
 Research spike: does a different automated score agree with a human listener better than
 `noise_margin` (`scripts/audio_measure.py`)?
