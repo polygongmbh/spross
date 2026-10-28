@@ -7,7 +7,7 @@ import net.spross.kern.box.DayPart
 import net.spross.kern.box.GreetingPlan
 
 /**
- * "Habari za asubuhi, Tim!", "Tayari kujifunza, Nachteule?", "Ein Feierabend mit Suaheli?" —
+ * "Habari za asubuhi, Tim!", "Tayari kujifunza, Nachteule?", "Feierabend auf Suaheli?" —
  * the line over the day's card. Which stretch of the day each register is in, whom the
  * language's own lines address and which line this one takes are kern's ([GreetingPlan]);
  * the words are the catalog's and the chrome's.

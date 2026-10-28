@@ -3065,13 +3065,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kurze Runde %@?"
+            "value" : "Kurz durchatmen mit %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A quick bit of %@?"
+            "value" : "A breather with %@?"
           }
         }
       }
@@ -3081,13 +3081,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwischendurch %@?"
+            "value" : "Ein Happen %@ zwischendurch?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Some %@ in between?"
+            "value" : "A quick bite of %@?"
           }
         }
       }
@@ -3097,13 +3097,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Feierabend mit %@?"
+            "value" : "Feierabend auf %@?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Winding down with %@?"
+            "value" : "Clocking out with %@?"
           }
         }
       }
@@ -3113,13 +3113,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abendliches %@?"
+            "value" : "%@ zum Sonnenuntergang?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A bit more %@ tonight?"
+            "value" : "%@ at sunset?"
           }
         }
       }
@@ -3129,13 +3129,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lust auf %@?"
+            "value" : "%@ zum ersten Kaffee?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Up for some %@?"
+            "value" : "%@ with your first coffee?"
           }
         }
       }
@@ -3145,13 +3145,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein bisschen %@ zum Morgen?"
+            "value" : "Ein Löffel %@ zum Frühstück?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A bit of %@ to start the day?"
+            "value" : "A spoonful of %@ with breakfast?"
           }
         }
       }
@@ -3194,13 +3194,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leise Runde %@?"
+            "value" : "%@ unterm Sternenhimmel?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A quiet bit of %@?"
+            "value" : "%@ under the stars?"
           }
         }
       }
@@ -3210,13 +3210,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ zu später Stunde?"
+            "value" : "%@ als Betthupferl?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Late-night %@?"
+            "value" : "A bedtime story in %@?"
           }
         }
       }

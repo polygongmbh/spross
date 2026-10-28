@@ -9,21 +9,21 @@ package net.spross.app
  */
 internal object ChromeDe : Chrome {
     override val greetMorning = listOf(
-        "Lust auf %s?",
-        "Ein bisschen %s zum Morgen?",
+        "%s zum ersten Kaffee?",
+        "Ein Löffel %s zum Frühstück?",
         "%s für die Lerche?",
     )
     override val greetDay = listOf(
-        "Kurze Runde %s?",
-        "Zwischendurch %s?",
+        "Kurz durchatmen mit %s?",
+        "Ein Happen %s zwischendurch?",
     )
     override val greetEvening = listOf(
-        "Ein Feierabend mit %s?",
-        "Abendliches %s?",
+        "Feierabend auf %s?",
+        "%s zum Sonnenuntergang?",
     )
     override val greetNight = listOf(
-        "Leise Runde %s?",
-        "%s zu später Stunde?",
+        "%s unterm Sternenhimmel?",
+        "%s als Betthupferl?",
         "%s für die Nachteule?",
     )
     override val homeName = "Start"

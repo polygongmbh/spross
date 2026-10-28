@@ -26,7 +26,7 @@ extension HomeView {
         }
     }
 
-    /// "Habari za asubuhi, Tim!" or "Ein Feierabend mit Suaheli?":
+    /// "Habari za asubuhi, Tim!" or "Feierabend auf Suaheli?":
     /// a line in the language being learned, or one in the known language about it.
     /// The register, the addressee and the line are kern's (`GreetingPlan`);
     /// the words are the catalog's and the chrome's.
