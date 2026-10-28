@@ -22,6 +22,8 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.chromePart
 import net.spross.kern.box.dayPart
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.design.HomeSection
+import net.spross.kern.design.PaneRole
 import net.spross.kern.trainer.DayLead
 
 /**
@@ -69,67 +71,63 @@ fun HomeScreen(model: AppModel) {
         ?: DayLead.Done
     val card = homeCard(failed = model.loadFailure != null, lead = lead)
     Box(Modifier.fillMaxSize()) {
-        // The phone's order; where the window splits, the greeting heads the primary pane — the
-        // day's card, the drills and the companion — beside the rail, and listening, an
-        // occasional detour, and what is looked at take the trailing one.
         PaneColumns(
             margin = Theme.spacing.xl,
             spacing = Theme.spacing.xl,
             bottom = Theme.spacing.xl + Theme.spacing.lg,
             modifier = Modifier.fillMaxSize(),
         ) {
-            item(PaneSide.Leading) { PageTitle(hello, eyebrow = today) }
+            HomeSection.entries.forEach { section ->
+                item(if (section.role == PaneRole.Primary) PrimarySide else SecondarySide) {
+                    when (section) {
+                        HomeSection.Header -> PageTitle(hello, eyebrow = today)
+                        // The voice hint is iOS's alone.
+                        HomeSection.VoiceUpgrade -> Unit
+                        HomeSection.Day -> when (card) {
+                            HomeCard.Failure -> StateCard(
+                                emoji = "🫤",
+                                title = chrome.errorTitle,
+                                // The catalog is present — the box is what could not be read, so the card
+                                // names the reason the decode gave rather than a missing content pack.
+                                message = model.loadFailure
+                                    ?.let { chrome.errorContentUnavailable.format(it) }
+                                    ?: chrome.errorCatalogMissing,
+                            )
 
-            item(PaneSide.Leading) {
-                when (card) {
-                    HomeCard.Failure -> StateCard(
-                        emoji = "🫤",
-                        title = chrome.errorTitle,
-                        // The catalog is present — the box is what could not be read, so the card
-                        // names the reason the decode gave rather than a missing content pack.
-                        message = model.loadFailure
-                            ?.let { chrome.errorContentUnavailable.format(it) }
-                            ?: chrome.errorCatalogMissing,
-                    )
+                            HomeCard.Session -> standing?.let {
+                                SessionCard(model, it, stats?.streak ?: 0, health)
+                            }
 
-                    HomeCard.Session -> standing?.let {
-                        SessionCard(model, it, stats?.streak ?: 0, health)
-                    }
+                            HomeCard.Lead -> if (standing != null) {
+                                val streak = stats?.streak ?: 0
+                                when (lead) {
+                                    DayLead.Listening -> LeadCard(
+                                        model, standing, "🎧", chrome.homeSuggestionListening, chrome.homeSuggestionReasonListening,
+                                        streak, health,
+                                    ) { model.startListening() }
+                                    DayLead.Conversation -> LeadCard(
+                                        model, standing, "💬", chrome.homeSuggestionConversation, chrome.homeSuggestionReasonConversation,
+                                        streak, health,
+                                    ) { briefingOpen = true }
+                                    else -> pick?.let {
+                                        LeadCard(
+                                            model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
+                                            reason(chrome, it), streak, health,
+                                        ) { model.open(it.drill) }
+                                    }
+                                }
+                            }
 
-                    HomeCard.Lead -> if (standing != null) {
-                        val streak = stats?.streak ?: 0
-                        when (lead) {
-                            DayLead.Listening -> LeadCard(
-                                model, standing, "🎧", chrome.homeSuggestionListening, chrome.homeSuggestionReasonListening,
-                                streak, health,
-                            ) { model.startListening() }
-                            DayLead.Conversation -> LeadCard(
-                                model, standing, "💬", chrome.homeSuggestionConversation, chrome.homeSuggestionReasonConversation,
-                                streak, health,
-                            ) { briefingOpen = true }
-                            else -> pick?.let {
-                                LeadCard(
-                                    model, standing, it.drill.emoji, chrome.homeSuggestionTitle.format(it.drill.title(chrome)),
-                                    reason(chrome, it), streak, health,
-                                ) { model.open(it.drill) }
+                            HomeCard.Done -> standing?.let {
+                                DoneCard(model, it, stats?.streak ?: 0, health)
                             }
                         }
-                    }
-
-                    HomeCard.Done -> standing?.let {
-                        DoneCard(model, it, stats?.streak ?: 0, health)
+                        HomeSection.Listening -> ListenCard(model)
+                        HomeSection.Drills -> TrainerHubCard(model)
+                        HomeSection.Conversation -> TalkCard(model) { briefingOpen = true }
+                        HomeSection.Trees -> TreesAndDays(model, stats?.streak ?: 0, health, locale)
                     }
                 }
-            }
-
-            item(PaneSide.Trailing) { ListenCard(model) }
-
-            item(PaneSide.Leading) { TrainerHubCard(model) }
-
-            item(PaneSide.Leading) { TalkCard(model) { briefingOpen = true } }
-
-            item(PaneSide.Trailing) {
-                TreesAndDays(model, stats?.streak ?: 0, health, locale)
             }
         }
         // why: a celebrated scramble close rains over the whole screen — the hub card wearing
@@ -138,6 +136,10 @@ fun HomeScreen(model: AppModel) {
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }
+
+/** Home's primary pane stands beside Material's navigation rail. */
+private val PrimarySide = PaneSide.Leading
+private val SecondarySide = PaneSide.Trailing
 
 /**
  * The fortnight and the trees, the strip over the picture in either layout, so it is seen.
