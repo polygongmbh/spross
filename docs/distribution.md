@@ -186,6 +186,6 @@ A release reaches it from the same App Store Connect build TestFlight serves, su
 ## What the runners do
 
 `ubuntu-latest` builds the APK behind the text lints, `:kern:jvmTest` and `:android:testDebugUnitTest`.
-`macos-26` pins Xcode 26.6 — the image's default moves —
+`xcode-27` pins Xcode 27.1, whose SDK has the iOS 27.1 APIs the app calls — the image's default moves —
 generates the project with `xcodegen` (`.xcodeproj` is never committed), caches `~/.konan` against the Kotlin version, then fetches the profiles, archives, uploads, and exports the IPA.
 macOS minutes bill at ten times the Linux rate, which is why only a tag starts one.

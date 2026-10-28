@@ -66,14 +66,15 @@ jobs:
 
   ios:
     name: App Store
-    runs-on: macos-26
+    # why: the app calls iOS 27.1 APIs behind #available, which only the 27 SDK compiles.
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@v7
 
       # why: the project is authored against Swift 6.0 and a pinned Kotlin/SKIE pair.
       # The image's default Xcode moves with the image, so the version is named here —
       # a missing one fails loudly instead of silently shifting the language mode.
-      - run: sudo xcode-select -switch /Applications/Xcode_26.6.app
+      - run: sudo xcode-select -switch /Applications/Xcode_27.1.app
 
       - uses: actions/setup-java@v5
         with:
