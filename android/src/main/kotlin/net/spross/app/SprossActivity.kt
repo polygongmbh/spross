@@ -42,6 +42,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ShortNavigationBar
 import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -289,7 +290,10 @@ private fun sectionsOnRail(): Boolean =
         else -> true
     }
 
-/** The same three sections on a rail at the leading edge, worn as the bar wears them. */
+/**
+ * The same three sections on a rail at the leading edge, worn as the bar wears them,
+ * each named under its mark — a wide window has the height a phone's bar saves.
+ */
 @Composable
 private fun TabRail(model: AppModel, current: Tab) {
     WideNavigationRail(
@@ -302,9 +306,11 @@ private fun TabRail(model: AppModel, current: Tab) {
                 railExpanded = false,
                 selected = selected,
                 onClick = { model.selectTab(section.tab) },
-                label = null,
-                icon = { SectionMark(section, selected) },
+                label = { Text(section.name) },
+                icon = { SectionMark(section, selected, named = true) },
                 colors = WideNavigationRailItemDefaults.colors(
+                    selectedTextColor = Theme.colors.accent,
+                    unselectedTextColor = Theme.colors.textSecondary,
                     selectedIconColor = Theme.colors.accent,
                     unselectedIconColor = Theme.colors.textSecondary,
                     selectedIndicatorColor = MaterialTheme.colorScheme.primaryContainer,
@@ -326,7 +332,8 @@ private fun sections(model: AppModel): List<Section> {
     )
 }
 
+/** The section's mark; TalkBack reads its name from the mark unless a label under it already says it. */
 @Composable
-private fun SectionMark(section: Section, selected: Boolean) {
-    Icon(if (selected) section.shown else section.mark, contentDescription = section.name)
+private fun SectionMark(section: Section, selected: Boolean, named: Boolean = false) {
+    Icon(if (selected) section.shown else section.mark, contentDescription = if (named) null else section.name)
 }
