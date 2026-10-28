@@ -263,8 +263,8 @@ def main():
         prog='audio-listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
         usage='%(prog)s SET [ROW] | [LANG:]FORM ...',
         description='Plays each take of a set, or every shipped take of the words named, and rates it with one key. '
-                    'A new rating replaces the take\'s earlier one in its context, and a rerun resumes at the first '
-                    'take not yet rated. `audio-listen.py sample -h` draws a new set.',
+                    'A new rating replaces the take\'s earlier one in its context; a set\'s rerun resumes at the first '
+                    'take not yet rated, words play every take. `audio-listen.py sample -h` draws a new set.',
         epilog='keys, each take playing on arrival:\n' + '\n'.join('  %-4s %s' % (key, text) for key, _, text in KEYS))
     parser.add_argument('target', nargs='+', metavar='TARGET',
                         help='a set: a TSV beside its mp3s (or naming absolute paths), columns file lang word speaker '
@@ -283,7 +283,8 @@ def main():
         listed = by_word(args.target)
         if not listed:
             sys.exit('no take of any word named')
-        listen(listed, ROOT)
+        # why: words named on the command line are all to be heard, rated today already or not.
+        listen(listed, ROOT, every=True)
 
 
 def listen_set(path, row_named=None):
@@ -292,7 +293,7 @@ def listen_set(path, row_named=None):
     listen(listed, base, row_named, path)
 
 
-def listen(listed, base, row_named=None, path=None):
+def listen(listed, base, row_named=None, path=None, every=False):
     """Plays [listed] (`by_word`'s or a set's rows, files relative to [base]) and records each rating."""
     if not sys.stdin.isatty():
         sys.exit('rating reads one key at a time, so it needs a terminal: run %s in one' % ' '.join(
@@ -301,8 +302,8 @@ def listen(listed, base, row_named=None, path=None):
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}
     rated = lambda row: (row['sha256'], context(row)) in done
-    picking = row_named is not None
-    if picking:
+    picking = every or row_named is not None
+    if row_named is not None:
         picked = named(listed, row_named)
         if not picked:
             sys.exit('%s names no row in %s' % (row_named, path))
