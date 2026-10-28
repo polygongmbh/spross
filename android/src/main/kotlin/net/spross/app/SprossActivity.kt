@@ -17,13 +17,16 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.only
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.WideNavigationRail
 import androidx.compose.material3.WideNavigationRailDefaults
 import androidx.compose.material3.WideNavigationRailItem
+import androidx.compose.material3.WideNavigationRailItemDefaults
+import androidx.compose.material3.ShortNavigationBarItemDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
+import net.spross.app.ui.SectionIcons
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.WindowInsets
@@ -34,19 +37,15 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ShortNavigationBar
 import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
@@ -257,18 +256,26 @@ private fun Screen.laysOutWidth(): Boolean = when (this) {
  * The three sections, always one tap apart — and out of the way of anything the learner is
  * being asked to answer, which is every screen [asTab] returns null for.
  *
- * Glyph only; the section's name is what TalkBack reads.
- * The bar is cut from the same fill as a card, so a hairline keeps a card above it apart.
+ * Material's expressive bar on a tonal fill of its own, which sets it off the cards above
+ * without a hairline: an outlined mark, filled and on the accent's pill while its section is shown.
+ * Marks only; the section's name is what TalkBack reads.
  */
 @Composable
 private fun TabBar(model: AppModel, current: Tab) {
-    val chrome = model.chrome
-    Column {
-        HorizontalDivider(color = Theme.colors.separator)
-        ShortNavigationBar(containerColor = Theme.colors.surface) {
-            TabItem(model, current, Tab.Home, "\uD83C\uDFE0", chrome.homeName)
-            TabItem(model, current, Tab.Box, "\uD83E\uDEB4", chrome.boxName)
-            TabItem(model, current, Tab.Settings, "\u2699\uFE0F", chrome.settingsTitle)
+    ShortNavigationBar(containerColor = Theme.colors.surfaceTint) {
+        sections(model).forEach { section ->
+            val selected = current == section.tab
+            ShortNavigationBarItem(
+                selected = selected,
+                onClick = { model.selectTab(section.tab) },
+                label = null,
+                icon = { SectionMark(section, selected) },
+                colors = ShortNavigationBarItemDefaults.colors(
+                    selectedIconColor = Theme.colors.accent,
+                    unselectedIconColor = Theme.colors.textSecondary,
+                    selectedIndicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                ),
+            )
         }
     }
 }
@@ -282,46 +289,44 @@ private fun sectionsOnRail(): Boolean =
         else -> true
     }
 
-/** The same three sections on a rail at the leading edge, glyphs only, as the bar wears them. */
+/** The same three sections on a rail at the leading edge, worn as the bar wears them. */
 @Composable
 private fun TabRail(model: AppModel, current: Tab) {
-    val chrome = model.chrome
-    Row(Modifier.fillMaxHeight()) {
-        WideNavigationRail(colors = WideNavigationRailDefaults.colors(containerColor = Theme.colors.surface)) {
-            RailItem(model, current, Tab.Home, "\uD83C\uDFE0", chrome.homeName)
-            RailItem(model, current, Tab.Box, "\uD83E\uDEB4", chrome.boxName)
-            RailItem(model, current, Tab.Settings, "\u2699\uFE0F", chrome.settingsTitle)
+    WideNavigationRail(
+        modifier = Modifier.fillMaxHeight(),
+        colors = WideNavigationRailDefaults.colors(containerColor = Theme.colors.surfaceTint),
+    ) {
+        sections(model).forEach { section ->
+            val selected = current == section.tab
+            WideNavigationRailItem(
+                railExpanded = false,
+                selected = selected,
+                onClick = { model.selectTab(section.tab) },
+                label = null,
+                icon = { SectionMark(section, selected) },
+                colors = WideNavigationRailItemDefaults.colors(
+                    selectedIconColor = Theme.colors.accent,
+                    unselectedIconColor = Theme.colors.textSecondary,
+                    selectedIndicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                ),
+            )
         }
-        VerticalDivider(color = Theme.colors.separator)
     }
 }
 
-@Composable
-private fun RailItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
-    WideNavigationRailItem(
-        railExpanded = false,
-        selected = current == tab,
-        onClick = { model.selectTab(tab) },
-        label = null,
-        icon = { TabGlyph(glyph, name) },
+/** A section as the bar and the rail show it: its marks, outlined and filled, and the name TalkBack reads. */
+private class Section(val tab: Tab, val mark: ImageVector, val shown: ImageVector, val name: String)
+
+private fun sections(model: AppModel): List<Section> {
+    val chrome = model.chrome
+    return listOf(
+        Section(Tab.Home, SectionIcons.Home, SectionIcons.HomeFilled, chrome.homeName),
+        Section(Tab.Box, SectionIcons.Tree, SectionIcons.TreeFilled, chrome.boxName),
+        Section(Tab.Settings, SectionIcons.Gear, SectionIcons.GearFilled, chrome.settingsTitle),
     )
 }
 
 @Composable
-private fun TabGlyph(glyph: String, name: String) {
-    Text(
-        glyph,
-        Modifier.clearAndSetSemantics { contentDescription = name },
-        style = MaterialTheme.typography.titleLarge,
-    )
-}
-
-@Composable
-private fun TabItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
-    ShortNavigationBarItem(
-        selected = current == tab,
-        onClick = { model.selectTab(tab) },
-        label = null,
-        icon = { TabGlyph(glyph, name) },
-    )
+private fun SectionMark(section: Section, selected: Boolean) {
+    Icon(if (selected) section.shown else section.mark, contentDescription = section.name)
 }
