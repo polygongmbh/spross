@@ -3762,7 +3762,6 @@
     "Holunder Gabriel": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
-    "Leni Berlin": "CC BY-SA 2.5",
     "Mathieu Kappler": "CC BY-SA 4.0",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
@@ -5410,7 +5409,6 @@
   },
   "licenses": {
     "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/",
-    "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
     "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -11584,16 +11582,6 @@
       "mos": 2.87,
       "sha256": "4698f769a06f6fda3a450e1eac5ee2f91ea52fd6ab2d2dfd389e455f13eb3cc8",
       "source": "De-ich2.ogg"
-    },
-    "ich liebe dich": {
-      "author": "Leni Berlin",
-      "file": "words/ich_liebe_dich.mp3",
-      "gain": 15.5,
-      "gate": -62.8,
-      "matches": "ich liebe dich",
-      "mos": 3.04,
-      "sha256": "371b97315bd6b405995e1527753869bd86665abf711e62831225cf38199f18a8",
-      "source": "De-ich liebe dich.ogg"
     },
     "ich verstehe nicht": {
       "author": "Timwi at English Wikipedia",

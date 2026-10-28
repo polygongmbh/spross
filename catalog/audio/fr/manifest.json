@@ -304,7 +304,6 @@
     "Hanavaï C.": "CC BY-SA 4.0",
     "Helenou66": "CC0",
     "Issakaf": "CC0",
-    "JackPotte": "CC BY-SA 3.0",
     "Jules78120": "CC0",
     "Julien Baley": "CC BY-SA 4.0",
     "Justforoc": "CC BY-SA 4.0",
@@ -4278,17 +4277,6 @@
       "mos": 3.23,
       "sha256": "82ba83a2a1f5c79cd6e140d168ec887121c27c6b8733464e3a92362e9b3ddf78",
       "source": "LL-Q150 (fra)-LoquaxFR-comment allez-vous.wav"
-    },
-    "comment vous appelez-vous": {
-      "author": "JackPotte",
-      "file": "words/comment_vous_appelez-vous.mp3",
-      "gain": -4.4,
-      "gate": -57.1,
-      "lead": 680,
-      "matches": "comment vous appelez-vous",
-      "mos": 3.09,
-      "sha256": "0af8cb712715e669f484d4ba3ca1c2a08d782814c4bab05527f63a5a3409fabb",
-      "source": "Fr-comment vous appelez-vous.ogg"
     },
     "commerçante": {
       "author": "Pamputt",
@@ -8706,18 +8694,6 @@
       "mos": 2.87,
       "sha256": "e9432b5d49353f86b23c89c8d15b67a84302328af04508826edc45698e55cd0c",
       "source": "LL-Q150 (fra)-Poslovitch-nom.wav"
-    },
-    "nom de famille": {
-      "author": "Pamputt",
-      "cap": 1.5,
-      "file": "words/nom_de_famille.mp3",
-      "gain": 12.9,
-      "gate": -67.2,
-      "lead": 140,
-      "matches": "nom de famille",
-      "mos": 2.79,
-      "sha256": "21ad6bd94936c5f9419984d1fa8674c24888d767e200c1af615b70942a34470d",
-      "source": "LL-Q150 (fra)-Pamputt-nom de famille.wav"
     },
     "non": {
       "author": "Vion Nicolas",
