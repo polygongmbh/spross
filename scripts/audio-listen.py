@@ -192,7 +192,9 @@ def heard(path):
     start, end, _ = audio_measure.speech_span(FFMPEG, path)
     head = max(0.0, start - LEAD_KEEP_MS / 1000)
     length = end + END_KEEP_MS / 1000 - head
-    fades = 'afade=t=in:d=%.3f,afade=t=out:st=%.3f:d=%.3f' % (LISTEN_FADE_S, length - LISTEN_FADE_S, LISTEN_FADE_S)
+    # why: ffplay keeps the file's timestamps past `-ss`, so the fades time from the seek only once reset.
+    fades = 'asetpts=PTS-STARTPTS,afade=t=in:d=%.3f,afade=t=out:st=%.3f:d=%.3f' % (
+        LISTEN_FADE_S, length - LISTEN_FADE_S, LISTEN_FADE_S)
     return ['-ss', '%.3f' % head, '-t', '%.3f' % length, '-af', 'volume=%.1fdB,%s' % (gain, fades), path]
 
 
