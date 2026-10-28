@@ -27,13 +27,7 @@ extension WindowPanes.Pane {
 /// Measures the width it is laid out in and the hinge, and hands kern's decision to `content` and the environment.
 struct PanesReader<Content: View>: View {
     @ViewBuilder var content: (WindowPanes?) -> Content
-    @State private var measure: Measure?
-
-    private struct Measure: Equatable {
-        var width: CGFloat
-        var leading: CGFloat
-        var trailing: CGFloat
-    }
+    @State private var measure: PaneMeasure?
 
     var body: some View {
         HingeReader { halfOpen in
@@ -48,11 +42,18 @@ struct PanesReader<Content: View>: View {
         }
         // why: the proxy's size already stops at the safe area and its insets lie outside it,
         // so the window is the two together.
-        .onGeometryChange(for: Measure.self) { proxy in
-            Measure(width: proxy.size.width,
-                    leading: proxy.safeAreaInsets.leading, trailing: proxy.safeAreaInsets.trailing)
+        .onGeometryChange(for: PaneMeasure.self) { proxy in
+            PaneMeasure(width: proxy.size.width,
+                        leading: proxy.safeAreaInsets.leading, trailing: proxy.safeAreaInsets.trailing)
         } action: { measure = $0 }
     }
+}
+
+// Outside the generic reader, so the geometry closure captures no `Content` metatype.
+private struct PaneMeasure: Equatable {
+    var width: CGFloat
+    var leading: CGFloat
+    var trailing: CGFloat
 }
 
 extension View {
