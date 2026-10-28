@@ -4,6 +4,10 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.1.2 — 2026-10-28
+
+- The iPhone app gets 9.1.1's Home changes too.
+
 ## 9.1.1 — 2026-10-28
 
 - Home now greets you with a fresh line for each time of day, and its first card tells you what to do next.
