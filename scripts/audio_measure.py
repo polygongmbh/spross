@@ -133,6 +133,72 @@ def speech_span(binary, path):
     return (float(groups[0][0] * SPAN_FRAME_MS) / 1000, float((groups[-1][-1] + 1) * SPAN_FRAME_MS) / 1000, duration)
 
 
+# POPS — breath striking the microphone. A 10 ms frame inside the speech (±POP_MARGIN_MS) is a breath
+# burst where its bass stands POP_OVER_DB over the speech's own bass (its loudest SPAN_LOUDEST_MS),
+# outweighs the frame's upper band by POP_TILT_DB, and the 30 ms around it barely repeat (autocorrelation
+# peak at F0-range lags at most POP_TURBULENT): a breath blast is turbulent, where an aspirated p's
+# thump is a smooth pulse under 80 Hz and a voiced onset repeats — a bass level alone flags every German p.
+POP_BASS_HZ = (20, 300)
+POP_UPPER_HZ = (300, 8000)
+POP_OVER_DB = 6
+POP_TILT_DB = 6
+POP_TURBULENT = 0.26
+POP_WINDOW_MS = 30
+POP_LAG_HZ = (66, 400)
+POP_MARGIN_MS = 30
+
+
+def _a_weighting(hz):
+    f2 = np.maximum(hz, 1e-3) ** 2
+    gain = 12194 ** 2 * f2 ** 2 / ((f2 + 20.6 ** 2) * np.sqrt((f2 + 107.7 ** 2) * (f2 + 737.9 ** 2)) * (f2 + 12194 ** 2))
+    return gain / gain[np.argmin(np.abs(hz - 1000))]
+
+
+def _periodicity(segment):
+    segment = segment - segment.mean()
+    best = 0.0
+    for lag in range(SPAN_RATE // POP_LAG_HZ[1], min(SPAN_RATE // POP_LAG_HZ[0], len(segment) - 1)):
+        a, b = segment[:-lag], segment[lag:]
+        norm = np.sqrt((a * a).sum() * (b * b).sum())
+        if norm > 0:
+            best = max(best, float((a * b).sum() / norm))
+    return best
+
+
+def pop(binary, path, span=None):
+    """dB the loudest breath burst (POPS) sounds, A-weighted, against the speech's loudest SPAN_LOUDEST_MS;
+    None where the take holds none. [span] is `speech_span`'s, measured here where not given."""
+    start, end, _ = span or speech_span(binary, path)
+    x = _decode(binary, path, SPAN_RATE).astype(np.float64)
+    width = SPAN_RATE * SPAN_FRAME_MS // 1000
+    count = len(x) // width
+    margin = POP_MARGIN_MS // SPAN_FRAME_MS
+    first = max(0, round(start * 1000) // SPAN_FRAME_MS - margin)
+    last = min(count, round(end * 1000) // SPAN_FRAME_MS + margin)
+    stretch = SPAN_LOUDEST_MS // SPAN_FRAME_MS
+    if last - first < stretch:
+        return None
+    spectrum = np.fft.rfft(x)
+    hz = np.fft.rfftfreq(len(x), 1 / SPAN_RATE)
+
+    def level(weights):
+        y = np.fft.irfft(spectrum * weights, len(x))
+        return 10 * np.log10((y[:count * width].reshape(-1, width) ** 2).mean(axis=1) + 1e-12)[first:last]
+
+    def loudest(levels):
+        return np.median(np.lib.stride_tricks.sliding_window_view(levels, stretch), axis=1).max()
+
+    bass = level((hz >= POP_BASS_HZ[0]) & (hz < POP_BASS_HZ[1]))
+    upper = level((hz >= POP_UPPER_HZ[0]) & (hz < POP_UPPER_HZ[1]))
+    heard = level(_a_weighting(hz) * (hz >= POP_BASS_HZ[0]))
+    heard -= loudest(heard)
+    half = SPAN_RATE * POP_WINDOW_MS // 2000
+    bursts = [heard[i] for i in np.flatnonzero((bass - loudest(bass) >= POP_OVER_DB) & (bass - upper >= POP_TILT_DB))
+              for middle in [(first + i) * width + width // 2]
+              if _periodicity(x[max(0, middle - half):middle + half]) <= POP_TURBULENT]
+    return float(max(bursts)) if bursts else None
+
+
 def peak_and_loudness(binary, path):
     """(sample peak dBFS, integrated LUFS) of `path` alone — `measure`'s two levels without
     its slower passes, for asking whether a take is squashed (`audio_voices.is_squashed`)."""
