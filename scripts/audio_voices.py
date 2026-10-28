@@ -129,7 +129,7 @@ def is_rejected(sha256, lang=None, author=None):
 
 def is_voice_doubted(sha256, lang, author):
     """By a DOUBTED voice, and not passed on its own."""
-    return author in DOUBTED_VOICES.get(lang, ()) and not is_vouched(sha256)
+    return author in DOUBTED_VOICES.get(lang, ()) and not is_passed(sha256)
 
 
 def is_doubted(sha256, lang=None, author=None):
@@ -146,15 +146,10 @@ def heard_over(sha256, other):
 
 
 def is_passed(sha256):
-    """Heard as okay or better: ships under the floor and from a POOR voice."""
+    """Heard as okay or better: judged as itself rather than as its POOR or DOUBTED voice."""
     return verdict(sha256) in ('okay', 'good', 'great')
 
 
 def is_fair(sha256):
     """Heard as okay, which leans to mediocre: it ships, and a sweep tries every other take of its word."""
     return verdict(sha256) == 'okay'
-
-
-def is_vouched(sha256):
-    """Heard as good or better: kept whatever the score or the squash measure says of it."""
-    return verdict(sha256) in ('good', 'great')

@@ -169,7 +169,7 @@ def judged(take, name, record, path, measured):
     candidate = dict(take, source=name, author=record.get('author', '?'), license=record.get('license', '?'),
                      path=path, sha256=digest_of(path))
     if measured is None:
-        return audio_judge.Judged(None, ('unreadable', 'ffmpeg could not read it'), False, False, False)
+        return audio_judge.Judged(None, ('unreadable', 'ffmpeg could not read it'), False, False)
     return audio_judge.judge(candidate, measured=measured)
 
 

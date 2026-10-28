@@ -45,7 +45,7 @@ what a take must pass on its own is the take judge's (`../../scripts/audio_judge
 Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`):
 where it is missing (eo, sw) only the clearly bad are refused,
-where it is good a recording has to beat it, unless a listener passed it,
+where it is good a recording has to beat it,
 and `--prune-poor` hands anything shipped that the judge now refuses to it.
 
 A full sweep also re-checks what already ships, in any language:
@@ -73,7 +73,7 @@ An item Commons stays unreachable for keeps its take, and the run exits nonzero 
 
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
-A sweep reconsiders it like a poor take and never swaps one in that no listener rated good.
+A sweep reconsiders it like a poor take and never swaps one in.
 
 Both pickers only print until given `--apply`, and never write a pack:
 a swap is a row in `$W/staged.tsv`, its bytes in `$W/staged/`,
@@ -102,10 +102,9 @@ scripts/audio-catalog.py --remove <lang> <section> <key>
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`** with its source, sha256 and `mos`,
 so the next revision of the measure is tested against the ear rather than tuned to a handful of files.
-A verdict also overrules the score for those bytes:
+A verdict counts against a take and ranks two heard takes, and exempts none from a measure:
 bad never ships, bad or mediocre has every other take of its word tried,
-okay ships and still has them tried against the usual margin,
-good or great keeps its place whatever the measures say,
+okay has them tried against the usual margin,
 and a take keeps its place against any challenger a listener rated lower.
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.

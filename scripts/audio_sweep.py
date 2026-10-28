@@ -3,10 +3,10 @@ voice's few takes onto an established one. Both only ever CHOOSE another untouch
 denoising would be an adaptation under BY-SA and break the sha256 the catalog pins.
 
 SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it
-or heard it as only okay, it scores under `RECONSIDER_MOS`, it is squashed, one-sided or overlong — unless a listener vouched
-for it, which only one-sidedness and overlength overrule. A take by a DOUBTED voice (`audio_voices`) goes up
-too, and is beaten like a squashed one. A challenger the judge refuses, or finds squashed unless a
-listener vouched for it, or a listener doubted, never wins.
+or heard it as only okay, it scores under `RECONSIDER_MOS`, or it is squashed, one-sided or overlong,
+whatever else a listener said of it. A take by a DOUBTED voice (`audio_voices`) goes up
+too, and is beaten like a squashed one. A challenger the judge refuses or finds squashed, a listener
+doubted, or a listener rated under the incumbent, never wins.
 The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a voice change and a
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
 clearly worse, and against a refused, doubted, one-sided, overlong or under-floor one any passable take
@@ -19,7 +19,7 @@ falls back to, in place of the whole form's entry.
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
 an established voice's take of the same form — smallest license harm first (CC0 and public domain,
 then attribution, then share-alike), then the biggest voice, then the catalog's casing — unless
-that take is refused, squashed (unless a listener vouched for it), doubted by a listener,
+that take is refused, squashed, doubted by a listener, rated under the incumbent,
 scores `SWAP_MARGIN` or more under the incumbent (a sweep would win that back, and the two would
 trade the take forever), or gives up
 more than `DULLNESS_DB` above 6 kHz (a telephone-band take scores clean and sounds dull).
@@ -38,7 +38,7 @@ from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, in
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
                           heard_over, is_doubted, is_fair, is_one_sided, is_overlong, is_squashed, is_voice_doubted,
-                          is_vouched, mos_floor)
+                          mos_floor)
 
 
 def candidates(lang, takes):
@@ -94,9 +94,8 @@ def sweep(lang, section, catalog, measures, only, apply):
         noisy = [take for take in takes if take['key'] in only]
     else:
         noisy = [take for take in takes
-                 if (not is_vouched(take['sha256']) or take['lopsided'] or take['overlong'])
-                 and (take['mos'] < RECONSIDER_MOS or take['ear'] or take['fair'] or take['voice'] or take['squashed']
-                      or take['lopsided'] or take['overlong'] or take['refused'])]
+                 if take['mos'] < RECONSIDER_MOS or take['ear'] or take['fair'] or take['voice'] or take['squashed']
+                 or take['lopsided'] or take['overlong'] or take['refused']]
     print('%d below %.2f, heard as okay, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
         return 0, 0
@@ -160,7 +159,7 @@ def best_option(take, options, lang, floor, weight):
         if verdict.mos is None and not verdict.refused:
             continue
         sha = digest_of(path)
-        why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
+        why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
             'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
             'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
             'heard worse' if heard_over(take['sha256'], sha) else None
@@ -231,7 +230,7 @@ def consolidate(lang, section, catalog, measures, only, apply):
                 continue
             sha = digest_of(path)
             verdict = judged(take, name, record, path, measures.result(sha, measures.submit(sha, path)))
-            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot and not verdict.vouched else \
+            why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
                 'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
                 'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
                 'heard worse' if heard_over(take['sha256'], sha) else None

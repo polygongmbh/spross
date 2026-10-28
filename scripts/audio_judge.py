@@ -2,7 +2,7 @@
 
 A take is a dict `lang section key source author license path` (plus `sha256` where known):
 the Commons file it came from, who is credited under what, and its bytes on disk.
-`judge` answers with the take's `mos` and four findings, and each caller's policy is one line
+`judge` answers with the take's `mos` and three findings, and each caller's policy is one line
 over them — a fill and a ship take what is not `refused`, a prune removes what is.
 
   · `refused` — (reason, detail) of the first of: license refused or unknown, author names
@@ -10,8 +10,7 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
     heard as bad or by a POOR voice, under the language's floor, one-sided, speaking longer than its
     key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
-  · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
-  · `vouched` — heard as good or better.
+  · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar.
 
 The source checks need no bytes (`source_refusal`); `measure` reads everything else a judgement
 needs off the bytes in one process, so a picker measures its takes in a pool and caches them.
@@ -23,9 +22,9 @@ import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
 from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_rejected,
-                          is_passed, is_squashed, is_vouched, mos_floor)
+                          is_squashed, mos_floor)
 
-Judged = collections.namedtuple('Judged', 'mos refused hot doubted vouched')
+Judged = collections.namedtuple('Judged', 'mos refused hot doubted')
 
 
 def license_refusal(license):
@@ -81,7 +80,7 @@ def judge(take, index=False, measured=None):
         refused = 'silent', 'decodes to silence'
     if not refused and is_rejected(digest, lang, author):
         refused = 'poor', 'heard as bad'
-    if not refused and mos is not None and mos < mos_floor(lang) and not is_passed(digest):
+    if not refused and mos is not None and mos < mos_floor(lang):
         refused = 'poor', 'mos %.2f, floor is %.2f' % (mos, mos_floor(lang))
     if not refused:
         balance = (measured or {}).get('balance')
@@ -103,5 +102,4 @@ def judge(take, index=False, measured=None):
     levels = ((measured['peak'], measured['loudness']) if measured is not None
               else audio_measure.peak_and_loudness(audio_index.FFMPEG, path))
     return Judged(mos=mos, refused=refused, hot=is_squashed(*levels),
-                  doubted=is_doubted(digest, lang, author) or (mos is not None and mos < RECONSIDER_MOS),
-                  vouched=is_vouched(digest))
+                  doubted=is_doubted(digest, lang, author) or (mos is not None and mos < RECONSIDER_MOS))
