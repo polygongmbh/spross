@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,8 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
@@ -29,7 +26,7 @@ import net.spross.kern.trainer.DayLead
 /**
  * The north star screen: one glance = what to do right now.
  *
- * Top to bottom: the date and the day's name, ONE state card, the listening card, the
+ * Top to bottom: the greeting, ONE state card, the listening card, the
  * trainers, the companion card, the fortnight behind it over the trees — dealt into two panes
  * where the window splits ([PaneColumns]). Which state card is kern's
  * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
@@ -48,10 +45,6 @@ fun HomeScreen(model: AppModel) {
     }
     // why: each of these is a walk over the box, and they are read together so the card,
     // its tally and its fine print describe one moment rather than three a frame apart.
-    // why: an ICU pattern built and a formatter compiled, for a date that moves once
-    // a day — it stood in the body, so a button's press animation rebuilt it once a
-    // frame for the whole spring.
-    val today = remember(locale, LocalDate.now()) { todayLine(locale) }
     // why: the greeting's words follow the stretch of the day, and which of the
     // candidates it takes is keyed on exactly that (kern's `partVariant`) — so it is
     // rebuilt when the stretch turns, and never between two frames of the same one.
@@ -80,7 +73,7 @@ fun HomeScreen(model: AppModel) {
             HomeSection.entries.forEach { section ->
                 item(if (section.role == PaneRole.Primary) PrimarySide else SecondarySide) {
                     when (section) {
-                        HomeSection.Header -> PageTitle(hello, eyebrow = today)
+                        HomeSection.Header -> PageTitle(hello)
                         // The voice hint is iOS's alone.
                         HomeSection.VoiceUpgrade -> Unit
                         HomeSection.Day -> when (card) {
@@ -153,10 +146,4 @@ private fun TreesAndDays(model: AppModel, streak: Int, health: StreakHealth, loc
         ActivityStrip(model.numbers.activityWindow, streak, health, model.chrome, locale)
         HomeTrees(model)
     }
-}
-
-/** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */
-private fun todayLine(locale: Locale): String {
-    val pattern = DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM")
-    return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern, locale)).uppercase(locale)
 }

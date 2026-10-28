@@ -23,15 +23,12 @@ import androidx.compose.ui.unit.sp
  * A tab page's title: the first thing in its scrolling content, scrolling away with it —
  * a tab page has no way out to keep in reach, so nothing about it stays pinned.
  *
- * [eyebrow] is an all-caps label over the title; it takes a label's tracking, since the ramp's
- * own is zeroed for running text ([Theme]) and reads cramped on a few capitalized words.
  * A title too long for the width shrinks a step rather than pushing the page down a third line.
  */
 @Composable
 fun PageTitle(
     title: String?,
     modifier: Modifier = Modifier,
-    eyebrow: String? = null,
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     Row(
@@ -39,11 +36,6 @@ fun PageTitle(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
-            if (eyebrow != null) Text(
-                eyebrow,
-                style = MaterialTheme.typography.bodySmall.copy(letterSpacing = 1.sp),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
             if (title != null) Text(
                 title,
                 style = MaterialTheme.typography.headlineLarge,

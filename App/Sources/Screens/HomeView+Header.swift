@@ -1,29 +1,20 @@
 import SwiftUI
 import SprossKern
 
-/// Home's header: the date, and the line under it that greets the learner.
+/// Home's header: the line that greets the learner.
 extension HomeView {
 
     // MARK: - Header
 
-    /// The date, and under it a greeting that names the language being learned.
+    /// A greeting that names the language being learned; a long one shrinks rather than taking a third line.
+    @ViewBuilder
     var header: some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-            Text(Date().formatted(
-                Date.FormatStyle(locale: locale)
-                    .weekday(.wide).day().month(.wide)
-            ))
-            .font(Theme.typography.caption)
-            .foregroundStyle(Theme.colors.textSecondary)
-            .textCase(.uppercase)
-            // A long greeting shrinks rather than taking a third line.
-            if let greeting {
-                greeting
-                    .font(Theme.typography.hero)
-                    .foregroundStyle(Theme.colors.textPrimary)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.7)
-            }
+        if let greeting {
+            greeting
+                .font(Theme.typography.hero)
+                .foregroundStyle(Theme.colors.textPrimary)
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
         }
     }
 
