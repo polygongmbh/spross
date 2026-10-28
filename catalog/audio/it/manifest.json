@@ -8746,15 +8746,15 @@
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-sete.wav"
     },
     "settimana": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/settimana.mp3",
-      "gain": -0.4,
-      "gate": -85.3,
+      "gain": 0.6,
+      "gate": -91.6,
       "lead": 200,
       "matches": "settimana",
-      "mos": 2.32,
-      "sha256": "5407de1875a041dce844078f05b02ba5cbca32e9db22ae0f02c84545ffff62e7",
-      "source": "LL-Q652 (ita)-LangPao-settimana.wav"
+      "mos": 3.25,
+      "sha256": "1a3f33470f1bd3b82b04e56c82e41c5e2c821852ec8e8d4953c26384ce92031b",
+      "source": "LL-Q652 (ita)-Happypheasant-settimana.wav"
     },
     "sfida": {
       "author": "LangPao",

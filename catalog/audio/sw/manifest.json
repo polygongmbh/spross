@@ -19,16 +19,15 @@
       "source": "LL-Q122(swa)-Mndetatsin-Agosti(Août).wav"
     },
     "Alhamisi": {
-      "author": "Goethe-Institut Cameroon",
-      "end": 1990,
+      "author": "Waithera Were",
       "file": "calendar/alhamisi.mp3",
-      "gain": -5.5,
-      "gate": -80.0,
-      "lead": 700,
+      "gain": -3.9,
+      "gate": -67.6,
+      "lead": 40,
       "matches": "Alhamisi",
-      "mos": 2.53,
-      "sha256": "02fafe179d1376db8f9ff368b2fec9959ca282d3a79c0bca046d9c2018fa270d",
-      "source": "LL-Q129(swa)-Mndetatsin-Alhamisi(Jeudi).wav"
+      "mos": 2.88,
+      "sha256": "a4edb50b480142cc11719f159e12118a1f3806d17bd31e16c0752bc37791e930",
+      "source": "Sw-ke-Alhamisi.flac"
     },
     "Aprili": {
       "author": "Goethe-Institut Cameroon",
@@ -9920,17 +9919,15 @@
       "source": "Sw-ke-samahani.flac"
     },
     "samaki": {
-      "author": "Goethe-Institut Cameroon",
-      "cap": 5.7,
-      "end": 2140,
+      "author": "Waithera Were",
       "file": "words/samaki.mp3",
-      "gain": 0.6,
-      "gate": -78.8,
-      "lead": 920,
+      "gain": -7.0,
+      "gate": -71.1,
+      "lead": 20,
       "matches": "samaki",
-      "mos": 2.85,
-      "sha256": "25626874475d00c6d991c4bf4650a5e710dcf38d9b3b71b5d012fec98f40e867",
-      "source": "LL-Q152(swa)-Mndetatsin-Samaki(le poisson).wav"
+      "mos": 3.07,
+      "sha256": "6f7d6223e40688e08996154accb6a57827bc5bd5d947f5b458cc0c87c3594e90",
+      "source": "Sw-ke-Samaki.flac"
     },
     "samani": {
       "author": "Waithera Were",

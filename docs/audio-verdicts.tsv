@@ -446,4 +446,46 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context	heard_on
 2026-10-28	sw	samaki	Goethe-Institut Cameroon	LL-Q152(swa)-Mndetatsin-Samaki(le poisson).wav	25626874475d00c6d991c4bf4650a5e710dcf38d9b3b71b5d012fec98f40e867	good		2.85	2026-10-28 by word (words, mos 2.85)
 2026-10-28	de	pullover	Jeuwre	De-Pullover2.ogg	4d4a83afb668da11251455273bf5d97beefc8cd41d9341816e9f806346c901eb	okay	there is a pop, but not too bad	3.24	2026-10-28 by word (words, mos 3.24)
 2026-10-28	de	lieben	Sebastian Wallroth	LL-Q188 (deu)-Sebastian Wallroth-Lieben.wav	59a4eed0d4a176c4d2d861404d4879b16828af8fb0dc34a9feecb6c7d58cf13c	mediocre		2.46	2026-10-28 by word (words, mos 2.46)
-2026-10-28	de	ich liebe dich	Leni Berlin	De-ich liebe dich.ogg	371b97315bd6b405995e1527753869bd86665abf711e62831225cf38199f18a8	bad		3.04	2026-10-28 by word (words, mos 3.04)
+2026-10-28	de	ich liebe dich	Leni Berlin	De-ich liebe dich.ogg	371b97315bd6b405995e1527753869bd86665abf711e62831225cf38199f18a8	bad		3.04	2026-10-28 by word (words, mos 3.04)	MacBook Air Speakers
+2026-10-28	de	aggressiv	Jeuwre	De-aggressiv2.ogg	818851af05fd0cb8183b8224291266f0c1e7d229317441dbaa3c797ad2f9ca4e	good		3.26	2026-10-28 by word (words, mos 3.26)	AirPods Pro
+2026-10-28	it	rilassare	LangPao	LL-Q652 (ita)-LangPao-rilassare.wav	639b4d75e4fd962aa65d9febbd1d3682e7b3225e888ced2873cfdac9631738c2	okay		2.15	2026-10-28 by word (words, mos 2.15)	AirPods Pro
+2026-10-28	en	friend	Dvortygirl	En-us-friend.ogg	32c21ead7c42b5ab6791233edc40f9d9ddcc6a3a50ee6ce3cc3727f89d8a965c	great		2.52	2026-10-28 by word (words, mos 2.52)	AirPods Pro
+2026-10-28	en	sink	Dvortygirl	En-us-sink.ogg	2c97e8b8f820b7a8437dea7df30418407bbdc8fb864dcb257bd6062cf3ad6591	great		2.53	2026-10-28 by word (words, mos 2.53)	AirPods Pro
+2026-10-28	uk	су́кня	Галя Раптова, Nicolas Vion	Uk-сукня.ogg	bf423495eaf2686ddd56050740709e830dad05a26ee2059ce685985093a1128c	good		2.51	2026-10-28 by word (words, mos 2.51)	AirPods Pro
+2026-10-28	es	febrero	Octavio Paniagua-Taboada (Mexico)	Es-febrero.ogg	7ee9407fb0a9948e2c5fa690cef2652af8249c4ab415765c2ddd0c49d5420191	mediocre		2.51	2026-10-28 by word (calendar, mos 2.51)	AirPods Pro
+2026-10-28	uk	схо́ди	Галя Раптова, Nicolas Vion	Uk-сходи.ogg	8dc1426b66fa88cd488b95355cc10e849c4b1185c26a0e759aa2b06e1f494bee	okay		2.51	2026-10-28 by word (words, mos 2.51)	AirPods Pro
+2026-10-28	en	Japanese	Muke	En-us-Japanese.ogg	dbecc4253e2fe4020f050fc25ebec16e36142ee71ba75883ee7bd0e081f7e7a5	bad		2.51	2026-10-28 by word (countries, mos 2.51)	AirPods Pro
+2026-10-28	es	disponible	Octavio Paniagua-Taboada (Mexico)	Es-disponible.ogg	2540782eb1954a476dc99fc8a1fe2290041da1b1c1135a592da19af88c34714e	mediocre		2.61	2026-10-28 by word (words, mos 2.61)	AirPods Pro
+2026-10-28	en	cash	Neskaya	En-us-cash.ogg	15d87a42856977bde342d1d0873fe2956986e5a765263ef74de0ccdd4df5dde0	good		2.67	2026-10-28 by word (words, mos 2.67)	AirPods Pro
+2026-10-28	es	jueves	GlyphEnjoyer	LL-Q1321 (spa)-GlyphEnjoyer-jueves.wav	a61080d85dc7d12781285921575c891d85a2213ff8be4eecc30d696ac6414179	good		2.52	2026-10-28 by word (calendar, mos 2.52)	AirPods Pro
+2026-10-28	it	secondo	XANA000	LL-Q652 (ita)-XANA000-secondo.wav	a5d3a0b8b4435cada6b7bf3505a83d377b7da468ae3b9e018d517407df8a1eb7	bad		2.61	2026-10-28 by word (words, mos 2.61)	AirPods Pro
+2026-10-28	it	come	LangPao	LL-Q652 (ita)-LangPao-come.wav	2b4dae7ad169a338597aa6aac59dd04c79bcf7c40d1269968803938d14dd062e	okay		2.92	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	it	come	XANA000	LL-Q652 (ita)-XANA000-come.wav	d6461b98eac39935ea5ac5e9b85c3b09bba77dbd6a72fb2844e172c23cf55b59	okay		1.91	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	eo	homo	Castelobranco	Eo-homo.ogg	c1224c2be1a659f267ffe70113bbcd6f91b51b340c8c8f84ac050d223ffe04e5	mediocre		2.97	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	eo	homo	Poslovitch	LL-Q143 (epo)-Poslovitch-homo.wav	bdb4f8ae88e42d4dd6a7dc91d6de1fbb849a99fe307e791453dd6ef4e0bf2279	good		2.54	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	fr	je t'aime	Pamputt	LL-Q150 (fra)-Pamputt-je t'aime.wav	38848fcd8c4f28fc83aee965ac1db82439a20141bff2c3c1e502ae4d27e2d287	bad		2.73	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	fr	je t'aime	Lyokoï	LL-Q150 (fra)-Lyokoï-je t’aime.wav	804bc482f3d1cf6e1d04dd705aca20a2ad3632c3d0cb04674cc2ef92090157c9	good		3.34	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	en	up	Wodencafe	LL-Q1860 (eng)-Wodencafe-up.wav	50e2e7546dc7bcdc237dfc5f0c7f4b3c643d52efb4c0e693d3862f9a1d9c87b6	good		2.77	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	en	up	Dvortygirl	En-us-up.ogg	42c4f46a1b4785d1f5941c429fb3504bbfa70ef91c6b8876af8f630ad9c424b0	good		2.33	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	en	splint	Simplificationalizer	LL-Q1860 (eng)-Simplificationalizer-splint.wav	666d90606dde459236f310ce29a335c58fc31188f7cd136f439e8da1c827dc38	good		2.89	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	en	splint	Sylvanmoon	En-us-splint.ogg	77a8cf77a7c9aade298072f62dcc45cd29474732ea835e67e82862596d29bf76	good		2.31	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	sw	Alhamisi	Waithera Were	Sw-ke-Alhamisi.flac	a4edb50b480142cc11719f159e12118a1f3806d17bd31e16c0752bc37791e930	good		2.88	2026-10-28 sweep ab (calendar, after)	AirPods Pro
+2026-10-28	sw	Alhamisi	Goethe-Institut Cameroon	LL-Q129(swa)-Mndetatsin-Alhamisi(Jeudi).wav	02fafe179d1376db8f9ff368b2fec9959ca282d3a79c0bca046d9c2018fa270d	mediocre		2.53	2026-10-28 sweep ab (calendar, before)	AirPods Pro
+2026-10-28	en	under	Nattes à chat	LL-Q1860 (eng)-Nattes à chat-under.wav	aba3443b955f3797c66d47d3610ddf17247ed1fef8463e0ee94fa2df5ae0ecdd	okay		3.18	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	en	under	Dvortygirl	En-us-under.ogg	1e9e40019d5d7f5284a268a83f8da15fcf6da9d1b4bcfbf9f4e40a7be409f673	great		2.70	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	sw	samaki	Waithera Were	Sw-ke-Samaki.flac	6f7d6223e40688e08996154accb6a57827bc5bd5d947f5b458cc0c87c3594e90	okay		3.07	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	sw	samaki	Goethe-Institut Cameroon	LL-Q152(swa)-Mndetatsin-Samaki(le poisson).wav	25626874475d00c6d991c4bf4650a5e710dcf38d9b3b71b5d012fec98f40e867	mediocre		2.85	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	en	rest	Dvortygirl	En-us-rest.ogg	9f7009e019996adf6171235d3d3b97548b18337c0d2dd19b7aba3edbcdbda5d6	mediocre		2.61	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	en	rest	Back ache	LL-Q1860 (eng)-Back ache-rest.wav	1c55fba25ee20ff1aca6a251bae919afe349c14f91074d20140ee3dcecb5a148	good		2.97	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	eo	ridi	Robin van der Vliet	LL-Q143 (epo)-Robin van der Vliet-ridi.wav	38900bb6a9810264d4b62b9de72e5651c2fb45bb799e02d54acdb28aad1f0e5f	mediocre		3.00	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	eo	ridi	Poslovitch	LL-Q143 (epo)-Poslovitch-ridi.wav	e50f33aff05ead36aae9c3ea863262c793f51f6f714fb7f0e4e2d3e360144a5c	good		2.70	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	de	lieben	Jeuwre	De-Lieben2.ogg	d95f9443b9d0cbf2e9da4ba321cf996798c0dc592e716acb22e6913ba88bd2c7	good		2.90	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	de	lieben	Sebastian Wallroth	LL-Q188 (deu)-Sebastian Wallroth-Lieben.wav	59a4eed0d4a176c4d2d861404d4879b16828af8fb0dc34a9feecb6c7d58cf13c	okay		2.46	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	es	apellido	Guergana	LL-Q1321 (spa)-Guergana-apellido.wav	225698ad1ec0d6b55219f3cd28104ccb1ae9d3fff939ce6280b6655275aa3637	mediocre		2.73	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	es	apellido	Anonymât	LL-Q1321 (spa)-Anonymât (Kvardek du)-apellido.wav	a536d0df9f4bb73890ee1002819b8c5d90a0bfe1108f5fb787c7775099f0fd35	okay		2.11	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	it	settimana	LangPao	LL-Q652 (ita)-LangPao-settimana.wav	5407de1875a041dce844078f05b02ba5cbca32e9db22ae0f02c84545ffff62e7	mediocre		2.32	2026-10-28 sweep ab (words, before)	AirPods Pro
+2026-10-28	it	settimana	Happypheasant	LL-Q652 (ita)-Happypheasant-settimana.wav	1a3f33470f1bd3b82b04e56c82e41c5e2c821852ec8e8d4953c26384ce92031b	good		3.25	2026-10-28 sweep ab (words, after)	AirPods Pro
+2026-10-28	en	glove	Dvortygirl	En-us-glove.ogg	c6c6ca29307536c965a31f327080b2ab6a5d2b88ee267204d03de0840b4f9c9b	good		2.50	2026-10-28 by word (words, mos 2.5)	MacBook Air Speakers
+2026-10-28	en	election	Dvortygirl	En-us-election.ogg	d6a19915159241bbb7b763008eb6f4cc9f9994c5b99118b1d4db3fe129b83451	mediocre		2.25	2026-10-28 by word (words, mos 2.25)	MacBook Air Speakers
+2026-10-28	en	always	Dvortygirl	En-us-always.ogg	788ac07fa2f3b3658b9db6f0d8a67a7f30c3cbc3c77b5455a0d24016f3262870	okay		2.38	2026-10-28 by word (words, mos 2.38)	MacBook Air Speakers
+2026-10-28	en	alive	Dvortygirl	En-us-alive.ogg	426ab3dfce5d116211630b40d9ff9d21a5f4749932a7c426621ad3e174ac4805	okay		2.82	2026-10-28 by word (words, mos 2.82)	MacBook Air Speakers

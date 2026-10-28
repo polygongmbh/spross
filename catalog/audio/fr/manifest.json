@@ -7208,15 +7208,15 @@
       "source": "LL-Q150 (fra)-Eihel-je.wav"
     },
     "je t'aime": {
-      "author": "Pamputt",
+      "author": "Lyokoï",
       "file": "words/je_tu0027aime.mp3",
-      "gain": 15.5,
-      "gate": -70.8,
-      "lead": 110,
+      "gain": -1.2,
+      "gate": -87.9,
+      "lead": 220,
       "matches": "je t'aime",
-      "mos": 2.73,
-      "sha256": "38848fcd8c4f28fc83aee965ac1db82439a20141bff2c3c1e502ae4d27e2d287",
-      "source": "LL-Q150 (fra)-Pamputt-je t'aime.wav"
+      "mos": 3.34,
+      "sha256": "804bc482f3d1cf6e1d04dd705aca20a2ad3632c3d0cb04674cc2ef92090157c9",
+      "source": "LL-Q150 (fra)-Lyokoï-je t’aime.wav"
     },
     "jean": {
       "author": "Sartus85",

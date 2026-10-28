@@ -8498,15 +8498,14 @@
       "source": "En-us-responsible.ogg"
     },
     "rest": {
-      "author": "Dvortygirl",
+      "author": "Back ache",
       "file": "words/rest.mp3",
-      "gain": 4.7,
-      "gate": -69.5,
-      "lead": 20,
+      "gain": 5.8,
+      "gate": -80.7,
       "matches": "rest",
-      "mos": 2.61,
-      "sha256": "9f7009e019996adf6171235d3d3b97548b18337c0d2dd19b7aba3edbcdbda5d6",
-      "source": "En-us-rest.ogg"
+      "mos": 2.97,
+      "sha256": "1c55fba25ee20ff1aca6a251bae919afe349c14f91074d20140ee3dcecb5a148",
+      "source": "LL-Q1860 (eng)-Back ache-rest.wav"
     },
     "restaurant": {
       "author": "Wodencafe",

@@ -13552,16 +13552,15 @@
       "source": "De-liebe2.ogg"
     },
     "lieben": {
-      "author": "Sebastian Wallroth",
-      "cap": 1.5,
+      "author": "Jeuwre",
+      "end": 1530,
       "file": "words/lieben.mp3",
-      "gain": 12.8,
-      "gate": -78.0,
-      "lead": 120,
+      "gain": -1.1,
+      "lead": 510,
       "matches": "lieben",
-      "mos": 2.46,
-      "sha256": "59a4eed0d4a176c4d2d861404d4879b16828af8fb0dc34a9feecb6c7d58cf13c",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Lieben.wav"
+      "mos": 2.9,
+      "sha256": "d95f9443b9d0cbf2e9da4ba321cf996798c0dc592e716acb22e6913ba88bd2c7",
+      "source": "De-Lieben2.ogg"
     },
     "lied": {
       "author": "Jeuwre",
