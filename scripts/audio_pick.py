@@ -49,8 +49,6 @@ class Measures:
         """A future of the measures of [path]; an unreadable take answers None rather than raising."""
         held = self.known.get(sha)
         if held and 'balance' in held and ('mos' in held or not scored):
-            if 'pop' not in held:
-                return self.pool.submit(audio_judge.measure_pop, path)
             done = concurrent.futures.Future()
             done.set_result(held)
             return done
@@ -171,7 +169,7 @@ def judged(take, name, record, path, measured):
     candidate = dict(take, source=name, author=record.get('author', '?'), license=record.get('license', '?'),
                      path=path, sha256=digest_of(path))
     if measured is None:
-        return audio_judge.Judged(None, ('unreadable', 'ffmpeg could not read it'), False, False, False, False)
+        return audio_judge.Judged(None, ('unreadable', 'ffmpeg could not read it'), False, False, False)
     return audio_judge.judge(candidate, measured=measured)
 
 

@@ -2,7 +2,7 @@
 
 A take is a dict `lang section key source author license path` (plus `sha256` where known):
 the Commons file it came from, who is credited under what, and its bytes on disk.
-`judge` answers with the take's `mos` and five findings, and each caller's policy is one line
+`judge` answers with the take's `mos` and four findings, and each caller's policy is one line
 over them — a fill and a ship take what is not `refused`, a prune removes what is.
 
   · `refused` — (reason, detail) of the first of: license refused or unknown, author names
@@ -10,7 +10,6 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
     heard as bad or by a POOR voice, under the language's floor, one-sided, speaking longer than its
     key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
-  · `pops` — a plosive thumps the microphone;
   · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
   · `vouched` — heard as okay or better.
 
@@ -23,10 +22,10 @@ import audio_index
 import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
-from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_popping, is_rejected,
+from audio_voices import (RECONSIDER_MOS, is_doubted, is_one_sided, is_overlong, is_rejected,
                           is_squashed, is_vouched, mos_floor)
 
-Judged = collections.namedtuple('Judged', 'mos refused hot pops doubted vouched')
+Judged = collections.namedtuple('Judged', 'mos refused hot doubted vouched')
 
 
 def license_refusal(license):
@@ -53,7 +52,7 @@ def source_refusal(take):
 
 def measure(path, scored=True):
     """What [judge] reads off a take's bytes short of its playback gain, in one process:
-    `balance`, `peak`, `loudness`, `speech` seconds, `pop` and — [scored] — `mos` and `silent`."""
+    `balance`, `peak`, `loudness`, `speech` seconds and — [scored] — `mos` and `silent`."""
     if scored:
         levels = audio_measure.measure(audio_index.FFMPEG, path)
         loudness, span, peak = levels[0], levels[1], levels[2]
@@ -63,13 +62,7 @@ def measure(path, scored=True):
         span = audio_measure.speech_span(audio_index.FFMPEG, path)
         out = {}
     return dict(out, balance=audio_measure.side_balance(audio_index.FFMPEG, path), peak=peak, loudness=loudness,
-                speech=round(span[1] - span[0], 2), **measure_pop(path, span))
-
-
-def measure_pop(path, span=None):
-    """`{'pop': dB}` of `audio_measure.pop`, for [measure] and for a take cached before it read pops."""
-    pop = audio_measure.pop(audio_index.FFMPEG, path, span)
-    return dict(pop=None if pop is None else round(pop, 1))
+                speech=round(span[1] - span[0], 2))
 
 
 def judge(take, index=False, measured=None):
@@ -109,7 +102,6 @@ def judge(take, index=False, measured=None):
                                                                           audio_index.GAIN_LIMIT_DB)
     levels = ((measured['peak'], measured['loudness']) if measured is not None
               else audio_measure.peak_and_loudness(audio_index.FFMPEG, path))
-    pop = (measured if measured is not None and 'pop' in measured else measure_pop(path))['pop']
-    return Judged(mos=mos, refused=refused, hot=is_squashed(*levels), pops=is_popping(pop),
+    return Judged(mos=mos, refused=refused, hot=is_squashed(*levels),
                   doubted=is_doubted(digest, lang, author) or (mos is not None and mos < RECONSIDER_MOS),
                   vouched=is_vouched(digest))
