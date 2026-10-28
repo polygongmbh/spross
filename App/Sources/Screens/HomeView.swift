@@ -1,10 +1,10 @@
 import SwiftUI
 import SprossKern
 
-/// The north star screen: one glance = what to do right now.
+/// Home: what to do right now, at a glance.
 struct HomeView: View {
     let model: AppModel
-    /// Open the box — at one area when a tree names it, else at the top.
+    /// Opens the Box at an area, or at the top for nil.
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var listeningPresented = false
     /// The conversation the app does not host (`BriefingSheet`).
     @State private var briefingPresented = false
-    /// What the hub has open — here, so the day's card can open a drill too.
+    /// What the hub has open; held here so the day's card can open a drill too.
     @State private var drillDestination: HubDestination?
     /// Bumped by a hub run's celebrated close; each bump throws a wave.
     @State private var confetti = 0
@@ -46,7 +46,7 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         .background(Theme.colors.background.ignoresSafeArea())
-        // why: absent until the first celebration — ConfettiView throws a wave on appear.
+        // why: ConfettiView throws a wave on appear, so it stays absent until the first celebration.
         .overlay {
             if confetti > 0 { ConfettiView(run: confetti).ignoresSafeArea() }
         }
@@ -141,10 +141,7 @@ struct HomeView: View {
     /// `docs/design.md`, `docs/listening.md` § Listening.
     @ViewBuilder
     private var listeningCard: some View {
-        // why: a box with words, and something able to say both sides of a turn.
-        // Two map lookups and two voice probes — never the walk of the whole
-        // join, which is what dealing the playlist is, and that waits for the
-        // run to open.
+        // why: the check is two lookups and two voice probes; dealing the playlist waits for the run to open.
         if model.listeningOffered {
             Button { listeningPresented = true } label: {
                 WayInCard(emoji: "🎧", title: Text("listen.title"), subtitle: Text("listen.subtitle"))
@@ -155,12 +152,9 @@ struct HomeView: View {
 
     // MARK: - Voice upgrade
 
-    /// Said once, above the day's card: the words are being read by the compact
-    /// system voice and a much better one is a free download. It cannot be a
-    /// link — no public URL opens the Voices pane, and one that landed on the
-    /// app's own settings page instead would send the learner somewhere the
-    /// setting is not — so the path is spelled out and the banner is a notice,
-    /// not a button. Dismissing is permanent; the settings row keeps it.
+    /// Above the day's card while the compact system voice reads the words and a better one is a free download.
+    /// The path is spelled out because no public URL opens the Voices pane.
+    /// Dismissing is permanent; the settings row keeps the hint.
     @ViewBuilder
     private var voiceUpgradeBanner: some View {
         let hint = VoiceUpgradeHint.shared
@@ -195,8 +189,7 @@ struct HomeView: View {
 }
 
 extension LoadFailure {
-    /// Error chrome as `Text`, so it resolves against the environment locale
-    /// like every other string. The system `reason` stays as the OS wrote it.
+    /// Error chrome as `Text`, resolved in the environment locale; the system `reason` stays as the OS wrote it.
     var text: Text {
         switch self {
         case .catalogMissing:

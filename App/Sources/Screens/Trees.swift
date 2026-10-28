@@ -2,29 +2,18 @@ import SwiftUI
 import SprossKern
 
 /// The bottom of Home: the 14-day strip,
-/// then the box as one picture —
-/// one tree per area, in catalog order with the learner's own words last,
-/// standing in rows on shared ground —
-/// and the standing split in words under it.
+/// the box as one picture of one tree per area in rows,
+/// and the settled and growing split under it.
+/// Tapping a tree opens the Box screen at that area.
 ///
-/// It is a picture of the box, not a way around it:
-/// tapping a tree opens the Box screen at that area,
-/// which is still where browsing, queuing and reviving live.
-/// What this picture adds is the thing a count cannot —
-/// how the whole box is shaped,
-/// and which corners of the language have never been opened.
-///
-/// Drawn as ONE Canvas, never a view per tree.
-/// It never animates: a box grows over weeks,
-/// and motion would claim a change the picture is not showing.
+/// Drawn as one Canvas, and never animated, since a box grows over weeks.
 /// The canvas is hidden from accessibility;
-/// each tree carries a real button on the very cell kern gave it,
-/// so what a sighted learner taps and what VoiceOver reads are one element.
+/// each tree's button stands on the cell kern gave it.
 struct Trees: View {
     let model: AppModel
     let open: (String) -> Void
 
-    /// Measured once and reused: the picture has to know its width before it can say how tall it is.
+    /// The picture's height follows its width.
     @State private var width: CGFloat = 0
     @State private var placement = Placement()
 
@@ -49,7 +38,7 @@ struct Trees: View {
         return ZStack(alignment: .topLeading) {
             BleedingCanvas(bleed: 24) { context, _ in
                 for mark in placed.marks { mark.art.draw(&context) }
-                // why: labels go over every tree — crowns may tangle, but a label is never covered.
+                // why: labels draw after every tree, so no crown covers one.
                 for mark in placed.marks { label(&context, mark) }
             }
             .accessibilityHidden(true)
@@ -60,8 +49,7 @@ struct Trees: View {
         .frame(width: width, height: placed.height, alignment: .topLeading)
     }
 
-    /// The area's emoji, on the strip of ground under its own tree —
-    /// the only text small enough to sit under a 58pt cell.
+    /// The area's emoji on the ground under its tree.
     private func label(_ context: inout GraphicsContext, _ mark: TreeMark) {
         let text = Text(verbatim: model.areaEmoji(mark.area))
             .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
@@ -75,8 +63,7 @@ struct Trees: View {
 
     private static let labelHeight = CGFloat(TreesLayout.shared.LABEL_HEIGHT)
 
-    /// What a learner taps, and what VoiceOver reads: one invisible element
-    /// on the cell kern gave the tree, named by its area.
+    /// The tree's button: an invisible element on its cell, named by its area.
     private func tapTarget(_ mark: TreeMark) -> some View {
         Color.clear
             .frame(width: mark.cell.width, height: mark.cell.height)
@@ -88,8 +75,7 @@ struct Trees: View {
             .accessibilityAddTraits(.isButton)
     }
 
-    /// The standing split in words, under the picture:
-    /// it says how the box is shaped, never how many words are in it.
+    /// The settled and growing counts under the picture.
     private var caption: some View {
         Text.joined(
             Text("progress.allSettledCount \(model.stats?.allSettledCards ?? 0)"),
@@ -101,8 +87,7 @@ struct Trees: View {
     }
 }
 
-/// The trees placed for one (trees, garden, width), kept until any changes:
-/// the body re-evaluates far more often than the box or the width moves.
+/// The trees placed for one (trees, garden, width), cached because the body re-evaluates far more often than these change.
 @MainActor
 private final class Placement {
     private var trees: [AreaGrowth] = []

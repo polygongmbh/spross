@@ -18,10 +18,8 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
             if offer.dueHeldBack > 0 {
-                // The cap is a promise, not a loss: name the rest so a backlog
-                // never looks like cards that vanished.
-                // why: Int, not the engine's Int32 — a plural key only varies
-                // on a count the String Catalog recognises.
+                // Names the held-back rest, so a backlog never looks like vanished cards.
+                // why: a plural key varies only on an Int, not the engine's Int32.
                 Text("home.offer.heldBack \(Int(offer.dueHeldBack))")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
@@ -33,8 +31,7 @@ extension HomeView {
                 ActionLabel(key: "home.offer.start", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(PrimaryButtonStyle())
-            // A long round is more than an evening some days, and an abandoned one leaves
-            // the day unworked; kern says when the two are different enough to offer both.
+            // Kern offers the short round when it differs enough from the full one.
             if offer.shortRound > 0 {
                 Button("home.offer.shortRound") {
                     model.startShortSession()
@@ -45,14 +42,10 @@ extension HomeView {
         .homeCard()
     }
 
-    /// Flame hero, or a sprout when there is no streak to show. This card is up
-    /// exactly while today's work is still owed, so the flame it wears is the one
-    /// place the run's exposure is worth seeing.
+    /// The run's flame, or a sprout with no run to show; the card stands while today's work is owed.
     ///
-    /// No progress ring here: a growing box sets no daily quota, so any arc has to
-    /// divide work done by work still queued — and both climb through the day, which
-    /// leaves the ring near-full from the second round on and fullest exactly when a
-    /// capped backlog is worst. The counts below say it without the false comfort.
+    /// No progress ring: with no daily quota, an arc divides work done by work still queued,
+    /// which reads near full from the second round on.
     var sessionStats: some View {
         dayMark(.companion.offer(streak: Int32(model.stats?.streakDays ?? 0)))
     }
@@ -73,18 +66,15 @@ extension HomeView {
         }
     }
 
-    /// "12 Checks · 5 Neue" — which counts the round names and in
-    /// which order is the offer's own rule (`SessionOffer.summaryParts`); the words are ours.
-    /// Built as `Text` (not a joined String) so each part localizes
-    /// via the environment locale with catalog plural handling.
+    /// "12 Checks · 5 Neue": the parts and their order are kern's (`SessionOffer.summaryParts`).
+    /// Built as `Text` so each part localizes with the catalog's plurals.
     func sessionSummary(_ offer: SessionOffer) -> Text {
         let parts = offer.summaryParts()
         return parts.map { offerPartText($0, alone: parts.count == 1) }.joined() ?? Text("home.tally.someCards")
     }
 
     func offerPartText(_ part: OfferPart, alone: Bool) -> Text {
-        // why: the count crosses into Int here — the engine counts in Int32, and
-        // a plural key only varies on a count the String Catalog recognises.
+        // why: a plural key varies only on an Int, not the engine's Int32.
         let count = Int(part.count)
         switch part.kind {
         case .reviews: return Text("home.tally.reviews \(count)")
@@ -98,14 +88,10 @@ extension HomeView {
 
     // MARK: - Nothing due (done for today / caught up)
 
-    /// "Done" only once the day has actually been worked;
-    /// otherwise nothing is due right now, which is a different message
-    /// and must not claim a finish the learner never made.
+    /// "Done" once the day has been worked, else "caught up", which claims no finish.
     ///
-    /// Ordered like every other celebration screen in the app — mark, headline, what the
-    /// day bought, the way on, fine print. The mark and the streak are ONE badge: as two
-    /// elements they sandwiched the prose between them, and a card that both cheers and
-    /// counts the run says one thing, not two.
+    /// Ordered like every celebration screen: mark, headline, the day's tally, the way on, fine print.
+    /// The mark and the streak are one badge.
     var doneCard: some View {
         let today = model.today
         let worked = today?.worked ?? false
@@ -116,23 +102,19 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
             if let today, worked {
-                // What the day actually bought, not just that it happened.
                 todayTally(today)
                     .font(Theme.typography.body)
                     .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
-            // User agency: an extra round is an ordinary round composed on demand, so it
-            // renders in every done state with active cards; hidden only when the box has
-            // nothing left to compose at all.
+            // Hidden only when the box has nothing left to compose.
             if model.canPracticeMore {
                 Button("home.done.extraRound") {
                     model.startExtraSession()
                 }
                 .buttonStyle(SoftButtonStyle())
             }
-            // Under the button on purpose: what happens next is the smallest thing on
-            // the card, and the way on is what the thumb is looking for.
+            // Under the button: what comes next is the card's smallest item.
             tomorrowText
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
@@ -145,9 +127,7 @@ extension HomeView {
         dayMark(.companion.done(worked: worked, streak: Int32(model.stats?.streakDays ?? 0)))
     }
 
-    /// "3 Neue · 24 Checks" — the day's gain, not just
-    /// that it happened. Which counts the day names and in which order is the day's
-    /// own report (`TodayReport.tallyParts`); the words are ours.
+    /// "3 Neue · 24 Checks": the parts and their order are kern's (`TodayReport.tallyParts`).
     func todayTally(_ report: TodayReport) -> Text {
         report.tallyParts().map(tallyText).joined() ?? Text("home.tally.someCards")
     }
@@ -161,10 +141,7 @@ extension HomeView {
         }
     }
 
-    /// A finished day composes nothing, so words queued on one only arrive through the round
-    /// above — said as a fact about that round, in the smallest type on the card, because
-    /// queuing was the learner's move and does not need answering. Which of the three
-    /// notes a done day leaves is kern's (`tomorrowNote`).
+    /// What comes next after a done day; which of the three notes is kern's (`tomorrowNote`).
     var tomorrowText: Text {
         switch model.tomorrowNote {
         case .queued: return Text("home.done.queued")

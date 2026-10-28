@@ -6,10 +6,7 @@ extension HomeView {
 
     // MARK: - Header
 
-    /// The date, and under it what the box is growing. Naming the screen "Home" spent the
-    /// biggest type on the page on the one thing a learner who just opened the app already
-    /// knows; the language being learned is the one piece of standing the screen never said,
-    /// and it is what the day's work is for.
+    /// The date, and under it a greeting that names the language being learned.
     var header: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text(Date().formatted(
@@ -19,8 +16,7 @@ extension HomeView {
             .font(Theme.typography.caption)
             .foregroundStyle(Theme.colors.textSecondary)
             .textCase(.uppercase)
-            // A greeting is a phrase, not a headline word: it shrinks a step rather than
-            // pushing the day's card down a third line.
+            // A long greeting shrinks rather than taking a third line.
             if let greeting {
                 greeting
                     .font(Theme.typography.hero)
@@ -39,15 +35,11 @@ extension HomeView {
         }
     }
 
-    /// "Habari za asubuhi, Tim!", "Tayari kujifunza, Nachteule?", "Ein Feierabend mit
-    /// Suaheli?" — two registers for the same line: the language speaking for itself, or the
-    /// known language asking about it. Either way the line carries the language, which is
-    /// what the header is for.
-    ///
-    /// Which stretch of the day each register is in, whom the language's own lines address
-    /// and which line this one takes are kern's (`GreetingPlan`); the words are the catalog's
-    /// and the chrome's. Nil while no profile names a language — the first launch, where this
-    /// screen stands behind the onboarding sheet and the header has nothing to greet.
+    /// "Habari za asubuhi, Tim!" or "Ein Feierabend mit Suaheli?":
+    /// a line in the language being learned, or one in the known language about it.
+    /// The register, the addressee and the line are kern's (`GreetingPlan`);
+    /// the words are the catalog's and the chrome's.
+    /// Nil while no profile names a language.
     var greeting: Text? {
         guard let language = targetLanguageName else { return nil }
         let target = model.targetLanguage
@@ -81,10 +73,8 @@ extension HomeView {
         }
     }
 
-    /// The word kern's `Addressee` names. Resolved through `ChromeStrings` against the
-    /// profile's known language rather than `String(localized:)`, which would read the
-    /// device's — and it has to be a plain String, since it goes inside a sentence the
-    /// catalog wrote.
+    /// The word kern's `Addressee` names, a plain String for a sentence the catalog wrote.
+    /// `ChromeStrings` reads the profile's known language; `String(localized:)` would read the device's.
     private func address(_ addressee: Addressee) -> String? {
         switch addressee {
         case .learner: return model.learnerName
