@@ -29,33 +29,19 @@ struct Trees: View {
     @State private var placement = Placement()
 
     var body: some View {
+        // No section title: the strip and the caption name both pieces.
         VStack(alignment: .leading, spacing: Theme.spacing.md) {
-            widthProbe
-            // Both pieces name themselves —
-            // the strip in its own header, the tree picture in the caption under it —
-            // so a section title above says the word a third time.
             strip
             picture
             caption
         }
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
     }
 
     private var strip: some View {
         ActivityStripView(days: model.activity,
                           streakDays: model.stats?.streakDays ?? 0,
                           health: model.stats?.streakHealth ?? .noRun)
-    }
-
-    private var widthProbe: some View {
-        Color.clear
-            .frame(height: 0)
-            .background {
-                GeometryReader { proxy in
-                    Color.clear
-                        .onAppear { width = proxy.size.width }
-                        .onChange(of: proxy.size.width) { _, new in width = new }
-                }
-            }
     }
 
     private var picture: some View {
