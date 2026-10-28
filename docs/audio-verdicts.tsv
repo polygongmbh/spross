@@ -1,4 +1,4 @@
-date	lang	word	speaker	source	sha256	verdict	note	mos	context
+date	lang	word	speaker	source	sha256	verdict	note	mos	context	heard_on
 2026-09-23	de	es	joni	De-es.ogg	f72fb4d34b2dbe7623b6b64908869e3d24a39b4a69978ba03ae84d91b7a4d381	okay	did not sound noisy at all	1.67	rejected German pronouns
 2026-09-23	de	sie	joni	De-sie.ogg	cad93e12f80606b34232ea836b8836c513e63daec9d0ee07efd80e02d679879b	okay	did not sound noisy at all	3.04	rejected German pronouns
 2026-09-23	de	Hand	Kampy	De-Hand.ogg	1fc838c998642a696dc2e4a19946f61dcadd59ceb6d144521377f206d5571e6e	okay	noisy; slightly more noisy than the pronouns	2.29	reference beside the pronouns

@@ -211,11 +211,24 @@ def withdraw(sha256, context):
     """Drops every verdict on [sha256] in [context]."""
     with open(VERDICTS, encoding='utf-8', newline='') as handle:
         lines = handle.readlines()
+    header = next(csv.reader(lines[:1], delimiter='\t'))
     kept = lines[:1] + [line for line in lines[1:]
-                        if (lambda fields: (fields[5], fields[-1]))(next(csv.reader([line], delimiter='\t')))
-                        != (sha256, context)]
+                        if (lambda fields: (fields[header.index('sha256')], fields[header.index('context')]))(
+                            next(csv.reader([line], delimiter='\t'))) != (sha256, context)]
     with open(VERDICTS, 'w', encoding='utf-8', newline='') as handle:
         handle.writelines(kept)
+
+
+def output_device():
+    """The name of the output macOS plays through (`MacBook Air Speakers`, `AirPods Pro`), else ''."""
+    try:
+        listed = subprocess.run(['system_profiler', 'SPAudioDataType', '-json'],
+                                capture_output=True, text=True, timeout=10).stdout
+        items = json.loads(listed)['SPAudioDataType'][0]['_items']
+    except (OSError, ValueError, LookupError, subprocess.TimeoutExpired):
+        return ''
+    return next((item['_name'] for item in items
+                 if item.get('coreaudio_default_audio_output_device') == 'spaudio_yes'), '')
 
 
 def slug_texts(lang, slug):
@@ -335,8 +348,9 @@ def listen(listed, base, row_named=None, path=None, every=False):
             at += 1
         return at
 
-    print('%d of %d takes to rate\n  %s\n'
+    print('%d of %d takes to rate, heard on %s\n  %s\n'
           % (len(picked) if picking else sum(1 for row in listed if not rated(row)), len(listed),
+             output_device() or 'an output macOS does not name',
              KEYS[0][1] + '  ·  ' + '  '.join(legend for _, legend, _ in KEYS[1:])))
     player = None
     at = onward(0)
@@ -378,7 +392,8 @@ def listen(listed, base, row_named=None, path=None, every=False):
                 with open(VERDICTS, 'a', encoding='utf-8', newline='') as handle:
                     csv.writer(handle, delimiter='\t', lineterminator='\n').writerow([
                         datetime.date.today().isoformat(), row['lang'], row['word'],
-                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], note, row.get('mos', ''), context(row)])
+                        row['speaker'], row['source'], row['sha256'], RATINGS[pressed], note, row.get('mos', ''), context(row),
+                        output_device()])
                 done.add((row['sha256'], context(row)))
                 at = onward(at + 1)
                 break

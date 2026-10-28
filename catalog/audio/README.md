@@ -108,6 +108,8 @@ scripts/audio-catalog.py --remove <lang> <section> <key>
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`** with its source, sha256 and `mos`,
 so the next revision of the measure is tested against the ear rather than tuned to a handful of files.
+`heard_on` names the output it was heard through (empty before 2026-10-28):
+laptop speakers hide noise and one-sidedness that headphones reveal.
 A verdict counts against a take and ranks two heard takes, and exempts none from a measure:
 bad never ships, bad or mediocre has every other take of its word tried,
 okay has them tried against the usual margin,
