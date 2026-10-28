@@ -434,7 +434,7 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context
 2026-10-28	es	llamarse	Juan de Vojníkov	Es-Llamarse.ogg	f8811192dfc2d630931733b9b7f90e5275f38f64d766a2524cda990d483ad775	mediocre		2.79	2026-10-28 by word (words, mos 2.79)
 2026-10-28	it	gennaio	GerardM	It-gennaio.ogg	e50f4095f8c7d3e938711a55e497f1f0b5da1c4fedea2d72b2b720b3a96c37f7	okay		2.81	2026-10-28 by word (calendar, mos 2.81)
 2026-10-28	en	Denmark	EncycloPetey	En-us-Denmark.ogg	eaed214ba6909006e1b120f38458028b8852702f3c2cf1d2149301faf130c3ca	mediocre		2.78	2026-10-28 by word (countries, mos 2.78)
-2026-10-28	fr	nom de famille	Pamputt	LL-Q150 (fra)-Pamputt-nom de famille.wav	21ad6bd94936c5f9419984d1fa8674c24888d767e200c1af615b70942a34470d	okay		2.79	2026-10-28 by word (words, mos 2.79)
+2026-10-28	fr	nom de famille	Pamputt	LL-Q150 (fra)-Pamputt-nom de famille.wav	21ad6bd94936c5f9419984d1fa8674c24888d767e200c1af615b70942a34470d	bad	very noisy, with a solid pop	2.79	2026-10-28 by word (words, mos 2.79)
 2026-10-28	fr	imprimer	Vion Nicolas	Fr-imprimer.ogg	8b2bbe62ffb8f41e40de819aebf70e6ef634d135af25086c2facefd469e13f21	okay		2.89	2026-10-28 by word (words, mos 2.89)
 2026-10-28	fr	enseignante	Lepticed7	LL-Q150 (fra)-Lepticed7-enseignante.wav	8f7136a838021a42cedbced7c72545b440611bdc8eca111c8723950e42b7337a	good		3.42	2026-10-28 by word (words, mos 3.42)
 2026-10-28	fr	payer	Vion Nicolas	Fr-payer.ogg	bedf591b3e06eaba71d2679375e965b471b82ad2ee0ceff4e13cf3d943148515	great		2.83	2026-10-28 by word (words, mos 2.83)

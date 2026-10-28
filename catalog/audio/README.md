@@ -71,11 +71,15 @@ One run at a time — Commons throttles a second.
 fetches and measures are cached in the workspace, and a key already staged against what ships is passed over.
 An item Commons stays unreachable for keeps its take, and the run exits nonzero with the count.
 
-A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source,
-and one where breath strikes the microphone pops: a turbulent burst of bass that sounds as loud as the word (`audio_voices.POP_DB`),
+A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
+the score hears it as clean, the ear hears it squashed, and no gain undoes that.
+A sweep reconsiders it like a poor take and never swaps one in.
+
+Where breath strikes the microphone a take pops: a turbulent burst of bass that sounds near as loud as the word,
 where a plosive's normal thump is a smooth pulse under 80 Hz.
-The score hears either as clean, the ear does not, and no gain undoes that.
-A sweep reconsiders such a take like a poor one and never swaps one in.
+The score does not hear it either, so every decision takes a point off a take's `mos`
+per `audio_voices.POP_DB_PER_MOS` dB the burst sounds over the word;
+the manifest keeps the score as measured.
 
 Both pickers only print until given `--apply`, and never write a pack:
 a swap is a row in `$W/staged.tsv`, its bytes in `$W/staged/`,
