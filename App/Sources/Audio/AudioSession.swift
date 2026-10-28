@@ -1,48 +1,30 @@
 import AVFoundation
 import SprossKern
 
-/// WHICH volume domain a sound plays in — and therefore whether the phone's
-/// ring/silent switch is allowed to swallow it.
-///
-/// Two mutes can silence this app and they sit at different layers: the
-/// read-aloud switch is ours, in code, and the hardware switch is the session
-/// CATEGORY's — `.ambient` obeys it, `.playback` does not. No API reads the
-/// switch's position (Sounds.swift doctrine), so the only way to reach a
-/// learner through it is to have asked for `.playback` BEFORE playing.
-///
-/// The rule, one line: a sound the learner asked for is `.playback`; a sound
-/// the app decided to make on its own is `.ambient`, and the phone stays its
-/// authority. Turning reading aloud on by hand is itself an asking — that is
-/// what `standing` carries, so the app's own switch never claims a word the
-/// phone would eat.
+/// The audio session's category, which decides whether the ring/silent switch silences a sound:
+/// `.ambient` obeys it, `.playback` does not, and no API reads its position.
+/// A sound the learner asked for plays under `.playback`, one the app fires by itself under `standing`,
+/// which is `.playback` only while reading aloud is switched on by hand.
 @MainActor
 enum AudioSession {
 
-    /// The category everything the app fires BY ITSELF plays under.
+    /// The category for sounds the app fires by itself.
     private(set) static var standing: AVAudioSession.Category = .ambient
 
-    /// Takes the read-aloud setting's category as the standing one and applies
-    /// it at once: a switch flipped mid-session is expected to reach the next
-    /// word, not the next launch.
+    /// Applies the read-aloud setting's category at once, so a mid-session change reaches the next word.
     static func adopt(_ setting: ReadAloud) {
         standing = setting == .on ? .playback : .ambient
         use(standing)
     }
 
-    /// Before an autoplay or a feedback chime — the phone decides, unless the
-    /// learner has already said out loud that it should not.
+    /// Before an autoplay or a feedback chime.
     static func useStanding() { use(standing) }
 
-    /// Before a deliberate tap: a request is answered whatever either switch
-    /// says.
+    /// Before a tap, which plays through the silent switch.
     static func useExplicit() { use(.playback) }
 
-    /// Whether the device's volume is too low for a word to be heard (kern
-    /// `isVolumeLow`) — what a screen about to play one asks before it shows
-    /// `VolumeHint`, never a reason to silence or withhold a sound.
-    /// The ring/silent switch is not in it: its position has no API (the
-    /// doctrine above), so a sound-prompted card carries "can't listen right
-    /// now?" as the one way out where the fact cannot be read.
+    /// Whether the volume is too low to hear a word (kern `isVolumeLow`), for `VolumeHint`;
+    /// it never withholds a sound.
     static var volumeIsLow: Bool {
         SprossKern.isVolumeLow(fraction: Double(AVAudioSession.sharedInstance().outputVolume))
     }
@@ -50,16 +32,9 @@ enum AudioSession {
     /// Whether a listening run currently owns the session.
     private static var listening = false
 
-    /// The listening run, which is the one surface that takes the audio OVER
-    /// instead of mixing into it: `.playback` in `.spokenAudio` mode and
-    /// deliberately WITHOUT `.mixWithOthers`, so whatever podcast was playing
-    /// stops rather than plays under the words. A mode meant to be listened to
-    /// that lands on top of something else is a mode nobody hears — it
-    /// interrupts as a player, not as a notification (`docs/audio.md`).
-    ///
-    /// Activated by hand, unlike every other sound in the app: a run keeps
-    /// playing with the screen locked, and background audio needs a session
-    /// that is actually active rather than one the engine activates per word.
+    /// The listening run takes the audio over: `.playback` in `.spokenAudio` mode without `.mixWithOthers`,
+    /// so other audio stops (`docs/audio.md`).
+    /// Activated by hand, as background audio with the screen locked needs an active session.
     static func useListening() {
         guard !listening else { return }
         listening = true
@@ -68,18 +43,14 @@ enum AudioSession {
         try? session.setActive(true)
     }
 
-    /// After a phone call or a Siri turn took the session away: the category is
-    /// still ours, the ACTIVATION is not, and nothing sounds until it is asked
-    /// for again. Not `useListening`, which is a no-op once the run holds the
-    /// session — this is the one thing that has to be redone.
+    /// Reactivates the run's session after an interruption, which keeps the category but ends the activation.
     static func resumeListening() {
         guard listening else { return }
         try? AVAudioSession.sharedInstance().setActive(true)
     }
 
-    /// The run is over: hand the audio back. `notifyOthersOnDeactivation` is
-    /// what makes the interrupted podcast resume, and the standing category is
-    /// put back so the next tap or chime finds the session it expects.
+    /// Hands the audio back: `notifyOthersOnDeactivation` lets interrupted audio resume,
+    /// and the standing category returns for the next sound.
     static func endListening() {
         guard listening else { return }
         listening = false
@@ -89,17 +60,13 @@ enum AudioSession {
                                  options: standing == .playback ? [.mixWithOthers] : [])
     }
 
-    /// why: `.mixWithOthers` under `.playback` — that category interrupts other
-    /// audio by default, and an app that stops someone's music to say one word
-    /// is not what `.ambient` promised. The option is rejected on `.ambient`,
-    /// which mixes inherently, so it is passed only where it is legal.
+    /// `.playback` gets `.mixWithOthers` so one word does not stop other audio;
+    /// `.ambient` mixes already and rejects the option.
     private static func use(_ category: AVAudioSession.Category) {
-        // why: a run owns the session for its whole length — a stray fire from
-        // under the cover must not hand the audio back mid-turn.
+        // why: a sound fired during a run would otherwise hand the run's session back.
         guard !listening else { return }
         let session = AVAudioSession.sharedInstance()
-        // why: a redundant set still posts a route change; a run of autoplays
-        // must not pay one per word.
+        // why: a redundant set still posts a route change.
         guard session.category != category else { return }
         try? session.setCategory(category, options: category == .playback ? [.mixWithOthers] : [])
     }
@@ -107,29 +74,21 @@ enum AudioSession {
 
 // MARK: - ReadAloud
 
-/// The read-aloud setting, three states rather than a flag — the middle one is
-/// the default, and the reason a switch of our own still earns its place next
-/// to the phone's.
-///
-/// A choice made with the switch holds for this launch only: the silent switch
-/// cannot be read, so a mute kept across launches would outlive the moment it
-/// was meant for with nothing on screen to say why the app is quiet.
+/// The read-aloud setting. A choice holds for this launch only:
+/// the silent switch cannot be read, so a stored mute would leave the app quiet with nothing saying why.
 enum ReadAloud: String {
-    /// Untouched: the app reads aloud and the silent switch may silence it.
-    /// Every launch starts here, which is why reading aloud is on by default
-    /// without ever overruling a phone that was set to quiet.
+    /// The default each launch: reads aloud, and the silent switch may silence it.
     case followsPhone
-    /// Silenced in the app, whatever the phone says.
+    /// Silenced in the app.
     case off
-    /// Asked for by hand: read aloud through a silenced phone too.
+    /// Reads aloud through the silent switch too.
     case on
 }
 
 extension ReadAloud {
 
-    /// `.followsPhone`, unless the launch arguments say otherwise
-    /// (`-readAloud off`, `scripts/run-sim.sh --mute`). Only the argument
-    /// domain is read, so nothing stored can outlive a launch.
+    /// `.followsPhone` unless a launch argument says otherwise (`-readAloud off`, `scripts/run-sim.sh --mute`);
+    /// only the argument domain is read, so nothing stored outlives a launch.
     static var atLaunch: ReadAloud {
         let arguments = UserDefaults.standard.volatileDomain(forName: UserDefaults.argumentDomain)
         return (arguments["readAloud"] as? String).flatMap(ReadAloud.init(rawValue:)) ?? .followsPhone
@@ -138,20 +97,14 @@ extension ReadAloud {
 
 // MARK: - VoiceSource
 
-/// Which voice answers a target word: the bundled recording when one matched,
-/// or the synthesizer. The box settings' audio row carries it as the two
-/// "on" options; the read-aloud switch above only mutes, it never changes this.
-///
-/// Stored PER TARGET LANGUAGE, unlike `ReadAloud`: how good the system voice is
-/// against the pack is a fact about one language — Ukrainian may deserve the
-/// recordings where Spanish is better read by a premium voice — and a language
-/// with no voice at all is never offered the choice.
+/// Which voice says a target word: a bundled recording where one matches, or the synthesizer.
+/// Stored per target language, since how the system voice compares with the recordings differs by language;
+/// a language with no voice is never offered the choice.
 enum VoiceSource: String {
-    /// Bundled recordings first, the live voice for the rest — the default.
+    /// The default: recordings first, the synthesizer for the rest.
     case recordings
-    /// The live voice for everything it can say, so every word sounds the same
-    /// and the article is always spoken; recordings answer only where no voice
-    /// exists for the language.
+    /// The synthesizer for everything, so every word sounds alike and the article is spoken;
+    /// recordings only where the language has no voice.
     case tts
 }
 
@@ -159,8 +112,6 @@ extension VoiceSource {
 
     private static func key(_ language: String) -> String { "voiceSource.\(language)" }
 
-    /// Absent default = recordings, so the bundled voices stay first for every
-    /// language until it is told otherwise.
     static func stored(for language: String) -> VoiceSource {
         if let raw = UserDefaults.standard.string(forKey: key(language)),
            let stored = VoiceSource(rawValue: raw) {
