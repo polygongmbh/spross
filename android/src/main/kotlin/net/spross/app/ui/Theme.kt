@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import net.spross.app.R
+import net.spross.kern.design.Spacing as KernSpacing
 import net.spross.kern.model.Gender
 
 // Spross design tokens, Android cut: the corner family, the type ramp, the spacing and
@@ -180,13 +181,13 @@ object Theme {
     val reserve = Reserve()
     val prompt = Prompt()
 
-    /** Spacing, the same five steps and the same numbers the canonical table names. */
+    /** Spacing, kern's five steps ([KernSpacing]) in dp. */
     class Spacing internal constructor() {
-        val xs = 4.dp
-        val sm = 8.dp
-        val md = 12.dp
-        val lg = 16.dp
-        val xl = 24.dp
+        val xs = KernSpacing.xs.dp
+        val sm = KernSpacing.sm.dp
+        val md = KernSpacing.md.dp
+        val lg = KernSpacing.lg.dp
+        val xl = KernSpacing.xl.dp
     }
 
     /**
