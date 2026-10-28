@@ -24,22 +24,27 @@ struct HomeView: View {
                                  celebrate: { confetti += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
-        // The phone's order; where the window splits, listening, an occasional detour, and what is
-        // looked at take one pane, the day's card and the drills the other, beside the system's controls.
-        ScrollView {
-            PaneColumns(panes: panes, margin: Theme.spacing.xl, spacing: Theme.spacing.xl) {
-                header.pane(.leading)
-                VStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                    day(offer: offer, hub: hub, pick: pick, lead: lead)
+        let split = panes?.split == true
+        // Two panes each scroll on their own; one column joins the leading cards into the trailing page.
+        // why: the hub keeps one place in either layout, so its sheet and cover survive a fold or a rotation.
+        HStack(alignment: .top, spacing: panes?.gutter ?? 0) {
+            if let panes, split {
+                page(panes.leading) {
+                    header
+                    listeningCard
+                    trees(stripLast: true)
                 }
-                listeningCard.pane(.leading)
+            }
+            page(split ? panes?.trailing : nil) {
+                if !split { header }
+                day(offer: offer, hub: hub, pick: pick, lead: lead)
+                if !split { listeningCard }
                 hub
                 briefingCard
-                trees(stripLast: panes?.split == true).pane(.leading)
+                if !split { trees() }
             }
-            .padding(.vertical, Theme.spacing.xl)
         }
-        .scrollBounceBehavior(.basedOnSize)
+        .frame(maxWidth: .infinity, alignment: .trailing)
         .background(Theme.colors.background.ignoresSafeArea())
         // why: absent until the first celebration — ConfettiView throws a wave on appear.
         .overlay {
@@ -84,6 +89,21 @@ struct HomeView: View {
         } else {
             doneCard
         }
+    }
+
+    /// One scrolling page: the pane's readable column, centered in the pane, or the whole width.
+    private func page<Content: View>(_ pane: WindowPanes.Pane?,
+                                     @ViewBuilder _ content: () -> Content) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.spacing.xl) {
+                content()
+            }
+            .padding(Theme.spacing.xl)
+            .frame(maxWidth: pane?.columnWidth)
+            .frame(maxWidth: .infinity)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .frame(width: pane?.width)
     }
 
     private func trees(stripLast: Bool = false) -> some View {
