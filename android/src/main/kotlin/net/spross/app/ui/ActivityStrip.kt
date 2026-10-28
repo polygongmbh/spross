@@ -21,6 +21,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.Instant
@@ -38,6 +39,9 @@ import net.spross.kern.design.StripRun
 
 /** The gutter between two columns; a joined run rules straight across it. */
 private val GUTTER = 6.dp
+
+/** A line's leading trimmed above and below its glyphs. */
+private val TRIMMED = LineHeightStyle(LineHeightStyle.Alignment.Center, LineHeightStyle.Trim.Both)
 
 /** How thick the run underline is drawn. */
 private val RUN_THICKNESS = 2.5.dp
@@ -72,8 +76,8 @@ fun ActivityStrip(
         modifier = modifier.fillMaxWidth().panel().clearAndSetSemantics { },
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -180,7 +184,8 @@ private fun WeekdayRow(bars: List<ActivityBar>, locale: Locale, palette: ThemeCo
         bars.forEach { bar ->
             Text(
                 weekdayLetter(bar.dayStartEpochMillis, locale),
-                style = MaterialTheme.typography.labelSmall,
+                // why: trimmed leading, so the card ends at the letters rather than a line-height below them.
+                style = MaterialTheme.typography.labelSmall.copy(lineHeightStyle = TRIMMED),
                 color = if (bar.isToday) palette.accent else palette.textSecondary,
                 textAlign = TextAlign.Center,
                 maxLines = 1,

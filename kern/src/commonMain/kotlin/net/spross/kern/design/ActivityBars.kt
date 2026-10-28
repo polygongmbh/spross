@@ -43,7 +43,7 @@ data class ActivityBar(
 class ActivityScale private constructor(val maxHeight: Double, val minHeight: Double, val stubHeight: Double) {
     companion object {
         /** The app's fortnight under the trees. */
-        val strip = ActivityScale(52.0, 10.0, 6.0)
+        val strip = ActivityScale(36.0, 8.0, 6.0)
 
         /** The widget header's, beside a caption-height flame. */
         val widget = ActivityScale(16.0, 3.0, 1.5)

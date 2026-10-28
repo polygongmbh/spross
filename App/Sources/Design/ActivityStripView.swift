@@ -21,7 +21,7 @@ struct ActivityStripView: View {
     var body: some View {
         let bars = ActivityBars.shared.of(days: days, scale: ActivityScale.companion.strip)
 
-        VStack(alignment: .leading, spacing: Theme.spacing.md) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             HStack(spacing: Theme.spacing.sm) {
                 Text("progress.last14Days")
                     .font(Theme.typography.title)
@@ -40,7 +40,7 @@ struct ActivityStripView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .panelSurface()
+        .panelSurface(vertical: Theme.spacing.md)
         .cardShadow()
         .accessibilityHidden(true)
     }
