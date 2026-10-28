@@ -32,7 +32,7 @@ struct HomeView: View {
                 page(panes.leading) {
                     header
                     listeningCard
-                    trees(stripLast: true)
+                    trees()
                 }
             }
             page(split ? panes?.trailing : nil) {
@@ -106,8 +106,8 @@ struct HomeView: View {
         .frame(width: pane?.width)
     }
 
-    private func trees(stripLast: Bool = false) -> some View {
-        Trees(model: model, open: { openBox($0) }, stripLast: stripLast)
+    private func trees() -> some View {
+        Trees(model: model, open: { openBox($0) })
     }
 
     /// Kern's answer to what leads the day (`DayLead`).
