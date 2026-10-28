@@ -6,6 +6,7 @@ import datetime
 import glob
 import json
 import os
+import random
 import re
 import shlex
 import shutil
@@ -26,6 +27,7 @@ RATINGS = {'1': 'bad', '2': 'mediocre', '3': 'okay', '4': 'good', '5': 'great'}
 AUDIO = os.path.join(ROOT, 'catalog', 'audio')
 REVIEW = os.path.normpath(os.path.join(ROOT, '..', 'data', 'review'))
 PER_LANGUAGE = 3
+PER_SPEAKER = 10
 # Where every take plays, so a quiet one and a loud one sound alike without touching the volume —
 # integrated LUFS rather than the app's perceived loudness, which is close enough by ear.
 LISTEN_LUFS = -20
@@ -229,14 +231,18 @@ def slug_texts(lang, slug):
 
 def by_word(words):
     """Set rows for every shipped take of [words], in the order named: `FORM` in any language,
-    `LANG:FORM` in one, and `LANG:SLUG` for what that language's card of the concept shows."""
+    `LANG:FORM` in one, `LANG:SLUG` for what that language's card of the concept shows, and
+    `@SPEAKER` (or `LANG:@SPEAKER`) for PER_SPEAKER of a voice's takes, those nobody rated first."""
     shipped = from_shipped(shipped_entries())
     listed, today = [], datetime.date.today().isoformat()
     for wanted in words:
         lang, form = wanted.split(':', 1) if re.match(r'^[a-z]{2,3}:', wanted) else (None, wanted)
-        found = [take for take in shipped
-                 if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
-        if not found and lang:
+        if form.startswith('@'):
+            found = by_speaker(shipped, form[1:], lang)
+        else:
+            found = [take for take in shipped
+                     if speech_key(take['word']) == speech_key(form) and (lang is None or take['lang'] == lang)]
+        if not found and lang and not form.startswith('@'):
             keys = {speech_key(text) for text in slug_texts(lang, form)}
             found = [take for take in shipped if take['lang'] == lang and speech_key(take['word']) in keys]
         if not found:
@@ -246,6 +252,18 @@ def by_word(words):
                         mos='' if take['mos'] is None else '%.2f' % take['mos'],
                         context='%s by word (%s, %s)' % (today, take['section'], take['why'])) for take in found]
     return listed
+
+
+def by_speaker(shipped, speaker, lang):
+    """PER_SPEAKER of [speaker]'s shipped takes at random, unrated ones first: named exactly, else
+    every voice whose name contains it, ignoring case."""
+    own = [take for take in shipped if lang is None or take['lang'] == lang]
+    found = ([take for take in own if take['speaker'].lower() == speaker.lower()]
+             or [take for take in own if speaker.lower() in take['speaker'].lower()])
+    rated = {row['sha256'] for row in rows(VERDICTS)}
+    random.shuffle(found)
+    found.sort(key=lambda take: take['sha256'] in rated)
+    return found[:PER_SPEAKER]
 
 
 def named(rows, wanted):
@@ -261,7 +279,7 @@ def main():
         return sample(sys.argv[2:])
     parser = argparse.ArgumentParser(
         prog='audio-listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
-        usage='%(prog)s SET [ROW] | [LANG:]FORM ...',
+        usage='%(prog)s SET [ROW] | [LANG:]FORM|@SPEAKER ...',
         description='Plays each take of a set, or every shipped take of the words named, and rates it with one key. '
                     'A new rating replaces the take\'s earlier one in its context; a set\'s rerun resumes at the first '
                     'take not yet rated, words play every take. `audio-listen.py sample -h` draws a new set.',
@@ -272,7 +290,8 @@ def main():
                              'a ROW to re-rate just the takes it names, rated already or not: a row number as the '
                              'prompt shows it, else every take whose word contains it; '
                              'or words: `bonjour` in every language that has it, `fr:bonjour` in one, '
-                             '`fr:goodbye` what that language\'s card of the concept slug shows')
+                             '`fr:goodbye` what that language\'s card of the concept slug shows, '
+                             '`@Jeuwre` (or `de:@Jeuwre`) %d of a voice\'s takes, those nobody rated first' % PER_SPEAKER)
     args = parser.parse_args()
     first = args.target[0]
     if first.endswith('.tsv') or os.path.isfile(first):
