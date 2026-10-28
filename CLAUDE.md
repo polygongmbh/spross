@@ -30,6 +30,7 @@ scripts/release.sh <version>      # cut a release: changelog heading, version, g
 
 Xcode/`xcodegen`/simctl lines above and the `verify` skill are Mac-only — on Linux/cloud sessions skip them silently.
 There, `./gradlew :kern:jvmTest` is the whole gate; the Android gates and the emulator (a GPU and `/dev/kvm`) run locally (`RUNBOOK-android.md`).
+A session ends with at most one simulator or emulator running, the one the owner is checking; shut down every other one it booted.
 
 ## Commit & release rules
 
