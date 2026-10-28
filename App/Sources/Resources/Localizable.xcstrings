@@ -3875,7 +3875,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ klingt mit einer besseren Stimme deutlich klarer — gratis zum Laden."
+            "value" : "%@ klingt mit einer besseren Stimme deutlich klarer — sie ist kostenlos herunterladbar."
           }
         },
         "en" : {
@@ -6116,7 +6116,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine klarere Stimme für %@ gibt es gratis: Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen."
+            "value" : "Eine klarere Stimme für %@ kannst du kostenlos herunterladen: Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen."
           }
         },
         "en" : {
