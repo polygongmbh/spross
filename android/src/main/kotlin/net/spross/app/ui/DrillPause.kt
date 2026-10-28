@@ -3,6 +3,7 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import net.spross.app.Chrome
 import net.spross.app.countLine
+import net.spross.app.counted
 import net.spross.kern.trainer.DrillPauseReason
 import net.spross.kern.trainer.DrillRunProgress
 
@@ -26,7 +27,7 @@ fun DrillPause(
         chrome = chrome,
         onDone = onDone,
         onPractice = onKeepPracticing,
-        tally = countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
+        tally = chrome.countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
         milestone = milestone(run, chrome),
         hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling || run.pacing.shaky },
         cheer = cheer.takeIf { reason.celebrated },
@@ -37,7 +38,7 @@ fun DrillPause(
 private fun milestone(run: DrillRunProgress, chrome: Chrome): String? {
     val pacing = run.pacing
     return listOfNotNull(
-        pacing.peak?.let { chrome.pauseSprosse[pacing.peakLine(chrome.pauseSprosse.size)].format(it) },
+        pacing.peak?.let { chrome.pauseSprosse[pacing.peakLine(chrome.pauseSprosse.size)].format(chrome.counted(it)) },
         chrome.trainerResultNewRecord.takeIf { pacing.newRecord },
     ).joinToString(" · ").ifEmpty { null }
 }

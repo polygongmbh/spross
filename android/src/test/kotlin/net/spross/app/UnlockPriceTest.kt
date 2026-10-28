@@ -22,7 +22,7 @@ class UnlockPriceTest {
         val clockCost = DrillUnlocks.requirements(NumbersExercise.Clock)
         val digits = clockCost.getValue(NumbersExercise.Counting)
         val clock = chrome.unlockPrice(clockCost)
-        assertTrue(clock.contains(countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, digits)), clock)
+        assertTrue(clock.contains(chrome.countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, digits)), clock)
         assertFalse(clock.contains(chrome.badge(NumbersExercise.Counting)), clock)
 
         val phrasesCost = DrillUnlocks.requirements(NumbersExercise.Phrases)
@@ -48,7 +48,7 @@ class UnlockPriceTest {
     @Test
     fun aPriceOfTwoExercisesNamesBoth() {
         val both = chrome.unlockPrice(mapOf(NumbersExercise.Counting to 10, NumbersExercise.Forms to 5))
-        assertTrue(both.contains(countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, 10)), both)
+        assertTrue(both.contains(chrome.countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, 10)), both)
         assertTrue(both.contains("${chrome.badge(NumbersExercise.Forms)} ${chrome.trainerSprosse.format(5)}"), both)
     }
 

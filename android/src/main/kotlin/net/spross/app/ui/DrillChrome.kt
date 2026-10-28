@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
+import net.spross.app.counted
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.trainer.ChallengeVerdict
 import net.spross.kern.trainer.DrillHighlight
@@ -57,7 +58,7 @@ fun DrillStreakLine(
     timed: String? = null,
 ) {
     val streak = answerStreak.takeIf { timed == null }
-    val parts = listOfNotNull(sprosse, timed, streak?.let { chrome.trainerRunStreak.format(it) })
+    val parts = listOfNotNull(sprosse, timed, streak?.let { chrome.trainerRunStreak.format(chrome.counted(it)) })
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.titleMedium,
@@ -112,14 +113,14 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome, onH
             verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the tally lines sit tighter than xs
         ) {
             Text(
-                countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, summary.done),
+                chrome.countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, summary.done),
                 style = MaterialTheme.typography.titleMedium,
             )
             summary.highlight?.let { highlight ->
                 Text(
                     when (highlight.kind) {
-                        DrillHighlight.Kind.Streak -> chrome.trainerResultBestStreak.format(highlight.value)
-                        DrillHighlight.Kind.Sprosse -> chrome.pauseSprosse[highlight.line(chrome.pauseSprosse.size)].format(highlight.value)
+                        DrillHighlight.Kind.Streak -> chrome.trainerResultBestStreak.format(chrome.counted(highlight.value))
+                        DrillHighlight.Kind.Sprosse -> chrome.pauseSprosse[highlight.line(chrome.pauseSprosse.size)].format(chrome.counted(highlight.value))
                     },
                     style = MaterialTheme.typography.bodySmall,
                     color = Theme.colors.textSecondary,
@@ -148,7 +149,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome, onH
 @Composable
 private fun TimedLines(timed: TimedOutcome, chrome: Chrome) {
     Text(
-        countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, timed.score),
+        chrome.countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, timed.score),
         style = MaterialTheme.typography.bodySmall,
     )
     val theirs = timed.challenge?.opponentScore

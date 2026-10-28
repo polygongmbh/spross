@@ -8,6 +8,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.Screen
+import net.spross.app.counted
 import net.spross.app.finishDrill
 import net.spross.app.letterReplay
 import net.spross.app.letterSpeaker
@@ -50,7 +51,7 @@ fun LetterDrillScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        sprosse = chrome.trainerSprosse.format(state.sprosse),
+        sprosse = chrome.trainerSprosse.format(chrome.counted(state.sprosse)),
         speaksPastMute = true,
     ) {
         val task = state.task ?: return@DrillRunScaffold

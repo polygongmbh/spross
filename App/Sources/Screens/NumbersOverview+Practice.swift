@@ -120,7 +120,7 @@ extension NumbersOverview {
             guard let sprosse = required[exercise].map({ Int(truncating: $0) }) else { return nil }
             guard exercise != .counting else { return Text("numbers.sprosse \(sprosse)") }
             return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + Text(exercise.trainerTitleKey)
-                + Text(verbatim: " ") + Text("trainer.sprosse \(sprosse.formatted())")
+                + Text(verbatim: " ") + Text("trainer.sprosse \(sprosse.counted(locale))")
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }
         return Text("numbers.unlock") + Text(verbatim: " ") + priced
@@ -134,7 +134,7 @@ extension NumbersOverview {
         guard let sprosse = progress[exercise], sprosse > 0 else { return nil }
         return Text("numbers.best") + Text(verbatim: " ")
             + (exercise == .counting ? Text("numbers.sprosse \(sprosse)")
-                                   : Text("trainer.sprosse \(sprosse.formatted())"))
+                                   : Text("trainer.sprosse \(sprosse.counted(locale))"))
     }
 
     /// The ladder as kern wants to read it — one conversion, not one per row.

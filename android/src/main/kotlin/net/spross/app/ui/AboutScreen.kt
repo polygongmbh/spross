@@ -138,7 +138,7 @@ private fun CreditGroup(model: AppModel, credit: AudioCredit, chrome: Chrome) {
             Text(credit.author, style = MaterialTheme.typography.titleSmall)
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) { // card-parity: the recording-count/license pair sits between xs and sm
                 Text(
-                    countLine(chrome.creditsRecordingsOne, chrome.creditsRecordings, credit.files.size),
+                    chrome.countLine(chrome.creditsRecordingsOne, chrome.creditsRecordings, credit.files.size),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

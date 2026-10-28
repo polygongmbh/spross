@@ -8,6 +8,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
+import net.spross.app.counted
 import net.spross.app.finishDrill
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.AnswerControls.Slot
@@ -73,7 +74,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         run = flow,
         leave = leave,
         outcomes = run.outcomes,
-        sprosse = chrome.trainerSprosse.format(flow.sprosse),
+        sprosse = chrome.trainerSprosse.format(chrome.counted(flow.sprosse)),
         answerStreak = run.answerStreak,
         // why: the run says its answers (and, reversed, its prompts) out loud, so it
         // owes the learner a way to silence them here.

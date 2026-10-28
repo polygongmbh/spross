@@ -39,7 +39,7 @@ extension LetterDrillView {
     }
 
     var streakLine: some View {
-        DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+        DrillStreakLine(sprosse: Text("trainer.sprosse \(run.sprosse.counted(locale))"),
                         answerStreak: Int(run.answerStreak))
     }
 

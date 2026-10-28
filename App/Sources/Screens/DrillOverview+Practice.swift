@@ -91,7 +91,7 @@ extension DrillOverview {
         VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text("trainer.ladder.tap")
             if record > 0 {
-                Text("trainer.ladder.best \(record.formatted()) \(bestAnswers.formatted())")
+                Text("trainer.ladder.best \(record.counted(locale)) \(bestAnswers.counted(locale))")
             }
         }
         .font(Theme.typography.caption)
@@ -151,7 +151,7 @@ extension DrillOverview {
             // kern's count, so no ladder's line can misstate what it costs.
             (open ? Text("trainer.modifier.fast.hint \(Face.winsToAdvance)")
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.sprosse \(Face.fastPrice(content, reverse: reverse).formatted())"))
+                      + Text("trainer.sprosse \(Face.fastPrice(content, reverse: reverse).counted(locale))"))
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)

@@ -26,6 +26,7 @@ import androidx.compose.ui.semantics.contentDescription
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.audioSources
+import net.spross.app.counted
 import net.spross.kern.box.AreaGroupSection
 import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.BoxBrowser
@@ -195,7 +196,7 @@ private fun BoxBrowserScreen(
                     Column {
                         BoxTitle(chrome, onSearch = { searching = true })
                         Text(
-                            chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
+                            chrome.boxSubtitle.format(chrome.counted(stats.activeCount), chrome.counted(box.cards.size)),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )

@@ -14,6 +14,7 @@ import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
 import net.spross.app.Screen
 import net.spross.app.countLine
+import net.spross.app.counted
 import net.spross.app.finishDrill
 import net.spross.app.name
 import net.spross.app.newTrainerRun
@@ -86,9 +87,9 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
 private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     val line = state.sprosseLine ?: return null
     val label = if (line.digits) {
-        countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, line.sprosse)
+        chrome.countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, line.sprosse)
     } else {
-        chrome.trainerSprosse.format(line.sprosse)
+        chrome.trainerSprosse.format(chrome.counted(line.sprosse))
     }
     return line.emoji?.let { "$it $label" } ?: label
 }
@@ -115,4 +116,4 @@ private fun timedClock(flow: NumbersFlow): Int? {
 
 /** The timed half of the score line: the seconds left, then the score so far. */
 private fun timedLine(secondsLeft: Int, score: Int, chrome: Chrome): String =
-    "${TimedRun.clock(secondsLeft)} · ${countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, score)}"
+    "${TimedRun.clock(secondsLeft)} · ${chrome.countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, score)}"

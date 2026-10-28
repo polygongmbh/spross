@@ -16,6 +16,7 @@ import net.spross.app.areaTitle
 import net.spross.app.continueEndless
 import net.spross.app.garden
 import net.spross.app.hasBriefing
+import net.spross.app.counted
 import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TallyPartKind
@@ -35,10 +36,10 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         parts.joinToString(" · ") {
             when (it.kind) {
                 TallyPartKind.Introduced ->
-                    if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
-                TallyPartKind.Settled -> countLine(chrome.tallySettledOne, chrome.tallySettled, it.count)
+                    if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(chrome.counted(it.count)) else chrome.sessionDoneTallyNew.format(chrome.counted(it.count))
+                TallyPartKind.Settled -> chrome.countLine(chrome.tallySettledOne, chrome.tallySettled, it.count)
                 TallyPartKind.Reviewed ->
-                    if (parts.size == 1) chrome.sessionDoneTallyReviewedOnly.format(it.count) else chrome.sessionDoneTallyReviewed.format(it.count)
+                    if (parts.size == 1) chrome.sessionDoneTallyReviewedOnly.format(chrome.counted(it.count)) else chrome.sessionDoneTallyReviewed.format(chrome.counted(it.count))
             }
         }
     }

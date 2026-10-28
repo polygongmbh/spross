@@ -6,6 +6,7 @@ struct StreakFlameView: View {
     /// What today still owes the run, worn by the flame itself — the mark says
     /// the run is exposed on exactly the day it is, without a word for it.
     var health: StreakHealth = .earned
+    @Environment(\.locale) private var locale
     /// The mark the run wears. The flame is the streak's identity everywhere it is
     /// merely reported; a screen that IS the celebration hands its own emoji in and
     /// carries one badge instead of a badge under a hero saying the same thing twice.
@@ -16,7 +17,7 @@ struct StreakFlameView: View {
             mark
                 .font(.title2)
                 .accessibilityHidden(true)
-            Text(days.formatted())
+            Text(days.counted(locale))
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textPrimary)
             // why: the number carries the big type, so the unit stands alone —

@@ -101,7 +101,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     var body: some View {
         // why: the run says its answers out loud, so it owes the learner a way to silence them here.
         runScreen(showsMuteButton: true,
-                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(current.sprosse.formatted())"),
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(current.sprosse.counted(locale))"),
                                              answerStreak: Int(run.answerStreak))) {
             drillContent
         }

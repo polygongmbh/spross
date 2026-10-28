@@ -20,6 +20,7 @@ struct BoxView: View {
     /// Revealed once, on appear, exactly as a search hit is.
     var revealArea: String?
 
+    @Environment(\.locale) private var locale
     @State private var expandedGroups: Set<String>
     /// Which areas stand open — lifted out of the sections themselves, because a
     /// search hit has to be able to open the one it landed in.
@@ -244,7 +245,7 @@ struct BoxView: View {
     private var subtitle: Text {
         let active = model.stats?.activeCards ?? 0
         let total = model.cardTotal
-        return Text("box.subtitle \(active.formatted()) \(total.formatted())")
+        return Text("box.subtitle \(active.counted(locale)) \(total.counted(locale))")
     }
 
     /// Whether the hint is worth showing at all — a box whose language has

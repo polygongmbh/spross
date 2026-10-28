@@ -45,7 +45,7 @@ extension NumbersRunView {
     private var sprosseText: Text? {
         guard let line = run.sprosseLine else { return nil }
         let sprosse = Int(line.sprosse)
-        let text = line.digits ? Text("numbers.sprosse \(sprosse)") : Text("trainer.sprosse \(sprosse.formatted())")
+        let text = line.digits ? Text("numbers.sprosse \(sprosse)") : Text("trainer.sprosse \(sprosse.counted(locale))")
         guard let emoji = line.emoji else { return text }
         return Text(verbatim: "\(emoji) ") + text
     }

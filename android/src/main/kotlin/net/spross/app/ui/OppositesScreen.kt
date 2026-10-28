@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Screen
+import net.spross.app.counted
 import net.spross.app.finishDrill
 import net.spross.app.newOpposites
 import net.spross.app.speakFormOnTap
@@ -36,7 +37,7 @@ fun OppositesScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        sprosse = chrome.trainerSprosse.format(state.sprosse),
+        sprosse = chrome.trainerSprosse.format(chrome.counted(state.sprosse)),
     ) {
         val task = state.task ?: return@DrillRunScaffold
         QuestionStage(flow) { QuestionCard(it, chrome, voice = model.cardVoice) }

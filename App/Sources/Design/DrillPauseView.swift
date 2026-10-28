@@ -10,6 +10,7 @@ struct DrillPauseView: View {
     let run: any DrillRunProgress
     var onDone: () -> Void
     var onKeepPracticing: () -> Void
+    @Environment(\.locale) private var locale
 
     private var pacing: DrillPacing { run.pacing }
     private var celebrated: Bool { run.pause?.celebrated ?? false }
@@ -35,7 +36,7 @@ struct DrillPauseView: View {
             // why: the key is built as a STRING and only then wrapped, as
             // `SessionSummaryView.headlineKey` does — three lines in the string table.
             let key = "trainer.pause.sprosse.\(Int(pacing.peakLine(count: 3))) %@"
-            parts.append(Text(String(format: NSLocalizedString(key, comment: ""), peak.intValue.formatted())))
+            parts.append(Text(String(format: NSLocalizedString(key, comment: ""), peak.intValue.counted(locale))))
         }
         if pacing.newRecord { parts.append(Text("trainer.result.newRecord")) }
         return parts.joined()

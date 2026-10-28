@@ -129,7 +129,7 @@ fun Chrome.unlockPrice(required: Map<NumbersExercise, Int>): String {
         if (exercise == NumbersExercise.Counting) {
             countLine(numbersSprosseOne, numbersSprosse, sprosse)
         } else {
-            "${badge(exercise)} ${trainerSprosse.format(sprosse)}"
+            "${badge(exercise)} ${trainerSprosse.format(counted(sprosse))}"
         }
     }
     if (parts.isEmpty()) return numbersUnlock
@@ -145,5 +145,5 @@ fun Chrome.bestSprosse(exercise: NumbersExercise, sprosse: Int): String =
     if (exercise == NumbersExercise.Counting) {
         "$numbersBest ${countLine(numbersSprosseOne, numbersSprosse, sprosse)}"
     } else {
-        "$numbersBest ${trainerSprosse.format(sprosse)}"
+        "$numbersBest ${trainerSprosse.format(counted(sprosse))}"
     }

@@ -45,7 +45,7 @@ struct NumbersOverview: View {
     /// once (`DrillUnlockMark`), then filed as seen.
     // why: internal, not private — +Practice.swift marks the rows from it.
     @State var unlocking: Set<String> = []
-    @Environment(\.locale) private var locale
+    @Environment(\.locale) var locale
 
     var body: some View {
         DrillOverviewPage(title: Text("numbers.title \(languageName)"),

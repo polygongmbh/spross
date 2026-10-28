@@ -2,6 +2,8 @@ package net.spross.app
 
 import androidx.compose.runtime.Stable
 import net.spross.kern.catalog.LanguageChoices
+import java.text.NumberFormat
+import java.util.Locale
 
 /**
  * UI chrome strings, rendered in the KNOWN language when chrome exists
@@ -550,6 +552,15 @@ interface Chrome {
  * whichever was picked. Both forms carry the number, because both are one plural category
  * of the same counted key in the catalog ("%d Wiederholung" / "%d Wiederholungen").
  */
-fun countLine(one: String, many: String, count: Int): String =
-    (if (count == 1) one else many).format(count)
+fun Chrome.countLine(one: String, many: String, count: Int): String =
+    (if (count == 1) one else many).replace("%d", counted(count))
+
+/** The chrome language's locale — [Chrome.forLanguage] read backward. */
+val Chrome.locale: Locale get() = if (this === ChromeDe) Locale.GERMAN else Locale.ENGLISH
+
+/**
+ * [n] as chrome shows it, its digits grouped the chrome language's way ("1.305" in German) —
+ * a bare `.format(n)` would not group, and `%,d` would follow the device region.
+ */
+fun Chrome.counted(n: Number): String = NumberFormat.getIntegerInstance(locale).format(n)
 

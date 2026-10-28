@@ -58,8 +58,8 @@ internal fun HomeTrees(model: AppModel) {
         )
         Text(
             listOf(
-                countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, stats?.allSettledCount ?: 0),
-                countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, stats?.allGrowingCount ?: 0),
+                chrome.countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, stats?.allSettledCount ?: 0),
+                chrome.countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, stats?.allGrowingCount ?: 0),
             ).joinToString(" · "),
             style = MaterialTheme.typography.bodySmall,
             color = Theme.colors.textSecondary,

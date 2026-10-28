@@ -81,7 +81,7 @@ extension HomeView {
         case .ahead: return Text("home.tally.ahead \(count)")
         case .newCards:
             return alone
-                ? Text("home.tally.newWordsOnly \(count.formatted())")
+                ? Text("home.tally.newWordsOnly \(count.counted(locale))")
                 : Text("home.tally.newCards \(count)")
         }
     }

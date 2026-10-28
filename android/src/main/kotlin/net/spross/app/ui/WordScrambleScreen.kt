@@ -6,6 +6,7 @@ import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.WordScrambleFlow
+import net.spross.app.counted
 import net.spross.app.finishDrill
 import net.spross.app.newWordScramble
 import net.spross.app.speakFormOnTap
@@ -43,7 +44,7 @@ fun WordScrambleScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        sprosse = chrome.trainerSprosse.format(state.sprosse),
+        sprosse = chrome.trainerSprosse.format(chrome.counted(state.sprosse)),
     ) {
         val task = state.task ?: return@DrillRunScaffold
         if (state.question == null) return@DrillRunScaffold

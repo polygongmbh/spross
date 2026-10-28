@@ -14,6 +14,7 @@ struct DrillStreakLine: View {
     var timed: [Text] = []
     /// nil where the run is scored rather than streaked.
     let answerStreak: Int?
+    @Environment(\.locale) private var locale
 
     var body: some View {
         text
@@ -35,7 +36,7 @@ struct DrillStreakLine: View {
         var parts: [Text] = []
         if let sprosse { parts.append(sprosse) }
         parts += timed
-        if let answerStreak { parts.append(Text("trainer.run.streak \(answerStreak.formatted())")) }
+        if let answerStreak { parts.append(Text("trainer.run.streak \(answerStreak.counted(locale))")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 }
@@ -137,7 +138,7 @@ struct DrillResultTile: View {
 
     /// Kern's highlight in the string table's words — a Sprosse in one of the pause's phrasings.
     private func highlightLine(_ highlight: DrillHighlight) -> Text {
-        let value = Int(highlight.value).formatted()
+        let value = highlight.value.counted(locale)
         switch highlight.kind {
         case .streak: return Text("trainer.result.bestStreak \(value)")
         case .sprosse:

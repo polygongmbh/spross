@@ -12,3 +12,9 @@ enum ChromeStrings {
         return bundle.localizedString(forKey: key, value: key, table: nil)
     }
 }
+
+extension BinaryInteger {
+    /// The number as chrome shows it, its digits grouped the chrome language's way ("1.305" in German) —
+    /// a bare `.formatted()` follows the device region instead.
+    func counted(_ locale: Locale) -> String { Int(self).formatted(.number.locale(locale)) }
+}

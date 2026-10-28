@@ -52,7 +52,7 @@ struct OppositesView: View, LanguageNaming {
 
     var body: some View {
         runScreen(asking: current != nil,
-                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(run.sprosse.counted(locale))"),
                                              answerStreak: Int(run.answerStreak))) {
             drillContent
         }

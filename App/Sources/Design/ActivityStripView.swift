@@ -54,7 +54,7 @@ struct ActivityStripView: View {
             Text(verbatim: "🔥")
                 .grayscale(1 - health.flameSaturation)
                 .opacity(health.flameOpacity)
-            (Text(streakDays.formatted()) + Text(verbatim: " ")
+            (Text(streakDays.counted(locale)) + Text(verbatim: " ")
                 + Text(streakDays == 1 ? "common.day.one" : "common.day.other"))
                 .foregroundStyle(Theme.colors.accent)
         }

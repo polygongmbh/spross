@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.TypedDrillStanding
+import net.spross.app.counted
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.NumbersMode
@@ -132,7 +133,7 @@ fun TypedDrillOverview(
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
             OverviewNote(chrome.trainerLadderTap)
             if (ladder.standing.record > 0) {
-                OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.answers))
+                OverviewNote(chrome.trainerLadderBest.format(chrome.counted(ladder.standing.record), chrome.counted(ladder.standing.answers)))
             }
         }
         Panel {
@@ -150,7 +151,7 @@ fun TypedDrillOverview(
                 caption = if (fastOpen) {
                     ladder.fastHint
                 } else {
-                    "${chrome.numbersUnlock} ${chrome.trainerSprosse.format(ladder.fastPrice(reverse))}"
+                    "${chrome.numbersUnlock} ${chrome.trainerSprosse.format(chrome.counted(ladder.fastPrice(reverse)))}"
                 },
                 open = fastOpen,
                 on = fast,

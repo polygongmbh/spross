@@ -34,19 +34,20 @@ struct SessionSummaryView: View {
 
     @State private var risen = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.locale) private var locale
 
     /// "3 neu · 8 wiederholt · 2 gefestigt" under the title — which parts a finished
     /// round names, and in which order, is the box's (`RoundSummary.parts`); the
     /// words are ours. Built as `Text` so each part localizes via the environment
     /// locale. Nil when the round named nothing: the title alone then says it is done.
     private var tallyText: Text? {
-        parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
+        parts.map { Self.partText($0, alone: parts.count == 1, locale: locale) }.joined()
     }
 
     private var showsTree: Bool { grownArea != nil }
 
-    private static func partText(_ part: TallyPart, alone: Bool) -> Text {
-        let count = Int(part.count).formatted()
+    private static func partText(_ part: TallyPart, alone: Bool, locale: Locale) -> Text {
+        let count = part.count.counted(locale)
         switch part.kind {
         case .introduced:
             return alone ? Text("session.done.tally.newOnly \(count)") : Text("session.done.tally.new \(count)")

@@ -28,6 +28,7 @@ struct SentenceScrambleView: View {
     var onFinish: (DrillRunResult) -> Void = { _ in }
 
     @Environment(\.dismiss) var dismiss
+    @Environment(\.locale) private var locale
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     /// The whole run, kern's.
@@ -65,7 +66,7 @@ struct SentenceScrambleView: View {
 
     var body: some View {
         runScreen(asking: current != nil,
-                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(run.sprosse.counted(locale))"),
                                              answerStreak: Int(run.answerStreak))) {
             drillContent
         }

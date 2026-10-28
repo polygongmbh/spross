@@ -271,12 +271,12 @@ fun AreaChip(
                 // Two counts where the bar beneath draws three stages: there is room here for
                 // the split that matters (cleared the bar, or not yet), and the bar carries
                 // the finer one.
-                CountLabel("$SEAL ${countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled)}", Theme.colors.settled)
-                CountLabel("$LEAF ${countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, allGrowing)}", Theme.colors.success)
+                CountLabel("$SEAL ${chrome.countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled)}", Theme.colors.settled)
+                CountLabel("$LEAF ${chrome.countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, allGrowing)}", Theme.colors.success)
                 // why: the padlock carries the "locked", so the text only names what is
                 // locked — and it appears only when it says something.
                 if (locked > 0) CountLabel(
-                        "$LOCK ${countLine(chrome.boxAreaPhrasesLockedShortOne, chrome.boxAreaPhrasesLockedShort, locked)}",
+                        "$LOCK ${chrome.countLine(chrome.boxAreaPhrasesLockedShortOne, chrome.boxAreaPhrasesLockedShort, locked)}",
                     )
             }
             AreaProgressBar(stats ?: EMPTY_AREA)

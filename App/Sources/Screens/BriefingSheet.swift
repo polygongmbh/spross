@@ -20,6 +20,7 @@ struct BriefingSheet: View {
     let model: AppModel
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
     /// Taken once when the sheet opens: building it walks every card in the box.
     @State private var briefing: Briefing?
     @State private var copied = false
@@ -90,7 +91,7 @@ struct BriefingSheet: View {
 
     private func step(_ number: Int, _ key: LocalizedStringKey) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
-            Text(verbatim: "\(number.formatted()).")
+            Text(verbatim: "\(number.counted(locale)).")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.accent)
             Text(key)
