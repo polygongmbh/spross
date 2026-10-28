@@ -248,9 +248,11 @@ What licenses a second component is a parameter attempted and found not to carry
   A screen without a pane design halves only with the hinge: on a foldable half open like a book it stands in the trailing half,
   on any window lying flat it centers its column across the whole width.
 - **Navigation and a screen's own controls stand where the platform's guidance puts them** on a wide window (`CLAUDE.md`).
-- Home puts what is looked at — the greeting, the last 14 days over the trees — in the leading pane with listening, an occasional detour,
-  and the day's card, the drills and the companion in the trailing one, each pane scrolling on its own;
-  the Box puts its areas in one pane and the chosen area's words in the other.
+- Home's primary pane — the day's card, the drills and the companion — stands beside the platform's own navigation:
+  trailing on iOS, beside its system bar, and leading on Android, beside the rail.
+  The other pane holds listening, an occasional detour, and what is looked at, the last 14 days over the trees;
+  the greeting heads the leading pane, and each pane scrolls on its own.
+- The Box puts its areas in one pane and the chosen area's words in the other.
 - A sheet follows the same hinge: on a half-open book it stands in the trailing half,
   lying flat it keeps the platform's placement; an alert stays centered.
 - **Only a symbol that says what it does goes into a bar** (✕, ✓, ▶, send — `BarSymbol`);

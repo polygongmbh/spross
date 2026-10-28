@@ -69,9 +69,9 @@ fun HomeScreen(model: AppModel) {
         ?: DayLead.Done
     val card = homeCard(failed = model.loadFailure != null, lead = lead)
     Box(Modifier.fillMaxSize()) {
-        // The phone's order; where the window splits, what is looked at and listening, an
-        // occasional detour, take the leading pane, the day's card, the drills and the
-        // companion the trailing one.
+        // The phone's order; where the window splits, the greeting heads the primary pane — the
+        // day's card, the drills and the companion — beside the rail, and listening, an
+        // occasional detour, and what is looked at take the trailing one.
         PaneColumns(
             margin = Theme.spacing.xl,
             spacing = Theme.spacing.xl,
@@ -80,7 +80,7 @@ fun HomeScreen(model: AppModel) {
         ) {
             item(PaneSide.Leading) { PageTitle(hello, eyebrow = today) }
 
-            item {
+            item(PaneSide.Leading) {
                 when (card) {
                     HomeCard.Failure -> StateCard(
                         emoji = "🫤",
@@ -122,13 +122,13 @@ fun HomeScreen(model: AppModel) {
                 }
             }
 
-            item(PaneSide.Leading) { ListenCard(model) }
+            item(PaneSide.Trailing) { ListenCard(model) }
 
-            item { TrainerHubCard(model) }
+            item(PaneSide.Leading) { TrainerHubCard(model) }
 
-            item { TalkCard(model) { briefingOpen = true } }
+            item(PaneSide.Leading) { TalkCard(model) { briefingOpen = true } }
 
-            item(PaneSide.Leading) {
+            item(PaneSide.Trailing) {
                 TreesAndDays(model, stats?.streak ?: 0, health, locale)
             }
         }
