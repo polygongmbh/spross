@@ -3275,13 +3275,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lust auf neue Wörter?"
+            "value" : "Zeit für neue Wörter!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Up for some new words?"
+            "value" : "Time for new words!"
           }
         }
       }
@@ -3291,13 +3291,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeit zum Säen!"
+            "value" : "Auf zum Säen!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Time to sow seeds!"
+            "value" : "Let's sow some new words!"
           }
         }
       }
@@ -3307,13 +3307,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Bäumchen zum Pflanzen"
+            "value" : "Pflanz ein paar neue Wörter!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A sapling, ready to plant"
+            "value" : "Plant a few new words!"
           }
         }
       }
@@ -3323,13 +3323,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ran an die Wörter"
+            "value" : "Ran an die Wörter!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back to your words"
+            "value" : "Dive back into your words!"
           }
         }
       }
@@ -3339,13 +3339,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein paar Wörter sind wieder dran"
+            "value" : "Frisch deine Wörter auf!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A few words are up again"
+            "value" : "Freshen up your words!"
           }
         }
       }
@@ -3355,13 +3355,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeit zum Pflücken"
+            "value" : "Auf zur Ernte!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Time to pick a few"
+            "value" : "Time to harvest!"
           }
         }
       }
@@ -3371,13 +3371,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeit zum Auffrischen"
+            "value" : "Zeig, was hängen geblieben ist!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Time for a refresher"
+            "value" : "See what stuck!"
           }
         }
       }
@@ -3387,13 +3387,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leg heute noch mal nach!"
+            "value" : "Leg heute noch Holz nach!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Don't let the streak go cold"
+            "value" : "Keep the streak burning!"
           }
         }
       }
@@ -3403,13 +3403,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lass dein Feuer nicht verglühen"
+            "value" : "Halt dein Feuer am Brennen!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One round keeps the flame alive"
+            "value" : "Feed the flame today!"
           }
         }
       }
@@ -3419,13 +3419,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeit, die Glut neu zu entfachen"
+            "value" : "Fach die Glut wieder an!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Still time to rekindle today"
+            "value" : "Stoke the fire!"
           }
         }
       }
@@ -3435,13 +3435,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Wiedersehen mit Bekanntem"
+            "value" : "Begrüß ein paar alte Bekannte!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A few old friends"
+            "value" : "Say hi to a few old friends!"
           }
         }
       }

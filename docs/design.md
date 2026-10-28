@@ -8,7 +8,7 @@ Every screen answers "What do I do right now?" with zero ambiguity.
 The app composes the work; the user never browses for what to study.
 
 Copy states what is on the table, never personifies waiting
-("Lust auf neue Wörter?", not "Neue Wörter warten auf dich";
+("Zeit für neue Wörter!", not "Neue Wörter warten auf dich";
 "Morgen sind %@ Karten dran", not "warten auf dich").
 Every prompt, empty state, call to action and forecast line gets the same read:
 where the sentence puts the learner under an expectation,
@@ -189,7 +189,8 @@ What licenses a second component is a parameter attempted and found not to carry
     (`drills.md` § The suggestion).
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.
-  - The round card names what the round is led by (due work or new-word offer).
+  - The round card names what the round is led by (due work or new-word offer),
+    and its headline calls to act ("Ran an die Wörter!"), so it never reads like the greeting's question.
     What it promises is what the round will hand over — the cap, never the pile.
     A day not worked is never called done;
     a day with work still returning is not either (`../kern/README.md` §6).
