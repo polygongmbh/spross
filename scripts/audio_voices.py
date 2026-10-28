@@ -62,6 +62,18 @@ def is_squashed(peak, loudness):
     return peak is not None and loudness is not None and peak - loudness < SQUASH_FLOOR_DB
 
 
+# The loudest a breath burst (`audio_measure.pop`) may sound against the word's own loudest stretch.
+# Of 13 takes heard for pops, the 4 at +1 dB or over all pop (fr nom de famille +5.2, de lieben +5.9),
+# the 5 heard clean all stay under (fr enseignante, sw samaki +0.4); 4 heard popping escape the measure
+# (sw kwaheri, de die Brücke, sw mboga, de pullover) (2026-10-28).
+POP_DB = 1.0
+
+
+def is_popping(pop):
+    """Breath strikes the microphone: `audio_measure.pop` at POP_DB or over."""
+    return pop is not None and pop >= POP_DB
+
+
 # POOR voices: heard as bad across their takes, not in one file — what the score cannot be
 # trusted to catch (it Francyskus, all 7 heard bad for background noise, scores up to 2.3).
 # Every take of theirs counts as heard bad, except a file a listener passed on its own.
