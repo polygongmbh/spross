@@ -3,10 +3,10 @@ import UIKit
 
 // MARK: - The hinge
 //
-// A foldable half open like a book splits its screen in two physically; lying flat it is one screen.
-// Only the system knows which (iOS 27.1, `UIHingeInteraction`); older systems and phones read flat.
+// A half-open foldable splits its screen in two; lying flat it is one screen.
+// Only `UIHingeInteraction` (iOS 27.1) reports which; older systems and phones read flat.
 
-/// Hands `content` whether the device's hinge stands half open, like a book.
+/// Passes `content` whether the device's hinge is half open.
 struct HingeReader<Content: View>: View {
     @ViewBuilder var content: (Bool) -> Content
     @State private var halfOpen = false

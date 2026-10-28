@@ -2,12 +2,11 @@ import SwiftUI
 
 // MARK: - The system's bar
 //
-// A wide window on iOS 27.1 gives a presentation's toolbar its own bar, standing upright
-// at the trailing edge where the window has one. Each call into those APIs sits in one
-// helper here behind its `#available`; older systems keep the same layout without the bar.
+// On iOS 27.1 a wide window can show a presentation's toolbar as an upright bar at its trailing edge.
+// Each call into those APIs is one helper here behind its `#available`; older systems keep the layout without the bar.
 
 enum SystemBar {
-    /// Whether a session's chrome goes into the system's toolbar rather than its own top bar.
+    /// Whether a session's chrome goes into the system's toolbar.
     static func hostsChrome(wide: Bool) -> Bool {
         guard wide else { return false }
         if #available(iOS 27.1, *) { return true }
@@ -15,7 +14,7 @@ enum SystemBar {
     }
 }
 
-/// Hands `content` whether the toolbar it stands in runs upright.
+/// Passes `content` whether its toolbar is upright.
 struct VerticalBarReader<Content: View>: View {
     @ViewBuilder var content: (Bool) -> Content
 
@@ -37,8 +36,7 @@ private struct VerticalEdgeProbe<Content: View>: View {
 }
 
 extension View {
-    /// A session's chrome as toolbar items: the way out first, where the bar keeps it,
-    /// then the progress, upright where the bar is, then the read-aloud switch.
+    /// A session's chrome as toolbar items: close, the progress (upright in a vertical bar), the read-aloud switch.
     @ViewBuilder
     func sessionSystemBar<Progress: View, Trailing: View>(
         enabled: Bool, readsAloud: Bool, onClose: @escaping () -> Void,
@@ -68,8 +66,8 @@ extension View {
 }
 
 extension View {
-    /// A sheet's content asking to stand on the trailing side, where the system's bar is,
-    /// while the hinge stands half open; a window lying flat keeps the system's own placement.
+    /// Places a sheet on the trailing side, beside the system's bar, while the hinge is half open;
+    /// a flat window keeps the system's placement.
     func trailingPresentation() -> some View {
         HingeReader { halfOpen in
             if #available(iOS 27.0, *), halfOpen {
@@ -83,8 +81,8 @@ extension View {
 
 // MARK: - A presentation's actions
 
-/// The symbols the system's bar may hold: only those that say what they do without a word.
-/// An action that needs its words stays a titled button in the content.
+/// Symbols allowed in the system's bar: only those clear without a title.
+/// An action that needs a title stays a button in the content.
 enum BarSymbol: String {
     case close = "xmark"
     case done = "checkmark"
@@ -92,8 +90,7 @@ enum BarSymbol: String {
     case send = "paperplane"
 }
 
-/// One action a presentation's toolbar offers: its title, and the symbol it is drawn as
-/// in the system's bar, which holds symbols rather than words.
+/// A toolbar action: its title, and the symbol it shows in the system's bar, which holds symbols only.
 struct BarAction {
     let title: LocalizedStringKey
     let symbol: BarSymbol
@@ -109,10 +106,9 @@ struct BarAction {
 }
 
 extension View {
-    /// A presentation's way out, its way through and its way on, as toolbar items in the system's own order.
-    /// Where the window has the system's vertical bar they stand in it as symbols, the way out on top
-    /// and the prominent action under it (HIG, Designing for iPhone Duo); elsewhere they keep their corners
-    /// and titles — `closeAsIcon` draws the way out as a ✕ there too.
+    /// A presentation's close, confirm and go actions as toolbar items in the system's order.
+    /// In the system's vertical bar they show as symbols, close on top (HIG, Designing for iPhone Duo);
+    /// elsewhere they keep their corners and titles, and `closeAsIcon` draws close as ✕.
     func presentationActions(close: BarAction? = nil, closeAsIcon: Bool = false,
                              confirm: BarAction? = nil, go: BarAction? = nil) -> some View {
         VerticalBarReader { inBar in

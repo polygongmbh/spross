@@ -3,19 +3,18 @@ import SwiftUI
 
 // MARK: - The window's panes
 //
-// Whether a screen stands in one column or two panes is kern's (`WindowPanes`), from the width
-// a presentation is given. Each presentation root measures itself once (`measuresWindowPanes`)
-// and hands the decision down; the screens read it and lay their parts out.
+// Kern decides one column or two panes (`WindowPanes`) from a presentation's width.
+// Each presentation root measures once (`measuresWindowPanes`) and passes the result down the environment.
 
 extension EnvironmentValues {
-    /// The presentation's layout as kern decides it; nil until it has been measured.
+    /// Kern's layout for the presentation; nil until measured.
     @Entry var windowPanes: WindowPanes?
 }
 
 extension WindowPanes {
     var leading: Pane { panes[0] }
     var trailing: Pane { panes[panes.count - 1] }
-    /// The space between the two panes; nothing in a single column.
+    /// The gap between the panes; zero in a single column.
     var gutter: CGFloat { CGFloat(trailing.frame.start - leading.frame.end) }
 }
 
@@ -24,7 +23,7 @@ extension WindowPanes.Pane {
     var columnWidth: CGFloat { CGFloat(column.width) }
 }
 
-/// Measures the width it is laid out in and the hinge, and hands kern's decision to `content` and the environment.
+/// Measures its width and the hinge, and passes kern's panes to `content` and the environment.
 struct PanesReader<Content: View>: View {
     @ViewBuilder var content: (WindowPanes?) -> Content
     @State private var measure: PaneMeasure?
@@ -40,8 +39,7 @@ struct PanesReader<Content: View>: View {
                 .environment(\.windowPanes, panes)
                 .typeScaled()
         }
-        // why: the proxy's size already stops at the safe area and its insets lie outside it,
-        // so the window is the two together.
+        // The proxy's size stops at the safe area, so the window is its width plus the insets.
         .onGeometryChange(for: PaneMeasure.self) { proxy in
             PaneMeasure(width: proxy.size.width,
                         leading: proxy.safeAreaInsets.leading, trailing: proxy.safeAreaInsets.trailing)
@@ -57,19 +55,18 @@ private struct PaneMeasure: Equatable {
 }
 
 extension View {
-    /// The root of a presentation — a tab, a cover, a sheet — measures the panes for everything under it.
+    /// Measures the panes for everything under a presentation root (a tab, a cover, a sheet).
     func measuresWindowPanes() -> some View {
         PanesReader { _ in self }
     }
 
-    /// A screen with no two-pane design of its own: one readable column in kern's `single` pane —
-    /// centered across the window, or in the trailing half of a foldable half open like a book.
-    /// A phone passes through untouched.
+    /// One readable column in kern's `single` pane, for a screen without a two-pane layout:
+    /// centered, or in the trailing half of a half-open foldable. Unchanged on a phone.
     func readableColumn() -> some View {
         modifier(ReadableColumn())
     }
 
-    /// `readableColumn` for a root that is its own presentation, measured where it stands.
+    /// `readableColumn` for a presentation root, which measures itself.
     func measuredReadableColumn() -> some View {
         PanesReader { _ in self.readableColumn() }
     }
@@ -81,8 +78,7 @@ private struct ReadableColumn: ViewModifier {
     func body(content: Content) -> some View {
         let inHalf = panes.map { $0.split && $0.single.width == $0.trailing.width } ?? false
         if let panes, inHalf || panes.single.columnWidth < panes.single.width {
-            // why: a max, not a fixed width — a measurement a step behind the presentation's size
-            // never lays the column out wider than it stands.
+            // Max widths, so a measurement lagging the presentation's size never widens the column past its space.
             content
                 .frame(maxWidth: panes.single.columnWidth)
                 .frame(maxWidth: panes.single.width)
@@ -95,8 +91,7 @@ private struct ReadableColumn: ViewModifier {
 
 // MARK: - Two panes
 
-/// The two panes side by side, each holding its readable column. Only for a split window;
-/// a screen keeps its phone layout where `WindowPanes.split` is false.
+/// The two panes side by side, each with its readable column; only where `WindowPanes.split` holds.
 struct PaneSplit<Leading: View, Trailing: View>: View {
     let panes: WindowPanes
     @ViewBuilder var leading: Leading
@@ -119,8 +114,7 @@ struct PaneSplit<Leading: View, Trailing: View>: View {
 // MARK: - Sheets
 
 extension View {
-    /// A sheet measured for its own panes; on a foldable half open like a book,
-    /// it stands on the trailing side, the system's bar keeping its controls.
+    /// A sheet that measures its own panes; on a half-open foldable it stands on the trailing side, beside the system's bar.
     func paneSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
                                 @ViewBuilder content: @escaping () -> Sheet) -> some View {
         sheet(isPresented: isPresented, onDismiss: onDismiss) {
@@ -137,9 +131,8 @@ extension View {
 }
 
 extension View {
-    /// Keeps a sheet's content out of the window's own bars where the sheet stands over them
-    /// without the system reporting them as its safe area — a trailing sheet moved beside the system's bar
-    /// keeps the insets of where it was first laid out.
+    /// Pads a sheet's content clear of the window's bars that the system leaves out of the sheet's safe area:
+    /// a sheet moved to the trailing side keeps the insets of where it was first laid out.
     fileprivate func clearsWindowBars() -> some View {
         modifier(ClearsWindowBars())
     }
@@ -200,7 +193,7 @@ private struct WindowSafeAreaProbe: UIViewRepresentable {
             let safeArea = window.bounds.inset(by: window.safeAreaInsets)
             guard safeArea != last else { return }
             last = safeArea
-            // why: this runs inside a layout pass, where SwiftUI must not change state; it lands a turn later.
+            // why: this runs in a layout pass, where SwiftUI state must not change.
             DispatchQueue.main.async { [report] in report?(safeArea) }
         }
     }
