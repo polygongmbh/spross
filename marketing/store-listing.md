@@ -31,7 +31,7 @@ Spross is the vocabulary that fills that gap.
 
 **On your wrist:** Quick review rounds on Apple Watch while you wait.
 
-**Calm by design:** No account. No ads. Fully offline. Spross doesn't nag — you set the pace.
+**Calm by design:** No account. No ads. Fully offline. You set the pace.
 
 It won't replace your course or your conversations. It makes sure you have the words when they happen.
 
@@ -66,7 +66,7 @@ Spross füllt genau diese Lücke.
 
 **Am Handgelenk:** Kurze Runden auf der Apple Watch, zwischendurch.
 
-**Ganz in Ruhe:** Kein Konto. Keine Werbung. Komplett offline. Spross drängt nicht — du bestimmst das Tempo.
+**Ganz in Ruhe:** Kein Konto. Keine Werbung. Komplett offline. Du bestimmst das Tempo.
 
 Es ersetzt weder deinen Kurs noch deine Gespräche. Aber die Wörter sind da, wenn du sie brauchst.
 

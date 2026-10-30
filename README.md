@@ -10,7 +10,7 @@ plus an Android app (Jetpack Compose) on the same engine.
 ## What sets it apart
 
 Against Anki: curation and the mini games.
-Against Duolingo: it never nags, and the learner sets the curriculum.
+Against Duolingo: the learner sets the curriculum.
 
 - **Curated for fluency** —
   the catalog is hand-built around the situations a speaker meets,
@@ -25,7 +25,6 @@ Against Duolingo: it never nags, and the learner sets the curriculum.
   the way a word is introduced lets one already known step aside after a single quick answer.
 - **Mini games** (the code's drills) for what single cards cannot teach:
   numbers, the clock, dates, letters, countries, word order, opposites.
-- **No nagging** — not to practice, not to pay.
 - **A companion to real speaking** —
   beside a course, a native speaker or a chat assistant,
   it expands and solidifies the vocabulary those conversations need.
