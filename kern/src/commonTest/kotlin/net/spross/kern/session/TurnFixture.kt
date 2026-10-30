@@ -88,8 +88,9 @@ internal object TurnFixture {
         card: Card,
         firstExposure: Boolean = false,
         arrived: Boolean = false,
+        prompt: ProducePrompt = ProducePrompt.Source,
     ): TurnState = machine.begin(
-        card, PresentationRole.Recognize, ProducePrompt.Source, PromptForm(card.target.text, null),
+        card, PresentationRole.Recognize, prompt, PromptForm(card.target.text, null),
         firstExposure, arrived, T0,
     )
 

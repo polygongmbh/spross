@@ -50,7 +50,8 @@ class TurnMachine(
     ): TurnState = TurnState(
         card = card,
         role = role,
-        prompt = prompt,
+        // why: the app deals the produce prompt per card, whatever the role; recognition always shows its word.
+        prompt = if (role == PresentationRole.Produce) prompt else ProducePrompt.Source,
         answer = answer,
         promptForm = promptForm.text,
         promptTag = promptForm.tag,

@@ -104,7 +104,7 @@ data class TurnState(
     /** The card under review: what is graded, and what a write-out copies. */
     val card: Card,
     val role: PresentationRole,
-    /** [ProducePrompt.Sound] moves the answer to the SOURCE side: the card asks what it means. */
+    /** [ProducePrompt.Sound] moves the answer to the SOURCE side: the card asks what it means. [ProducePrompt.Source] on recognition. */
     val prompt: ProducePrompt,
     /** [ProduceAnswer.Recalled] puts no field on a produce turn: reveal and self-grade only. */
     val answer: ProduceAnswer,

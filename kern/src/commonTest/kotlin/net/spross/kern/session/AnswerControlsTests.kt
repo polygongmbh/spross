@@ -66,6 +66,14 @@ class AnswerControlsTests {
         assertFalse(TurnFixture.state(asking, TurnIntent.ShowPromptText).controls.cantListen)
     }
 
+    /** The app deals the produce prompt per card, so a recognition turn can be handed the sound one. */
+    @Test
+    fun recognitionShowsItsWordAndOffersNoWayOutOfListening() {
+        val asking = TurnFixture.recognize(knife, prompt = ProducePrompt.Sound)
+        assertFalse(asking.controls.cantListen)
+        assertEquals(knife.target.text, asking.question.prompt.text)
+    }
+
     @Test
     fun theWriteOutOwnsTheTurn() {
         val missed = TurnFixture.state(TurnFixture.recognize(knife, firstExposure = true), TurnIntent.Reveal)
