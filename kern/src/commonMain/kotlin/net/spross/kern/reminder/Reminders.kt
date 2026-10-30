@@ -17,7 +17,7 @@ import net.spross.kern.box.zoneOf
 import net.spross.kern.store.StoredBoxes
 
 /** When the learner asked to be reminded; [Off] until they turn it on. */
-enum class ReminderMode { Off, Usual, Set }
+enum class ReminderMode { Off, Usual, Fixed }
 
 /** One reminder to post: when, and how many words of the box it was planned from stand due by then. */
 data class ReminderFire(val atEpochMillis: Long, val dueCount: Int)
@@ -28,7 +28,7 @@ data class ReminderPlan(val fires: List<ReminderFire>, val paused: Boolean)
 /**
  * The practice reminders, minted here and posted by the platform as local notifications.
  *
- * - [ReminderMode.Set] fires at each of the learner's chosen times of day.
+ * - [ReminderMode.Fixed] fires at each of the learner's chosen times of day.
  * - [ReminderMode.Usual] fires [LEAD_MINUTES] before each time of day the learner habitually starts practicing,
  *   learned from the last [WINDOW_DAYS] days of answers in every language:
  *   a session starts after a [SESSION_GAP_MINUTES] pause, sessions within [CLUSTER_MINUTES] of each other share a time,
@@ -85,7 +85,7 @@ object Reminders {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val today = localDate(nowEpochMillis, tzId)
         val minutes = when (mode) {
-            ReminderMode.Set -> setMinutes
+            ReminderMode.Fixed -> setMinutes
             else -> usualMinutes(answers, nowEpochMillis, tzId) ?: setMinutes
         }.distinct().sorted()
         val lastAnswer = answers.maxOrNull()

@@ -24,7 +24,7 @@ class RemindersTests {
 
     @Test
     fun setTimesFireEachDay() {
-        val (times, _) = fires(ReminderMode.Set, listOf(8 * 60, 20 * 60), emptyList(), now = at(1, 6))
+        val (times, _) = fires(ReminderMode.Fixed, listOf(8 * 60, 20 * 60), emptyList(), now = at(1, 6))
         assertEquals(listOf(at(1, 8), at(1, 20), at(2, 8), at(2, 20)), times.take(4))
     }
 
@@ -44,16 +44,16 @@ class RemindersTests {
 
     @Test
     fun aSlotAlreadyPracticedIsDropped() {
-        val (times, _) = fires(ReminderMode.Set, listOf(8 * 60, 20 * 60), listOf(at(5, 7)), now = at(5, 7, 30), enabled = at(5, 0))
+        val (times, _) = fires(ReminderMode.Fixed, listOf(8 * 60, 20 * 60), listOf(at(5, 7)), now = at(5, 7, 30), enabled = at(5, 0))
         assertEquals(at(5, 20), times.first())
     }
 
     @Test
     fun ignoredRemindersThinOutAndStop() {
         val answered = listOf(at(1, 8))
-        val (thinning, _) = fires(ReminderMode.Set, listOf(20 * 60), answered, now = at(5, 6))
+        val (thinning, _) = fires(ReminderMode.Fixed, listOf(20 * 60), answered, now = at(5, 6))
         assertEquals(listOf(6, 8), thinning.map { it.toLocalDateTime(TimeZone.UTC).date.day })
-        val (stopped, paused) = fires(ReminderMode.Set, listOf(20 * 60), answered, now = at(10, 6))
+        val (stopped, paused) = fires(ReminderMode.Fixed, listOf(20 * 60), answered, now = at(10, 6))
         assertTrue(stopped.isEmpty() && paused)
     }
 }
