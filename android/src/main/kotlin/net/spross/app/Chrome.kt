@@ -122,6 +122,22 @@ interface Chrome {
     val settingsAudioHintPerLanguage: String
     val settingsAudioSaysMeaning: String
     val settingsAudioSaysMeaningHint: String
+    val settingsRemindersTitle: String
+    val settingsRemindersOptionOff: String
+    val settingsRemindersOptionUsual: String
+    val settingsRemindersOptionSet: String
+    val settingsRemindersHintOff: String
+    val settingsRemindersHintUsual: String
+    val settingsRemindersHintSet: String
+    val settingsRemindersHintPaused: String
+    val settingsRemindersHintDenied: String
+    val settingsRemindersAdd: String
+    val settingsRemindersRemove: String // %s
+    val reminderChannel: String
+    val reminderTitle: String
+    val reminderBodyDue: String // %d
+    val reminderBodyDueOne: String // %d
+    val reminderBodyFresh: String
     val creditsTitle: String
     val creditsRecordings: String // %d
     val creditsRecordingsOne: String // %d

@@ -232,6 +232,11 @@ What licenses a second component is a parameter attempted and found not to carry
     One side alone is taken as a suggestion.
     A growing catalog never collides with them; a box reset never takes them.
     Rewriting keeps the id; deleting is the only deletion in the app.
+- **Reminders** are off until the learner turns them on in Settings:
+  at their usual times (learned, `../kern/README.md` §6) or at times they set, as many a day as they choose.
+  The system's permission is asked for at that switch and nowhere else;
+  a reminder is a normal alert whose priority the system settings own.
+  Its text names what is ready, never the streak.
 - **Mid-round**, report and suspend are offered only once the answer is out
   (`TurnState.answerOut`).
   A report carries the typed answer along without asking about it,

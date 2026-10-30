@@ -4,7 +4,7 @@ import SprossKern
 /// What the settings hold: known language (source),
 /// learning language (target, one box each), learner name,
 /// read-aloud source (`SettingsAudioRow`, only where the language has a sound),
-/// backup, restart tutorial, reset.
+/// practice reminders (`SettingsRemindersRow`), backup, restart tutorial, reset.
 /// The profile persists in UserDefaults + the box document.
 struct BoxSettingsSection: View {
     let model: AppModel
@@ -29,6 +29,8 @@ struct BoxSettingsSection: View {
                     Divider().overlay(Theme.colors.separator)
                     SettingsAudioRow(model: model)
                 }
+                Divider().overlay(Theme.colors.separator)
+                SettingsRemindersRow(model: model)
                 Divider().overlay(Theme.colors.separator)
                 VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     BackupRow(model: model)

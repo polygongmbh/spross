@@ -25,6 +25,8 @@ Against Duolingo: the learner sets the curriculum.
   the way a word is introduced lets one already known step aside after a single quick answer.
 - **Mini games** (the code's drills) for what single cards cannot teach:
   numbers, the clock, dates, letters, countries, word order, opposites.
+- **Reminders on your terms** —
+  off until you turn them on, then at the times you usually practice or at times you set.
 - **A companion to real speaking** —
   beside a course, a native speaker or a chat assistant,
   it expands and solidifies the vocabulary those conversations need.

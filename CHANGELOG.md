@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+- Optional practice reminders, at the times you usually practice or at times you set, as many a day as you like.
+
 ## 9.1.2 — 2026-10-28
 
 - The iPhone app gets 9.1.1's Home changes too.

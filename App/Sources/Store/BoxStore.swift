@@ -14,7 +14,7 @@ import WidgetKit
 /// returns, for the caller that waits on the write or its error. Atomic writes.
 ///
 /// The widget's snapshot is built and written here too, beside the box, and its timeline
-/// reloaded once it is on disk.
+/// reloaded once it is on disk; the practice reminders are re-posted from the same save.
 actor BoxStore {
     private struct Waiting {
         let state: BoxState
@@ -85,8 +85,16 @@ actor BoxStore {
         waiting = [:]
         for (target, save) in due {
             if save.scope.writesBox { try write(save.box, target: target) }
-            if save.scope.writesSnapshots { writeWidgetSnapshot(state: save.state, at: save.at) }
+            if save.scope.writesSnapshots {
+                writeWidgetSnapshot(state: save.state, at: save.at)
+                replanReminders(state: save.state)
+            }
         }
+    }
+
+    /// Posts the practice reminders for `state`, planned over every language's answers.
+    func replanReminders(state: BoxState) {
+        ReminderStanding.replan(state: state, boxes: everyLanguage())
     }
 
     /// The export's text — `only`, or every language worth carrying, minus what belongs to

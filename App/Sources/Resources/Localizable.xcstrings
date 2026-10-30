@@ -5045,6 +5045,98 @@
         }
       }
     },
+    "reminder.body.due %lld" : {
+      "comment" : "Body of a practice reminder; %lld = words due by the time it goes off",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wort ist bereit zur Wiederholung."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wörter sind bereit zur Wiederholung."
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld word is ready for review."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld words are ready for review."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reminder.body.fresh" : {
+      "comment" : "Body of a practice reminder when nothing is due",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein paar Minuten mit deinen Wörtern?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A few minutes with your words?"
+          }
+        }
+      }
+    },
+    "reminder.channel" : {
+      "comment" : "Name of the reminder notifications in the system's notification settings",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungserinnerungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice Reminders"
+          }
+        }
+      }
+    },
+    "reminder.title" : {
+      "comment" : "Title of a practice reminder notification",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit für deine Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time for your words"
+          }
+        }
+      }
+    },
     "report.action" : {
       "comment" : "The menu entry a word grows, and the way back out of a report already filed.",
       "localizations" : {
@@ -6416,6 +6508,193 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Switching…"
+          }
+        }
+      }
+    },
+    "settings.reminders.add" : {
+      "comment" : "Button adding another reminder time",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Time"
+          }
+        }
+      }
+    },
+    "settings.reminders.hint.denied" : {
+      "comment" : "Shown when reminders are on but the system blocks the app's notifications",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen für Spross sind in den Systemeinstellungen aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications for Spross are off in the system settings."
+          }
+        }
+      }
+    },
+    "settings.reminders.hint.off" : {
+      "comment" : "Under the reminder choice while it is off",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Erinnerungen. Spross wartet, bis du es öffnest."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No reminders. Spross waits until you open it."
+          }
+        }
+      }
+    },
+    "settings.reminders.hint.paused" : {
+      "comment" : "Shown once ignored reminders have stopped themselves",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausiert nach einer Woche ohne Üben. Eine Antwort startet sie wieder."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused after a week without practice. One answer starts them again."
+          }
+        }
+      }
+    },
+    "settings.reminders.hint.set" : {
+      "comment" : "Under the reminder choice in its set-times mode, above the list of times",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu jeder Zeit unten, außer du hast seit der vorigen schon geübt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At each time below, unless you have practiced since the one before."
+          }
+        }
+      }
+    },
+    "settings.reminders.hint.usual" : {
+      "comment" : "Under the reminder choice in its learned mode",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurz vor den Zeiten, zu denen du sonst übst, gelernt aus den letzten vier Wochen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shortly before the times you usually practice, learned from the last four weeks."
+          }
+        }
+      }
+    },
+    "settings.reminders.option.off" : {
+      "comment" : "Reminder choice segment: no reminders",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        }
+      }
+    },
+    "settings.reminders.option.set" : {
+      "comment" : "Reminder choice segment: at times the learner picks",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feste Zeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Times"
+          }
+        }
+      }
+    },
+    "settings.reminders.option.usual" : {
+      "comment" : "Reminder choice segment: at the times the learner usually practices, learned",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie gewohnt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usual Times"
+          }
+        }
+      }
+    },
+    "settings.reminders.remove %@" : {
+      "comment" : "Accessibility label of the button removing one reminder time; %@ = the time",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove %@"
+          }
+        }
+      }
+    },
+    "settings.reminders.title" : {
+      "comment" : "Settings heading over the reminder choice",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erinnerungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reminders"
           }
         }
       }

@@ -112,6 +112,27 @@ internal object ChromeDe : Chrome {
     override val settingsAudioSaysMeaning = "Bedeutung mitsprechen"
     override val settingsAudioSaysMeaningHint = "Jede Karte sagt das Wort und seine " +
         "Bedeutung in deiner Sprache."
+    override val settingsRemindersTitle = "Erinnerungen"
+    override val settingsRemindersOptionOff = "Aus"
+    override val settingsRemindersOptionUsual = "Wie gewohnt"
+    override val settingsRemindersOptionSet = "Feste Zeiten"
+    override val settingsRemindersHintOff = "Keine Erinnerungen. Spross wartet, bis du es " +
+        "öffnest."
+    override val settingsRemindersHintUsual = "Kurz vor den Zeiten, zu denen du sonst übst, " +
+        "gelernt aus den letzten vier Wochen."
+    override val settingsRemindersHintSet = "Zu jeder Zeit unten, außer du hast seit der " +
+        "vorigen schon geübt."
+    override val settingsRemindersHintPaused = "Pausiert nach einer Woche ohne Üben. Eine " +
+        "Antwort startet sie wieder."
+    override val settingsRemindersHintDenied = "Mitteilungen für Spross sind in den " +
+        "Systemeinstellungen aus."
+    override val settingsRemindersAdd = "Zeit hinzufügen"
+    override val settingsRemindersRemove = "%s entfernen"
+    override val reminderChannel = "Übungserinnerungen"
+    override val reminderTitle = "Zeit für deine Wörter"
+    override val reminderBodyDue = "%d Wörter sind bereit zur Wiederholung."
+    override val reminderBodyDueOne = "%d Wort ist bereit zur Wiederholung."
+    override val reminderBodyFresh = "Ein paar Minuten mit deinen Wörtern?"
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
     override val creditsRecordingsOne = "%d Aufnahme"

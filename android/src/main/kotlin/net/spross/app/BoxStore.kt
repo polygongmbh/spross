@@ -23,9 +23,14 @@ import net.spross.kern.store.StoredBoxes
  * it returns, for the caller that may not outlive a queued write.
  *
  * The widget's snapshot is built and written here too, beside the box, and [redrawWidget]
- * tells the placed tiles once it is on disk (`docs/snapshots.md`).
+ * tells the placed tiles once it is on disk (`docs/snapshots.md`);
+ * [replanReminders] re-arms the practice reminders from the same save.
  */
-class BoxStore(val files: BoxFiles, private val redrawWidget: suspend () -> Unit) {
+class BoxStore(
+    val files: BoxFiles,
+    private val replanReminders: (BoxState) -> Unit = {},
+    private val redrawWidget: suspend () -> Unit,
+) {
 
     private class Waiting(val state: BoxState, val box: StoredBox, val scope: SaveScope, val at: Long)
 
@@ -113,6 +118,7 @@ class BoxStore(val files: BoxFiles, private val redrawWidget: suspend () -> Unit
         if (save.scope.writesSnapshots) {
             files.writeWidgetSnapshot(widgetSnapshot(save.state, save.at))
             writer.launch { redrawWidget() }
+            replanReminders(save.state)
         }
     }
 

@@ -128,6 +128,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         // why: nothing can say this language — a row whose every option is silence is not a
         // choice, and the two "on" segments would both promise a sound that cannot be made.
         if (!audioSources.silent) Panel { ReadAloudSetting(model, box.joinStamp.target) }
+        Panel { ReminderSetting(model) }
         Panel {
             BackupSetting(model, catalog, box.joinStamp.target)
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {

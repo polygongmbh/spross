@@ -16,6 +16,8 @@ import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
+import net.spross.app.reminder.ReminderStanding
+import net.spross.app.reminder.ReminderStore
 import net.spross.app.widget.WordWidget
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
@@ -27,6 +29,7 @@ import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.countryDrillContent
 import net.spross.kern.catalog.dateDrillContent
 import net.spross.kern.model.JoinStamp
+import net.spross.kern.reminder.ReminderMode
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
@@ -37,9 +40,16 @@ import net.spross.kern.store.StoreFormatException
 
 class AppModel(app: Application) : AndroidViewModel(app) {
 
-    internal val store = BoxStore(BoxFiles(File(app.filesDir, "box"))) { WordWidget.refresh(app) }
+    internal val store: BoxStore = BoxStore(
+        BoxFiles(File(app.filesDir, "box")),
+        redrawWidget = { WordWidget.refresh(app) },
+        replanReminders = { reminders.replan(it, store.everyLanguage(), now(), tz()) },
+    )
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     internal val profile = ProfileStore(prefs)
+
+    /** The practice reminders the learner chose, re-armed on every save of the box. */
+    val reminders = ReminderStanding(app, ReminderStore(prefs))
 
     /**
      * What to call the learner, or null where no name was given — what the greeting knows
@@ -166,6 +176,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     // and a second reading of the clock is how two of them end up disagreeing.
     internal fun now(): Long = System.currentTimeMillis()
     internal fun tz(): String = TimeZone.getDefault().id
+
+    /** Takes the learner's reminder choice and arms it at once, without waiting for the next save. */
+    fun chooseReminders(mode: ReminderMode, setMinutes: List<Int>) {
+        reminders.choose(mode, setMinutes, now())
+        replanReminders()
+    }
+
+    /** why: on every return, so a day that has turned since the last save drops what it already answered. */
+    fun replanReminders() {
+        val state = box ?: return
+        viewModelScope.launch(Dispatchers.IO) { reminders.replan(state, store.everyLanguage(), now(), tz()) }
+    }
 
     /** How a surface outside this file changes what is on screen — the screen stays the model's. */
     internal fun navigate(to: Screen) {

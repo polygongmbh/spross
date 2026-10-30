@@ -110,6 +110,26 @@ internal object ChromeEn : Chrome {
     override val settingsAudioSaysMeaning = "Say the Meaning Too"
     override val settingsAudioSaysMeaningHint = "Every card says the word and its meaning in " +
         "your language."
+    override val settingsRemindersTitle = "Reminders"
+    override val settingsRemindersOptionOff = "Off"
+    override val settingsRemindersOptionUsual = "Usual Times"
+    override val settingsRemindersOptionSet = "Set Times"
+    override val settingsRemindersHintOff = "No reminders. Spross waits until you open it."
+    override val settingsRemindersHintUsual = "Shortly before the times you usually " +
+        "practice, learned from the last four weeks."
+    override val settingsRemindersHintSet = "At each time below, unless you have practiced " +
+        "since the one before."
+    override val settingsRemindersHintPaused = "Paused after a week without practice. One " +
+        "answer starts them again."
+    override val settingsRemindersHintDenied = "Notifications for Spross are off in the " +
+        "system settings."
+    override val settingsRemindersAdd = "Add Time"
+    override val settingsRemindersRemove = "Remove %s"
+    override val reminderChannel = "Practice Reminders"
+    override val reminderTitle = "Time for your words"
+    override val reminderBodyDue = "%d words are ready for review."
+    override val reminderBodyDueOne = "%d word is ready for review."
+    override val reminderBodyFresh = "A few minutes with your words?"
     override val creditsTitle = "Legal & Licenses"
     override val creditsRecordings = "%d recordings"
     override val creditsRecordingsOne = "%d recording"

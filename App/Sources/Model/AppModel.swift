@@ -298,6 +298,16 @@ final class AppModel {
         // why: a voice installed in Settings while the app slept can make the
         // box audible; nothing else that moves the box changes this answer.
         refreshAudibility()
+        // why: a day turned since the last save drops what it already answered,
+        // and a permission changed in the system settings shows on the row.
+        replanReminders()
+        Task { await ReminderStanding.shared.refreshAllowed() }
+    }
+
+    /// Re-posts the practice reminders from the box standing now.
+    func replanReminders() {
+        guard let box else { return }
+        Task { await store.replanReminders(state: box) }
     }
 
     // MARK: - Persistence & stats
