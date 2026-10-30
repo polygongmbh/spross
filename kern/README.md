@@ -312,6 +312,10 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Hearing a word does not introduce it --
   `ListeningRun` holds no `BoxState` at all.
   The pool, the ladder, the deal, the beats and the bedtime fade are `../docs/listening.md`.
+- **Reminders are opt-in and minted here** (`net.spross.kern.reminder.Reminders`) --
+  at the learner's set times or the times they habitually start practicing, several a day where they practice several times;
+  a reminder already answered is dropped, and ignored ones thin out and then stop.
+  The platform reposts `Reminders.plan` on every save.
 - **Leniency is safe only to the extent the catalog can disprove it.**
   The typo budget forgives a slip,
   and `CatalogAnswerGrader` withdraws that credit wherever the typed form
