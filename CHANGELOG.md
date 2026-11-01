@@ -4,8 +4,10 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.2.0 — 2026-11-01
+
+- Reviews of a word you know now take turns showing it, playing it aloud and asking for it from your own language.
 - Optional practice reminders, at the times you usually practice or at times you set, as many a day as you like.
-- Once a word has landed, its reviews take turns reading it, hearing it and saying it from your own language, and a word you read is never offered the "can't listen" link.
 
 ## 9.1.2 — 2026-10-28
 
