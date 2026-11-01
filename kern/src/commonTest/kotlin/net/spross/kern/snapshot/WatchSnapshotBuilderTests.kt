@@ -76,7 +76,7 @@ class WatchSnapshotBuilderTests {
             state,
             Box.sched(
                 "wf", phase = CardPhase.Review, stability = 10.0,
-                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2,
+                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 4,
             ),
         )
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()

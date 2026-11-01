@@ -56,11 +56,11 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 | recognition prompt | yes, at once | the prompted form (rotated synonym, not canonical) |
 | recognition reveal | yes, after chime | the meaning |
 | write-it-out | no | already said once |
-| produce prompt, asked by meaning | yes, at once | the meaning |
-| produce prompt, asked by ear | yes, at once | the target word |
-| produce correct | yes, after chime; the flip waits for it | the target word, or the meaning on a card asked by ear |
+| produce prompt | yes, at once | the meaning |
+| hear prompt | yes, at once | the target word |
+| produce or hear correct | yes, after chime; the flip waits for it | the target word, or the meaning on a hear card |
 | near miss (typo, other form) | yes, after chime | the correction box form |
-| produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
+| produce or hear revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a hear card |
 | trainer drill prompt (bare numeral, clock) | no | the reading IS the answer |
 | reversed numbers prompt (the reading) | yes, at once; not again after the verdict | the reading |
 | drill prompt in learning language (reversed run, opposites) | yes, at once | the form on the card |
@@ -97,7 +97,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   every launch starts back at following the phone, on both phones.
 - **A card whose only content is a sound is dealt whenever the app itself is not muted.**
   The device's volume holds nothing back;
-  iOS's ring/silent switch cannot be read at all, so sound-prompted cards carry
+  iOS's ring/silent switch cannot be read at all, so hear cards carry
   "Can't listen right now?" on screen (`design.md`).
 - **A screen about to play words at a very low volume says so.**
   Review cards and drills while reading aloud is on, the letter drill and Listening always:

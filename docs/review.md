@@ -13,14 +13,17 @@ Neighbors: the schedule behind it `scheduling.md`, how a typed answer is graded 
   else in its citation with a marker for what that cannot show (`Lehrerin` → `teacher` ♀, `counterpart`).
   The reveal always shows the full family;
   the source-side reveal may show the source `teaches` informatively ("Amt / Verwaltung").
-- **Sound-prompted production** (`producePrompt`) answers whether a produce turn asks by sight or by ear.
-  Not a third role: a word asked from its sound is still produced,
-  so only the side the card asks FROM moves and one schedule still sees one kind of answer.
-  `Sound` needs the growing bar (`../kern/README.md` §5), because it WITHDRAWS the meaning rather than adding support,
-  plus the app's word that the form can be heard right now —
+- **Three turns** (`presentationRole`): Recognize reads the word, Hear only plays it, Produce asks for it from the meaning.
+  Recognize and Hear both go from the word to its meaning, by sight and by ear;
+  Produce is the one turn that asks for the word itself.
+  A word still landing alternates Recognize and Produce:
+  Hear WITHDRAWS the meaning rather than adding support,
+  and production practice is what builds speaking, so an early cycle keeps half of it.
+  Past the growing bar (`../kern/README.md` §5) the three cycle in equal thirds.
+  Hear needs the app's word that the form can be heard right now —
   no recording and no voice, reading aloud off, or a screen reader
-  each fall back to `Source` rather than putting up an empty card.
-- **A card asked by ear is answered with the MEANING** —
+  each ask that turn as Recognize rather than putting up an empty card.
+- **A hear card is answered with the MEANING** —
   the source-language word, graded against `session.meaningSide` (the same card with its two sides swapped,
   so the whole grading pipeline is reused) by the SOURCE language's own `AnswerNormalizer`.
   Hearing a word and writing it back down proves the ear worked and nothing else;
@@ -38,14 +41,14 @@ Neighbors: the schedule behind it `scheduling.md`, how a typed answer is graded 
   (`TurnState.promptInText`), and nothing else about the turn moves: same question, same answer, same rating.
   It lasts the turn, not a mode or a setting:
   the next card asked by ear asks by ear again, because the device's own audibility decides that.
-- **Recalled production** (`produceAnswer`) answers whether a produce turn is typed.
+- **Recalled turns** (`turnAnswer`) answer whether a produce or hear turn is typed.
   Writing the word is the strongest recall the box has and the only one that teaches the spelling,
   so a word that has not settled is always typed.
   Once settled, typing every produce turn mostly buys time spent typing:
   the breadth goal is better served by more words per minute,
-  so every other produce turn asks the same question with no field — recall, reveal, self-grade.
+  so every other such turn asks the same question with no field — recall, reveal, self-grade.
   Typing stays on the other half so the spelling keeps being written.
-  Not a third role: the question and its direction are unchanged, only the way the answer is given.
+  The question and its direction are unchanged, only the way the answer is given.
 - **Emoji cue** (`emojiCue`): WHEN the picture appears, never whether or where (that is the renderer's, and fixed).
   **Upfront** iff role == Produce and the word has not landed —
   a produce prompt already names the concept in the source language, so the picture supports recall without giving the answer away;

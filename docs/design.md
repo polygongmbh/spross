@@ -125,16 +125,16 @@ What licenses a second component is a parameter attempted and found not to carry
   where the target merges two source concepts.
   The card holds on the meaning it teaches.
   Only one hint on the card at a time.
-- **Sound-prompted production** for words past the growing bar:
+- **The hear turn** for words past the growing bar:
   prompt is the replay glyph, answer is the meaning in the known language.
-  Falls back to source prompt when the word cannot be heard.
-- **"Can't listen right now?"** under every sound-prompted card:
+  Asked as recognition when the word cannot be heard.
+- **"Can't listen right now?"** under every hear card:
   puts the word on the card as text for that turn.
   Same answer, same rating; only the channel moves.
 - **A produce miss keeps the field open for a retry.**
   The reveal trims to the words already right;
   finishing counts as recalled-with-help, giving up is an honest miss.
-  A card asked by ear has no retry: its miss shows the reveal and a Next button.
+  A hear card has no retry: its miss shows the reveal and a Next button.
 - **A missed word is written out once before the session moves on.**
   Encoding only, never a grade.
   Production and first exposures ask for it; recognition misses do not.

@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.AnswerControls.Confirm
 import net.spross.kern.session.AnswerControls.GiveUp
 import net.spross.kern.session.AnswerControls.Primary
@@ -47,7 +46,7 @@ class AnswerControlsTests {
 
     @Test
     fun aMissAskedByEarRetypesNothingAndGoesOnWithNext() {
-        val missed = TurnFixture.state(TurnFixture.produce(knife, ProducePrompt.Sound), TurnIntent.Submit("Hund")).controls
+        val missed = TurnFixture.state(TurnFixture.hear(knife), TurnIntent.Submit("Hund")).controls
         assertNull(missed.slot)
         assertEquals(GiveUp.Next, missed.giveUp)
     }
@@ -60,18 +59,10 @@ class AnswerControlsTests {
 
     @Test
     fun aCardAskedByEarOffersItsWordInWritingWhileItAsks() {
-        val asking = TurnFixture.produce(knife, ProducePrompt.Sound)
+        val asking = TurnFixture.hear(knife)
         assertTrue(asking.controls.cantListen)
         assertEquals(Slot.Typed("de"), asking.controls.slot, "the meaning is owed")
         assertFalse(TurnFixture.state(asking, TurnIntent.ShowPromptText).controls.cantListen)
-    }
-
-    /** The app deals the produce prompt per card, so a recognition turn can be handed the sound one. */
-    @Test
-    fun recognitionShowsItsWordAndOffersNoWayOutOfListening() {
-        val asking = TurnFixture.recognize(knife, prompt = ProducePrompt.Sound)
-        assertFalse(asking.controls.cantListen)
-        assertEquals(knife.target.text, asking.question.prompt.text)
     }
 
     @Test

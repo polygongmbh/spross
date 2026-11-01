@@ -3,8 +3,7 @@ package net.spross.kern.session
 import net.spross.kern.model.Card
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProduceAnswer
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TurnAnswer
 import net.spross.kern.model.Rating
 import net.spross.kern.model.counterpart
 
@@ -103,11 +102,10 @@ data class CopyStep(
 data class TurnState(
     /** The card under review: what is graded, and what a write-out copies. */
     val card: Card,
+    /** [PresentationRole.Hear] moves the answer to the SOURCE side: the card asks what it means. */
     val role: PresentationRole,
-    /** [ProducePrompt.Sound] moves the answer to the SOURCE side: the card asks what it means. [ProducePrompt.Source] on recognition. */
-    val prompt: ProducePrompt,
-    /** [ProduceAnswer.Recalled] puts no field on a produce turn: reveal and self-grade only. */
-    val answer: ProduceAnswer,
+    /** [TurnAnswer.Recalled] puts no field on a produce or hear turn: reveal and self-grade only. */
+    val answer: TurnAnswer,
     /** The form the prompt stands on — the rotated target form on recognize. */
     val promptForm: String,
     /** Which inflected form [promptForm] is; null for the citation form or a synonym. */
@@ -161,7 +159,7 @@ data class TurnState(
 
     /** The turn asks for the word in writing — what mounts the answer field. */
     val typesAnswer: Boolean
-        get() = role == PresentationRole.Produce && answer == ProduceAnswer.Typed
+        get() = role != PresentationRole.Recognize && answer == TurnAnswer.Typed
 
     /**
      * The word the card owes back is on screen and the turn is waiting on the learner:
@@ -181,7 +179,7 @@ data class TurnState(
      * produce card that was revealed.
      */
     val promptChars: Int
-        get() = if (role == PresentationRole.Recognize || prompt == ProducePrompt.Sound) {
+        get() = if (role != PresentationRole.Produce) {
             promptForm.length
         } else {
             card.source.text.length
@@ -193,14 +191,14 @@ data class TurnState(
      * a screen reader tag and a keyboard hint read it from.
      */
     val answerLang: String
-        get() = if (prompt == ProducePrompt.Sound) card.source.lang else card.target.lang
+        get() = if (role == PresentationRole.Hear) card.source.lang else card.target.lang
 
     /**
      * The form the turn owes back: the meaning on a card asked by ear, the target word
      * everywhere else, in the form the prompt asks for. What a miss reveals as the answer.
      */
     val answerText: String
-        get() = if (prompt == ProducePrompt.Sound) card.source.text else counterpart(card.target, promptTag).text
+        get() = if (role == PresentationRole.Hear) card.source.text else counterpart(card.target, promptTag).text
 
     /**
      * A miss keeps the field open for the retype — except on a card asked by ear, whose miss
@@ -208,7 +206,7 @@ data class TurnState(
      * the reveal stands alone and the one way on is [TurnIntent.GiveUp], an honest Again.
      */
     val retypes: Boolean
-        get() = feedback == TurnFeedback.Revealed && prompt != ProducePrompt.Sound
+        get() = feedback == TurnFeedback.Revealed && role != PresentationRole.Hear
 
     /**
      * The answer a report filed from this turn carries, given the [fieldText] standing now:

@@ -17,7 +17,7 @@ class PromptFormTests {
     private val profesor = Realization("es", "profesor", forms = listOf(TaggedForm(f, "profesora")))
 
     private fun prompts(card: Card, role: PresentationRole) =
-        (0..12).map { turnPrompt(card, role, ProducePrompt.Source, it) }.toSet()
+        (0..12).map { turnPrompt(card, role, it, arrived = false) }.toSet()
 
     @Test
     fun recognitionRotatesThroughTheTaggedForms() {

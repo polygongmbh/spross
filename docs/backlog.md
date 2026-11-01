@@ -18,6 +18,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Needs a decision
 
+- Research on the early role balance (2026-11-01) suggests a failed Produce be followed by Recognize rather than another Produce, which the count-based role cycle cannot see (`model/Presentation.kt` `presentationRole`) — worth reading the last answer for it?
 - A missed letter-name tile question opens its card although the tiles already mark the answer (`DrillRunProgress.showsAnswer`) —
   keep it closed there, as iOS once did?
 - The repo grants nobody anything —

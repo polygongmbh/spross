@@ -7,8 +7,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.ProduceAnswer
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TurnAnswer
 import net.spross.kern.model.Rating
 
 /**
@@ -19,7 +18,7 @@ class TurnTest {
 
     @Test
     fun aRecalledTurnOnlyRevealsAndSelfGrades() {
-        val recalled = TurnFixture.produce(TurnFixture.knife, arrived = true, answer = ProduceAnswer.Recalled)
+        val recalled = TurnFixture.produce(TurnFixture.knife, arrived = true, answer = TurnAnswer.Recalled)
         assertNull(recalled.controls.slot)
         assertEquals(AnswerControls.Primary.Reveal, recalled.controls.primary)
         assertEquals(TurnFeedback.Neutral, TurnFixture.state(recalled, TurnIntent.InputChanged("kisu")).feedback)
@@ -414,5 +413,5 @@ class TurnTest {
 
     /** The sound-prompted produce turn: "gari" played, nothing on screen. */
     private fun byEar(card: Card = TurnFixture.car): TurnState =
-        TurnFixture.produce(card, prompt = ProducePrompt.Sound)
+        TurnFixture.hear(card)
 }

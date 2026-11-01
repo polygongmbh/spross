@@ -200,7 +200,8 @@ object WatchSnapshotBuilder {
 
     private fun entry(sched: CardScheduling, card: Card, arrived: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
-        val nextRole = presentationRole(card.id, reviewCount)
+        // The watch plays nothing, so a hear turn falls back to recognition as on a silent phone.
+        val nextRole = presentationRole(card.id, reviewCount, arrived, audible = false)
         val cue = emojiCue(nextRole, arrived)
         return WatchEntryDto(
             cardId = card.id,
@@ -216,9 +217,9 @@ object WatchSnapshotBuilder {
             due = sched.due!!.toEpochMilliseconds(),
             nextRole = when (nextRole) {
                 PresentationRole.Produce -> "produce"
-                PresentationRole.Recognize -> "recognize"
+                PresentationRole.Recognize, PresentationRole.Hear -> "recognize"
             },
-            promptForm = recognitionPromptForm(card, reviewCount),
+            promptForm = recognitionPromptForm(card, reviewCount, arrived),
         )
     }
 }

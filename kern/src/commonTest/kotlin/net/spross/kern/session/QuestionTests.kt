@@ -8,7 +8,6 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.PluralForm
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.TaggedForm
 
 class QuestionTests {
@@ -56,7 +55,7 @@ class QuestionTests {
 
     @Test
     fun aCardAskedByEarShowsTheSoundUntilNothingIsLeftToWithhold() {
-        val asking = TurnFixture.produce(knife, ProducePrompt.Sound)
+        val asking = TurnFixture.hear(knife)
         assertEquals(Question.Form.Sound, asking.question.prompt.form)
         assertNull(asking.question.prompt.text)
         assertEquals("Messer", asking.question.answer.text)
@@ -74,7 +73,7 @@ class QuestionTests {
         val turns = listOf(
             TurnFixture.recognize(knife),
             TurnFixture.produce(knife),
-            TurnFixture.produce(knife, ProducePrompt.Sound),
+            TurnFixture.hear(knife),
         ).flatMap { listOf(it, TurnFixture.state(it, TurnIntent.Reveal)) }
         for (turn in turns) {
             val reading = turn.reading(saysMeaning = false)

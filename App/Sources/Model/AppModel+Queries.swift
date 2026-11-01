@@ -40,10 +40,14 @@ extension AppModel {
         box?.scheduling[cardID]
     }
 
-    /// How this card's NEXT review is presented (alternating, per log count).
-    func presentationRole(for cardID: String) -> PresentationRole {
-        SprossKern.presentationRole(cardId: cardID,
-                                    reviewCount: scheduling(for: cardID)?.reviewCount ?? 0)
+    /// How this card's NEXT review is presented (the role cycle, per log count).
+    /// A turn on screen keeps the role it began with (`TurnState.role`):
+    /// audibility can change under a card.
+    func presentationRole(for card: Card) -> PresentationRole {
+        SprossKern.presentationRole(cardId: card.id,
+                                    reviewCount: scheduling(for: card.id)?.reviewCount ?? 0,
+                                    arrived: hasArrived(card.id),
+                                    audible: isAudible(card))
     }
 
     /// Whether this card has never been answered — the review that TEACHES the
@@ -59,11 +63,11 @@ extension AppModel {
         return BoxEngine.shared.hasArrived(state: box, cardId: cardID)
     }
 
-    /// Whether a produce review of this card is typed or recalled: a word past the
+    /// Whether a produce or hear review of this card is typed or recalled: a word past the
     /// settled bar is typed only every other time (contract §3).
-    func produceAnswer(for cardID: String) -> ProduceAnswer {
+    func turnAnswer(for cardID: String) -> TurnAnswer {
         let settled = box.map { BoxEngine.shared.hasSettled(state: $0, cardId: cardID) } ?? false
-        return SprossKern.produceAnswer(cardId: cardID,
+        return SprossKern.turnAnswer(cardId: cardID,
                                         reviewCount: Int32(scheduling(for: cardID)?.reviewCount ?? 0),
                                         settled: settled)
     }
@@ -78,14 +82,15 @@ extension AppModel {
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {
-        SprossKern.emojiCue(role: presentationRole(for: card.id),
+        SprossKern.emojiCue(role: presentationRole(for: card),
                                   arrived: hasArrived(card.id))
     }
 
     /// The form a turn asks with, and which inflected form it is (`turnPrompt`).
-    func promptForm(for card: Card, role: PresentationRole, prompt: ProducePrompt) -> PromptForm {
-        SprossKern.turnPrompt(card: card, role: role, prompt: prompt,
-                              reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
+    func promptForm(for card: Card, role: PresentationRole) -> PromptForm {
+        SprossKern.turnPrompt(card: card, role: role,
+                              reviewCount: scheduling(for: card.id)?.reviewCount ?? 0,
+                              arrived: hasArrived(card.id))
     }
 
     /// Typed-answer grader for the profile's target (produce only).

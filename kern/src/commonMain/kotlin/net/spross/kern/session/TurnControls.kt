@@ -1,6 +1,6 @@
 package net.spross.kern.session
 
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.PresentationRole
 import net.spross.kern.session.AnswerControls.Confirm
 import net.spross.kern.session.AnswerControls.GiveUp
 import net.spross.kern.session.AnswerControls.Primary
@@ -9,13 +9,13 @@ import net.spross.kern.session.AnswerControls.Slot
 /**
  * What stands under the review card:
  * - the write-out owns the turn while it is open;
- * - recognition and a recalled production are never typed: one reveal, then the three verdicts;
- * - other production is typed, and a blank reveal hands the turn to the verdicts too;
+ * - recognition and a recalled production or hearing are never typed: one reveal, then the three verdicts;
+ * - other production and hearing are typed, and a blank reveal hands the turn to the verdicts too;
  * - a miss keeps the field open for the retype, with a quiet skip beside it —
- *   except a miss asked by ear, which retypes nothing and goes on with one Next;
+ *   except a hear miss, which retypes nothing and goes on with one Next;
  * - a near miss holds on its correction until tapped, a clean answer and a finished retype
  *   only where no beat may run;
- * - while a card asked by ear is still asking, the learner who cannot listen may have it in writing.
+ * - while a hear card is still asking, the learner who cannot listen may have it in writing.
  */
 val TurnState.controls: AnswerControls
     get() {
@@ -32,7 +32,7 @@ val TurnState.controls: AnswerControls
             )
             !typesAnswer -> AnswerControls(
                 slot = null, fieldFeedback = feedback, primary = Primary.Reveal, confirm = null, giveUp = null,
-                cantListen = prompt == ProducePrompt.Sound && !promptInText,
+                cantListen = role == PresentationRole.Hear && !promptInText,
             )
             feedback == TurnFeedback.Revealed && !retypes -> AnswerControls(
                 slot = null, fieldFeedback = feedback, primary = null, confirm = null, giveUp = GiveUp.Next,
@@ -48,7 +48,7 @@ val TurnState.controls: AnswerControls
                     TurnFeedback.Revealed -> Confirm.WhenNoBeat.takeIf { retryApproved }
                 },
                 giveUp = GiveUp.Skip.takeIf { feedback == TurnFeedback.Revealed },
-                cantListen = prompt == ProducePrompt.Sound && !promptInText && feedback == TurnFeedback.Neutral,
+                cantListen = role == PresentationRole.Hear && !promptInText && feedback == TurnFeedback.Neutral,
             )
         }
     }

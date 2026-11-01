@@ -10,7 +10,6 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.turnPrompt
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
@@ -66,7 +65,6 @@ class TurnWiringTest {
     private fun turn(
         card: Card,
         role: PresentationRole = PresentationRole.Produce,
-        prompt: ProducePrompt = ProducePrompt.Source,
         arrived: Boolean = false,
         firstExposure: Boolean = false,
         platform: Platform = Platform(),
@@ -81,8 +79,7 @@ class TurnWiringTest {
         val start = machine.begin(
             card = card,
             role = role,
-            prompt = prompt,
-            promptForm = turnPrompt(card, role, prompt, reviewCount = 0),
+            promptForm = turnPrompt(card, role, reviewCount = 0, arrived = arrived),
             firstExposure = firstExposure,
             arrived = arrived,
             nowEpochMillis = T0,
@@ -223,7 +220,7 @@ class TurnWiringTest {
     @Test
     fun aHoldThatWaitsForATapGivesTheKeyboardBack() {
         // Asked by ear, so the answer is the MEANING — and the slip is graded in German.
-        val (flow, platform) = turn(car, prompt = ProducePrompt.Sound)
+        val (flow, platform) = turn(car, role = PresentationRole.Hear, arrived = true)
         flow.type("Ato")
         flow.primary()
 
@@ -237,7 +234,7 @@ class TurnWiringTest {
     /** "Can't listen right now?": the word goes on screen, and the answer is unchanged. */
     @Test
     fun theWordGoesOnScreenWhereTheLearnerCannotListen() {
-        val (flow, platform) = turn(car, prompt = ProducePrompt.Sound)
+        val (flow, platform) = turn(car, role = PresentationRole.Hear, arrived = true)
         assertFalse(flow.promptInText)
         flow.showPromptText()
 

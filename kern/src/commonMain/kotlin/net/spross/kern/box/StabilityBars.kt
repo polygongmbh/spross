@@ -4,7 +4,7 @@ package net.spross.kern.box
  * Days of stability at which a card has ARRIVED ([Statistics.hasArrived]) — gate (a), read by
  * every rule that asks whether a word has landed enough to lean on: phrase
  * unlock (see [Growth.isComponentStable]), the drill
- * pools, [net.spross.kern.model.producePrompt] (which WITHDRAWS the meaning),
+ * pools, [net.spross.kern.model.presentationRole]'s hear turn (which WITHDRAWS the meaning),
  * and [net.spross.kern.model.emojiCue] (which ADDS support). The stats
  * display, the settled badge, and the day tallies read a stricter, later bar
  * instead ([SETTLED_STABILITY]).
@@ -27,7 +27,7 @@ const val GROWING_STABILITY: Double = 6.0
  * Days of stability at which a card counts as settled ([Statistics.hasSettled]).
  * Gates no support or unlock: it backs the counts, the badge, the area-complete mark,
  * the word scramble's pool, what [Briefing] hands over as known,
- * and the produce turns answered without typing ([net.spross.kern.model.produceAnswer]).
+ * and the produce and hear turns answered without typing ([net.spross.kern.model.turnAnswer]).
  *
  * Above two plain Goods (S ≈ 17), at or below Good then Easy (S ≈ 29.8):
  * reinforcement alone never settles a word, one fast answer has to.
