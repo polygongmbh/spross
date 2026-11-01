@@ -1,15 +1,22 @@
 package net.spross.kern.model
 
 /**
- * How a card's next review is PRESENTED. Both roles feed the single FSRS
+ * How a card's next review is PRESENTED. Every role feeds the single FSRS
  * schedule — presentation never touches scheduling state.
  */
 enum class PresentationRole {
     /** Source prompt → typed target answer. */
     Produce,
 
-    /** Target prompt → flip + self-grade (never typed). */
+    /** Target prompt in writing → flip + self-grade (never typed). */
     Recognize,
+
+    /**
+     * The target word SPOKEN, and nothing on screen: the learner gives what it MEANS,
+     * typed in the source language or recalled ([turnAnswer]). Writing back the word that played
+     * would prove the ear worked and nothing else — understanding it is what the turn asks.
+     */
+    Hear,
 }
 
 /**
@@ -21,64 +28,31 @@ enum class PresentationRole {
  * teaches the meaning, self-graded.
  * The SECOND review (count 1) is ALWAYS production — the word
  * has been seen once, now attempt it (ruling 2026-07-22: "returns the same
- * session as production"). Thereafter roles alternate per review with a stable
- * per-card phase offset (the parity of [fnv1a64] over the card id) so the
- * box does not flip in sync.
+ * session as production").
+ *
+ * Thereafter a word still landing alternates Recognize and Produce; one that has
+ * [arrived] ([net.spross.kern.box.GROWING_STABILITY]) cycles Recognize, Produce, Hear —
+ * asking by ear WITHDRAWS the meaning, which a word still landing cannot spare.
+ * [audible] is the device's word (a recording, a voice, and reading aloud switched on);
+ * false turns that Hear into Recognize, the same question by sight, so nothing is ever
+ * hidden behind a silent phone. A stable per-card phase offset ([fnv1a64] over the card id)
+ * keeps the box from turning in sync.
  */
-fun presentationRole(cardId: String, reviewCount: Int): PresentationRole {
+fun presentationRole(cardId: String, reviewCount: Int, arrived: Boolean, audible: Boolean): PresentationRole {
     if (reviewCount == 0) return PresentationRole.Recognize
     if (reviewCount == 1) return PresentationRole.Produce
-    val flip = (reviewCount + (fnv1a64(cardId) % 2uL).toInt()) % 2 == 1
-    return if (flip) PresentationRole.Recognize else PresentationRole.Produce
+    val cycle = roleCycle(arrived)
+    val role = CYCLE[(reviewCount + (fnv1a64(cardId) % cycle.toULong()).toInt()) % cycle]
+    return if (role == PresentationRole.Hear && !audible) PresentationRole.Recognize else role
 }
 
-/** What a produce turn PROMPTS with — the answer it asks for is the same either way. */
-enum class ProducePrompt {
-    /** The known-language word. */
-    Source,
+private val CYCLE = listOf(PresentationRole.Produce, PresentationRole.Recognize, PresentationRole.Hear)
 
-    /**
-     * The target word SPOKEN, and nothing on screen: the learner writes what it MEANS,
-     * in the source language. Writing back the word that played would prove the ear
-     * worked and nothing else — translating it is what the box is for.
-     */
-    Sound,
-}
+/** How many reviews one turn of the role cycle spans: two while the word lands, three once it has. */
+internal fun roleCycle(arrived: Boolean): Int = if (arrived) 3 else 2
 
-/**
- * When a produce review asks by ear instead of by sight.
- *
- * Not a third [PresentationRole]: a word
- * asked from its sound is still being produced — only the side the card asks FROM moves, so
- * one FSRS schedule still sees one kind of answer. The answer moves with it: the meaning is
- * what is owed back, because a word heard and written down again has been transcribed, not
- * understood.
- *
- * Two gates and a rotation. [arrived]
- * ([net.spross.kern.box.GROWING_STABILITY]) is the same bar
- * [emojiCue] reads, from the other side: a word that has landed can spare its meaning,
- * and one still landing must not have its only cue taken away. [audible]
- * is the device's word (a recording, a voice, and reading aloud switched on), and false
- * falls back to the source prompt rather than blocking: review has another way to ask the
- * same question, so nothing is ever hidden behind a silent phone.
- *
- * The rotation divides the count by two, as [recognitionPromptForm] does — roles alternate
- * per review, so `reviewCount % 2` is CONSTANT across one card's produce turns and would
- * make a card sound-prompted forever or never.
- */
-fun producePrompt(
-    cardId: String,
-    reviewCount: Int,
-    arrived: Boolean,
-    audible: Boolean,
-): ProducePrompt {
-    if (!arrived || !audible) return ProducePrompt.Source
-    val offset = (fnv1a64("$cardId|sound") % 2uL).toInt()
-    return if ((reviewCount / 2 + offset) % 2 == 0) ProducePrompt.Sound else ProducePrompt.Source
-}
-
-/** How a produce turn is ANSWERED — the question it asks is the same either way. */
-enum class ProduceAnswer {
+/** How a typed-or-recalled turn — production, hearing — is ANSWERED; the question it asks is the same either way. */
+enum class TurnAnswer {
     /** Written out in the field and graded. */
     Typed,
 
@@ -87,41 +61,43 @@ enum class ProduceAnswer {
 }
 
 /**
- * Whether a produce review asks for the word in writing.
+ * Whether a produce or hear review asks for the answer in writing.
  *
  * A word that has not [settled] ([net.spross.kern.box.SETTLED_STABILITY]) is always typed:
  * writing it is the strongest recall the box has, and the one that teaches the spelling.
- * Past that bar every other produce turn is recalled instead, so a word the learner has
+ * Past that bar every other such turn is recalled instead, so a word the learner has
  * long known costs a glance rather than a sentence of typing, and still gets written
  * often enough to keep its spelling. A lapse drops it under the bar, back to typing.
  *
- * Rotates on `reviewCount / 2` for [producePrompt]'s reason, with its own per-card offset.
+ * Rotates once per turn of the three-role cycle (a settled word has arrived), with its own per-card offset,
+ * so a role's consecutive turns alternate.
  */
-fun produceAnswer(cardId: String, reviewCount: Int, settled: Boolean): ProduceAnswer {
-    if (!settled) return ProduceAnswer.Typed
+fun turnAnswer(cardId: String, reviewCount: Int, settled: Boolean): TurnAnswer {
+    if (!settled) return TurnAnswer.Typed
     val offset = (fnv1a64("$cardId|recall") % 2uL).toInt()
-    return if ((reviewCount / 2 + offset) % 2 == 0) ProduceAnswer.Recalled else ProduceAnswer.Typed
+    return if ((reviewCount / roleCycle(arrived = true) + offset) % 2 == 0) TurnAnswer.Recalled else TurnAnswer.Typed
 }
 
 /**
  * The target form to PROMPT on a recognition review — [turnPrompt]'s, without its tag.
  * `accepts` never rotates (accept-only).
  */
-fun recognitionPromptForm(card: Card, reviewCount: Int): String =
-    turnPrompt(card, PresentationRole.Recognize, ProducePrompt.Source, reviewCount).text
+fun recognitionPromptForm(card: Card, reviewCount: Int, arrived: Boolean): String =
+    turnPrompt(card, PresentationRole.Recognize, reviewCount, arrived).text
 
-/** The member of [forms] that review [reviewCount] of [cardId] shows, by [turnPrompt]'s rotation. */
-fun rotatedForm(cardId: String, forms: List<String>, reviewCount: Int): String = rotated(cardId, forms, reviewCount)
+/** The member of [forms] that review [reviewCount] of [cardId] shows, rotating once per two reviews. */
+fun rotatedForm(cardId: String, forms: List<String>, reviewCount: Int): String =
+    rotated(cardId, forms, reviewCount, arrived = false)
 
 /**
  * Rotates deterministically at zero extra scheduling cost: the first exposure takes the first item,
- * afterwards the index advances once per review of the role (roles alternate, so `reviewCount / 2`
- * is parity-independent), offset per card by the id hash.
+ * afterwards the index advances once per turn of the role cycle ([roleCycle]), so a role's
+ * consecutive prompts step through every item, offset per card by the id hash.
  */
-internal fun <T> rotated(cardId: String, items: List<T>, reviewCount: Int): T {
+internal fun <T> rotated(cardId: String, items: List<T>, reviewCount: Int, arrived: Boolean): T {
     if (items.size == 1 || reviewCount == 0) return items.first()
     val offset = (fnv1a64(cardId) % items.size.toULong()).toInt()
-    return items[(reviewCount / 2 + offset) % items.size]
+    return items[(reviewCount / roleCycle(arrived) + offset) % items.size]
 }
 
 /** WHEN the picture is shown. Where it sits is the renderer's business and never moves. */
@@ -188,36 +164,21 @@ enum class PronunciationCue {
 
 /**
  * Pronunciation policy — the audio twin of [emojiCue], and the ONE rule both apps
- * consume rather than re-deriving `role == Recognize` each in their own way.
- * Recognition prompts the target itself, so hearing it teaches; production asks for
- * that very form, so the word waits for the reveal — unless the SOUND is the prompt
- * ([ProducePrompt.Sound]), where holding it back would leave the card asking nothing.
+ * consume rather than re-deriving the role each in their own way.
+ * Recognition prompts the target itself, so hearing it teaches, and a hear turn's sound
+ * IS its prompt; production asks for that very form, so the word waits for the reveal.
  */
-fun pronunciationCue(
-    role: PresentationRole,
-    prompt: ProducePrompt = ProducePrompt.Source,
-): PronunciationCue =
-    if (role == PresentationRole.Recognize || prompt == ProducePrompt.Sound) {
-        PronunciationCue.Upfront
-    } else {
-        PronunciationCue.OnReveal
-    }
+fun pronunciationCue(role: PresentationRole): PronunciationCue =
+    if (role == PresentationRole.Produce) PronunciationCue.OnReveal else PronunciationCue.Upfront
 
 /**
  * WHEN the learner's own side — the meaning — is said: the mirror of [pronunciationCue].
- * A produce card asked by meaning says it as the question, which gives nothing away;
+ * A produce card says it as the question, which gives nothing away;
  * everywhere else the meaning is what the card reveals, so it waits for the reveal.
  * Each side is said once, so every card pairs the word with its meaning.
  */
-fun meaningCue(
-    role: PresentationRole,
-    prompt: ProducePrompt = ProducePrompt.Source,
-): PronunciationCue =
-    if (role == PresentationRole.Produce && prompt == ProducePrompt.Source) {
-        PronunciationCue.Upfront
-    } else {
-        PronunciationCue.OnReveal
-    }
+fun meaningCue(role: PresentationRole): PronunciationCue =
+    if (role == PresentationRole.Produce) PronunciationCue.Upfront else PronunciationCue.OnReveal
 
 /**
  * FNV-1a 64-bit over UTF-8

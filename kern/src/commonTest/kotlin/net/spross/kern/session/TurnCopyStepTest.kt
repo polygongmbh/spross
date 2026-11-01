@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 
 /**
@@ -120,21 +119,6 @@ class TurnCopyStepTest {
         val gone = TurnFixture.step(missed, TurnIntent.GiveUp)
         assertNull(gone.state.copyStep)
         assertEquals(listOf(TurnEffect.Answer(Rating.Again)), gone.effects)
-    }
-
-    @Test
-    fun aSoundPromptedMissIsWrittenOutLikeAnyOther() {
-        val revealed = TurnFixture.state(
-            TurnFixture.produce(TurnFixture.car, prompt = ProducePrompt.Sound),
-            TurnIntent.Reveal, TurnFixture.T0 + 2_000,
-        )
-        val opened = TurnFixture.step(revealed, TurnIntent.SelfGrade(SelfGrading.Verdict.Unknown))
-        assertEquals(Rating.Again, opened.state.copyStep?.pendingRating)
-        // Only the target is ever copied, so the played form is what stands to be written.
-        assertEquals(
-            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
-            TurnFixture.step(opened.state, TurnIntent.InputChanged("gari")).effects,
-        )
     }
 
     /** A produce card revealed without typing: the self-grade path, 3 s of recall spent. */

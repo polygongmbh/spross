@@ -38,8 +38,8 @@ fun TurnState.reading(saysMeaning: Boolean): Reading =
  * the meaning only where [saysMeaning], the learner's own side being opt-out.
  */
 fun TurnState.promptSaying(saysMeaning: Boolean): Saying? = when {
-    pronunciationCue(role, prompt) == PronunciationCue.Upfront -> targetSaying(promptForm)
-    saysMeaning && meaningCue(role, prompt) == PronunciationCue.Upfront -> Saying(card.source.text, card.source.lang)
+    pronunciationCue(role) == PronunciationCue.Upfront -> targetSaying(promptForm)
+    saysMeaning && meaningCue(role) == PronunciationCue.Upfront -> Saying(card.source.text, card.source.lang)
     else -> null
 }
 
@@ -55,7 +55,7 @@ fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
     if (!settled) return null
     val correction = (feedback as? TurnFeedback.Almost)?.correctForm
     return when {
-        pronunciationCue(role, prompt) == PronunciationCue.OnReveal -> targetSaying(correction ?: answerText)
+        pronunciationCue(role) == PronunciationCue.OnReveal -> targetSaying(correction ?: answerText)
         saysMeaning -> Saying(correction ?: counterpart(card.source, promptTag).text, card.source.lang)
         else -> null
     }

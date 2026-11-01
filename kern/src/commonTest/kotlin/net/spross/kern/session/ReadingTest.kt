@@ -3,7 +3,6 @@ package net.spross.kern.session
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
-import net.spross.kern.model.ProducePrompt
 
 class ReadingTest {
 
@@ -33,7 +32,7 @@ class ReadingTest {
 
     @Test
     fun aCardAskedByEarSaysTheMeaningItOwesBack() {
-        val asking = TurnFixture.produce(knife, ProducePrompt.Sound)
+        val asking = TurnFixture.hear(knife)
         assertEquals(Saying("kisu", "sw"), asking.promptSaying(saysMeaning = true))
         val revealed = TurnFixture.state(asking, TurnIntent.Reveal)
         assertEquals(Saying("Messer", "de"), revealed.answerSaying(saysMeaning = true))

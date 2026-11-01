@@ -2,8 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProduceAnswer
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TurnAnswer
 import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Rating
 
@@ -41,17 +40,14 @@ class TurnMachine(
     fun begin(
         card: Card,
         role: PresentationRole,
-        prompt: ProducePrompt,
         promptForm: PromptForm,
         firstExposure: Boolean,
         arrived: Boolean,
         nowEpochMillis: Long,
-        answer: ProduceAnswer = ProduceAnswer.Typed,
+        answer: TurnAnswer = TurnAnswer.Typed,
     ): TurnState = TurnState(
         card = card,
         role = role,
-        // why: the app deals the produce prompt per card, whatever the role; recognition always shows its word.
-        prompt = if (role == PresentationRole.Produce) prompt else ProducePrompt.Source,
         answer = answer,
         promptForm = promptForm.text,
         promptTag = promptForm.tag,
@@ -61,7 +57,7 @@ class TurnMachine(
         revealed = false,
         pendingRating = null,
         otherWord = null,
-        alsoMeans = grading.alsoMeans(card, role, prompt, promptForm.text),
+        alsoMeans = grading.alsoMeans(card, role, promptForm.text),
         retryApproved = false,
         copyStep = null,
         promptInText = false,
@@ -92,7 +88,7 @@ class TurnMachine(
         // is ever graded against a language it was not learned with. The write-out is the one
         // field it can carry, and that is reduced before this.
         state.role == PresentationRole.Recognize -> unchanged(state)
-        state.answer == ProduceAnswer.Recalled -> unchanged(state)
+        state.answer == TurnAnswer.Recalled -> unchanged(state)
         // The blank reveal handed the turn to the self-grade buttons; there is no field left.
         state.revealed -> unchanged(state)
         state.retypes -> approveRetry(state, text)
@@ -167,7 +163,7 @@ class TurnMachine(
             return unchanged(state)
         }
         // A recalled turn has no field, so its one action can only ever ask for the answer.
-        if (trimmed.isEmpty() || state.answer == ProduceAnswer.Recalled) return reveal(state, nowEpochMillis)
+        if (trimmed.isEmpty() || state.answer == TurnAnswer.Recalled) return reveal(state, nowEpochMillis)
         val graded = grading.grade(state, trimmed)
         // why: an answer borrowed from the concept next door is right and books as much, but
         // the word this card teaches has still not been said — so it holds on it (§3).
@@ -221,7 +217,7 @@ class TurnMachine(
      * grade. Idempotent, and inert on a card that was never asked by ear.
      */
     private fun showPromptText(state: TurnState): TurnReduction {
-        if (state.prompt != ProducePrompt.Sound || state.promptInText) return unchanged(state)
+        if (state.role != PresentationRole.Hear || state.promptInText) return unchanged(state)
         return TurnReduction(state.copy(promptInText = true), emptyList())
     }
 

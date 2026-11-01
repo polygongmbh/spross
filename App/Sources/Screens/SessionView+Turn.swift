@@ -81,17 +81,15 @@ extension SessionView {
         }
         let machine = TurnMachine(grader: grader, normalizer: normalizer,
                                   meaningNormalizer: meanings)
-        let role = model.presentationRole(for: card.id)
-        let prompt = model.producePrompt(for: card)
+        let role = model.presentationRole(for: card)
         self.machine = machine
         turn = machine.begin(card: card,
                              role: role,
-                             prompt: prompt,
-                             promptForm: model.promptForm(for: card, role: role, prompt: prompt),
+                             promptForm: model.promptForm(for: card, role: role),
                              firstExposure: model.isFirstExposure(card.id),
                              arrived: model.hasArrived(card.id),
                              nowEpochMillis: Date().epochMillis,
-                             answer: model.produceAnswer(for: card.id))
+                             answer: model.turnAnswer(for: card.id))
     }
 
     func resetCardState() {

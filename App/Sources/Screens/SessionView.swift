@@ -167,8 +167,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
     // MARK: - Card + controls
 
     private func cardContent(_ card: Card) -> some View {
-        let role = model.presentationRole(for: card.id)
-        return questionPage { question in
+        questionPage { question in
             // why: the input, the button and the keyboard share this
             // screen with the card — the picture goes beside the words.
             QuestionCardView(question: question, surface: .review, voice: model.cardVoice)
@@ -178,7 +177,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
                 // its correction stands even though the card never expands.
                 .contextMenu { if answerOut { cardMenu(card) } }
         } area: { controls in
-            if let line = Coaching.shared.promptLine(coaching: model.coachActive, role: role,
+            if let line = Coaching.shared.promptLine(coaching: model.coachActive, role: turn?.role,
                                                      revealed: revealed) {
                 Text(SessionCoach.key(line)).pauseLine()
             }

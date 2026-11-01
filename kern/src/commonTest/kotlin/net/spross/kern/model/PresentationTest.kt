@@ -2,19 +2,22 @@ package net.spross.kern.model
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
 /**
  * Presentation resolution: FNV-1a hash bit-exactness, first-exposure rule,
- * parity alternation, synonym rotation, emoji policy.
+ * the role cycle, synonym rotation, emoji policy.
  */
 class PresentationTest {
 
     private val produce = PresentationRole.Produce
     private val recognize = PresentationRole.Recognize
+    private val hear = PresentationRole.Hear
+
+    private fun role(id: String, count: Int, arrived: Boolean = false, audible: Boolean = true) =
+        presentationRole(id, count, arrived, audible)
 
     // Reference vectors for FNV-1a 64-bit over
     // UTF-8: offset 0xcbf29ce484222325, prime 0x100000001b3, wrapping multiply);
@@ -35,7 +38,7 @@ class PresentationTest {
     @Test
     fun firstExposureIsAlwaysRecognition() {
         for (id in listOf("w01", "w02", "kitchen/fridge", "alpha/mouse", "тест")) {
-            assertEquals(recognize, presentationRole(id, 0), "card: $id")
+            assertEquals(recognize, role(id, 0, arrived = true), "card: $id")
         }
     }
 
@@ -44,23 +47,43 @@ class PresentationTest {
         // Ruling 2026-07-22: after the teaching first exposure, the card returns
         // as production — for BOTH hash parities.
         for (id in listOf("w01", "w02", "kitchen/fridge", "alpha/mouse", "тест")) {
-            assertEquals(produce, presentationRole(id, 1), "card: $id")
+            assertEquals(produce, role(id, 1, arrived = true), "card: $id")
         }
     }
 
     @Test
-    fun rolesAlternateByReviewParityWithPerCardHashOffset() {
+    fun aWordStillLandingAlternatesRecognitionAndProduction() {
         // w01 (hash odd): recognition at even counts — a clean R/P alternation.
         assertEquals(
             listOf(recognize, produce, recognize, produce, recognize, produce),
-            (0..5).map { presentationRole("w01", it) },
+            (0..5).map { role("w01", it) },
         )
         // w02 (hash even): count 0 forced recognition, count 1 forced production;
         // from count 2 the parity rule recognizes at odd counts.
         assertEquals(
             listOf(recognize, produce, produce, recognize, produce, recognize),
-            (0..5).map { presentationRole("w02", it) },
+            (0..5).map { role("w02", it) },
         )
+    }
+
+    @Test
+    fun anArrivedWordCyclesRecognitionProductionAndHearing() {
+        for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
+            for (window in (2..14).map { role(id, it, arrived = true) }.windowed(3)) {
+                assertEquals(setOf(recognize, produce, hear), window.toSet(), "card: $id")
+            }
+        }
+    }
+
+    @Test
+    fun aSilentDeviceAsksBySightWhereItWouldHaveAskedByEar() {
+        for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
+            for (count in 0..14) {
+                val heard = role(id, count, arrived = true)
+                val silent = role(id, count, arrived = true, audible = false)
+                assertEquals(if (heard == hear) recognize else heard, silent, "card: $id, count $count")
+            }
+        }
     }
 
     // -- synonym rotation --------------------------------------------------------------
@@ -68,42 +91,38 @@ class PresentationTest {
     @Test
     fun firstExposurePromptsTheCanonicalForm() {
         val card = Box.word(1, teaches = listOf("s1a", "s1b"))
-        assertEquals("t1", recognitionPromptForm(card, 0))
+        assertEquals("t1", recognitionPromptForm(card, 0, arrived = false))
     }
 
     @Test
     fun singleFormCardsAlwaysPromptTheirText() {
         val card = Box.word(2)
         for (count in 0..8) {
-            assertEquals("t2", recognitionPromptForm(card, count))
+            assertEquals("t2", recognitionPromptForm(card, count, arrived = false))
         }
     }
 
-    // A card with 2 `teaches` prompts all 3 forms within 6 recognition reviews —
-    // every form gets prompted at zero extra scheduling cost.
+    // A card with 2 `teaches` prompts all 3 forms within 6 recognition reviews,
+    // in either cycle — every form gets prompted at zero extra scheduling cost.
     @Test
     fun rotationCoversAllFormsWithinSixRecognitionReviews() {
-        for (n in 1..4) { // several ids → both hash parities and offsets
-            val card = Box.word(n, teaches = listOf("s${n}a", "s${n}b"))
-            val prompted = mutableSetOf<String>()
-            var recognitions = 0
-            var count = 0
-            while (recognitions < 6) {
-                if (presentationRole(card.id, count) == recognize) {
-                    prompted += recognitionPromptForm(card, count)
-                    recognitions += 1
-                }
-                count += 1
+        for (arrived in listOf(false, true)) {
+            for (n in 1..4) { // several ids → every hash offset
+                val card = Box.word(n, teaches = listOf("s${n}a", "s${n}b"))
+                val prompted = (2..40)
+                    .filter { role(card.id, it, arrived) == recognize }
+                    .take(6)
+                    .map { recognitionPromptForm(card, it, arrived) }
+                assertEquals(setOf("t$n", "s${n}a", "s${n}b"), prompted.toSet(), "card: ${card.id}, arrived $arrived")
             }
-            assertEquals(setOf("t$n", "s${n}a", "s${n}b"), prompted, "card: ${card.id}")
         }
     }
 
     @Test
     fun rotationIsDeterministicAndNeverUsesAccepts() {
         val card = Box.word(3, teaches = listOf("s3a"), accepts = listOf("v3"))
-        val forms = (0..12).map { recognitionPromptForm(card, it) }
-        assertEquals(forms, (0..12).map { recognitionPromptForm(card, it) })
+        val forms = (0..12).map { recognitionPromptForm(card, it, arrived = true) }
+        assertEquals(forms, (0..12).map { recognitionPromptForm(card, it, arrived = true) })
         assertTrue(forms.all { it in setOf("t3", "s3a") })
     }
 
@@ -137,74 +156,28 @@ class PresentationTest {
         assertEquals(PronunciationCue.Upfront, pronunciationCue(recognize))
         // Production asks for that very form — speaking it early would hand it over.
         assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce))
-        // Unless the sound IS the prompt, where holding it back asks nothing at all.
-        assertEquals(PronunciationCue.Upfront, pronunciationCue(produce, ProducePrompt.Sound))
-        assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce, ProducePrompt.Source))
+        // On a hear turn the sound IS the prompt; holding it back would ask nothing at all.
+        assertEquals(PronunciationCue.Upfront, pronunciationCue(hear))
     }
 
     @Test
     fun theMeaningIsSpokenWhereverTheTargetIsNot() {
-        for (prompt in ProducePrompt.entries) {
-            for (role in listOf(recognize, produce)) {
-                assertNotEquals(pronunciationCue(role, prompt), meaningCue(role, prompt))
-            }
+        for (role in PresentationRole.entries) {
+            assertNotEquals(pronunciationCue(role), meaningCue(role))
         }
     }
 
-    // -- sound-prompted production -----------------------------------------------------
+    // -- typed or recalled -------------------------------------------------------------
 
     @Test
-    fun onlyAGrowingAudibleWordIsEverAskedByEar() {
-        for (count in 0..9) {
-            assertEquals(
-                ProducePrompt.Source,
-                producePrompt("w01", count, arrived = false, audible = true),
-                "a word still landing must keep its meaning on the prompt (count $count)",
-            )
-            assertEquals(
-                ProducePrompt.Source,
-                producePrompt("w01", count, arrived = true, audible = false),
-                "a silent device falls back rather than asking nothing (count $count)",
-            )
-        }
-    }
-
-    /**
-     * The rotation has to move BETWEEN produce turns. Roles alternate per review, so a
-     * card's produce turns all share one `reviewCount` parity — a rule reading it directly
-     * would make a word sound-prompted forever or never.
-     */
-    @Test
-    fun theSoundPromptAlternatesAcrossACardsProduceTurns() {
+    fun aSettledWordIsTypedEveryOtherTurnOfARoleAndAnUnsettledOneAlways() {
         for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
-            val prompts = (0..20)
-                .filter { presentationRole(id, it) == produce }
-                .map { producePrompt(id, it, arrived = true, audible = true) }
-            assertTrue(ProducePrompt.Sound in prompts, "$id is never asked by ear")
-            assertTrue(ProducePrompt.Source in prompts, "$id is never asked by meaning")
-            // No run of three: the two ways of asking take turns.
-            for (window in prompts.windowed(3)) {
-                assertFalse(window.toSet().size == 1, "$id repeats one prompt three times: $prompts")
-            }
-        }
-    }
-
-    @Test
-    fun theSoundPromptIsDeterministic() {
-        val once = (0..12).map { producePrompt("kitchen/fridge", it, arrived = true, audible = true) }
-        assertEquals(once, (0..12).map { producePrompt("kitchen/fridge", it, arrived = true, audible = true) })
-    }
-
-    // -- recalled production -----------------------------------------------------------
-
-    @Test
-    fun aSettledWordIsTypedEveryOtherProduceTurnAndAnUnsettledOneAlways() {
-        for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
-            val produceCounts = (0..20).filter { presentationRole(id, it) == produce }
-            assertTrue(produceCounts.all { produceAnswer(id, it, settled = false) == ProduceAnswer.Typed })
-            val settled = produceCounts.map { produceAnswer(id, it, settled = true) }
-            for (pair in settled.windowed(2)) {
-                assertTrue(pair.toSet().size == 2, "$id does not alternate typing and recall: $settled")
+            assertTrue((0..20).all { turnAnswer(id, it, settled = false) == TurnAnswer.Typed })
+            for (asked in listOf(produce, hear)) {
+                val settled = (2..30).filter { role(id, it, arrived = true) == asked }.map { turnAnswer(id, it, settled = true) }
+                for (pair in settled.windowed(2)) {
+                    assertTrue(pair.toSet().size == 2, "$id does not alternate typing and recall on $asked: $settled")
+                }
             }
         }
     }

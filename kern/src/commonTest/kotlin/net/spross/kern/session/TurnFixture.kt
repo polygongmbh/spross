@@ -4,8 +4,7 @@ import net.spross.kern.catalog.Fixture
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProduceAnswer
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TurnAnswer
 import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Realization
 import net.spross.kern.model.turnPrompt
@@ -74,23 +73,28 @@ internal object TurnFixture {
 
     fun produce(
         card: Card,
-        prompt: ProducePrompt = ProducePrompt.Source,
         firstExposure: Boolean = false,
         arrived: Boolean = false,
-        answer: ProduceAnswer = ProduceAnswer.Typed,
+        answer: TurnAnswer = TurnAnswer.Typed,
     ): TurnState = machine.begin(
-        card, PresentationRole.Produce, prompt,
-        turnPrompt(card, PresentationRole.Produce, prompt, reviewCount = 0),
+        card, PresentationRole.Produce,
+        turnPrompt(card, PresentationRole.Produce, reviewCount = 0, arrived = arrived),
         firstExposure, arrived, T0, answer,
+    )
+
+    /** A hear turn: only an arrived word is ever asked by ear. */
+    fun hear(card: Card, answer: TurnAnswer = TurnAnswer.Typed): TurnState = machine.begin(
+        card, PresentationRole.Hear,
+        turnPrompt(card, PresentationRole.Hear, reviewCount = 0, arrived = true),
+        firstExposure = false, arrived = true, nowEpochMillis = T0, answer = answer,
     )
 
     fun recognize(
         card: Card,
         firstExposure: Boolean = false,
         arrived: Boolean = false,
-        prompt: ProducePrompt = ProducePrompt.Source,
     ): TurnState = machine.begin(
-        card, PresentationRole.Recognize, prompt, PromptForm(card.target.text, null),
+        card, PresentationRole.Recognize, PromptForm(card.target.text, null),
         firstExposure, arrived, T0,
     )
 

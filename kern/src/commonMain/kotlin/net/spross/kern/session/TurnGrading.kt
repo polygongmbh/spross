@@ -2,7 +2,6 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProducePrompt
 
 /**
  * What a typed answer is worth to a [TurnMachine] turn, in the language the turn asks it in:
@@ -27,10 +26,9 @@ internal class TurnGrading(
     fun alsoMeans(
         card: Card,
         role: PresentationRole,
-        prompt: ProducePrompt,
         promptForm: String,
     ): List<String> {
-        if (role != PresentationRole.Recognize && prompt != ProducePrompt.Sound) return emptyList()
+        if (role == PresentationRole.Produce) return emptyList()
         val standing = (listOf(card.source.text) + card.source.teaches).toSet()
         return grader.conceptsSharing(promptForm, card)
             .map { it.source.text }
@@ -46,7 +44,7 @@ internal class TurnGrading(
      * hand over a finished retype. A card asked by ear primes nothing: it has no retype.
      */
     fun primed(state: TurnState, text: String): String {
-        if (state.prompt == ProducePrompt.Sound) return ""
+        if (state.role == PresentationRole.Hear) return ""
         val expected = AnswerNormalizer.words(state.answerText)
         val count = normalizer.matchingPrefixWordCount(text, state.answerText)
         val kept = expected
@@ -82,7 +80,7 @@ internal class TurnGrading(
      * borrowed one comes back [Graded.merged], for the turn to hold on.
      */
     fun grade(state: TurnState, text: String): Graded {
-        if (state.prompt != ProducePrompt.Sound) {
+        if (state.role != PresentationRole.Hear) {
             return merged(
                 own = grader.grade(text, state.card, state.promptTag),
                 shared = grader.promptSharers(state.card).map { grader.grade(text, it, state.promptTag) },

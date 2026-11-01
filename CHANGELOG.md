@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 ## Unreleased
 
 - Optional practice reminders, at the times you usually practice or at times you set, as many a day as you like.
+- Once a word has landed, its reviews take turns reading it, hearing it and saying it from your own language, and a word you read is never offered the "can't listen" link.
 
 ## 9.1.2 — 2026-10-28
 

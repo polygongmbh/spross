@@ -7,7 +7,7 @@ import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.isSounding
 import net.spross.app.pronounceAction
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.PresentationRole
 import net.spross.kern.session.Coaching
 
 /**
@@ -23,7 +23,7 @@ fun ReviewAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val writing = flow.copyStep != null
     // The TURN's own fact, never a re-reading of the device: audibility can change under a
     // card — a volume key, headphones out.
-    val heard = flow.state.prompt == ProducePrompt.Sound
+    val heard = flow.state.role == PresentationRole.Hear
     AnswerArea(
         flow = flow,
         chrome = chrome,

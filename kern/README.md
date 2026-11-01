@@ -85,17 +85,18 @@ the rules the declarations cannot state are here.
   It offers every tagged form that also answers the prompt, each with its marker
   (`teacher` reveals `also: die Lehrerin ♀`), so a form is met before it is ever asked.
 
-## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
+## 3. One schedule per card, cycling presentation   (user ruling 2026-07-22)
 
 **ONE FSRS schedule per card, keyed by card id** (ids never contain `|`).
 No per-role or per-form scheduling --
-production and recognition are PRESENTATIONS of the same memory,
-both feeding the one schedule ("every answer event is an FSRS review" holds).
+production, recognition and hearing are PRESENTATIONS of the same memory,
+all feeding the one schedule ("every answer event is an FSRS review" holds).
 
 - **PRODUCE**: prompt = source text (+ female badge when marked), typed answer in target.
 - **RECOGNIZE**: prompt = one target form, **reveal + self-grade** (section 6) -- never typed.
   Phrases alternate too: self-graded sentence recognition is legitimate comprehension practice.
-- **Role resolution** is a pure render-time function of `(cardId, log.count)`:
+- **HEAR**: prompt = the target spoken, nothing on screen; the answer is the meaning, typed in the source or recalled.
+- **Role resolution** is a pure render-time function of `(cardId, log.count, arrived, audible)`:
   - First exposure (`count == 0`) is ALWAYS recognition --
     the learner cannot produce a word never seen;
     the target is PROMPTED first, spoken but WITHOUT its emoji (the cue rule above),
@@ -104,15 +105,15 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
     so the word returns at the END of the session as the typed production attempt below.
   - The second review (`count == 1`) is ALWAYS production --
     seen once, now attempt it (ruling 2026-07-22: both hash parities).
-  - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)) --
-    the per-card phase offset keeps the box from flipping in sync.
-- **Recalled production** (`produceAnswer`): past the settled bar (`SETTLED_STABILITY`),
-  every other produce turn is recalled in the head, revealed and self-graded instead of typed;
+  - From `count == 2` a word still landing alternates Produce and Recognize,
+    and one past the growing bar (section 5) cycles Produce, Recognize, Hear
+    (user ruling 2026-11-01) -- asking by ear WITHDRAWS the meaning, which a landing word cannot spare;
+    a device that cannot say the word asks that Hear turn as Recognize.
+    The per-card phase offset (FNV-1a-64(cardId)) keeps the box from turning in sync.
+- **Recalled turns** (`turnAnswer`): past the settled bar (`SETTLED_STABILITY`),
+  every other produce or hear turn is recalled in the head, revealed and self-graded instead of typed;
   a word under the bar is always typed (`../docs/review.md`).
-- **Form rotation** on both roles' prompts, and **sound-prompted production**
-  (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
-  so it needs the growing bar (section 5),
-  and what is typed back is the meaning, in the source language (`../docs/review.md`).
+- **Form rotation** on recognize and produce prompts; a hear turn plays the citation (`../docs/review.md`).
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21).
 - **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
   never whether or where:

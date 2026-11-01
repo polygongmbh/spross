@@ -2,7 +2,6 @@ package net.spross.kern.session
 
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.alternates
 import net.spross.kern.model.answerForms
 import net.spross.kern.model.article
@@ -25,7 +24,7 @@ internal const val FORM_JOIN = " / "
  * - recognize asks with the rotated target form and opens onto the meaning, with no context cue,
  *   since any cue precise enough to disambiguate would hand over the answer;
  * - produce asks with the source word and opens onto the target;
- * - produce asked by ear asks with a sound and opens onto the meaning; the word takes the sound's
+ * - hear asks with a sound and opens onto the meaning; the word takes the sound's
  *   place once nothing is left to withhold — the learner cannot listen, or the card has opened.
  */
 val TurnState.question: Question
@@ -55,7 +54,7 @@ val TurnState.question: Question
         otherWord = otherWord,
     )
 
-private val TurnState.askedByEar: Boolean get() = prompt == ProducePrompt.Sound
+private val TurnState.askedByEar: Boolean get() = role == PresentationRole.Hear
 
 private val TurnState.promptSide: Question.Side
     get() = when {
@@ -70,7 +69,7 @@ private val TurnState.promptSide: Question.Side
     }
 
 private val TurnState.answerSide: Question.Side
-    get() = if (role == PresentationRole.Produce && !askedByEar) {
+    get() = if (role == PresentationRole.Produce) {
         targetSide(answerText)
     } else {
         // The meaning in the prompt's form: its own where the source has one, else its citation marked.

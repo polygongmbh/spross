@@ -7,13 +7,11 @@ import net.spross.kern.design.SampleTrees
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProduceAnswer
-import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TurnAnswer
 import net.spross.kern.model.PromptForm
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
-import net.spross.kern.model.produceAnswer
-import net.spross.kern.model.producePrompt
+import net.spross.kern.model.turnAnswer
 import net.spross.kern.model.turnPrompt
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.RoundSummary
@@ -24,12 +22,9 @@ data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary
     val role: PresentationRole?,
     val promptForm: PromptForm?,   // the form the turn asks with (`turnPrompt`)
-    /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
-    // layer-ok: the drained branch has no produce turn — every real one carries kern's cue
-    val producePrompt: ProducePrompt = ProducePrompt.Source,
-    /** Whether a produce turn is typed or recalled; [ProduceAnswer.Typed] elsewhere. */
-    // layer-ok: the drained branch has no produce turn — every real one carries kern's rule
-    val produceAnswer: ProduceAnswer = ProduceAnswer.Typed,
+    /** Whether a produce or hear turn is typed or recalled; [TurnAnswer.Typed] elsewhere. */
+    // layer-ok: the drained branch has no turn — every real one carries kern's rule
+    val turnAnswer: TurnAnswer = TurnAnswer.Typed,
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
@@ -52,8 +47,8 @@ private fun AppModel.hasSettled(cardId: String): Boolean =
 
 /**
  * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
- * [producePrompt] cannot have. Three ways it cannot, and each keeps the source
- * prompt rather than putting up a card with nothing in it: no recording and no
+ * [presentationRole] cannot have. Three ways it cannot, and each asks by sight
+ * rather than putting up a card with nothing in it: no recording and no
  * voice, reading aloud switched off, and TalkBack, which suppresses every autoplay
  * so nothing may speak over the screen reader. A volume turned down is not one of
  * them: the screen asks for it to come up instead (`VolumeHint`).
@@ -92,16 +87,14 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
         )
     } else {
         val count = state.scheduling[card.id]?.reviewCount ?: 0
-        val role = presentationRole(card.id, count)
         val arrived = hasArrived(card.id)
-        val prompt = producePrompt(card.id, count, arrived, audible(card))
-        val promptForm = turnPrompt(card, role, prompt, count)
+        val role = presentationRole(card.id, count, arrived, audible(card))
+        val promptForm = turnPrompt(card, role, count, arrived)
         SessionUi(
             card = card,
             role = role,
             promptForm = promptForm,
-            producePrompt = prompt,
-            produceAnswer = produceAnswer(card.id, count, hasSettled(card.id)),
+            turnAnswer = turnAnswer(card.id, count, hasSettled(card.id)),
             // The two facts the turn's write-out rule is decided on, read where the
             // count already is: a word being taught is written once as it is met,
             // and one past the growing bar is

@@ -25,38 +25,22 @@ extension AppModel {
         return directory.appending(path: path)
     }
 
-    /// WHEN this card's target form may be said out loud — Kern's rule,
-    /// consumed rather than re-derived: both apps switch on this one cue
-    /// instead of each testing the role in its own way.
-    ///
-    /// `prompt` is handed IN rather than resolved here: a turn already on screen
-    /// keeps the prompt it began with, and the cue must answer for that one and
-    /// not for what the device would decide a second time.
-    func pronunciationCue(for card: Card, prompt: ProducePrompt) -> PronunciationCue {
-        SprossKern.pronunciationCue(role: presentationRole(for: card.id), prompt: prompt)
-    }
-
-    /// Whether a produce card asks by MEANING or by ear — Kern's rule again,
-    /// with the one fact it cannot have: whether this device, right now, can
-    /// say the word at all. Three ways it cannot, and each falls back to the
-    /// source prompt rather than putting up a card with nothing in it: no
+    /// Whether this device, right now, can say the card's word at all — the one
+    /// fact Kern's `presentationRole` cannot have. Three ways it cannot, and each
+    /// asks by sight rather than putting up a card with nothing in it: no
     /// recording and no voice, reading aloud switched off, and VoiceOver, which
     /// suppresses every autoplay so nothing may speak over the screen reader.
     ///
     /// The device's own volume is not one of them: a volume turned down is
     /// asked to come up (`VolumeHint`), and the ring/silent switch cannot be
     /// read at all, so a card dealt through either carries its own way out.
-    func producePrompt(for card: Card) -> ProducePrompt {
+    func isAudible(_ card: Card) -> Bool {
         guard let pronunciation = formPronunciation(card.target.text, lang: card.target.lang)
-        else { return .source }
-        let audible = !Pronouncer.shared.muted
+        else { return false }
+        return !Pronouncer.shared.muted
             && !UIAccessibility.isVoiceOverRunning
             && Pronouncer.shared.canPronounce(pronunciation,
                                               recordingURL: audioURL(pronunciation.recordingPath))
-        return SprossKern.producePrompt(cardId: card.id,
-                                        reviewCount: Int32(scheduling(for: card.id)?.reviewCount ?? 0),
-                                        arrived: hasArrived(card.id),
-                                        audible: audible)
     }
 
     // MARK: - Letters

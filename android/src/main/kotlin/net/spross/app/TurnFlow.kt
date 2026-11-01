@@ -217,12 +217,11 @@ fun AppModel.newTurn(
         start = machine.begin(
             card = card,
             role = role,
-            prompt = ui.producePrompt,
             promptForm = ui.promptForm ?: return null,
             firstExposure = ui.firstExposure,
             arrived = ui.arrived,
             nowEpochMillis = System.currentTimeMillis(),
-            answer = ui.produceAnswer,
+            answer = ui.turnAnswer,
         ),
         nowMillis = { System.currentTimeMillis() },
         onAnswer = { rating -> answerCurrent(rating) },

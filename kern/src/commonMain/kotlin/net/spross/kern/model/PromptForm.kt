@@ -8,12 +8,12 @@ data class PromptForm(val text: String, val tag: FormTag?)
  * recognize rotates the target's citation, its `teaches` and every tagged form;
  * produce rotates the source's citation and those of its tagged forms whose tag the target has too,
  * so a prompt only ever asks for a form the answer side can give;
- * asked by ear, it is the target citation that plays.
+ * a hear turn plays the target citation.
  */
-fun turnPrompt(card: Card, role: PresentationRole, prompt: ProducePrompt, reviewCount: Int): PromptForm = when {
-    role == PresentationRole.Recognize -> rotated(card.id, recognitionForms(card.target), reviewCount)
-    prompt == ProducePrompt.Sound -> PromptForm(card.target.text, null)
-    else -> rotated(card.id, produceForms(card), reviewCount)
+fun turnPrompt(card: Card, role: PresentationRole, reviewCount: Int, arrived: Boolean): PromptForm = when (role) {
+    PresentationRole.Recognize -> rotated(card.id, recognitionForms(card.target), reviewCount, arrived)
+    PresentationRole.Hear -> PromptForm(card.target.text, null)
+    PresentationRole.Produce -> rotated(card.id, produceForms(card), reviewCount, arrived)
 }
 
 private fun recognitionForms(target: Realization): List<PromptForm> =
