@@ -266,6 +266,11 @@ class TrainerStanding(val store: TrainerStore) {
         if (summary?.celebrated == true) confettiDue = true
     }
 
+    /** The hub tile reports the run just closed, so the app going to the background clears it. */
+    fun clearHubResult() {
+        hubResult = null
+    }
+
     /** Opening a page from Home is a fresh visit — last night's figures are not news. */
     fun clearResult() {
         result = null

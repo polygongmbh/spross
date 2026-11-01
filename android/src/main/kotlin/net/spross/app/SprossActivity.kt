@@ -141,6 +141,7 @@ class SprossActivity : ComponentActivity() {
     override fun onStop() {
         super.onStop()
         model.saveNow()
+        model.trainer.clearHubResult()
     }
 
     /**

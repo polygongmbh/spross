@@ -209,7 +209,8 @@ Nothing wears a prefix one scope wider than what it serves.
   to the page that started them;
   the page wears them as one tile above the picks and scrolls up to meet it.
   The scrambles and the opposites, opened straight from the hub, leave their tile on the hub card,
-  and only after a run long enough to report (`DrillRunSummary.worthReporting`).
+  and only after a run long enough to report (`DrillRunSummary.worthReporting`);
+  it reports the run just closed, so the app going to the background clears it.
   The pause counts what was answered and names only what the stretch reached:
   the climb from the Sprosse it opened on, and a record beaten.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --

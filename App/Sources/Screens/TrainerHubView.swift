@@ -25,8 +25,10 @@ struct TrainerHubView: View, LanguageNaming {
 
     /// The figures a scramble run handed back as it closed — the scrambles have
     /// no page of their own, so the hub wears their tile. A run too short to
-    /// report clears it rather than leaving an older one standing.
+    /// report clears it rather than leaving an older one standing, and the app
+    /// going to the background clears it too: it reports the run just closed.
     @State private var lastRun: DrillRunResult?
+    @Environment(\.scenePhase) private var scenePhase
     /// Rains confetti over the screen the hub stands on — a card cannot hold it.
     var celebrate: () -> Void = {}
 
@@ -81,6 +83,9 @@ struct TrainerHubView: View, LanguageNaming {
         }
         // The pages: a sheet, because an overview is read from and swiped away.
         .paneSheet(item: presented { !$0.isRun }) { surface($0) }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .background { lastRun = nil }
+        }
     }
 
     /// What a destination opens, under the known language every trainer surface
