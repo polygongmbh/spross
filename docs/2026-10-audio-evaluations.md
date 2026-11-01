@@ -1,6 +1,6 @@
 # Audio evaluations, October 2026: quality measures, pops, noise, and swaps by ear
 Every measure and picker change tried against a listener's verdicts in October 2026, one dated section each, with its data, its result, and what was adopted.
-Neighbors: the September measures `2026-09-28-audio-quality-tools.md` and `2026-09-28-audio-quality-measure.md`, the verdicts `audio-verdicts.tsv`, the bars `../catalog/audio/README.md`, the open decision `plans/audio-measure.md`.
+Neighbors: the September measures `2026-09-28-audio-quality-tools.md` and `2026-09-28-audio-quality-measure.md`, the verdicts `audio-verdicts.tsv`, the bars `../catalog/audio/README.md`.
 
 Study scripts and per-take numbers live in the workspace `data/reference/audio/`:
 `measure-study-2026-10-25/`, `pop-study-2026-10-28/`, `noise-study-2026-10-28/` and `measure-study-2026-10-28/`.
@@ -151,4 +151,4 @@ PESQ is SQUIM's estimate of speech distortion, correlated 0.25 with BAK and 0.47
 It was not shipped yet: it is the best of about 45 combinations tried on a sample the score itself drew,
 it would bring a new model into `audio_measure` and move every take's score and bar,
 and the A/B pairs (10 of 15) do not separate it from the score.
-The 18 shipped takes where it and the score disagree most decide it (`plans/audio-measure.md`).
+The 18 shipped takes where it and the score disagree most decide it.
