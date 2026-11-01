@@ -16,6 +16,8 @@ struct ConfettiView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var waves: [Wave] = []
     @State private var nextWave = 0
+    /// The `run` last thrown, so a screen coming back into view (a tab, a pop) does not rain again.
+    @State private var thrown: Int?
     /// Kern's buffer, filled in place every frame, so a frame crosses the bridge as numbers rather than objects.
     @State private var frame = ConfettiFrame()
 
@@ -49,13 +51,14 @@ struct ConfettiView: View {
                 }
             }
             .allowsHitTesting(false)
-            .onAppear(perform: launch)
+            .onAppear { if thrown != run { launch() } }
             .onChange(of: run) { _, _ in launch() }
     }
 
     /// Adds a wave and arms its retirement — without that the TimelineView
     /// would keep asking for frames long after the last piece left the screen.
     private func launch() {
+        thrown = run
         guard !reduceMotion else { return }
         let wave = Wave(id: nextWave, start: Date())
         nextWave += 1
