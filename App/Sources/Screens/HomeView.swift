@@ -15,13 +15,13 @@ struct HomeView: View {
     @State private var briefingPresented = false
     /// What the hub has open; held here so the day's card can open a drill too.
     @State private var drillDestination: HubDestination?
-    /// Bumped by a hub run's celebrated close; each bump throws a wave.
-    @State private var confetti = 0
+    /// Bumped by a hub run's celebrated close.
+    @State private var celebrations = 0
 
     var body: some View {
         let offer = model.homeOffer
         let hub = TrainerHubView(model: model, destination: $drillDestination,
-                                 celebrate: { confetti += 1 })
+                                 celebrate: { celebrations += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
         let split = panes?.split == true
@@ -44,10 +44,7 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         .background(Theme.colors.background.ignoresSafeArea())
-        // why: ConfettiView throws a wave on appear, so it stays absent until the first celebration.
-        .overlay {
-            if confetti > 0 { ConfettiView(run: confetti).ignoresSafeArea() }
-        }
+        .overlay { ClosedRunConfetti(celebrations: celebrations) }
         .fullScreenCover(isPresented: $listeningPresented) {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)

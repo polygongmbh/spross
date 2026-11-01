@@ -70,6 +70,8 @@ struct DrillRunResult: Equatable {
     let summary: DrillRunSummary
     /// What was drilled — the exercise's own name (chrome), since a page can host several.
     let title: LocalizedStringKey
+    /// Each close its own value, so two runs with the same figures still read as two closes.
+    let id = UUID()
 }
 
 /// The result as the overview wears it: one tile above the picks, where the

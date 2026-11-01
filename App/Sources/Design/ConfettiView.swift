@@ -103,6 +103,20 @@ struct ConfettiView: View {
     }
 }
 
+// MARK: - ClosedRunConfetti
+
+/// The rain celebrated drill closes leave on the screen they land on:
+/// Home for a hub run, an overview page for its own.
+struct ClosedRunConfetti: View {
+    /// Bumped once per celebrated close (kern's `celebrated`).
+    let celebrations: Int
+
+    var body: some View {
+        // why: ConfettiView throws a wave on appear, so it stays absent until the first celebration.
+        if celebrations > 0 { ConfettiView(run: celebrations).ignoresSafeArea() }
+    }
+}
+
 // MARK: - Preview
 
 #Preview("Confetti") {

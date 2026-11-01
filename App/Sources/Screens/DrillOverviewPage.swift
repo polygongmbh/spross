@@ -6,8 +6,8 @@ import SwiftUI
 ///
 /// What every overview owes and none of them decides for itself: a run's result
 /// arrives as a tile ABOVE the content, so the page comes up to meet it rather
-/// than letting it sit off the top; a record rains confetti over the page the run
-/// came back to; and a screenshot pass with no thumb opens the page where it needs
+/// than letting it sit off the top; a celebrated close rains confetti over the page
+/// the run came back to; and a screenshot pass with no thumb opens the page where it needs
 /// to photograph (`DrillUITest`).
 ///
 /// The drill's own state — the material, the ladder, the run it launches — stays
@@ -31,6 +31,8 @@ struct DrillOverviewPage<Sections: View>: View {
     @ViewBuilder let sections: () -> Sections
 
     @Environment(\.dismiss) private var dismiss
+    /// Bumped by each celebrated close this page receives.
+    @State private var celebrations = 0
 
     var body: some View {
         NavigationStack {
@@ -49,7 +51,8 @@ struct DrillOverviewPage<Sections: View>: View {
                 // what a run came back with would sit off the top of a page the
                 // learner is still looking at. The page comes up to meet it.
                 .onChange(of: lastRun) { _, run in
-                    guard run != nil else { return }
+                    guard let run else { return }
+                    if run.summary.celebrated { celebrations += 1 }
                     withAnimation(.cardReveal) {
                         scroll.scrollTo(DrillAnchor.result, anchor: .top)
                     }
@@ -74,13 +77,7 @@ struct DrillOverviewPage<Sections: View>: View {
                                                enabled: startable, action: start))
         }
         .tint(Theme.colors.accent)
-        // why: the confetti rains over the page the run came back to — a wave
-        // retires itself, so no dismissal and no state to clear.
-        .overlay {
-            if lastRun?.summary.celebrated == true {
-                ConfettiView().ignoresSafeArea().allowsHitTesting(false)
-            }
-        }
+        .overlay { ClosedRunConfetti(celebrations: celebrations) }
     }
 }
 
