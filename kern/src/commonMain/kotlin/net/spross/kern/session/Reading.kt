@@ -36,10 +36,8 @@ fun TurnState.reading(saysMeaning: Boolean): Reading =
  * What the card says as it goes up — the side its cue lets be heard from frame one.
  * The prompted form on the target side, so a rotated synonym is heard as itself;
  * the meaning only where [saysMeaning], the learner's own side being opt-out.
- * A prompt put in writing ([TurnState.promptInText]) is not said: the learner cannot listen.
  */
 fun TurnState.promptSaying(saysMeaning: Boolean): Saying? = when {
-    promptInText -> null
     pronunciationCue(role) == PronunciationCue.Upfront -> targetSaying(promptForm)
     saysMeaning && meaningCue(role) == PronunciationCue.Upfront -> Saying(card.source.text, card.source.lang)
     else -> null
