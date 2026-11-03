@@ -41,6 +41,7 @@ extension SessionView {
                 // in writing — nothing may keep playing over the answer to "I can't listen".
                 Pronouncer.shared.stop()
                 dispatch(TurnIntent.ShowPromptText.shared)
+                model.cannotListen()
             },
             fieldAppeared: { focusAnswerField() })
     }

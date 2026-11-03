@@ -78,6 +78,12 @@ extension AppModel {
         reduce(SessionIntent.SuspendCurrent.shared)
     }
 
+    /// "Can't listen right now?": every later card asked by ear in this run
+    /// goes up in writing (`SessionRunState.cannotListen`).
+    func cannotListen() {
+        reduce(SessionIntent.CannotListen.shared)
+    }
+
     /// "Weiter üben": switch the finished session into endless mode and pull the
     /// first refill batch. Staying on the summary is kern's answer to a dry refill.
     func continueEndless() {
@@ -137,6 +143,9 @@ extension AppModel {
     /// `sessionTotal`, whatever batch size kern pulls on the next refill
     /// underneath it (`SessionScaffold.running`).
     var sessionEndless: Bool { run?.endless ?? false }
+
+    /// The learner said they cannot listen this run: a card asked by ear starts in writing.
+    var sessionCannotListen: Bool { run?.cannotListen ?? false }
 
     /// The answered stretch as the progress bar draws it. Which rating reads as
     /// which outcome is kern's grouping (`AnswerOutcome`); only the hues are ours.

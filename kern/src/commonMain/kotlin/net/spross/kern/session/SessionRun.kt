@@ -41,6 +41,7 @@ object SessionRun {
         SessionIntent.StartShort -> startShort(state, nowEpochMillis, tzId)
         is SessionIntent.Answer -> answer(state, intent.rating, nowEpochMillis, tzId)
         SessionIntent.SuspendCurrent -> suspendCurrent(state, nowEpochMillis, tzId)
+        SessionIntent.CannotListen -> unchanged(state.copy(cannotListen = state.active))
         SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis, tzId)
         SessionIntent.RecomposeIfStale -> recompose(state, nowEpochMillis, tzId)
         SessionIntent.Finish -> finish(state)
@@ -79,7 +80,7 @@ object SessionRun {
             queue = plan.queue, total = plan.queue.size,
             tally = RoundTally(),
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
-            opening = opening, startBox = state.box,
+            opening = opening, startBox = state.box, cannotListen = false,
         ),
         emptyList(),
         nowEpochMillis,

@@ -29,6 +29,8 @@ data class SessionUi(
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
     val arrived: Boolean = false,
+    /** The learner said they cannot listen this run: a card asked by ear starts in writing. */
+    val cannotListen: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     val segments: List<AnswerOutcome>,
@@ -101,6 +103,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             // never slowed down.
             firstExposure = count == 0,
             arrived = arrived,
+            cannotListen = active.cannotListen,
             emojiCue = card.emoji?.let { emojiCue(role, arrived) },
             segments = active.segments,
             remaining = active.remaining,

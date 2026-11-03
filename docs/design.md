@@ -129,7 +129,7 @@ What licenses a second component is a parameter attempted and found not to carry
   prompt is the replay glyph, answer is the meaning in the known language.
   Asked as recognition when the word cannot be heard.
 - **"Can't listen right now?"** under every hear card:
-  puts the word on the card as text for that turn.
+  puts the word on the card as text, and every later hear card of that session starts that way.
   Same answer, same rating; only the channel moves.
 - **A produce miss keeps the field open for a retry.**
   The reveal trims to the words already right;

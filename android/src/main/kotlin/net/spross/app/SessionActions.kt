@@ -47,6 +47,14 @@ fun AppModel.suspendCurrentCard() {
     dispatch(SessionIntent.SuspendCurrent)
 }
 
+/** "Can't listen right now?": the rest of the run puts every card asked by ear in writing. */
+fun AppModel.cannotListen() {
+    sessionRun ?: return
+    // why: the word in the air is the one now standing in writing — nothing keeps playing over it.
+    pronouncer.stop()
+    dispatch(SessionIntent.CannotListen)
+}
+
 fun AppModel.continueEndless() {
     sessionRun ?: return
     dispatch(SessionIntent.ContinueEndless)

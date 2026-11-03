@@ -42,6 +42,8 @@ class TurnFlow(
     onReleaseFocus: () -> Unit = {},
     /** Whether a screen reader is reading the screen ([DrillBeat]). */
     screenReaderOn: () -> Boolean = { false },
+    /** The learner cannot listen: the run keeps it for every later card asked by ear. */
+    private val onCannotListen: () -> Unit = {},
 ) : QuestionDriver {
 
     var state by mutableStateOf(start)
@@ -98,10 +100,13 @@ class TurnFlow(
      */
     val answerOut: Boolean get() = state.answerOut
 
-    /** The word was heard and could not be: it goes on screen for the rest of this turn. */
+    /** The word was heard and could not be: it goes on screen, and stays so for the rest of the run. */
     val promptInText: Boolean get() = state.promptInText
 
-    fun showPromptText() = dispatch(TurnIntent.ShowPromptText)
+    fun showPromptText() {
+        dispatch(TurnIntent.ShowPromptText)
+        onCannotListen()
+    }
 
     /** A live keystroke in the answer field. */
     fun type(text: String) {
@@ -222,11 +227,13 @@ fun AppModel.newTurn(
             arrived = ui.arrived,
             nowEpochMillis = System.currentTimeMillis(),
             answer = ui.turnAnswer,
+            cannotListen = ui.cannotListen,
         ),
         nowMillis = { System.currentTimeMillis() },
         onAnswer = { rating -> answerCurrent(rating) },
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         screenReaderOn = { pronouncer.readsScreenAloud },
+        onCannotListen = { cannotListen() },
     )
 }

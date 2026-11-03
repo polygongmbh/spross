@@ -36,7 +36,10 @@ class TurnMachine(
 
     private val grading = TurnGrading(grader, normalizer, meaningNormalizer)
 
-    /** A card goes on screen: nothing answered, and the recall attempt starts now. */
+    /**
+     * A card goes on screen: nothing answered, and the recall attempt starts now.
+     * [cannotListen] is the run's word that the learner cannot listen: a card asked by ear starts in writing.
+     */
     fun begin(
         card: Card,
         role: PresentationRole,
@@ -45,6 +48,7 @@ class TurnMachine(
         arrived: Boolean,
         nowEpochMillis: Long,
         answer: TurnAnswer = TurnAnswer.Typed,
+        cannotListen: Boolean = false,
     ): TurnState = TurnState(
         card = card,
         role = role,
@@ -60,7 +64,7 @@ class TurnMachine(
         alsoMeans = grading.alsoMeans(card, role, promptForm.text),
         retryApproved = false,
         copyStep = null,
-        promptInText = false,
+        promptInText = cannotListen && role == PresentationRole.Hear,
         promptShownAtMillis = nowEpochMillis,
         recallMs = 0,
     )
