@@ -22,7 +22,7 @@
   "anything": { "text": "будь-що́" },
   "someone": { "text": "хтось" },
   "everyone": { "text": "ко́жна люди́на" },
-  "nobody-at-all": { "text": "зовсі́м ніхто́", "accepts": ["абсолю́тно ніхто́"] },
+  "no-one": { "text": "ніхто́" },
   "anyone": { "text": "будь-хто́" },
   "our": { "text": "наш", "forms": { "f": "на́ша", "n": "на́ше", "pl": "на́ші" } },
   "your-plural": { "text": "ваш", "forms": { "f": "ва́ша", "n": "ва́ше", "pl": "ва́ші" } }

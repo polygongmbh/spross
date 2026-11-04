@@ -21,7 +21,7 @@
   "anything": { "text": "qualsiasi cosa" },
   "someone": { "text": "qualcuno" },
   "everyone": { "text": "ogni persona" },
-  "nobody-at-all": { "text": "proprio nessuno", "accepts": ["assolutamente nessuno"] },
+  "no-one": { "text": "nessuno" },
   "anyone": { "text": "chiunque" },
   "our": { "text": "nostro", "forms": { "f": "nostra", "pl": "nostri", "f.pl": "nostre" } },
   "your-plural": { "text": "vostro", "forms": { "f": "vostra", "pl": "vostri", "f.pl": "vostre" } }

@@ -6550,6 +6550,17 @@
       "sha256": "252c7a8e271bce3e7036a3a04c2a45093da2e1f13309d408e790b2b33140b242",
       "source": "LL-Q652 (ita)-DivoLetto-nervo.wav"
     },
+    "nessuno": {
+      "author": "XANA000",
+      "file": "words/nessuno.mp3",
+      "gain": 3.6,
+      "gate": -93.7,
+      "lead": 180,
+      "matches": "nessuno",
+      "mos": 2.77,
+      "sha256": "5f524c2843c7a05e23e5a325521530a1f993326ceea7c75f987ce145c5ddf771",
+      "source": "LL-Q652 (ita)-XANA000-nessuno.wav"
+    },
     "neve": {
       "author": "XANA000",
       "file": "words/neve.mp3",

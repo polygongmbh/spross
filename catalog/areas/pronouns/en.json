@@ -22,7 +22,7 @@
   "anything": { "text": "anything" },
   "someone": { "text": "someone", "accepts": ["somebody"] },
   "everyone": { "text": "everyone", "accepts": ["everybody"] },
-  "nobody-at-all": { "text": "nobody at all", "accepts": ["no one at all"] },
+  "no-one": { "text": "no one", "accepts": ["nobody"] },
   "anyone": { "text": "anyone", "accepts": ["anybody"] },
   "our": { "text": "our" }
  }

@@ -16,7 +16,7 @@
  { "slug": "anything", "kind": "adjective" },
  { "slug": "someone", "kind": "adjective" },
  { "slug": "everyone", "kind": "adjective" },
- { "slug": "nobody-at-all", "kind": "adjective" },
+ { "slug": "no-one", "kind": "adjective" },
  { "slug": "anyone", "kind": "adjective" },
  { "slug": "our", "kind": "adjective" },
  { "slug": "your-plural", "kind": "adjective" }

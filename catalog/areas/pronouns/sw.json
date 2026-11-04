@@ -32,7 +32,11 @@
   "anything": { "text": "chochote" },
   "someone": { "text": "mtu fulani" },
   "everyone": { "text": "kila mtu" },
-  "nobody-at-all": { "text": "hakuna mtu yeyote", "notes": { "sw": "Hakuna mtu. · Sioni mtu yeyote." } },
+  "no-one": {
+   "text": "hakuna mtu",
+   "accepts": ["hakuna mtu yeyote"],
+   "notes": { "sw": "Hakuna mtu. · Sioni mtu yeyote." }
+  },
   "anyone": { "text": "yeyote" },
   "our": {
    "text": "-etu",
