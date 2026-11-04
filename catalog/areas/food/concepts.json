@@ -50,5 +50,6 @@
   "emoji": "🍚",
   "components": ["cooked-rice", "sauce"]
  },
- { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["to-eat"] }
+ { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["to-eat"] },
+ { "slug": "enjoy-your-meal", "kind": "phrase", "emoji": "🍽️" }
 ]

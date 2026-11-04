@@ -63,6 +63,7 @@
   "whats-for-dinner": { "text": "Was gibt es zum Abendessen?", "accepts": ["Was gibt's zum Abendessen?"] },
   "i-dont-eat-meat": { "text": "Ich esse kein Fleisch." },
   "i-eat-rice-with-sauce": { "text": "Ich esse Reis mit Soße." },
-  "the-food-is-ready": { "text": "Das Essen ist fertig!" }
+  "the-food-is-ready": { "text": "Das Essen ist fertig!" },
+  "enjoy-your-meal": { "text": "Guten Appetit!" }
  }
 }

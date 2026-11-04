@@ -51,6 +51,7 @@
    "orders": ["М'яса я не їм."]
   },
   "i-eat-rice-with-sauce": { "text": "Я їм рис із со́усом." },
-  "the-food-is-ready": { "text": "Ї́жа гото́ва!" }
+  "the-food-is-ready": { "text": "Ї́жа гото́ва!" },
+  "enjoy-your-meal": { "text": "Смачно́го!" }
  }
 }

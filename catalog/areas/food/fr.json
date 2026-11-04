@@ -83,6 +83,7 @@
     "fr": "c'est le repas qui est prêt · pour appeler : À table !",
     "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !"
    }
-  }
+  },
+  "enjoy-your-meal": { "text": "Bon appétit !" }
  }
 }

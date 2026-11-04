@@ -52,6 +52,7 @@
   "whats-for-dinner": { "text": "Chakula cha jioni ni nini?" },
   "i-dont-eat-meat": { "text": "Sili nyama." },
   "i-eat-rice-with-sauce": { "text": "Ninakula wali na mchuzi." },
-  "the-food-is-ready": { "text": "Chakula kiko tayari!" }
+  "the-food-is-ready": { "text": "Chakula kiko tayari!" },
+  "enjoy-your-meal": { "text": "Karibu chakula!", "accepts": ["Karibuni chakula!"] }
  }
 }
