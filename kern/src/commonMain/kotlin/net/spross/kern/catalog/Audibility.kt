@@ -16,4 +16,4 @@ internal fun audible(
     language: Language,
     catalog: Catalog,
     hasVoice: Boolean,
-): Boolean = catalog.pronunciation(language, form).recordingPath != null || hasVoice
+): Boolean = hasVoice || catalog.pronunciation(language, form).recordingPath != null
