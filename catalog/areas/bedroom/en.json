@@ -30,6 +30,7 @@
   "i-have-to-rest": { "text": "I have to rest." },
   "soft-mattress": { "text": "soft mattress" },
   "cant-you-fall-asleep": { "text": "Can't you fall asleep?", "accepts": ["Can you not fall asleep?"] },
-  "the-children-are-already-asleep": { "text": "The children are already asleep.", "accepts": ["The children are already sleeping."] }
+  "the-children-are-already-asleep": { "text": "The children are already asleep.", "accepts": ["The children are already sleeping."] },
+  "are-you-tired-by-any-chance": { "text": "Are you tired, by any chance?" }
  }
 }

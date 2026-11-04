@@ -52,6 +52,7 @@
   "i-dont-eat-meat": { "text": "Mi ne manĝas viandon.", "orders": ["Viandon mi ne manĝas."] },
   "i-eat-rice-with-sauce": { "text": "Mi manĝas rizon kun saŭco.", "orders": ["Rizon kun saŭco mi manĝas."] },
   "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "accepts": ["La manĝo estas preta!"] },
-  "enjoy-your-meal": { "text": "Bonan apetiton!" }
+  "enjoy-your-meal": { "text": "Bonan apetiton!" },
+  "fruit-such-as-mangoes": { "text": "fruktoj, kiel ekzemple mangoj" }
  }
 }

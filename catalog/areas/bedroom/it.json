@@ -45,6 +45,7 @@
    "accepts": ["Non puoi addormentarti?"],
    "notes": { "it": "Non riesco a dormire: voglio, ma non posso." }
   },
-  "the-children-are-already-asleep": { "text": "I bambini dormono già." }
+  "the-children-are-already-asleep": { "text": "I bambini dormono già." },
+  "are-you-tired-by-any-chance": { "text": "Non sarai mica stanco?", "forms": { "f": "Non sarai mica stanca?" } }
  }
 }

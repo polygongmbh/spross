@@ -61,6 +61,7 @@
   "i-dont-eat-meat": { "text": "No como carne." },
   "i-eat-rice-with-sauce": { "text": "Como arroz con salsa." },
   "the-food-is-ready": { "text": "¡La comida está lista!", "orders": ["¡Está lista la comida!"] },
-  "enjoy-your-meal": { "text": "¡Buen provecho!", "accepts": ["¡Que aproveche!", "¡Provecho!"] }
+  "enjoy-your-meal": { "text": "¡Buen provecho!", "accepts": ["¡Que aproveche!", "¡Provecho!"] },
+  "fruit-such-as-mangoes": { "text": "fruta, como por ejemplo mangos" }
  }
 }

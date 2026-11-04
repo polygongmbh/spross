@@ -50,6 +50,7 @@
   "i-have-to-rest": { "text": "Mi devas ripozi." },
   "soft-mattress": { "text": "mola matraco" },
   "cant-you-fall-asleep": { "text": "Ĉu vi ne povas ekdormi?" },
-  "the-children-are-already-asleep": { "text": "La infanoj jam dormas." }
+  "the-children-are-already-asleep": { "text": "La infanoj jam dormas." },
+  "are-you-tired-by-any-chance": { "text": "Ĉu vi eble estas laca?" }
  }
 }

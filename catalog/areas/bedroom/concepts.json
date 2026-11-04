@@ -37,5 +37,6 @@
   "kind": "phrase",
   "emoji": "😴",
   "components": ["to-sleep"]
- }
+ },
+ { "slug": "are-you-tired-by-any-chance", "kind": "phrase", "emoji": "🤨", "components": [] }
 ]

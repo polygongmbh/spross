@@ -34,6 +34,7 @@
   "i-have-to-rest": { "text": "Мені́ тре́ба відпочи́ти.", "orders": ["Мені відпочити треба."] },
   "soft-mattress": { "text": "м'яки́й матра́ц" },
   "cant-you-fall-asleep": { "text": "Не мо́жеш засну́ти?", "accepts": ["Ти не можеш заснути?"] },
-  "the-children-are-already-asleep": { "text": "Ді́ти вже сплять." }
+  "the-children-are-already-asleep": { "text": "Ді́ти вже сплять." },
+  "are-you-tired-by-any-chance": { "text": "Ти, ча́сом, не втоми́вся?", "forms": { "f": "Ти, ча́сом, не втоми́лася?" } }
  }
 }

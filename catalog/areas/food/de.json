@@ -64,6 +64,7 @@
   "i-dont-eat-meat": { "text": "Ich esse kein Fleisch." },
   "i-eat-rice-with-sauce": { "text": "Ich esse Reis mit Soße." },
   "the-food-is-ready": { "text": "Das Essen ist fertig!" },
-  "enjoy-your-meal": { "text": "Guten Appetit!" }
+  "enjoy-your-meal": { "text": "Guten Appetit!" },
+  "fruit-such-as-mangoes": { "text": "Obst, wie etwa Mangos" }
  }
 }

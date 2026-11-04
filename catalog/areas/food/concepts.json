@@ -51,5 +51,6 @@
   "components": ["cooked-rice", "sauce"]
  },
  { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["to-eat"] },
- { "slug": "enjoy-your-meal", "kind": "phrase", "emoji": "🍽️" }
+ { "slug": "enjoy-your-meal", "kind": "phrase", "emoji": "🍽️" },
+ { "slug": "fruit-such-as-mangoes", "kind": "phrase", "emoji": "🥭", "components": ["fruit"] }
 ]

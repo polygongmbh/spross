@@ -38,6 +38,7 @@
   "the-children-are-already-asleep": {
    "text": "Watoto wameshalala.",
    "accepts": ["Watoto wamelala tayari.", "Watoto wamekwisha kulala."]
-  }
+  },
+  "are-you-tired-by-any-chance": { "text": "Je, umechoka kweli?" }
  }
 }

@@ -48,6 +48,7 @@
   "i-dont-eat-meat": { "text": "I don't eat meat." },
   "i-eat-rice-with-sauce": { "text": "I eat rice with sauce." },
   "the-food-is-ready": { "text": "The food is ready!" },
-  "enjoy-your-meal": { "text": "Enjoy your meal!", "accepts": ["Bon appétit!", "Bon appetit!"] }
+  "enjoy-your-meal": { "text": "Enjoy your meal!", "accepts": ["Bon appétit!", "Bon appetit!"] },
+  "fruit-such-as-mangoes": { "text": "fruit, such as mangoes" }
  }
 }

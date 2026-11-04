@@ -54,6 +54,10 @@
    "accepts": ["Tu ne peux pas t'endormir ?"],
    "notes": { "fr": "Je n'arrive pas à dormir : je veux, mais je ne peux pas." }
   },
-  "the-children-are-already-asleep": { "text": "Les enfants dorment déjà." }
+  "the-children-are-already-asleep": { "text": "Les enfants dorment déjà." },
+  "are-you-tired-by-any-chance": {
+   "text": "Tu ne serais pas fatigué, par hasard ?",
+   "forms": { "f": "Tu ne serais pas fatiguée, par hasard ?" }
+  }
  }
 }
