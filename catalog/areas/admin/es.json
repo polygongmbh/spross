@@ -86,7 +86,7 @@
   "receipt": { "text": "recibo", "grammar": { "article": "el" } },
   "authority": {
    "text": "autoridad",
-   "accepts": ["organismo público", "administración"],
+   "accepts": ["el organismo público", "administración"],
    "grammar": { "article": "la" }
   },
   "responsible": { "text": "responsable", "accepts": ["competente"] },

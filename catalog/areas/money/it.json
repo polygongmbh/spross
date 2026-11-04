@@ -14,7 +14,7 @@
   },
   "bank-card": {
    "text": "bancomat",
-   "accepts": ["carta", "carta di credito"],
+   "accepts": ["la carta", "la carta di credito"],
    "grammar": { "article": "il" },
    "notes": { "it": "il bancomat è la carta e anche la macchina dei soldi." }
   },

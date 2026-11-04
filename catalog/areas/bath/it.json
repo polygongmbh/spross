@@ -15,7 +15,7 @@
   "toilet": {
    "text": "gabinetto",
    "teaches": ["water"],
-   "accepts": ["WC", "tazza"],
+   "accepts": ["WC", "la tazza"],
    "grammar": { "article": "il" },
    "notes": {
     "it": "il gabinetto è il water (si dice vater) · si chiede Dov'è il bagno?",

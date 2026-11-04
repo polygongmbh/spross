@@ -16,7 +16,7 @@
   "phone-number": { "text": "número de teléfono", "grammar": { "article": "el" } },
   "email-address": {
    "text": "dirección de correo electrónico",
-   "accepts": ["correo electrónico", "correo"],
+   "accepts": ["el correo electrónico", "el correo"],
    "grammar": { "article": "la" }
   },
   "nationality": { "text": "nacionalidad", "grammar": { "article": "la" } },

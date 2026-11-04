@@ -10,7 +10,7 @@
   },
   "laptop": {
    "text": "ordinateur portable",
-   "accepts": ["l'ordinateur portable", "portable", "PC portable"],
+   "accepts": ["l'ordinateur portable", "le portable", "le PC portable"],
    "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone." }
   },

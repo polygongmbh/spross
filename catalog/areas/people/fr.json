@@ -59,7 +59,7 @@
   "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "article": "le" } },
   "wife": {
    "text": "épouse",
-   "accepts": ["l'épouse", "femme"],
+   "accepts": ["l'épouse", "la femme"],
    "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "au quotidien on dit ma femme · épouse est plus officiel." }
   },

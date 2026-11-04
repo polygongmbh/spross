@@ -99,7 +99,7 @@
   },
   "tax": {
    "text": "imposta",
-   "accepts": ["l'imposta", "un'imposta", "tassa"],
+   "accepts": ["l'imposta", "un'imposta", "la tassa"],
    "grammar": { "article": "l'", "gender": "f" },
    "notes": { "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio." }
   },

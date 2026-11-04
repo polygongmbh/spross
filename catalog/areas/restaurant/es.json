@@ -4,7 +4,7 @@
  "words": {
   "menu": {
    "text": "menú",
-   "accepts": ["carta"],
+   "accepts": ["la carta"],
    "grammar": { "article": "el" },
    "notes": {
     "es": "El menú es el del día; la carta trae todos los platos.",

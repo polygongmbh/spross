@@ -22,7 +22,7 @@
     "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli."
    }
   },
-  "notebook": { "text": "libreta", "accepts": ["cuaderno"], "grammar": { "article": "la" } },
+  "notebook": { "text": "libreta", "accepts": ["el cuaderno"], "grammar": { "article": "la" } },
   "printer": { "text": "impresora", "grammar": { "article": "la" } },
   "socket": {
    "text": "enchufe",
