@@ -21,7 +21,7 @@
   "brown": { "text": "kahawia", "accepts": ["hudhurungi"] },
   "gray": { "text": "kijivu" },
   "purple": { "text": "zambarau" },
-  "what-color-is-it": { "text": "Ni rangi gani?" },
+  "what-color-is-it": { "text": "Ni rangi gani?", "accepts": ["Hii ni rangi gani?"] },
   "a-white-car": { "text": "Gari jeupe." }
  }
 }
