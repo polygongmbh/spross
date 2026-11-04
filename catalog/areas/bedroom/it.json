@@ -27,6 +27,7 @@
   "to-rest": { "text": "riposare", "accepts": ["riposarsi"] },
   "to-fall-asleep": { "text": "addormentarsi" },
   "to-iron": { "text": "stirare" },
+  "tired": { "text": "stanco", "forms": { "f": "stanca" } },
   "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",

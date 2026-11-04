@@ -10,7 +10,6 @@
   "to-cough": { "text": "ка́шляти" },
   "sick": { "text": "хво́рий" },
   "illness": { "text": "хворо́ба" },
-  "tired": { "text": "вто́млений" },
   "weak": { "text": "слабки́й" },
   "dizziness": { "text": "запа́морочення", "grammar": { "plural": "=" } },
   "wound": { "text": "ра́на" },

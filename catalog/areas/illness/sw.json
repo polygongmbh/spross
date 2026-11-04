@@ -10,14 +10,6 @@
   "to-cough": { "text": "kukohoa" },
   "sick": { "text": "mgonjwa" },
   "illness": { "text": "ugonjwa", "forms": { "pl": "magonjwa" } },
-  "tired": {
-   "text": "-chovu",
-   "teaches": ["mchovu", "wachovu"],
-   "notes": {
-    "sw": "Nimechoka = nina uchovu · mtu mchovu, watu wachovu",
-    "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."
-   }
-  },
   "weak": { "text": "dhaifu" },
   "dizziness": { "text": "kizunguzungu", "forms": { "pl": "vizunguzungu" } },
   "wound": { "text": "jeraha", "forms": { "pl": "majeraha" } },

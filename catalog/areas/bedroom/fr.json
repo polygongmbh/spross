@@ -35,6 +35,7 @@
   "to-rest": { "text": "se reposer" },
   "to-fall-asleep": { "text": "s'endormir" },
   "to-iron": { "text": "repasser" },
+  "tired": { "text": "fatigué", "forms": { "f": "fatiguée" } },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",

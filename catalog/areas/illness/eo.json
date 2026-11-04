@@ -16,7 +16,6 @@
   "to-cough": { "text": "tusi" },
   "sick": { "text": "malsana" },
   "illness": { "text": "malsano" },
-  "tired": { "text": "laca" },
   "weak": { "text": "malforta" },
   "dizziness": { "text": "kapturno", "teaches": ["vertiĝo"] },
   "wound": { "text": "vundo" },

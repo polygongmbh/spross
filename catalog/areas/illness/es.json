@@ -25,7 +25,6 @@
   "to-cough": { "text": "toser" },
   "sick": { "text": "enfermo", "forms": { "f": "enferma" } },
   "illness": { "text": "enfermedad", "grammar": { "article": "la" } },
-  "tired": { "text": "cansado", "forms": { "f": "cansada" } },
   "weak": { "text": "débil" },
   "dizziness": {
    "text": "mareo",

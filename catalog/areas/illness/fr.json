@@ -20,7 +20,6 @@
   "to-cough": { "text": "tousser" },
   "sick": { "text": "malade" },
   "illness": { "text": "maladie", "grammar": { "article": "la" } },
-  "tired": { "text": "fatigué", "forms": { "f": "fatiguée" } },
   "weak": { "text": "faible" },
   "dizziness": {
    "text": "vertige",

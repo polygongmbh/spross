@@ -20,7 +20,6 @@
   "to-cough": { "text": "tossire" },
   "sick": { "text": "malato", "forms": { "f": "malata" } },
   "illness": { "text": "malattia", "grammar": { "article": "la" } },
-  "tired": { "text": "stanco", "forms": { "f": "stanca" } },
   "weak": { "text": "debole" },
   "dizziness": {
    "text": "capogiro",

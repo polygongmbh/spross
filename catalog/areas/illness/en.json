@@ -10,7 +10,6 @@
   "to-cough": { "text": "to cough" },
   "sick": { "text": "sick" },
   "illness": { "text": "illness", "teaches": ["disease"], "forms": { "pl": "illnesses" } },
-  "tired": { "text": "tired" },
   "weak": { "text": "weak" },
   "dizziness": { "text": "dizziness" },
   "wound": { "text": "wound" },

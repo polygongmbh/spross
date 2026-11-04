@@ -2,7 +2,6 @@
  { "slug": "sick", "kind": "adjective", "emoji": "🤒" },
  { "slug": "pain", "kind": "noun", "emoji": "🤕" },
  { "slug": "to-hurt", "kind": "verb", "emoji": "🤕" },
- { "slug": "tired", "kind": "adjective", "emoji": "😴" },
  { "slug": "fever", "kind": "noun", "emoji": "🌡️" },
  { "slug": "cold", "kind": "noun", "emoji": "🤧" },
  { "slug": "cough", "kind": "noun", "emoji": "😷" },

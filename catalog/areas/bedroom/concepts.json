@@ -20,9 +20,10 @@
  { "slug": "to-rest", "kind": "verb", "emoji": "🛌" },
  { "slug": "to-fall-asleep", "kind": "verb" },
  { "slug": "to-iron", "kind": "verb" },
+ { "slug": "tired", "kind": "adjective", "emoji": "😴" },
  { "slug": "sleep-well", "kind": "phrase", "emoji": "🌙", "components": ["to-sleep"] },
  { "slug": "good-morning-my-love", "kind": "phrase", "emoji": "💕", "components": [] },
- { "slug": "im-tired", "kind": "phrase", "emoji": "🥱", "components": [] },
+ { "slug": "im-tired", "kind": "phrase", "emoji": "🥱", "components": ["tired"] },
  { "slug": "did-you-set-the-alarm", "kind": "phrase", "emoji": "⏰", "components": ["alarm-clock"] },
  { "slug": "i-love-you", "kind": "phrase", "emoji": "❤️", "components": [] },
  { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["to-rest"] },
@@ -38,5 +39,5 @@
   "emoji": "😴",
   "components": ["to-sleep"]
  },
- { "slug": "are-you-tired-by-any-chance", "kind": "phrase", "emoji": "🤨", "components": [] }
+ { "slug": "are-you-tired-by-any-chance", "kind": "phrase", "emoji": "🤨", "components": ["tired"] }
 ]

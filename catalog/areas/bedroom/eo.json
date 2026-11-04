@@ -35,6 +35,7 @@
   "to-rest": { "text": "ripozi" },
   "to-fall-asleep": { "text": "ekdormi", "accepts": ["endormiĝi"] },
   "to-iron": { "text": "gladi" },
+  "tired": { "text": "laca" },
   "sleep-well": { "text": "Dormu bone!" },
   "good-morning-my-love": {
    "text": "Bonan matenon, mia amo!",

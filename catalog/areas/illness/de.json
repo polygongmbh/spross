@@ -10,7 +10,6 @@
   "to-cough": { "text": "husten" },
   "sick": { "text": "krank" },
   "illness": { "text": "Krankheit", "forms": { "pl": "die Krankheiten" }, "grammar": { "article": "die" } },
-  "tired": { "text": "müde" },
   "weak": { "text": "schwach" },
   "dizziness": { "text": "Schwindel", "grammar": { "article": "der" } },
   "wound": { "text": "Wunde", "forms": { "pl": "die Wunden" }, "grammar": { "article": "die" } },

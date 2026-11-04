@@ -22,6 +22,14 @@
   "to-rest": { "text": "kupumzika" },
   "to-fall-asleep": { "text": "kusinzia", "teaches": ["kulala usingizi"], "accepts": ["kupata usingizi"] },
   "to-iron": { "text": "kupiga pasi" },
+  "tired": {
+   "text": "-chovu",
+   "teaches": ["mchovu", "wachovu"],
+   "notes": {
+    "sw": "Nimechoka = nina uchovu · mtu mchovu, watu wachovu",
+    "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."
+   }
+  },
   "sleep-well": { "text": "Lala salama!" },
   "good-morning-my-love": {
    "text": "Habari za asubuhi, mpenzi wangu!",

@@ -31,6 +31,7 @@
   "to-rest": { "text": "descansar" },
   "to-fall-asleep": { "text": "dormirse", "accepts": ["quedarse dormido"] },
   "to-iron": { "text": "planchar" },
+  "tired": { "text": "cansado", "forms": { "f": "cansada" } },
   "sleep-well": { "text": "¡Que duermas bien!", "accepts": ["¡Duerme bien!"] },
   "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "accepts": ["¡Buenos días, cariño!"] },
   "im-tired": { "text": "Estoy cansado.", "forms": { "f": "Estoy cansada." } },
