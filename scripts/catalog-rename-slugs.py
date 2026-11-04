@@ -6,7 +6,7 @@
 
 The mapping file is `old<TAB>new` per line (`#` comments). A slug is the card id, so one
 rename is the concept's row in `concepts.json`, its key in every `<lang>.json`, every
-`components` entry and alphabet `example` that names it. Recordings, shipped and in the
+`components` entry, alphabet `example` and opposites pair that names it. Recordings, shipped and in the
 audio packs alike, are keyed by the form they speak and stay put. A dozen-plus files per
 slug, which is why it is a script.
 
@@ -110,6 +110,14 @@ def alphabet_rewrites(mapping):
     return out
 
 
+def opposites_rewrites(mapping):
+    """{relative path: text} for the opposites pairs when one names a renamed slug."""
+    path = os.path.join('opposites', 'pairs.json')
+    pairs = json.loads(read_text(CATALOG, path))
+    renamed = [[mapping.get(slug, slug) for slug in pair] for pair in pairs]
+    return {path: catalog_format.formatted(renamed)} if renamed != pairs else {}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('mapping', help='old -> new, as .tsv (old<TAB>new)')
@@ -141,6 +149,7 @@ def main():
                            'scripts/catalog-format.py --fix first' % path)
                 written[path] = text
     written.update(alphabet_rewrites(mapping))
+    written.update(opposites_rewrites(mapping))
 
     for path, text in sorted(written.items()):
         print('%s %s' % ('would write' if args.check else 'wrote', path))
