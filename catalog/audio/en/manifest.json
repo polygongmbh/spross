@@ -1592,6 +1592,16 @@
       "sha256": "c9049012129098f65622bab18201f1220b462ae0a48672e3372e3e82d160df1c",
       "source": "LL-Q1860 (eng)-Mélange a trois-approve.wav"
     },
+    "approximately": {
+      "author": "Persent101",
+      "file": "words/approximately.mp3",
+      "gain": 9.1,
+      "gate": -70.3,
+      "matches": "approximately",
+      "mos": 3.17,
+      "sha256": "e4afed447aa8c67b75f2d00e57ba841c311dbb4cc2ba24cb830211639d7146b1",
+      "source": "En-us-approximately.ogg"
+    },
     "arm": {
       "author": "Dvortygirl",
       "file": "words/arm.mp3",
