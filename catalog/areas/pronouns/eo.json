@@ -21,7 +21,7 @@
   "anything": { "text": "io ajn" },
   "someone": { "text": "iu" },
   "everyone": { "text": "ĉiu homo" },
-  "no-one": { "text": "neniu" },
+  "nobody-at-all": { "text": "tute neniu" },
   "anyone": { "text": "iu ajn" },
   "our": { "text": "nia" }
  }

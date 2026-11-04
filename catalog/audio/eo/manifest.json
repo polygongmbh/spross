@@ -7511,17 +7511,6 @@
       "sha256": "84161151b93e79dc5a311a472d1481adae52d20254eeea2627250b918c8a6069",
       "source": "LL-Q143 (epo)-Lepticed7-nenio.wav"
     },
-    "neniu": {
-      "author": "Lepticed7",
-      "file": "words/neniu.mp3",
-      "gain": 13.3,
-      "gate": -75.4,
-      "lead": 200,
-      "matches": "neniu",
-      "mos": 2.76,
-      "sha256": "3fb17e0106d05abcacb0cda18d19202cd74c54562f6bc128559f8522bfbbda63",
-      "source": "LL-Q143 (epo)-Lepticed7-neniu.wav"
-    },
     "neniu problemo": {
       "author": "Tiguliano",
       "file": "words/neniu_problemo.mp3",

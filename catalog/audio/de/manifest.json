@@ -14996,17 +14996,6 @@
       "sha256": "fe97db4821b4ea7dedd97b2abe648f3faf5cfbe0ae9677e903e8d331dffc83a0",
       "source": "De-niedriger2.ogg"
     },
-    "niemand": {
-      "author": "Jeuwre",
-      "end": 1630,
-      "file": "words/niemand.mp3",
-      "gain": -3.1,
-      "lead": 430,
-      "matches": "niemand",
-      "mos": 3.09,
-      "sha256": "979921b93301f098b9a12c21ba7b30a5fdb1c05cbcbbfcc6a388b6badcf6ab59",
-      "source": "De-niemand.ogg"
-    },
     "niere": {
       "author": "Jeuwre",
       "end": 1370,

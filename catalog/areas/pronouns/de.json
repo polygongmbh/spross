@@ -32,7 +32,7 @@
   "anything": { "text": "irgendetwas" },
   "someone": { "text": "jemand" },
   "everyone": { "text": "jeder Mensch" },
-  "no-one": { "text": "niemand" },
+  "nobody-at-all": { "text": "gar niemand", "accepts": ["überhaupt niemand"] },
   "anyone": { "text": "irgendjemand" },
   "our": {
    "text": "unser",

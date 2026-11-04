@@ -6792,17 +6792,6 @@
       "sha256": "767d8e61ee2527c79395c9036c9cb66372c4cd1097e6286af4d39422d4a9112b",
       "source": "Uk-ніс.ogg"
     },
-    "ніхто́": {
-      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u043du0456u0445u0442u043eu0301.mp3",
-      "gain": 1.2,
-      "gate": -56.3,
-      "lead": 210,
-      "matches": "ніхто́",
-      "mos": 2.56,
-      "sha256": "5194df47ca1a24c23c6d51a1a607117af55b5163be7cfc6c709c7e5c9b62cfcc",
-      "source": "Uk-ніхто.ogg"
-    },
     "ніч": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "words/u043du0456u0447.mp3",

@@ -7128,18 +7128,6 @@
       "sha256": "43f00db240a40bb24234c43b91120f327eafb0fdcd0a814731ee5e1c2f11c2ca",
       "source": "En-us-no.ogg"
     },
-    "no one": {
-      "author": "Association Shtooka, Judith Franck",
-      "end": 1170,
-      "file": "words/no_one.mp3",
-      "gain": -0.8,
-      "gate": -74.7,
-      "lead": 150,
-      "matches": "no one",
-      "mos": 2.22,
-      "sha256": "a7aea4a979ad52f4f47d6bc2cbaa13032345c2fdbd4a5bd3d051b701fa69a5d9",
-      "source": "En-uk-no one.ogg"
-    },
     "no problem": {
       "author": "Vealhurl",
       "file": "words/no_problem.mp3",

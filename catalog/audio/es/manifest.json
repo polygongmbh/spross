@@ -7155,17 +7155,6 @@
       "sha256": "f2e538585684dd561397e3b5d0ede21af1d0595e56824211a4ce64de5c79d2ef",
       "source": "LL-Q1321 (spa)-Sinaloa-nadar.wav"
     },
-    "nadie": {
-      "author": "AdrianAbdulBaha",
-      "file": "words/nadie.mp3",
-      "gain": 1.1,
-      "gate": -73.2,
-      "lead": 230,
-      "matches": "nadie",
-      "mos": 3.19,
-      "sha256": "e31f90737df285213a0f9dda79630f363a8239960ba97dea2316196e2708e8bc",
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nadie.wav"
-    },
     "nariz": {
       "author": "Rodelar",
       "file": "words/nariz.mp3",
