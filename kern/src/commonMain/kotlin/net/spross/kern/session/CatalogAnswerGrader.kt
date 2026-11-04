@@ -3,8 +3,7 @@ package net.spross.kern.session
 import net.spross.kern.model.Card
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.SharedTargetForms
-import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.LanguageInfo
 
 /**
  * Produce grading with the whole join in view (`docs/grading.md`).
@@ -24,10 +23,11 @@ import net.spross.kern.model.nfcNormalized
  * so it is probed too ([AnswerNormalizer.articlePeeledRemainder]) — otherwise a slip
  * behind a fumbled article bridges one concept's word to another unchallenged.
  *
- * The join answers a second question from the other side — which concepts a target form is
- * LISTED by, for a card asked what it means ([conceptsSharing]) — and that one is literal
- * rather than lenient, so the two indexes are built separately.
- * A third reads the prompt: which concepts the source writes alike ([promptSharers]).
+ * The join answers a second question from each side — which concepts show a word alike:
+ * a target form, for a card asked what it means ([conceptsSharing]), and the source prompt
+ * of a produce card ([promptSharers]). Both are [SharedForms], keyed on the word as the
+ * learner sees and hears it, article included, so they are built apart from [owners],
+ * which forgives the article this one keeps.
  */
 class CatalogAnswerGrader(
     private val normalizer: AnswerNormalizer,
@@ -37,11 +37,17 @@ class CatalogAnswerGrader(
     /** Comparison form → the concepts that accept it exactly, seed order. */
     private val owners: Map<String, List<Card>> = buildOwners(cards)
 
-    /** The same join read literally: which concepts print a target form (`SharedTargetForms`). */
-    private val sharedForms = SharedTargetForms(cards)
+    private val cards: List<Card> = cards
 
-    /** Displayed source prompt → the concepts that show it, seed order. */
-    private val prompts: Map<String, List<Card>> = cards.sortedBy { it.seedIndex }.groupBy { promptKey(it) }
+    /** Which concepts print a target form, article and all ([SharedForms.printed]). */
+    private val sharedForms = SharedForms.printed(normalizer.answerLanguage, cards)
+
+    /**
+     * The source side's index, in the source language's shape — which only a turn knows, so it is
+     * built on the first ask and kept with this grader, which outlives the turns it serves.
+     */
+    private var prompts: SharedForms? = null
+    private var promptLanguage: LanguageInfo? = null
 
     /**
      * [Match.Exact] whenever this card accepts the input — a form two concepts
@@ -57,19 +63,21 @@ class CatalogAnswerGrader(
     /**
      * Every OTHER concept that LISTS [form] on its target side — what a target-language
      * merge means besides what [card] teaches. The rule and its reasons are
-     * [SharedTargetForms]; this is the same join, already built.
+     * [SharedForms]; this is the same join, already built.
      */
     fun conceptsSharing(form: String, card: Card): List<Card> = sharedForms.concepts(form, card)
 
     /**
-     * Every OTHER concept whose source the learner sees written exactly as [card]'s —
-     * a source-language merge (de `gehen` is to go AND to walk), so a typed answer to the
-     * prompt may be any of their words. Keyed on what the learner SEES: citation conventions
-     * (de noun capitals, en "to ", sw ku-) keep noun/verb homographs apart.
+     * Every OTHER concept whose source shows the same word as [card]'s, in [source]'s shape
+     * ([SharedForms.prompts]) — a source-language merge (de `gehen` is to go AND to walk), so a
+     * typed answer to the prompt may be any of their words. The article and citation prefix the
+     * word is shown with (de `der Husten`, en "to ") keep noun/verb homographs apart.
      */
-    fun promptSharers(card: Card): List<Card> = prompts[promptKey(card)].orEmpty().filter { it.id != card.id }
-
-    private fun promptKey(card: Card): String = nfcNormalized(card.source.text).trim()
+    internal fun promptSharers(card: Card, source: LanguageInfo): List<Card> {
+        val index = prompts?.takeIf { promptLanguage == source }
+            ?: SharedForms.prompts(source, cards).also { prompts = it; promptLanguage = source }
+        return index.concepts(card.source.text, card)
+    }
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
         // why: a form the prompted card accepts belongs to it first (see [grade]), and a

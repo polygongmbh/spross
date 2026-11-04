@@ -83,7 +83,7 @@ internal class TurnGrading(
         if (state.role != PresentationRole.Hear) {
             return merged(
                 own = grader.grade(text, state.card, state.promptTag),
-                shared = grader.promptSharers(state.card).map { grader.grade(text, it, state.promptTag) },
+                shared = grader.promptSharers(state.card, meaningNormalizer.answerLanguage).map { grader.grade(text, it, state.promptTag) },
             )
         }
         return merged(

@@ -37,7 +37,7 @@ import net.spross.kern.model.articledForm
  * edit apart, so no positive budget is safe for them.
  */
 class AnswerNormalizer(
-    private val answerLanguage: LanguageInfo,
+    internal val answerLanguage: LanguageInfo,
     private val articleLeniency: Boolean,
 ) {
 

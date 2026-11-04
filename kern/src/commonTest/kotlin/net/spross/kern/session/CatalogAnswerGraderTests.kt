@@ -140,10 +140,11 @@ class CatalogAnswerGraderTests {
         assertEquals(emptyList(), grader.conceptsSharing("kufunga", close).map { it.id })
     }
 
-    /** Case is a word, not a slip: the lenient index merges these and this one must not. */
+    /** The article is part of the word: the lenient index merges these and this one must not. */
     @Test
-    fun aFormPrintedInAnotherCaseIsAnotherWord() {
-        val cough = card("cough", "der Husten", "Husten", kind = CardKind.Noun, seedIndex = 0, lang = "de")
+    fun aFormShownWithItsArticleIsAnotherWord() {
+        val noun = card("cough", "der Husten", "Husten", kind = CardKind.Noun, seedIndex = 0, lang = "de")
+        val cough = noun.copy(target = noun.target.copy(grammar = mapOf("article" to "der")))
         val toCough = card("to-cough", "husten", "husten", seedIndex = 1, lang = "de")
         val grader = CatalogAnswerGrader(de, listOf(cough, toCough))
         assertEquals(emptyList(), grader.conceptsSharing("Husten", cough).map { it.id })

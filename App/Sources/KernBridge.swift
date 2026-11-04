@@ -37,6 +37,8 @@ extension OpenedBox: @retroactive @unchecked Sendable {}
 // The catalog is parsed once and never written again; the pool report is a
 // value kern hands back. Both cross to a background sweep and back.
 extension Catalog: @retroactive @unchecked Sendable {}
+// A language's rules, read from the parsed catalog; the watch snapshot carries them off the actor.
+extension LanguageInfo: @retroactive @unchecked Sendable {}
 extension ListeningPool.Report: @retroactive @unchecked Sendable {}
 
 // MARK: - SwiftUI conformances

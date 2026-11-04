@@ -96,14 +96,14 @@ extension AppModel {
     /// round held the frame that raises the summary (`docs/performance.md`).
     func pushWatchSnapshot() {
         guard watchBridge.canDeliver, let box else { return }
-        // why: the builder shortens a verb to its stem on the option side, and only
-        // languages.json knows which prefix that is (sw "ku"/"kw", en "to ").
-        let citationPrefixes = (catalog?.languages ?? [:]).mapValues { $0.optionalVerbPrefixes }
+        // why: the builder shortens a verb to its stem on the option side and keys which
+        // concepts print a form alike, and only languages.json knows the prefixes and articles.
+        let languages = catalog?.languages ?? [:]
         let now = Date().epochMillis
         Task.detached { [watchBridge] in
             let json = WatchSnapshotBuilder.shared.build(state: box,
                                                          nowEpochMillis: now,
-                                                         citationPrefixes: citationPrefixes)
+                                                         languages: languages)
             watchBridge.push(snapshotJSON: json)
         }
     }

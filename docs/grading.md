@@ -104,16 +104,19 @@ Neighbors: the leniency rule `../kern/README.md`, recognition's self-grade `Self
     `conceptsSharing(form, card)`, every OTHER concept that PRINTS `form` on its target side:
     sw `ndege` is Vogel AND Flugzeug, so both understand the word;
   - a typed card owes the target word, and the source may merge what the target splits —
-    `promptSharers(card)`, every OTHER concept whose source reads exactly as this one's:
+    `promptSharers(card, source)`, every OTHER concept whose source shows the same word as this one's:
     de `gehen` is to go AND to walk, so both `kwenda` and `kutembea` answer it.
   The prompted card leads —
   its own Exact wins, and its own slip is corrected to its own word —
   and a borrowed answer comes back as `AlmostReason.Merged`, rated exactly what it earned (Good clean, Hard for a slip) and holding on THIS card's own answer:
   full credit, and the word still to be learned stands on screen for the tap.
   Live green stays the card's own answer alone, or the beat would carry the turn off before that word was ever seen.
-  The meaning index is LITERAL where the produce one is lenient, and that is the whole difference:
-  `owners` asks "could this typing be that word" and forgives an article, a citation prefix and a case;
-  `sharedForms` asks "does another concept print this very form", and a form that has to be bent to match is a different word —
-  de `Arm` is not `arm`, which by ear is not a merge either, since the target is spoken with its article.
+  Both are one index, `SharedForms`, built per side in that side's language,
+  and its key is the word as the learner sees and hears it:
+  the form with its article in front where it carries one (the realization's for its text and `accepts`, a tagged form's own; a `teaches` entry is another word and stands bare),
+  in the language's comparison shape — the grader's own character pass, so case and punctuation set no word apart (sw `Karibu!` is `karibu`).
+  That is the whole difference from `owners`, which asks "could this typing be that word" and forgives the article and citation prefix too;
+  this asks "does another concept show this word", and the article is part of which word it is —
+  de `der Arm` is not `arm`, nor `der Husten` `husten`.
   The meaning side still mints no `Match.OtherWord`:
   naming the concept a wrong answer belongs to would teach a word in the language being learned.

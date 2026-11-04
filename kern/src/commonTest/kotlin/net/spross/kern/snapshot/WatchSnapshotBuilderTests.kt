@@ -8,6 +8,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.CardPhase
 
 class WatchSnapshotBuilderTests {
@@ -350,7 +351,7 @@ class WatchSnapshotBuilderTests {
             Snap.card("cook", 1, kind = CardKind.Verb, targetText = "kupika"),
             Snap.card("eat", 2, kind = CardKind.Verb, targetText = "kula"),
         )
-        val doc = WatchSnapshotBuilder.doc(state, Box.day1, mapOf("sw" to listOf("ku", "kw")))
+        val doc = WatchSnapshotBuilder.doc(state, Box.day1, mapOf("sw" to LanguageInfo("sw", "Kiswahili", "Swahili", "🇹🇿", optionalVerbPrefixes = listOf("ku", "kw"))))
         val entry = doc.entries.single { it.cardId == "cook" }
         assertEquals("pika", entry.optionForm)
         assertEquals(listOf("la"), entry.distractors)

@@ -10,15 +10,16 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Language
+import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Realization
-import net.spross.kern.model.SharedTargetForms
 import net.spross.kern.model.article
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.model.rotatedForm
 import net.spross.kern.session.MultipleChoice
+import net.spross.kern.session.SharedForms
 import net.spross.kern.store.StoreJson
 import net.spross.kern.trainer.letters
 
@@ -55,23 +56,25 @@ object WatchSnapshotBuilder {
     fun build(
         state: BoxState,
         nowEpochMillis: Long,
-        citationPrefixes: Map<Language, List<String>> = emptyMap(),
+        languages: Map<Language, LanguageInfo> = emptyMap(),
     ): String =
         StoreJson.encodeSorted(
             WatchSnapshotDoc.serializer(),
-            doc(state, nowEpochMillis, citationPrefixes),
+            doc(state, nowEpochMillis, languages),
         )
 
     /**
-     * [citationPrefixes] are `languages.json`'s `optionalVerbPrefixes` per language —
-     * only [MultipleChoice.optionForm] reads them, and an empty map simply leaves every
-     * verb in its citation form.
+     * [languages] are `languages.json`'s: [MultipleChoice.optionForm] reads their
+     * `optionalVerbPrefixes`, and the target's articles and spelling key which concepts print a form alike.
+     * A language missing from the map keeps every verb in its citation form and adds no fold of its own.
      */
     internal fun doc(
         state: BoxState,
         nowEpochMillis: Long,
-        citationPrefixes: Map<Language, List<String>> = emptyMap(),
+        languages: Map<Language, LanguageInfo> = emptyMap(),
     ): WatchSnapshotDoc {
+        val citationPrefixes = languages.mapValues { it.value.optionalVerbPrefixes }
+        val target = state.joinStamp.target
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val ranked = Inventory.active(state).mapNotNull { sched ->
             if (sched.memory == null) return@mapNotNull null
@@ -99,7 +102,7 @@ object WatchSnapshotBuilder {
         // why: the index and both option sides are the POOL's, not an entry's —
         // built once here rather than once per shipped entry, which would be most
         // of what a snapshot costs.
-        val shared = SharedTargetForms(pool)
+        val shared = SharedForms.printed(languages[target] ?: LanguageInfo(target, target, target, flag = ""), pool)
         val fresh = ranked.filterNot { Statistics.hasArrived(it.sched) }.map { it.sched.cardId }.toSet()
         val reviewCounts = ranked.associate { it.sched.cardId to it.sched.reviewCount }
         val options = OptionPool(pool, reviewCounts, fresh, citationPrefixes)
@@ -171,7 +174,7 @@ object WatchSnapshotBuilder {
         entry: WatchEntryDto,
         state: BoxState,
         options: OptionPool,
-        shared: SharedTargetForms,
+        shared: SharedForms,
     ): WatchEntryDto {
         val role = entry.nextRole
         val card = state.cards.getValue(entry.cardId)

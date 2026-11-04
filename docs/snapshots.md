@@ -92,7 +92,7 @@ Neighbors: the engine contract `../kern/README.md`, what the watch and widgets d
   and no bound stem stands while a real form can (`-ako` → `yako`, `lako`, …).
   Where a class marker survives the ranking, the writing gives it up:
   a stem without forms loses its dash and a verb its citation prefix
-  (`-husika` → `husika`, `kupika` → `pika`, prefixes from `languages.json` via `citationPrefixes`);
+  (`-husika` → `husika`, `kupika` → `pika`, prefixes from `languages.json`, which the builder takes whole);
   `optionForm` is the entry's own option wherever it differs from `text`.
   The shortlist is the variety knob and the first thing to cut if the snapshot ever crowds the ~60 KB cap;
   shipping card ids instead of texts would recover most of it,
