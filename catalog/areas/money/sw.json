@@ -7,7 +7,7 @@
   "expensive": { "text": "ghali", "notes": { "sw": "ghali sana = bei kubwa · ghali mno = bei kupita kiasi" } },
   "cheap": { "text": "rahisi", "notes": { "sw": "gari rahisi = bei ndogo · kazi rahisi = isiyo ngumu" } },
   "to-sell": { "text": "kuuza" },
-  "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
+  "cash": { "text": "pesa taslimu", "accepts": ["taslimu", "fedha taslimu"] },
   "bank-card": { "text": "kadi ya benki", "forms": { "pl": "kadi za benki" } },
   "coin": { "text": "sarafu", "grammar": { "plural": "=" } },
   "change-money": { "text": "chenji", "grammar": { "plural": "=" } },
@@ -17,10 +17,10 @@
   "rich": { "text": "tajiri" },
   "poor": { "text": "maskini" },
   "free-of-charge": { "text": "bure" },
-  "how-much-does-this-cost": { "text": "Hii ni bei gani?" },
+  "how-much-does-this-cost": { "text": "Hii ni bei gani?", "accepts": ["Hii inagharimu kiasi gani?"] },
   "that-is-too-expensive": { "text": "Hii ni ghali mno.", "accepts": ["Hii ni ghali sana."] },
   "i-have-no-money": { "text": "Sina pesa." },
-  "can-i-pay-by-card": { "text": "Naweza kulipa kwa kadi?" },
+  "can-i-pay-by-card": { "text": "Naweza kulipa kwa kadi?", "accepts": ["Ninaweza kulipa kwa kadi?"] },
   "ive-already-paid": { "text": "Nimeshalipa.", "notes": { "sw": "nimeshalipa = tayari nimelipa" } }
  }
 }
