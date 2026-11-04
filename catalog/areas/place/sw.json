@@ -43,7 +43,7 @@
   "under-the-bed": { "text": "chini ya kitanda" },
   "in-the-city": { "text": "katika mji", "teaches": ["mjini"] },
   "between-us": { "text": "kati yetu" },
-  "is-it-far": { "text": "Ni mbali?" },
+  "is-it-far": { "text": "Ni mbali?", "accepts": ["Iko mbali?"], "notes": { "sw": "Ni mbali? = Iko mbali?" } },
   "at-school": {
    "text": "shuleni",
    "notes": {
