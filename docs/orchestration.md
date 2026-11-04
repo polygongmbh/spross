@@ -9,7 +9,7 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   before any layout is designed.
 - Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
 - A wave of small corrections runs 2–3 agents in total, the review included;
-  the conductor applies the review's findings, and audio joins a wave only when the user asks for it.
+  the reviewer stacks the packages and commits its own fixes, and audio joins a wave only when the user asks for it.
 - The conductor merges, gates and commits; 
   code changes and research goes through builders,
   only small code corrections and quick lookups stay in session
