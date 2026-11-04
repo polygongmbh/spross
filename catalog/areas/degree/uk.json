@@ -22,6 +22,7 @@
   "every": { "text": "ко́жен", "forms": { "f": "ко́жна", "n": "ко́жне" } },
   "most": { "text": "бі́льшість" },
   "almost": { "text": "ма́йже" },
+  "approximately": { "text": "прибли́зно" },
   "a-little": { "text": "тро́хи" },
   "few": { "text": "ма́ло", "teaches": ["небага́то"] },
   "once": { "text": "оди́н раз" },

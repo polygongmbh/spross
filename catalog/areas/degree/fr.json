@@ -22,6 +22,7 @@
   "every": { "text": "chaque" },
   "most": { "text": "la plupart" },
   "almost": { "text": "presque" },
+  "approximately": { "text": "environ" },
   "a-little": { "text": "un peu" },
   "few": { "text": "peu de" },
   "once": { "text": "une fois" },

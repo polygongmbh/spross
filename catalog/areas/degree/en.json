@@ -34,6 +34,7 @@
   },
   "most": { "text": "most" },
   "almost": { "text": "almost" },
+  "approximately": { "text": "approximately", "accepts": ["about", "roughly"] },
   "a-little": { "text": "a little", "teaches": ["a bit"] },
   "few": { "text": "few" },
   "once": { "text": "once" },

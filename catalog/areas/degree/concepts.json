@@ -17,6 +17,7 @@
  { "slug": "every", "kind": "adjective" },
  { "slug": "most", "kind": "adjective" },
  { "slug": "almost", "kind": "adjective" },
+ { "slug": "approximately", "kind": "adjective" },
  { "slug": "higher", "kind": "adjective", "emoji": "⬆️" },
  { "slug": "lower", "kind": "adjective", "emoji": "⬇️" },
  { "slug": "a-little", "kind": "adjective" },

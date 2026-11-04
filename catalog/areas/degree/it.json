@@ -28,6 +28,7 @@
   "every": { "text": "ogni" },
   "most": { "text": "la maggior parte" },
   "almost": { "text": "quasi" },
+  "approximately": { "text": "circa" },
   "a-little": { "text": "un po'", "accepts": ["un poco"] },
   "few": { "text": "pochi", "forms": { "f": "poche" } },
   "once": { "text": "una volta" },

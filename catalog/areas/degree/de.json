@@ -22,6 +22,7 @@
   "every": { "text": "jeder", "forms": { "f": "jede", "n": "jedes" } },
   "most": { "text": "die meisten" },
   "almost": { "text": "fast" },
+  "approximately": { "text": "etwa", "accepts": ["ungefähr"] },
   "a-little": { "text": "ein bisschen", "teaches": ["ein wenig"] },
   "few": { "text": "wenige" },
   "once": { "text": "einmal" },

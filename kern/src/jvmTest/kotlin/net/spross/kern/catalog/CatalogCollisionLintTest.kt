@@ -326,6 +326,8 @@ class CatalogCollisionLintTest {
                 // `-dogo` (small) that qualities/small teaches — one word, since the adverb
                 // is that agreement form; every other language splits the pair (wenig/klein).
                 "sw kidogo: degree/a-little, qualities/small",
+                // sw `takriban` is approximately AND almost — one adverb; every other language splits the pair (etwa/fast).
+                "sw takriban: degree/almost, degree/approximately",
                 // Reviewed 2026-10-21: sw `kutembea` is to walk AND to go for a walk — one verb,
                 // de/en/eo/es/fr/it/uk all split the pair (laufen/spazieren gehen, walk/go for a walk,
                 // piediri/promeni, caminar/pasear, marcher/se promener, camminare/fare una passeggiata,

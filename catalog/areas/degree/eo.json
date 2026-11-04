@@ -28,6 +28,7 @@
   "every": { "text": "ĉiu" },
   "most": { "text": "plej multaj" },
   "almost": { "text": "preskaŭ" },
+  "approximately": { "text": "proksimume", "accepts": ["ĉirkaŭ"] },
   "a-little": { "text": "iom" },
   "few": { "text": "malmultaj" },
   "once": { "text": "unufoje" },
