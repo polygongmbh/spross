@@ -1766,6 +1766,17 @@
       "sha256": "7aa320b18fc8dbccb82aabda03aeca7e8fd44f107616593b0807e789def57bcf",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-aprobar.wav"
     },
+    "aproximadamente": {
+      "author": "Marreromarco",
+      "file": "words/aproximadamente.mp3",
+      "gain": -0.8,
+      "gate": -62.7,
+      "lead": 200,
+      "matches": "aproximadamente",
+      "mos": 2.06,
+      "sha256": "ecf156b839c5003039afe1d9f4e1b63e7ccf92135c6a9eb3ba71cd7570d88a78",
+      "source": "LL-Q1321 (spa)-Marreromarco-aproximadamente.wav"
+    },
     "apéndice": {
       "author": "Marreromarco",
       "file": "words/apu00e9ndice.mp3",
