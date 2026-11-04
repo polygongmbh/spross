@@ -3210,6 +3210,17 @@
       "sha256": "46d99b14260fea38cf94200f8220e37f2c69fc9210ec3acb44a85be7672160d7",
       "source": "Fr-bon.ogg"
     },
+    "bon appétit": {
+      "author": "LoquaxFR",
+      "file": "words/bon_appu00e9tit.mp3",
+      "gain": 5.9,
+      "gate": -97.8,
+      "lead": 10,
+      "matches": "bon appétit",
+      "mos": 3.3,
+      "sha256": "fbee4e8443edc31c121522819323e0c0d27a30f88e7cbcd67b8848f65371535e",
+      "source": "LL-Q150 (fra)-LoquaxFR-bon appétit.wav"
+    },
     "bon marché": {
       "author": "Jules78120",
       "file": "words/bon_marchu00e9.mp3",
@@ -5751,6 +5762,17 @@
       "mos": 2.86,
       "sha256": "5b4299349fece5af08c5d7002b6af939a273f650cffd50c7dedf32cef2ad6d56",
       "source": "LL-Q150 (fra)-Poslovitch-entrée.wav"
+    },
+    "environ": {
+      "author": "Sartus85",
+      "file": "words/environ.mp3",
+      "gain": 4.1,
+      "gate": -87.2,
+      "lead": 180,
+      "matches": "environ",
+      "mos": 2.83,
+      "sha256": "1de9cc6c79910e174f6e27efb3706b763e6f7df10c97e8f890862b6bdb7089b6",
+      "source": "LL-Q150 (fra)-Sartus85-environ.wav"
     },
     "envoyer": {
       "author": "LoquaxFR",
