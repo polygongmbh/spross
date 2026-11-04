@@ -8,8 +8,9 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
 - A new device or form factor hands the assessment and the builders the platform's guidance (`CLAUDE.md`; also WWDC and SDK doc comments)
   before any layout is designed.
 - Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
-- A wave of small corrections runs 2–3 agents in total, the review included;
-  the reviewer stacks the packages and commits its own fixes, and audio joins a wave only when the user asks for it.
+- A wave of small corrections runs 2–3 builders at most;
+  the conductor cherry-picks them onto main, reviews and fixes there,
+  and audio joins a wave only when the user asks for it.
 - The conductor merges, gates and commits; 
   code changes and research goes through builders,
   only small code corrections and quick lookups stay in session
