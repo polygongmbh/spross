@@ -47,6 +47,12 @@ fun AppModel.suspendCurrentCard() {
     dispatch(SessionIntent.SuspendCurrent)
 }
 
+/** "Can't listen right now?": the rest of the run puts every card asked by ear in writing. */
+fun AppModel.cannotListen() {
+    sessionRun ?: return
+    dispatch(SessionIntent.CannotListen)
+}
+
 fun AppModel.continueEndless() {
     sessionRun ?: return
     dispatch(SessionIntent.ContinueEndless)

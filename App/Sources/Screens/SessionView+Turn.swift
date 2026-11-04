@@ -89,7 +89,8 @@ extension SessionView {
                              firstExposure: model.isFirstExposure(card.id),
                              arrived: model.hasArrived(card.id),
                              nowEpochMillis: Date().epochMillis,
-                             answer: model.turnAnswer(for: card.id))
+                             answer: model.turnAnswer(for: card.id),
+                             cannotListen: model.sessionCannotListen)
     }
 
     func resetCardState() {
@@ -142,6 +143,6 @@ extension SessionView {
     }
 
     /// The card was asked by ear and the learner could not listen: the word
-    /// stands on it as text for the rest of the turn.
+    /// stands on it as text, as on every later card asked by ear this run.
     var promptInText: Bool { turn?.promptInText ?? false }
 }

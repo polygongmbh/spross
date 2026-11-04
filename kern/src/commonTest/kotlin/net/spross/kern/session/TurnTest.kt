@@ -281,6 +281,15 @@ class TurnTest {
     }
 
     @Test
+    fun aRunThatCannotListenAsksByEarInWritingFromTheStart() {
+        val written = TurnFixture.hear(TurnFixture.car, cannotListen = true)
+        assertTrue(written.promptInText)
+        // Only the channel the question needs moves: the word is still said beside its text.
+        assertEquals(Saying("gari", "sw"), written.promptSaying(saysMeaning = true))
+        assertEquals(TurnFeedback.Correct, TurnFixture.state(written, TurnIntent.Submit("Auto")).feedback)
+    }
+
+    @Test
     fun onlyACardAskedByEarHasAWordToPutInWriting() {
         val seen = TurnFixture.produce(TurnFixture.car)
         assertEquals(seen, TurnFixture.state(seen, TurnIntent.ShowPromptText))

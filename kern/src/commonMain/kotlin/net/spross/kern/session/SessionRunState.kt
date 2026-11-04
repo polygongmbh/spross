@@ -36,6 +36,9 @@ sealed class SessionIntent {
      */
     data object SuspendCurrent : SessionIntent()
 
+    /** The learner cannot listen right now: the rest of the run asks nothing by ear alone ([SessionRunState.cannotListen]). */
+    data object CannotListen : SessionIntent()
+
     /** "Keep practicing": switch a finished run into endless and pull one refill. */
     data object ContinueEndless : SessionIntent()
 
@@ -90,6 +93,11 @@ data class SessionRunState(
     val opening: SessionOpening = SessionOpening.Day,
     /** The box as this run opened on it — the before of what the round did ([RoundSummary]). */
     val startBox: BoxState? = null,
+    /**
+     * The learner said they cannot listen: every card asked by ear from here on stands in writing
+     * ([TurnState.promptInText]). Lasts the run, endless refills included; the next run listens again.
+     */
+    val cannotListen: Boolean = false,
 ) {
     val currentCardId: String? get() = (step as? SessionStep.Card)?.cardId
 

@@ -339,6 +339,17 @@ class SessionRunTests {
     }
 
     @Test
+    fun cannotListenLastsTheRunAndNotTheNext() {
+        val run = started(Box.backlogged(), now)
+        val muted = SessionRun.reduce(run, SessionIntent.CannotListen, now, Box.TZ).state
+        assertTrue(answer(muted, Rating.Good, now).cannotListen)
+        val next = SessionRun.reduce(SessionRun.reduce(muted, SessionIntent.Close, now, Box.TZ).state,
+            SessionIntent.StartExtra, now, Box.TZ).state
+        assertTrue(next.active)
+        assertFalse(next.cannotListen)
+    }
+
+    @Test
     fun suspendingWithNoCardUpChangesNothing() {
         val idle = SessionRun.idle(Box.backlogged())
         assertEquals(idle, suspended(idle, now))

@@ -147,8 +147,8 @@ data class TurnState(
     /**
      * The sound prompt has been PUT IN WRITING: the word the learner could not listen to
      * stands as text instead, and nothing else about the turn moves — same answer, same
-     * language, same rating. An escape hatch for a moment when listening is impossible,
-     * never a mode: it lasts this turn, and the next card asked by ear asks by ear again.
+     * language, same rating. It lasts the session run ([SessionRunState.cannotListen]):
+     * every later card asked by ear goes up in writing, still said aloud — silencing is the mute switch's.
      */
     val promptInText: Boolean,
     val promptShownAtMillis: Long,

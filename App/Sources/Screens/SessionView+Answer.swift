@@ -37,10 +37,8 @@ extension SessionView {
             giveUp: { dispatch(writing ? TurnIntent.SkipCopy.shared : TurnIntent.GiveUp.shared) },
             selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0)) },
             cantListen: {
-                // why: the word in the air belongs to a question that is about to stand
-                // in writing — nothing may keep playing over the answer to "I can't listen".
-                Pronouncer.shared.stop()
                 dispatch(TurnIntent.ShowPromptText.shared)
+                model.cannotListen()
             },
             fieldAppeared: { focusAnswerField() })
     }

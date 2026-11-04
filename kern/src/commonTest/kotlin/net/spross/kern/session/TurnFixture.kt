@@ -88,10 +88,10 @@ internal object TurnFixture {
     )
 
     /** A hear turn: only an arrived word is ever asked by ear. */
-    fun hear(card: Card, answer: TurnAnswer = TurnAnswer.Typed): TurnState = machine.begin(
+    fun hear(card: Card, answer: TurnAnswer = TurnAnswer.Typed, cannotListen: Boolean = false): TurnState = machine.begin(
         card, PresentationRole.Hear,
         turnPrompt(card, PresentationRole.Hear, reviewCount = 0, arrived = true),
-        firstExposure = false, arrived = true, nowEpochMillis = T0, answer = answer,
+        firstExposure = false, arrived = true, nowEpochMillis = T0, answer = answer, cannotListen = cannotListen,
     )
 
     fun recognize(

@@ -60,6 +60,7 @@ class TurnWiringTest {
         val booked = mutableListOf<Rating>()
         var focusReleases = 0
         var screenReader = false
+        var cannotListen = 0
     }
 
     private fun turn(
@@ -93,6 +94,7 @@ class TurnWiringTest {
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },
             screenReaderOn = { platform.screenReader },
+            onCannotListen = { platform.cannotListen += 1 },
         )
         return flow to platform
     }
@@ -231,7 +233,7 @@ class TurnWiringTest {
         assertEquals(listOf(Rating.Hard), platform.booked)
     }
 
-    /** "Can't listen right now?": the word goes on screen, and the answer is unchanged. */
+    /** "Can't listen right now?": the word goes on screen, the run hears of it, and the answer is unchanged. */
     @Test
     fun theWordGoesOnScreenWhereTheLearnerCannotListen() {
         val (flow, platform) = turn(car, role = PresentationRole.Hear, arrived = true)
@@ -239,6 +241,7 @@ class TurnWiringTest {
         flow.showPromptText()
 
         assertTrue(flow.promptInText)
+        assertEquals(1, platform.cannotListen)
         flow.type("Auto")
         assertEquals(TurnFeedback.Correct, flow.feedback)
         flow.advanceElapsed()

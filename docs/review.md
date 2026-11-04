@@ -39,8 +39,10 @@ Neighbors: the schedule behind it `scheduling.md`, how a typed answer is graded 
   (`spokenOnly` stays: the letter drill's dictation Sprosse still transcribes, and there the glyphs ARE the lesson.)
 - **"Can't listen right now?"** — `TurnIntent.ShowPromptText` puts the played word on the card as text
   (`TurnState.promptInText`), and nothing else about the turn moves: same question, same answer, same rating.
-  It lasts the turn, not a mode or a setting:
-  the next card asked by ear asks by ear again, because the device's own audibility decides that.
+  It lasts the session run (`SessionRunState.cannotListen`), not a setting:
+  every later card asked by ear goes up in writing and is still said aloud,
+  and the next run asks by ear again.
+  Silencing the session is the mute switch's, a separate control.
 - **Recalled turns** (`turnAnswer`) answer whether a produce or hear turn is typed.
   Writing the word is the strongest recall the box has and the only one that teaches the spelling,
   so a word that has not settled is always typed.
