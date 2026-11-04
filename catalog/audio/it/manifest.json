@@ -2707,6 +2707,16 @@
       "sha256": "1f5de1a92444652ea03d9868bd030c7848ee6765dcc0fdfaf3e51b7d4ff5fa7c",
       "source": "LL-Q652 (ita)-Happypheasant-braccio.wav"
     },
+    "buon appetito": {
+      "author": "XANA000",
+      "file": "words/buon_appetito.mp3",
+      "gain": 1.5,
+      "lead": 170,
+      "matches": "buon appetito",
+      "mos": 2.78,
+      "sha256": "14c9db06afe76649d6d6501961b47a815b44878f5919264612e17ed225516080",
+      "source": "LL-Q652 (ita)-XANA000-buon appetito.wav"
+    },
     "buon viaggio": {
       "author": "XANA000",
       "file": "words/buon_viaggio.mp3",
@@ -3419,6 +3429,17 @@
       "mos": 2.97,
       "sha256": "a799311b1eaf367e89ed139844d82178bfb1246f9fe8d7f767852900e91fa5ea",
       "source": "LL-Q652 (ita)-LangPao-cipolla.wav"
+    },
+    "circa": {
+      "author": "XANA000",
+      "file": "words/circa.mp3",
+      "gain": 1.1,
+      "gate": -99.9,
+      "lead": 170,
+      "matches": "circa",
+      "mos": 2.83,
+      "sha256": "a9e4cef62a317500a144b1b5685eead6d5963e88a20866403c4acba970dad8cf",
+      "source": "LL-Q652 (ita)-XANA000-circa.wav"
     },
     "città": {
       "author": "XANA000",
