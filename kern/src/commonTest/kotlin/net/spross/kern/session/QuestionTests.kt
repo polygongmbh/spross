@@ -54,6 +54,14 @@ class QuestionTests {
     }
 
     @Test
+    fun aPluralPromptOffersNoSingularAsAnAlternate() {
+        val asking = TurnFixture.produce(knife).copy(promptTag = FormTag.PLURAL)
+        val revealed = TurnFixture.state(asking, TurnIntent.Reveal).question
+        assertEquals("visu", revealed.answer.text)
+        assertEquals(emptyList(), revealed.closing.alternates)
+    }
+
+    @Test
     fun aCardAskedByEarShowsTheSoundUntilNothingIsLeftToWithhold() {
         val asking = TurnFixture.hear(knife)
         assertEquals(Question.Form.Sound, asking.question.prompt.form)

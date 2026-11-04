@@ -37,18 +37,21 @@ val TurnState.question: Question
         emojiCue = emojiCue(role, arrived),
         opens = answerRevealed,
         closing = Question.Closing(
-            // The prompt still stands above the reveal, so whatever form it put on screen is no alternative.
-            alternates = alternates(
-                card.target,
-                shown = listOf(
-                    when {
-                        role == PresentationRole.Recognize -> promptForm
-                        askedByEar -> card.target.text
-                        else -> answerText
-                    },
-                ),
-                forms = answerForms(card, promptTag).rightForms,
-            ),
+            // The prompt still stands above the reveal, so whatever form it put on screen is no alternative;
+            // nor is a citation the prompt's form disagrees with (sw `lengo` under `Ziele`).
+            alternates = answerForms(card, promptTag).let { forms ->
+                alternates(
+                    card.target,
+                    shown = listOf(
+                        when {
+                            role == PresentationRole.Recognize -> promptForm
+                            askedByEar -> card.target.text
+                            else -> answerText
+                        },
+                    ) + if (card.target.text in forms.right) emptyList() else listOf(card.target.text) + card.target.teaches,
+                    forms = forms.rightForms,
+                )
+            },
             note = closingNote(card.target, alsoMeans),
         ),
         otherWord = otherWord,
