@@ -41,6 +41,7 @@
   "your-plural": {
    "text": "euer",
    "forms": { "f": "eure", "m.acc": "euren", "dat": "eurem", "gen": "eures", "f.dat": "eurer" }
-  }
+  },
+  "nobody-at-all": { "text": "gar niemand", "accepts": ["überhaupt niemand"] }
  }
 }

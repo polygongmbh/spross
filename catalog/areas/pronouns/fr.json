@@ -24,6 +24,7 @@
   "no-one": { "text": "aucune personne" },
   "anyone": { "text": "qui que ce soit" },
   "our": { "text": "notre", "forms": { "pl": "nos" } },
-  "your-plural": { "text": "votre", "forms": { "pl": "vos" } }
+  "your-plural": { "text": "votre", "forms": { "pl": "vos" } },
+  "nobody-at-all": { "text": "absolument personne" }
  }
 }

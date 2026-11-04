@@ -21,6 +21,7 @@
   "no-one": { "text": "nadie" },
   "anyone": { "text": "cualquiera" },
   "our": { "text": "nuestro", "forms": { "f": "nuestra", "pl": "nuestros", "f.pl": "nuestras" } },
-  "your-plural": { "text": "vuestro", "forms": { "f": "vuestra", "pl": "vuestros", "f.pl": "vuestras" } }
+  "your-plural": { "text": "vuestro", "forms": { "f": "vuestra", "pl": "vuestros", "f.pl": "vuestras" } },
+  "nobody-at-all": { "text": "absolutamente nadie", "accepts": ["nadie en absoluto"] }
  }
 }
