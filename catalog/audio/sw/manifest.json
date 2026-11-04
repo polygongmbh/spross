@@ -3353,6 +3353,17 @@
       "sha256": "e11873a82d2ca2ac82fef5f19e3b5d551fc3e2ecc9600c9c27a5d7ad0ded0ce4",
       "source": "Sw-ke-karibu.flac"
     },
+    "karibu chakula": {
+      "author": "Waithera Were",
+      "file": "words/karibu_chakula.mp3",
+      "gain": -6.6,
+      "gate": -62.4,
+      "lead": 40,
+      "matches": "karibu chakula",
+      "mos": 3.23,
+      "sha256": "e335568f8485175f6a7b417d5e0596ab65702f4c39feb4c72ca6a69fc6d86b90",
+      "source": "Sw-ke-karibu chakula.flac"
+    },
     "karne": {
       "author": "Waithera Were",
       "file": "words/karne.mp3",
