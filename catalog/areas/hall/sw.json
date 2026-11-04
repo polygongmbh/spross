@@ -37,6 +37,6 @@
   "see-you-later": { "text": "Tutaonana baadaye!" },
   "welcome-home": { "text": "Karibu nyumbani!" },
   "take-off-your-shoes": { "text": "Vua viatu vyako." },
-  "someones-ringing-the-doorbell": { "text": "Mtu anapiga kengele.", "accepts": ["Kengele inalia."] }
+  "someones-ringing-the-doorbell": { "text": "Kengele inalia.", "accepts": ["Mtu anapiga kengele."] }
  }
 }
