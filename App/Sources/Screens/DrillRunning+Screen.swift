@@ -11,8 +11,10 @@ extension DrillRunning {
 
     var controls: AnswerControls? { run.controls }
 
-    /// The learner's own side is said where the audio setting lets a review card say its meaning.
-    var reading: Reading? { run.reading(saysMeaning: Pronouncer.shared.saysMeaning) }
+    /// The learner's own side is said only beside a word this device can sound, as on a review card.
+    var reading: Reading? {
+        run.reading(catalog: appModel?.catalog, hasTargetVoice: appModel?.hasTargetVoice ?? false)
+    }
 
     /// The field's text, where the drill has one — the driver clears it itself.
     var answerText: Binding<String> { Binding(get: { input }, set: { input = $0 }) }

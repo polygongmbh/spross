@@ -74,26 +74,5 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
         // why: only where there is a choice to be scoped — a language with one source
         // has nothing to remember per language.
         if (sources == AudioCapability.Both) SettingHint(chrome.settingsAudioHintPerLanguage)
-        Row(
-            modifier = Modifier.fillMaxWidth().toggleable(
-                value = model.pronouncer.saysMeaning,
-                enabled = !model.pronouncer.muted,
-                role = Role.Switch,
-                onValueChange = { model.pronouncer.saysMeaning = it },
-            ),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                chrome.settingsAudioSaysMeaning,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.weight(1f),
-            )
-            Switch(
-                checked = model.pronouncer.saysMeaning,
-                onCheckedChange = null,
-                enabled = !model.pronouncer.muted,
-            )
-        }
-        SettingHint(chrome.settingsAudioSaysMeaningHint)
     }
 }

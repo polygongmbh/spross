@@ -18,7 +18,8 @@ import net.spross.kern.session.READING_CEILING_MS
  */
 @Composable
 fun QuestionEffects(flow: QuestionDriver, model: AppModel) {
-    val answerSounding = rememberReadAloud(model, flow.reading(model.pronouncer.saysMeaning))
+    val hasTargetVoice = model.box?.joinStamp?.target?.let(model.pronouncer::canSpeak) ?: false
+    val answerSounding = rememberReadAloud(model, flow.reading(model.catalog, hasTargetVoice))
     BeatEffect(flow.beatToken, flow.armedBeat, flow::advanceElapsed, holding = answerSounding)
 }
 

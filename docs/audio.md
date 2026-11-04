@@ -27,8 +27,9 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 - **A review card and a drill say both their sides, each once, each in the language it is written in.**
   Hearing them paired binds them, and each side is said where the card shows it:
   the prompt as it goes up, the answer once it is out.
-  The learner's own language is on until the audio setting's "Say the meaning too" turns it off;
-  a side in no language (a bare numeral, a clock, the digits a numbers or calendar task owes) is not said.
+  The pairing is the cue, so the learner's own side is said only beside a word this device can sound —
+  a recording of that form or a voice (`hearsMeaning`); a word it cannot say leaves its question silent.
+  A side in no language (a bare numeral, a clock, the digits a numbers or calendar task owes) is not said.
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).
   Where a pack recorded the article too, the recording says it

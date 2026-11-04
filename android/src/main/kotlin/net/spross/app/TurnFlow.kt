@@ -3,6 +3,7 @@ package net.spross.app
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import net.spross.kern.catalog.Catalog
 import net.spross.kern.model.Rating
 import net.spross.app.ui.AnswerActions
 import net.spross.kern.session.AdvanceBeat
@@ -76,7 +77,7 @@ class TurnFlow(
 
     override val controls: AnswerControls get() = state.controls
 
-    override fun reading(saysMeaning: Boolean): Reading = state.reading(saysMeaning)
+    override fun reading(catalog: Catalog?, hasTargetVoice: Boolean): Reading = state.reading(catalog, hasTargetVoice)
 
     /** Only ever one field is mounted: the write-out's while it stands, else the answer's. */
     override val fieldText: String get() = if (copyStep != null) copyInput else input

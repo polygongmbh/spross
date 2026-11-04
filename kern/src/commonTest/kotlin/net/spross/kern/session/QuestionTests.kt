@@ -84,7 +84,7 @@ class QuestionTests {
             TurnFixture.hear(knife),
         ).flatMap { listOf(it, TurnFixture.state(it, TurnIntent.Reveal)) }
         for (turn in turns) {
-            val reading = turn.reading(saysMeaning = false)
+            val reading = turn.reading(null, hasTargetVoice = false)
             val question = turn.question
             reading.prompt?.let { assertEquals(it, question.prompt.saying) }
             reading.answer?.let { said -> assertTrue(said == question.prompt.saying || said == question.answer.saying) }

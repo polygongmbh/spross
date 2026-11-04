@@ -120,8 +120,6 @@ interface Chrome {
     val settingsAudioHintRecordings: String
     val settingsAudioHintTts: String
     val settingsAudioHintPerLanguage: String
-    val settingsAudioSaysMeaning: String
-    val settingsAudioSaysMeaningHint: String
     val settingsRemindersTitle: String
     val settingsRemindersOptionOff: String
     val settingsRemindersOptionUsual: String

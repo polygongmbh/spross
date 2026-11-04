@@ -1,11 +1,13 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.catalog.Catalog
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Question
 import net.spross.kern.session.Reading
 import net.spross.kern.session.Saying
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.hearsMeaning
 
 /**
  * The read surface every drill run shares, whatever it happens to ask: [NumbersRunState],
@@ -105,16 +107,19 @@ interface DrillRunProgress {
 
     /**
      * The question's [Reading], as a review card has one: each side in the language it is written in,
-     * the learner's own only where [saysMeaning] (the audio setting a review card reads too);
+     * the learner's own only beside a saying in the language being learned that this device can sound
+     * ([hearsMeaning], as on a review card);
      * the prompt held back while a pause stands in for the question, the answer once a verdict is out,
      * a hold saying its correction.
      */
-    fun reading(saysMeaning: Boolean): Reading =
-        Reading(
+    fun reading(catalog: Catalog?, hasTargetVoice: Boolean): Reading {
+        val saysMeaning = hearsMeaning(promptSaying ?: answerSaying, catalog, hasTargetVoice)
+        return Reading(
             key = index.toString(),
             prompt = (promptSaying ?: promptMeaning.takeIf { saysMeaning }).takeIf { pause == null },
             answer = (answerSaying ?: answerMeaning.takeIf { saysMeaning }).takeUnless { owesAnswer }?.let { said ->
                 (feedback as? TurnFeedback.Almost)?.let { said.copy(form = it.correctForm) } ?: said
             },
         )
+    }
 }

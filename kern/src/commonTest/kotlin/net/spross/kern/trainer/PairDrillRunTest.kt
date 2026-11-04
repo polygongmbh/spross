@@ -83,7 +83,7 @@ class PairDrillRunTest {
     fun aKeystrokeIsGradedForTheLiveApprove() {
         val finished = open().reduce(PairDrillIntent.InputChanged("Ujerumani"))
         assertEquals(TurnFeedback.Correct, finished.state.feedback)
-        assertEquals(saysUjerumani, finished.state.reading(saysMeaning = true).answer)
+        assertEquals(saysUjerumani, finished.state.reading(null, hasTargetVoice = true).answer)
 
         val slipped = open().reduce(PairDrillIntent.InputChanged("Ujerumami"))
         assertEquals(TurnFeedback.Neutral, slipped.state.feedback, "a slip mid-word is not an answer yet")
@@ -107,13 +107,13 @@ class PairDrillRunTest {
     fun eachSideIsSaidInItsOwnLanguage() {
         val reversed = open(reverse = true)
         val answered = reversed.reduce(PairDrillIntent.Submit(reversed.task.display)).state
-        assertEquals(Saying(assertNotNull(reversed.task.promptText), "sw"), reversed.reading(saysMeaning = false).prompt)
-        assertEquals(Saying(reversed.task.display, "de"), answered.reading(saysMeaning = true).answer)
-        assertNull(answered.reading(saysMeaning = false).answer)
+        assertEquals(Saying(assertNotNull(reversed.task.promptText), "sw"), reversed.reading(null, hasTargetVoice = false).prompt)
+        assertEquals(Saying(reversed.task.display, "de"), answered.reading(null, hasTargetVoice = true).answer)
+        assertNull(answered.reading(null, hasTargetVoice = false).answer)
 
         val forward = open()
-        assertEquals(Saying(assertNotNull(forward.task.promptText), "de"), forward.reading(saysMeaning = true).prompt)
-        assertNull(forward.reading(saysMeaning = false).prompt)
+        assertEquals(Saying(assertNotNull(forward.task.promptText), "de"), forward.reading(null, hasTargetVoice = true).prompt)
+        assertNull(forward.reading(null, hasTargetVoice = false).prompt)
     }
 
     /** An empty field reveals and books a miss; Check with nothing typed is the same ask. */

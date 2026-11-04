@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.app.ui.AnswerActions
+import net.spross.kern.catalog.Catalog
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunProgress
@@ -86,7 +87,7 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
 
     override val controls get() = state.controls
 
-    override fun reading(saysMeaning: Boolean) = state.reading(saysMeaning)
+    override fun reading(catalog: Catalog?, hasTargetVoice: Boolean) = state.reading(catalog, hasTargetVoice)
 
     override val fieldText: String get() = input
 

@@ -125,7 +125,7 @@ class DateDrillRunTest {
     @Test
     fun aReversedRunSaysItsNamesButNotItsDigits() {
         fun PairDrillRunState<DateDrillTask>.saidAnswer() =
-            reduce(PairDrillIntent.Submit(task.display)).state.reading(saysMeaning = true).answer
+            reduce(PairDrillIntent.Submit(task.display)).state.reading(null, hasTargetVoice = true).answer
         var run = open(reverse = true)
         assertEquals(false, run.task.digits)
         assertEquals(Saying(run.task.display, "en"), run.saidAnswer())

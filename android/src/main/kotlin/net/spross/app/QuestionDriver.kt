@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.app.ui.AnswerActions
+import net.spross.kern.catalog.Catalog
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.Question
@@ -23,8 +24,8 @@ interface QuestionDriver {
     /** What stands under it — kern's call. */
     val controls: AnswerControls?
 
-    /** What the question says aloud, and when; the learner's own side only where [saysMeaning]. */
-    fun reading(saysMeaning: Boolean): Reading?
+    /** What the question says aloud, and when; the learner's own side only beside a word this device can sound. */
+    fun reading(catalog: Catalog?, hasTargetVoice: Boolean): Reading?
 
     /** The text in the field the slot asks for. */
     val fieldText: String

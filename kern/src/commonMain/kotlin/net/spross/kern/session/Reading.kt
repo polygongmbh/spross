@@ -1,5 +1,7 @@
 package net.spross.kern.session
 
+import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.audible
 import net.spross.kern.model.Language
 import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.counterpart
@@ -28,16 +30,33 @@ data class Reading(val key: String, val prompt: Saying?, val answer: Saying?)
 val TurnState.settled: Boolean
     get() = answerOut || feedback == TurnFeedback.Correct
 
-/** What this card says, keyed on the card. [saysMeaning] lets the learner's own side be heard. */
-fun TurnState.reading(saysMeaning: Boolean): Reading =
-    Reading(card.id, promptSaying(saysMeaning), answerSaying(saysMeaning))
+/**
+ * What this card says, keyed on the card. The learner's own side is heard only where the word is:
+ * the pairing is the cue, so a word this device cannot say leaves the card silent
+ * ([hearsMeaning]). [hasTargetVoice] is whether the device has a voice for the language being learned.
+ */
+fun TurnState.reading(catalog: Catalog?, hasTargetVoice: Boolean): Reading {
+    val saysMeaning = hearsMeaning(Saying(heardTargetForm, card.target.lang), catalog, hasTargetVoice)
+    return Reading(card.id, promptSaying(saysMeaning), answerSaying(saysMeaning))
+}
+
+/** The target form the card says — the prompted one where it goes up first, the owed word otherwise. */
+private val TurnState.heardTargetForm: String
+    get() = if (pronunciationCue(role) == PronunciationCue.Upfront) promptForm else counterpart(card.target, promptTag).text
+
+/**
+ * Whether a question's meaning is said: only beside a [target] saying this device can sound —
+ * a recording of that form, or a voice for its language. A meaning heard alone binds nothing.
+ */
+internal fun hearsMeaning(target: Saying?, catalog: Catalog?, hasTargetVoice: Boolean): Boolean =
+    target != null && (catalog?.let { audible(target.form, target.lang, it, hasTargetVoice) } ?: hasTargetVoice)
 
 /**
  * What the card says as it goes up — the side its cue lets be heard from frame one.
  * The prompted form on the target side, so a rotated synonym is heard as itself;
- * the meaning only where [saysMeaning], the learner's own side being opt-out.
+ * the meaning only where [saysMeaning], beside a word that can be heard.
  */
-fun TurnState.promptSaying(saysMeaning: Boolean): Saying? = when {
+internal fun TurnState.promptSaying(saysMeaning: Boolean): Saying? = when {
     pronunciationCue(role) == PronunciationCue.Upfront -> targetSaying(promptForm)
     saysMeaning && meaningCue(role) == PronunciationCue.Upfront -> Saying(card.source.text, card.source.lang)
     else -> null
@@ -51,7 +70,7 @@ fun TurnState.promptSaying(saysMeaning: Boolean): Saying? = when {
  * everything else says that side's bare text — never the article-carrying citation,
  * whose article is the voice's to add (`spokenTargetForm`).
  */
-fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
+internal fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
     if (!settled) return null
     val correction = (feedback as? TurnFeedback.Almost)?.correctForm
     return when {

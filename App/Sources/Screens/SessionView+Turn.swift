@@ -110,7 +110,9 @@ extension SessionView {
     var controls: AnswerControls? { turn?.controls }
 
     /// What the card says aloud — its prompt as it goes up, its answer once it has settled.
-    var reading: Reading? { turn?.reading(saysMeaning: Pronouncer.shared.saysMeaning) }
+    var reading: Reading? {
+        turn?.reading(catalog: model.catalog, hasTargetVoice: model.hasTargetVoice)
+    }
 
     var voiceModel: AppModel? { model }
 

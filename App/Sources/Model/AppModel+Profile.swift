@@ -15,6 +15,9 @@ extension AppModel {
 
     var targetLanguage: String? { box?.joinStamp.target }
 
+    /// Whether this device has a voice for the language being learned — the one audio fact kern cannot know.
+    var hasTargetVoice: Bool { targetLanguage.map { Pronouncer.shared.canSpeak(language: $0) } ?? false }
+
     /// What this device reports it reads — the one fact Kern cannot have.
     static var deviceLanguage: String {
         Locale.current.language.languageCode?.identifier ?? Catalog.companion.FALLBACK_SOURCE

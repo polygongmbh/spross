@@ -109,9 +109,6 @@ internal object ChromeDe : Chrome {
     override val settingsAudioHintTts = "Immer die autogenerierte Systemstimme, so werden " +
         "Artikel immer mitgelesen."
     override val settingsAudioHintPerLanguage = "Pro Lernsprache wählbar."
-    override val settingsAudioSaysMeaning = "Bedeutung mitsprechen"
-    override val settingsAudioSaysMeaningHint = "Jede Karte sagt das Wort und seine " +
-        "Bedeutung in deiner Sprache."
     override val settingsRemindersTitle = "Erinnerungen"
     override val settingsRemindersOptionOff = "Aus"
     override val settingsRemindersOptionUsual = "Wie gewohnt"
