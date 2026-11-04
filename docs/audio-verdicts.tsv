@@ -489,3 +489,24 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context	heard_on
 2026-10-28	en	election	Dvortygirl	En-us-election.ogg	d6a19915159241bbb7b763008eb6f4cc9f9994c5b99118b1d4db3fe129b83451	mediocre		2.25	2026-10-28 by word (words, mos 2.25)	MacBook Air Speakers
 2026-10-28	en	always	Dvortygirl	En-us-always.ogg	788ac07fa2f3b3658b9db6f0d8a67a7f30c3cbc3c77b5455a0d24016f3262870	okay		2.38	2026-10-28 by word (words, mos 2.38)	MacBook Air Speakers
 2026-10-28	en	alive	Dvortygirl	En-us-alive.ogg	426ab3dfce5d116211630b40d9ff9d21a5f4749932a7c426621ad3e174ac4805	okay		2.82	2026-10-28 by word (words, mos 2.82)	MacBook Air Speakers
+2026-11-04	de	passieren	Jeuwre	De-passieren2.ogg	73e193b1b6662a6d622959a275edb7b76750b3b8c394a4427fb37a3c713a1c86	good		3.03	2026-11-04 by word (words, mos 3.03)	MacBook Air Speakers
+2026-11-04	sw	juu	Waithera Were	Sw-ke-juu.flac	f4422bc1b6768ba994b46b097082d75cf55f0da75513d07a26b3a671e6ebf9f2	good		2.73	2026-11-04 by word (words, mos 2.73)	MacBook Air Speakers
+2026-11-04	de	oben	Jeuwre	De-oben2.ogg	389da04b8135ceafbfb14716d3759d765b6f7d274a7f249794afcc5745af073a	good		3.07	2026-11-04 by word (words, mos 3.07)	MacBook Air Speakers
+2026-11-04	en	Japan	EncycloPetey	En-us-Japan.ogg	3a467ac86bb560b955643c3f18fb1e2704de23bfb5c819170d279fe021f22618	mediocre		3.31	2026-10-28 pesq vs score (countries)	MacBook Air Speakers
+2026-11-04	sw	takriban	Waithera Were	Sw-ke-takriban.flac	97a2874b12a33211db86959c38c400a86593dc8f2ff332a566e5cb290e3383ab	good		1.94	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	de	das Training	Natschoba	LL-Q188 (deu)-Natschoba-das Training.wav	68c8b9fa39ffe1413ee625f24b319a6faa935ccaebaa7c409ff58b9c6a05654d	okay		3.22	2026-10-28 pesq vs score (articles)	MacBook Air Speakers
+2026-11-04	it	suocero	LangPao	LL-Q652 (ita)-LangPao-suocero.wav	ff7457b993f741bf9bdf4e986b592e359066b57e1264f90de995ec0200fe73a2	okay		3.18	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	es	españoles	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-españoles.wav	909904d3195d6ee81cc108ec5dbaab45ce255a2889bcfe77ebba8cea0226d4a3	okay		3.17	2026-10-28 pesq vs score (countries)	MacBook Air Speakers
+2026-11-04	en	belt	Dvortygirl	En-us-belt.ogg	9dbad586f82238a2a05b8ad36e441e01ab640af751ef285b5e9ad7e9e45b7f33	good		2.13	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	it	quello	XANA000	LL-Q652 (ita)-XANA000-quello.wav	25bd5938c70e059e29951429158f22f956175b3dc5f249dbb3826cd1aab60a47	good		2.10	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	fr	sous-vêtements	0x010C	LL-Q150 (fra)-0x010C-sous-vêtements.wav	ded6d34a40b2c299394f0b48e93e0e4bc8a23ac86553123ebaf288ea808de0c9	good		3.31	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	es	té	Eavqwiki	LL-Q1321 (spa)-Eavqwiki-té.wav	f7d66013cc847d693ce2b6990d93f9105005d7101fec7855fee173f5ac07e957	good		2.12	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	es	Rumanía	Rodelar	LL-Q1321 (spa)-Rodelar-Rumanía.wav	89704e4807e3770147f3c396eec04e44e8e626882e4bba96a00a50dd1bedf708	okay		3.17	2026-10-28 pesq vs score (countries)	MacBook Air Speakers
+2026-11-04	en	Russia	EncycloPetey	En-us-Russia.ogg	b8b95bd3ab166ca663c1854a68b93bc01d9cc92ec59c3c00865266880ef117be	mediocre		3.28	2026-10-28 pesq vs score (countries)	MacBook Air Speakers
+2026-11-04	sw	kuamka	Waithera Were	Sw-ke-kuamka.flac	cfd9b7f43eeacf719a7b3e8bf0c7db75fa27de494e1d6778c1331e24d1dd2f9f	good		2.13	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	uk	університе́т	Галя Раптова, Nicolas Vion	Uk-університет.ogg	200a5fa3d697b54f8b6f7283c017c5de595c03b88d8785248047365c93156763	good		2.04	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	en	late	Dvortygirl	En-us-late.ogg	ecd5607dc8ee0217c76e0f1792cc7220628b0d6405181dca20590ca1df8e6f18	good		2.00	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	es	Tanzania	Rodelar	LL-Q1321 (spa)-Rodelar-Tanzania.wav	4afb0557e92df979334294eb1f4b95e83c715012f44b7670746e3c725cc2d103	mediocre		3.36	2026-10-28 pesq vs score (countries)	MacBook Air Speakers
+2026-11-04	it	abbastanza	XANA000	LL-Q652 (ita)-XANA000-abbastanza.wav	258958adb2797194ba02a2dfb4f687515fc8d4951760c6210961ea3c801c780c	okay		3.07	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	uk	приві́т	Галя Раптова, Nicolas Vion	Uk-привіт.ogg	db771d444aa6bafa453b18a2fbb012d98026b9d67147cc7bf4374533d542e860	good		1.85	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-04	it	crescere	LangPao	LL-Q652 (ita)-LangPao-crescere.wav	d8d53aa40ea6a78b8e9a989046d046d327934176bd6d2416c49fe8a80c5c864b	okay		2.12	2026-10-28 pesq vs score (words)	MacBook Air Speakers
