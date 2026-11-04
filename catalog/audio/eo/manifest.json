@@ -8919,6 +8919,17 @@
       "sha256": "3c7599f468928312c13e1c2d6b2dfd6d51eb6d31cae2e8a53bad2d9cdf6cecf1",
       "source": "LL-Q143 (epo)-Lepticed7-proksime.wav"
     },
+    "proksimume": {
+      "author": "Lepticed7",
+      "file": "words/proksimume.mp3",
+      "gain": 7.3,
+      "gate": -72.1,
+      "lead": 30,
+      "matches": "proksimume",
+      "mos": 3.27,
+      "sha256": "6f07b2b78daabc5fc18a18e6056334aec4d83aa5715ae140fb47486c17983645",
+      "source": "LL-Q143 (epo)-Lepticed7-proksimume.wav"
+    },
     "promeni": {
       "author": "Lepticed7",
       "file": "words/promeni.mp3",
