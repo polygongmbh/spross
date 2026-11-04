@@ -51,12 +51,14 @@ class FormAgreementGradingTests {
     }
 
     @Test
-    fun aPluralIsPinnedEvenFromASourceThatDoesNotInflect() {
-        val mouse = Card(
-            id = "mouse", kind = CardKind.Noun, area = "animals", emoji = null, seedIndex = 0,
-            components = emptyList(), source = Realization("en", "mouse"),
-            target = Realization("de", "Maus", forms = forms("pl" to "Mäuse")),
+    fun theOtherNumberIsAnotherMeaningEvenFromASourceThatDoesNotInflect() {
+        val sw = AnswerNormalizer(Fixture.catalog().languages.getValue("sw"))
+        val goal = Card(
+            id = "goal", kind = CardKind.Noun, area = "practice", emoji = null, seedIndex = 0,
+            components = emptyList(), source = Realization("en", "goal"),
+            target = Realization("sw", "lengo", forms = forms("pl" to "malengo")),
         )
-        assertEquals(Match.Typo("Maus"), de.evaluate("Mäuse", mouse))
+        assertEquals(Match.Exact, sw.evaluate("malengo", goal, FormTag.PLURAL))
+        assertEquals(Match.Wrong, sw.evaluate("lengo", goal, FormTag.PLURAL))
     }
 }

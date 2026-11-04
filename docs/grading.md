@@ -85,9 +85,10 @@ Neighbors: the leniency rule `../kern/README.md`, recognition's self-grade `Self
 
 - **A prompt's inflection carries over** (`model/FormAgreement.kt`):
   the dimensions both sides tag `forms` along are pinned, and a target form agreeing with the prompt on them is the answer;
-  the card's other forms are the word in the wrong form and grade as a typo corrected to the agreeing one (es `mío` asks de `mein`, `meiner` is almost).
+  the card's other forms of the prompt's number are the word in the wrong form and grade as a typo corrected to the agreeing one (es `mío` asks de `mein`, `meiner` is almost).
   Agreement a source does not inflect for pins nothing, so en `my` takes every de form;
-  number is pinned wherever the target inflects it, because a plural means something else.
+  number is pinned wherever the target inflects it, and a form in the other number grades wrong,
+  because a plural means something else (sw `lengo` for `Ziele`).
 - **Catalog-wide produce grading** —
   `CatalogAnswerGrader(normalizer, cards)`, the app's produce path.
   One card at a time the normalizer cannot tell a slip from a different word, so another concept's answer lands inside this card's typo budget:

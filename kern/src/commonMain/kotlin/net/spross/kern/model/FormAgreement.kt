@@ -23,8 +23,9 @@ fun agrees(tag: FormTag?, promptTag: FormTag?, pinned: Set<FormDimension>): Bool
 
 /**
  * The target forms a prompt in [promptTag] (null = the source's citation form) is answered with.
- * [right] grade as the answer; [almost] are the card's other forms, which name the word in the wrong form —
+ * [right] grade as the answer; [almost] are the card's other forms of the prompt's number, which name the word in the wrong form —
  * close enough that grading corrects them to the agreeing one rather than failing them.
+ * A form in the other number is left out of both: a plural means something else, so it grades wrong.
  * [rightForms] are the tagged forms among [right], which the reveal offers with their markers.
  */
 data class AnswerForms(val right: List<String>, val almost: List<String>, val rightForms: List<TaggedForm>)
@@ -35,9 +36,12 @@ fun answerForms(card: Card, promptTag: FormTag?): AnswerForms {
     val citation = listOf(target.text) + target.teaches + target.accepts
     val (agreeing, disagreeing) = target.forms.partition { agrees(it.tag, promptTag, pinned) }
     val citationAgrees = agrees(null, promptTag, pinned)
+    val number = pinned intersect MEANING_DIMENSIONS
+    val citationNear = !citationAgrees && agrees(null, promptTag, number)
     return AnswerForms(
         right = (if (citationAgrees) citation else emptyList()) + agreeing.map { it.written },
-        almost = disagreeing.map { it.written } + if (citationAgrees) emptyList() else citation,
+        almost = disagreeing.filter { agrees(it.tag, promptTag, number) }.map { it.written } +
+            if (citationNear) citation else emptyList(),
         rightForms = agreeing,
     )
 }
