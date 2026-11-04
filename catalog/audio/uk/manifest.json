@@ -9349,6 +9349,16 @@
       "sha256": "72052eaebaf55797471eea23a10fc18f3a6bef75f36f030ab6a32e748d55ab21",
       "source": "Uk-смачний.ogg"
     },
+    "смачно́го": {
+      "author": "Tohaomg",
+      "file": "words/u0441u043cu0430u0447u043du043eu0301u0433u043e.mp3",
+      "gain": 0.5,
+      "lead": 200,
+      "matches": "смачно́го",
+      "mos": 2.97,
+      "sha256": "f37d536d4d601c00a59d41f7eefb9aa85da08c3639faf1146bac2f963c7cace9",
+      "source": "LL-Q8798 (ukr)-Tohaomg-смачного.wav"
+    },
     "смерть": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "words/u0441u043cu0435u0440u0442u044c.mp3",
