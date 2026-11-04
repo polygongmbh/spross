@@ -152,3 +152,17 @@ It was not shipped yet: it is the best of about 45 combinations tried on a sampl
 it would bring a new model into `audio_measure` and move every take's score and bar,
 and the A/B pairs (10 of 15) do not separate it from the score.
 The 18 shipped takes where it and the score disagree most decide it.
+
+## The score plus PESQ, heard blind (2026-11-04)
+
+The 18 takes heard blind, on laptop speakers, sided with PESQ on 12:
+all 9 the score sends back and PESQ calls clean were heard okay or better,
+while of the 9 the score passes and PESQ calls distorted, 3 were heard mediocre and 6 okay or good.
+Laptop speakers hide distortion, so those 6 may be generous.
+
+Re-run with them (470 takes, 95 bad or mediocre), the candidate still holds, the score's own figures dropping more than its:
+- take AUC 0.664 → 0.753 (+0.04…+0.15);
+- voice ρ 0.28 → 0.56, Holunder Gabriel 7th → 3rd, Jeuwre 3rd → 5th, Dvortygirl 27th → 21st;
+- A/B pairs 8 → 10 of 15, within-voice AUC 0.41 → 0.57;
+- fitted before 2026-10-27 and tested on the 113 since, 0.53 → 0.74;
+- with 10% of okay-or-better takes refused, 45% of the bad or mediocre refused against 33% (+0.05…+0.20).
