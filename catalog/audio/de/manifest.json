@@ -8988,6 +8988,17 @@
       "sha256": "e01bca1d243563f3bff06e4c4dee43cb5d7b2d5cbe5f9164bee5e50a65e3a504",
       "source": "De-Esstische.ogg"
     },
+    "etwa": {
+      "author": "Jeuwre",
+      "end": 1400,
+      "file": "words/etwa.mp3",
+      "gain": 0.3,
+      "lead": 440,
+      "matches": "etwa",
+      "mos": 2.95,
+      "sha256": "c2e4b50f1121d91f33c94bfc2c072d10dc510f033deaa3f672e4f94ae347efbb",
+      "source": "De-etwa.ogg"
+    },
     "etwas": {
       "author": "Jeuwre",
       "cap": 0.1,
@@ -10757,6 +10768,17 @@
       "mos": 3.16,
       "sha256": "9b9751bf6d7ec174bc0a75b4cad1ecb64fc15d1c9a94b44962f9113400b1e2d2",
       "source": "LL-Q188 (deu)-Natschoba-guten Abend.wav"
+    },
+    "guten appetit": {
+      "author": "Jeuwre",
+      "file": "words/guten_appetit.mp3",
+      "gain": -2.2,
+      "gate": -81.6,
+      "lead": 160,
+      "matches": "guten appetit",
+      "mos": 3.16,
+      "sha256": "03fc7204925e6d3fc2a918212e9190f3e280c6221350f4ae95e826257ceec45a",
+      "source": "De-Guten Appetit.ogg"
     },
     "guten morgen": {
       "author": "Natschoba",
