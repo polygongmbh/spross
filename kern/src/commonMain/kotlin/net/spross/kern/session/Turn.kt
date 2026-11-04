@@ -53,7 +53,7 @@ enum class AlmostReason {
     Merged,
 
     /**
-     * Another concept's word of the prompt's own family, in the other word class
+     * Another concept's word whose source differs from the prompt only by its capital
      * (sw `kukohoa` for de `Husten`, `TurnGrading.grade`); rated as a slip, and what is owed back is THIS card's answer.
      */
     Family,

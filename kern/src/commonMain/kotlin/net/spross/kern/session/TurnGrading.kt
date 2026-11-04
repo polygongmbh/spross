@@ -1,7 +1,6 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.Card
-import net.spross.kern.model.CardKind
 import net.spross.kern.model.PresentationRole
 
 /**
@@ -80,8 +79,8 @@ internal class TurnGrading(
      * for answers it. The prompted card leads — its own verdict wins where it has one — and a
      * borrowed one comes back held as [AlmostReason.Merged].
      *
-     * The other word of the prompt's family is almost: typed for de `Husten`, sw `kukohoa`
-     * (`husten`) is the right word in the wrong word class, held as [AlmostReason.Family] on this card's own.
+     * The word whose source differs from the prompt only by its capital is almost: typed for de `Husten`,
+     * sw `kukohoa` (`husten`) is held as [AlmostReason.Family] on this card's own answer.
      */
     fun grade(state: TurnState, text: String): Graded {
         if (state.role != PresentationRole.Hear) {
@@ -109,18 +108,9 @@ internal class TurnGrading(
         return Graded(own)
     }
 
-    /**
-     * A noun and a verb whose sources show the same word once its article and citation prefix are set aside
-     * (de `Husten`/`husten`, en `cough`/`to cough`): one family, two word classes.
-     */
-    private fun family(other: Card, card: Card): Boolean {
-        if (setOf(other.kind, card.kind) != setOf(CardKind.Noun, CardKind.Verb)) return false
-        val asked = bare(card)
-        return bare(other).any { it in asked }
-    }
-
-    private fun bare(card: Card): List<String> =
-        meaningNormalizer.comparisonForms(card.source.text, verbLeniency = card.kind == CardKind.Verb)
+    /** The other concept's source is the prompt's word but for its capital (de `Husten`/`husten`), which is easy to miss. */
+    private fun family(other: Card, card: Card): Boolean =
+        other.source.text != card.source.text && other.source.text.equals(card.source.text, ignoreCase = true)
 
     /** A verdict, plus the hold it earns where it is not this card's own clean answer: a merged meaning, or the family's other word. */
     data class Graded(val match: Match, val hold: AlmostReason? = null)
