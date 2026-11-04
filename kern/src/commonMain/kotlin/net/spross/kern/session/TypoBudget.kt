@@ -1,9 +1,16 @@
 package net.spross.kern.session
 
-/** Is [input] within the slips [candidate] forgives, its digits typed exactly? */
-internal fun withinBudget(input: String, candidate: String): Boolean {
+/**
+ * Is [input] within the slips [candidate] forgives, its digits typed exactly?
+ * Under [capEachWord] (drills) each word that lines up also keeps to its own [wordCap]:
+ * every word of a reading names the value, so one word may not spend a long reading's
+ * budget on becoming another (`morning` for `evening`).
+ * A review phrase is graded for being understood, so the whole-form budget alone decides.
+ */
+internal fun withinBudget(input: String, candidate: String, capEachWord: Boolean): Boolean {
     if (digitWords(input) != digitWords(candidate)) return false
     if (damerauLevenshtein(input, candidate) > allowedTypos(candidate.count { it != ' ' })) return false
+    if (!capEachWord) return true
     val typed = input.split(' ')
     val expected = candidate.split(' ')
     // why: the per-word cap needs the words to line up — a dropped or added

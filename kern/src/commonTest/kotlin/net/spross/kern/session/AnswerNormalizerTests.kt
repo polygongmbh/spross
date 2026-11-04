@@ -361,7 +361,9 @@ class AnswerNormalizerTests {
 
     /**
      * One budget over the whole answer: the more of it is right, the more room a
-     * misspelled word in it gets — up to a slip per four letters of that word.
+     * misspelled word in it gets — in a drill up to a slip per four letters of that word,
+     * in a review phrase as far as the whole budget reaches, while a different phrase
+     * stays outside it.
      * Digits never share in it — one digit off is one edit however long the frame,
      * and another number.
      */
@@ -373,6 +375,9 @@ class AnswerNormalizerTests {
         assertEquals(Match.Wrong, drill.evaluate("augusti", card("sw", "Agosti")))
         val october = card("sw", "tarehe kumi na nne Oktoba", kind = CardKind.Phrase)
         assertEquals(Match.Wrong, drill.evaluate("tarehe kumi na nne october", october))
+        val shoes = card("sw", "Watoto, viatu vyenu viko wapi?", kind = CardKind.Phrase)
+        assertEquals(Match.Typo("Watoto, viatu vyenu viko wapi?"), sw.evaluate("watoto viatu vyako viko wapi", shoes))
+        assertEquals(Match.Wrong, sw.evaluate("watoto viatu vyako viko hapa", shoes))
         val train = card("de", "Der Zug fährt um 18:05 Uhr ab.", kind = CardKind.Phrase)
         assertEquals(Match.Wrong, de.evaluate("Der Zug fährt um 18:06 Uhr ab.", train))
     }

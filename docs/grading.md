@@ -24,7 +24,9 @@ Neighbors: the leniency rule `../kern/README.md`, recognition's self-grade `Self
   it recurses, peeling one word per level, and a drill grades against a whole reading where every word names which time it is ("fünf vor halb sieben" is not a misspelling of "halb sieben").
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
   and zero below four letters;
-  where the typed words line up, no word takes more than a slip per four of its letters, rounded up.
+  in a drill, where the typed words line up, no word takes more than a slip per four of its letters, rounded up,
+  because every word of a reading names the value (`morning` for `evening`);
+  a review phrase is graded for being understood, so the whole budget alone decides there (sw `viatu vyako` for `viatu vyenu` is a slip).
   **Diacritics** are two rules, deliberately not one.
   A language's `diacriticDigraphs` (`languages.json`;
   German's `ä`→`ae`, `ö`→`oe`, `ü`→`ue`, nobody else's) fold in the normalizer beside `ß`→`ss`, for the same reason:

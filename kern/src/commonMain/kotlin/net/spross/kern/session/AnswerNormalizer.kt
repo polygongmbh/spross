@@ -28,9 +28,11 @@ import net.spross.kern.model.articledForm
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  *
  * One typo budget over the whole form, for reviews and drills alike: the more of an
- * answer is right, the more room a misspelled word in it gets — up to a slip per four
- * letters of that word, so one word cannot spend a long sentence's budget on becoming
- * another (`morning` for `evening`). A word carrying a digit
+ * answer is right, the more room a misspelled word in it gets. A drill (no article
+ * leniency) also caps each word at a slip per four of its letters, so one word cannot
+ * spend a long reading's budget on becoming another (`morning` for `evening`);
+ * a review phrase is graded for being understood, so a wrong ending inside it
+ * (sw `vyako` for `vyenu`) stays a slip. A word carrying a digit
  * grades exact-only: distinct digit renderings ("21"/"29", "18:05" → "18" "05") sit one
  * edit apart, so no positive budget is safe for them.
  */
@@ -168,7 +170,7 @@ class AnswerNormalizer(
             }
             for (candidate in candidates) {
                 for (variant in inputVariants) {
-                    if (!withinBudget(variant, candidate)) continue
+                    if (!withinBudget(variant, candidate, capEachWord = !articleLeniency)) continue
                     // why: the NEAREST accepted form is the correction, not the last one
                     // inside budget — sw `white` carries eight stems, and a slip at
                     // "nyeupe" was corrected to "myeupe" purely by authoring order.
