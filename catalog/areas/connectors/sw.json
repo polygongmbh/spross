@@ -44,7 +44,7 @@
   "therefore": { "text": "kwa hiyo" },
   "even": { "text": "hata", "notes": { "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa" } },
   "although": { "text": "ingawa", "teaches": ["japo"] },
-  "that-conj": { "text": "kwamba", "notes": { "sw": "Nadhani kwamba atakuja = Nadhani atakuja" } },
+  "that-conj": { "text": "kwamba", "notes": { "sw": "Najua (kwamba) unakuja." } },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" },
   "usually": { "text": "kwa kawaida" },
