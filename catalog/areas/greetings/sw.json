@@ -18,7 +18,7 @@
   "goodbye": { "text": "Kwaheri!" },
   "welcome": {
    "text": "Karibu!",
-   "accepts": ["Karibuni!"],
+   "accepts": ["Karibuni!", "karibu"],
    "notes": { "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!" }
   },
   "greetings-elder": {
