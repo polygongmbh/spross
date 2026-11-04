@@ -8606,16 +8606,6 @@
       "sha256": "60d7494470aab8ddc48785c7dc5565e0269efc084ee4520644ec69a8f7e9f6e3",
       "source": "LL-Q652 (ita)-LangPao-secolo.wav"
     },
-    "secondo": {
-      "author": "XANA000",
-      "file": "words/secondo.mp3",
-      "gain": 6.2,
-      "gate": -62.7,
-      "matches": "secondo",
-      "mos": 2.61,
-      "sha256": "a5d3a0b8b4435cada6b7bf3505a83d377b7da468ae3b9e018d517407df8a1eb7",
-      "source": "LL-Q652 (ita)-XANA000-secondo.wav"
-    },
     "sedere": {
       "author": "Ciampix",
       "file": "words/sedere.mp3",

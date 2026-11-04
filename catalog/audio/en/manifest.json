@@ -737,16 +737,6 @@
       "sha256": "3a467ac86bb560b955643c3f18fb1e2704de23bfb5c819170d279fe021f22618",
       "source": "En-us-Japan.ogg"
     },
-    "Japanese": {
-      "author": "Muke",
-      "file": "countries/japanese.mp3",
-      "gain": -6.4,
-      "gate": -40.8,
-      "matches": "Japanese",
-      "mos": 2.51,
-      "sha256": "dbecc4253e2fe4020f050fc25ebec16e36142ee71ba75883ee7bd0e081f7e7a5",
-      "source": "En-us-Japanese.ogg"
-    },
     "Kenya": {
       "author": "Soundguys",
       "file": "countries/kenya.mp3",
