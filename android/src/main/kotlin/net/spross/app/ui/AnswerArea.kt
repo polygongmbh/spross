@@ -231,6 +231,7 @@ val AppModel.targetChrome: Chrome?
 fun almostCaption(reason: AlmostReason, chrome: Chrome): String = when (reason) {
     AlmostReason.Typo -> chrome.sessionAlmostTypo
     AlmostReason.Merged -> chrome.sessionAlmostMerged
+    AlmostReason.Family -> chrome.sessionAlmostFamily
 }
 
 /**

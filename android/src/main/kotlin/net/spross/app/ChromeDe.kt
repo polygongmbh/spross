@@ -169,6 +169,7 @@ internal object ChromeDe : Chrome {
     override val trainerRunScore = "⭐ %d Punkte"
     override val sessionAlmostTypo = "Fast! Korrekte Schreibweise"
     override val sessionAlmostMerged = "Stimmt — heißt auch"
+    override val sessionAlmostFamily = "Fast! Gefragt war"
     override val trainerResultTasksDoneOne = "%d Aufgabe"
     override val trainerResultTasksDone = "%d Aufgaben"
     override val trainerResultBestStreak = "🔥 %s in Folge"

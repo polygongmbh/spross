@@ -51,6 +51,12 @@ enum class AlmostReason {
      * what is owed back is THIS card's own answer, which is the one still to be learned.
      */
     Merged,
+
+    /**
+     * Another concept's word of the prompt's own family, in the other word class
+     * (sw `kukohoa` for de `Husten`, `TurnGrading.grade`); rated as a slip, and what is owed back is THIS card's answer.
+     */
+    Family,
 }
 
 /**

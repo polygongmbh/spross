@@ -5385,6 +5385,22 @@
         }
       }
     },
+    "session.almost.family" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast! Gefragt war"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost! The word asked for"
+          }
+        }
+      }
+    },
     "session.almost.merged" : {
       "localizations" : {
         "de" : {

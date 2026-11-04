@@ -65,8 +65,13 @@ internal object TurnFixture {
     val go = card("go", "gehen", "kwenda", CardKind.Verb, seedIndex = 7)
     val walk = card("walk", "gehen", "kutembea", CardKind.Verb, seedIndex = 8)
 
+    /** One family in two word classes: the noun's source shows the verb's word, article aside. */
+    val cough = card("cough", "Husten", "kikohozi", CardKind.Noun, seedIndex = 9)
+        .let { it.copy(source = it.source.copy(grammar = mapOf("article" to "der"))) }
+    val toCough = card("to-cough", "husten", "kukohoa", CardKind.Verb, seedIndex = 10)
+
     private val machine = TurnMachine(
-        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car, leave, quit, go, walk)),
+        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car, leave, quit, go, walk, cough, toCough)),
         normalizer,
         meaningNormalizer,
     )

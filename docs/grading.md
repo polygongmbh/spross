@@ -120,3 +120,9 @@ Neighbors: the leniency rule `../kern/README.md`, recognition's self-grade `Self
   de `der Arm` is not `arm`, nor `der Husten` `husten`.
   The meaning side still mints no `Match.OtherWord`:
   naming the concept a wrong answer belongs to would teach a word in the language being learned.
+- **The other word of the prompt's family is almost** (`TurnGrading.grade`, `AlmostReason.Family`):
+  a `Match.OtherWord` on a typed card whose owner is a noun where the prompted card is a verb, or the reverse,
+  and whose source shows the same word once the article and citation prefix are set aside (the source language's comparison forms) —
+  de `Husten` answered sw `kukohoa` (`husten`), en `cough` answered with the word for `to cough`.
+  The word class was missed, not the word: it holds on THIS card's answer, rated as a slip (Hard), with the almost tone.
+  An owner outside the family stays the miss that names it.

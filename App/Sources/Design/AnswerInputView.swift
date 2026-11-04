@@ -210,13 +210,14 @@ struct AnswerInputView: View {
     }
 }
 
-/// The caption over the owed form: a slip of spelling, or a meaning the word
-/// shares with another concept.
+/// The caption over the owed form: a slip of spelling, a meaning the word
+/// shares with another concept, or the word asked for beside its family's other one.
 private extension AlmostReason {
     var caption: String {
         switch self {
         case .typo: return "session.almost.typo"
         case .merged: return "session.almost.merged"
+        case .family: return "session.almost.family"
         }
     }
 }

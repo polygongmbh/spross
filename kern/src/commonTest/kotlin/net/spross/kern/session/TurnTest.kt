@@ -106,6 +106,20 @@ class TurnTest {
     }
 
     @Test
+    fun theOtherWordOfThePromptsFamilyIsAlmostThisCardsOwn() {
+        val held = TurnFixture.step(TurnFixture.produce(TurnFixture.cough), TurnIntent.Submit("kukohoa"))
+        assertEquals(TurnFeedback.Almost("kikohozi", AlmostReason.Family), held.state.feedback)
+        assertEquals(Rating.Hard, held.state.pendingRating)
+    }
+
+    @Test
+    fun anotherWordOfAnotherWordClassStaysAMissThatNamesIt() {
+        val missed = TurnFixture.step(TurnFixture.produce(TurnFixture.knife), TurnIntent.Submit("kukohoa"))
+        assertEquals(TurnFeedback.Revealed, missed.state.feedback)
+        assertEquals(Match.OtherWord("kukohoa", listOf("husten")), missed.state.otherWord)
+    }
+
+    @Test
     fun aMissPrimesTheWordsAlreadyRightAsTheAnswerSpellsThem() {
         val departs = TurnFixture.card("departs", "Wann fährt der Zug ab?", "Treni inaondoka lini?", CardKind.Phrase)
         val missed = TurnFixture.step(TurnFixture.produce(departs), TurnIntent.Submit("treni linaondoka"))

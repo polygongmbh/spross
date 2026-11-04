@@ -80,6 +80,16 @@ class CatalogAnswerGrader(
     }
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
+        val hits = otherOwners(input, card)
+        if (hits.isEmpty()) return null
+        return Match.OtherWord(
+            word = hits.first().target.text,
+            meanings = hits.map { it.source.text }.distinct(),
+        )
+    }
+
+    /** The OTHER concepts whose word [input] is, the one it names first — what [Match.OtherWord] is made of. */
+    internal fun otherOwners(input: String, card: Card): List<Card> {
         // why: a form the prompted card accepts belongs to it first (see [grade]), and a
         // fumbled article in front of it changes nothing about that — otherwise a word
         // two concepts share would be withdrawn from the one that was asked for.
@@ -87,14 +97,9 @@ class CatalogAnswerGrader(
             ?.takeIf { normalizer.evaluate(it, card) != Match.Exact }
         // The whole string first, so a form owned outright names itself before the
         // remainder a mistyped article leaves behind does.
-        val hits = (ownersOf(input) + ownersOf(peeled))
+        return (ownersOf(input) + ownersOf(peeled))
             .filter { it.id != card.id }
             .distinctBy { it.id }
-        if (hits.isEmpty()) return null
-        return Match.OtherWord(
-            word = hits.first().target.text,
-            meanings = hits.map { it.source.text }.distinct(),
-        )
     }
 
     /**

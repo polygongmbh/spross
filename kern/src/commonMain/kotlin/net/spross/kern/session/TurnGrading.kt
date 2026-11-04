@@ -1,6 +1,7 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
 import net.spross.kern.model.PresentationRole
 
 /**
@@ -62,7 +63,7 @@ internal class TurnGrading(
         val trimmed = text.trim()
         if (trimmed.isEmpty()) return false
         val graded = grade(state, trimmed)
-        return graded.match == Match.Exact && !graded.merged
+        return graded.match == Match.Exact && graded.hold == null
     }
 
     /**
@@ -77,14 +78,19 @@ internal class TurnGrading(
      * the source splits (sw `kuacha` is verlassen AND aufhören), or the source writes alike what
      * the target splits (de `gehen` is kwenda AND kutembea), and every concept the prompt stands
      * for answers it. The prompted card leads — its own verdict wins where it has one — and a
-     * borrowed one comes back [Graded.merged], for the turn to hold on.
+     * borrowed one comes back held as [AlmostReason.Merged].
+     *
+     * The other word of the prompt's family is almost: typed for de `Husten`, sw `kukohoa`
+     * (`husten`) is the right word in the wrong word class, held as [AlmostReason.Family] on this card's own.
      */
     fun grade(state: TurnState, text: String): Graded {
         if (state.role != PresentationRole.Hear) {
-            return merged(
+            val graded = merged(
                 own = grader.grade(text, state.card, state.promptTag),
                 shared = grader.promptSharers(state.card, meaningNormalizer.answerLanguage).map { grader.grade(text, it, state.promptTag) },
             )
+            if (graded.match !is Match.OtherWord || grader.otherOwners(text, state.card).none { family(it, state.card) }) return graded
+            return Graded(Match.Typo(corrected = state.answerText), hold = AlmostReason.Family)
         }
         return merged(
             own = meaningNormalizer.evaluate(text, meaningSide(state.card)),
@@ -94,15 +100,28 @@ internal class TurnGrading(
 
     private fun merged(own: Match, shared: List<Match>): Graded {
         if (own == Match.Exact) return Graded(own)
-        shared.firstOrNull { it == Match.Exact }?.let { return Graded(it, merged = true) }
+        shared.firstOrNull { it == Match.Exact }?.let { return Graded(it, AlmostReason.Merged) }
         // A slip is forgiven against the word it was aiming at, and the prompted card owns
         // its own slips first — the same order the normalizer keeps a card's text ahead of
         // its `accepts` in.
         if (own is Match.Typo) return Graded(own)
-        shared.firstOrNull { it is Match.Typo }?.let { return Graded(it, merged = true) }
+        shared.firstOrNull { it is Match.Typo }?.let { return Graded(it, AlmostReason.Merged) }
         return Graded(own)
     }
 
-    /** A verdict, plus whether it was earned on a meaning this card does not itself teach. */
-    data class Graded(val match: Match, val merged: Boolean = false)
+    /**
+     * A noun and a verb whose sources show the same word once its article and citation prefix are set aside
+     * (de `Husten`/`husten`, en `cough`/`to cough`): one family, two word classes.
+     */
+    private fun family(other: Card, card: Card): Boolean {
+        if (setOf(other.kind, card.kind) != setOf(CardKind.Noun, CardKind.Verb)) return false
+        val asked = bare(card)
+        return bare(other).any { it in asked }
+    }
+
+    private fun bare(card: Card): List<String> =
+        meaningNormalizer.comparisonForms(card.source.text, verbLeniency = card.kind == CardKind.Verb)
+
+    /** A verdict, plus the hold it earns where it is not this card's own clean answer: a merged meaning, or the family's other word. */
+    data class Graded(val match: Match, val hold: AlmostReason? = null)
 }

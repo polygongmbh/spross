@@ -165,11 +165,9 @@ class TurnMachine(
         // A recalled turn has no field, so its one action can only ever ask for the answer.
         if (trimmed.isEmpty() || state.answer == TurnAnswer.Recalled) return reveal(state, nowEpochMillis)
         val graded = grading.grade(state, trimmed)
-        // why: an answer borrowed from the concept next door is right and books as much, but
-        // the word this card teaches has still not been said — so it holds on it (§3).
-        if (graded.merged) {
-            return holding(state, state.answerText, AlmostReason.Merged, graded.match.producedRating())
-        }
+        // why: an answer borrowed from the concept next door, or its family's other word, books
+        // what it earned, but the word this card teaches has still not been said — so it holds on it (§3).
+        graded.hold?.let { return holding(state, state.answerText, it, graded.match.producedRating()) }
         return when (val verdict = graded.match) {
             Match.Exact -> accepted(state)
             is Match.Typo -> holding(state, verdict.corrected, AlmostReason.Typo, verdict.producedRating(), verdict.shown)
@@ -185,7 +183,7 @@ class TurnMachine(
 
     /**
      * An accepted-but-not-clean answer pauses on what it owes back; no beat may take it away.
-     * A slip sounds almost, a merged meaning (full credit) sounds correct.
+     * A merged meaning (full credit) sounds correct, everything else almost.
      */
     private fun holding(
         state: TurnState,
@@ -196,7 +194,7 @@ class TurnMachine(
     ): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Almost(correctForm, reason, shownForm), pendingRating = rating),
         listOf(
-            TurnEffect.Cued(Cue.Tone(if (reason == AlmostReason.Typo) ToneKind.Almost else ToneKind.Correct)),
+            TurnEffect.Cued(Cue.Tone(if (reason == AlmostReason.Merged) ToneKind.Correct else ToneKind.Almost)),
             TurnEffect.Cued(Cue.ReleaseFocus),
         ),
     )
