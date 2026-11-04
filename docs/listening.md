@@ -50,10 +50,16 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   so it reaches the hours a language is available in and nothing can be typed or tapped.
 - `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)` is the one gate, disciplined like `LetterDrillAvailability.report`:
   the only platform facts are the two `hasVoice` booleans, and kern caches nothing.
-  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card;
+  It is asked ONCE PER RUN, when the learner opens one, away from the main thread, never on the way past the entry card;
   the card itself stands on `listeningOffered`: words in the box and something that can say each language.
   `seed` only salts the order's tiebreak;
   kern never reads a clock or cares what the number means.
+- **A short run is taken up again** (`ListeningRun.resumes`, `ListeningIntent.Resume`):
+  reopened after fewer than `LISTENING_RESUME_TURNS` turns, a few minutes,
+  the run carries on from the word it closed on, with no new deal.
+  A longer one is dealt afresh, reading the box as it stands then.
+  The platform keeps the closed run with the box object and the two voices it was dealt from,
+  and any change to those deals afresh too.
 - **The pool is the sayable join short of the settled words, not a composed subset.**
   **Both halves must be sayable** (`audible` on both forms),
   or a turn plays a word and then silence.

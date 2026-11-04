@@ -107,6 +107,10 @@ final class AppModel {
     /// every redraw. A new box is a new object, so an answer is what refreshes it.
     // why: ignored by Observation for the same reason as the grader above.
     @ObservationIgnored var cachedCurrentCard: (box: BoxState, card: Card)?
+    /// The last listening run, closed, with what it was dealt from: reopened
+    /// soon enough it is taken up again rather than dealt anew (`ListeningRun.resumes`).
+    // why: ignored by Observation — no screen reads it, only the next run.
+    @ObservationIgnored var keptListening: (run: ListeningRunState, from: ListeningAvailability)?
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?

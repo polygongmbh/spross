@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.spross.app.listen.ListeningDriver
 import net.spross.kern.listen.ListeningPool
 
 /**
@@ -22,6 +23,11 @@ fun AppModel.startListening() {
     // hundred lookups on a full profile — so it happens off this thread.
     val hasTarget = pronouncer.canSpeak(stamp.target)
     val hasSource = pronouncer.canSpeak(stamp.source)
+    val from = ListeningDriver.Source(state, hasTargetVoice = hasTarget, hasSourceVoice = hasSource)
+    if (listening.resume(from)) {
+        navigate(Screen.Listening)
+        return
+    }
     val dealtAt = now()
     viewModelScope.launch {
         val report = withContext(Dispatchers.Default) {
@@ -34,7 +40,7 @@ fun AppModel.startListening() {
         // why: the screen turns only once there is a playlist, so a run never opens on
         // silence — the one case a box with words in it can still deal nothing.
         if (report.candidates.isEmpty()) return@launch
-        listening.start(report.candidates)
+        listening.start(report.candidates, from)
         navigate(Screen.Listening)
     }
 }

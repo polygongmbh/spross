@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import net.spross.app.AppModel
 import net.spross.app.closeListening
 import net.spross.app.ui.languageName
+import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
@@ -91,14 +92,43 @@ class ListeningDriver(
         },
     )
 
+    /**
+     * What a run was dealt from: the box object, since every change to it makes a new one,
+     * and the two voices read when it opened.
+     */
+    class Source(val box: BoxState, val hasTargetVoice: Boolean, val hasSourceVoice: Boolean) {
+        fun dealsLike(other: Source): Boolean =
+            box === other.box && hasTargetVoice == other.hasTargetVoice && hasSourceVoice == other.hasSourceVoice
+    }
+
+    /** The last run, closed, with what it was dealt from — taken up again if reopened soon enough. */
+    private var kept: Pair<ListeningRunState, Source>? = null
+    private var source: Source? = null
+
+    /**
+     * Takes the last run up again where it stood, if it was dealt from [from] and is short
+     * enough to keep (`ListeningRun.resumes`); false means a fresh deal is owed.
+     */
+    fun resume(from: Source): Boolean {
+        val (run, keptFrom) = kept ?: return false
+        if (active || !keptFrom.dealsLike(from) || !ListeningRun.resumes(run)) return false
+        open(from, ListeningRun.reduce(run, ListeningIntent.Resume))
+        return true
+    }
+
     /** Opens the playlist. A pool with nothing in it never opens a run at all. */
-    fun start(candidates: List<ListeningCandidate>) {
+    fun start(candidates: List<ListeningCandidate>, from: Source) {
         if (active || candidates.isEmpty()) return
+        open(from, ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start))
+    }
+
+    private fun open(from: Source, opening: ListeningReduction) {
+        source = from
         bedtime.clear()
         pausedByFocus = false
         focus.take()
         ListeningBridge.controls = this
-        apply(ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start))
+        apply(opening)
         // why: the state is published by the reduction above, so the service's very first
         // notification already carries the word rather than an empty shell of one.
         ListeningService.start(app)
@@ -124,6 +154,10 @@ class ListeningDriver(
     /** Ends the run: the audio stops, the focus goes back, and whatever was playing resumes. */
     fun stop() {
         if (state != null) dispatch(ListeningIntent.Close)
+        val closed = state
+        val from = source
+        if (closed?.turn != null && from != null) kept = closed to from
+        source = null
         generation++
         state = null
         revealed = false

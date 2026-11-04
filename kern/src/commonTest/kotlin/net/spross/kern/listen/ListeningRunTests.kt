@@ -224,6 +224,39 @@ class ListeningRunTests {
     }
 
     /**
+     * RULE: a run closed after a few turns is taken up again on the turn it closed on, and the
+     * walk goes on from there.
+     * WHY: listening opened again a moment after a word or two should carry on, not wait for
+     * a fresh deal of the whole join.
+     */
+    @Test
+    fun aShortRunReopensWhereItStood() {
+        var state = run(candidates(60))
+        repeat(2) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
+        val closed = ListeningRun.reduce(state, ListeningIntent.Close).state
+        val next = ListeningRun.reduce(state, ListeningIntent.Advance).state.turn
+
+        assertTrue(ListeningRun.resumes(closed))
+        val reopened = ListeningRun.reduce(closed, ListeningIntent.Resume)
+        assertEquals(listOf<ListeningEffect>(ListeningEffect.Play(assertNotNull(state.turn))), reopened.effects)
+        assertEquals(next, ListeningRun.reduce(reopened.state, ListeningIntent.Advance).state.turn)
+    }
+
+    /**
+     * RULE: a run closed after minutes of listening is dealt afresh when reopened.
+     * WHY: a fresh deal reads the box as it stands now and shuffles anew, which a long run has
+     * earned and a word or two has not.
+     */
+    @Test
+    fun aLongRunIsDealtAfresh() {
+        var state = run(candidates(60))
+        repeat(LISTENING_RESUME_TURNS * 2) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
+        val closed = ListeningRun.reduce(state, ListeningIntent.Close).state
+
+        assertFalse(ListeningRun.resumes(closed))
+    }
+
+    /**
      * RULE: an empty pool opens on silence rather than failing.
      * WHY: the pool is rebuilt from a live box and a live device — a voice can vanish between
      * the entry card and the run, and a playlist with nothing to play is an empty screen, not

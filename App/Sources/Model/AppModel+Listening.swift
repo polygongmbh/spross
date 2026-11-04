@@ -42,6 +42,11 @@ final class ListeningDriver {
     private(set) var revealed = false
 
     private let model: AppModel
+    /// What this run is dealt from — nil before `open` and for a profile that
+    /// can play nothing.
+    private var source: ListeningAvailability?
+    /// The deal on its way in from a background task.
+    private var dealing: Task<Void, Never>?
     private var generation = 0
     /// The gap between two beats — canceled whenever the generation turns.
     private var pending: Task<Void, Never>?
@@ -51,7 +56,7 @@ final class ListeningDriver {
 
     init(model: AppModel) {
         self.model = model
-        state = ListeningRun.shared.idle(candidates: ListeningAvailability(model: model).candidates)
+        state = ListeningRun.shared.idle(candidates: [])
     }
 
     // MARK: - The run
@@ -66,7 +71,25 @@ final class ListeningDriver {
         ))
         watchInterruptions()
         pausedByInterruption = false
-        dispatch(ListeningIntent.Start.shared)
+        source = ListeningAvailability(model: model)
+        if let source, let kept = model.keptListening, kept.from.deals(like: source),
+           ListeningRun.shared.resumes(closed: kept.run) {
+            state = kept.run
+            dispatch(ListeningIntent.Resume.shared)
+            return
+        }
+        guard let source else {
+            dispatch(ListeningIntent.Start.shared)
+            return
+        }
+        // why: the deal walks the whole join, so it runs off the main thread and
+        // the screen is up while it does; a close before it lands drops it.
+        dealing = Task { [weak self] in
+            let report = await source.deal()
+            guard let self, !Task.isCancelled else { return }
+            state = ListeningRun.shared.idle(candidates: report.candidates)
+            dispatch(ListeningIntent.Start.shared)
+        }
     }
 
     /// A phone call, a Siri turn, an alarm: the system takes the session, every
@@ -108,7 +131,10 @@ final class ListeningDriver {
     /// Hands everything back: the run, the sound, the lock screen and the audio
     /// session — in that order, so nothing fires into a session already gone.
     func close() {
+        dealing?.cancel()
+        dealing = nil
         dispatch(ListeningIntent.Close.shared)
+        if let source, state.turn != nil { model.keptListening = (state, source) }
         bedtime.stop()
         if let interruption {
             NotificationCenter.default.removeObserver(interruption)

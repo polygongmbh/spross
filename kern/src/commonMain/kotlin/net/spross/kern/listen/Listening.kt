@@ -198,6 +198,16 @@ const val LISTENING_NEW_SHARE: Double = 0.4
  */
 const val LISTENING_RETURN_FLOOR_TURNS: Int = 30
 
+/**
+ * How many turns a closed run may have played and still be taken up again when listening is
+ * reopened (`ListeningRun.resumes`) — some three minutes.
+ *
+ * A run left after a word or two has barely started its deal, so reopening it carries on
+ * where it stood. One that has played longer is dealt afresh, which reads the box as it
+ * stands now and shuffles anew.
+ */
+const val LISTENING_RESUME_TURNS: Int = 30
+
 /** The top of the listening ladder: a scheduled word still short of the growing bar. */
 const val LISTENING_SHAKY_PRIORITY: Int = 2
 
