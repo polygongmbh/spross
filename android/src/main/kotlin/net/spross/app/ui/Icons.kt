@@ -172,6 +172,18 @@ object SprossIcons {
         close()
     }
 
+    /** Something to say about the word on air — `flag` on iOS. */
+    val Flag = stroked("Flag") {
+        moveTo(5f, 21f); lineTo(5f, 4f)
+        lineTo(19f, 4f); lineTo(16f, 8.5f); lineTo(19f, 13f); lineTo(5f, 13f)
+    }
+
+    /** The same flag once the word carries a report — `flag.fill` on iOS. */
+    val FlagFilled = filled("FlagFilled") {
+        moveTo(4f, 3f); lineTo(20.5f, 3f); lineTo(17.2f, 8.5f); lineTo(20.5f, 14f)
+        lineTo(6f, 14f); lineTo(6f, 21f); lineTo(4f, 21f); close()
+    }
+
     /** Hear it. The cone is filled and the waves are stroked, as one glyph. */
     val Speaker = ImageVector.Builder(
         name = "Speaker",

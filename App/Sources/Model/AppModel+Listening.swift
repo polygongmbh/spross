@@ -40,6 +40,8 @@ final class ListeningDriver {
     /// SOUND rather than a timer of its own, so what is read and what is heard
     /// arrive together.
     private(set) var revealed = false
+    /// The saying last put in the air — what a one-tap recording report names.
+    private(set) var heard: ListeningHeard?
 
     private let model: AppModel
     /// What this run is dealt from — nil before `open` and for a profile that
@@ -149,6 +151,12 @@ final class ListeningDriver {
         pausedByInterruption = false
         dispatch(ListeningIntent.TogglePause.shared)
     }
+    /// Files the saying last heard as questionable, without a word typed.
+    func flagHeard() {
+        guard let heard else { return }
+        model.flagRecording(heard)
+    }
+
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func back() { dispatch(ListeningIntent.Back.shared) }
 
@@ -260,8 +268,12 @@ final class ListeningDriver {
             next()
         }
         let lang = saying.inTarget ? (model.targetLanguage ?? "") : model.sourceLanguage
-        guard let pronunciation = model.formPronunciation(saying.form, lang: lang,
-                                                          article: saying.article) else {
+        let found = model.formPronunciation(saying.form, lang: lang, article: saying.article)
+        if let cardID = state.turn?.cardId {
+            heard = ListeningHeard(cardID: cardID, form: saying.form, lang: lang,
+                                   recordingPath: found?.recordingPath)
+        }
+        guard let pronunciation = found else {
             once.fire()
             return
         }
@@ -295,6 +307,15 @@ final class ListeningDriver {
         pending = nil
         Pronouncer.shared.stop()
     }
+}
+
+/// One saying as a recording report names it: the card, the form, its language,
+/// and the file that said it, nil where a voice read it.
+struct ListeningHeard: Equatable {
+    let cardID: String
+    let form: String
+    let lang: String
+    let recordingPath: String?
 }
 
 /// A callback that answers at most once, however many ways it is asked — the

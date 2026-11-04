@@ -22,6 +22,10 @@ struct ListeningView: View {
     /// Whether the bedtime chip is under a finger — its own press feedback,
     /// which it owes to not being a Button (see `timerCapsule`).
     @State private var timerHeld = false
+    /// The card a report form is open on.
+    @State private var reporting: Card?
+    /// Whether opening that form paused the run, so closing it plays on.
+    @State private var pausedForReport = false
 
     init(model: AppModel) {
         self.model = model
@@ -31,7 +35,12 @@ struct ListeningView: View {
     private var turn: ListeningTurn? { driver.state.turn }
 
     var body: some View {
-        ListeningScaffold(onClose: { dismiss() }, trailing: { timerCapsule }) {
+        ListeningScaffold(onClose: { dismiss() }, trailing: {
+            HStack(spacing: Theme.spacing.sm) {
+                reportMenu
+                timerCapsule
+            }
+        }) {
             VStack(spacing: Theme.spacing.xl) {
                 Spacer(minLength: 0)
                 cardFace
@@ -46,6 +55,60 @@ struct ListeningView: View {
         .onChange(of: driver.closed) { _, closed in
             if closed { dismiss() }
         }
+        .paneSheet(item: $reporting, onDismiss: {
+            if pausedForReport, driver.state.paused { driver.togglePause() }
+            pausedForReport = false
+        }) { card in
+            ReportIssueSheet(model: model, card: card, learnerInput: "")
+                .environment(\.locale, locale)
+        }
+    }
+
+    // MARK: - Reporting
+
+    /// One small flag beside the timer, and behind it the two things a learner
+    /// may want to say about the word on air: that what they just HEARD sounds
+    /// off, in one tap and nothing typed, and the review's own report form for
+    /// anything else. One button rather than two, because both are about the
+    /// same word and neither is a control the run needs at a glance.
+    /// The flag fills once the word carries a report.
+    @ViewBuilder
+    private var reportMenu: some View {
+        if let turn, model.isReportable(turn.cardId) {
+            let onFile = model.reportedIssue(for: turn.cardId) != nil
+            Menu {
+                if let heard = driver.heard, heard.cardID == turn.cardId {
+                    if model.recordingFlagged(heard) {
+                        Button("listen.flaggedAudio \(heard.form)", systemImage: "checkmark") {}
+                            .disabled(true)
+                    } else {
+                        Button("listen.flagAudio \(heard.form)",
+                               systemImage: "waveform.badge.exclamationmark") { driver.flagHeard() }
+                    }
+                }
+                Button(onFile ? LocalizedStringKey("report.edit") : LocalizedStringKey("report.action"),
+                       systemImage: onFile ? "text.bubble" : "exclamationmark.bubble") {
+                    openReport(turn)
+                }
+            } label: {
+                Image(systemName: onFile ? "flag.fill" : "flag")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(onFile ? Theme.colors.accent : Theme.colors.textSecondary)
+                    .padding(Theme.spacing.sm)
+                    .background(Circle().fill(Theme.colors.surfaceTint))
+                    .contentShape(Circle())
+            }
+            .accessibilityLabel(Text("listen.report"))
+        }
+    }
+
+    /// The form needs reading and maybe typing, which a word talking over it
+    /// gets in the way of: the run waits, and plays on when the form closes.
+    private func openReport(_ turn: ListeningTurn) {
+        guard let card = card(turn) else { return }
+        pausedForReport = !driver.state.paused
+        if pausedForReport { driver.togglePause() }
+        reporting = card
     }
 
     // MARK: - The card

@@ -1,6 +1,7 @@
 package net.spross.kern.box
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.Language
 
 /**
  * The edits that reach what the learner WROTE rather than what the box KNOWS —
@@ -172,6 +173,27 @@ internal object LearnerContent {
             reportedAt = stampOf(nowEpochMillis),
         )
         return state.copy(reportedIssues = state.reportedIssues + (cardId to issue))
+    }
+
+    /**
+     * File that one recording of [cardId] sounds off, without a word typed: the note naming
+     * it ([Feedback.recordingNote]) joins whatever the card's report already says, and the
+     * same note twice is one. The report is re-stamped, so the next "only what is new"
+     * export carries it.
+     */
+    fun flagRecording(
+        state: BoxState,
+        cardId: String,
+        lang: Language,
+        form: String,
+        recordingPath: String?,
+        nowEpochMillis: Long,
+    ): BoxState {
+        if (Feedback.recordingFlagged(state, cardId, lang, form, recordingPath)) return state
+        val said = state.reportedIssues[cardId]?.comment
+        val note = Feedback.recordingNote(lang, form, recordingPath)
+        val comment = listOfNotNull(said, note).joinToString(Feedback.NOTE_SEPARATOR)
+        return report(state, cardId, comment, learnerInput = null, nowEpochMillis)
     }
 
     /** Withdraw a report; no-op when the card carries none. */

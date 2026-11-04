@@ -109,6 +109,15 @@ object ListeningPool {
         return Report(candidates = listeningOrder(scheduled + unseen, seed))
     }
 
+    /**
+     * Whether a run dealt from [dealt] would be dealt alike from [now]: the pool reads the
+     * cards, their schedules and the queue, and nothing else of the box, so a report filed
+     * mid-run leaves the run worth keeping while an answer does not.
+     * Compared by reference: every change to one of the three makes a new one.
+     */
+    fun dealsAlike(dealt: BoxState, now: BoxState): Boolean =
+        dealt.cards === now.cards && dealt.scheduling === now.scheduling && dealt.queued === now.queued
+
     /** Both halves of the turn heard, or the card is not a candidate. */
     private fun sayable(
         card: Card,

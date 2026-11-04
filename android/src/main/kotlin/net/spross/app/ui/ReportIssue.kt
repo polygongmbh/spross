@@ -54,6 +54,9 @@ import net.spross.kern.model.Card
  * is taken THEN rather than read here: the field moves on — a miss primes it past the refused
  * answer and the advancing card empties it — and that refused answer IS the report in the
  * common case.
+ *
+ * [onReporting] hears the report form open (true) and close (false), for a surface that
+ * has to hold still while it is up.
  */
 @Composable
 internal fun CardMenu(
@@ -64,9 +67,12 @@ internal fun CardMenu(
     onDismiss: () -> Unit,
     before: @Composable (close: () -> Unit) -> Unit = {},
     after: @Composable (close: () -> Unit) -> Unit = {},
+    onReporting: (Boolean) -> Unit = {},
 ) {
     val chrome = model.chrome
     var reporting by remember(card.id) { mutableStateOf(false) }
+    // why: reporting is the one state change both ways in and the dialog's own close share.
+    LaunchedEffect(reporting) { onReporting(reporting) }
     DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
         before(onDismiss)
         // why: which cards may be reported is kern's call; drawing the row is this menu's.

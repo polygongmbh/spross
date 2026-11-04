@@ -4257,6 +4257,40 @@
         }
       }
     },
+    "listen.flagAudio %@" : {
+      "comment" : "One tap files the recording (or voice) just heard as questionable; the argument is the form it said.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprache von „%@“ melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag pronunciation of “%@”"
+          }
+        }
+      }
+    },
+    "listen.flaggedAudio %@" : {
+      "comment" : "The same entry once that recording is on file; it does nothing more.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprache von „%@“ gemeldet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronunciation of “%@” flagged"
+          }
+        }
+      }
+    },
     "listen.minutesLeft %lld" : {
       "comment" : "The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched.",
       "localizations" : {
@@ -4310,6 +4344,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pause"
+          }
+        }
+      }
+    },
+    "listen.report" : {
+      "comment" : "The small flag in the listening bar that opens the two ways to report the word on air; its screen-reader label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report"
           }
         }
       }

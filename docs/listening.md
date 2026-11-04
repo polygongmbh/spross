@@ -36,6 +36,11 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   A bedtime, and only a bedtime, gives the card a progress bar:
   it is the one thing a run that otherwise laps forever has a length of, and the system runs the bar on between pushes.
 
+- **A small flag beside the timer reports the word on air**, both kinds behind one button:
+  a one-tap entry names the saying last heard and files it as questionable (`BoxEngine.flagRecording`: its language, form and file, or that a voice read it),
+  joining whatever the card's report already says;
+  the other is the review's own report form, and the run pauses while it is open and plays on after.
+  The flag fills once the word carries a report.
 - **Listening mode**: target word, meaning, target word again,
   every beat kern's (§ The playlist).
   No mute button; plays under `.playback`.
@@ -58,8 +63,9 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   reopened after fewer than `LISTENING_RESUME_TURNS` turns, a few minutes,
   the run carries on from the word it closed on, with no new deal.
   A longer one is dealt afresh, reading the box as it stands then.
-  The platform keeps the closed run with the box object and the two voices it was dealt from,
-  and any change to those deals afresh too.
+  The platform keeps the closed run with the box and the two voices it was dealt from,
+  and a change to either deals afresh too;
+  for the box, only where the pool reads it (`ListeningPool.dealsAlike`: cards, schedules, queue), so a report filed mid-run keeps it.
 - **The pool is the sayable join short of the settled words, not a composed subset.**
   **Both halves must be sayable** (`audible` on both forms),
   or a turn plays a word and then silence.

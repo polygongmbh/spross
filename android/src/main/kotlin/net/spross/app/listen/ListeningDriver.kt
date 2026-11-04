@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.app.AppModel
 import net.spross.app.closeListening
+import net.spross.app.flagRecording
 import net.spross.app.ui.languageName
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.PronounceTrigger
@@ -16,6 +17,7 @@ import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.listen.ListeningEffect
 import net.spross.kern.listen.ListeningIntent
+import net.spross.kern.listen.ListeningPool
 import net.spross.kern.listen.ListeningReduction
 import net.spross.kern.listen.ListeningRun
 import net.spross.kern.listen.ListeningRunState
@@ -59,6 +61,10 @@ class ListeningDriver(
     var revealed by mutableStateOf(false)
         private set
 
+    /** The saying last put in the air — what a one-tap recording report names. */
+    var heard by mutableStateOf<ListeningHeard?>(null)
+        private set
+
     /** The run's bedtime; off until the chip is tapped. */
     val bedtime = ListeningBedtime()
 
@@ -92,13 +98,12 @@ class ListeningDriver(
         },
     )
 
-    /**
-     * What a run was dealt from: the box object, since every change to it makes a new one,
-     * and the two voices read when it opened.
-     */
+    /** What a run was dealt from: the box and the two voices read when it opened. */
     class Source(val box: BoxState, val hasTargetVoice: Boolean, val hasSourceVoice: Boolean) {
+        /** Nothing of the box the pool reads has moved (`ListeningPool.dealsAlike`), and the same voices. */
         fun dealsLike(other: Source): Boolean =
-            box === other.box && hasTargetVoice == other.hasTargetVoice && hasSourceVoice == other.hasSourceVoice
+            ListeningPool.dealsAlike(other.box, box) &&
+                hasTargetVoice == other.hasTargetVoice && hasSourceVoice == other.hasSourceVoice
     }
 
     /** The last run, closed, with what it was dealt from — taken up again if reopened soon enough. */
@@ -138,6 +143,11 @@ class ListeningDriver(
         // The learner's own pause outranks the platform's: lifting it is theirs to do.
         pausedByFocus = false
         dispatch(ListeningIntent.TogglePause)
+    }
+
+    /** Files the saying last heard as questionable, without a word typed. */
+    fun flagHeard() {
+        heard?.let { model.flagRecording(it) }
     }
 
     override fun skip() = dispatch(ListeningIntent.Skip)
@@ -286,6 +296,10 @@ class ListeningDriver(
         // why: the article rides into the LOOKUP as well as into the voice — a target saying
         // may have a recording that speaks it.
         val pronunciation = lang?.let { model.catalog?.pronunciation(it, saying.form, saying.article) }
+        val cardId = state?.turn?.cardId
+        if (cardId != null && lang != null) {
+            heard = ListeningHeard(cardId, saying.form, lang, pronunciation?.recordingPath)
+        }
         if (pronunciation == null) {
             finish()
             return
@@ -303,3 +317,6 @@ class ListeningDriver(
         handler.postDelayed({ finish() }, LISTENING_WATCHDOG_MS)
     }
 }
+
+/** One saying as a recording report names it: the card, the form, its language, and the file that said it, null where a voice read it. */
+data class ListeningHeard(val cardId: String, val form: String, val lang: String, val recordingPath: String?)

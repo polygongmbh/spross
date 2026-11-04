@@ -44,11 +44,12 @@ struct ListeningAvailability: Sendable {
         hasSourceVoice = Pronouncer.shared.canSpeak(language: source)
     }
 
-    /// Whether a run dealt from `other` still stands for this one: the same box
-    /// object, since every change to it makes a new one, and the same voices.
+    /// Whether a run dealt from `other` still stands for this one: nothing of
+    /// the box the pool reads has moved (`ListeningPool.dealsAlike`), and the
+    /// same voices.
     func deals(like other: ListeningAvailability) -> Bool {
-        box === other.box && hasTargetVoice == other.hasTargetVoice
-            && hasSourceVoice == other.hasSourceVoice
+        ListeningPool.shared.dealsAlike(dealt: other.box, now: box)
+            && hasTargetVoice == other.hasTargetVoice && hasSourceVoice == other.hasSourceVoice
     }
 
     /// The playlist itself, dealt for ONE run, away from the main thread: the

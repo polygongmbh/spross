@@ -526,6 +526,9 @@ interface Chrome {
     val listenBack: String
     val listenTimer: String
     val listenMinutesLeft: String   // %d
+    val listenReport: String
+    val listenFlagAudio: String     // %s
+    val listenFlaggedAudio: String  // %s
 
     // ── Load failures ───────────────────────────────────────────────────────────
     val errorTitle: String

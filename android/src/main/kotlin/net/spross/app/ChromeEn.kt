@@ -496,6 +496,9 @@ internal object ChromeEn : Chrome {
     override val listenBack = "Back"
     override val listenTimer = "Timer"
     override val listenMinutesLeft = "%d min"
+    override val listenReport = "Report"
+    override val listenFlagAudio = "Flag pronunciation of “%s”"
+    override val listenFlaggedAudio = "Pronunciation of “%s” flagged"
     override val errorTitle = "Oops"
     override val errorCatalogMissing = "The content could not be loaded. (catalog missing " +
         "from the app bundle)"
