@@ -19,24 +19,33 @@ final class Pronouncer {
     /// Where a fire came from — kern's, with the rule on what holds each back.
     typealias Trigger = PronounceTrigger
 
-    /// One device-wide setting (never per target language, never in the box):
-    /// governs AUTOPLAY only, and every launch starts at `.followsPhone`, so
-    /// reading aloud is on while the silent switch keeps its say.
-    var readAloud: ReadAloud {
+    /// Whether reading aloud is switched off in the app: what the top bar's switch and the
+    /// audio setting's "No audio" render. A phone silenced by its own switch is not this,
+    /// and cannot be read at all.
+    /// Starts each launch at the audio setting's stored choice; the top bar changes it for this launch only.
+    private(set) var muted: Bool =
+        UserDefaults.standard.bool(forKey: "audio.off") || ReadAloud.mutedByLaunchArgument {
         didSet {
-            // why: the phone's switch acts on the CATEGORY, so a setting
-            // flipped mid-session has to reach the session, not just this flag.
             AudioSession.adopt(readAloud)
             // why: muting is expected to take effect on the word in the air,
             // not only on the next card.
-            if readAloud == .off { stop() }
+            if muted { stop() }
         }
     }
 
-    /// Whether reading aloud is switched off IN THE APP — what the two toggles
-    /// render. A phone silenced by its own switch is not this, and cannot be
-    /// read at all.
-    var muted: Bool { readAloud == .off }
+    /// Whether autoplay plays through the silent switch, for a phone kept on silent so calls do not ring.
+    /// One stored device-wide choice, off until turned on.
+    var readsInSilentMode: Bool = UserDefaults.standard.bool(forKey: "audio.readsInSilentMode") {
+        didSet {
+            UserDefaults.standard.set(readsInSilentMode, forKey: "audio.readsInSilentMode")
+            AudioSession.adopt(readAloud)
+        }
+    }
+
+    /// What autoplay does now; governs AUTOPLAY only, device-wide (never per target language, never in the box).
+    var readAloud: ReadAloud {
+        muted ? .off : readsInSilentMode ? .on : .followsPhone
+    }
 
     /// Which voice answers a target word — recordings or the synthesizer —
     /// per LANGUAGE: the picked source belongs to the language it was picked
@@ -66,10 +75,6 @@ final class Pronouncer {
     /// The end owed to the word sounding now, settled once however it ends.
     private var owedFinish: (@MainActor () -> Void)?
 
-    init() {
-        readAloud = .atLaunch
-    }
-
     /// The source in force for `language`.
     func voiceSource(for language: String) -> VoiceSource {
         pickedSources[language] ?? .stored(for: language)
@@ -80,11 +85,15 @@ final class Pronouncer {
         source.store(for: language)
     }
 
-    /// What both switches call: turning reading aloud ON is itself a request to
-    /// hear something, so from then on it outranks a silenced phone — the
-    /// switch never claims a word the phone would eat.
-    func setReadAloud(on: Bool) {
-        readAloud = on ? .on : .off
+    /// The top bar's switch: holds for this launch, and the next starts at the audio setting again.
+    func setMuted(_ muted: Bool) {
+        self.muted = muted
+    }
+
+    /// The audio setting's choice between "No audio" and a source: stored, so it outlasts the launch.
+    func storeMuted(_ muted: Bool) {
+        UserDefaults.standard.set(muted, forKey: "audio.off")
+        self.muted = muted
     }
 
     static func key(for pronunciation: Pronunciation) -> String {

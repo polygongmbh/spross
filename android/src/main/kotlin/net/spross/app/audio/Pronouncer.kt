@@ -58,7 +58,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /** Path of the clip the player still holds — asking for it again needs no load. */
     private var loaded: String? = null
 
-    private var mutedState by mutableStateOf(false)
+    private var mutedState by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
 
     /** The word sounding right now, for a speaker that pulses while it does; null in silence. */
     var sounding: Pronunciation? by mutableStateOf(null)
@@ -91,14 +91,16 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference =
         sources.preference(muted, voiceSource(lang) == VoiceSource.TTS)
 
-    /** Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it. */
+    /**
+     * Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it.
+     * The pick stores the mute, so "No audio" outlasts the launch.
+     */
     fun setAudioPreference(lang: Language, preference: AudioPreference) {
-        if (preference.mutes) {
-            muted = true
-            return
+        if (!preference.mutes) {
+            setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
         }
-        setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
-        muted = false
+        prefs.edit().putBoolean(AUDIO_OFF, preference.mutes).apply()
+        muted = preference.mutes
     }
 
     private var saysMeaningState by mutableStateOf(prefs.getBoolean(SAYS_MEANING, true))
@@ -121,9 +123,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     /**
      * One device-wide flag (never per target language, never in the box): silences
-     * AUTOPLAY only, and for this launch only — every launch starts read aloud, as iOS's
-     * `ReadAloud` starts at following the phone. Compose state, because a plain field would
-     * never recompose the toggle that shows it.
+     * AUTOPLAY only. Every launch starts at the audio setting's stored choice, and the top
+     * bar's switch sets this for the launch alone, as on iOS. Compose state, because a plain
+     * field would never recompose the toggle that shows it.
      */
     var muted: Boolean
         get() = mutedState
@@ -291,6 +293,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private companion object {
         const val SAYS_MEANING = "audio.saysMeaning"
+        const val AUDIO_OFF = "audio.off"
 
         fun keyFor(lang: Language) = "pronunciationSource.$lang"
     }

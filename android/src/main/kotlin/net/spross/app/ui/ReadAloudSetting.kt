@@ -24,7 +24,7 @@ import net.spross.kern.catalog.preferenceOptions
 import net.spross.kern.model.Language
 
 /**
- * The mute the session's top bar switches (there reduced to the button), and a standing
+ * The stored mute the session's top bar switches over for a launch, and a standing
  * home for the disclosure that a tap on a word speaks it even while this is off. The
  * three-way preference names the voice source too, so the picker alone decides both:
  * there is no state where a source is chosen but the app is silent.

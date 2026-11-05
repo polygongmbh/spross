@@ -11,7 +11,7 @@ struct SprossApp: App {
         // why: the standing category for everything the app fires by itself,
         // set once and never activated by hand — .ambient, so the ring/silent
         // switch keeps its authority over autoplay and the feedback chimes
-        // alike, unless reading aloud was switched on by hand. A deliberate tap
+        // alike, unless the audio setting reads aloud in silent mode. A deliberate tap
         // raises it per sound; the whole rule lives in AudioSession.
         AudioSession.adopt(Pronouncer.shared.readAloud)
     }

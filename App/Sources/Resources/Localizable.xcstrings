@@ -369,6 +369,22 @@
         }
       }
     },
+    "a11y.state.followsSilentMode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "folgt dem Stummmodus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "follows silent mode"
+          }
+        }
+      }
+    },
     "a11y.state.off" : {
       "localizations" : {
         "de" : {
@@ -6151,6 +6167,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Speech"
+          }
+        }
+      }
+    },
+    "settings.audio.readsInSilentMode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auch im Stummmodus vorlesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read Aloud in Silent Mode"
+          }
+        }
+      }
+    },
+    "settings.audio.readsInSilentMode.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonst zeigt eine Glocke oben, dass der Stummmodus entscheidet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otherwise a bell in the top bar shows that silent mode decides."
           }
         }
       }

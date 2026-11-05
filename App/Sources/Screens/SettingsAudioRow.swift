@@ -1,8 +1,8 @@
 import SwiftUI
 import SprossKern
 
-/// The read-aloud row: the same choice the session's top bar carries (there reduced to the
-/// mute button), and the place the tap-to-replay gesture is disclosed — the
+/// The read-aloud row: the stored choice the session's top bar mutes over for a launch,
+/// whether autoplay plays in silent mode, and the place the tap-to-replay gesture is disclosed — the
 /// card itself grows no affordance for it, so the hint line is where it is
 /// named. It is also the standing home of the voice-download pointer, which
 /// the Home banner only borrows once: dismissed there, it is still findable
@@ -37,6 +37,14 @@ struct SettingsAudioRow: View {
                 .font(Theme.typography.subheadline)
                 .disabled(Pronouncer.shared.muted)
             Text("settings.audio.saysMeaning.hint")
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
+            Toggle("settings.audio.readsInSilentMode", isOn: Binding(
+                get: { Pronouncer.shared.readsInSilentMode },
+                set: { Pronouncer.shared.readsInSilentMode = $0 }))
+                .font(Theme.typography.subheadline)
+                .disabled(Pronouncer.shared.muted)
+            Text("settings.audio.readsInSilentMode.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
@@ -79,8 +87,7 @@ struct SettingsAudioRow: View {
     }
 
     /// Kern's mapping (`AudioPreference`) over the mute and this language's
-    /// stored source. Picking a source turns reading aloud back on only where
-    /// it was off, so a read-aloud that follows the phone keeps following it.
+    /// stored source. A pick stores the mute too, so "No audio" outlasts the launch.
     private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
             get: {
@@ -91,14 +98,14 @@ struct SettingsAudioRow: View {
             },
             set: { preference in
                 guard !preference.mutes else {
-                    Pronouncer.shared.setReadAloud(on: false)
+                    Pronouncer.shared.storeMuted(true)
                     return
                 }
                 if let target = model.targetLanguage {
                     Pronouncer.shared.setVoiceSource(preference.prefersSpeech ? .tts : .recordings,
                                                      for: target)
                 }
-                if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
+                Pronouncer.shared.storeMuted(false)
             }
         )
     }
