@@ -510,3 +510,20 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context	heard_on
 2026-11-04	it	abbastanza	XANA000	LL-Q652 (ita)-XANA000-abbastanza.wav	258958adb2797194ba02a2dfb4f687515fc8d4951760c6210961ea3c801c780c	okay		3.07	2026-10-28 pesq vs score (words)	MacBook Air Speakers
 2026-11-04	uk	приві́т	Галя Раптова, Nicolas Vion	Uk-привіт.ogg	db771d444aa6bafa453b18a2fbb012d98026b9d67147cc7bf4374533d542e860	good		1.85	2026-10-28 pesq vs score (words)	MacBook Air Speakers
 2026-11-04	it	crescere	LangPao	LL-Q652 (ita)-LangPao-crescere.wav	d8d53aa40ea6a78b8e9a989046d046d327934176bd6d2416c49fe8a80c5c864b	okay		2.12	2026-10-28 pesq vs score (words)	MacBook Air Speakers
+2026-11-06	es	bilis	Marreromarco	LL-Q1321 (spa)-Marreromarco-bilis.wav	328f174065183c75e32befa6230ecbdb4c704743be14faa77a0b0b0961077448	mediocre		1.46	2026-11-06 by word (words, mos 1.46)	AirPods Pro
+2026-11-06	es	litro	Marreromarco	LL-Q1321 (spa)-Marreromarco-litro.wav	44e038084ecf321466616480e4f6dac9e5971d68a2cf83c4464a7f5fe16854c0	mediocre		1.51	2026-11-06 by word (words, mos 1.51)	AirPods Pro
+2026-11-06	es	milenio	Marreromarco	LL-Q1321 (spa)-Marreromarco-milenio.wav	16afe1b6ceadfe77f038b8034955716ab4d773621bf6585b4a9c85d3dce39b00	mediocre		1.42	2026-11-06 by word (words, mos 1.42)	AirPods Pro
+2026-11-06	es	peinar	Marreromarco	LL-Q1321 (spa)-Marreromarco-peinar.wav	11e298987cbd422e692113f749cc7ecfad58b2531cea0a1ae1914d094fe4791f	mediocre		1.55	2026-11-06 by word (words, mos 1.55)	AirPods Pro
+2026-11-06	en	in the past	Steve Shives	En-us-in the past.ogg	3edd10d68461716ce8646737f8b29e3c668b1bc4e55a1d2f730c20635facb012	good		1.43	2026-11-06 by word (words, mos 1.43)	AirPods Pro
+2026-11-06	it	Algeria	SabineWanner	It-Algeria.ogg	a2106491548b2c1a8de6db3a13642d1b92029c92cc64764cfaaf9a30e3fc654c	okay		1.63	2026-11-06 by word (countries, mos 1.63)	AirPods Pro
+2026-11-06	es	aproximadamente	Marreromarco	LL-Q1321 (spa)-Marreromarco-aproximadamente.wav	ecf156b839c5003039afe1d9f4e1b63e7ccf92135c6a9eb3ba71cd7570d88a78	mediocre		2.06	2026-11-04 new concepts	AirPods Pro
+2026-11-06	it	buon appetito	XANA000	LL-Q652 (ita)-XANA000-buon appetito.wav	14c9db06afe76649d6d6501961b47a815b44878f5919264612e17ed225516080	okay		2.78	2026-11-04 new concepts	AirPods Pro
+2026-11-06	fr	environ	Sartus85	LL-Q150 (fra)-Sartus85-environ.wav	1de9cc6c79910e174f6e27efb3706b763e6f7df10c97e8f890862b6bdb7089b6	good		2.83	2026-11-04 new concepts	AirPods Pro
+2026-11-06	it	circa	XANA000	LL-Q652 (ita)-XANA000-circa.wav	a9e4cef62a317500a144b1b5685eead6d5963e88a20866403c4acba970dad8cf	okay		2.83	2026-11-04 new concepts	AirPods Pro
+2026-11-06	de	etwa	Jeuwre	De-etwa.ogg	c2e4b50f1121d91f33c94bfc2c072d10dc510f033deaa3f672e4f94ae347efbb	great		2.95	2026-11-04 new concepts	AirPods Pro
+2026-11-06	uk	смачно́го	Tohaomg	LL-Q8798 (ukr)-Tohaomg-смачного.wav	f37d536d4d601c00a59d41f7eefb9aa85da08c3639faf1146bac2f963c7cace9	okay		2.97	2026-11-04 new concepts	AirPods Pro
+2026-11-06	de	guten appetit	Jeuwre	De-Guten Appetit.ogg	03fc7204925e6d3fc2a918212e9190f3e280c6221350f4ae95e826257ceec45a	good		3.16	2026-11-04 new concepts	AirPods Pro
+2026-11-06	en	approximately	Persent101	En-us-approximately.ogg	e4afed447aa8c67b75f2d00e57ba841c311dbb4cc2ba24cb830211639d7146b1	okay		3.17	2026-11-04 new concepts	AirPods Pro
+2026-11-06	sw	karibu chakula	Waithera Were	Sw-ke-karibu chakula.flac	e335568f8485175f6a7b417d5e0596ab65702f4c39feb4c72ca6a69fc6d86b90	good		3.23	2026-11-04 new concepts	AirPods Pro
+2026-11-06	eo	proksimume	Lepticed7	LL-Q143 (epo)-Lepticed7-proksimume.wav	6f07b2b78daabc5fc18a18e6056334aec4d83aa5715ae140fb47486c17983645	good		3.27	2026-11-04 new concepts	AirPods Pro
+2026-11-06	fr	bon appétit	LoquaxFR	LL-Q150 (fra)-LoquaxFR-bon appétit.wav	fbee4e8443edc31c121522819323e0c0d27a30f88e7cbcd67b8848f65371535e	okay		3.3	2026-11-04 new concepts	AirPods Pro
