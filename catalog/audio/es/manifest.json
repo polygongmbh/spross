@@ -2162,17 +2162,6 @@
       "sha256": "a1354d35042905f2ccd33f28b4aa7d82bda1a07ca857f9306b483d0eaae90a9a",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bienvenido.wav"
     },
-    "bilis": {
-      "author": "Marreromarco",
-      "file": "words/bilis.mp3",
-      "gain": 7.6,
-      "gate": -59.3,
-      "lead": 270,
-      "matches": "bilis",
-      "mos": 1.46,
-      "sha256": "328f174065183c75e32befa6230ecbdb4c704743be14faa77a0b0b0961077448",
-      "source": "LL-Q1321 (spa)-Marreromarco-bilis.wav"
-    },
     "billete": {
       "author": "AdrianAbdulBaha",
       "file": "words/billete.mp3",
@@ -6251,17 +6240,6 @@
       "sha256": "fa566c5c864615b89af71a2d1690ecab1eac033af8eaa7c95bfef47d65fb1672",
       "source": "LL-Q1321 (spa)-Marreromarco-listo.wav"
     },
-    "litro": {
-      "author": "Marreromarco",
-      "file": "words/litro.mp3",
-      "gain": 4.6,
-      "gate": -55.0,
-      "lead": 190,
-      "matches": "litro",
-      "mos": 1.51,
-      "sha256": "44e038084ecf321466616480e4f6dac9e5971d68a2cf83c4464a7f5fe16854c0",
-      "source": "LL-Q1321 (spa)-Marreromarco-litro.wav"
-    },
     "llamar": {
       "author": "AdrianAbdulBaha",
       "file": "words/llamar.mp3",
@@ -6795,17 +6773,6 @@
       "mos": 2.99,
       "sha256": "5c48790453fb56b6c21f02eabdc3268f0a583064ee7e0aee0f2d76fafa25c1a3",
       "source": "LL-Q1321 (spa)-Rodrigo5260-miedo.wav"
-    },
-    "milenio": {
-      "author": "Marreromarco",
-      "file": "words/milenio.mp3",
-      "gain": 1.0,
-      "gate": -66.9,
-      "lead": 240,
-      "matches": "milenio",
-      "mos": 1.42,
-      "sha256": "16afe1b6ceadfe77f038b8034955716ab4d773621bf6585b4a9c85d3dce39b00",
-      "source": "LL-Q1321 (spa)-Marreromarco-milenio.wav"
     },
     "minuto": {
       "author": "AdrianAbdulBaha",
@@ -8007,17 +7974,6 @@
       "mos": 2.81,
       "sha256": "20b485797f9eba66c5cdcc1c71b01275bb5e0ece994442801af15fefec112bab",
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pedir.wav"
-    },
-    "peinar": {
-      "author": "Marreromarco",
-      "file": "words/peinar.mp3",
-      "gain": 3.1,
-      "gate": -65.4,
-      "lead": 220,
-      "matches": "peinar",
-      "mos": 1.55,
-      "sha256": "11e298987cbd422e692113f749cc7ecfad58b2531cea0a1ae1914d094fe4791f",
-      "source": "LL-Q1321 (spa)-Marreromarco-peinar.wav"
     },
     "pelar": {
       "author": "Marreromarco",

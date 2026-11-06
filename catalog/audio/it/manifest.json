@@ -962,7 +962,6 @@
     "LangPao": "CC BY-SA 4.0",
     "Marta Carbone, Association Shtooka": "CC BY 3.0 us",
     "Punsisil": "CC BY-SA 4.0",
-    "SabineWanner": "CC BY-SA 3.0",
     "UofG Language Modules": "CC BY-SA 4.0",
     "XANA000": "CC0",
     "Yiyi": "CC BY-SA 4.0"
@@ -1191,18 +1190,6 @@
     }
   },
   "countries": {
-    "Algeria": {
-      "author": "SabineWanner",
-      "end": 1580,
-      "file": "countries/algeria.mp3",
-      "gain": 13.6,
-      "gate": -79.2,
-      "lead": 510,
-      "matches": "Algeria",
-      "mos": 1.63,
-      "sha256": "a2106491548b2c1a8de6db3a13642d1b92029c92cc64764cfaaf9a30e3fc654c",
-      "source": "It-Algeria.ogg"
-    },
     "Belgio": {
       "author": "Ciampix",
       "file": "countries/belgio.mp3",
