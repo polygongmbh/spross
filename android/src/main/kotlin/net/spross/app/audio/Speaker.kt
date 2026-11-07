@@ -36,11 +36,12 @@ class Speaker(context: Context) {
     var ready by mutableStateOf(false)
         private set
 
-    private val tts = TextToSpeech(
-        context.applicationContext,
-        { status -> ready = status == TextToSpeech.SUCCESS },
-        GOOGLE_ENGINE,
-    )
+    /** The binding failed: no speech engine is installed for it to reach. */
+    var engineMissing by mutableStateOf(false)
+        private set
+
+    private val appContext = context.applicationContext
+    private var tts = bind()
 
     /**
      * Which utterance is the newest. The id handed to the engine carries it, so the end of
@@ -54,11 +55,19 @@ class Speaker(context: Context) {
 
     private val main = Handler(Looper.getMainLooper())
 
-    init {
+    private fun bind(): TextToSpeech {
+        val engine = TextToSpeech(
+            appContext,
+            { status ->
+                ready = status == TextToSpeech.SUCCESS
+                engineMissing = status != TextToSpeech.SUCCESS
+            },
+            GOOGLE_ENGINE,
+        )
         // why: the engine reports on a binder thread, so the callback hops to the main
         // thread before anything the app owns hears about it — a listening run arms its
         // next beat here, and its state is read from the composition.
-        tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+        engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(utteranceId: String?) = Unit
             override fun onDone(utteranceId: String?) = finish(utteranceId)
 
@@ -67,6 +76,14 @@ class Speaker(context: Context) {
 
             override fun onError(utteranceId: String?, errorCode: Int) = finish(utteranceId)
         })
+        return engine
+    }
+
+    /** Binds again after a failed binding; from every foreground, since an engine installed meanwhile announces nothing. */
+    fun retryBinding() {
+        if (!engineMissing) return
+        tts.shutdown()
+        tts = bind()
     }
 
     /** Whether this device can say anything at all in [lang]. */

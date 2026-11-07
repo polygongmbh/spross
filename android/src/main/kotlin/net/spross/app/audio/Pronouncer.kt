@@ -156,6 +156,11 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /** Whether [lang]'s voice is a download away in the system's speech settings. */
     fun voiceMissing(lang: Language): Boolean = speaker.voiceMissing(lang)
 
+    /** Whether no speech engine could be bound, so no word without a recording can sound. */
+    val engineMissing: Boolean get() = speaker.engineMissing
+
+    fun retryBinding() = speaker.retryBinding()
+
     /**
      * Whether a screen reader is reading the screen aloud — the same fact that gates
      * autoplay, exposed because a drill built ENTIRELY out of audio has to compensate

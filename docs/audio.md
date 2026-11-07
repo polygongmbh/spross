@@ -27,7 +27,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   Android's Google engine has no such tiers;
   its gap is a language whose voice is not downloaded yet (`Speaker.voiceMissing`),
   which leaves every word without a recording silent,
-  so the audio setting links to the system's speech settings and asks again on every foreground.
+  so the audio setting links to the system's speech settings and asks again on every foreground;
+  a device with no speech engine at all gets a link to Google's speech services in the store instead.
 - **A review card and a drill say both their sides, each once, each in the language it is written in.**
   Hearing them paired binds them, and each side is said where the card shows it:
   the prompt as it goes up, the answer once it is out.

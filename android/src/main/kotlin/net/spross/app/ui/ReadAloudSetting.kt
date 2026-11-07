@@ -1,7 +1,10 @@
 package net.spross.app.ui
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +13,6 @@ import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -67,30 +69,47 @@ internal fun ReadAloudSetting(model: AppModel, target: Language, targetName: Str
                 AudioPreference.Speech -> chrome.settingsAudioHintTts
             }
         )
-        if (model.pronouncer.voiceMissing(target)) VoiceDownloadLink(chrome, targetName)
+        VoiceGapLink(model, target, targetName)
     }
 }
 
 /**
- * The pointer to the speech engine's voice download, for a language it knows but has not
- * downloaded: without it, every word lacking a recording stays silent.
+ * The pointer to what a voice for [target] is missing, if anything: Google's speech services
+ * where no engine is installed, its voice download where the engine knows the language but
+ * has not downloaded it. Without either, every word lacking a recording stays silent.
  */
 @Composable
-internal fun VoiceDownloadLink(chrome: Chrome, targetName: String) {
+internal fun VoiceGapLink(model: AppModel, target: Language, targetName: String) {
+    val chrome = model.chrome
     val context = LocalContext.current
-    TextButton(
-        onClick = {
-            // why: opens the system's text-to-speech settings, where the voice is downloaded;
-            // a device without that screen leaves the tap doing nothing rather than crashing.
-            try {
-                context.startActivity(Intent(TTS_SETTINGS))
-            } catch (_: ActivityNotFoundException) {
-            }
-        },
-        contentPadding = SETTINGS_BUTTON_PADDING,
-    ) {
-        Text(chrome.settingsAudioVoiceDownload.format(targetName), style = MaterialTheme.typography.bodySmall)
+    val (label, intents) = when {
+        model.pronouncer.engineMissing -> chrome.settingsAudioEngineInstall to listOf(
+            Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$GOOGLE_TTS")),
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$GOOGLE_TTS")),
+        )
+        model.pronouncer.voiceMissing(target) ->
+            chrome.settingsAudioVoiceDownload.format(targetName) to listOf(Intent(TTS_SETTINGS))
+        else -> return
     }
+    // why: plain clickable text rather than a TextButton, whose zero-inset clip cuts the
+    // first letter off a link that wraps onto a second line.
+    Text(
+        label,
+        style = MaterialTheme.typography.bodySmall,
+        color = Theme.colors.accent,
+        modifier = Modifier
+            .clickable(role = Role.Button) {
+                // why: opens the store or the system's text-to-speech settings, first that
+                // answers; a device with neither leaves the tap doing nothing rather than crashing.
+                intents.firstOrNull { intent -> runCatching { context.startActivity(intent) }.isSuccess }
+            }
+            .padding(vertical = Theme.spacing.sm),
+    )
 }
 
+/** Whether [VoiceGapLink] has anything to say for [target]. */
+internal fun AppModel.hasVoiceGap(target: Language): Boolean =
+    pronouncer.engineMissing || pronouncer.voiceMissing(target)
+
 private const val TTS_SETTINGS = "com.android.settings.TTS_SETTINGS"
+private const val GOOGLE_TTS = "com.google.android.tts"

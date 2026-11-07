@@ -6124,6 +6124,23 @@
         }
       }
     },
+    "settings.audio.engineInstall" : {
+      "comment" : "Android: no speech engine is installed; tapping opens Google's speech services in the store",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installiere die Sprachdienste von Google, um auch Wörter ohne Tonaufnahme zu hören."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install Google's speech services to also hear words without a recording."
+          }
+        }
+      }
+    },
     "settings.audio.hint.off" : {
       "comment" : "the hint under the picker, per selection",
       "localizations" : {

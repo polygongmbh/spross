@@ -99,7 +99,7 @@ ANDROID_ONLY = {
     'settings.update.offer', 'settings.update.title',
     # Android's speech engine leaves a language's voice undownloaded and lets an app open its
     # settings; iOS always has a voice and points at a better one instead.
-    'settings.audio.voiceDownload %@',
+    'settings.audio.engineInstall', 'settings.audio.voiceDownload %@',
 }
 # Whole families built at runtime — a stem plus the variant kern picked this round
 # (`AppModel+Queries.headlineKey`, `SessionSummaryView.headlineKey`). The words are

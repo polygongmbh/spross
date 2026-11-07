@@ -121,6 +121,7 @@ interface Chrome {
     val settingsAudioHintRecordingsOnly: String
     val settingsAudioHintTts: String
     val settingsAudioVoiceDownload: String // %s
+    val settingsAudioEngineInstall: String
     val settingsRemindersTitle: String
     val settingsRemindersOptionOff: String
     val settingsRemindersOptionUsual: String

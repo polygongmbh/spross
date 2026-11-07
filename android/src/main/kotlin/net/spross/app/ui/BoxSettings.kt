@@ -135,8 +135,8 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         // choice, and the two "on" segments would both promise a sound that cannot be made.
         if (!audioSources.silent) {
             Panel { ReadAloudSetting(model, box.joinStamp.target, targetName) }
-        } else if (model.pronouncer.voiceMissing(box.joinStamp.target)) {
-            Panel { VoiceDownloadLink(chrome, targetName) }
+        } else if (model.hasVoiceGap(box.joinStamp.target)) {
+            Panel { VoiceGapLink(model, box.joinStamp.target, targetName) }
         }
         Panel { ReminderSetting(model) }
         Panel {

@@ -97,6 +97,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     fun refreshVoices() {
+        pronouncer.retryBinding()
         voiceRevision++
     }
 
