@@ -330,7 +330,7 @@ private fun sections(model: AppModel): List<Section> {
     val chrome = model.chrome
     return listOf(
         Section(Tab.Home, SectionIcons.Home, SectionIcons.HomeFilled, chrome.homeName),
-        Section(Tab.Box, SectionIcons.Tree, SectionIcons.TreeFilled, chrome.boxName),
+        Section(Tab.Box, SectionIcons.Sprout, SectionIcons.SproutFilled, chrome.boxName),
         Section(Tab.Settings, SectionIcons.Gear, SectionIcons.GearFilled, chrome.settingsTitle),
     )
 }
