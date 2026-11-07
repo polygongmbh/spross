@@ -18,6 +18,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import kotlin.math.ceil
+import androidx.compose.ui.unit.Dp
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,7 +62,7 @@ fun SpokenWord(
     Row(
         modifier = modifier.pronounceOnTap(pronounce, chrome),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterHorizontally),
     ) {
         // why: a hidden, inert copy of the glyph on the LEADING edge. Without the ballast
         // the word sits half a speaker left of center — off the plural line under it and
@@ -95,9 +102,19 @@ fun Headword(
     maxLines: Int = 2,
 ) {
     val style = MaterialTheme.typography.headlineMedium
+    val density = LocalDensity.current
+    // why: wrapped text measures as wide as its constraint, which would park the speaker
+    // beside it far from a two-line word; once laid out, it narrows to its widest line.
+    var widest by remember(text) { mutableStateOf<Dp?>(null) }
     Text(
         text,
-        modifier = modifier,
+        modifier = modifier.then(widest?.let { Modifier.widthIn(max = it) } ?: Modifier),
+        onTextLayout = { layout ->
+            if (widest == null && layout.lineCount > 1) {
+                val px = (0 until layout.lineCount).maxOf { layout.getLineRight(it) - layout.getLineLeft(it) }
+                if (px + 1 < layout.size.width) widest = with(density) { ceil(px + 1).toDp() }
+            }
+        },
         // why: a relative line height shrinks with the words, or a stepped-down pair of
         // lines keeps the full-size gap between them.
         style = style.copy(lineHeight = (style.lineHeight.value / style.fontSize.value).em),
