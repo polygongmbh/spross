@@ -6163,13 +6163,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nur Wörter mit Tonaufnahme werden vorgelesen."
+            "value" : "Wörter mit Tonaufnahme werden automatisch vorgelesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Only words with a recording are read aloud."
+            "value" : "Words with a recording are read aloud automatically."
           }
         }
       }
