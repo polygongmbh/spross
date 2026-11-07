@@ -7,6 +7,7 @@ import kotlin.math.cos
 import kotlin.math.hypot
 import kotlin.math.max
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 // The wood of one tree and the slots its marks hang on, grown in unit space:
 // foot at the origin, growing toward negative y.
@@ -126,25 +127,47 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
             val on = order.indices.filter { order[it].first == i }
             on.sortedBy { if (it in bud) 0 else 1 }.forEachIndexed { k, n -> place[n] = k }
         }
-        return order.mapIndexed { n, (i, _) -> slot(dealt[i], place[n], held[i], i % 2 == 0) }
+        // why: each mark faces whichever side of its wood the marks before it left emptier,
+        // so neighbors never turn into one gap and leave another bare.
+        val leaf = sqrt(spread(order.indices.map { n -> at(dealt[order[n].first], along(place[n], held[order[n].first])) }) / count) * 0.6
+        val reached = mutableListOf<Pair<Double, Double>>()
+        return order.mapIndexed { n, (i, _) ->
+            val k = place[n]
+            val alternate = if ((k % 2 == 1) != (i % 2 == 0)) 1 else -1
+            val options = listOf(alternate, -alternate).map { slot(dealt[i], k, held[i], it) }
+                .filter { !dips(it.angle) }
+                .ifEmpty { listOf(slot(dealt[i], k, held[i], alternate)) }
+            fun tip(o: TreeSlot) = o.x + cos(o.angle) * leaf to o.y + sin(o.angle) * leaf
+            fun room(o: TreeSlot) = reached.minOfOrNull { distance(it, tip(o)) } ?: 0.0
+            // A tie, the first mark among them, keeps the alternation: max picks the first of equals.
+            val chosen = options.maxBy(::room).let { it.copy(angle = level(it.angle)) }
+            reached += tip(chosen)
+            chosen
+        }
     }
 
+    /** The area the bounding box of [points] covers. */
+    private fun spread(points: List<Pair<Double, Double>>): Double =
+        max(points.maxOf { it.first } - points.minOf { it.first }, 0.02) *
+            max(points.maxOf { it.second } - points.minOf { it.second }, 0.02)
+
+    /** How far along its carrier the [k]-th of [of] marks sits: from 0.95 down to 0.15. */
+    private fun along(k: Int, of: Int) = 0.95 - 0.8 * k / of
+
     /**
-     * The [k]-th of a carrier's [of] marks, spread evenly from 0.95 of the way along down to 0.15,
-     * alternating sides on the bark and turned off the wood as a side branch is.
+     * The [k]-th of a carrier's [of] marks, spread evenly [along] it on the bark's [side] (±1),
+     * turned off the wood as a side branch is; [hang] levels its angle,
+     * and as a side branch does, takes the other side where this one would dip past level.
      */
-    private fun slot(c: Carrier, k: Int, of: Int, flip: Boolean): TreeSlot {
+    private fun slot(c: Carrier, k: Int, of: Int, side: Int): TreeSlot {
         val limb = limbs[c.limb]
-        val t = 0.95 - 0.8 * k / of
+        val t = along(k, of)
         val (x, y) = at(c, t)
-        val along = heading(limb, t)
+        val heading = heading(limb, t)
         val turn = offshoot(Stream(seed xor Stream.hash(c.limb * 1024L + k)))
-        val alternate = if ((k % 2 == 1) != flip) 1 else -1
-        // As a side branch does: a leaf that would dip past level grows off the other side of its wood.
-        val side = if (dips(along + alternate * turn)) -alternate else alternate
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            level(along + side * turn), c.limb)
+        return TreeSlot(x + cos(heading + PI / 2) * bark, y + sin(heading + PI / 2) * bark,
+            heading + side * turn, c.limb)
     }
 
     /** How far a side branch, or a leaf, turns off the wood it grows from. */
