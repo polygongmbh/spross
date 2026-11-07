@@ -60,7 +60,7 @@ fun SpokenWord(
         // why: a hidden, inert copy of the glyph on the LEADING edge. Without the ballast
         // the word sits half a speaker left of center — off the plural line under it and
         // off the same word on the card's other face, since only the target side is heard.
-        if (pronounce != null) Spacer(Modifier.size(SPEAKER_GLYPH))
+        if (pronounce != null) Spacer(Modifier.size(HEADWORD_SPEAKER_GLYPH))
         word()
         if (pronounce != null) {
             // Decorative: the tap and the action naming it live on the row around it,
@@ -69,7 +69,7 @@ fun SpokenWord(
                 SprossIcons.Speaker,
                 contentDescription = null,
                 tint = Theme.colors.teal,
-                modifier = Modifier.size(SPEAKER_GLYPH),
+                modifier = Modifier.size(HEADWORD_SPEAKER_GLYPH),
             )
         }
     }

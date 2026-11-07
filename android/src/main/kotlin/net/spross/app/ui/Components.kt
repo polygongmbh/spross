@@ -159,6 +159,9 @@ fun Modifier.pronounceOnTap(
 /** The speaker glyph text carries: beside a headword, and at the head of the hint line. */
 internal val SPEAKER_GLYPH = 18.dp
 
+/** The speaker beside a card's headword, sized to the headword rather than to a text line. */
+internal val HEADWORD_SPEAKER_GLYPH = 24.dp
+
 /**
  * The gesture a reference page discloses ONCE, under its heading, rather than on every row.
  *
