@@ -15,6 +15,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -140,7 +146,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     onClick = { model.restartOnboarding() },
                     contentPadding = SETTINGS_BUTTON_PADDING,
                 ) {
-                    Text(chrome.settingsRestartTutorialButton)
+                    SettingButtonLabel(SprossIcons.Book, chrome.settingsRestartTutorialButton)
                 }
                 SettingHint(chrome.settingsRestartTutorialHint)
             }
@@ -157,7 +163,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     },
                     contentPadding = SETTINGS_BUTTON_PADDING,
                 ) {
-                    Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
+                    SettingButtonLabel(SprossIcons.Reset, chrome.settingsResetButton.format(targetName), Theme.colors.wrong)
                 }
                 SettingHint(chrome.settingsResetHint.format(targetName))
             }
@@ -205,7 +211,7 @@ private fun LearnerNameSetting(model: AppModel) {
     // space before a second name does not vanish under the finger that typed it.
     var draft by rememberSaveable { mutableStateOf(model.learnerName.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
+        SettingTitle(SprossIcons.Person, chrome.settingsNameTitle)
         LearnerNameField(chrome, draft) { draft = it; model.renameLearner(it) }
     }
 }
@@ -234,4 +240,24 @@ internal fun SettingHint(text: String) {
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
+}
+
+/** A settings section's title with the mark that names its topic. */
+@Composable
+internal fun SettingTitle(icon: ImageVector, text: String) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(icon, contentDescription = null, tint = Theme.colors.textSecondary, modifier = Modifier.size(20.dp))
+        Text(text, style = MaterialTheme.typography.titleMedium)
+    }
+}
+
+/** A settings button's content: its mark, then its words, both in [color]. */
+@Composable
+internal fun SettingButtonLabel(icon: ImageVector, text: String, color: Color = LocalContentColor.current) {
+    Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(Theme.spacing.xs))
+    Text(text, color = color)
 }

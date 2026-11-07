@@ -12,9 +12,7 @@ struct SettingsRemindersRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            Text("settings.reminders.title")
-                .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
+            SettingTitle("settings.reminders.title", icon: "bell")
             Picker("settings.reminders.title", selection: Binding(
                 get: { reminders.mode },
                 set: { choose($0, reminders.setMinutes) })) {

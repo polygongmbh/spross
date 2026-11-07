@@ -20,9 +20,7 @@ struct LearnerNameRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            Text("settings.name.title")
-                .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
+            SettingTitle("settings.name.title", icon: "person")
             NameField(placeholder: "settings.name.placeholder", text: $nameDraft)
                 .onChange(of: nameDraft) { _, typed in model.setLearnerName(typed) }
         }

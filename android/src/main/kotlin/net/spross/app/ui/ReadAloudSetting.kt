@@ -38,10 +38,7 @@ internal fun ReadAloudSetting(model: AppModel, target: Language, targetName: Str
     val sources = model.audioSources(target)
     val preference = model.pronouncer.audioPreference(target, sources)
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(
-            chrome.settingsAudioTitle,
-            style = MaterialTheme.typography.titleMedium,
-        )
+        SettingTitle(SprossIcons.Speaker, chrome.settingsAudioTitle)
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
             val options = sources.preferenceOptions
             options.forEachIndexed { index, option ->

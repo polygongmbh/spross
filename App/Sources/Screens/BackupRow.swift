@@ -20,9 +20,7 @@ struct BackupRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            Text("settings.backup.title")
-                .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
+            SettingTitle("settings.backup.title", icon: "archivebox")
             HStack(spacing: Theme.spacing.lg) {
                 exportButton
                 importButton

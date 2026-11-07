@@ -78,7 +78,7 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(chrome.settingsBackupTitle, style = MaterialTheme.typography.titleMedium)
+        SettingTitle(SprossIcons.Archive, chrome.settingsBackupTitle)
         // why: both buttons drop their own horizontal inset (SETTINGS_BUTTON_PADDING) to
         // line up with the group's edge, so the gap between them is this arrangement's alone.
         Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
@@ -91,7 +91,7 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
                     onClick = { if (choosable) menuOpen = true else start(null) },
                     contentPadding = SETTINGS_BUTTON_PADDING,
                 ) {
-                    Text(chrome.settingsBackupExport)
+                    SettingButtonLabel(SprossIcons.Export, chrome.settingsBackupExport)
                 }
                 DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
                     val name = LanguageChoices.name(target, catalog.languages[target])
@@ -110,7 +110,7 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
                 onClick = { import.launch(arrayOf("*/*")) },
                 contentPadding = SETTINGS_BUTTON_PADDING,
             ) {
-                Text(chrome.settingsBackupImport)
+                SettingButtonLabel(SprossIcons.Import, chrome.settingsBackupImport)
             }
         }
         SettingHint(chrome.settingsBackupHint)

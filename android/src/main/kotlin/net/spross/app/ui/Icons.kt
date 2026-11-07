@@ -82,6 +82,47 @@ object SprossIcons {
         moveTo(8f, 10f); lineTo(12f, 14f); lineTo(16f, 10f)
     }
 
+    /** Something sent out: a backup exported. [Import]'s tray with the arrow leaving it. */
+    val Export = stroked("Export") {
+        moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
+        moveTo(12f, 15f); lineTo(12f, 4f)
+        moveTo(8f, 8f); lineTo(12f, 4f); lineTo(16f, 8f)
+    }
+
+    /** An open book: the tutorial. */
+    val Book = stroked("Book") {
+        moveTo(12f, 7f); lineTo(12f, 19f)
+        moveTo(12f, 7f); quadTo(8f, 4.5f, 3f, 5.5f); lineTo(3f, 17.5f); quadTo(8f, 16.5f, 12f, 19f)
+        moveTo(12f, 7f); quadTo(16f, 4.5f, 21f, 5.5f); lineTo(21f, 17.5f); quadTo(16f, 16.5f, 12f, 19f)
+    }
+
+    /** Back to the start: a counterclockwise turn, for a reset. */
+    val Reset = stroked("Reset") {
+        moveTo(12f, 4f); arcTo(8f, 8f, 0f, true, true, 4f, 12f)
+        moveTo(15f, 1f); lineTo(12f, 4f); lineTo(15f, 7f)
+    }
+
+    /** Reminders: a bell. */
+    val Bell = stroked("Bell") {
+        moveTo(6f, 16f); lineTo(6f, 11f); quadTo(6f, 5f, 12f, 5f); quadTo(18f, 5f, 18f, 11f)
+        lineTo(18f, 16f); lineTo(20f, 18f); lineTo(4f, 18f); close()
+        moveTo(10f, 21f); lineTo(14f, 21f)
+        moveTo(12f, 3f); lineTo(12f, 5f)
+    }
+
+    /** The learner: a head and shoulders. */
+    val Person = stroked("Person") {
+        moveTo(12f, 4f); arcTo(4f, 4f, 0f, true, true, 12f, 12f); arcTo(4f, 4f, 0f, true, true, 12f, 4f)
+        moveTo(4.5f, 20f); quadTo(5f, 14.5f, 12f, 14.5f); quadTo(19f, 14.5f, 19.5f, 20f)
+    }
+
+    /** Kept for later: an archive box, for the backup. */
+    val Archive = stroked("Archive") {
+        moveTo(3f, 5f); lineTo(21f, 5f); lineTo(21f, 9f); lineTo(3f, 9f); close()
+        moveTo(4.5f, 9f); lineTo(4.5f, 19f); lineTo(19.5f, 19f); lineTo(19.5f, 9f)
+        moveTo(10f, 13f); lineTo(14f, 13f)
+    }
+
     /**
      * A word queued for a round: an inbox, and the arrow dropping into its tray. The closed
      * box is what keeps it from reading as [Import]'s download.

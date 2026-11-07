@@ -67,7 +67,7 @@ internal fun ReminderSetting(model: AppModel) {
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(chrome.settingsRemindersTitle, style = MaterialTheme.typography.titleMedium)
+        SettingTitle(SprossIcons.Bell, chrome.settingsRemindersTitle)
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
             val options = ReminderMode.entries
             options.forEachIndexed { index, option ->

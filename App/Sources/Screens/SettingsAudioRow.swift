@@ -12,9 +12,7 @@ struct SettingsAudioRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            Text("settings.audio.title")
-                .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
+            SettingTitle("settings.audio.title", icon: "speaker.wave.2")
             Picker("settings.audio.title", selection: audioPreferenceBinding) {
                 ForEach(audioSources.preferenceOptions, id: \.self) { option in
                     Text(optionLabel(option)).tag(option)
