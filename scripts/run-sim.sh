@@ -6,7 +6,7 @@ Usage: scripts/run-sim.sh [options] [SIMULATOR] [-- APP_ARGS…]
 Builds Spross (Debug) and (re)launches it on an iPhone simulator, a booted one first.
 
   SIMULATOR     the simulator, by a case-insensitive part of its name (default: iPhone);
-                an exact name wins, then a booted match, then the newest runtime
+                an exact name wins, then a booted match, then the shortest name
   --no-build    reinstall the last build, skip xcodebuild
   --clean       the Release app (net.spross.app), uninstalled first so onboarding
                 runs; the Dev app keeps its data
@@ -52,8 +52,9 @@ done
 
 # why: `booted` is ambiguous once the paired watch simulator is up too — every
 # simctl call here targets one resolved UDID instead. Among iOS simulators whose name
-# contains $DEVICE, an exact name wins, then a booted one, then the LAST match: the
-# newest runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
+# contains $DEVICE, an exact name wins, then a booted one, each the shortest name —
+# the base model over its Pro, Air and e — and on a tie the newest runtime
+# (simctl lists them oldest first), the one `name=` in the build gate picks.
 # The UDID is the field shaped like one, since names carry parentheses too ("iPad Pro (M5)").
 UDID=$(xcrun simctl list devices available | awk -v want="$DEVICE" '
   /^-- / { ios = ($2 == "iOS"); next }
@@ -66,10 +67,10 @@ UDID=$(xcrun simctl list devices available | awk -v want="$DEVICE" '
     udid = substr($i, 2, 36) "\t" name
     if (!index(tolower(name), tolower(want))) next
     if (tolower(name) == tolower(want)) exact = udid
-    if ($0 ~ /\(Booted\)/) booted = udid
-    last = udid
+    if ($0 ~ /\(Booted\)/ && (booted == "" || length(name) <= blen)) { booted = udid; blen = length(name) }
+    if (any == "" || length(name) <= alen) { any = udid; alen = length(name) }
   }
-  END { print (exact != "" ? exact : booted != "" ? booted : last) }')
+  END { print (exact != "" ? exact : booted != "" ? booted : any) }')
 NAME=${UDID#*	}; UDID=${UDID%%	*}
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
