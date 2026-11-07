@@ -5,7 +5,8 @@ Usage: scripts/run-sim.sh [options] [SIMULATOR] [-- APP_ARGS…]
 
 Builds Spross (Debug) and (re)launches it on the iPhone 17 simulator.
 
-  SIMULATOR     another simulator, by a case-insensitive part of its name (e.g. duo)
+  SIMULATOR     another simulator, by a case-insensitive part of its name (e.g. pro);
+                an exact name wins, then a booted match, then the newest runtime
   --no-build    reinstall the last build, skip xcodebuild
   --clean       the Release app (net.spross.app), uninstalled first so onboarding
                 runs; the Dev app keeps its data
@@ -50,10 +51,24 @@ while [ $# -gt 0 ]; do
 done
 
 # why: `booted` is ambiguous once the paired watch simulator is up too — every
-# simctl call here targets one resolved UDID instead. The LAST match is the newest
-# runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
-UDID=$(xcrun simctl list devices available \
-  | awk -v want="$DEVICE" -F'[()]' 'index(tolower($1), tolower(want)) { udid = $2 } END { print udid }')
+# simctl call here targets one resolved UDID instead. Among iOS simulators whose name
+# contains $DEVICE, an exact name wins, then a booted one, then the LAST match: the
+# newest runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
+# The UDID is the field shaped like one, since names carry parentheses too ("iPad Pro (M5)").
+UDID=$(xcrun simctl list devices available | awk -v want="$DEVICE" '
+  /^-- / { ios = ($2 == "iOS"); next }
+  !ios { next }
+  {
+    for (i = 1; i <= NF; i++) if (length($i) == 38 && $i ~ /^\([0-9A-F-]+\)$/) break
+    if (i > NF) next
+    udid = substr($i, 2, 36); name = $1
+    for (j = 2; j < i; j++) name = name " " $j
+    if (!index(tolower(name), tolower(want))) next
+    if (tolower(name) == tolower(want)) exact = udid
+    if ($0 ~ /\(Booted\)/) booted = udid
+    last = udid
+  }
+  END { print (exact != "" ? exact : booted != "" ? booted : last) }')
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
   echo "       xcrun simctl list devices available" >&2
