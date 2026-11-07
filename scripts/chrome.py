@@ -109,9 +109,8 @@ IOS_ONLY = {
     # Android device has is its TTS engine's own affair. `common.dismiss` is that banner's ✕.
     'common.dismiss', 'home.voiceUpgrade.path', 'home.voiceUpgrade.title %@',
     'settings.audio.voiceUpgrade %@',
-    # Android's media stream ignores the ringer, so there is no silent mode to read aloud through.
-    'a11y.state.followsSilentMode', 'settings.audio.readsInSilentMode',
-    'settings.audio.readsInSilentMode.hint',
+    # Android's media stream ignores the ringer, so its switch never follows a silent mode.
+    'a11y.state.followsSilentMode',
     # Xcode canvas scaffolding, inside `#Preview("Palette")` in Design/Theme.swift.
     'preview.skip', 'preview.tokens',
     # A Swift switch owes every case a branch, including one kern never hands out:

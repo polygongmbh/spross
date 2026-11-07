@@ -89,17 +89,18 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   plays under `.playback`. VoiceOver holds it back.
 - **Reading aloud is on by default, and the silent switch silences it.**
   The silent switch cannot be read back (no API), so it is followed by deferring to it.
-  The audio setting's "Read aloud in silent mode" (iOS, stored, off by default) lifts autoplay past it,
-  for a phone kept on silent so calls do not ring.
-  Android's media stream ignores the ringer, so there autoplay always plays past it.
-- **The audio setting's choice is stored; the top-bar switch holds for the launch.**
-  "No audio" stays until another option is picked, one choice for the device (not per language, not in the box).
-  The top-bar switch mutes or unmutes autoplay until the app restarts,
-  and the next launch starts at the stored choice again, on both phones;
-  the settings show the stored choice alone.
+  The top-bar switch turns it into a decision for the current launch:
+  ON lifts autoplay past a silenced phone, OFF silences it.
+  From following the phone a tap turns it ON, since a tap there is a request to hear;
+  after that it toggles between ON and OFF.
   Its icon names what autoplay does now:
   a bell where the silent switch decides (iOS's own sign for it),
   a speaker where it plays past the switch, a slashed speaker where the app is muted.
+  The middle state is iOS's: Android's media stream ignores the ringer, so there it is ON.
+- **The audio setting's "No audio" is stored; the top-bar switch holds for the launch.**
+  Every launch starts at following the phone, or muted where "No audio" is stored, on both phones.
+  One choice for the device (not per language, not in the box);
+  the settings show the stored choice alone, never the switch's state for the launch.
 - **A card whose only content is a sound is dealt whenever the app itself is not muted.**
   The device's volume holds nothing back;
   iOS's ring/silent switch cannot be read at all, so hear cards carry
@@ -119,8 +120,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   and a stored source that cannot reads as the other one
   (`AudioCapability.preference`, over `Catalog.hasRecordings` and the device voice table).
 - **Feedback chimes**: not silenced by the read-aloud switch,
-  but play under whatever category it left standing,
-  so "Read aloud in silent mode" lifts them past the silent switch too.
+  but play under whatever category it left standing.
   Chimes and words share one volume (one audio session).
   Rendered full scale (`scripts/sounds.py`), each played at its kern `Chime` level.
 - VoiceOver: no autoplay talking over it (`PronounceTrigger.held`); headword labeled with its language;

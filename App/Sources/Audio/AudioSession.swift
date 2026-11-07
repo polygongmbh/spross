@@ -4,7 +4,7 @@ import SprossKern
 /// The audio session's category, which decides whether the ring/silent switch silences a sound:
 /// `.ambient` obeys it, `.playback` does not, and no API reads its position.
 /// A sound the learner asked for plays under `.playback`, one the app fires by itself under `standing`,
-/// which is `.playback` only while the audio setting reads aloud in silent mode.
+/// which is `.playback` only while reading aloud is switched on by hand.
 @MainActor
 enum AudioSession {
 
@@ -86,7 +86,7 @@ enum AudioSession {
 
 // MARK: - ReadAloud
 
-/// What autoplay does right now, read off the mute and the silent-mode setting (`Pronouncer.readAloud`).
+/// What autoplay does right now (`Pronouncer.readAloud`).
 enum ReadAloud {
     /// Reads aloud, and the silent switch may silence it: the default.
     case followsPhone

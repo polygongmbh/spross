@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
-- "No audio" now stays chosen across restarts, a new "Read aloud in silent mode" setting plays words on an iPhone kept on silent, and a bell in the top bar marks when silent mode decides.
+- "No audio" now stays chosen across restarts, and on iPhone a bell in the top bar marks when silent mode decides whether words are read aloud.
 
 ## 9.2.0 — 2026-11-01
 

@@ -134,7 +134,8 @@ struct SessionScaffold<Content: View>: View {
     /// It governs the SPOKEN WORDS only. The feedback chimes are Sound's and
     /// deliberately stay outside its scope (the ring/silent switch reaches them
     /// already); a global sound switch, if it is ever wanted, is its own thing.
-    /// A tap holds for this launch; the audio setting is the stored choice.
+    /// Switching it ON is read as a request to hear something and lifts autoplay
+    /// past a silenced phone; a tap holds for this launch, the audio setting is the stored choice.
     private var readAloudButton: some View {
         readAloudSwitch(inBar: false)
     }
@@ -142,7 +143,7 @@ struct SessionScaffold<Content: View>: View {
     /// In the system's bar the button takes the bar's own look rather than its circle.
     private func readAloudSwitch(inBar: Bool) -> some View {
         Button {
-            Pronouncer.shared.setMuted(!Pronouncer.shared.muted)
+            Pronouncer.shared.switchReadAloud()
         } label: {
             let icon = Image(systemName: readAloudSymbol)
             if inBar {

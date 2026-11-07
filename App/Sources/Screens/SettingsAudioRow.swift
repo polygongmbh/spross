@@ -1,8 +1,8 @@
 import SwiftUI
 import SprossKern
 
-/// The read-aloud row: the stored choice, never the top bar's mute for the launch,
-/// whether autoplay plays in silent mode, and the place the tap-to-replay gesture is disclosed — the
+/// The read-aloud row: the stored choice, never the top bar's switch for the launch,
+/// and the place the tap-to-replay gesture is disclosed — the
 /// card itself grows no affordance for it, so the hint line is where it is
 /// named. It is also the standing home of the voice-download pointer, which
 /// the Home banner only borrows once: dismissed there, it is still findable
@@ -37,14 +37,6 @@ struct SettingsAudioRow: View {
                 .font(Theme.typography.subheadline)
                 .disabled(Pronouncer.shared.savedMuted)
             Text("settings.audio.saysMeaning.hint")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-            Toggle("settings.audio.readsInSilentMode", isOn: Binding(
-                get: { Pronouncer.shared.readsInSilentMode },
-                set: { Pronouncer.shared.readsInSilentMode = $0 }))
-                .font(Theme.typography.subheadline)
-                .disabled(Pronouncer.shared.savedMuted)
-            Text("settings.audio.readsInSilentMode.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
