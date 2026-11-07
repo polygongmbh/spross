@@ -75,6 +75,9 @@ if ! $ADB get-state >/dev/null 2>&1; then
   until [ "$($ADB shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ]; do
     sleep 2
   done
+  # why: the AVD boots at a third of media volume and its volume keys do not move it
+  # (API 36), so a word plays near-silent; the audio service's own command does.
+  $ADB shell cmd audio set-volume 3 15 >/dev/null
 fi
 
 if [ "$BUILD" = 1 ]; then
