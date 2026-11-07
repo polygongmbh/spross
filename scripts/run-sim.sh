@@ -84,9 +84,15 @@ if [ "$BUILD" = 1 ]; then
   # listing the wrong files until regenerated.
   scripts/gen.sh >/dev/null
   echo "Building Spross for ${DEVICE}…"
-  xcodebuild -project Spross.xcodeproj -scheme Spross \
-    -configuration "$CONFIG" -destination "id=$UDID" -derivedDataPath "$DERIVED" build 2>&1 \
-    | awk -f scripts/xcode-progress.awk
+  mkdir -p "$DERIVED"
+  # why: xcodebuild waits up to 30s for an unknown destination to appear; the simulator
+  # is already resolved and listed, so one that is missing will not turn up.
+  if ! xcodebuild -project Spross.xcodeproj -scheme Spross -configuration "$CONFIG" \
+        -destination "id=$UDID" -destination-timeout 3 -derivedDataPath "$DERIVED" build 2>&1 \
+      | tee "$DERIVED/build.log" | awk -f scripts/xcode-progress.awk; then
+    echo "Build FAILED — full log: $DERIVED/build.log" >&2
+    exit 1
+  fi
 fi
 
 APP=$(xcodebuild -project Spross.xcodeproj -scheme Spross -configuration "$CONFIG" \

@@ -1,10 +1,11 @@
 # Condense `xcodebuild … 2>&1` into one line per target step, plus diagnostics.
 #   xcodebuild … build 2>&1 | awk -f scripts/xcode-progress.awk
 # Exits non-zero unless the build reported success, so the pipeline's status is the build's.
+# From a failure on, every line prints: the failed commands, or the destinations xcodebuild offers.
 
 failed { print; next }
 /^\*\* BUILD SUCCEEDED \*\*/ { ok = 1; next }
-/^\*\* BUILD FAILED \*\*/ || /^The following build commands failed:/ { failed = 1; print; next }
+/^\*\* BUILD FAILED \*\*/ || /^The following build commands failed:/ || /^xcodebuild: error:/ { failed = 1; print; next }
 /: (error|warning): / || /^e: / { if (!seen[$0]++) print; next }
 
 /^PhaseScriptExecution / { step = $0; sub(/^PhaseScriptExecution /, "", step); sub(/ \/.*/, "", step); gsub(/\\ /, " ", step) }
