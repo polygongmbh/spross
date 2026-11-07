@@ -369,6 +369,22 @@
         }
       }
     },
+    "a11y.state.followsSilentMode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "folgt dem Stummmodus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "follows silent mode"
+          }
+        }
+      }
+    },
     "a11y.state.off" : {
       "localizations" : {
         "de" : {
@@ -6114,13 +6130,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stumm — tippe auf ein Wort, um es zu hören."
+            "value" : "Wörter erklingen nur, wenn du sie antippst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Silent — tap a word to hear it."
+            "value" : "Words play only when you tap them."
           }
         }
       }
@@ -6179,13 +6195,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Ton"
+            "value" : "Kein Autoplay"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No audio"
+            "value" : "No autoplay"
           }
         }
       }

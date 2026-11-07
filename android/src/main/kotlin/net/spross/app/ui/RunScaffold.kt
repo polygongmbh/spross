@@ -134,6 +134,7 @@ fun Modifier.chromeDisc(): Modifier =
 /**
  * The read-aloud switch, in constant chrome. It governs the SPOKEN WORDS only — the verdict
  * cues are their own matter, and the media volume is the switch for everything.
+ * A tap holds for this launch; the audio setting is the stored choice.
  */
 @Composable
 fun ReadAloudSwitch(model: AppModel) {

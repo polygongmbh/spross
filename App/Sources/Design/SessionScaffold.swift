@@ -135,7 +135,7 @@ struct SessionScaffold<Content: View>: View {
     /// deliberately stay outside its scope (the ring/silent switch reaches them
     /// already); a global sound switch, if it is ever wanted, is its own thing.
     /// Switching it ON is read as a request to hear something and lifts autoplay
-    /// past a silenced phone — otherwise the switch would say on and say nothing.
+    /// past a silenced phone; a tap holds for this launch, the audio setting is the stored choice.
     private var readAloudButton: some View {
         readAloudSwitch(inBar: false)
     }
@@ -143,13 +143,9 @@ struct SessionScaffold<Content: View>: View {
     /// In the system's bar the button takes the bar's own look rather than its circle.
     private func readAloudSwitch(inBar: Bool) -> some View {
         Button {
-            Pronouncer.shared.setReadAloud(on: Pronouncer.shared.muted)
+            Pronouncer.shared.switchReadAloud()
         } label: {
-            // why: the plain pair, not the .bubble one — SF Symbols has
-            // speaker.wave.2.bubble but no slashed twin for it, and a switch
-            // whose two states come from different families reads as two
-            // different controls.
-            let icon = Image(systemName: Pronouncer.shared.muted ? "speaker.slash" : "speaker.wave.2")
+            let icon = Image(systemName: readAloudSymbol)
             if inBar {
                 icon
             } else {
@@ -167,8 +163,23 @@ struct SessionScaffold<Content: View>: View {
         .accessibilityValue(readAloudValue)
     }
 
+    /// The bell, iOS's own sign for the ring/silent switch, stands for reading aloud
+    /// that the switch may silence, since the switch's position cannot be read.
+    /// The plain speaker pair, not the .bubble one: SF Symbols has no slashed twin for it.
+    private var readAloudSymbol: String {
+        switch Pronouncer.shared.readAloud {
+        case .followsPhone: "bell"
+        case .on: "speaker.wave.2"
+        case .off: "speaker.slash"
+        }
+    }
+
     private var readAloudValue: LocalizedStringKey {
-        Pronouncer.shared.muted ? "a11y.state.off" : "a11y.state.on"
+        switch Pronouncer.shared.readAloud {
+        case .followsPhone: "a11y.state.followsSilentMode"
+        case .on: "a11y.state.on"
+        case .off: "a11y.state.off"
+        }
     }
 }
 

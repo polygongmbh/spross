@@ -86,10 +86,9 @@ enum AudioSession {
 
 // MARK: - ReadAloud
 
-/// The read-aloud setting. A choice holds for this launch only:
-/// the silent switch cannot be read, so a stored mute would leave the app quiet with nothing saying why.
-enum ReadAloud: String {
-    /// The default each launch: reads aloud, and the silent switch may silence it.
+/// What autoplay does right now (`Pronouncer.readAloud`).
+enum ReadAloud {
+    /// Reads aloud, and the silent switch may silence it: the default.
     case followsPhone
     /// Silenced in the app.
     case off
@@ -99,11 +98,11 @@ enum ReadAloud: String {
 
 extension ReadAloud {
 
-    /// `.followsPhone` unless a launch argument says otherwise (`-readAloud off`, `scripts/run-sim.sh --mute`);
-    /// only the argument domain is read, so nothing stored outlives a launch.
-    static var atLaunch: ReadAloud {
+    /// Whether the launch argument `-readAloud off` (`scripts/run-sim.sh --mute`) mutes this launch;
+    /// only the argument domain is read, so nothing it sets is stored.
+    static var mutedByLaunchArgument: Bool {
         let arguments = UserDefaults.standard.volatileDomain(forName: UserDefaults.argumentDomain)
-        return (arguments["readAloud"] as? String).flatMap(ReadAloud.init(rawValue:)) ?? .followsPhone
+        return arguments["readAloud"] as? String == "off"
     }
 }
 

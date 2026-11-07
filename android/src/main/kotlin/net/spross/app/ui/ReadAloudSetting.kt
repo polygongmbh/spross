@@ -19,7 +19,7 @@ import net.spross.kern.catalog.preferenceOptions
 import net.spross.kern.model.Language
 
 /**
- * The mute the session's top bar switches (there reduced to the button), and a standing
+ * The stored mute, never the top bar's mute for the launch, and a standing
  * home for the disclosure that a tap on a word speaks it even while this is off. The
  * three-way preference names the voice source too, so the picker alone decides both:
  * there is no state where a source is chosen but the app is silent.
@@ -57,7 +57,7 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
             }
         }
         // why: the hint names the CHOSEN behavior, not the picker as a whole. The
-        // tap-to-replay gesture is disclosed in the No audio line alone — the only
+        // tap-to-replay gesture is disclosed in the No autoplay line alone — the only
         // preference where a learner might think the app has gone silent for good.
         SettingHint(
             when (preference) {

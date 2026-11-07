@@ -100,10 +100,10 @@ internal object ChromeDe : Chrome {
     override val settingsUpdateObtainium = "Obtainium holen"
     override val settingsUpdateDownload = "Direkt herunterladen"
     override val settingsAudioTitle = "Wörter vorlesen"
-    override val settingsAudioOptionOff = "Kein Ton"
+    override val settingsAudioOptionOff = "Kein Autoplay"
     override val settingsAudioOptionRecordings = "Aufnahmen"
     override val settingsAudioOptionTts = "Sprachausgabe"
-    override val settingsAudioHintOff = "Stumm — tippe auf ein Wort, um es zu hören."
+    override val settingsAudioHintOff = "Wörter erklingen nur, wenn du sie antippst."
     override val settingsAudioHintRecordings = "Eingebaute Aufnahmen zuerst, sonst " +
         "Systemstimme."
     override val settingsAudioHintTts = "Immer die autogenerierte Systemstimme, so werden " +

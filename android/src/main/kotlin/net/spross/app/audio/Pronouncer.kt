@@ -58,7 +58,11 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /** Path of the clip the player still holds — asking for it again needs no load. */
     private var loaded: String? = null
 
-    private var mutedState by mutableStateOf(false)
+    private var mutedState by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
+
+    /** The audio setting's stored "No autoplay", which the settings render; the top bar never changes it. */
+    var savedMuted by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
+        private set
 
     /** The word sounding right now, for a speaker that pulses while it does; null in silence. */
     var sounding: Pronunciation? by mutableStateOf(null)
@@ -87,18 +91,21 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         prefs.edit().putString(keyFor(lang), value.storedValue).apply()
     }
 
-    /** The audio setting's option for [lang]: kern reads the mute and the stored source over [sources]. */
+    /** The audio setting's option for [lang]: kern reads the stored mute and source over [sources]. */
     fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference =
-        sources.preference(muted, voiceSource(lang) == VoiceSource.TTS)
+        sources.preference(savedMuted, voiceSource(lang) == VoiceSource.TTS)
 
-    /** Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it. */
+    /**
+     * Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it.
+     * The pick stores the mute, so "No autoplay" outlasts the launch.
+     */
     fun setAudioPreference(lang: Language, preference: AudioPreference) {
-        if (preference.mutes) {
-            muted = true
-            return
+        if (!preference.mutes) {
+            setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
         }
-        setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
-        muted = false
+        prefs.edit().putBoolean(AUDIO_OFF, preference.mutes).apply()
+        savedMuted = preference.mutes
+        muted = preference.mutes
     }
 
     private fun stored(lang: Language): VoiceSource =
@@ -107,9 +114,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     /**
      * One device-wide flag (never per target language, never in the box): silences
-     * AUTOPLAY only, and for this launch only — every launch starts read aloud, as iOS's
-     * `ReadAloud` starts at following the phone. Compose state, because a plain field would
-     * never recompose the toggle that shows it.
+     * AUTOPLAY only. Every launch starts at the audio setting's stored choice, and the top
+     * bar's switch sets this for the launch alone, as on iOS. Compose state, because a plain
+     * field would never recompose the toggle that shows it.
      */
     var muted: Boolean
         get() = mutedState
@@ -276,6 +283,8 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     private companion object {
+        const val AUDIO_OFF = "audio.off"
+
         fun keyFor(lang: Language) = "pronunciationSource.$lang"
     }
 }

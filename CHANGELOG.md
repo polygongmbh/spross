@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 ## Unreleased
 
 - Listening has a small flag for the word on air: one tap marks the pronunciation you just heard as questionable, or opens the full report form.
+- "No autoplay" now stays chosen across restarts, and on iPhone a bell in the top bar marks when silent mode decides whether words are read aloud.
 
 ## 9.2.0 — 2026-11-01
 

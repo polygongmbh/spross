@@ -1,8 +1,8 @@
 import SwiftUI
 import SprossKern
 
-/// The read-aloud row: the same choice the session's top bar carries (there reduced to the
-/// mute button), and the place the tap-to-replay gesture is disclosed — the
+/// The read-aloud row: the stored choice, never the top bar's switch for the launch,
+/// and the place the tap-to-replay gesture is disclosed — the
 /// card itself grows no affordance for it, so the hint line is where it is
 /// named. It is also the standing home of the voice-download pointer, which
 /// the Home banner only borrows once: dismissed there, it is still findable
@@ -60,7 +60,7 @@ struct SettingsAudioRow: View {
     }
 
     /// The hint names the chosen behavior, not the picker as a whole. The
-    /// tap-to-replay gesture is disclosed in the No audio line alone — the only
+    /// tap-to-replay gesture is disclosed in the No autoplay line alone — the only
     /// preference where a learner might think the app has gone silent for good.
     private var audioHintKey: LocalizedStringKey {
         switch audioPreferenceBinding.wrappedValue {
@@ -71,26 +71,25 @@ struct SettingsAudioRow: View {
     }
 
     /// Kern's mapping (`AudioPreference`) over the mute and this language's
-    /// stored source. Picking a source turns reading aloud back on only where
-    /// it was off, so a read-aloud that follows the phone keeps following it.
+    /// stored source. A pick stores the mute too, so "No autoplay" outlasts the launch.
     private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
             get: {
                 let prefersSpeech = model.targetLanguage
                     .map { Pronouncer.shared.voiceSource(for: $0) == .tts } ?? false
-                return audioSources.preference(muted: Pronouncer.shared.muted,
+                return audioSources.preference(muted: Pronouncer.shared.savedMuted,
                                                prefersSpeech: prefersSpeech)
             },
             set: { preference in
                 guard !preference.mutes else {
-                    Pronouncer.shared.setReadAloud(on: false)
+                    Pronouncer.shared.storeMuted(true)
                     return
                 }
                 if let target = model.targetLanguage {
                     Pronouncer.shared.setVoiceSource(preference.prefersSpeech ? .tts : .recordings,
                                                      for: target)
                 }
-                if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
+                Pronouncer.shared.storeMuted(false)
             }
         )
     }
