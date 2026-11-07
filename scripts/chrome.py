@@ -38,7 +38,6 @@ ANDROID = os.path.join(ROOT, 'android/src/main/kotlin/net/spross/app')
 STRUCT = os.path.join(ANDROID, 'Chrome.kt')
 TABLES = {'de': os.path.join(ANDROID, 'ChromeDe.kt'),
           'en': os.path.join(ANDROID, 'ChromeEn.kt')}
-WIDTH = 96
 
 HEADER = '''package net.spross.app
 
@@ -192,27 +191,11 @@ def value(strings, key, lang, field=''):
     return placeholders(forms[category]['stringUnit']['value'])
 
 
-def literal(text, opening=0):
-    """One Kotlin string literal, wrapped where the line it opens would run long.
-
-    [opening] is what already stands on that first line (`    field = `), which is
-    what makes the difference between a tidy table and one that runs off the page.
-    Continuations are indented 8, so they get their own budget.
-    """
+def literal(text):
+    """One Kotlin string literal on one line, so a copy edit is a one-line diff."""
     body = (text.replace('\\', '\\\\').replace('"', '\\"')
                 .replace('$', '\\$').replace('\n', '\\n'))
-    if opening + len(body) + 3 <= WIDTH:
-        return '"%s"' % body
-    lines, current, budget = [], '', WIDTH - opening - 5   # 5: quotes, space, plus
-    for word in body.split(' '):
-        candidate = (current + ' ' + word) if current else word
-        if current and len(candidate) > budget:
-            lines.append(current + ' ')
-            current, budget = word, WIDTH - 8 - 5
-        else:
-            current = candidate
-    lines.append(current)
-    return ' +\n        '.join('"%s"' % line for line in lines)
+    return '"%s"' % body
 
 
 def fields():
@@ -232,19 +215,18 @@ def render(lang, code, name, strings):
         if spec is None:
             raise SystemExit('Chrome.%s: names no catalog key — a field is its key '
                              'camelCased' % field)
-        opening = len('    override val %s = ' % field)
         if isinstance(spec, list):
-            entries = ''.join('        %s,\n' % literal(value(strings, k, lang, field), 8)
+            entries = ''.join('        %s,\n' % literal(value(strings, k, lang, field))
                               for k in spec)
             body.append('    override val %s = listOf(\n%s    )\n' % (field, entries))
         elif isinstance(spec, dict):
             entries = ''.join('        "%s" to %s,\n'
-                              % (i, literal(value(strings, k, lang, field), 12 + len(i)))
+                              % (i, literal(value(strings, k, lang, field)))
                               for i, k in spec.items())
             body.append('    override val %s = mapOf(\n%s    )\n' % (field, entries))
         else:
             body.append('    override val %s = %s\n'
-                        % (field, literal(value(strings, spec, lang, field), opening)))
+                        % (field, literal(value(strings, spec, lang, field))))
     return ''.join(body) + '}\n'
 
 

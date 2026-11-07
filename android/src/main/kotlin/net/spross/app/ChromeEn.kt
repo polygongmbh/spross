@@ -44,15 +44,11 @@ internal object ChromeEn : Chrome {
     override val onboardingStart = "Let's go!"
     override val commonBack = "Back"
     override val onboardingTourTitle = "Where to Start"
-    override val onboardingTourHome = "Tap the card at the top for today's round. More ways " +
-        "to practice sit below it."
-    override val onboardingTourBox = "Choose what you learn: tap the arrow beside an area, " +
-        "like food or animals, and its words come next. Pick nothing and Spross starts with " +
-        "everyday words."
+    override val onboardingTourHome = "Tap the card at the top for today's round. More ways to practice sit below it."
+    override val onboardingTourBox = "Choose what you learn: tap the arrow beside an area, like food or animals, and its words come next. Pick nothing and Spross starts with everyday words."
     override val onboardingFirstRoundTitle = "Your First Round"
     override val onboardingFirstRoundRecognize = "You see a word. Do you know it?"
-    override val onboardingFirstRoundGrade = "Reveal it and say honestly how well you knew " +
-        "it. That decides when it comes back."
+    override val onboardingFirstRoundGrade = "Reveal it and say honestly how well you knew it. That decides when it comes back."
     override val onboardingFirstRoundWrite = "Didn't know it? Write it out once so it sticks."
     override val commonCheck = "Check"
     override val commonReveal = "Reveal"
@@ -94,8 +90,7 @@ internal object ChromeEn : Chrome {
     override val settingsFeedback = "Send feedback"
     override val settingsUpdateButton = "Updates"
     override val settingsUpdateTitle = "Newer Versions"
-    override val settingsUpdateOffer = "Obtainium watches this app's releases and offers " +
-        "each new version as it appears. Without it, every update is a download by hand."
+    override val settingsUpdateOffer = "Obtainium watches this app's releases and offers each new version as it appears. Without it, every update is a download by hand."
     override val settingsUpdateObtainium = "Get Obtainium"
     override val settingsUpdateDownload = "Download directly"
     override val settingsAudioTitle = "Read Words Aloud"
@@ -103,8 +98,7 @@ internal object ChromeEn : Chrome {
     override val settingsAudioOptionRecordings = "Recordings"
     override val settingsAudioOptionTts = "Speech"
     override val settingsAudioHintOff = "Words play only when you tap them."
-    override val settingsAudioHintRecordings = "Bundled recordings first, system voice " +
-        "otherwise."
+    override val settingsAudioHintRecordings = "Bundled recordings first, system voice otherwise."
     override val settingsAudioHintTts = "Always the system voice, article included."
     override val settingsAudioHintPerLanguage = "Chosen per language you learn."
     override val settingsRemindersTitle = "Reminders"
@@ -112,14 +106,10 @@ internal object ChromeEn : Chrome {
     override val settingsRemindersOptionUsual = "Usual Times"
     override val settingsRemindersOptionSet = "Set Times"
     override val settingsRemindersHintOff = "No reminders. Spross waits until you open it."
-    override val settingsRemindersHintUsual = "Shortly before the times you usually " +
-        "practice, learned from the last four weeks."
-    override val settingsRemindersHintSet = "At each time below, unless you have practiced " +
-        "since the one before."
-    override val settingsRemindersHintPaused = "Paused after a week without practice. One " +
-        "answer starts them again."
-    override val settingsRemindersHintDenied = "Notifications for Spross are off in the " +
-        "system settings."
+    override val settingsRemindersHintUsual = "Shortly before the times you usually practice, learned from the last four weeks."
+    override val settingsRemindersHintSet = "At each time below, unless you have practiced since the one before."
+    override val settingsRemindersHintPaused = "Paused after a week without practice. One answer starts them again."
+    override val settingsRemindersHintDenied = "Notifications for Spross are off in the system settings."
     override val settingsRemindersAdd = "Add Time"
     override val settingsRemindersRemove = "Remove %s"
     override val reminderChannel = "Practice Reminders"
@@ -170,8 +160,7 @@ internal object ChromeEn : Chrome {
     override val trainerPauseTitleCount = "A good stretch"
     override val trainerPauseTitleImproved = "A step further"
     override val trainerPauseTitleStruggling = "Tough going"
-    override val trainerPauseStrugglingHint = "A lot is slipping right now — stopping here " +
-        "is fine; it sits better with a fresh head."
+    override val trainerPauseStrugglingHint = "A lot is slipping right now — stopping here is fine; it sits better with a fresh head."
     override val a11yVerdictCorrect = "Correct"
     override val a11yVerdictAlmost = "Almost correct"
     override val a11yVerdictWrong = "Wrong"
@@ -204,25 +193,20 @@ internal object ChromeEn : Chrome {
     override val trainerModifierFast = "Fast"
     override val trainerModifierFastHint = "One clean answer per Sprosse instead of %d."
     override val trainerModifierMix = "Mixed Up"
-    override val trainerModifierMixHint = "The direction flips every task, and forms grow to " +
-        "the size the numbers reached."
+    override val trainerModifierMixHint = "The direction flips every task, and forms grow to the size the numbers reached."
     override val trainerChallengeTitle = "Challenge"
-    override val trainerChallengeHint = "%d seconds on the same questions as someone else: " +
-        "start one and send its code, or enter a code you were sent."
+    override val trainerChallengeHint = "%d seconds on the same questions as someone else: start one and send its code, or enter a code you were sent."
     override val trainerChallengeStart = "New challenge"
     override val trainerChallengeCode = "Code you were sent"
     override val trainerChallengeAccept = "Accept"
-    override val trainerChallengeUnreadable = "That code does not match. Check it — and both " +
-        "phones need the same app version."
+    override val trainerChallengeUnreadable = "That code does not match. Check it — and both phones need the same app version."
     override val trainerChallengeOtherLanguage = "That challenge is for %s."
-    override val trainerChallengePhrases = "A challenge asks numbers, the clock or forms — " +
-        "not sentences."
+    override val trainerChallengePhrases = "A challenge asks numbers, the clock or forms — not sentences."
     override val trainerChallengeWon = "More than their %d!"
     override val trainerChallengeTied = "A tie: they had %d too."
     override val trainerChallengeLost = "They had %d."
     override val trainerChallengeSend = "Send: %s"
-    override val trainerChallengeMessage = "My score in the Spross numbers drill: %d. Can " +
-        "you beat it? Play the same questions here: %s"
+    override val trainerChallengeMessage = "My score in the Spross numbers drill: %d. Can you beat it? Play the same questions here: %s"
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
     override val numbersBest = "Best yet:"
@@ -237,10 +221,8 @@ internal object ChromeEn : Chrome {
     override val lettersStageChoiceConfusable = "The same choice, among lookalikes"
     override val lettersStageTyped = "Write the letter yourself"
     override val lettersStageDictation = "Whole words from your vocabulary, by ear"
-    override val lettersStageDictationLocked = "Needs more words you know that this device " +
-        "can read out"
-    override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
-        "voice for the language."
+    override val lettersStageDictationLocked = "Needs more words you know that this device can read out"
+    override val lettersUnavailable = "This device cannot say a letter yet — that needs a voice for the language."
     override val lettersAlphabetTitle = "Alphabet"
     override val a11yLettersAlphabetSpeakName = "Hear the name"
     override val a11yLettersAlphabetSpeakExample = "Hear the example"
@@ -276,8 +258,7 @@ internal object ChromeEn : Chrome {
     override val datesTitle = "Dates · %s"
     override val datesReference = "The Calendar"
     override val datesReverseHint = "Asks in %1\$s, you answer in %2\$s."
-    override val datesReverseHintBack = "Asks in %1\$s — the names answered in %2\$s, the " +
-        "dates written in digits."
+    override val datesReverseHintBack = "Asks in %1\$s — the names answered in %2\$s, the dates written in digits."
     override val dateSprossen = listOf(
         "The names, tapped",
         "The weekdays",
@@ -301,11 +282,9 @@ internal object ChromeEn : Chrome {
     override val boxName = "Orchard"
     override val boxSubtitle = "%1\$s of %2\$s cards being tended"
     override val boxOwnShelf = "Your own words"
-    override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog " +
-        "never touches them."
+    override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog never touches them."
     override val boxOwnWordComment = "Note (optional)"
-    override val boxOwnWordExplainerRemark = "A note only: it goes to the catalog and is " +
-        "never asked."
+    override val boxOwnWordExplainerRemark = "A note only: it goes to the catalog and is never asked."
     override val a11yBoxShelfQueue = "Sow the words from %s"
     override val boxCardShowInBox = "Show in the catalog"
     override val boxCardQueue = "Sow this word"
@@ -350,8 +329,7 @@ internal object ChromeEn : Chrome {
     override val boxOwnEntryEdit = "Edit entry"
     override val boxOwnWordSave = "Save"
     override val boxOwnWordSwap = "Swap direction"
-    override val boxOwnWordExplainerSuggestion = "One side only: the word is kept as a " +
-        "suggestion and not asked yet."
+    override val boxOwnWordExplainerSuggestion = "One side only: the word is kept as a suggestion and not asked yet."
     override val reportAction = "Report a problem"
     override val reportEdit = "Edit report"
     override val reportDismiss = "Withdraw report"
@@ -359,8 +337,7 @@ internal object ChromeEn : Chrome {
     override val reportSend = "Report"
     override val reportComment = "What's wrong? (optional)"
     override val reportTyped = "You typed:"
-    override val reportExplainer = "Goes to whoever maintains the catalog. It changes " +
-        "nothing about the word’s schedule."
+    override val reportExplainer = "Goes to whoever maintains the catalog. It changes nothing about the word’s schedule."
     override val boxOwnTitle = "Your Own Content"
     override val boxOwnSuggestions = "Suggestions"
     override val boxOwnNotes = "Notes"
@@ -378,22 +355,17 @@ internal object ChromeEn : Chrome {
     override val reportExportScopeOutbox = "Only suggestions and reports"
     override val reportExportScopeAll = "Everything"
     override val reportExportScopeAllClear = "Everything, then clear"
-    override val reportExportClearConfirm = "Delete %d suggestions and reports? Your own " +
-        "word pairs stay."
+    override val reportExportClearConfirm = "Delete %d suggestions and reports? Your own word pairs stay."
     override val briefingTitle = "Conversation"
     override val briefingRowSubtitle = "Practice your words in an AI chat"
-    override val briefingLead = "Practice your words in a chat you already use. Spross " +
-        "writes the prompt for you."
+    override val briefingLead = "Practice your words in a chat you already use. Spross writes the prompt for you."
     override val briefingStepCopy = "Copy the text and paste it into any AI chat."
-    override val briefingStepTalk = "Talk about whatever you like — it keeps to the words " +
-        "you have and adds a few of its own."
-    override val briefingStepBack = "When you are done, ask for the new words and paste that " +
-        "list back here."
+    override val briefingStepTalk = "Talk about whatever you like — it keeps to the words you have and adds a few of its own."
+    override val briefingStepBack = "When you are done, ask for the new words and paste that list back here."
     override val briefingCopied = "Copied"
     override val briefingShare = "Share"
     override val briefingReturnTitle = "Bring in the Harvest"
-    override val briefingReturnLead = "Paste the word list your chat sent back. New words " +
-        "are already picked — review them and keep the ones you want."
+    override val briefingReturnLead = "Paste the word list your chat sent back. New words are already picked — review them and keep the ones you want."
     override val briefingReturnPaste = "Paste"
     override val briefingReturnEmpty = "There is no word list in the clipboard."
     override val briefingGroupNew = "Brand new"
@@ -411,23 +383,18 @@ internal object ChromeEn : Chrome {
     override val settingsRestartTutorialButton = "Restart tutorial"
     override val settingsRestartTutorialHint = "Replays the introduction; your progress stays."
     override val settingsResetButton = "Reset %s …"
-    override val settingsResetHint = "Deletes this language's progress; your words and other " +
-        "languages stay."
-    override val settingsResetConfirm = "Delete all learning progress for %s and start over " +
-        "with the first words?"
+    override val settingsResetHint = "Deletes this language's progress; your words and other languages stay."
+    override val settingsResetConfirm = "Delete all learning progress for %s and start over with the first words?"
     override val settingsBackupTitle = "Backup"
     override val settingsBackupExport = "Export"
     override val settingsBackupExportAll = "All languages"
     override val settingsBackupExportOnly = "%s only"
     override val settingsBackupImport = "Import"
-    override val settingsBackupHint = "Saves your progress to a file, for reinstalling or a " +
-        "new phone."
-    override val settingsBackupConfirm = "Replace the progress for %s with the one in this " +
-        "backup?"
+    override val settingsBackupHint = "Saves your progress to a file, for reinstalling or a new phone."
+    override val settingsBackupConfirm = "Replace the progress for %s with the one in this backup?"
     override val settingsBackupReplace = "Replace"
     override val settingsBackupExportFailed = "The backup could not be saved."
-    override val settingsBackupImportFailed = "This file is not a Spross backup or cannot be " +
-        "read."
+    override val settingsBackupImportFailed = "This file is not a Spross backup or cannot be read."
     override val commonCancel = "Cancel"
     override val commonReset = "Reset"
     override val commonClear = "Clear"
@@ -498,15 +465,13 @@ internal object ChromeEn : Chrome {
     override val listenFlagAudio = "Flag pronunciation of “%s”"
     override val listenFlaggedAudio = "Pronunciation of “%s” flagged"
     override val errorTitle = "Oops"
-    override val errorCatalogMissing = "The content could not be loaded. (catalog missing " +
-        "from the app bundle)"
+    override val errorCatalogMissing = "The content could not be loaded. (catalog missing from the app bundle)"
     override val errorContentUnavailable = "The content could not be loaded. (%s)"
     override val sessionDoneTallyNew = "%s sown"
     override val sessionDoneTallyNewOnly = "%s new words"
     override val sessionDoneTallyReviewed = "%s reviewed"
     override val sessionDoneTallyReviewedOnly = "%s words reviewed"
-    override val sessionDoneRestHint = "Not much is sticking today — a tired head keeps " +
-        "nothing. Tomorrow will go easier."
+    override val sessionDoneRestHint = "Not much is sticking today — a tired head keeps nothing. Tomorrow will go easier."
     override val sessionDoneGrowthGrew = "Some of it sticks today too"
     override val sessionDoneGrowthOpened = "Your first words in good soil"
     override val pauseSprosse = listOf(
