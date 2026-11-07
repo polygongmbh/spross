@@ -87,7 +87,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
 
     /**
      * [count] slots on the wood in rank order. The first round gives each carrier one mark at
-     * the outer end of its [stretch], the levelest and inner wood first so fruit and blossom hang as spur fruit
+     * its outer end, the levelest and inner wood first so fruit and blossom hang as spur fruit
      * does — but never within reach of a mark already dealt while wood further off is free,
      * the reach shrinking as the crown fills, so they spread over the whole crown.
      * The rest go to whichever carrier holds the fewest for its weighted length, and so do the
@@ -103,7 +103,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         fun rank(c: Carrier) = abs(limbs[c.limb].endX - limbs[c.limb].startX) / chord(c) + if (c.tip) 0 else 1
         val pending = carriers.sortedByDescending(::rank).toMutableList()
         var reach = 2 * carriers.sumOf(::chord) / carriers.size
-        val outer = carriers.associateWith { at(it, stretch(it).first) }
+        val outer = carriers.associateWith { at(it, 0.95) }
         val dealt = mutableListOf<Carrier>()
         while (pending.isNotEmpty()) {
             val free = pending.indexOfFirst { c -> dealt.all { distance(outer.getValue(it), outer.getValue(c)) >= reach } }
@@ -130,13 +130,12 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
     }
 
     /**
-     * The [k]-th of a carrier's [of] marks, spread evenly along its [stretch],
+     * The [k]-th of a carrier's [of] marks, spread evenly from 0.95 of the way along down to 0.15,
      * alternating sides on the bark and turned off the wood as a side branch is.
      */
     private fun slot(c: Carrier, k: Int, of: Int, flip: Boolean): TreeSlot {
         val limb = limbs[c.limb]
-        val (outermost, innermost) = stretch(c)
-        val t = outermost - (outermost - innermost) * k / of
+        val t = 0.95 - 0.8 * k / of
         val (x, y) = at(c, t)
         val along = heading(limb, t)
         val turn = offshoot(Stream(seed xor Stream.hash(c.limb * 1024L + k)))
@@ -147,12 +146,6 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
             level(along + side * turn), c.limb)
     }
-
-    /**
-     * The stretch of [c] its marks hang along, outermost first: a tip out to its end,
-     * inner wood short of its fork, where its twigs' own marks crowd.
-     */
-    private fun stretch(c: Carrier) = if (c.tip) 0.95 to 0.15 else 0.75 to 0.2
 
     /** How far a side branch, or a leaf, turns off the wood it grows from. */
     private fun offshoot(rng: Stream) = rng.range(0.75, 1.10)
