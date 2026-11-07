@@ -140,4 +140,4 @@ Neighbors: app and code issues `../docs/backlog.md`.
   (de `Ich gehe kurz duschen.`) reads `Я йду швиде́нько в душ.` (wörtlich ich gehe schnell in
   die Dusche), which sounds stiff — would `Я швиде́нько схожу́ в душ.` (ich geh schnell mal in
   die Dusche) or `Я піду́ швиде́нько в душ.` (ich werde schnell in die Dusche gehen) say it?
-- Swahili `connectors/that-conj` *kwamba* needs a check, flagged by the owner while listening: the word and its gloss, and its take `audio/sw/words/kwamba.mp3` (LL-Q7838, Ismail Ibn Ahmed).
+- Swahili `connectors/that-conj` *kwamba* needs a check, flagged by the owner while listening: the word and its gloss.

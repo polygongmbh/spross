@@ -6729,15 +6729,16 @@
       "source": "LL-Q65219927(swa)-Mndetatsin-Kwaheri(Aurevoir).wav"
     },
     "kwamba": {
-      "author": "Ismail Ibn Ahmed",
+      "author": "Waithera Were",
       "file": "words/kwamba.mp3",
-      "gain": 4.5,
-      "lead": 140,
+      "gain": -8.6,
+      "gate": -66.2,
+      "lead": 40,
       "matches": "kwamba",
-      "mos": 2.86,
-      "pesq": 1.75,
-      "sha256": "4e85057bd05f55f197709068f3bc08ab6bb387219c39a1a56422f59a9fa80d76",
-      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-kwamba.wav"
+      "mos": 2.77,
+      "pesq": 4.22,
+      "sha256": "ad9232baf8e67b47366815152fafb0f3a8ba6fbbfb8d334abafa2beaeb6d8dde",
+      "source": "Sw-ke-kwamba.flac"
     },
     "kwanza": {
       "author": "Waithera Were",
