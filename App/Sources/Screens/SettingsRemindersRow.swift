@@ -23,7 +23,6 @@ struct SettingsRemindersRow: View {
                 Text("settings.reminders.option.set").tag(ReminderMode.fixed)
             }
             .pickerStyle(.segmented)
-            hint(hintKey)
             if reminders.mode == .fixed {
                 ForEach(reminders.setMinutes, id: \.self) { minute in
                     HStack {
@@ -52,14 +51,6 @@ struct SettingsRemindersRow: View {
             } else if reminders.mode != .off && reminders.paused {
                 hint("settings.reminders.hint.paused")
             }
-        }
-    }
-
-    private var hintKey: LocalizedStringKey {
-        switch reminders.mode {
-        case .usual: return "settings.reminders.hint.usual"
-        case .fixed: return "settings.reminders.hint.set"
-        default: return "settings.reminders.hint.off"
         }
     }
 

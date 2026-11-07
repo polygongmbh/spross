@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.audioSources
-import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.AudioPreference
 import net.spross.kern.catalog.preferenceOptions
 import net.spross.kern.model.Language
@@ -66,8 +65,5 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
                 AudioPreference.Speech -> chrome.settingsAudioHintTts
             }
         )
-        // why: only where there is a choice to be scoped — a language with one source
-        // has nothing to remember per language.
-        if (sources == AudioCapability.Both) SettingHint(chrome.settingsAudioHintPerLanguage)
     }
 }

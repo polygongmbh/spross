@@ -71,10 +71,6 @@ struct BoxSettingsSection: View {
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
                 }
-            } else {
-                Text("settings.profile.hint")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
             }
         }
     }

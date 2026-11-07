@@ -120,8 +120,6 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
                     SettingHint(chrome.settingsProfileSwitching)
                 }
-            } else {
-                SettingHint(chrome.settingsProfileHint)
             }
         }
         Panel { LearnerNameSetting(model) }
@@ -203,7 +201,6 @@ private fun LearnerNameSetting(model: AppModel) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
         LearnerNameField(chrome, draft) { draft = it; model.renameLearner(it) }
-        SettingHint(chrome.settingsNameHint)
     }
 }
 

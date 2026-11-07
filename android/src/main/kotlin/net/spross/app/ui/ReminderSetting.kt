@@ -85,13 +85,6 @@ internal fun ReminderSetting(model: AppModel) {
                 }
             }
         }
-        SettingHint(
-            when (reminders.mode) {
-                ReminderMode.Off -> chrome.settingsRemindersHintOff
-                ReminderMode.Usual -> chrome.settingsRemindersHintUsual
-                ReminderMode.Fixed -> chrome.settingsRemindersHintSet
-            }
-        )
         if (reminders.mode == ReminderMode.Fixed) {
             reminders.setMinutes.forEachIndexed { index, minute ->
                 Row(verticalAlignment = Alignment.CenterVertically) {

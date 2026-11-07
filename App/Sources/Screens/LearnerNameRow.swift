@@ -25,9 +25,6 @@ struct LearnerNameRow: View {
                 .foregroundStyle(Theme.colors.textPrimary)
             NameField(placeholder: "settings.name.placeholder", text: $nameDraft)
                 .onChange(of: nameDraft) { _, typed in model.setLearnerName(typed) }
-            Text("settings.name.hint")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 }

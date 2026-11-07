@@ -24,13 +24,6 @@ struct SettingsAudioRow: View {
             Text(audioHintKey)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
-            // why: only where there is a choice to be scoped — a language with one source
-            // has nothing to remember per language.
-            if audioSources == .both {
-                Text("settings.audio.hint.perLanguage")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-            }
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
                 Label("settings.audio.voiceUpgrade \(targetChromeName)",
                       systemImage: "speaker.wave.2")

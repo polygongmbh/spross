@@ -6141,34 +6141,18 @@
         }
       }
     },
-    "settings.audio.hint.perLanguage" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro Lernsprache wählbar."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chosen per language you learn."
-          }
-        }
-      }
-    },
     "settings.audio.hint.recordings" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eingebaute Aufnahmen zuerst, sonst Systemstimme."
+            "value" : "Tonaufnahme, wenn verfügbar, sonst die Systemstimme."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bundled recordings first, system voice otherwise."
+            "value" : "Plays a recording if there is one, else the system voice."
           }
         }
       }
@@ -6178,13 +6162,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Immer die autogenerierte Systemstimme, so werden Artikel immer mitgelesen."
+            "value" : "Die Systemstimme liest jedes Wort mit Artikel."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always the system voice, article included."
+            "value" : "The system voice reads every word with its article."
           }
         }
       }
@@ -6265,7 +6249,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A clearer voice for %@ is a free download: Settings › Accessibility › Spoken Content › Voices."
+            "value" : "You can download a clearer %@ voice for free in Settings › Accessibility › Spoken Content › Voices."
           }
         }
       }
@@ -6357,13 +6341,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speichert deinen Fortschritt in einer Datei, für Neuinstallation oder ein neues Gerät."
+            "value" : "Sichere deinen Fortschritt in einer Datei, um ihn später oder auf einem neuen Gerät wiederherzustellen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saves your progress to a file, for reinstalling or a new phone."
+            "value" : "Save your progress to a file to restore it later or on a new phone."
           }
         }
       }
@@ -6481,22 +6465,6 @@
         }
       }
     },
-    "settings.name.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Für die Begrüßung."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Used in the greeting."
-          }
-        }
-      }
-    },
     "settings.name.placeholder" : {
       "localizations" : {
         "de" : {
@@ -6526,22 +6494,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your Name"
-          }
-        }
-      }
-    },
-    "settings.profile.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jede gelernte Sprache hat ihren eigenen Fortschritt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Each learned language keeps its own progress."
           }
         }
       }
@@ -6586,30 +6538,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mitteilungen für Spross sind in den Systemeinstellungen aus."
+            "value" : "Mitteilungen für Spross sind in den Einstellungen deaktiviert."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifications for Spross are off in the system settings."
-          }
-        }
-      }
-    },
-    "settings.reminders.hint.off" : {
-      "comment" : "Under the reminder choice while it is off",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine Erinnerungen. Spross wartet, bis du es öffnest."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No reminders. Spross waits until you open it."
+            "value" : "Notifications for Spross are turned off in Settings."
           }
         }
       }
@@ -6620,47 +6555,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pausiert nach einer Woche ohne Üben. Eine Antwort startet sie wieder."
+            "value" : "Pausiert, weil du eine Woche nicht geübt hast. Sobald du übst, laufen sie weiter."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paused after a week without practice. One answer starts them again."
-          }
-        }
-      }
-    },
-    "settings.reminders.hint.set" : {
-      "comment" : "Under the reminder choice in its set-times mode, above the list of times",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zu jeder Zeit unten, außer du hast seit der vorigen schon geübt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "At each time below, unless you have practiced since the one before."
-          }
-        }
-      }
-    },
-    "settings.reminders.hint.usual" : {
-      "comment" : "Under the reminder choice in its learned mode",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurz vor den Zeiten, zu denen du sonst übst, gelernt aus den letzten vier Wochen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shortly before the times you usually practice, learned from the last four weeks."
+            "value" : "Paused because you haven't practiced in a week. They resume once you practice."
           }
         }
       }
@@ -6705,13 +6606,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie gewohnt"
+            "value" : "Automatisch"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usual Times"
+            "value" : "Automatic"
           }
         }
       }
@@ -6789,13 +6690,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Löscht den Fortschritt in dieser Sprache; eigene Wörter und andere Sprachen bleiben."
+            "value" : "Löscht deinen Fortschritt in dieser Sprache. Eigene Wörter und andere Sprachen sind nicht betroffen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deletes this language's progress; your words and other languages stay."
+            "value" : "Deletes your progress in this language. Your own words and other languages are unaffected."
           }
         }
       }
@@ -6822,13 +6723,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeigt die Einführung erneut; dein Fortschritt bleibt erhalten."
+            "value" : "Dein Fortschritt bleibt erhalten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Replays the introduction; your progress stays."
+            "value" : "Your progress isn't affected."
           }
         }
       }
@@ -6904,13 +6805,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obtainium verfolgt die Veröffentlichungen dieser App und bietet jede neue Version an, sobald es sie gibt. Ohne Obtainium ist jedes Update ein Download von Hand."
+            "value" : "Obtainium meldet sich, wenn eine neue Version erscheint. Ohne Obtainium lädst du Updates selbst herunter."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obtainium watches this app's releases and offers each new version as it appears. Without it, every update is a download by hand."
+            "value" : "Obtainium tells you when a new version is out. Without it, you'll need to download updates yourself."
           }
         }
       }

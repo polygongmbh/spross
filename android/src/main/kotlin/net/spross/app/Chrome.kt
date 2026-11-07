@@ -119,14 +119,10 @@ interface Chrome {
     val settingsAudioHintOff: String
     val settingsAudioHintRecordings: String
     val settingsAudioHintTts: String
-    val settingsAudioHintPerLanguage: String
     val settingsRemindersTitle: String
     val settingsRemindersOptionOff: String
     val settingsRemindersOptionUsual: String
     val settingsRemindersOptionSet: String
-    val settingsRemindersHintOff: String
-    val settingsRemindersHintUsual: String
-    val settingsRemindersHintSet: String
     val settingsRemindersHintPaused: String
     val settingsRemindersHintDenied: String
     val settingsRemindersAdd: String
@@ -437,8 +433,6 @@ interface Chrome {
     val settingsTitle: String
     val settingsNameTitle: String
     val settingsNamePlaceholder: String
-    val settingsNameHint: String
-    val settingsProfileHint: String
     val settingsProfileSwitching: String
     val settingsRestartTutorialButton: String
     val settingsRestartTutorialHint: String
