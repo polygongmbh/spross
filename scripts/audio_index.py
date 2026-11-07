@@ -1,6 +1,6 @@
 """The ANALYSIS INDEX: what the players correct a recording by, measured off its untouched bytes.
 
-`gain`/`cap`/`lead`/`end`/`gate` plus `mos` per entry, re-derived by `audio-catalog.py --reindex`
+`gain`/`cap`/`lead`/`end`/`gate` plus `mos` and `pesq` per entry, re-derived by `audio-catalog.py --reindex`
 and written by every path that ships a take (`audio_manifest.py`).
 """
 import math
@@ -76,16 +76,16 @@ GATE_MARGIN_DB = 6.0
 GATE_FLOOR_DB = -100.0
 
 # The fields [playback_index] writes onto an entry.
-INDEX_FIELDS = ('gain', 'cap', 'lead', 'end', 'gate', 'mos')
+INDEX_FIELDS = ('gain', 'cap', 'lead', 'end', 'gate', 'mos', 'pesq')
 
 
-def playback_index(loudness, span, peak, noise, loudest, mos, perceived):
-    """The optional `gain`/`cap`/`lead`/`end`/`gate` plus `mos` for one entry — absent when there is
+def playback_index(loudness, span, peak, noise, loudest, mos, pesq, perceived):
+    """The optional `gain`/`cap`/`lead`/`end`/`gate` plus `mos` and `pesq` for one entry — absent when there is
     nothing to say. [span] is `audio_measure.speech_span`: `lead` skips what comes before the speech,
     `end` stops where it ends.
 
-    `mos` is how good the take sounds (`audio_measure.mos`). Unlike the other fields it changes
-    no playback — it is carried so the lint can see the SHAPE of a pack and refuse a rebuild
+    `mos` is how good the take sounds (`audio_measure.mos`), `pesq` how undistorted (`audio_measure.pesq`).
+    Unlike the other fields they change no playback — they are carried so the lint can see the SHAPE of a pack and refuse a rebuild
     that quietly reintroduces the noise a previous one removed, and so a fill or prune can
     refuse the clearly bad. Measured, never applied: filtering the file would be an adaptation
     under BY-SA and would break the sha256 that pins it.
@@ -106,6 +106,8 @@ def playback_index(loudness, span, peak, noise, loudest, mos, perceived):
     index.update(span_index(span))
     if mos is not None:
         index['mos'] = round(mos, 2)
+    if pesq is not None:
+        index['pesq'] = round(pesq, 2)
     if noise is not None:
         # why: the noise sits `noise` dB under the loudest frame; a gate a few dB above it
         # quiets the hiss in the pauses and never reaches the word (kern `Playback`).

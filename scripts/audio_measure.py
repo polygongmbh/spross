@@ -65,13 +65,13 @@ def version(binary):
 
 def measure(binary, path):
     """(integrated LUFS, `speech_span`, sample peak dBFS, dB of speech above its noise, loudest
-    frame RMS dBFS, MOS); a silent file measures None for the levels.
+    frame RMS dBFS, MOS, PESQ); a silent file measures None for the levels.
 
     `ebur128` reports EBU R128 INTEGRATED loudness, which is gated — the pause a single word sits
     in does not drag its level down, so two packs can be compared on it. `astats` reports the
     loudest DECODED sample, which is the ceiling a player's gain stage runs into — the mp3's own
-    headroom says nothing, the decoder's output is what gets amplified. The span, the noise and
-    the MOS are decodes of their own.
+    headroom says nothing, the decoder's output is what gets amplified. The span, the noise, the
+    MOS and the PESQ are decodes of their own.
     """
     run = subprocess.run(
         [binary, '-hide_banner', '-nostats', '-i', path, '-af',
@@ -87,6 +87,7 @@ def measure(binary, path):
         float(peak[-1]) if peak and peak[-1] != '-inf' else None,
         *noise(binary, path),
         mos(binary, path),
+        pesq(binary, path),
     )
 
 
@@ -289,19 +290,23 @@ def _decode(binary, path, rate):
     return np.frombuffer(raw, dtype=np.float32)
 
 
+def _load(model):
+    try:
+        import onnxruntime
+    except ImportError:
+        sys.exit('audio_measure: MOS and PESQ need onnxruntime — '
+                 'python3 -m pip install --user --break-system-packages onnxruntime')
+    options = onnxruntime.SessionOptions()
+    # why: files are scored WORKERS at a time, one core each, instead of one file at a
+    # time across every core — the models are too small to spread a single file well.
+    options.intra_op_num_threads = 1
+    return onnxruntime.InferenceSession(model, options)
+
+
 def _session():
     global _mos_session
     if _mos_session is None:
-        try:
-            import onnxruntime
-        except ImportError:
-            sys.exit('audio_measure: MOS needs onnxruntime — '
-                     'python3 -m pip install --user --break-system-packages onnxruntime')
-        options = onnxruntime.SessionOptions()
-        # why: files are scored WORKERS at a time, one core each, instead of one file at a
-        # time across every core — the model is too small to spread a single window well.
-        options.intra_op_num_threads = 1
-        _mos_session = onnxruntime.InferenceSession(MOS_MODEL, options)
+        _mos_session = _load(MOS_MODEL)
     return _mos_session
 
 
@@ -321,6 +326,30 @@ def mos(binary, path):
         _, _, overall = session.run(None, {'input_1': segment[np.newaxis, :]})[0][0]
         scores.append(MOS_OVERALL(overall))
     return float(np.mean(scores)) if scores else None
+
+
+# PESQ: how undistorted a take sounds, as torchaudio SQUIM's no-reference estimate of the wideband
+# PESQ score (CC BY 4.0, `squim/`): about 1 to 4.6. It hears the distortion DNSMOS misses.
+# The model reads the whole take at once, a take under PESQ_MIN_SECONDS repeated until it fills
+# that, as the study that adopted it did (`docs/2026-10-audio-evaluations.md`).
+PESQ_MODEL = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'squim', 'pesq.onnx')
+PESQ_RATE = 16000
+PESQ_MIN_SECONDS = 1
+_pesq_session = None
+
+
+def pesq(binary, path):
+    """SQUIM's PESQ estimate of one file (see PESQ), higher is better; None for an empty decode."""
+    global _pesq_session
+    x = _decode(binary, path, PESQ_RATE)
+    if not len(x) or not np.any(x):
+        return None
+    least = PESQ_MIN_SECONDS * PESQ_RATE
+    if len(x) < least:
+        x = np.tile(x, -(-least // len(x)))
+    if _pesq_session is None:
+        _pesq_session = _load(PESQ_MODEL)
+    return float(_pesq_session.run(None, {'audio': x[np.newaxis, :]})[0][0])
 
 
 def measure_all(binary, paths):

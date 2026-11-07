@@ -60,7 +60,7 @@ def respan(lang):
 
 
 def reindex(lang):
-    """Re-derive `gain`/`cap`/`lead`/`end`/`gate`/`mos` for a language already under `catalog/audio/`,
+    """Re-derive `gain`/`cap`/`lead`/`end`/`gate`/`mos`/`pesq` for a language already under `catalog/audio/`,
     out of the bytes it ships — nothing is copied, converted or renamed.
 
     why a second entry point at all: the packs are unversioned research input and may be
@@ -85,7 +85,7 @@ def reindex(lang):
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
         index = playback_index(*measured[path])
         was = item.get('gain', 0)
-        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'end', 'snr', 'mos', 'gate'):
+        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'end', 'snr', 'mos', 'pesq', 'gate'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:

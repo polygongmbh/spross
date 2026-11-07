@@ -52,11 +52,12 @@ def source_refusal(take):
 
 def measure(path, scored=True):
     """What [judge] reads off a take's bytes short of its playback gain, in one process:
-    `balance`, `peak`, `loudness`, `speech` seconds, `pop` and — [scored] — `mos` and `silent`."""
+    `balance`, `peak`, `loudness`, `speech` seconds, `pop` and — [scored] — `mos`, `pesq` and `silent`."""
     if scored:
         levels = audio_measure.measure(audio_index.FFMPEG, path)
         loudness, span, peak = levels[0], levels[1], levels[2]
-        out = dict(mos=None if levels[5] is None else round(levels[5], 2), silent=loudness is None or peak is None)
+        out = dict(mos=None if levels[5] is None else round(levels[5], 2),
+                   pesq=None if levels[6] is None else round(levels[6], 2), silent=loudness is None or peak is None)
     else:
         peak, loudness = audio_measure.peak_and_loudness(audio_index.FFMPEG, path)
         span = audio_measure.speech_span(audio_index.FFMPEG, path)

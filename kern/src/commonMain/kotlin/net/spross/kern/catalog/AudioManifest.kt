@@ -57,6 +57,11 @@ internal data class AudioRecording(
      */
     val mos: Double,
     /**
+     * How undistorted the take sounds, as a predicted PESQ score from about 1 to 4.6;
+     * carried for the same lint as [mos], which reads the two together. 0.0 where none was recorded.
+     */
+    val pesq: Double,
+    /**
      * The file's own noise level plus a margin, in dBFS of the RAW decoded bytes, before any
      * gain — where a player's noise gate sits ([AudioIndex.gate]). Null means no gate.
      */

@@ -266,7 +266,9 @@ the script asks `git ls-files` instead.
 - `mos` (1 to 5) is a third measurement of the same bytes —
   how good the take sounds, as predicted by the DNSMOS model (`scripts/audio_measure.py`) —
   but nothing plays it.
-  It is carried so lint can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an earlier sweep removed.
+  `pesq` (about 1 to 4.6) beside it is how undistorted the take sounds,
+  as SQUIM's no-reference estimate of the PESQ score (`scripts/squim/`), and nothing plays it either.
+  Both are carried so lint can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an earlier sweep removed.
   The lint holds the median and the size of the bad tail, never a floor per file:
   some words have nothing better on Commons.
 - `gate` (dB, negative) is the file's own noise level plus a small margin, in dBFS of the raw decoded bytes before any gain;

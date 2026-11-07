@@ -1,0 +1,14 @@
+pesq.onnx is adapted from the TorchAudio-Squim objective model weights
+(torchaudio `SQUIM_OBJECTIVE`, squim_objective_dns2020.pth;
+Kumar et al., "TorchAudio-Squim: Reference-less Speech Quality and Intelligibility
+measures in TorchAudio", ICASSP 2023), trained on the Interspeech 2020 DNS Challenge data.
+Source: https://download.pytorch.org/torchaudio/models/squim_objective_dns2020.pth
+
+The weights are licensed under the Creative Commons Attribution 4.0 International License,
+https://creativecommons.org/licenses/by/4.0/ (as torchaudio's documentation states, pointing to
+https://github.com/microsoft/DNS-Challenge/blob/interspeech2020/master/LICENSE).
+
+Changes: only the PESQ branch is kept (the STOI and SI-SDR branches are dropped),
+the model is exported to ONNX, and its weights are stored as float16 (export.py).
+
+The weights are provided as-is, without warranties of any kind.
