@@ -1,17 +1,22 @@
 #!/bin/sh
-# Build, install and launch Spross on an Android emulator.
-#   scripts/run-emu.sh                       — build + (re)launch on the spross-phone AVD
-#   scripts/run-emu.sh --no-build            — reinstall the last APK, skip Gradle
-#   scripts/run-emu.sh --avd spross-tablet   — pick another AVD by name
-#   scripts/run-emu.sh --clean               — uninstall first (⇒ onboarding runs)
-#   scripts/run-emu.sh --shot /tmp/drill.png — screenshot once the app has drawn
-#   scripts/run-emu.sh --mute                — start with reading aloud switched off
-#   scripts/run-emu.sh --shot x.png --sound  — let a screenshot run speak after all
-#
-# --shot implies --mute: a run nobody is sitting at should not start talking (RUNBOOK-android.md).
-#
-# Boots the AVD if it is not already running; an emulator left up is reused.
-# One-time AVD setup: see RUNBOOK-android.md § Emulator.
+# Build, install and launch Spross on an Android emulator — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/run-emu.sh [options]
+
+Builds Spross (debug APK) and (re)launches it on the spross-phone AVD.
+Boots the AVD if it is not already running; an emulator left up is reused.
+One-time AVD setup: RUNBOOK-android.md § Emulator.
+
+  --avd NAME    another AVD by name (e.g. spross-tablet)
+  --no-build    reinstall the last APK, skip Gradle
+  --clean       uninstall first, so onboarding runs
+  --shot FILE   screenshot once the app has drawn; implies --mute, since a run
+                nobody is sitting at should not start talking
+  --mute        start with reading aloud switched off
+  --sound       let a --shot run speak after all
+  -h, --help    this text
+EOF
+}
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -33,7 +38,7 @@ while [ $# -gt 0 ]; do
     --shot) SHOT="$2"; shift 2 ;;
     --mute) MUTE=1; shift ;;
     --sound) SOUND=1; shift ;;
-    -h|--help) awk 'NR > 1 { if (!/^#/) exit; print substr($0, 3) }' "$0"; exit 0 ;;
+    -h|--help) usage; exit 0 ;;
     *) echo "error: run-emu: unknown option '$1' (see --help)" >&2; exit 1 ;;
   esac
 done

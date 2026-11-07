@@ -68,7 +68,7 @@ Min Android 8.0 (API 26).
 
 `scripts/run-emu.sh` is the Android counterpart of `scripts/run-sim.sh`:
 it boots the `spross-phone` AVD if it is not already up, builds, installs and launches;
-its header lists the flags.
+`--help` lists the flags.
 `--mute` (implied by `--shot`) starts the app silent so a run nobody is sitting at never speaks up:
 it silences autoplay for that launch as the top-bar toggle would,
 and the toggle turns sound back on.

@@ -1,11 +1,19 @@
 #!/bin/sh
-# Cut a release: changelog heading, version increment, build verification, tag, push.
-#
-#   scripts/release.sh 5.7.2            cut it and push
-#   scripts/release.sh --check 5.7.2    everything up to the tag, nothing written to origin
-#   scripts/release.sh --no-app 5.7.2   skip the app build (Linux/cloud, no Xcode)
-#
-# Review and order changelog entries first (docs/release.md); this refuses an empty '## Unreleased'.
+# Cut a release — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/release.sh [--check] [--no-app] VERSION
+
+Cuts a release: changelog heading, version increment, build verification, tag, push.
+
+  VERSION      major.minor.patch, minor and patch below 100, e.g. 5.7.2
+  --check      everything up to the tag, nothing written to origin
+  --no-app     skip the app build (Linux/cloud, no Xcode)
+  -h, --help   this text
+
+Review and order the changelog entries first (docs/release.md);
+an empty '## Unreleased' is refused.
+EOF
+}
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -14,13 +22,14 @@ for arg in "$@"; do
   case "$arg" in
     --check)  CHECK=1 ;;
     --no-app) APP_GATE=0 ;;
-    -*) echo "unknown option: $arg" >&2; exit 2 ;;
+    -h|--help) usage; exit 0 ;;
+    -*) echo "error: release: unknown option '$arg' (see --help)" >&2; exit 2 ;;
     *) VERSION="$arg" ;;
   esac
 done
 
 case "$VERSION" in
-  '') echo "usage: scripts/release.sh [--check] [--no-app] <version>" >&2; exit 2 ;;
+  '') usage >&2; exit 2 ;;
 esac
 # Android's versionCode is derived from the name (5.7.2 → 50702), so a minor or patch
 # reaching 100 would collide with the next component up.

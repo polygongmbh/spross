@@ -1,12 +1,21 @@
 #!/bin/sh
-# Print one version's CHANGELOG section — the body of its GitHub release.
-#   scripts/release-notes.sh 4.0.0
-# Empty is an error: a release whose version never got a changelog heading is a
-# release nobody wrote notes for, and that is worth failing the tag build over.
+# Print one version's CHANGELOG section — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/release-notes.sh VERSION
+
+Prints VERSION's CHANGELOG section, the body of its GitHub release.
+An empty section is an error: a release whose version never got a changelog
+heading is a release nobody wrote notes for, worth failing the tag build over.
+EOF
+}
 set -eu
 cd "$(dirname "$0")/.."
 
-VERSION="${1:?usage: release-notes.sh <version>}"
+case "${1:-}" in
+  -h|--help) usage; exit 0 ;;
+  ''|-*) usage >&2; exit 2 ;;
+esac
+VERSION="$1"
 
 NOTES=$(awk -v v="$VERSION" '
   BEGIN { esc = v; gsub(/\./, "\\.", esc) }

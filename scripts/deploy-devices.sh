@@ -1,24 +1,33 @@
 #!/bin/sh
-# Build Spross in Release and install it on all paired physical devices.
-#   iPhones (Mars, Pluto) → Spross.app      (Release-iphoneos)
-#   Apple Watch (Ruby)    → SprossWatch.app (Release-watchos)
-# One scheme build produces both products; devices are matched by name, so the
-# script keeps working if a device is re-paired and its UUID changes.
-#
-#   scripts/deploy-devices.sh             build, then install to all devices
-#   scripts/deploy-devices.sh Pluto       install to that one device only
-#   scripts/deploy-devices.sh --launch    also open the app on the iPhones
-#   scripts/deploy-devices.sh --no-build  reuse the last build, just reinstall
-#   scripts/deploy-devices.sh --dry-run   show which devices are reachable, do nothing
-#   scripts/deploy-devices.sh --debug     Debug build — for iterating, not for judging
-# Flags combine, e.g. --no-build --launch Pluto.
-# A build that fails on SIGNING is this Mac's, not the release's: sign in under
-# Xcode > Settings > Accounts, or, when only the watch targets lack a profile,
-# regenerate with `scripts/gen.sh --no-watch` and deploy to the iPhones alone.
-# Each device gets ONE attempt: an install that fails is a device asleep, locked or
-# out of range, which is the operator's to settle rather than something to retry at.
-# A bare name may be any paired device, listed above or not — watches are
-# recognized by model and get SprossWatch.app.
+# Build Spross and install it on the paired physical devices — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/deploy-devices.sh [--no-build] [--launch] [--debug] [--dry-run] [DEVICE]
+
+Builds Spross (Release by default) and installs it on every paired device:
+  iPhones (Mars, Pluto)  get Spross.app       (Release-iphoneos)
+  Apple Watch (Ruby)     gets SprossWatch.app (Release-watchos)
+One scheme build produces both products.
+
+  DEVICE       install to that one paired device only, any paired device,
+               matched by name case-insensitively; a watch is recognized
+               by model and gets SprossWatch.app
+  --no-build   reuse the last build, just reinstall
+  --launch     also open the app on the iPhones
+  --debug      Debug build: minutes cheaper across an afternoon of edits,
+               but the app no longer runs like the shipped one
+  --dry-run    show which devices are reachable, do nothing
+  -h, --help   this text
+
+Flags combine, e.g. --no-build --launch Pluto.
+
+Devices are matched by name, so a re-paired device with a new UUID is still found.
+Each device gets ONE attempt: an install that fails is a device asleep, locked
+or out of range, which is the operator's to settle, not a retry's.
+A build that fails on SIGNING is this Mac's, not the release's: sign in under
+Xcode > Settings > Accounts, or, when only the watch targets lack a profile,
+regenerate with `scripts/gen.sh --no-watch` and deploy to the iPhones alone.
+EOF
+}
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -41,14 +50,13 @@ for arg in "$@"; do
     --dry-run)  DRY=1 ;;
     --launch)   LAUNCH=1 ;;
     --debug)    CONFIG="Debug" ;;
-    -*) echo "unknown option: $arg" >&2; exit 2 ;;
+    -h|--help)  usage; exit 0 ;;
+    -*) echo "error: deploy-devices: unknown option '$arg' (see --help)" >&2; exit 2 ;;
     *) ONLY="$arg" ;;
   esac
 done
 
-# Release optimizes the Kotlin/Native link (35s against 6s) and compiles Swift
-# whole-module, so a Debug deploy is minutes cheaper across an afternoon of
-# edits — at the cost of an app that no longer runs like the shipped one.
+# Release optimizes the Kotlin/Native link (35s against 6s) and compiles Swift whole-module.
 IOS_APP="$DERIVED/Build/Products/$CONFIG-iphoneos/Spross.app"
 WATCH_APP="$DERIVED/Build/Products/$CONFIG-watchos/SprossWatch.app"
 

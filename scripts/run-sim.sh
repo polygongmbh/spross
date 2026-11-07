@@ -1,21 +1,29 @@
 #!/bin/sh
-# Build, install and launch Spross on an iOS Simulator.
-#   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
-#   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
-#   scripts/run-sim.sh duo                    — another simulator, by a case-insensitive part of its name
-#   scripts/run-sim.sh --clean                — the Release app (net.spross.app), uninstalled first
-#                                               (⇒ onboarding runs); the Dev app keeps its data
-#   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
-#   scripts/run-sim.sh --mute                 — start with reading aloud switched off, this launch only
-#   scripts/run-sim.sh --shot x.png --sound   — let a screenshot run speak after all
-#   scripts/run-sim.sh -- -uitest-source de -uitest-target sw   — DEBUG launch args
-#
-# Everything after `--` is passed to the app (DEBUG only, so not with --clean): -uitest-source/-uitest-target
-# pick a language pair, -uitest-screen box opens the Box, -uitest-autostart 1 starts the
-# session, -uitest-trainer <numbers|letters|countries|dates> opens a trainer overview
-# (read in TrainerHubView) and -uitest-run 1 starts the run from it.
-#
-# --shot implies --mute: a run nobody is sitting at should not start talking.
+# Build, install and launch Spross on an iOS Simulator — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/run-sim.sh [options] [SIMULATOR] [-- APP_ARGS…]
+
+Builds Spross (Debug) and (re)launches it on the iPhone 17 simulator.
+
+  SIMULATOR     another simulator, by a case-insensitive part of its name (e.g. duo)
+  --no-build    reinstall the last build, skip xcodebuild
+  --clean       the Release app (net.spross.app), uninstalled first so onboarding
+                runs; the Dev app keeps its data
+  --shot FILE   screenshot once the app has drawn; implies --mute, since a run
+                nobody is sitting at should not start talking
+  --mute        start with reading aloud switched off, this launch only
+  --sound       let a --shot run speak after all
+  -h, --help    this text
+
+Everything after `--` is passed to the app (DEBUG only, so not with --clean):
+  -uitest-source de -uitest-target sw   a language pair
+  -uitest-screen box                    open the Box
+  -uitest-autostart 1                   start the session
+  -uitest-trainer numbers|letters|countries|dates
+                                        open a trainer overview (read in TrainerHubView)
+  -uitest-run 1                         start the run from it
+EOF
+}
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -35,7 +43,7 @@ while [ $# -gt 0 ]; do
     --mute) MUTE='-readAloud off'; shift ;;
     --sound) SOUND=1; shift ;;
     --) shift; break ;;
-    -h|--help) awk 'NR > 1 { if (!/^#/) exit; print substr($0, 3) }' "$0"; exit 0 ;;
+    -h|--help) usage; exit 0 ;;
     -*) echo "error: run-sim: unknown option '$1' (see --help)" >&2; exit 1 ;;
     *) DEVICE="$1"; shift ;;
   esac

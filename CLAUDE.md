@@ -77,6 +77,8 @@ A session ends with at most one simulator or emulator running, the one the owner
   anything both platforms would compute — a value, proportion, curve, timeline, threshold or shared layout (`net.spross.kern.design`) — lives in kern once;
   a platform holds only what needs its own API and converts kern's units.
 - Simplicity over Perfection: get behavior right for the cases that occur, in the simplest code that does.
+- A script states its usage in a `--help` text near the top, its header comment one line pointing there;
+  `-h|--help` prints it, a bad argument names `--help`.
 
 ### Text
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line — a markdown file's scope and neighbors lines excepted.

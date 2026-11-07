@@ -1,19 +1,27 @@
 #!/bin/sh
-# Create the Android release signing key, once per app — never again.
-# Obtainium and Android itself pin the signature: a re-keyed APK is a different
-# app to every device that already has this one, and the only fix is uninstall.
-# So the key goes wherever you keep key files, named here, and never in the repo.
-#
-#   scripts/release-keystore.sh <key-dir>
-#
-# Writes three files into that directory, readable by you alone:
-#   android-release.jks the key
-#   android-release.env `source` it to build a signed APK locally
-#   github-secrets.txt  the values to paste into the repo's Actions secrets
-# Prints nothing secret.
+# Create the Android release signing key, once per app — usage: --help.
+usage() { cat <<'EOF'
+Usage: scripts/release-keystore.sh KEY_DIR
+
+Creates the Android release signing key, once per app, never again.
+Obtainium and Android itself pin the signature: a re-keyed APK is a different
+app to every device that already has this one, and the only fix is uninstall.
+So the key goes wherever you keep key files, never in the repo.
+
+Writes three files into KEY_DIR, readable by you alone:
+  android-release.jks   the key
+  android-release.env   `source` it to build a signed APK locally
+  github-secrets.txt    the values to paste into the repo's Actions secrets
+Prints nothing secret.
+EOF
+}
 set -eu
 
-KEYDIR="${1:?usage: release-keystore.sh <directory to keep the key in>}"
+case "${1:-}" in
+  -h|--help) usage; exit 0 ;;
+  ''|-*) usage >&2; exit 2 ;;
+esac
+KEYDIR="$1"
 KS="$KEYDIR/android-release.jks"
 ENVFILE="$KEYDIR/android-release.env"
 SECRETS="$KEYDIR/github-secrets.txt"
