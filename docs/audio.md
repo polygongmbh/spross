@@ -97,8 +97,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   a bell where the silent switch decides (iOS's own sign for it),
   a speaker where it plays past the switch, a slashed speaker where the app is muted.
   The middle state is iOS's: Android's media stream ignores the ringer, so there it is ON.
-- **The audio setting's "No audio" is stored; the top-bar switch holds for the launch.**
-  Every launch starts at following the phone, or muted where "No audio" is stored, on both phones.
+- **The audio setting's "No autoplay" is stored; the top-bar switch holds for the launch.**
+  Every launch starts at following the phone, or muted where "No autoplay" is stored, on both phones.
   One choice for the device (not per language, not in the box);
   the settings show the stored choice alone, never the switch's state for the launch.
 - **A card whose only content is a sound is dealt whenever the app itself is not muted.**
@@ -111,7 +111,9 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   The threshold is kern's (`isVolumeLow`, a tenth of the range);
   iOS reads `outputVolume`, Android the media stream's volume and mute, once a second.
   Android's ringer mode is not read (silencing notifications leaves media playing).
-- **Audio setting: three-way row -- No audio, Recordings, Speech.**
+- **Audio setting: three-way row -- No autoplay, Recordings, Speech.**
+  "No autoplay": nothing is read aloud by itself and no hear card is dealt;
+  a tap, the letter drill and Listening still play, with the source last picked.
   "Recordings" (default): bundled recording where available, voice for the rest.
   "Speech": voice preferred, recording only where no voice exists (`soundBranch`).
   The top-bar button is the mute only; it never changes the source.

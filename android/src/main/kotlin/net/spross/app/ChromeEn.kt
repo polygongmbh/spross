@@ -99,10 +99,10 @@ internal object ChromeEn : Chrome {
     override val settingsUpdateObtainium = "Get Obtainium"
     override val settingsUpdateDownload = "Download directly"
     override val settingsAudioTitle = "Read Words Aloud"
-    override val settingsAudioOptionOff = "No audio"
+    override val settingsAudioOptionOff = "No autoplay"
     override val settingsAudioOptionRecordings = "Recordings"
     override val settingsAudioOptionTts = "Speech"
-    override val settingsAudioHintOff = "Silent — tap a word to hear it."
+    override val settingsAudioHintOff = "Words play only when you tap them."
     override val settingsAudioHintRecordings = "Bundled recordings first, system voice " +
         "otherwise."
     override val settingsAudioHintTts = "Always the system voice, article included."

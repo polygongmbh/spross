@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
-- "No audio" now stays chosen across restarts, and on iPhone a bell in the top bar marks when silent mode decides whether words are read aloud.
+- "No autoplay" now stays chosen across restarts, and on iPhone a bell in the top bar marks when silent mode decides whether words are read aloud.
 
 ## 9.2.0 — 2026-11-01
 

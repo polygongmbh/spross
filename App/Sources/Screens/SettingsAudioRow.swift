@@ -68,7 +68,7 @@ struct SettingsAudioRow: View {
     }
 
     /// The hint names the chosen behavior, not the picker as a whole. The
-    /// tap-to-replay gesture is disclosed in the No audio line alone — the only
+    /// tap-to-replay gesture is disclosed in the No autoplay line alone — the only
     /// preference where a learner might think the app has gone silent for good.
     private var audioHintKey: LocalizedStringKey {
         switch audioPreferenceBinding.wrappedValue {
@@ -79,7 +79,7 @@ struct SettingsAudioRow: View {
     }
 
     /// Kern's mapping (`AudioPreference`) over the mute and this language's
-    /// stored source. A pick stores the mute too, so "No audio" outlasts the launch.
+    /// stored source. A pick stores the mute too, so "No autoplay" outlasts the launch.
     private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
             get: {

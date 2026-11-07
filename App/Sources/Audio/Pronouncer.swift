@@ -21,7 +21,7 @@ final class Pronouncer {
 
     /// What autoplay does now: the top bar's switch, one state for the device
     /// (never per target language, never in the box), governing AUTOPLAY only.
-    /// Each launch starts at following the phone, or muted where the audio setting stores "No audio";
+    /// Each launch starts at following the phone, or muted where the audio setting stores "No autoplay";
     /// the switch changes it for this launch only.
     private(set) var readAloud: ReadAloud =
         UserDefaults.standard.bool(forKey: "audio.off") || ReadAloud.mutedByLaunchArgument
@@ -38,7 +38,7 @@ final class Pronouncer {
     /// its own switch is not this, and cannot be read at all.
     var muted: Bool { readAloud == .off }
 
-    /// The audio setting's stored "No audio", which the settings render; the top bar never changes it.
+    /// The audio setting's stored "No autoplay", which the settings render; the top bar never changes it.
     private(set) var savedMuted: Bool = UserDefaults.standard.bool(forKey: "audio.off")
 
     /// Which voice answers a target word — recordings or the synthesizer —
@@ -85,7 +85,7 @@ final class Pronouncer {
         readAloud = readAloud == .on ? .off : .on
     }
 
-    /// The audio setting's choice between "No audio" and a source: stored, so it outlasts the launch.
+    /// The audio setting's choice between "No autoplay" and a source: stored, so it outlasts the launch.
     /// Picking a source turns reading aloud back on only where it was off,
     /// so a read-aloud the switch lifted past the silent switch keeps playing.
     func storeMuted(_ muted: Bool) {

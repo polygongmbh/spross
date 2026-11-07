@@ -6063,13 +6063,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stumm — tippe auf ein Wort, um es zu hören."
+            "value" : "Wörter erklingen nur, wenn du sie antippst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Silent — tap a word to hear it."
+            "value" : "Words play only when you tap them."
           }
         }
       }
@@ -6128,13 +6128,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Ton"
+            "value" : "Kein Autoplay"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No audio"
+            "value" : "No autoplay"
           }
         }
       }

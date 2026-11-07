@@ -62,7 +62,7 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
             }
         }
         // why: the hint names the CHOSEN behavior, not the picker as a whole. The
-        // tap-to-replay gesture is disclosed in the No audio line alone — the only
+        // tap-to-replay gesture is disclosed in the No autoplay line alone — the only
         // preference where a learner might think the app has gone silent for good.
         SettingHint(
             when (preference) {

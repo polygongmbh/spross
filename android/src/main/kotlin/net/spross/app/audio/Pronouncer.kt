@@ -60,7 +60,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private var mutedState by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
 
-    /** The audio setting's stored "No audio", which the settings render; the top bar never changes it. */
+    /** The audio setting's stored "No autoplay", which the settings render; the top bar never changes it. */
     var savedMuted by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
         private set
 
@@ -97,7 +97,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     /**
      * Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it.
-     * The pick stores the mute, so "No audio" outlasts the launch.
+     * The pick stores the mute, so "No autoplay" outlasts the launch.
      */
     fun setAudioPreference(lang: Language, preference: AudioPreference) {
         if (!preference.mutes) {
