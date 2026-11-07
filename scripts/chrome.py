@@ -104,8 +104,8 @@ FAMILIES = {
 # one phone is classified the day it lands, and the two kinds of not-read stay apart:
 # what Android has no use for, and what it still owes.
 IOS_ONLY = {
-    # The voice-download banner walks the reader to an iOS Settings path; which voices an
-    # Android device has is its TTS engine's own affair. `common.dismiss` is that banner's ✕.
+    # The voice-upgrade banner walks the reader to an iOS Settings path; Android's gap is a
+    # voice not downloaded at all (`settings.audio.voiceDownload`). `common.dismiss` is that banner's ✕.
     'common.dismiss', 'home.voiceUpgrade.path', 'home.voiceUpgrade.title %@',
     'settings.audio.voiceUpgrade %@',
     # Android's media stream ignores the ringer, so its switch never follows a silent mode.

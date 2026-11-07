@@ -1,5 +1,7 @@
 package net.spross.app.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,8 +10,10 @@ import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.audioSources
@@ -26,10 +30,10 @@ import net.spross.kern.model.Language
  * The source belongs to [target], the language being learned; the mute is the device's.
  * Speech is offered only where the device actually has a voice for [target] — a segment
  * that would fall straight back to the recordings promises a sound the phone cannot make.
- * A [target] nothing can say gets no row at all: its caller draws none.
+ * A [target] nothing can say gets no row: its caller draws at most the voice download link.
  */
 @Composable
-internal fun ReadAloudSetting(model: AppModel, target: Language) {
+internal fun ReadAloudSetting(model: AppModel, target: Language, targetName: String) {
     val chrome: Chrome = model.chrome
     val sources = model.audioSources(target)
     val preference = model.pronouncer.audioPreference(target, sources)
@@ -65,5 +69,30 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
                 AudioPreference.Speech -> chrome.settingsAudioHintTts
             }
         )
+        if (model.pronouncer.voiceMissing(target)) VoiceDownloadLink(chrome, targetName)
     }
 }
+
+/**
+ * The pointer to the speech engine's voice download, for a language it knows but has not
+ * downloaded: without it, every word lacking a recording stays silent.
+ */
+@Composable
+internal fun VoiceDownloadLink(chrome: Chrome, targetName: String) {
+    val context = LocalContext.current
+    TextButton(
+        onClick = {
+            // why: opens the system's text-to-speech settings, where the voice is downloaded;
+            // a device without that screen leaves the tap doing nothing rather than crashing.
+            try {
+                context.startActivity(Intent(TTS_SETTINGS))
+            } catch (_: ActivityNotFoundException) {
+            }
+        },
+        contentPadding = SETTINGS_BUTTON_PADDING,
+    ) {
+        Text(chrome.settingsAudioVoiceDownload.format(targetName), style = MaterialTheme.typography.bodySmall)
+    }
+}
+
+private const val TTS_SETTINGS = "com.android.settings.TTS_SETTINGS"

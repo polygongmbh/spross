@@ -153,6 +153,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      */
     fun canSpeak(lang: Language): Boolean = speaker.canSpeak(lang)
 
+    /** Whether [lang]'s voice is a download away in the system's speech settings. */
+    fun voiceMissing(lang: Language): Boolean = speaker.voiceMissing(lang)
+
     /**
      * Whether a screen reader is reading the screen aloud — the same fact that gates
      * autoplay, exposed because a drill built ENTIRELY out of audio has to compensate

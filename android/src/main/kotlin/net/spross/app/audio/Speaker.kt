@@ -73,6 +73,10 @@ class Speaker(context: Context) {
     fun canSpeak(lang: Language): Boolean =
         ready && tts.isLanguageAvailable(localeFor(lang)) >= TextToSpeech.LANG_AVAILABLE
 
+    /** Whether the engine knows [lang] but its voice is not downloaded to this device yet. */
+    fun voiceMissing(lang: Language): Boolean =
+        ready && tts.isLanguageAvailable(localeFor(lang)) == TextToSpeech.LANG_MISSING_DATA
+
     /**
      * Speaks [text] in [lang], replacing whatever was sounding, and answers whether
      * anything will actually sound — false where the engine never bound or has no voice

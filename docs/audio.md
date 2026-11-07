@@ -24,6 +24,10 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   and points at the download while the compact voice is active:
   a line in the audio setting and one dismissible notice on Home.
   The voice table is dropped on every foreground.
+  Android's Google engine has no such tiers;
+  its gap is a language whose voice is not downloaded yet (`Speaker.voiceMissing`),
+  which leaves every word without a recording silent,
+  so the audio setting links to the system's speech settings and asks again on every foreground.
 - **A review card and a drill say both their sides, each once, each in the language it is written in.**
   Hearing them paired binds them, and each side is said where the card shows it:
   the prompt as it goes up, the answer once it is out.

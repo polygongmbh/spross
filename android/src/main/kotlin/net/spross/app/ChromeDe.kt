@@ -98,6 +98,7 @@ internal object ChromeDe : Chrome {
     override val settingsAudioHintOff = "Wörter erklingen nur, wenn du sie antippst."
     override val settingsAudioHintRecordings = "Tonaufnahme, wenn verfügbar, sonst die Systemstimme."
     override val settingsAudioHintTts = "Die Systemstimme liest jedes Wort mit Artikel."
+    override val settingsAudioVoiceDownload = "Die Stimme für %s fehlt noch. In den Einstellungen zur Sprachausgabe herunterladen."
     override val settingsRemindersTitle = "Erinnerungen"
     override val settingsRemindersOptionOff = "Aus"
     override val settingsRemindersOptionUsual = "Automatisch"

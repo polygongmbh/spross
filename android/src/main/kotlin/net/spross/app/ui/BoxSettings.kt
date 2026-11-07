@@ -82,6 +82,8 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         }
     }
 
+    // why: read so a return from the speech settings asks the engine again.
+    model.voiceRevision
     val audioSources = model.audioSources(box.joinStamp.target)
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
@@ -125,7 +127,11 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         Panel { LearnerNameSetting(model) }
         // why: nothing can say this language — a row whose every option is silence is not a
         // choice, and the two "on" segments would both promise a sound that cannot be made.
-        if (!audioSources.silent) Panel { ReadAloudSetting(model, box.joinStamp.target) }
+        if (!audioSources.silent) {
+            Panel { ReadAloudSetting(model, box.joinStamp.target, targetName) }
+        } else if (model.pronouncer.voiceMissing(box.joinStamp.target)) {
+            Panel { VoiceDownloadLink(chrome, targetName) }
+        }
         Panel { ReminderSetting(model) }
         Panel {
             BackupSetting(model, catalog, box.joinStamp.target)

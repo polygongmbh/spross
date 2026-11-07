@@ -6238,6 +6238,23 @@
         }
       }
     },
+    "settings.audio.voiceDownload %@" : {
+      "comment" : "Android: the learned language's voice is not downloaded in the speech engine; tapping opens the system text-to-speech settings. %@ is the language name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Stimme für %@ fehlt noch. In den Einstellungen zur Sprachausgabe herunterladen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The %@ voice isn't downloaded yet. Download it in speech settings."
+          }
+        }
+      }
+    },
     "settings.audio.voiceUpgrade %@" : {
       "localizations" : {
         "de" : {

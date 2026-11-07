@@ -100,6 +100,7 @@ internal object ChromeEn : Chrome {
     override val settingsAudioHintOff = "Words play only when you tap them."
     override val settingsAudioHintRecordings = "Plays a recording if there is one, else the system voice."
     override val settingsAudioHintTts = "The system voice reads every word with its article."
+    override val settingsAudioVoiceDownload = "The %s voice isn't downloaded yet. Download it in speech settings."
     override val settingsRemindersTitle = "Reminders"
     override val settingsRemindersOptionOff = "Off"
     override val settingsRemindersOptionUsual = "Automatic"

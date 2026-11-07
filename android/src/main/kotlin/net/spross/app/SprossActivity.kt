@@ -155,6 +155,7 @@ class SprossActivity : ComponentActivity() {
         // why: whether either side of a turn can be spoken decides the listening card;
         // two lookups and two probes, cheap enough to ride every return.
         model.refreshListening()
+        model.refreshVoices()
         model.replanReminders()
         // why: the letter drill's own question is a catalog walk, so only the page that
         // reads it pays for it — and only while that page is the one on screen.

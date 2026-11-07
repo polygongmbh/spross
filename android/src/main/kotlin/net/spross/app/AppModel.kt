@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
@@ -86,6 +87,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var listeningOffered by mutableStateOf(false)
         private set
+
+    /**
+     * Bumped on every foreground: a voice downloaded in the system settings arrives while
+     * the app sleeps and the engine announces nothing, so a surface asking about voices
+     * reads this to be asked again.
+     */
+    var voiceRevision by mutableIntStateOf(0)
+        private set
+
+    fun refreshVoices() {
+        voiceRevision++
+    }
 
     /**
      * The free-practice standing. Its store is kern-keyed SharedPreferences — a drill
