@@ -58,7 +58,8 @@ struct SettingsAudioRow: View {
     private var audioHintKey: LocalizedStringKey {
         switch audioPreferenceBinding.wrappedValue {
         case .off: return "settings.audio.hint.off"
-        case .recordings: return "settings.audio.hint.recordings"
+        case .recordings:
+            return audioSources.hasVoice ? "settings.audio.hint.recordings" : "settings.audio.hint.recordingsOnly"
         case .speech: return "settings.audio.hint.tts"
         }
     }

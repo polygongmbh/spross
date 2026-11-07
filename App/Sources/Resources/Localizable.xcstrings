@@ -6157,6 +6157,23 @@
         }
       }
     },
+    "settings.audio.hint.recordingsOnly" : {
+      "comment" : "read-aloud hint for Recordings where this device has no voice for the language, so nothing falls back",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Wörter mit Tonaufnahme werden vorgelesen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only words with a recording are read aloud."
+          }
+        }
+      }
+    },
     "settings.audio.hint.tts" : {
       "localizations" : {
         "de" : {

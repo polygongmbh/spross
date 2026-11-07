@@ -65,7 +65,8 @@ internal fun ReadAloudSetting(model: AppModel, target: Language, targetName: Str
         SettingHint(
             when (preference) {
                 AudioPreference.Off -> chrome.settingsAudioHintOff
-                AudioPreference.Recordings -> chrome.settingsAudioHintRecordings
+                AudioPreference.Recordings ->
+                    if (sources.hasVoice) chrome.settingsAudioHintRecordings else chrome.settingsAudioHintRecordingsOnly
                 AudioPreference.Speech -> chrome.settingsAudioHintTts
             }
         )
