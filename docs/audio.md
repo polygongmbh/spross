@@ -95,7 +95,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 - **The audio setting's choice is stored; the top-bar switch holds for the launch.**
   "No audio" stays until another option is picked, one choice for the device (not per language, not in the box).
   The top-bar switch mutes or unmutes autoplay until the app restarts,
-  and the next launch starts at the stored choice again, on both phones.
+  and the next launch starts at the stored choice again, on both phones;
+  the settings show the stored choice alone.
   Its icon names what autoplay does now:
   a bell where the silent switch decides (iOS's own sign for it),
   a speaker where it plays past the switch, a slashed speaker where the app is muted.

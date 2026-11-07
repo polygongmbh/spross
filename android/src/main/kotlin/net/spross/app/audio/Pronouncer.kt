@@ -60,6 +60,10 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private var mutedState by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
 
+    /** The audio setting's stored "No audio", which the settings render; the top bar never changes it. */
+    var savedMuted by mutableStateOf(prefs.getBoolean(AUDIO_OFF, false))
+        private set
+
     /** The word sounding right now, for a speaker that pulses while it does; null in silence. */
     var sounding: Pronunciation? by mutableStateOf(null)
         private set
@@ -87,9 +91,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         prefs.edit().putString(keyFor(lang), value.storedValue).apply()
     }
 
-    /** The audio setting's option for [lang]: kern reads the mute and the stored source over [sources]. */
+    /** The audio setting's option for [lang]: kern reads the stored mute and source over [sources]. */
     fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference =
-        sources.preference(muted, voiceSource(lang) == VoiceSource.TTS)
+        sources.preference(savedMuted, voiceSource(lang) == VoiceSource.TTS)
 
     /**
      * Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it.
@@ -100,6 +104,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
         }
         prefs.edit().putBoolean(AUDIO_OFF, preference.mutes).apply()
+        savedMuted = preference.mutes
         muted = preference.mutes
     }
 

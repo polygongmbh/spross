@@ -24,7 +24,7 @@ import net.spross.kern.catalog.preferenceOptions
 import net.spross.kern.model.Language
 
 /**
- * The stored mute the session's top bar switches over for a launch, and a standing
+ * The stored mute, never the top bar's mute for the launch, and a standing
  * home for the disclosure that a tap on a word speaks it even while this is off. The
  * three-way preference names the voice source too, so the picker alone decides both:
  * there is no state where a source is chosen but the app is silent.
@@ -77,7 +77,7 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
         Row(
             modifier = Modifier.fillMaxWidth().toggleable(
                 value = model.pronouncer.saysMeaning,
-                enabled = !model.pronouncer.muted,
+                enabled = !model.pronouncer.savedMuted,
                 role = Role.Switch,
                 onValueChange = { model.pronouncer.saysMeaning = it },
             ),
@@ -91,7 +91,7 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
             Switch(
                 checked = model.pronouncer.saysMeaning,
                 onCheckedChange = null,
-                enabled = !model.pronouncer.muted,
+                enabled = !model.pronouncer.savedMuted,
             )
         }
         SettingHint(chrome.settingsAudioSaysMeaningHint)

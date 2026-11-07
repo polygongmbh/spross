@@ -19,10 +19,9 @@ final class Pronouncer {
     /// Where a fire came from — kern's, with the rule on what holds each back.
     typealias Trigger = PronounceTrigger
 
-    /// Whether reading aloud is switched off in the app: what the top bar's switch and the
-    /// audio setting's "No audio" render. A phone silenced by its own switch is not this,
-    /// and cannot be read at all.
-    /// Starts each launch at the audio setting's stored choice; the top bar changes it for this launch only.
+    /// Whether reading aloud is switched off in the app now: what the top bar's switch renders.
+    /// A phone silenced by its own switch is not this, and cannot be read at all.
+    /// Starts each launch at `savedMuted`; the top bar changes it for this launch only.
     private(set) var muted: Bool =
         UserDefaults.standard.bool(forKey: "audio.off") || ReadAloud.mutedByLaunchArgument {
         didSet {
@@ -32,6 +31,9 @@ final class Pronouncer {
             if muted { stop() }
         }
     }
+
+    /// The audio setting's stored "No audio", which the settings render; the top bar never changes it.
+    private(set) var savedMuted: Bool = UserDefaults.standard.bool(forKey: "audio.off")
 
     /// Whether autoplay plays through the silent switch, for a phone kept on silent so calls do not ring.
     /// One stored device-wide choice, off until turned on.
@@ -93,6 +95,7 @@ final class Pronouncer {
     /// The audio setting's choice between "No audio" and a source: stored, so it outlasts the launch.
     func storeMuted(_ muted: Bool) {
         UserDefaults.standard.set(muted, forKey: "audio.off")
+        savedMuted = muted
         self.muted = muted
     }
 

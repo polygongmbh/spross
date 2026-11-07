@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// The read-aloud row: the stored choice the session's top bar mutes over for a launch,
+/// The read-aloud row: the stored choice, never the top bar's mute for the launch,
 /// whether autoplay plays in silent mode, and the place the tap-to-replay gesture is disclosed — the
 /// card itself grows no affordance for it, so the hint line is where it is
 /// named. It is also the standing home of the voice-download pointer, which
@@ -35,7 +35,7 @@ struct SettingsAudioRow: View {
                 get: { Pronouncer.shared.saysMeaning },
                 set: { Pronouncer.shared.saysMeaning = $0 }))
                 .font(Theme.typography.subheadline)
-                .disabled(Pronouncer.shared.muted)
+                .disabled(Pronouncer.shared.savedMuted)
             Text("settings.audio.saysMeaning.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
@@ -43,7 +43,7 @@ struct SettingsAudioRow: View {
                 get: { Pronouncer.shared.readsInSilentMode },
                 set: { Pronouncer.shared.readsInSilentMode = $0 }))
                 .font(Theme.typography.subheadline)
-                .disabled(Pronouncer.shared.muted)
+                .disabled(Pronouncer.shared.savedMuted)
             Text("settings.audio.readsInSilentMode.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
@@ -93,7 +93,7 @@ struct SettingsAudioRow: View {
             get: {
                 let prefersSpeech = model.targetLanguage
                     .map { Pronouncer.shared.voiceSource(for: $0) == .tts } ?? false
-                return audioSources.preference(muted: Pronouncer.shared.muted,
+                return audioSources.preference(muted: Pronouncer.shared.savedMuted,
                                                prefersSpeech: prefersSpeech)
             },
             set: { preference in
