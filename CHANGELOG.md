@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+- Listening has a small flag for the word on air: one tap marks the pronunciation you just heard as questionable, or opens the full report form.
+
 ## 9.2.0 — 2026-11-01
 
 - Reviews of a word you know now take turns showing it, playing it aloud and asking for it from your own language.

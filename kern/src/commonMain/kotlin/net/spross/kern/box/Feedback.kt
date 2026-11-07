@@ -1,6 +1,7 @@
 package net.spross.kern.box
 
 import kotlin.time.Instant
+import net.spross.kern.model.Language
 
 /**
  * A content problem the learner filed against one card: a translation that is wrong,
@@ -89,6 +90,22 @@ object Feedback {
         }
         return sections.joinToString("\n\n")
     }
+
+    /** Between two notes in one report's comment, which reads on one line of the export. */
+    const val NOTE_SEPARATOR: String = "; "
+
+    /**
+     * The note a one-tap recording report files ([BoxEngine.flagRecording]): the language,
+     * the form heard, and the file that said it, or that a voice read it where none did,
+     * so the maintainer can find the very take without asking.
+     */
+    fun recordingNote(lang: Language, form: String, recordingPath: String?): String =
+        "recording questionable: $lang \"$form\" (${recordingPath ?: "synthesized voice"})"
+
+    /** Whether [cardId]'s report on file already carries this [recordingNote]. */
+    fun recordingFlagged(state: BoxState, cardId: String, lang: Language, form: String, recordingPath: String?): Boolean =
+        state.reportedIssues[cardId]?.comment?.split(NOTE_SEPARATOR)
+            ?.contains(recordingNote(lang, form, recordingPath)) == true
 
     /** Whether a report built with the same filters would carry anything at all. */
     fun hasAnything(state: BoxState, since: Instant?, scope: FeedbackScope): Boolean =

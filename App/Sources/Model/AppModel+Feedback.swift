@@ -25,6 +25,24 @@ extension AppModel {
         }
     }
 
+    /// File one recording (or voice reading) as questionable, in one tap: kern adds
+    /// its note to whatever the card's report already says (`BoxEngine.flagRecording`).
+    func flagRecording(_ heard: ListeningHeard) {
+        mutate {
+            $0 = BoxEngine.shared.flagRecording(
+                state: $0, cardId: heard.cardID, lang: heard.lang, form: heard.form,
+                recordingPath: heard.recordingPath, nowEpochMillis: Date().epochMillis
+            )
+        }
+    }
+
+    /// Whether that recording is already on file (`Feedback.recordingFlagged`).
+    func recordingFlagged(_ heard: ListeningHeard) -> Bool {
+        guard let box else { return false }
+        return Feedback.shared.recordingFlagged(state: box, cardId: heard.cardID, lang: heard.lang,
+                                                form: heard.form, recordingPath: heard.recordingPath)
+    }
+
     /// The answer a report on this card travels with: what was typed, else what the report
     /// on file already rode in with (`Feedback.carriedInput`).
     func carriedReportInput(cardID: String, typed: String) -> String {

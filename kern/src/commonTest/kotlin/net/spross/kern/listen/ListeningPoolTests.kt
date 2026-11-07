@@ -5,6 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
+import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.AudioFixture
 import net.spross.kern.catalog.Catalog
@@ -12,6 +13,7 @@ import net.spross.kern.catalog.Fixture
 import net.spross.kern.catalog.MapCatalogSource
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 
 /**
@@ -50,6 +52,22 @@ class ListeningPoolTests {
             )
         }
         return state
+    }
+
+    /**
+     * RULE: a report leaves a dealt run standing; an answer does not.
+     * WHY: flagging a word mid-run changes nothing the pool reads, and a run reopened a
+     * moment later should carry on rather than deal again.
+     */
+    @Test
+    fun aReportKeepsTheDealAndAnAnswerDoesNot() {
+        val dealt = box(total = 20, scheduled = 5)
+
+        val reported = BoxEngine.reportIssue(dealt, "w03", "sounds off", null, Box.day1)
+        val answered = BoxEngine.answer(dealt, "w03", Rating.Good, Box.day1)
+
+        assertTrue(ListeningPool.dealsAlike(dealt, reported))
+        assertFalse(ListeningPool.dealsAlike(dealt, answered))
     }
 
     /**

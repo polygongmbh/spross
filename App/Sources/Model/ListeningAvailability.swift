@@ -11,9 +11,10 @@ import SprossKern
 /// suspended, and how the whole sayable join becomes the pool are all kern's
 /// (`ListeningPool`).
 ///
-/// Deliberately NOT cached, and asked ONCE PER RUN: a voice may be installed in
-/// Settings while the app sleeps, so the sweep reads the voice table as it finds
-/// it when a run opens rather than deciding anything at launch.
+/// Taken ONCE PER OPEN: a voice may be installed in Settings while the app
+/// sleeps, so the voice table is read as it stands when a run opens. It is also
+/// the key a closed run is kept on (`AppModel.keptListening`): the same box and
+/// the same voices are what lets a run be taken up again rather than dealt anew.
 ///
 /// Home does not ask this at all. Its card stands on the box holding words, and
 /// nothing more: every catalog language but `en` ships several hundred
@@ -21,34 +22,45 @@ import SprossKern
 /// nothing sayable in it does not occur, and walking the whole join to prove
 /// that again on every glance at Home would be a catalog question no screen
 /// should pay for.
-@MainActor
-struct ListeningAvailability {
+struct ListeningAvailability: Sendable {
+    let catalog: Catalog
+    let box: BoxState
+    let source: String
+    let target: String
+    let hasTargetVoice: Bool
+    let hasSourceVoice: Bool
 
-    /// Everything a run draws from — handed to `ListeningRun.idle` whole.
-    let report: ListeningPool.Report
-
-    init(model: AppModel) {
-        report = Self.built(model: model)
+    /// Nil for a profile with no catalog, no box or no target language, which
+    /// can play nothing.
+    @MainActor
+    init?(model: AppModel) {
+        guard let catalog = model.catalog, let box = model.box, let target = model.targetLanguage
+        else { return nil }
+        self.catalog = catalog
+        self.box = box
+        source = model.sourceLanguage
+        self.target = target
+        hasTargetVoice = Pronouncer.shared.canSpeak(language: target)
+        hasSourceVoice = Pronouncer.shared.canSpeak(language: source)
     }
 
-    var candidates: [ListeningCandidate] { report.candidates }
+    /// Whether a run dealt from `other` still stands for this one: nothing of
+    /// the box the pool reads has moved (`ListeningPool.dealsAlike`), and the
+    /// same voices.
+    func deals(like other: ListeningAvailability) -> Bool {
+        ListeningPool.shared.dealsAlike(dealt: other.box, now: box)
+            && hasTargetVoice == other.hasTargetVoice && hasSourceVoice == other.hasSourceVoice
+    }
 
-    /// The playlist itself, dealt for ONE run: the walk of the whole join with
-    /// two catalog lookups per card, which is why it waits for a run to be
-    /// opened rather than running on the way past the card.
-    ///
-    /// A profile with no catalog, no box or no target language can play
-    /// nothing; kern's own empty report says so without a second predicate on
-    /// this side.
-    private static func built(model: AppModel) -> ListeningPool.Report {
-        guard let catalog = model.catalog, let box = model.box, let target = model.targetLanguage
-        else { return .init(candidates: []) }
-        let source = model.sourceLanguage
-        return ListeningPool.shared.report(
-            catalog: catalog, box: box, source: source, target: target,
-            hasTargetVoice: Pronouncer.shared.canSpeak(language: target),
-            hasSourceVoice: Pronouncer.shared.canSpeak(language: source),
-            seed: Date().epochMillis
-        )
+    /// The playlist itself, dealt for ONE run, away from the main thread: the
+    /// walk of the whole join with two catalog lookups per card.
+    func deal() async -> ListeningPool.Report {
+        let seed = Date().epochMillis
+        return await Task.detached(priority: .userInitiated) { [self] in
+            ListeningPool.shared.report(
+                catalog: catalog, box: box, source: source, target: target,
+                hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice, seed: seed
+            )
+        }.value
     }
 }

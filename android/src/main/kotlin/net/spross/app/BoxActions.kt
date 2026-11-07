@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.app.listen.ListeningHeard
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.box.CatalogMatch
@@ -30,6 +31,17 @@ fun AppModel.reportedIssue(cardId: String): ReportedIssue? = box?.reportedIssues
  */
 fun AppModel.reportIssue(cardId: String, comment: String?, learnerInput: String?) {
     updateBox { BoxEngine.reportIssue(it, cardId, comment, learnerInput, now()) }
+}
+
+/** One recording (or voice reading) filed as questionable in one tap; see `BoxEngine.flagRecording`. */
+fun AppModel.flagRecording(heard: ListeningHeard) {
+    updateBox { BoxEngine.flagRecording(it, heard.cardId, heard.lang, heard.form, heard.recordingPath, now()) }
+}
+
+/** Whether that recording is already on file (`Feedback.recordingFlagged`). */
+fun AppModel.recordingFlagged(heard: ListeningHeard): Boolean {
+    val state = box ?: return false
+    return Feedback.recordingFlagged(state, heard.cardId, heard.lang, heard.form, heard.recordingPath)
 }
 
 /**

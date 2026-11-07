@@ -10,7 +10,7 @@ import net.spross.kern.model.fnv1a64
  * they queued last is the freshest ask, ahead of an older one still waiting in the queue.
  */
 private val queuedOrder: Comparator<ListeningCandidate> =
-    compareBy({ it.queuedRank }, { it.card.id })
+    compareBy({ it.queuedRank })
 
 /**
  * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
@@ -20,8 +20,8 @@ private val queuedOrder: Comparator<ListeningCandidate> =
  * order each time, without kern reading a clock of its own — kern only ever sees the number,
  * never where it came from.
  */
-private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
-    compareBy({ fnv1a64("$seed:${fnv1a64(it.card.id)}") }, { it.card.id })
+private fun hashedOrder(members: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> =
+    members.sortedOnce({ fnv1a64("$seed:${fnv1a64(it.card.id)}") })
 
 /**
  * How many of the catalog's earliest concepts still count as "just starting out" — greetings,
@@ -52,11 +52,22 @@ private const val LISTENING_DEPTH_HALVING = 250.0
  * Past them the shuffle is weighted ([arrival]): earlier words tend to come first,
  * and any word may still lead, differently for every [seed].
  */
-private fun newWordOrder(seed: Long): Comparator<ListeningCandidate> = compareBy(
-    { it.card.seedIndex >= LISTENING_BASICS_WORDS },
-    { arrival(it, seed) },
-    { it.card.id },
-)
+private fun newWordOrder(members: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> {
+    val (basics, rest) = members.partition { it.card.seedIndex < LISTENING_BASICS_WORDS }
+    return basics.sortedOnce({ arrival(it, seed) }) +
+        rest.sortedOnce({ arrival(it, seed) })
+}
+
+/**
+ * Sorted by [key], then card id, with each key worked out ONCE per member:
+ * a key is a hash over a built string, and a comparator would build it again on every comparison.
+ */
+private fun <K : Comparable<K>> List<ListeningCandidate>.sortedOnce(
+    key: (ListeningCandidate) -> K,
+): List<ListeningCandidate> =
+    map { it to key(it) }
+        .sortedWith(compareBy<Pair<ListeningCandidate, K>> { it.second }.thenBy { it.first.card.id })
+        .map { it.first }
 
 /**
  * When a word arrives in the plain new lane. A basic's arrival is its salted hash as a
@@ -127,9 +138,9 @@ fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<Liste
     val (scheduled, unseen) = candidates.partition { it.scheduled }
     val ladder = scheduled.groupBy { listeningPriority(it.arrived, it.suspended) }
         .entries.sortedByDescending { it.key }
-        .map { (priority, members) -> Lane(members.sortedWith(hashedOrder(seed)), priority, cycles = true) }
+        .map { (priority, members) -> Lane(hashedOrder(members, seed), priority, cycles = true) }
     val (queued, plain) = unseen.partition { it.queued }
-    val unseenLane = Lane(queued.sortedWith(queuedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
+    val unseenLane = Lane(queued.sortedWith(queuedOrder) + newWordOrder(plain, seed), priority = 0, cycles = false)
     val lanes = ladder + unseenLane
 
     fun step(lane: Lane): Double {

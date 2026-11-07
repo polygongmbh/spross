@@ -43,6 +43,9 @@ sealed class ListeningIntent {
      */
     data object Back : ListeningIntent()
 
+    /** Take a closed run up again on the turn it closed on, from its first beat (`ListeningRun.resumes`). */
+    data object Resume : ListeningIntent()
+
     data object TogglePause : ListeningIntent()
     data object Close : ListeningIntent()
 }
@@ -108,9 +111,18 @@ object ListeningRun {
         paused = false, active = false, played = 0, rewound = false,
     )
 
+    /**
+     * Whether reopening listening takes [closed] up again rather than dealing afresh:
+     * it has a turn to return to and has played fewer than [LISTENING_RESUME_TURNS].
+     * Whether it was dealt from the box and voices standing now is the platform's to check.
+     */
+    fun resumes(closed: ListeningRunState): Boolean =
+        !closed.active && closed.turn != null && closed.played < LISTENING_RESUME_TURNS
+
     fun reduce(state: ListeningRunState, intent: ListeningIntent): ListeningReduction =
         when (intent) {
             ListeningIntent.Start -> start(state)
+            ListeningIntent.Resume -> resume(state)
             ListeningIntent.Advance -> advance(state)
             ListeningIntent.Skip -> skip(state)
             ListeningIntent.Back -> back(state)
@@ -122,6 +134,15 @@ object ListeningRun {
     private fun start(state: ListeningRunState): ListeningReduction {
         val opened = idle(state.candidates).copy(active = true)
         return played(draw(opened))
+    }
+
+    /**
+     * The turn it closed on plays again whole: a close usually cuts a word off, and the run
+     * keeps its place, its count and its deal.
+     */
+    private fun resume(state: ListeningRunState): ListeningReduction {
+        if (!resumes(state)) return unchanged(state)
+        return played(state.copy(active = true, paused = false, rewound = false))
     }
 
     /**

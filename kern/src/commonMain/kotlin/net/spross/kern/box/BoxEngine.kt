@@ -3,6 +3,7 @@ package net.spross.kern.box
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.JoinStamp
+import net.spross.kern.model.Language
 import net.spross.kern.model.Rating
 import net.spross.kern.store.SaveScope
 import net.spross.kern.store.StoredBox
@@ -86,6 +87,16 @@ object BoxEngine {
         learnerInput: String?,
         nowEpochMillis: Long,
     ): BoxState = LearnerContent.report(state, cardId, comment, learnerInput, nowEpochMillis)
+
+    /** File that one recording of a card sounds off, in one tap; see [LearnerContent.flagRecording]. */
+    fun flagRecording(
+        state: BoxState,
+        cardId: String,
+        lang: Language,
+        form: String,
+        recordingPath: String?,
+        nowEpochMillis: Long,
+    ): BoxState = LearnerContent.flagRecording(state, cardId, lang, form, recordingPath, nowEpochMillis)
 
     /** Withdraw a report; no-op when the card carries none. */
     fun dismissReportedIssue(state: BoxState, cardId: String): BoxState =

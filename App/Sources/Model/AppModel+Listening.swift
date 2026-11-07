@@ -40,8 +40,15 @@ final class ListeningDriver {
     /// SOUND rather than a timer of its own, so what is read and what is heard
     /// arrive together.
     private(set) var revealed = false
+    /// The saying last put in the air — what a one-tap recording report names.
+    private(set) var heard: ListeningHeard?
 
     private let model: AppModel
+    /// What this run is dealt from — nil before `open` and for a profile that
+    /// can play nothing.
+    private var source: ListeningAvailability?
+    /// The deal on its way in from a background task.
+    private var dealing: Task<Void, Never>?
     private var generation = 0
     /// The gap between two beats — canceled whenever the generation turns.
     private var pending: Task<Void, Never>?
@@ -51,7 +58,7 @@ final class ListeningDriver {
 
     init(model: AppModel) {
         self.model = model
-        state = ListeningRun.shared.idle(candidates: ListeningAvailability(model: model).candidates)
+        state = ListeningRun.shared.idle(candidates: [])
     }
 
     // MARK: - The run
@@ -66,7 +73,25 @@ final class ListeningDriver {
         ))
         watchInterruptions()
         pausedByInterruption = false
-        dispatch(ListeningIntent.Start.shared)
+        source = ListeningAvailability(model: model)
+        if let source, let kept = model.keptListening, kept.from.deals(like: source),
+           ListeningRun.shared.resumes(closed: kept.run) {
+            state = kept.run
+            dispatch(ListeningIntent.Resume.shared)
+            return
+        }
+        guard let source else {
+            dispatch(ListeningIntent.Start.shared)
+            return
+        }
+        // why: the deal walks the whole join, so it runs off the main thread and
+        // the screen is up while it does; a close before it lands drops it.
+        dealing = Task { [weak self] in
+            let report = await source.deal()
+            guard let self, !Task.isCancelled else { return }
+            state = ListeningRun.shared.idle(candidates: report.candidates)
+            dispatch(ListeningIntent.Start.shared)
+        }
     }
 
     /// A phone call, a Siri turn, an alarm: the system takes the session, every
@@ -108,7 +133,10 @@ final class ListeningDriver {
     /// Hands everything back: the run, the sound, the lock screen and the audio
     /// session — in that order, so nothing fires into a session already gone.
     func close() {
+        dealing?.cancel()
+        dealing = nil
         dispatch(ListeningIntent.Close.shared)
+        if let source, state.turn != nil { model.keptListening = (state, source) }
         bedtime.stop()
         if let interruption {
             NotificationCenter.default.removeObserver(interruption)
@@ -123,6 +151,12 @@ final class ListeningDriver {
         pausedByInterruption = false
         dispatch(ListeningIntent.TogglePause.shared)
     }
+    /// Files the saying last heard as questionable, without a word typed.
+    func flagHeard() {
+        guard let heard else { return }
+        model.flagRecording(heard)
+    }
+
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func back() { dispatch(ListeningIntent.Back.shared) }
 
@@ -234,8 +268,12 @@ final class ListeningDriver {
             next()
         }
         let lang = saying.inTarget ? (model.targetLanguage ?? "") : model.sourceLanguage
-        guard let pronunciation = model.formPronunciation(saying.form, lang: lang,
-                                                          article: saying.article) else {
+        let found = model.formPronunciation(saying.form, lang: lang, article: saying.article)
+        if let cardID = state.turn?.cardId {
+            heard = ListeningHeard(cardID: cardID, form: saying.form, lang: lang,
+                                   recordingPath: found?.recordingPath)
+        }
+        guard let pronunciation = found else {
             once.fire()
             return
         }
@@ -269,6 +307,15 @@ final class ListeningDriver {
         pending = nil
         Pronouncer.shared.stop()
     }
+}
+
+/// One saying as a recording report names it: the card, the form, its language,
+/// and the file that said it, nil where a voice read it.
+struct ListeningHeard: Equatable {
+    let cardID: String
+    let form: String
+    let lang: String
+    let recordingPath: String?
 }
 
 /// A callback that answers at most once, however many ways it is asked — the

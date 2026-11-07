@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,6 +24,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -34,6 +39,9 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeListening
+import net.spross.app.recordingFlagged
+import net.spross.app.reportedIssue
+import net.spross.kern.box.Feedback
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.question
 
@@ -44,7 +52,7 @@ import net.spross.kern.listen.question
  * hold back — and the meaning arrives with its reading, which is the one moment of the turn
  * where the word and what it means meet. The picture comes with it for the same reason.
  *
- * FOUR controls and no fifth. There is no mute button: entering a surface whose only content
+ * Four controls and the report flag beside the timer, and no more. There is no mute button: entering a surface whose only content
  * is a sound is itself the request to hear one (`docs/audio.md`), so neither mute
  * reaches this screen and a switch would only offer to break it. There is no end screen and
  * no progress either — a run the learner ends when they like has nothing to celebrate, and
@@ -75,6 +83,7 @@ fun ListeningScreen(model: AppModel) {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f),
             )
+            run.turn?.let { ReportFlag(model, it) }
             SleepTimerChip(model)
         }
         Box(Modifier.padding(horizontal = Theme.spacing.lg)) { VolumeHint(model, active = true) }
@@ -123,6 +132,73 @@ private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {
         modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.commonClose },
     ) {
         Icon(SprossIcons.ArrowLeft, contentDescription = null, tint = Theme.colors.textSecondary)
+    }
+}
+
+/**
+ * One small flag beside the timer, and behind it the two things a learner may want to say
+ * about the word on air: that what they just HEARD sounds off, in one tap and nothing typed,
+ * and the review's own report form for anything else. One button rather than two, because
+ * both are about the same word and neither is a control the run needs at a glance.
+ * The flag fills once the word carries a report.
+ *
+ * The form needs reading and maybe typing, which a word talking over it gets in the way of:
+ * the run waits while it is up, and plays on when it closes.
+ */
+@Composable
+private fun ReportFlag(model: AppModel, turn: ListeningTurn) {
+    if (!Feedback.isReportable(turn.cardId)) return
+    val card = model.box?.cards?.get(turn.cardId) ?: return
+    val chrome = model.chrome
+    val run = model.listening
+    var open by remember(turn.cardId) { mutableStateOf(false) }
+    var pausedForReport by remember { mutableStateOf(false) }
+    val onFile = model.reportedIssue(turn.cardId) != null
+    Box {
+        IconButton(
+            onClick = { open = true },
+            modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.listenReport },
+        ) {
+            Icon(
+                if (onFile) SprossIcons.FlagFilled else SprossIcons.Flag,
+                contentDescription = null,
+                tint = if (onFile) MaterialTheme.colorScheme.primary else Theme.colors.textSecondary,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+        CardMenu(
+            model = model,
+            card = card,
+            expanded = open,
+            learnerInput = "",
+            onDismiss = { open = false },
+            before = { close ->
+                val heard = run.heard?.takeIf { it.cardId == turn.cardId }
+                if (heard != null) {
+                    if (model.recordingFlagged(heard)) {
+                        DropdownMenuItem(
+                            text = { Text(chrome.listenFlaggedAudio.format(heard.form)) },
+                            onClick = {},
+                            enabled = false,
+                        )
+                    } else {
+                        MenuAction(chrome.listenFlagAudio.format(heard.form)) {
+                            close()
+                            run.flagHeard()
+                        }
+                    }
+                }
+            },
+            onReporting = { reporting ->
+                if (reporting && !run.paused) {
+                    pausedForReport = true
+                    run.togglePause()
+                } else if (!reporting && pausedForReport) {
+                    pausedForReport = false
+                    if (run.paused) run.togglePause()
+                }
+            },
+        )
     }
 }
 

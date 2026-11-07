@@ -62,6 +62,23 @@ class FeedbackTests {
         assertNull(issue.learnerInput)
     }
 
+    /**
+     * RULE: a one-tap recording report joins what the card's report already says, the same
+     * recording once, and keeps the answer it rode in with.
+     * WHY: it is filed mid-run without reading the report on file, and must not wipe a comment
+     * the learner wrote or file one take twice.
+     */
+    @Test
+    fun aFlaggedRecordingJoinsTheReportOnFile() {
+        var state = BoxEngine.reportIssue(box(), "w01", "reads wrong", "t2", Box.day1)
+        repeat(2) { state = BoxEngine.flagRecording(state, "w01", "sw", "t1", "audio/sw/t1.mp3", Box.day1) }
+
+        val issue = state.reportedIssues.getValue("w01")
+        val note = Feedback.recordingNote("sw", "t1", "audio/sw/t1.mp3")
+        assertEquals(listOf("reads wrong", note), issue.comment?.split(Feedback.NOTE_SEPARATOR))
+        assertEquals("t2", issue.learnerInput)
+    }
+
     @Test
     fun filingAgainReplacesTheEarlierReport() {
         var state = BoxEngine.reportIssue(box(), "w01", "first", null, Box.day1)

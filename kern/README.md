@@ -383,6 +383,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **Reports** (`ReportedIssue`, `Feedback`, `BoxEngine.reportIssue/dismissReportedIssue`) --
   what the learner says back about the catalog.
   Whatever they had typed is carried along.
+  `BoxEngine.flagRecording` files one heard recording in a tap, as a `Feedback.recordingNote` joined to the report on file.
   Reporting is **independent of `setSuspended`** and neither verb implies the other.
   A report needs no schedule -- reveal comes before the first answer.
   `Feedback` renders the suggestions, the notes and the reports as text --
