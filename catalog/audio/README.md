@@ -42,8 +42,9 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 The fill's own drops are the quality check:
 `poor` (under its language's floor, or heard as bad), `unmeasurable` (clipped), `one-sided` (one channel near silent), `overlong` (speech running past 1.5 s plus 0.15 s a letter of its key: it says more, or the word drowns in its noise), `misnamed`, `unreachable` and `shipped-collision` each name the row and why;
 what a take must pass on its own is the take judge's (`../../scripts/audio_judge.py`).
-Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
-and the floor follows the device voice (`../../scripts/audio_voices.py`):
+Quality is the score: `mos`, a predicted listener score, with `pesq`, a predicted distortion score (`../../scripts/audio_measure.py`),
+each standardized and summed with equal weight on the scale of `mos` (`../../scripts/audio_voices.py`'s `heard_mos`).
+The floor follows the device voice:
 where it is missing (eo, sw) only the clearly bad are refused,
 where it is good a recording has to beat it,
 and `--prune-poor` hands anything shipped that the judge now refuses to it.
@@ -78,8 +79,8 @@ A sweep reconsiders it like a poor take and never swaps one in.
 Where breath strikes the microphone a take pops: a turbulent burst of bass that sounds near as loud as the word,
 where a plosive's normal thump is a smooth pulse under 80 Hz.
 The score does not hear it either, so every decision takes a point off a take's `mos`
-per `audio_voices.POP_DB_PER_MOS` dB the burst sounds over the word;
-the manifest keeps the score as measured.
+per `audio_voices.POP_DB_PER_MOS` dB the burst sounds over the word before it joins `pesq`;
+the manifest keeps both as measured.
 
 Both pickers only print until given `--apply`, and never write a pack:
 a swap is a row in `$W/staged.tsv`, its bytes in `$W/staged/`,

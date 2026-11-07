@@ -47,9 +47,9 @@ class CatalogAudioPlaybackTest {
      * file is a rule that gets suppressed. What a rebuild must not do is quietly undo the
      * sweep that removed the hiss — a whole pack sliding down, or the bad tail growing. Both
      * are visible in the shape and neither goes stale as content grows. Today: medians uk
-     * 2.75 to de 3.08; worst tail under 1.8 es at 3.0%.
+     * 2.79 to de 3.16; worst tail under 1.84 es at 3.0%.
      *
-     * `mos` changes no playback. It is carried purely so this can be asserted.
+     * `mos` and `pesq` change no playback. They are carried purely so this can be asserted.
      */
     @Test
     fun noPackLosesItsRecordingQuality() {
@@ -57,16 +57,26 @@ class CatalogAudioPlaybackTest {
             val measured = (manifest.words.values + manifest.letters.values +
                 manifest.texts.values + manifest.articles.values + manifest.calendar.values +
                 manifest.countries.values)
-                .map { it.mos }.filter { it != 0.0 }
+                .filter { it.mos != 0.0 }.map(::score)
             assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry a mos")
             val median = measured.sorted()[measured.size / 2]
-            assertTrue(median >= 2.6, "audio/$lang: median mos $median has fallen below 2.6")
-            val poor = measured.count { it < 1.8 }
+            assertTrue(median >= 2.61, "audio/$lang: median score $median has fallen below 2.61")
+            val poor = measured.count { it < 1.84 }
             assertTrue(
                 poor * 100 <= measured.size * 5,
-                "audio/$lang: $poor of ${measured.size} entries score under 1.8 — over 5%",
+                "audio/$lang: $poor of ${measured.size} entries score under 1.84 — over 5%",
             )
         }
+    }
+
+    /**
+     * `scripts/audio_voices.py`'s `heard_mos` short of the pops no manifest carries:
+     * `mos` and `pesq` standardized, summed, and put back on the scale of `mos`.
+     */
+    private fun score(take: AudioRecording): Double {
+        if (take.pesq == 0.0) return take.mos
+        val standard = (take.mos - 2.910) / 0.282 + (take.pesq - 3.164) / 0.705
+        return 2.910 + 0.282 * standard / 1.603
     }
 
     /**

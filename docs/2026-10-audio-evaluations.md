@@ -21,6 +21,7 @@ At the 2.8 bar, 19 of 70 bad or mediocre takes passed while 81 of 183 good or gr
 The best fit, `mos` + BAK + the overlong ratio, gained +0.03 to +0.06 AUC with every interval spanning zero, and was not adopted.
 BAK alone caught noise best (AUC 0.90 on noisy notes) but ranked Holunder Gabriel below Jeuwre.
 Echo was untestable: 15 of 17 echo labels were Marreromarco's; clicks had 1–2 labels.
+Still wanted: echoey takes from voices other than Marreromarco, and click labels.
 About 10 clean takes heard as mediocre (en take, wake up, fr maillots de bain, de wie) escaped every feature tried;
 four of them end very abruptly (decay under 0.06 s), too few for a gate.
 The 18 takes where `mos` and BAK disagreed most were set aside for the ear (`data/review/2026-10-25-mos-vs-background/`);
@@ -166,3 +167,7 @@ Re-run with them (470 takes, 95 bad or mediocre), the candidate still holds, the
 - A/B pairs 8 → 10 of 15, within-voice AUC 0.41 → 0.57;
 - fitted before 2026-10-27 and tested on the 113 since, 0.53 → 0.74;
 - with 10% of okay-or-better takes refused, 45% of the bad or mediocre refused against 33% (+0.05…+0.20).
+
+Shipped 2026-11-06: the score is now `mos` less its pops plus `pesq`, put back on the old score's mean and spread (`../scripts/audio_voices.py`).
+The bars keep their shares — the reconsider bar 2.8 → 2.79 of what ships, the floors 1.3 → 1.5 and 1.8 → 1.84 of the rated takes, since what ships was pruned at the old floors —
+and the swap margin stays 0.3; 33 shipped takes fall under the new floors, 30 of them es Marreromarco's.

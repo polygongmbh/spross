@@ -49,8 +49,9 @@ class Measures:
         """A future of the measures of [path]; an unreadable take answers None rather than raising."""
         held = self.known.get(sha)
         if held and 'balance' in held and ('mos' in held or not scored):
-            if 'pop' not in held:
-                return self.pool.submit(audio_judge.measure_pop, path)
+            missing = [name for name in ('pop', 'pesq') if name not in held and (name == 'pop' or scored)]
+            if missing:
+                return self.pool.submit(audio_judge.measure_missing, path, missing)
             done = concurrent.futures.Future()
             done.set_result(held)
             return done
@@ -86,9 +87,9 @@ def wanted_keys(lang, section, catalog):
 
 
 def incumbents(lang, section, catalog):
-    """Every incumbent of one section, each a take dict plus `mos`, `shipped` and `shared`."""
+    """Every incumbent of one section, each a take dict plus `mos`, `pesq`, `shipped` and `shared`."""
     manifest = read_manifest(audio_dir(lang))
-    known = {take['sha256']: take.get('mos') for name, entries in manifest.items()
+    known = {take['sha256']: (take.get('mos'), take.get('pesq')) for name, entries in manifest.items()
              if isinstance(entries, dict) and name != 'authors' and name != 'licenses'
              for item in entries.values() if isinstance(item, dict) and 'sha256' in item for take in takes(item)}
     elsewhere = {take['sha256'] for name, entries in manifest.items() if name not in (section, 'authors', 'licenses')
@@ -96,7 +97,7 @@ def incumbents(lang, section, catalog):
                  for take in takes(item)}
     shipped = manifest.get(section, {})
     out = [dict(lang=lang, section=section, key=key, source=item['source'], author=item['author'],
-                license=item['license'], sha256=item['sha256'], mos=item.get('mos'), shipped=True,
+                license=item['license'], sha256=item['sha256'], mos=item.get('mos'), pesq=item.get('pesq'), shipped=True,
                 path=os.path.join(audio_dir(lang), item['file'])) for key, item in sorted(shipped.items())]
     claimed = {speech_key(key) for key in shipped}
     wanted = wanted_keys(lang, section, catalog)
@@ -109,8 +110,9 @@ def incumbents(lang, section, catalog):
             continue
         claimed.add(key)
         sha = digest_of(path)
+        mos, pesq = known.get(sha, (None, None))
         out.append(dict(lang=lang, section=section, key=row['text'], source=row['file'], author=row['author'],
-                        license=row['license'], sha256=sha, mos=known.get(sha), shipped=False, path=path))
+                        license=row['license'], sha256=sha, mos=mos, pesq=pesq, shipped=False, path=path))
     for take in out:
         take['shared'] = take['sha256'] in elsewhere
     return out

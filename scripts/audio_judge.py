@@ -2,7 +2,7 @@
 
 A take is a dict `lang section key source author license path` (plus `sha256` where known):
 the Commons file it came from, who is credited under what, and its bytes on disk.
-`judge` answers with the take's `mos`, less what its breath pops cost (`heard_mos`), and three findings,
+`judge` answers with the take's score — its `mos` less what its breath pops cost, with its `pesq` (`heard_mos`) — and three findings,
 and each caller's policy is one line over them —
 a fill and a ship take what is not `refused`, a prune removes what is.
 
@@ -72,6 +72,18 @@ def measure_pop(path, span=None):
     return dict(pop=None if pop is None else round(pop, 1))
 
 
+def measure_pesq(path):
+    """`{'pesq': score}` of `audio_measure.pesq`, for a take cached before it read PESQ."""
+    pesq = audio_measure.pesq(audio_index.FFMPEG, path)
+    return dict(pesq=None if pesq is None else round(pesq, 2))
+
+
+def measure_missing(path, names):
+    """[measure]'s `pop` and `pesq`, those of them [names] lists, for a take cached without them."""
+    measures = {'pop': measure_pop, 'pesq': measure_pesq}
+    return {name: value for wanted in names for name, value in measures[wanted](path).items()}
+
+
 def judge(take, index=False, measured=None):
     """`Judged` for [take]; [index] is its playback index where already measured
     (None for a take that decodes to silence), [measured] its [measure] where that is known instead,
@@ -79,18 +91,19 @@ def judge(take, index=False, measured=None):
     lang, author, path = take['lang'], take['author'], take['path']
     digest = take.get('sha256') or digest_of(path)
     if measured is not None:
-        index = None if measured.get('silent') else {'mos': measured.get('mos', take.get('mos'))}
+        index = None if measured.get('silent') else {'mos': measured.get('mos', take.get('mos')),
+                                                      'pesq': measured.get('pesq', take.get('pesq'))}
     elif index is False:
         index = audio_index.analyze([path])[path]
     pop = (measured if measured is not None and 'pop' in measured else measure_pop(path))['pop']
-    mos = heard_mos(index.get('mos'), pop) if index else None
+    mos = heard_mos(index.get('mos'), pop, index.get('pesq')) if index else None
     refused = source_refusal(take)
     if not refused and index is None:
         refused = 'silent', 'decodes to silence'
     if not refused and is_rejected(digest, lang, author):
         refused = 'poor', 'heard as bad'
     if not refused and mos is not None and mos < mos_floor(lang):
-        refused = 'poor', 'mos %.2f%s, floor is %.2f' % (
+        refused = 'poor', 'score %.2f%s, floor is %.2f' % (
             mos, ' with its pops (+%.1f dB)' % pop if pop and pop > 0 else '', mos_floor(lang))
     if not refused:
         balance = (measured or {}).get('balance')

@@ -1,6 +1,6 @@
 """How high the bar is per language, and where a listener's ear overrules the score.
 
-The quality score (`audio_measure.mos`) ranks voices the way the ear does, but single files
+The quality score (`heard_mos`: DNSMOS `mos` less its pops, with SQUIM's `pesq`) ranks voices the way the ear does, but single files
 stray from their voice by a few tenths, so it only refuses the clearly bad; picking the best
 of several takes is where it does its work. Where a listener has heard a file, their verdict
 (`../docs/audio-verdicts.tsv`, by sha256) decides instead.
@@ -15,25 +15,29 @@ VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs'
 # speaks, so a recording has to beat that voice rather than silence.
 WELL_VOICED = frozenset({"de", "en", "es", "fr", "it", "uk"})
 
-# The lowest `mos` a recording may ship at. Where the device voice is missing (eo, sw) the
-# bar only refuses the clearly bad: under 1.4 a listener heard only bad takes (it Francyskus).
-# Where it is good, a recording has to beat that voice, and a mediocre one does not: under 1.8
-# most takes were heard bad or mediocre (17 of 25 in the well-voiced languages, 2026-10-27),
-# over it most passed. A take a listener passed ships whatever it scores.
-NO_VOICE_MOS_FLOOR = 1.3
-VOICED_MOS_FLOOR = 1.8
+# The lowest score a recording may ship at. Where the device voice is missing (eo, sw) the
+# bar only refuses the clearly bad: under it a listener heard only bad takes (it Francyskus).
+# Where it is good, a recording has to beat that voice, and a mediocre one does not: under it
+# 24 of 26 rated takes in the well-voiced languages were heard bad or mediocre (2026-11-06).
+# Both sit where the mos-only floors (1.3 and 1.8) did, at the same share of the rated takes:
+# what ships was pruned at the old floors, so its share there is nil and would pin any bar.
+# A take a listener passed ships whatever it scores.
+NO_VOICE_MOS_FLOOR = 1.5
+VOICED_MOS_FLOOR = 1.84
 
 
 def mos_floor(lang):
     return VOICED_MOS_FLOOR if lang in WELL_VOICED else NO_VOICE_MOS_FLOOR
 
 
-# Under this `mos` a shipped take goes up for a sweep: every other take of its word is fetched
-# and the best one may replace it. Well over every floor, because here the score only ranks.
-RECONSIDER_MOS = 2.8
+# Under this score a shipped take goes up for a sweep: every other take of its word is fetched
+# and the best one may replace it. Well over every floor, because here the score only ranks;
+# it sends back the share of what ships the mos-only 2.8 did (29%).
+RECONSIDER_MOS = 2.79
 
 # What a challenger has to beat a passable incumbent by: a swap costs a voice change and a
-# re-credit, and a single file's score strays by a few tenths. A consolidation gives up strictly
+# re-credit, and a single file's score strays by a few tenths (the score keeps the spread of the
+# mos-only one, so the margin did not move with PESQ). A consolidation gives up strictly
 # less for a tidier credits screen, so neither picker undoes the other.
 SWAP_MARGIN = 0.3
 
@@ -62,7 +66,7 @@ def is_squashed(peak, loudness):
     return peak is not None and loudness is not None and peak - loudness < SQUASH_FLOOR_DB
 
 
-# A breath burst (`audio_measure.pop`) costs a take a point of score per POP_DB_PER_MOS dB it sounds over
+# A breath burst (`audio_measure.pop`) costs a take's `mos` a point per POP_DB_PER_MOS dB it sounds over
 # the word's loudest stretch, which the noise-and-reverb score does not hear: of 13 takes heard for pops,
 # all over 0 dB popped bar fr enseignante and sw samaki (+0.4, a tenth each), and the two heard bad for it
 # drop under the floor (fr nom de famille +5.2, de lieben +5.9); sw kwaheri, sw mboga, de die Brücke and
@@ -70,9 +74,26 @@ def is_squashed(peak, loudness):
 POP_DB_PER_MOS = 4
 
 
-def heard_mos(mos, pop):
-    """[mos] less what its breath pops cost; None where unscored."""
-    return None if mos is None else round(mos - max(0.0, pop or 0.0) / POP_DB_PER_MOS, 2)
+# THE SCORE: `mos` less its pops, and SQUIM's `pesq`, each standardized over the 9541 takes that shipped
+# on 2026-11-06 and summed with equal weight, then put back on the scale of `mos` less its pops — same
+# mean and spread — so a bar reads in the units it always did. PESQ hears the distortion DNSMOS misses:
+# on 470 rated takes it lifts the take AUC from 0.66 to 0.75 and the voice ranking from ρ 0.28 to 0.56,
+# and holds on verdicts set aside while fitting (`../docs/2026-10-audio-evaluations.md`).
+SCORE_MEAN, SCORE_SPREAD = 2.910, 0.282
+PESQ_MEAN, PESQ_SPREAD = 3.164, 0.705
+SUM_SPREAD = 1.603
+
+
+def heard_mos(mos, pop, pesq):
+    """THE SCORE of a take of [mos], [pop] and [pesq]; on [mos] less its pops alone where [pesq] is
+    unmeasured, None where [mos] is."""
+    if mos is None:
+        return None
+    heard = mos - max(0.0, pop or 0.0) / POP_DB_PER_MOS
+    if pesq is None:
+        return round(heard, 2)
+    standard = (heard - SCORE_MEAN) / SCORE_SPREAD + (pesq - PESQ_MEAN) / PESQ_SPREAD
+    return round(SCORE_MEAN + SCORE_SPREAD * standard / SUM_SPREAD, 2)
 
 
 # POOR voices: heard as bad across their takes, not in one file — what the score cannot be

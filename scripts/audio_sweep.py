@@ -71,7 +71,9 @@ def pending(lang, section, catalog, measures):
         measured = measures.result(take['sha256'], future)
         if measured is None:
             continue
-        take['mos'] = heard_mos(take['mos'] if take['mos'] is not None else measured.get('mos'), measured.get('pop'))
+        mos, pesq = ((take['mos'], take['pesq']) if take['mos'] is not None
+                     else (measured.get('mos'), measured.get('pesq')))
+        take['mos'] = heard_mos(mos, measured.get('pop'), pesq)
         take['lopsided'] = is_one_sided(measured['balance'])
         speech = measured.get('speech')
         if speech is None and section != 'letters':
@@ -214,7 +216,9 @@ def consolidate(lang, section, catalog, measures, only, apply):
         if take['key'] in failed:
             continue
         measured = measures.result(take['sha256'], measures.submit(take['sha256'], take['path'], scored=take['mos'] is None)) or {}
-        take['mos'] = heard_mos(take['mos'] if take['mos'] is not None else measured.get('mos'), measured.get('pop'))
+        mos, pesq = ((take['mos'], take['pesq']) if take['mos'] is not None
+                     else (measured.get('mos'), measured.get('pesq')))
+        take['mos'] = heard_mos(mos, measured.get('pop'), pesq)
         was_bright = brightness(measures, take['sha256'], take['path'])
         order = audio_commons.casings(take['key'].lower())
         ranked = sorted((license_rank(record.get('license', '?')), -weight[(record.get('author'), record.get('license'))],

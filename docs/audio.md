@@ -227,8 +227,8 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   The mp3 bytes stay the untouched Commons transcode (`audio-licensing.md` §3);
   the packs share no loudness and the uk letters open a second late,
   so what corrects them is a MEASUREMENT of the shipped bytes which only the player applies.
-  A third measurement, `mos` (how good the take sounds, a predicted mean opinion score), corrects nothing and reaches no player:
-  it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
+  A third measurement, `mos` (how good the take sounds, a predicted mean opinion score) with `pesq` (how undistorted, a predicted PESQ score), corrects nothing and reaches no player:
+  the two exist so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   A fourth, `gate` (the file's noise level plus a margin, dBFS of the raw bytes, null where none was measured), rides on `AudioIndex.gate` to a downward expander that quiets that hiss at playback.
   What was measured, against which target and under which scheme is `scripts/audio_index.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.
