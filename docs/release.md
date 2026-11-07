@@ -20,7 +20,7 @@ Between releases a new entry lands anywhere in `## Unreleased` and existing ones
 the section is reviewed once, right before the cut, against the rules below:
 prune and merge, reword for the learner,
 then order the bullets from what most learners meet to what fewest do.
-An empty `## Unreleased` is refused rather than cut.
+An empty `## Unreleased` stops the script.
 
 The number is a judgment call; `release.sh` prints commit counts as guidance.
 
@@ -41,34 +41,15 @@ Android's `versionCode` is derived from the name:
 
 ## What earns a changelog entry
 
-`CHANGELOG.md` is what moved for the LEARNER, curated, never a commit log.
-"User-observable" is too low a bar; the rules below are stricter.
+`CHANGELOG.md` lists what the learner can newly do or learn.
+Strike every line a learner would not miss;
+when the owner strikes one, sharpen this rule.
 
-- The delta has to be in what the app DOES, not in how it looks or reads.
-  Cut in one pass:
-  a picker row gaining its native name, onboarding switching to the user's language, a full English localization, error messages becoming localized.
-  What stays is content, scheduling and capability —
-  new areas, phrases unlocking differently, progress surviving a card-id change.
-  A change that only alters language, wording, layout, order, naming or a celebration's thresholds is carried by its commit message.
-  The test: does the learner need to know it to use the app? If not, no entry.
-  A release where nothing clears this bar still gets short entries, one line per screen the learner sees changed.
-- Content earns an entry by the SHELF, not by the CARD.
-  A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the learner meets;
-  a single concept added, split or reworded is not,
-  nor a correction scattered across cards (a batch of emoji swapped, a word's recording replaced by a clearer take),
-  and stays in its commit message.
-- One entry per sweep, not one per finding.
-  Before adding a second bullet from the same work, ask whether the learner would call it a second change;
-  if not, fold it in —
-  one headline, the sharpest example or two.
-- A bullet is ONE plain sentence, written for a release-notes reader, not a maintainer.
-  Read it as a learner who has never seen the code:
-  say what they see and hear, never the pipeline's terms (ship, take, prompt, produce, verdict).
-  No bold lead, no explanation clause after it: name what the learner can now do.
-  Reasoning, mechanism and examples belong in the commit message.
-  An explanation earns its place only where the sentence means nothing without it.
-- No raw counts, with one exception.
-  A count measures the catalog rather than the learner's experience, and goes stale on the next commit.
-  Write what widened and for whom.
-  The exception is a major cut for accumulated growth, whose bullets summarize everything since the last one:
-  there a growth figure is the point, as a percentage rather than a pair of totals.
+- An entry names something new: a mode, a drill, a screen, an area.
+  A refinement of what was there stays in its commit message —
+  a card added or corrected, a recording, wording, layout, a setting, a tolerance, a fallback.
+  A fix gets a line only where the learner saw something break, such as a crash or lost progress.
+  A release where nothing clears this bar gets one short line per screen the learner sees changed.
+- One piece of work is one bullet.
+- A bullet is one plain sentence about what the learner sees and hears, in their words:
+  no pipeline terms (ship, take, prompt, verdict), no bold lead, no explanation clause.

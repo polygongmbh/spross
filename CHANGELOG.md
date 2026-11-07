@@ -6,12 +6,9 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## 9.3.0 — 2026-11-07
 
-- Typing the other word of a pair like cough and to cough now counts as almost right, and a longer phrase forgives a small slip in any of its words.
-- "No autoplay" now stays chosen across restarts, and on iPhone a bell in the top bar marks when silent mode decides whether words are read aloud.
-- The "Say the meaning too" setting is gone: the meaning is now said beside every word you can hear, and never on its own.
+- On iPhone, a bell in the top bar shows when the silent switch decides whether words are read aloud.
+- Your own language is now read aloud only beside a word you can hear.
 - Listening has a small flag for the word on air: one tap marks the pronunciation you just heard as questionable, or opens the full report form.
-- Tapping "Can't listen right now?" now keeps every card of that session in writing, while still saying its word.
-- On Android, where the language you learn has no voice installed, the settings link straight to where you can get one.
 
 ## 9.2.0 — 2026-11-01
 
