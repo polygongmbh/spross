@@ -3,9 +3,9 @@
 usage() { cat <<'EOF'
 Usage: scripts/run-sim.sh [options] [SIMULATOR] [-- APP_ARGS…]
 
-Builds Spross (Debug) and (re)launches it on the iPhone 17 simulator.
+Builds Spross (Debug) and (re)launches it on an iPhone simulator, a booted one first.
 
-  SIMULATOR     another simulator, by a case-insensitive part of its name (e.g. pro);
+  SIMULATOR     the simulator, by a case-insensitive part of its name (default: iPhone);
                 an exact name wins, then a booted match, then the newest runtime
   --no-build    reinstall the last build, skip xcodebuild
   --clean       the Release app (net.spross.app), uninstalled first so onboarding
@@ -28,7 +28,7 @@ EOF
 set -eu
 cd "$(dirname "$0")/.."
 
-DEVICE='iPhone 17'
+DEVICE='iPhone'
 BUILD=1
 CLEAN=0
 CONFIG=Debug
@@ -61,14 +61,16 @@ UDID=$(xcrun simctl list devices available | awk -v want="$DEVICE" '
   {
     for (i = 1; i <= NF; i++) if (length($i) == 38 && $i ~ /^\([0-9A-F-]+\)$/) break
     if (i > NF) next
-    udid = substr($i, 2, 36); name = $1
+    name = $1
     for (j = 2; j < i; j++) name = name " " $j
+    udid = substr($i, 2, 36) "\t" name
     if (!index(tolower(name), tolower(want))) next
     if (tolower(name) == tolower(want)) exact = udid
     if ($0 ~ /\(Booted\)/) booted = udid
     last = udid
   }
   END { print (exact != "" ? exact : booted != "" ? booted : last) }')
+NAME=${UDID#*	}; UDID=${UDID%%	*}
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
   echo "       xcrun simctl list devices available" >&2
@@ -83,7 +85,7 @@ if [ "$BUILD" = 1 ]; then
   # why: the .xcodeproj is gitignored, so a checkout or a new source file leaves it
   # listing the wrong files until regenerated.
   scripts/gen.sh >/dev/null
-  echo "Building Spross for ${DEVICE}…"
+  echo "Building Spross for ${NAME}…"
   mkdir -p "$DERIVED"
   # why: xcodebuild waits up to 30s for an unknown destination to appear; the simulator
   # is already resolved and listed, so one that is missing will not turn up.
@@ -117,7 +119,7 @@ if [ -n "$SHOT" ] && [ "$SOUND" = 0 ]; then MUTE='-readAloud off'; fi
 # unquoted: empty MUTE must vanish rather than pass an empty argument
 # shellcheck disable=SC2086
 xcrun simctl launch "$UDID" "$BUNDLE_ID" $MUTE "$@" >/dev/null
-echo "Launched $BUNDLE_ID on $DEVICE ($UDID)."
+echo "Launched $BUNDLE_ID on $NAME ($UDID)."
 
 if [ -n "$SHOT" ]; then
   # why: launch returns at spawn, not at first frame — without the pause the

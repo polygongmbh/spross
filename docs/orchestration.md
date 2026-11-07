@@ -31,7 +31,7 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   overlapping Gradle runs corrupt it (`Unresolved reference` in files nobody touched).
   Fix: `rm -rf kern/build/kotlin`, rebuild — never a source edit.
   `xcodebuild`'s pre-build phase also reads/writes the kern framework, so it is a cache writer too.
-- iOS runs on `scripts/run-sim.sh`'s default `iPhone 17`; `iPhone 18 Pro Max` only when a change is about screen size,
+- iOS runs on `scripts/run-sim.sh 'iPhone 17'`; `iPhone 18 Pro Max` only when a change is about screen size,
   and an agent never creates a simulator.
   An assessment launches the app once and walks it with `idb ui` (`describe-all`, `tap`, `swipe`, `text`);
   a relaunch is only for a clean state, never to reach the next screen.

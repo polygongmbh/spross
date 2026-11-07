@@ -113,7 +113,7 @@ Tests (the fast gate): `./gradlew :kern:jvmTest`
 
 ## Run it
 
-`scripts/run-sim.sh` builds, installs and launches on the iPhone 17 simulator;
+`scripts/run-sim.sh` builds, installs and launches on an iPhone simulator, a booted one first;
 `--help` lists the flags and the DEBUG launch arguments.
 
 Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
