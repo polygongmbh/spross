@@ -9,10 +9,9 @@ Neighbors: screenshots `screenshots/index.md`, print copy `print/copy.json`.
 
 **Subtitle:** Words for real conversations
 
-**Promotional text** (editable without review):
-> The words you need for the moments that matter — picked by you, practiced on your schedule.
-
 **Description:**
+
+The words you need for the moments that matter — picked by you, practiced on your schedule.
 
 You're learning a language — with a course, a tandem partner, maybe an AI. But when the moment comes, the word isn't there.
 
@@ -44,10 +43,9 @@ It won't replace your course or your conversations. It makes sure you have the w
 
 **Subtitle:** Wörter für echte Gespräche
 
-**Promotional text:**
-> Die Wörter, die du brauchst, wenn es drauf ankommt — selbst gewählt, in deinem Tempo geübt.
-
 **Description:**
+
+Die Wörter, die du brauchst, wenn es drauf ankommt — selbst gewählt, in deinem Tempo geübt.
 
 Du lernst eine Sprache — im Kurs, im Tandem, vielleicht mit einer KI. Aber wenn es drauf ankommt, fehlt dir das Wort.
 
