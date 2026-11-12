@@ -53,6 +53,7 @@
   "areas": [
    { "area": "place", "emoji": "📍" },
    { "area": "qualities", "emoji": "📏" },
+   { "area": "sounds", "emoji": "🔊" },
    { "area": "degree", "emoji": "📊" },
    { "area": "time", "emoji": "🕒" },
    { "area": "comparison", "emoji": "⚖️" }
@@ -61,67 +62,101 @@
  {
   "group": "human",
   "titles": {
-   "en": "People & the Body",
-   "de": "Mensch & Körper",
-   "eo": "Homoj kaj korpo",
-   "es": "Personas y cuerpo",
-   "fr": "Les gens et le corps",
-   "it": "Persone e corpo",
-   "sw": "Watu na mwili",
-   "uk": "Люди і тіло"
+   "en": "People",
+   "de": "Menschen",
+   "eo": "Homoj",
+   "es": "Personas",
+   "fr": "Les gens",
+   "it": "Persone",
+   "sw": "Watu",
+   "uk": "Люди"
   },
   "areas": [
    { "area": "personal-details", "emoji": "🪪" },
    { "area": "people", "emoji": "👪" },
-   { "area": "body", "emoji": "🧍" },
-   { "area": "mind", "emoji": "🧠" },
-   { "area": "emotions", "emoji": "🎢" },
    { "area": "celebrations", "emoji": "🎉" },
    { "area": "relatives", "emoji": "🌳" },
    { "area": "life-death", "emoji": "🕯️" }
   ]
  },
  {
+  "group": "health",
+  "titles": {
+   "en": "Body & Health",
+   "de": "Körper & Gesundheit",
+   "eo": "Korpo kaj sano",
+   "es": "Cuerpo y salud",
+   "fr": "Corps et santé",
+   "it": "Corpo e salute",
+   "sw": "Mwili na afya",
+   "uk": "Тіло і здоров'я"
+  },
+  "areas": [
+   { "area": "body", "emoji": "🧍" },
+   { "area": "mind", "emoji": "🧠" },
+   { "area": "emotions", "emoji": "🎢" },
+   { "area": "illness", "emoji": "🩺" },
+   { "area": "doctor", "emoji": "🧑‍⚕️" },
+   { "area": "organs", "emoji": "🫀" }
+  ]
+ },
+ {
   "group": "errands",
   "titles": {
-   "en": "Shopping & Eating Out",
-   "de": "Einkaufen & Essen gehen",
-   "eo": "Aĉetado kaj manĝado ekstere",
-   "es": "Compras y comidas fuera",
-   "fr": "Courses et repas dehors",
-   "it": "Spese e pasti fuori",
-   "sw": "Ununuzi na kula nje",
-   "uk": "Покупки та їжа поза домом"
+   "en": "Food & Shopping",
+   "de": "Essen & Einkaufen",
+   "eo": "Manĝaĵoj kaj aĉetado",
+   "es": "Comida y compras",
+   "fr": "Nourriture et courses",
+   "it": "Cibo e spesa",
+   "sw": "Chakula na ununuzi",
+   "uk": "Їжа та покупки"
   },
   "areas": [
    { "area": "money", "emoji": "💶" },
    { "area": "shopping", "emoji": "🛒" },
    { "area": "market", "emoji": "🧺" },
-   { "area": "restaurant", "emoji": "🍽️" }
+   { "area": "restaurant", "emoji": "🍽️" },
+   { "area": "kitchen", "emoji": "🍳" },
+   { "area": "food", "emoji": "🥖" }
   ]
  },
  {
   "group": "around",
   "titles": {
-   "en": "Out and About",
-   "de": "Draußen",
+   "en": "Getting Around",
+   "de": "Unterwegs",
    "eo": "Survoje",
-   "es": "Fuera de casa",
-   "fr": "En vadrouille",
-   "it": "In giro",
-   "sw": "Nje na safarini",
-   "uk": "Надворі та в дорозі"
+   "es": "Desplazamientos",
+   "fr": "Se déplacer",
+   "it": "Spostarsi",
+   "sw": "Safarini",
+   "uk": "У дорозі"
   },
   "areas": [
    { "area": "directions", "emoji": "↗️" },
    { "area": "transport", "emoji": "🚌" },
    { "area": "city", "emoji": "🏙️" },
-   { "area": "holidays", "emoji": "🏖️" },
+   { "area": "holidays", "emoji": "🏖️" }
+  ]
+ },
+ {
+  "group": "nature",
+  "titles": {
+   "en": "Nature",
+   "de": "Natur",
+   "eo": "Naturo",
+   "es": "Naturaleza",
+   "fr": "Nature",
+   "it": "Natura",
+   "sw": "Asili",
+   "uk": "Природа"
+  },
+  "areas": [
    { "area": "nature", "emoji": "🌳" },
    { "area": "water", "emoji": "🌊" },
    { "area": "animals", "emoji": "🐘" },
-   { "area": "weather", "emoji": "🌦️" },
-   { "area": "sounds", "emoji": "🔊" }
+   { "area": "weather", "emoji": "🌦️" }
   ]
  },
  {
@@ -137,32 +172,12 @@
    "uk": "Вдома"
   },
   "areas": [
-   { "area": "kitchen", "emoji": "🍳" },
-   { "area": "food", "emoji": "🥖" },
    { "area": "living", "emoji": "🛋️" },
    { "area": "bath", "emoji": "🛁" },
    { "area": "bedroom", "emoji": "🛏️" },
    { "area": "clothes", "emoji": "👕" },
    { "area": "desk", "emoji": "✏️" },
    { "area": "hall", "emoji": "🚪" }
-  ]
- },
- {
-  "group": "healthcare",
-  "titles": {
-   "en": "Illness & Treatment",
-   "de": "Krankheit & Behandlung",
-   "eo": "Malsano kaj kuracado",
-   "es": "Enfermedad y tratamiento",
-   "fr": "Maladie et soins",
-   "it": "Malattia e cure",
-   "sw": "Ugonjwa na matibabu",
-   "uk": "Хвороба та лікування"
-  },
-  "areas": [
-   { "area": "illness", "emoji": "🩺" },
-   { "area": "doctor", "emoji": "🧑‍⚕️" },
-   { "area": "organs", "emoji": "🫀" }
   ]
  },
  {

@@ -353,6 +353,14 @@ class CatalogLintTest {
         }
     }
 
+    /** A group past six areas is a shelf too long to scan folded open; split it where its topic does. */
+    @Test
+    fun everyGroupHoldsAtMostSixAreas() {
+        for (group in catalog.groups) {
+            assertTrue(group.areas.size <= 6, "group ${group.id}: ${group.areas.size} areas, split it")
+        }
+    }
+
     @Test
     fun titlesCoverEveryDeclaredLanguage() {
         val langs = catalog.languages.keys

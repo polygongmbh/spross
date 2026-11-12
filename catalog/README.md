@@ -94,6 +94,7 @@ area titles live in the area's own files):
                { "area": "living",  "emoji": "🛋️" } ] } ]
 ```
 Default global order = groups top-to-bottom, areas as listed.
+A group holds at most six areas, split where its topic does, so an open group stays one scannable shelf (`CatalogLintTest`).
 "Pull one area ahead" is a runtime/user-preference concern;
 the content only supplies the default.
 - `titles` — the group heading, keyed by reader language;
