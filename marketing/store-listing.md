@@ -13,7 +13,7 @@ Neighbors: screenshots `screenshots/index.md`, print copy `print/copy.json`.
 
 **Description:**
 
-You're learning a language. You take a course, talk to people, maybe use a chat assistant. But when the moment comes — ordering at the counter, explaining something at the doctor's — the word isn't there.
+You're learning a language — with a course, a tandem partner, maybe an AI. But when the moment comes, the word isn't there.
 
 Spross builds the vocabulary for those moments.
 
@@ -48,7 +48,7 @@ It won't replace your course or your conversations. It makes sure you have the w
 
 **Description:**
 
-Du lernst eine Sprache — mit einem Kurs, im Gespräch, vielleicht mit einem Chat-Assistenten. Aber an der Theke, beim Arzt, im Smalltalk fehlt dir das Wort.
+Du lernst eine Sprache — im Kurs, im Tandem, vielleicht mit einer KI. Aber wenn es drauf ankommt, fehlt dir das Wort.
 
 Spross füllt genau diese Lücke.
 
