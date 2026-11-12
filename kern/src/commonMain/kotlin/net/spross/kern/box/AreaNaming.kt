@@ -36,6 +36,12 @@ class AreaNaming(
         if (area == OwnWords.AREA) OwnWords.EMOJI else emojis[area] ?: FALLBACK_EMOJI
 
     /**
+     * A folded group's picture: its first areas' emojis, few enough to sit beside any title on one line.
+     */
+    fun groupEmojis(section: AreaGroupSection): String =
+        section.areas.take(GROUP_HEADER_EMOJIS).joinToString("") { emoji(it) }
+
+    /**
      * The areas as the search matches them: on the heading the learner READ, never on the
      * key underneath it — nobody types "own" looking for their own words.
      */
@@ -49,6 +55,7 @@ class AreaNaming(
 
     private companion object {
         const val FALLBACK_EMOJI = "📦"
+        const val GROUP_HEADER_EMOJIS = 3
 
         fun fallbackTitle(area: String): String =
             area.split(' ').joinToString(" ") { word -> word.lowercase().replaceFirstChar { it.uppercase() } }

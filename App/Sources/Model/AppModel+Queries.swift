@@ -143,6 +143,7 @@ extension AppModel {
     func areaTitle(_ area: String) -> String { naming.title(area: area) }
     func areaSubtitle(_ area: String) -> String? { naming.subtitle(area: area) }
     func areaEmoji(_ area: String) -> String { naming.emoji(area: area) }
+    func groupEmojis(_ group: AreaGroupSection) -> String { naming.groupEmojis(section: group) }
 
     private var naming: AreaNaming { pairContent.areaNaming ?? composedAreaNaming(catalog: nil) }
 

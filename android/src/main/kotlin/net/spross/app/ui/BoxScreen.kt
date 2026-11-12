@@ -213,7 +213,7 @@ private fun BoxBrowserScreen(
                     when (item) {
                         is BoxItem.Group -> GroupHeader(
                             section = item.section,
-                            emojis = item.section.areas.joinToString("") { naming.emoji(it) },
+                            emojis = naming.groupEmojis(item.section),
                             open = item.section.id in openGroups,
                             chrome = chrome,
                             onToggle = {

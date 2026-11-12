@@ -45,7 +45,7 @@ import net.spross.kern.box.StageCounts
 
 /**
  * A foldable group row — a hairline and no card of its own, so the area cards below stay
- * the heaviest thing on the screen. Folded shut, the emojis are all that says what is inside.
+ * the heaviest thing on the screen. Folded shut, the emojis hint at what is inside.
  */
 @Composable
 internal fun GroupHeader(

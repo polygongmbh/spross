@@ -212,8 +212,8 @@ struct BoxView: View {
                         .font(Theme.typography.headline)
                         .lineLimit(1)
                     Spacer(minLength: Theme.spacing.sm)
-                    // why: folded shut, these emojis are all that says what is inside.
-                    Text(group.areas.map(model.areaEmoji).joined())
+                    // why: folded shut, these emojis hint at what is inside.
+                    Text(model.groupEmojis(group))
                         .font(Theme.typography.subheadline)
                         .lineLimit(1)
                         .accessibilityHidden(true)

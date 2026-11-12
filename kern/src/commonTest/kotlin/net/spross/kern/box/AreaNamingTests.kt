@@ -23,6 +23,12 @@ class AreaNamingTests {
     }
 
     @Test
+    fun aFoldedGroupShowsOnlyItsFirstThreePictures() {
+        val section = AreaGroupSection("big", "Big", listOf("a", "b", "c", "d", "e"))
+        assertEquals("📦📦📦", naming.groupEmojis(section))
+    }
+
+    @Test
     fun theSearchMatchesOnTheHeadingTheLearnerRead() {
         val searchable = naming.searchable(listOf("attic", OwnWords.AREA))
         assertEquals(listOf("Attic", "Eigene"), searchable.map { it.title })
