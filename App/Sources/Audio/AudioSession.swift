@@ -98,7 +98,7 @@ enum ReadAloud {
 
 extension ReadAloud {
 
-    /// Whether the launch argument `-readAloud off` (`scripts/run-sim.sh --mute`) mutes this launch;
+    /// Whether the launch argument `-readAloud off` (`xsim -- -readAloud off`) mutes this launch;
     /// only the argument domain is read, so nothing it sets is stored.
     static var mutedByLaunchArgument: Bool {
         let arguments = UserDefaults.standard.volatileDomain(forName: UserDefaults.argumentDomain)

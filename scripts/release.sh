@@ -122,5 +122,5 @@ git push origin "$(git rev-parse --abbrev-ref HEAD)" "v$VERSION"
 cat <<DONE
 
 v$VERSION is pushed — .github/workflows/release.yml builds it from the tag.
-Your own devices are a separate step: scripts/deploy-devices.sh --launch
+Your own devices are a separate step: xdevice --release --all
 DONE

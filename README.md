@@ -113,14 +113,16 @@ Tests (the fast gate): `./gradlew :kern:jvmTest`
 
 ## Run it
 
-`scripts/run-sim.sh` builds, installs and launches on an iPhone simulator, a booted one first;
-`--help` lists the flags and the DEBUG launch arguments.
-
-Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
+`xsim` builds, installs and launches on an iPhone simulator, a booted one first;
+`xdevice` does the same on a paired iPhone, and `xdevice --release --all` puts the shipped build
+on every device in `$APPLE_DEVICES`, watch included.
+Both are the maintainer's dotfiles helpers (`~/.local/bin/scripts`, `--help` on each),
+reading project, scheme and app from the repo;
+the DEBUG launch arguments are listed in `.claude/skills/verify/SKILL.md`.
 
 Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBOOK-android.md`.
-`scripts/run-emu.sh` is the emulator counterpart of `run-sim.sh`.
+`scripts/run-emu.sh` is the emulator counterpart of `xsim`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
 via `scripts/build-kern.sh` (integration detail: `docs/build.md`).
-After adding/removing Swift source files or switching commits: `scripts/gen.sh` (`run-sim.sh` runs it on every build).
+After adding/removing Swift source files or switching commits: `scripts/gen.sh` (`xsim` runs it on every build).

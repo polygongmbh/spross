@@ -15,31 +15,30 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
 
-Install + launch (the app binary lands in the `BUILT_PRODUCTS_DIR` that `xcodebuild -showBuildSettings` reports —
-Xcode's DerivedData location may be a `.noindex` one, and an older folder beside it holds stale builds):
+Install + launch: `xsim` (the maintainer's dotfiles helper, `xsim --help`) builds into
+`build/xcode.noindex`, installs on a simulator by name (a booted one first) and passes
+everything after `--` to the app:
 
 ```sh
-xcrun simctl boot "iPhone 17"; open -a DeviceHub || open -a Simulator  # DeviceHub from Xcode 27
-xcrun simctl install booted <path>/Spross.app
-xcrun simctl launch booted net.spross.dev
+xsim 'iPhone 17' -- -uitest-source de -uitest-target sw -uitest-screen box
+xsim --no-build --shot build/shots/box.png -- -readAloud off
 ```
 
-A clean slate is `scripts/run-sim.sh --clean`: it uninstalls and reinstalls the Release app
+A clean slate is `xsim --release --clean`: it uninstalls and reinstalls the Release app
 (`net.spross.app`), never the Dev app (`net.spross.dev`), whose box is the operator's own.
 Release takes no `-uitest-*` flags, so drive a clean run with idb.
 
 ## Keep it quiet
 
-`scripts/run-sim.sh --mute` (and `--shot`, which implies it) launches with
-`-readAloud off`; `scripts/run-emu.sh` does the same through `--es readAloud off`.
+Launch with `-readAloud off` (`xsim -- -readAloud off`, on every `--shot` run too);
+`scripts/run-emu.sh` does the same through `--es readAloud off`.
 Autoplay is silenced for that launch only, as the in-app toggle would be;
 every launch starts reading aloud again (`docs/audio.md`).
 
 Drive a session muted unless the change under test IS the audio: a produce card
 that would have asked by ear falls back to its source prompt, which is the
 screenshot evidence that no audio path was taken. The verdict chimes are NOT
-covered — deliberately, on both platforms — but they only fire on an answer, so
-a plain `--shot` run is silent either way.
+covered — deliberately, on both platforms — but they only fire on an answer.
 
 ## Drive with idb; reach for a flag only where it cannot
 
@@ -60,7 +59,7 @@ for the two things no finger reaches:
 the rest are navigation: idb reaches them all, and the flag only saves taps. Prefer the
 flag on a long path (Box settings is ~20 flick-swipes), idb on a short one.
 
-Screenshots: `xcrun simctl io booted screenshot /tmp/x.png` (1206x2622 px = 402x874 pt on iPhone 17; divide px by 3 for tap points).
+Screenshots: `xsim --shot build/shots/x.png`, or `xcrun simctl io <UDID> screenshot build/shots/x.png` mid-run (gitignored, never `/tmp`) (1206x2622 px = 402x874 pt on iPhone 17; divide px by 3 for tap points).
 
 ## Taps/swipes — use idb, NOT cliclick/osascript
 
@@ -70,14 +69,14 @@ fb-idb drives CoreSimulator HID directly:
 ```sh
 brew install idb-companion   # the companion daemon
 pipx install fb-idb          # the idb CLI client (built once; survives across sessions)
-idb_companion --udid <UDID> --only simulator &        # prints grpc_port (e.g. 10882)
-export IDB_COMPANION=localhost:<port>
-idb ui tap <x> <y>                                   # logical points
-idb ui text 'hallo'                                  # types into the focused field
-idb ui swipe 200 750 200 150 --duration 0.05         # flick-scroll
-idb ui describe-all                                  # the whole accessibility tree
-idb ui describe-point <x> <y>                        # one element under a point
+idb ui describe-all --udid <UDID>                    # the whole accessibility tree
+idb ui describe-point <x> <y> --udid <UDID>          # one element under a point
+idb ui tap <x> <y> --udid <UDID>                     # logical points
+idb ui text 'hallo' --udid <UDID>                    # types into the focused field
+idb ui swipe 200 750 200 150 --duration 0.05 --udid <UDID>   # flick-scroll
 ```
+
+`--udid` starts that simulator's companion on its own — no `idb_companion &`, no `IDB_COMPANION` port.
 
 `describe-all` is the one to reach for first: it returns every element as JSON with
 its label, value and frame, so a run taps what it can NAME rather than a coordinate

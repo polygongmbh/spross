@@ -18,7 +18,7 @@ Focus is on breadth of exposure to the language for maximum fluency with minimum
 ./gradlew :android:testDebugUnitTest   # the Android app layer — after an android/ edit
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build   # app build gate
-scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
+xsim                         # build + install + launch on the simulator (--shot, --clean, -- <launch args>; dotfiles helper)
 scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs, launches (--shot, --clean)
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen + git hooks + audio .venv
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables

@@ -232,7 +232,7 @@ targets:
 
 # why: xcodegen writes no schemes unless they are declared, and every gate, script and
 # runbook line reaches the app through `-scheme Spross` (CLAUDE.md, README.md,
-# scripts/run-sim.sh). Without this block a regenerate leaves "This project contains no
+# xsim). Without this block a regenerate leaves "This project contains no
 # schemes" and a `-target` build silently resolves to the DEVICE SDK instead.
 schemes:
   Spross:

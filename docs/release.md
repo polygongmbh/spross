@@ -7,7 +7,7 @@ Neighbors: what the tag sets off and how builds reach phones `distribution.md`.
 ```sh
 # CHANGELOG.md: what moved for the LEARNER, under '## Unreleased'
 scripts/release.sh 5.7.2             # heading, version, gates, commit, tag, push
-scripts/deploy-devices.sh --launch   # your own phones — a separate build, from here
+xdevice --release --all              # your own devices ($APPLE_DEVICES) — a separate build, from here
 ```
 
 The script owns the mechanical half:

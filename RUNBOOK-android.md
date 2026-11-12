@@ -66,7 +66,7 @@ Min Android 8.0 (API 26).
 
 ## Emulator
 
-`scripts/run-emu.sh` is the Android counterpart of `scripts/run-sim.sh`:
+`scripts/run-emu.sh` is the Android counterpart of `xsim`:
 it boots the `spross-phone` AVD if it is not already up, builds, installs and launches;
 `--help` lists the flags.
 `--mute` (implied by `--shot`) starts the app silent so a run nobody is sitting at never speaks up:

@@ -57,7 +57,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - A long typed answer is cut with "…" in the answer field.
 - A store-shot hook for a genuinely grown Box is missing: `-uitest-trees` fakes Home and the summary only, so Box screens stay early.
 - Starting a trainer run from its overview sheet is unverified on the Duo (`-uitest-run 1` never opened the run there), and the Box's leading pane truncates area titles and counts ("Greetings and C…").
-- On the iPhone Duo `run-sim.sh --shot` captures the dark cover display and `idb ui` fails on it; both need the lit display picked (`simctl io screenshot --display`).
+- On the iPhone Duo `xsim --shot` captures the dark cover display and `idb ui` fails on it; both need the lit display picked (`simctl io screenshot --display`).
 
 
 ## Revisit when it grows
