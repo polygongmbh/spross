@@ -74,15 +74,15 @@ class BriefingTests {
         assertEquals(emptyList(), brief.settled.flatMap { it.words })
         assertEquals(emptyList(), brief.allGrowing.map { it.target })
         assertEquals(emptyList(), brief.queued.map { it.target })
-        assertFalse(Briefings.available(box))
     }
 
-    /** A box with nothing introduced briefs nobody; one word in is a conversation. */
+    /** A box no round has opened yet still briefs a talk, and still asks for the words back. */
     @Test
-    fun availableFollowsWhetherAnyWordIsIntroduced() {
-        val fresh = state(listOf(Box.word(1)))
-        assertFalse(Briefings.available(fresh))
-        assertTrue(Briefings.available(Box.inject(fresh, learning("w01"))))
+    fun anUnopenedBoxBriefsABeginnersTalk() {
+        val brief = brief(state(listOf(Box.word(1))))
+        assertFalse("WORDS I" in brief.text)
+        assertTrue("beginner" in brief.text)
+        assertTrue("```${Harvest.FENCE_TAG}" in brief.text)
     }
 
     /** What is next is the learner's own ask: the queued words, and no word of the app's choosing. */

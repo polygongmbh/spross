@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+- The AI chat is there from your first day, before your first session.
+
 ## 9.3.0 — 2026-11-07
 
 - On iPhone, a bell in the top bar shows when the silent switch decides whether words are read aloud.

@@ -18,13 +18,8 @@ extension AppModel {
         return Briefings.shared.of(state: box, catalog: catalog, learnerName: learnerName)
     }
 
-    /// Whether there is a conversation to be briefed at all — what hides the offer.
-    /// Kern's rule (`Briefings.available`), and cheap enough for a view body: it counts
-    /// the words a brief would name, never builds them.
-    var hasBriefing: Bool {
-        guard let box else { return false }
-        return Briefings.shared.available(state: box)
-    }
+    /// Whether there is a box to brief — every box is, the unopened one as a beginner's talk.
+    var hasBriefing: Bool { box != nil }
 
     /// Every word a pasted conversation brought home, each against what the box
     /// already has of it (`HarvestKind`), grouped new-first.

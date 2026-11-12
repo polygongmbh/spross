@@ -35,11 +35,14 @@ data class Briefing(
 ) {
     val settledCount: Int get() = settled.sumOf { it.words.size }
 
+    /** A brief for a box no round has opened yet names no word, and asks for a beginner's talk instead. */
+    private val hasWords: Boolean get() = settledCount > 0 || allGrowing.isNotEmpty() || queued.isNotEmpty()
+
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
         get() = buildString {
             appendLine(opening())
-            appendLine("The lists below come out of Spross, the app I learn with.")
+            appendLine(if (hasWords) "The lists below come out of Spross, the app I learn with." else "I learn with Spross.")
             appendLine()
             appendLine(protocol())
             if (settledCount > 0) {
@@ -78,7 +81,7 @@ data class Briefing(
         Be my conversation partner.
         Talk to me in $targetName;
         explain in $sourceName only where I stall or ask.
-        Build what you say out of the words below.
+        ${ground()}
         Bring in your own words where needed, one or two at a time,
         glossed in $sourceName the first time.
 
@@ -88,6 +91,11 @@ data class Briefing(
         Correct mistakes and stray foreign language words by mirroring inside your answer —
         explain only if asked or the mistake repeats.
     """.trimIndent()
+
+    /** One line: it is spliced into [protocol] before that trims its indent. */
+    private fun ground(): String =
+        if (hasWords) "Build what you say out of the words below."
+        else "I am a complete beginner: start from the most common everyday words."
 
     /** The opening turn: something to read. Queued words set the topic when there are any. */
     private fun firstTurn(): String = """
@@ -104,7 +112,9 @@ data class Briefing(
 
     /** One line: it is spliced into [firstTurn] before that trims its indent. */
     private fun storyTopic(): String =
-        if (queued.isEmpty()) {
+        if (!hasWords) {
+            "write a very simple short story about an everyday scene."
+        } else if (queued.isEmpty()) {
             "write a short story on a topic suiting the words I am learning."
         } else {
             "write a short story around the words I chose to learn next, " +
@@ -142,15 +152,6 @@ object Briefings {
 
     /** How many queued words a brief names, most recently queued first. */
     const val QUEUED_LIMIT: Int = 30
-
-    /**
-     * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
-     *
-     * The same words [of] would list, counted without building the brief — every active card
-     * under the join lands in `settled` or `learning`, and [OwnWords] are out of both.
-     */
-    fun available(state: BoxState): Boolean =
-        Inventory.active(state).any { state.cards[it.cardId]?.area != OwnWords.AREA }
 
     fun of(state: BoxState, catalog: Catalog, learnerName: String?): Briefing {
         val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
