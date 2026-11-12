@@ -12,8 +12,8 @@ import SprossKern
 /// learner, who already has it.
 ///
 /// The way back is the half that pays: a conversation turns up words no catalog has,
-/// the assistant is asked to list them, and pasting that list here reads them into
-/// own words (`Harvest`). Nothing is taken in unasked: every pair the paste carried
+/// the assistant is asked to list them, and pasting that list here — or picking it as a
+/// file — reads them into own words (`Harvest`, `WordListFile`). Nothing is taken in unasked: every pair the paste carried
 /// is shown under the heading for where it stands against the box, and only the ones
 /// the box has nothing like arrive ticked.
 struct BriefingSheet: View {
@@ -28,7 +28,11 @@ struct BriefingSheet: View {
     /// Ticked target forms. Set from the paste, then the learner's — a word dropped
     /// and one never offered are the same answer, so one set holds both.
     @State private var picked: Set<String> = []
-    @State private var pasteWasEmpty = false
+    /// What the last paste or file turned out empty, named under the buttons.
+    @State private var emptyNote: LocalizedStringKey?
+    @State private var pickingFile = false
+    /// A file past `WordListFile.LARGE_LINES`, held until the learner says to read it.
+    @State private var largeFile: String?
 
     var body: some View {
         NavigationStack {
@@ -112,130 +116,58 @@ struct BriefingSheet: View {
             Text("briefing.return.lead")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
-            Button {
-                paste()
-            } label: {
-                Label("briefing.return.paste", systemImage: "doc.on.clipboard")
-                    .font(Theme.typography.subheadline)
+            HStack(spacing: Theme.spacing.lg) {
+                Button {
+                    show(model.harvest(from: UIPasteboard.general.string ?? ""), empty: "briefing.return.empty")
+                } label: {
+                    Label("briefing.return.paste", systemImage: "doc.on.clipboard")
+                        .font(Theme.typography.subheadline)
+                }
+                Button {
+                    pickingFile = true
+                } label: {
+                    Label("briefing.return.file", systemImage: "doc")
+                        .font(Theme.typography.subheadline)
+                }
+                .fileImporter(isPresented: $pickingFile, allowedContentTypes: WordListFiles.types) { result in
+                    guard let text = WordListFiles.text(of: result) else { return emptyNote = "briefing.return.fileEmpty" }
+                    if Int(WordListFile.shared.lineCount(text: text)) > Int(WordListFile.shared.LARGE_LINES) { largeFile = text }
+                    else { readFile(text) }
+                }
             }
-            if pasteWasEmpty {
-                Text("briefing.return.empty")
+            if let emptyNote {
+                Text(emptyNote)
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
             }
             if !harvested.isEmpty {
-                harvestGroups
-                bottomKeepButton
+                HarvestReview(harvested: harvested, picked: $picked, onKeep: keep)
             }
         }
+        .largeWordListAlert($largeFile, read: readFile)
     }
 
-    /// Everything the paste carried, headed where the kind turns. Kern's list arrives
-    /// grouped (`Harvest.read`), so a run of one kind is one heading — and a kind kern
-    /// grows later heads itself rather than going unshown.
-    private var harvestGroups: some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            ForEach(harvestRuns) { run in
-                VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-                    blockTitle(run.title)
-                    ForEach(run.words, id: \.word.target) { harvestRow($0) }
-                }
-            }
-        }
-    }
-
-    /// One heading's worth of a paste. The id is the run's place in the list, not its
-    /// title: `LocalizedStringKey` is Equatable but not Hashable, so it cannot be an id.
-    private struct HarvestRun: Identifiable {
-        let id: Int
-        let title: LocalizedStringKey
-        var words: [HarvestWord]
-    }
-
-    private var harvestRuns: [HarvestRun] {
-        var runs: [HarvestRun] = []
-        for found in harvested {
-            let title = heading(found.kind)
-            if runs.last?.title == title { runs[runs.count - 1].words.append(found) }
-            else { runs.append(HarvestRun(id: runs.count, title: title, words: [found])) }
-        }
-        return runs
-    }
-
-    /// Which heading a group wears. The kinds are kern's; naming them is ours.
-    /// `.theNew` is Kern's `New` — the bridge renames what would collide with `+new`.
-    private func heading(_ kind: HarvestKind) -> LocalizedStringKey {
-        switch kind {
-        case .theNew: return "briefing.group.new"
-        case .near: return "briefing.group.near"
-        case .held: return "briefing.group.held"
-        }
-    }
-
-    private func blockTitle(_ key: LocalizedStringKey) -> some View {
-        Text(key)
-            .font(Theme.typography.caption)
-            .foregroundStyle(Theme.colors.textSecondary)
-    }
-
-    /// One pasted pair, ticked or not. The shared row (`SelectionRow`), which is what the
-    /// catalog merge list also ticks with: two sheets that tick words a word at a time have
-    /// no business wearing two different marks.
-    private func harvestRow(_ found: HarvestWord) -> some View {
-        SelectionRow(
-            title: Text(verbatim: found.word.target),
-            caption: Text(verbatim: gloss(found)),
-            mark: .many,
-            selected: picked.contains(found.word.target),
-        ) {
-            toggle(found.word.target)
-        }
-    }
-
-    /// The gloss, and after it the box's own word where this one leans on it — which is
-    /// the whole reason the row came up unticked, said in the row rather than the heading.
-    private func gloss(_ found: HarvestWord) -> String {
-        guard found.kind == .near, let match = found.match else { return found.word.source }
-        return "\(found.word.source) · ≈ \(match)"
-    }
-
-    /// Mirrors `bottomKeepButton` in the navigation bar (`.confirmationAction`) — a harvest
-    /// long enough to fill the sheet must never make the accept action a scroll away.
+    /// Mirrors the keep button below the list in the navigation bar (`.confirmationAction`) —
+    /// a list long enough to fill the sheet must never make the accept action a scroll away.
     private var keepAction: BarAction {
-        BarAction("briefing.return.keep \(kept.count)", .done, enabled: !kept.isEmpty) {
-            model.keepHarvested(kept)
-            dismiss()
-        }
+        let kept = harvested.kept(picked)
+        return BarAction("briefing.return.keep \(kept.count)", .done, enabled: !kept.isEmpty, action: keep)
     }
 
-    /// Repeated below the list for a short harvest, where reaching up to the bar is
-    /// the extra step.
-    private var bottomKeepButton: some View {
-        Button {
-            model.keepHarvested(kept)
-            dismiss()
-        } label: {
-            Text("briefing.return.keep \(kept.count)").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        .disabled(kept.isEmpty)
+    private func keep() {
+        model.keepHarvested(harvested.kept(picked))
+        dismiss()
     }
 
-    private var kept: [BriefWord] {
-        harvested.filter { picked.contains($0.word.target) }.map(\.word)
+    private func readFile(_ text: String) {
+        show(model.harvest(fromFile: text), empty: "briefing.return.fileEmpty")
     }
 
-    private func toggle(_ target: String) {
-        if picked.contains(target) { picked.remove(target) } else { picked.insert(target) }
-    }
-
-    /// Read the clipboard through Kern, which forgives the assistant its formatting and
-    /// says of each pair what the box already has of it. The new ones arrive ticked —
-    /// the learner asked for exactly those — and the rest wait to be asked for.
-    private func paste() {
-        let found = model.harvest(from: UIPasteboard.general.string ?? "")
+    /// What kern read off the clipboard or the file, forgiving the assistant its formatting.
+    /// The new ones arrive ticked — the learner asked for exactly those — the rest wait to be asked for.
+    private func show(_ found: [HarvestWord], empty: LocalizedStringKey) {
         harvested = found
-        picked = Set(found.filter { $0.kind == .theNew }.map { $0.word.target })
-        pasteWasEmpty = found.isEmpty
+        picked = found.initiallyPicked
+        emptyNote = found.isEmpty ? empty : nil
     }
 }

@@ -43,6 +43,8 @@ rephrase it as an availability statement or a question.
 - Onboarding copy teaches where things are and what to do there, not what the app believes:
   the tour names each stop by its own screen's name (`OnboardingTourStop`),
   and choosing what to learn (queuing an area in the box) is one of them.
+- Settings' import takes a word list (Anki, Quizlet, CSV) where the file is no backup,
+  reviewed like the companion's way back before it goes in as own words.
 - Importing a backup on a first run skips onboarding:
   the backup brings its own pair and nothing is replaced, so it asks no confirmation.
 
@@ -197,7 +199,8 @@ What licenses a second component is a parameter attempted and found not to carry
     A day not worked is never called done;
     a day with work still returning is not either (`../kern/README.md` §6).
 - **The companion**: the box briefs a chat assistant
-  and reads the conversation's answer back as own words (`Briefing`, `Harvest`).
+  and reads the conversation's answer back as own words (`Briefing`, `Harvest`),
+  pasted or from a file (`WordListFile`); every box briefs, one no round has opened as a beginner's talk.
   It stands under the day's card, never in it.
   The prompt text is never shown, only the loop it runs.
   What comes back is shown whole and sorted, never filtered:

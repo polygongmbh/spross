@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 ## Unreleased
 
 - The AI chat is there from your first day, before your first session.
+- Word lists from Anki, Quizlet or a spreadsheet can be imported as your own words, from Settings or the chat.
 
 ## 9.3.0 — 2026-11-07
 

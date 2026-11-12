@@ -425,6 +425,8 @@ interface Chrome {
     val briefingReturnLead: String
     val briefingReturnPaste: String
     val briefingReturnEmpty: String
+    val briefingReturnFile: String
+    val briefingReturnFileEmpty: String
     val briefingGroupNew: String
     val briefingGroupNear: String
     val briefingGroupHeld: String
@@ -452,6 +454,9 @@ interface Chrome {
     val settingsBackupReplace: String
     val settingsBackupExportFailed: String
     val settingsBackupImportFailed: String
+    val importLarge: String               // %s
+    val importLargeRead: String
+    val importWordsTitle: String
     val commonCancel: String
     val commonReset: String
     val commonClear: String

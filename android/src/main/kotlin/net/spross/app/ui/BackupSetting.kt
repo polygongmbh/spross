@@ -25,8 +25,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.app.AppModel
 import net.spross.app.backupJson
+import net.spross.app.harvestFile
 import net.spross.app.backupLanguages
 import net.spross.app.restoreBoxes
+import net.spross.kern.box.HarvestWord
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.store.BoxBackup
@@ -37,7 +39,8 @@ import net.spross.kern.store.StoredBoxes
  * the learner has one — or in the one on screen — out to a file, and back in ([BoxBackup]).
  *
  * A picked file is read whole before anything is asked, so the confirmation only ever
- * stands over a restore that can land.
+ * stands over a restore that can land. A file that is no backup is read as a word list
+ * ([net.spross.kern.box.WordListFile]) and offered as own words instead ([WordListImportSheet]).
  */
 @Composable
 fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
@@ -46,6 +49,13 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
     val scope = rememberCoroutineScope()
     var pending by remember { mutableStateOf<StoredBoxes?>(null) }
     var failure by remember { mutableStateOf<String?>(null) }
+    // A word-list file past WordListFile.LARGE_LINES, held until the learner says to read it.
+    var largeFile by remember { mutableStateOf<String?>(null) }
+    var wordList by remember { mutableStateOf<List<HarvestWord>?>(null) }
+    val readWordList = { text: String ->
+        val found = model.harvestFile(text)
+        if (found.isEmpty()) failure = chrome.settingsBackupImportFailed else wordList = found
+    }
     // The languages an export would carry — what the button offers to narrow to.
     var carried by remember { mutableStateOf(emptyList<String>()) }
     var only by remember { mutableStateOf<String?>(null) }
@@ -63,12 +73,14 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
         if (uri == null) return@rememberLauncherForActivityResult
         scope.launch {
             val read = withContext(Dispatchers.IO) {
-                runCatching {
-                    val stream = resolver.openInputStream(uri) ?: error("no stream for $uri")
-                    BoxBackup.decode(stream.use { it.readBytes().decodeToString() })
-                }
+                runCatching { resolver.openInputStream(uri)?.use { it.readBytes().decodeToString() } }.getOrNull()
             }
-            read.onSuccess { pending = it }.onFailure { failure = chrome.settingsBackupImportFailed }
+            when {
+                read == null -> failure = chrome.settingsBackupImportFailed
+                else -> runCatching { BoxBackup.decode(read) }
+                    .onSuccess { pending = it }
+                    .onFailure { if (isLargeWordList(read)) largeFile = read else readWordList(read) }
+            }
         }
     }
 
@@ -133,6 +145,10 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
             },
         )
     }
+    largeFile?.let { text ->
+        LargeWordListDialog(text, chrome, onRead = { largeFile = null; readWordList(text) }, onDismiss = { largeFile = null })
+    }
+    wordList?.let { words -> WordListImportSheet(model, words) { wordList = null } }
     failure?.let { message ->
         AlertDialog(
             onDismissRequest = { failure = null },

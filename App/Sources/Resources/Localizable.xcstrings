@@ -1522,6 +1522,40 @@
         }
       }
     },
+    "briefing.return.file" : {
+      "comment" : "Opens a word-list file and offers what it found.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Datei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From a file"
+          }
+        }
+      }
+    },
+    "briefing.return.fileEmpty" : {
+      "comment" : "Shown when a picked file holds no pair.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In dieser Datei steht keine Wortliste."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no word list in this file."
+          }
+        }
+      }
+    },
     "briefing.return.keep %lld" : {
       "comment" : "%d = the ticked words, taken in as own words.",
       "localizations" : {
@@ -3898,6 +3932,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ sounds much clearer with a better voice — free to download."
+          }
+        }
+      }
+    },
+    "import.large %@" : {
+      "comment" : "%@ = the file's line count, formatted. Asked before a very large word list is read.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Datei hat %@ Zeilen. Alle einlesen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file has %@ lines. Read them all?"
+          }
+        }
+      }
+    },
+    "import.large.read" : {
+      "comment" : "Confirms reading a very large word-list file.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle einlesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read all"
+          }
+        }
+      }
+    },
+    "import.words.title" : {
+      "comment" : "Title of the sheet reviewing a word-list file picked in Settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wörter aus der Datei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Words from the file"
           }
         }
       }
@@ -6392,13 +6477,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sichere deinen Fortschritt in einer Datei, um ihn später oder auf einem neuen Gerät wiederherzustellen."
+            "value" : "Sichere deinen Fortschritt in einer Datei, um ihn später oder auf einem neuen Gerät wiederherzustellen. Importieren liest auch Wortlisten aus Anki, Quizlet oder einer Tabelle."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Save your progress to a file to restore it later or on a new phone."
+            "value" : "Save your progress to a file to restore it later or on a new phone. Import also reads word lists from Anki, Quizlet or a spreadsheet."
           }
         }
       }
@@ -6424,13 +6509,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist keine Spross-Sicherung oder lässt sich nicht lesen."
+            "value" : "Diese Datei ist weder eine Spross-Sicherung noch eine Wortliste oder lässt sich nicht lesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This file is not a Spross backup or cannot be read."
+            "value" : "This file is neither a Spross backup nor a word list, or cannot be read."
           }
         }
       }

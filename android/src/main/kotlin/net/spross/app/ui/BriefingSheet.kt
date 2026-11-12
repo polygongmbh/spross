@@ -6,13 +6,8 @@ import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -21,17 +16,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.briefing
 import net.spross.app.harvest
+import net.spross.app.harvestFile
 import net.spross.app.keepHarvested
-import net.spross.kern.box.HarvestKind
 import net.spross.kern.box.HarvestWord
 
 /**
@@ -47,7 +38,7 @@ import net.spross.kern.box.HarvestWord
  *
  * The way back is the half that pays: a conversation turns up words no catalog has, the
  * assistant is asked to list them, and pasting that list here reads them into own words
- * ([net.spross.kern.box.Harvest]). Nothing is taken in unasked: every pair the paste carried
+ * ([net.spross.kern.box.Harvest]) — or from a file ([net.spross.kern.box.WordListFile]). Nothing is taken in unasked: every pair the paste carried
  * stands under the heading for where it stands against the box, and only the ones the box has
  * nothing like arrive ticked.
  */
@@ -62,7 +53,23 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     // Ticked target forms. Set from the paste, then the learner's — a word dropped and one
     // never offered are the same answer, so one set holds both.
     var picked by remember { mutableStateOf(emptySet<String>()) }
-    var pasteWasEmpty by remember { mutableStateOf(false) }
+    // What the last paste or file turned out empty, named under the buttons.
+    var emptyNote by remember { mutableStateOf<String?>(null) }
+    // A file past WordListFile.LARGE_LINES, held until the learner says to read it.
+    var largeFile by remember { mutableStateOf<String?>(null) }
+    val show = { found: List<HarvestWord>, empty: String ->
+        harvested = found
+        picked = found.initiallyPicked()
+        emptyNote = if (found.isEmpty()) empty else null
+    }
+    val readFile = { text: String -> show(model.harvestFile(text), chrome.briefingReturnFileEmpty) }
+    val pickFile = rememberWordListPicker { text ->
+        when {
+            text == null -> emptyNote = chrome.briefingReturnFileEmpty
+            isLargeWordList(text) -> largeFile = text
+            else -> readFile(text)
+        }
+    }
 
     GrowableSheet(
         onDismiss = onDismiss,
@@ -86,46 +93,36 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            TextButton(onClick = {
-                val found = model.harvest(context.clipboardText())
-                harvested = found
-                picked = found.filter { it.kind == HarvestKind.New }
-                    .mapTo(mutableSetOf()) { it.word.target }
-                pasteWasEmpty = found.isEmpty()
-            }) { Text(chrome.briefingReturnPaste) }
-            if (pasteWasEmpty) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+                TextButton(onClick = { show(model.harvest(context.clipboardText()), chrome.briefingReturnEmpty) }) {
+                    Text(chrome.briefingReturnPaste)
+                }
+                TextButton(onClick = pickFile) { Text(chrome.briefingReturnFile) }
+            }
+            emptyNote?.let {
                 Text(
-                    chrome.briefingReturnEmpty,
+                    it,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            val toggle: (String) -> Unit = { target ->
+            HarvestReview(harvested, picked, chrome) { target ->
                 picked = if (target in picked) picked - target else picked + target
-            }
-            harvested.groupBy { it.kind }.forEach { (kind, words) ->
-                HarvestGroup(heading(kind, chrome), words, picked, toggle)
             }
         },
         action = {
             if (harvested.isNotEmpty()) {
-                val kept = harvested.filter { it.word.target in picked }.map { it.word }
-                Button(
-                    onClick = {
-                        model.keepHarvested(kept)
-                        onDismiss()
-                    },
-                    enabled = kept.isNotEmpty(),
-                    modifier = Modifier.fillMaxWidth()
-                        .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md),
-                    shape = MaterialTheme.shapes.small,
-                ) {
-                    val label = if (kept.size == 1) chrome.briefingReturnKeepOne else chrome.briefingReturnKeep
-                    Text(label.format(kept.size))
+                val kept = harvested.kept(picked)
+                HarvestKeepButton(kept, chrome) {
+                    model.keepHarvested(kept)
+                    onDismiss()
                 }
             }
         },
     )
+    largeFile?.let { text ->
+        LargeWordListDialog(text, chrome, onRead = { largeFile = null; readFile(text) }, onDismiss = { largeFile = null })
+    }
 }
 
 /** The loop in three moves, numbered: take it out, talk, bring the words back. */
@@ -148,73 +145,6 @@ private fun StepLine(number: Int, text: String) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
-}
-
-/** Which heading a group wears. The kinds are kern's; naming them is ours. */
-private fun heading(kind: HarvestKind, chrome: Chrome): String = when (kind) {
-    HarvestKind.New -> chrome.briefingGroupNew
-    HarvestKind.Near -> chrome.briefingGroupNear
-    HarvestKind.Held -> chrome.briefingGroupHeld
-}
-
-/**
- * One group of what a paste carried, headed. Kern's list arrives grouped
- * ([net.spross.kern.box.Harvest.read]), so the runs are already in it — and a kind kern
- * grows later heads itself rather than going unshown.
- */
-@Composable
-private fun HarvestGroup(
-    title: String,
-    words: List<HarvestWord>,
-    picked: Set<String>,
-    onToggle: (String) -> Unit,
-) {
-    Text(
-        title,
-        style = MaterialTheme.typography.labelLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-    words.forEach { found ->
-        HarvestRow(found, kept = found.word.target in picked) { onToggle(found.word.target) }
-    }
-}
-
-@Composable
-private fun HarvestRow(found: HarvestWord, kept: Boolean, onToggle: () -> Unit) {
-    Row(
-        // A checkbox row: TalkBack says whether the word is kept, not just the word.
-        modifier = Modifier.fillMaxWidth()
-            .toggleable(value = kept, role = Role.Checkbox, onValueChange = { onToggle() })
-            .padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Icon(
-            // why: ✓ against ✕ rather than a filled circle against an empty one — the row
-            // is a decision about the word, and the two marks say which way it went.
-            if (kept) SprossIcons.Check else SprossIcons.Close,
-            contentDescription = null,
-            tint = if (kept) Theme.colors.accent else MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Column {
-            Text(found.word.target, style = MaterialTheme.typography.bodyMedium)
-            Text(
-                gloss(found),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-    }
-}
-
-/**
- * The gloss, and after it the box's own word where this one leans on it — which is the whole
- * reason the row came up unticked, said in the row rather than the heading.
- */
-private fun gloss(found: HarvestWord): String {
-    val match = found.match
-    return if (found.kind == HarvestKind.Near && match != null) "${found.word.source} · ≈ $match"
-    else found.word.source
 }
 
 private fun Context.clipboardText(): String =

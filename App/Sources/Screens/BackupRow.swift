@@ -7,7 +7,8 @@ import UniformTypeIdentifiers
 /// (`AppModel+Backup`).
 ///
 /// A picked file is read whole before anything is asked, so the confirmation only ever
-/// stands over a restore that can land.
+/// stands over a restore that can land. A file that is no backup is read as a word list
+/// (`WordListFile`) and offered as own words instead (`WordListImportSheet`).
 struct BackupRow: View {
     let model: AppModel
 
@@ -17,6 +18,9 @@ struct BackupRow: View {
     @State private var importing = false
     @State private var pending: StoredBoxes?
     @State private var failure: LocalizedStringKey?
+    /// A word-list file past `WordListFile.LARGE_LINES`, held until the learner says to read it.
+    @State private var largeFile: String?
+    @State private var wordList: WordListImport?
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
@@ -43,6 +47,8 @@ struct BackupRow: View {
         .alert(failure ?? "", isPresented: Binding(presenting: $failure)) {
             Button("common.done", role: .cancel) {}
         }
+        .largeWordListAlert($largeFile, read: readWordList)
+        .paneSheet(item: $wordList) { WordListImportSheet(model: model, harvested: $0.words) }
     }
 
     // why: each picker hangs off its own button — two file panels on one view
@@ -97,7 +103,7 @@ struct BackupRow: View {
             LinkLabel("settings.backup.import", icon: "square.and.arrow.down", font: Theme.typography.subheadline)
         }
         .buttonStyle(.plain)
-        .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
+        .fileImporter(isPresented: $importing, allowedContentTypes: [.json] + WordListFiles.types) { result in
             Task { await read(result) }
         }
     }
@@ -109,17 +115,23 @@ struct BackupRow: View {
     }
 
     private func read(_ result: Result<URL, any Error>) async {
-        guard case .success(let url) = result else { return }
-        let scoped = url.startAccessingSecurityScopedResource()
-        let json = try? String(contentsOf: url, encoding: .utf8)
-        if scoped { url.stopAccessingSecurityScopedResource() }
-        do {
-            pending = try await model.readBackup(json ?? "")
-        } catch {
-            failure = "settings.backup.importFailed"
-        }
+        guard case .success = result else { return }
+        guard let text = WordListFiles.text(of: result) else { return failure = "settings.backup.importFailed" }
+        if let backup = try? await model.readBackup(text) { return pending = backup }
+        if Int(WordListFile.shared.lineCount(text: text)) > Int(WordListFile.shared.LARGE_LINES) { largeFile = text }
+        else { readWordList(text) }
     }
 
+    private func readWordList(_ text: String) {
+        let found = model.harvest(fromFile: text)
+        if found.isEmpty { failure = "settings.backup.importFailed" } else { wordList = WordListImport(words: found) }
+    }
+}
+
+/// A word-list file's pairs, standing while the review sheet is up.
+struct WordListImport: Identifiable {
+    let id = UUID()
+    let words: [HarvestWord]
 }
 
 /// The backup text as the exporter writes it, under the name it offers for it.
