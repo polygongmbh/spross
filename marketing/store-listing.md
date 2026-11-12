@@ -10,7 +10,7 @@ Neighbors: screenshots `screenshots/index.md`, print copy `print/copy.json`.
 **Subtitle:** Words for real conversations
 
 **Promotional text** (editable without review):
-> You choose what to learn — food, doctor visit, small talk. Then practice your way: a quick round at the bus stop, a mini game, long sessions, or a chat with your AI.
+> The words you need for the moments that matter — picked by you, practiced on your schedule.
 
 **Description:**
 
@@ -45,7 +45,7 @@ It won't replace your course or your conversations. It makes sure you have the w
 **Subtitle:** Wörter für echte Gespräche
 
 **Promotional text:**
-> Du bestimmst, was du lernst — Essen, Arztbesuch, Smalltalk. Übe in deinem eigenen Rhythmus: kurz an der Haltestelle, als Minispiel, lange am Stück oder im KI-Chat.
+> Die Wörter, die du brauchst, wenn es drauf ankommt — selbst gewählt, in deinem Tempo geübt.
 
 **Description:**
 
