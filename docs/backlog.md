@@ -54,10 +54,15 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 
 ### Apps & tooling
-
+- A long typed answer is cut with "…" in the answer field.
+- A store-shot hook for a genuinely grown Box is missing: `-uitest-trees` fakes Home and the summary only, so Box screens stay early.
+- Starting a trainer run from its overview sheet is unverified on the Duo (`-uitest-run 1` never opened the run there), and the Box's leading pane truncates area titles and counts ("Greetings and C…").
+- On the iPhone Duo `run-sim.sh --shot` captures the dark cover display and `idb ui` fails on it; both need the lit display picked (`simctl io screenshot --display`).
 
 
 ## Revisit when it grows
+
+- Native iPad (`project.yml` `TARGETED_DEVICE_FAMILY`) once learners ask for it — iPhone compatibility mode covers iPad-only owners meanwhile, the wide-window panes carry over, the cost is iPad screenshots and review per release.
 
 - Watch snapshot entry cap (`WatchSnapshotBuilder.ENTRY_CAP`, 120):
   due-first ranking keeps due cards on-watch,
