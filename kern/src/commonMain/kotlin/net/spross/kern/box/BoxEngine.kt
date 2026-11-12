@@ -66,6 +66,10 @@ object BoxEngine {
     fun addOwnWord(state: BoxState, word: OwnWord, nowEpochMillis: Long): BoxState =
         LearnerContent.addWord(state, word, nowEpochMillis)
 
+    /** Take in many words the learner chose at once; see [LearnerContent.addWords]. */
+    fun addOwnWords(state: BoxState, words: List<OwnWord>, nowEpochMillis: Long): BoxState =
+        LearnerContent.addWords(state, words, nowEpochMillis)
+
     /** Rewrite a word the learner wrote, keeping its id and progress; see [LearnerContent.updateWord]. */
     fun updateOwnWord(state: BoxState, word: OwnWord): BoxState = LearnerContent.updateWord(state, word)
 

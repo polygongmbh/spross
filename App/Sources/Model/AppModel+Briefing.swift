@@ -28,19 +28,18 @@ extension AppModel {
         return Harvest.shared.read(text: pasted, state: box)
     }
 
-    /// Take the kept ones in as own words, in one write.
-    ///
-    /// One at a time off the state the last one returned, never in a batch against the
-    /// state this started from: the id is minted against the ids already taken, and two
-    /// words that fold alike would otherwise mint the same one (`Harvest.ownWord`).
+    /// Take the kept ones in as own words, queued, in one write (`Harvest.keep`).
     func keepHarvested(_ words: [BriefWord]) {
         guard !words.isEmpty else { return }
         let now = Date().epochMillis
         mutate { state in
-            for word in words {
-                let own = Harvest.shared.ownWord(state: state, word: word)
-                state = BoxEngine.shared.addOwnWord(state: state, word: own, nowEpochMillis: now)
-            }
+            state = Harvest.shared.keep(state: state, words: words, nowEpochMillis: now)
         }
+    }
+
+    /// Every pair a word-list file holds, each against the box (`WordListFile`).
+    func harvest(fromFile text: String) -> [HarvestWord] {
+        guard let box else { return [] }
+        return WordListFile.shared.read(text: text, state: box)
     }
 }

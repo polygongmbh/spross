@@ -1,11 +1,11 @@
 package net.spross.app
 
-import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BriefWord
 import net.spross.kern.box.Briefing
 import net.spross.kern.box.Briefings
 import net.spross.kern.box.Harvest
 import net.spross.kern.box.HarvestWord
+import net.spross.kern.box.WordListFile
 
 /**
  * Handing the box to a conversation the app does not host, and reading back what that
@@ -37,19 +37,13 @@ val AppModel.hasBriefing: Boolean
 fun AppModel.harvest(pasted: String): List<HarvestWord> =
     box?.let { Harvest.read(pasted, it) }.orEmpty()
 
-/**
- * Take the kept ones in as own words, in one write.
- *
- * One at a time off the state the last one returned, never in a batch against the state
- * this started from: the id is minted against the ids already taken, and two words that
- * fold alike would otherwise mint the same one ([Harvest.ownWord]).
- */
+/** Take the kept ones in as own words, queued, in one write ([Harvest.keep]). */
 fun AppModel.keepHarvested(words: List<BriefWord>) {
     if (words.isEmpty()) return
     val stamp = now()
-    updateBox { state ->
-        words.fold(state) { carried, word ->
-            BoxEngine.addOwnWord(carried, Harvest.ownWord(carried, word), stamp)
-        }
-    }
+    updateBox { state -> Harvest.keep(state, words, stamp) }
 }
+
+/** Every pair a word-list file holds, each against the box ([WordListFile]). */
+fun AppModel.harvestFile(text: String): List<HarvestWord> =
+    box?.let { WordListFile.read(text, it) }.orEmpty()

@@ -41,6 +41,7 @@ and the machinery behind them:
 The one engine rule that is not the box's own work is the seam to an outside chat assistant:
 `Briefing` writes what it may be told about a learner
 and `Harvest` reads back what it sends home;
+`WordListFile` reads the same pairs out of a file — a saved chat answer or another app's word list;
 where those two surface is `../docs/design.md`.
 
 ## 1. Languages & profile

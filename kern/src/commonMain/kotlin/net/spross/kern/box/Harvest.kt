@@ -72,17 +72,27 @@ object Harvest {
         return found.sortedBy { it.kind.ordinal }
     }
 
+    /** Take the kept pairs in as own words, queued, in one write; ids minted against each other. */
+    fun keep(state: BoxState, words: List<BriefWord>, nowEpochMillis: Long): BoxState {
+        val taken = state.ownWords.mapTo(mutableSetOf()) { it.id }
+        val own = words.map { word ->
+            ownWord(state, word, OwnWords.mint(word.target, taken).also { taken += it })
+        }
+        return BoxEngine.addOwnWords(state, own, nowEpochMillis)
+    }
+
     /**
      * One harvested pair as a word the box can hold. Which side lands in which language is
      * the join's answer, not the caller's — the brief wrote `target = source` and this is
      * the same fact read back.
      *
-     * [BoxEngine.addOwnWord] stamps the age. Add them ONE at a time off the state the last
-     * one returned: the id is minted against the ids already taken, and a batch minted
-     * against one stale state mints the same id twice.
+     * Its id is minted against the box's; many at once go through [keep], which mints them against each other too.
      */
-    fun ownWord(state: BoxState, word: BriefWord): OwnWord = OwnWords.write(
-        id = OwnWords.mint(word.target, state.ownWords.mapTo(mutableSetOf()) { it.id }),
+    fun ownWord(state: BoxState, word: BriefWord): OwnWord =
+        ownWord(state, word, OwnWords.mint(word.target, state.ownWords.mapTo(mutableSetOf()) { it.id }))
+
+    private fun ownWord(state: BoxState, word: BriefWord, id: String): OwnWord = OwnWords.write(
+        id = id,
         kind = OwnWords.DEFAULT_KIND,
         emoji = null,
         texts = mapOf(
@@ -99,7 +109,7 @@ object Harvest {
      * instead. A fence of another kind (an example, a code block) is not one of ours and
      * its lines never reach the parser.
      */
-    private fun fenced(text: String): List<String>? {
+    internal fun fenced(text: String): List<String>? {
         var inside = false
         val lines = mutableListOf<String>()
         var found = false
@@ -115,7 +125,7 @@ object Harvest {
         return if (found) lines else null
     }
 
-    private fun parseLine(raw: String): BriefWord? {
+    internal fun parseLine(raw: String): BriefWord? {
         var line = raw.trim().trim('`').trim()
         while (line.isNotEmpty() && line.first() in BULLETS) line = line.drop(1).trim()
         line = line.replaceFirst(NUMBERING, "")
@@ -128,7 +138,7 @@ object Harvest {
         return BriefWord(target = target, source = source)
     }
 
-    private fun clean(part: String): String =
+    internal fun clean(part: String): String =
         nfcNormalized(part.trim().trim('`', '*', '"', '\'', '“', '”').trim()).trimEnd('.', ',', ';')
 
 }

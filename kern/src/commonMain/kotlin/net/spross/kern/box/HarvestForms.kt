@@ -78,6 +78,9 @@ internal class BoxForms(state: BoxState) {
         else HarvestWord(word, HarvestKind.Near, near)
     }
 
+    /** Whether the box teaches this exact form. */
+    fun holds(form: String): Boolean = caseFolded(form) in targets
+
     private fun put(form: String, shown: String, gloss: Set<String>) {
         val folded = caseFolded(form)
         if (targets.containsKey(folded)) return

@@ -17,17 +17,21 @@ internal object LearnerContent {
      * One written in only ONE of the profile's languages is still taken in — it is a
      * SUGGESTION ([OwnWord]) — but joins no card and so is never queued or scheduled.
      */
-    fun addWord(state: BoxState, word: OwnWord, nowEpochMillis: Long): BoxState {
-        require(OwnWords.owns(word.id)) { "own word id must start with \"${OwnWords.ID_PREFIX}\"" }
-        if (state.ownWords.any { it.id == word.id }) return state
+    fun addWord(state: BoxState, word: OwnWord, nowEpochMillis: Long): BoxState =
+        addWords(state, listOf(word), nowEpochMillis)
+
+    /** [addWord] for many at once, rebuilding the cards once — a word list can be thousands long. */
+    fun addWords(state: BoxState, words: List<OwnWord>, nowEpochMillis: Long): BoxState {
+        words.forEach { require(OwnWords.owns(it.id)) { "own word id must start with \"${OwnWords.ID_PREFIX}\"" } }
+        val taken = state.ownWords.mapTo(mutableSetOf()) { it.id }
         // why: the engine stamps it, not the caller — an app that had to remember
         // would be the one place a suggestion's age could go wrong, and it is the
         // only date a suggestion ever gets (it earns no schedule to carry one).
-        val words = state.ownWords + word.copy(
-            addedAt = stampOf(nowEpochMillis),
-        )
-        val next = state.copy(ownWords = words, cards = rebuilt(state, words))
-        return if (next.cards[word.id] == null) next else Curation.queue(next, listOf(word.id))
+        val added = words.filter { taken.add(it.id) }.map { it.copy(addedAt = stampOf(nowEpochMillis)) }
+        if (added.isEmpty()) return state
+        val all = state.ownWords + added
+        val next = state.copy(ownWords = all, cards = rebuilt(state, all))
+        return Curation.queue(next, added.map { it.id }.filter { next.cards[it] != null })
     }
 
     /**
