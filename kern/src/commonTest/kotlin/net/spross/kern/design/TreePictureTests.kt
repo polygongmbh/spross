@@ -19,7 +19,7 @@ class TreePictureTests {
             picture.layers.filter { it.ink in inks }.flatMap { it.shapes }.map { it.rank }.filter { it >= 0 }.toSet().size
         assertEquals(2, marks(TreeInk.FRUIT))
         assertEquals(3, marks(TreeInk.BLOSSOM))
-        assertEquals(5, marks(TreeInk.LEAF, TreeInk.LEAF_DEEP))
+        assertEquals(5, marks(TreeInk.LEAF, TreeInk.LEAF_DEEP, TreeInk.LEAF_LIGHT))
         assertEquals(4, marks(TreeInk.BUD))
     }
 

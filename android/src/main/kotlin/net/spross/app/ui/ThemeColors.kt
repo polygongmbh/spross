@@ -81,6 +81,8 @@ class ThemeColors(
     val leaf: Color,
     /** A tree crown's deepest leaf tone. */
     val leafDeep: Color,
+    /** A tree crown's lightest leaf tone. */
+    val leafLight: Color,
     /** A bud on a tree. */
     val bud: Color,
     /** The leaflets breaking out of a bud. */
@@ -139,6 +141,7 @@ val ThemeLight = ThemeColors(
     woodShade = Palette.woodShade.light.opaque(),
     leaf = Palette.leaf.light.opaque(),
     leafDeep = Palette.leafDeep.light.opaque(),
+    leafLight = Palette.leafLight.light.opaque(),
     bud = Palette.bud.light.opaque(),
     shoot = Palette.shoot.light.opaque(),
     fallen = Palette.fallen.light.opaque(),
@@ -170,6 +173,7 @@ val ThemeDark = ThemeColors(
     woodShade = Palette.woodShade.dark.opaque(),
     leaf = Palette.leaf.dark.opaque(),
     leafDeep = Palette.leafDeep.dark.opaque(),
+    leafLight = Palette.leafLight.dark.opaque(),
     bud = Palette.bud.dark.opaque(),
     shoot = Palette.shoot.dark.opaque(),
     fallen = Palette.fallen.dark.opaque(),

@@ -27,6 +27,9 @@ private const val FRUIT_FLOOR = 1.6
 /** Below this size a blossom's petals are one disc: they blur. */
 private const val PLAIN_BLOSSOM = 12.0
 private const val GRAIN = 0x6c656166L
+/** A leaf's shade (0 at the crown's top, over 1 below) under which it takes the light tone, and from which the deep. */
+private const val LIT_BELOW = 0.5
+private const val DEEP_FROM = 0.8
 
 /** Every limb carrying one of [GrownTree.slots], and the wood under it down to the trunk: only these are drawn, so no twig stands bare. */
 internal fun GrownTree.carrying(): Set<Int> {
@@ -86,7 +89,7 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
     val depth = max((slots.maxOf { it.y } - slots.minOf { it.y }) * fit.scale, 1.0)
     val base = max(MARK_FLOOR, grown.pitch * fit.scale * 0.85)
     val buds = mutableListOf<TreeShape>(); val shoots = mutableListOf<TreeShape>(); val fruit = mutableListOf<TreeShape>()
-    val tones = List(4) { mutableListOf<TreeShape>() }
+    val tones = List(3) { mutableListOf<TreeShape>() }
     val petals = mutableListOf<TreeShape>(); val eyes = mutableListOf<TreeShape>()
     for ((rank, slot) in slots.withIndex()) {
         val x = fit.x + slot.x * fit.scale
@@ -105,10 +108,11 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
                 eyes += shape { circle(x, y, span * 0.13) }
             }
             3 -> {
-                // why: lit from above — the crown's upper leaves take the light tones, its lower and inner ones
+                // why: lit from above — the crown's upper leaves take the light tone, its lower and inner ones
                 // the deep, with a seeded nudge so the tones fall in patches rather than bands.
-                val tone = (((y - top) / depth * 0.75 + draw(GRAIN, rank) * 0.55) * 3.2 - 0.2).toInt().coerceIn(0, 3)
-                tones[3 - tone] += shape { sprig(x, y, size * LEAF_STRETCH, slot.angle) }
+                val shade = (y - top) / depth * 0.75 + draw(GRAIN, rank) * 0.55
+                tones[when { shade < LIT_BELOW -> 2; shade < DEEP_FROM -> 1; else -> 0 }] +=
+                    shape { sprig(x, y, size * LEAF_STRETCH, slot.angle) }
             }
             else -> {
                 // why: a bud breaking in spring — the scale on the wood, two folded leaflets out of its tip —
@@ -128,10 +132,9 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
         }
     }
     layer(TreeInk.FRUIT, 1.0, fruit)
-    layer(TreeInk.LEAF_DEEP, 0.92, tones[0])
+    layer(TreeInk.LEAF_DEEP, 1.0, tones[0])
     layer(TreeInk.LEAF, 1.0, tones[1])
-    layer(TreeInk.LEAF, 0.84, tones[2])
-    layer(TreeInk.LEAF, 0.68, tones[3])
+    layer(TreeInk.LEAF_LIGHT, 1.0, tones[2])
     // why: buds over the leaves — the newest words would otherwise hide in a full crown.
     // A bud's leaflets take spring's yellow-green and its scale is ochre: the word has not leafed out yet.
     layer(TreeInk.SHOOT, 0.9, shoots)

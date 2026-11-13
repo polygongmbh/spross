@@ -161,6 +161,7 @@ enum Theme {
         let woodShade = Color(Palette.shared.woodShade)
         let leaf = Color(Palette.shared.leaf)
         let leafDeep = Color(Palette.shared.leafDeep)
+        let leafLight = Color(Palette.shared.leafLight)
         let bud = Color(Palette.shared.bud)
         let shoot = Color(Palette.shared.shoot)
         let fallen = Color(Palette.shared.fallen)
