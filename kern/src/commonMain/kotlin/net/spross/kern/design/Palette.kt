@@ -82,6 +82,9 @@ object Palette {
     val blossom = Swatch(0xDDA020, 0xF2DC6E)
     /** Ripe fruit: a clear red. */
     val fruit = Swatch(0xC8352E, 0xE5584F)
+    /** A fruit's shaded side, and the glint on its lit one. */
+    val fruitDeep = Swatch(0x9E2420, 0xC23F38)
+    val fruitLight = Swatch(0xE5675F, 0xF48F86)
 
     /**
      * The tinted-pill fill: an accent at this alpha over the card surface.

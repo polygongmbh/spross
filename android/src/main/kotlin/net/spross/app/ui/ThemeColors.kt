@@ -93,6 +93,10 @@ class ThemeColors(
     val blossom: Color,
     /** Ripe fruit on a tree: a clear red. */
     val fruit: Color,
+    /** A fruit's shaded side. */
+    val fruitDeep: Color,
+    /** The glint on a fruit's lit side. */
+    val fruitLight: Color,
     /** Masculine article blue. */
     val der: Color,
     /** Feminine article berry. */
@@ -147,6 +151,8 @@ val ThemeLight = ThemeColors(
     fallen = Palette.fallen.light.opaque(),
     blossom = Palette.blossom.light.opaque(),
     fruit = Palette.fruit.light.opaque(),
+    fruitDeep = Palette.fruitDeep.light.opaque(),
+    fruitLight = Palette.fruitLight.light.opaque(),
     der = Palette.der.light.opaque(),
     die = Palette.die.light.opaque(),
     das = Palette.das.light.opaque(),
@@ -179,6 +185,8 @@ val ThemeDark = ThemeColors(
     fallen = Palette.fallen.dark.opaque(),
     blossom = Palette.blossom.dark.opaque(),
     fruit = Palette.fruit.dark.opaque(),
+    fruitDeep = Palette.fruitDeep.dark.opaque(),
+    fruitLight = Palette.fruitLight.dark.opaque(),
     der = Palette.der.dark.opaque(),
     die = Palette.die.dark.opaque(),
     das = Palette.das.dark.opaque(),

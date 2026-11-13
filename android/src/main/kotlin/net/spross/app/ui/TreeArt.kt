@@ -59,6 +59,9 @@ internal class TreeArt(picture: TreePicture, private val unit: Float) {
         TreeInk.BUD -> colors.bud
         TreeInk.SHOOT -> colors.shoot
         TreeInk.FRUIT -> colors.fruit
+        TreeInk.FRUIT_DEEP -> colors.fruitDeep
+        TreeInk.FRUIT_LIGHT -> colors.fruitLight
+        TreeInk.ON_COLOR -> colors.onColor
         TreeInk.BLOSSOM -> colors.blossom
         TreeInk.FALLEN -> colors.fallen
         TreeInk.ACCENT -> colors.accent

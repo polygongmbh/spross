@@ -214,6 +214,8 @@ What licenses a second component is a parameter attempted and found not to carry
   how a tree stands, grows and is drawn is kern's (`growthByArea`, `TreesLayout`, `AreaTree`, `TreePicture`, `TreeRise`),
   and whether a round summary shows one, and what it claims over it, `RoundSummary`.
   A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
+  A leaf is a sprig of ribbed leaflets in one of three greens by height, never faded; a fruit carries a shaded side and a glint.
+  Settled and matured words hang no leaf of their own, so about a third of them carry a single leaf beside their mark: a grown crown is never bare.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.
   A lapse drops leaves, never shrinks the tree.

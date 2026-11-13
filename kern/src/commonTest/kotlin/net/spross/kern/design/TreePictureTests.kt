@@ -24,6 +24,16 @@ class TreePictureTests {
     }
 
     @Test
+    fun aGrownCrownOfFruitAndBlossomStillCarriesSomeLeaves() {
+        val tree = AreaGrowth("kitchen", StageCounts(settled = 12, matured = 8), 0, false, List(20) { 0.5 })
+        val picture = TreePicture.of(tree, "kitchen", 100.0, 200.0, 120.0)
+        val leaves = picture.layers
+            .filter { it.ink == TreeInk.LEAF || it.ink == TreeInk.LEAF_DEEP || it.ink == TreeInk.LEAF_LIGHT }
+            .sumOf { it.shapes.size }
+        assertTrue(leaves in 1 until 20)
+    }
+
+    @Test
     fun aStrongerWordHangsABiggerMark() {
         fun bud(strength: Double): Double {
             val tree = AreaGrowth("kitchen", StageCounts(fresh = 12), 0, false, List(12) { strength })

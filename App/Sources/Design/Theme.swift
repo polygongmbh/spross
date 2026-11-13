@@ -167,6 +167,8 @@ enum Theme {
         let fallen = Color(Palette.shared.fallen)
         let blossom = Color(Palette.shared.blossom)
         let fruit = Color(Palette.shared.fruit)
+        let fruitDeep = Color(Palette.shared.fruitDeep)
+        let fruitLight = Color(Palette.shared.fruitLight)
 
         // Article colors (poster palette).
         let der = Color(Palette.shared.der)

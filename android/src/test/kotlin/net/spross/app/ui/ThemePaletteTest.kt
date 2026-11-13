@@ -53,6 +53,8 @@ class ThemePaletteTest {
         Token("fallen", Palette.fallen, ThemeLight.fallen, ThemeDark.fallen),
         Token("blossom", Palette.blossom, ThemeLight.blossom, ThemeDark.blossom),
         Token("fruit", Palette.fruit, ThemeLight.fruit, ThemeDark.fruit),
+        Token("fruitDeep", Palette.fruitDeep, ThemeLight.fruitDeep, ThemeDark.fruitDeep),
+        Token("fruitLight", Palette.fruitLight, ThemeLight.fruitLight, ThemeDark.fruitLight),
     )
 
     /**
