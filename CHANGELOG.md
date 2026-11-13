@@ -4,6 +4,11 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.3.2 — 2026-11-13
+
+- The Box's area groups are split into smaller ones, and a folded group previews its first three areas.
+- Your trees have smaller ribbed leaves, shaded fruit and leaves beside the blossom.
+
 ## 9.3.1 — 2026-11-12
 
 - The AI chat is there from your first day, before your first session.
