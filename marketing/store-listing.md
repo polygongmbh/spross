@@ -1,7 +1,8 @@
 # App Store listing
 English and German text for the App Store product page.
-For Google Play, drop the Apple Watch paragraph; the rest carries over (4 000-char limit).
 Neighbors: screenshots `screenshots/index.md`, print copy `print/copy.json`.
+
+For Google Play, drop the Apple Watch paragraph; the rest carries over (4 000-char limit).
 
 ## English
 
