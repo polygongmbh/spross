@@ -19,8 +19,18 @@ class TreePictureTests {
             picture.layers.filter { it.ink in inks }.flatMap { it.shapes }.map { it.rank }.filter { it >= 0 }.toSet().size
         assertEquals(2, marks(TreeInk.FRUIT))
         assertEquals(3, marks(TreeInk.BLOSSOM))
-        assertEquals(5, marks(TreeInk.LEAF, TreeInk.LEAF_DEEP))
+        assertEquals(5, marks(TreeInk.LEAF, TreeInk.LEAF_DEEP, TreeInk.LEAF_LIGHT))
         assertEquals(4, marks(TreeInk.BUD))
+    }
+
+    @Test
+    fun aGrownCrownOfFruitAndBlossomStillCarriesSomeLeaves() {
+        val tree = AreaGrowth("kitchen", StageCounts(settled = 12, matured = 8), 0, false, List(20) { 0.5 })
+        val picture = TreePicture.of(tree, "kitchen", 100.0, 200.0, 120.0)
+        val leaves = picture.layers
+            .filter { it.ink == TreeInk.LEAF || it.ink == TreeInk.LEAF_DEEP || it.ink == TreeInk.LEAF_LIGHT }
+            .sumOf { it.shapes.size }
+        assertTrue(leaves in 1 until 20)
     }
 
     @Test

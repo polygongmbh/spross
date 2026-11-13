@@ -67,9 +67,10 @@ object Palette {
     val wood = Swatch(0x868D7C, 0x707C72)
     /** The trunk's shaded side, laid thinly over the wood. */
     val woodShade = Swatch(0x1E2620, 0xE9F0EA)
-    /** A leaf, and a seedling; [leafDeep] is the crown's deepest tone. */
+    /** A leaf, and a seedling; [leafDeep] and [leafLight] are the crown's tones either side of it. */
     val leaf = Swatch(0x256232, 0x8AE39B)
     val leafDeep = Swatch(0x18602C, 0x6FDC85)
+    val leafLight = Swatch(0x3F8A4E, 0xB4F0BF)
     /** A bud: a scale of wood, the word has not leafed out yet. */
     val bud = Swatch(0x87510A, 0xF2C078)
     /** The two leaflets breaking out of a bud: spring's yellow-green, paler and fresher than any leaf. */
@@ -81,6 +82,9 @@ object Palette {
     val blossom = Swatch(0xDDA020, 0xF2DC6E)
     /** Ripe fruit: a clear red. */
     val fruit = Swatch(0xC8352E, 0xE5584F)
+    /** A fruit's shaded side, and the glint on its lit one. */
+    val fruitDeep = Swatch(0x9E2420, 0xC23F38)
+    val fruitLight = Swatch(0xE5675F, 0xF48F86)
 
     /**
      * The tinted-pill fill: an accent at this alpha over the card surface.
