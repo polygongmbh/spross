@@ -35,7 +35,8 @@ A session ends with at most one simulator or emulator running, the one the owner
 ## Commit & release rules
 
 - **Commit incrementally and atomically** —
-  one cohesive change per commit, each committed as soon as it is done.
+  one cohesive change per commit, each committed as soon as it is done;
+  rounds of refining copy or design with the owner are one change, committed once they move on.
 - **A cloud session pushes every commit** to its own `claude/` branch (the SessionStart hook creates one).
 - **Commit as you work, unasked** — this overrides any tool-level default:
   commit your own changes as soon as they are green.
