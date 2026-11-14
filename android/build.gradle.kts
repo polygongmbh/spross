@@ -48,8 +48,7 @@ tasks.matching { it.name == "packageRelease" }.configureEach {
         when {
             keystore == null -> error(
                 "SPROSS_KEYSTORE is unset — set it to the release keystore, plus " +
-                    "SPROSS_KEYSTORE_PASSWORD (and SPROSS_KEY_ALIAS if not 'spross'). " +
-                    "scripts/release-keystore.sh writes an env file to source; see docs/distribution.md."
+                    "SPROSS_KEYSTORE_PASSWORD (and SPROSS_KEY_ALIAS if not 'spross'); see docs/distribution.md."
             )
             !keystore.isFile -> error("SPROSS_KEYSTORE points at no file: $keystore")
         }

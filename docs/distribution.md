@@ -26,7 +26,7 @@ Set once, in Settings › Secrets and variables › Actions.
 The first three are enough to ship Android:
 the release job waits for the iPhone build but does not depend on it, so an Apple credential that is missing or expired costs the App Store upload and the IPA, not the release.
 
-`scripts/release-keystore.sh <dir>` creates the Android key wherever you keep key files and writes the first three into `<dir>/github-secrets.txt` ready to paste.
+The Android key exists and is never made again: Obtainium and Android pin the signature, so a re-keyed APK is a different app to every install.
 The App Store Connect key is generated in App Store Connect › Users and Access › Integrations with the **App Manager** role, downloadable exactly once;
 `base64 -i AuthKey_XXX.p8 | pbcopy` turns it into the secret.
 
@@ -59,7 +59,7 @@ The environment names the key —
 the same three variables CI sets, so there is one route in and a locally cut APK installs over a released one:
 
 ```sh
-. <key-dir>/android-release.env # what release-keystore.sh wrote
+. <key-dir>/android-release.env # exports SPROSS_KEYSTORE, SPROSS_KEYSTORE_PASSWORD, SPROSS_KEY_ALIAS
 ./gradlew :android:assembleRelease
 ```
 
