@@ -31,7 +31,7 @@ Release takes no `-uitest-*` flags, so drive a clean run with idb.
 ## Keep it quiet
 
 Launch with `-readAloud off` (`xsim -- -readAloud off`, on every `--shot` run too);
-`scripts/run-emu.sh` does the same through `--es readAloud off`.
+`scripts/android-emu.sh` does the same through `--es readAloud off`.
 Autoplay is silenced for that launch only, as the in-app toggle would be;
 every launch starts reading aloud again (`docs/audio.md`).
 

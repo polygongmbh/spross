@@ -1,7 +1,7 @@
 #!/bin/sh
 # Build, install and launch Spross on an Android emulator — usage: --help.
 usage() { cat <<'EOF'
-Usage: scripts/run-emu.sh [options]
+Usage: scripts/android-emu.sh [options]
 
 Builds Spross (debug APK) and (re)launches it on the spross-phone AVD.
 Boots the AVD if it is not already running; an emulator left up is reused.
@@ -39,7 +39,7 @@ while [ $# -gt 0 ]; do
     --mute) MUTE=1; shift ;;
     --sound) SOUND=1; shift ;;
     -h|--help) usage; exit 0 ;;
-    *) echo "error: run-emu: unknown option '$1' (see --help)" >&2; exit 1 ;;
+    *) echo "error: android-emu: unknown option '$1' (see --help)" >&2; exit 2 ;;
   esac
 done
 
@@ -49,7 +49,7 @@ SDK=$(sed -n 's/^sdk\.dir=//p' local.properties 2>/dev/null | tail -1)
 [ -n "$SDK" ] || SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Library/Android/sdk}}"
 EMULATOR="$SDK/emulator/emulator"
 [ -x "$EMULATOR" ] || {
-  echo "error: run-emu: no emulator at $EMULATOR" >&2
+  echo "error: android-emu: no emulator at $EMULATOR" >&2
   echo "       sdkmanager --sdk_root=\"$SDK\" emulator" >&2
   exit 1
 }
@@ -61,7 +61,7 @@ ADB="$SDK/platform-tools/adb -e"
 
 if ! $ADB get-state >/dev/null 2>&1; then
   "$EMULATOR" -list-avds | grep -qx "$AVD" || {
-    echo "error: run-emu: no AVD named '$AVD'" >&2
+    echo "error: android-emu: no AVD named '$AVD'" >&2
     echo "       $EMULATOR -list-avds" >&2
     exit 1
   }
@@ -83,7 +83,7 @@ fi
 if [ "$BUILD" = 1 ]; then
   ./gradlew --console=plain -q :android:assembleDebug
 fi
-[ -f "$APK" ] || { echo "error: run-emu: no APK at $APK — drop --no-build" >&2; exit 1; }
+[ -f "$APK" ] || { echo "error: android-emu: no APK at $APK — drop --no-build" >&2; exit 1; }
 
 [ "$CLEAN" = 1 ] && $ADB uninstall "$PKG" >/dev/null 2>&1
 # why: -d lets an older checkout install over a newer build — bisecting would otherwise stop at INSTALL_FAILED_VERSION_DOWNGRADE

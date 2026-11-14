@@ -98,7 +98,7 @@ class SprossActivity : ComponentActivity() {
             window.isNavigationBarContrastEnforced = false
         }
         super.onCreate(savedInstanceState)
-        // why: `--es readAloud off` (scripts/run-emu.sh --mute) starts a driven run
+        // why: `--es readAloud off` (scripts/android-emu.sh --mute) starts a driven run
         // silent, so an unattended machine never speaks up by itself. Only on a FRESH
         // create — a rotation replays this intent, and re-muting there would undo a
         // toggle the learner had just reached for.

@@ -121,7 +121,7 @@ reading project, scheme and app from the repo;
 the DEBUG launch arguments are listed in `.claude/skills/verify/SKILL.md`.
 
 Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBOOK-android.md`.
-`scripts/run-emu.sh` is the emulator counterpart of `xsim`.
+`scripts/android-emu.sh` is the emulator counterpart of `xsim`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
 via `scripts/build-kern.sh` (integration detail: `docs/build.md`).
