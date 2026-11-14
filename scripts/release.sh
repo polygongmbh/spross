@@ -80,7 +80,7 @@ echo "project.yml   → MARKETING_VERSION: $VERSION"
 # Spross.xcodeproj is generated and gitignored, so it keeps the OLD number until this
 # runs — without it a local build installs $VERSION's code stamped as its predecessor.
 if command -v xcodegen >/dev/null 2>&1; then
-  scripts/gen.sh >/dev/null
+  xcodegen generate --use-cache --cache-path build/xcodegen-cache --quiet
   echo "Spross.xcodeproj regenerated."
 fi
 

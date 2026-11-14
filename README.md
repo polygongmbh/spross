@@ -125,4 +125,4 @@ Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBO
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
 via `scripts/build-kern.sh` (integration detail: `docs/build.md`).
-After adding/removing Swift source files or switching commits: `scripts/gen.sh` (`xsim` runs it on every build).
+After adding/removing Swift source files or switching commits: `xcodegen generate` (`xsim` runs it on every build).

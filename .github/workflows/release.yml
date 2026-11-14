@@ -92,7 +92,7 @@ jobs:
 
       # Spross.xcodeproj is generated, never committed.
       - run: brew install xcodegen
-      - run: scripts/gen.sh
+      - run: xcodegen generate
 
       - name: App Store Connect API key from secret
         env:
