@@ -4,7 +4,7 @@
  "words": {
   "time": {
    "text": "temps",
-   "grammar": { "article": "le" },
+   "grammar": { "article": "le", "plural": "=" },
    "notes": { "fr": "j'ai le temps · une fois, trois fois, pas trois temps." }
   },
   "day": {

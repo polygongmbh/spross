@@ -9,6 +9,7 @@
    "text": "televisión",
    "teaches": ["televisor"],
    "accepts": ["tele"],
+   "forms": { "pl": "las televisiones" },
    "grammar": { "article": "la" },
    "notes": {
     "es": "En el día a día, la tele · el televisor es el aparato.",

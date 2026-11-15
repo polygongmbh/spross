@@ -4,7 +4,12 @@
  "words": {
   "traffic-light": { "text": "semáforo", "grammar": { "article": "el" } },
   "bicycle": { "text": "bicicleta", "accepts": ["bici"], "grammar": { "article": "la" } },
-  "bus": { "text": "autobús", "accepts": ["bus", "guagua"], "grammar": { "article": "el" } },
+  "bus": {
+   "text": "autobús",
+   "accepts": ["bus", "guagua"],
+   "forms": { "pl": "los autobuses" },
+   "grammar": { "article": "el" }
+  },
   "bus-stop": { "text": "parada", "accepts": ["parada de autobús"], "grammar": { "article": "la" } },
   "train": { "text": "tren", "grammar": { "article": "el" } },
   "car": { "text": "coche", "accepts": ["carro", "auto"], "grammar": { "article": "el" } },

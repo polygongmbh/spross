@@ -11,7 +11,12 @@
   },
   "keyboard": { "text": "teclado", "grammar": { "article": "el" } },
   "screen": { "text": "pantalla", "grammar": { "article": "la" } },
-  "mouse": { "text": "ratón", "accepts": ["mouse"], "grammar": { "article": "el" } },
+  "mouse": {
+   "text": "ratón",
+   "accepts": ["mouse"],
+   "forms": { "pl": "los ratones" },
+   "grammar": { "article": "el" }
+  },
   "cable": { "text": "cable", "grammar": { "article": "el" } },
   "pen": {
    "text": "bolígrafo",

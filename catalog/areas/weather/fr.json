@@ -4,7 +4,7 @@
  "words": {
   "weather": {
    "text": "temps",
-   "grammar": { "article": "le" },
+   "grammar": { "article": "le", "plural": "=" },
    "notes": { "de": "le temps heißt auch Zeit." }
   },
   "sky": { "text": "ciel", "grammar": { "article": "le" } },

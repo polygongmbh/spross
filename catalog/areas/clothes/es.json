@@ -8,7 +8,12 @@
   "jacket": { "text": "chaqueta", "grammar": { "article": "la" } },
   "pants": { "text": "pantalones", "accepts": ["pantalón"], "grammar": { "article": "los" } },
   "t-shirt": { "text": "camiseta", "accepts": ["playera", "remera"], "grammar": { "article": "la" } },
-  "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "article": "el" } },
+  "sock": {
+   "text": "calcetín",
+   "accepts": ["media"],
+   "forms": { "pl": "los calcetines" },
+   "grammar": { "article": "el" }
+  },
   "shirt": { "text": "camisa", "grammar": { "article": "la" } },
   "dress": { "text": "vestido", "grammar": { "article": "el" } },
   "to-wear": { "text": "llevar", "accepts": ["llevar puesto"] },

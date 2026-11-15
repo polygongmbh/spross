@@ -33,7 +33,7 @@
    "grammar": { "article": "la" }
   },
   "towel": { "text": "toalla", "grammar": { "article": "la" } },
-  "soap": { "text": "jabón", "grammar": { "article": "el" } },
+  "soap": { "text": "jabón", "forms": { "pl": "los jabones" }, "grammar": { "article": "el" } },
   "shampoo": { "text": "champú", "grammar": { "article": "el" } },
   "hairdryer": { "text": "secador", "accepts": ["secador de pelo"], "grammar": { "article": "el" } },
   "to-take-shower": { "text": "ducharse" },

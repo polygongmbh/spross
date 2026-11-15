@@ -11,7 +11,7 @@
   "door": { "text": "puerta", "grammar": { "article": "la" } },
   "key": { "text": "llave", "grammar": { "article": "la" } },
   "umbrella": { "text": "paraguas", "grammar": { "article": "el", "plural": "=" } },
-  "mailbox": { "text": "buzón", "grammar": { "article": "el" } },
+  "mailbox": { "text": "buzón", "forms": { "pl": "los buzones" }, "grammar": { "article": "el" } },
   "doorbell": { "text": "timbre", "grammar": { "article": "el" } },
   "stairs": { "text": "escalera", "accepts": ["escaleras"], "grammar": { "article": "la" } },
   "bag": {

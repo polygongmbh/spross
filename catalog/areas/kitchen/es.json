@@ -24,7 +24,7 @@
    "grammar": { "article": "el", "plural": "=" }
   },
   "pot": { "text": "olla", "accepts": ["cacerola"], "grammar": { "article": "la" } },
-  "pan": { "text": "sartén", "grammar": { "article": "la" } },
+  "pan": { "text": "sartén", "forms": { "pl": "las sartenes" }, "grammar": { "article": "la" } },
   "knife": { "text": "cuchillo", "grammar": { "article": "el" } },
   "spoon": { "text": "cuchara", "grammar": { "article": "la" } },
   "fork": { "text": "tenedor", "grammar": { "article": "el" } },

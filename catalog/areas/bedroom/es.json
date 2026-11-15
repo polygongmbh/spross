@@ -3,7 +3,7 @@
  "subtitle": "¡Dulces sueños!",
  "words": {
   "bed": { "text": "cama", "grammar": { "article": "la" } },
-  "mattress": { "text": "colchón", "grammar": { "article": "el" } },
+  "mattress": { "text": "colchón", "forms": { "pl": "los colchones" }, "grammar": { "article": "el" } },
   "pillow": { "text": "almohada", "grammar": { "article": "la" } },
   "blanket": { "text": "manta", "accepts": ["frazada", "cobija"], "grammar": { "article": "la" } },
   "bedding": { "text": "ropa de cama", "grammar": { "article": "la" } },

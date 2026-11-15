@@ -35,7 +35,12 @@
    "grammar": { "article": "los", "plural": "only" },
    "notes": { "es": "Solo en plural: hacer los deberes." }
   },
-  "exam": { "text": "examen", "accepts": ["prueba"], "grammar": { "article": "el" } },
+  "exam": {
+   "text": "examen",
+   "accepts": ["prueba"],
+   "forms": { "pl": "los exámenes" },
+   "grammar": { "article": "el" }
+  },
   "break": {
    "text": "recreo",
    "accepts": ["descanso", "pausa"],
