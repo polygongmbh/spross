@@ -20,6 +20,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -68,12 +70,15 @@ fun TrainerHubCard(model: AppModel) {
     val chips = remember(model.box, model.numbers.boxDrills, chrome) { model.hubChips(chrome) }
     if (chips.isEmpty()) return
     Panel(spacing = Theme.spacing.md) {
-        Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
-        Text(
-            chrome.trainerHubSubtitle,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        // One run of text, so a long subtitle wraps under the title rather than clipping.
+        val title = MaterialTheme.typography.titleLarge.toSpanStyle()
+        val subtitle = MaterialTheme.typography.bodyMedium.toSpanStyle()
+            .copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(buildAnnotatedString {
+            withStyle(title) { append(chrome.trainerHubTitle) }
+            append("  ")
+            withStyle(subtitle) { append(chrome.trainerHubSubtitle) }
+        })
         model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome, onHub = true) }
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             chipRows(chips).forEach { row ->
