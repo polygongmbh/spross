@@ -137,12 +137,14 @@ struct TrainerHubView: View, LanguageNaming {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            Text("trainer.hub.title")
+            // One run of text, so a long subtitle wraps under the title rather than clipping.
+            (Text("trainer.hub.title")
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textPrimary)
-            Text("trainer.hub.subtitle")
+                + Text(verbatim: "  ")
+                + Text("trainer.hub.subtitle")
                 .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.textSecondary)
+                .foregroundStyle(Theme.colors.textSecondary))
             if let lastRun { DrillResultTile(result: lastRun, onHub: true) }
             VStack(spacing: Theme.spacing.md) {
                 ForEach(Array(chipRows.enumerated()), id: \.offset) { _, row in

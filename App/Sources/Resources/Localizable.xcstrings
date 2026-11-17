@@ -7411,13 +7411,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minispiele, so oft du magst"
+            "value" : "Minispiele für zwischendurch"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mini games, whenever you're up for it"
+            "value" : "Mini games for in between"
           }
         }
       }
