@@ -135,7 +135,7 @@ internal object ChromeEn : Chrome {
     override val legalContactLabel = "Contact"
     override val legalPrivacy = "Privacy Policy"
     override val trainerHubTitle = "Meadow"
-    override val trainerHubSubtitle = "Mini games for in between"
+    override val trainerHubSubtitle = "Quick games for spare moments"
     override val trainerDrillLetters = "Letters"
     override val lettersAskHear = "Which letter is this?"
     override val lettersAskSpell = "What's missing in the word?"
