@@ -4,6 +4,10 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.3.3 — 2026-11-17
+
+- The Meadow card is a line shorter, with its subtitle beside the title.
+
 ## 9.3.2 — 2026-11-13
 
 - The Box's area groups are split into smaller ones, and a folded group previews its first three areas.
