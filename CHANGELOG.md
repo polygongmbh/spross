@@ -4,9 +4,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
-## 9.3.3 — 2026-11-17
-
-- The Meadow card is a line shorter, with its subtitle beside the title.
+## 9.3.3 — 2026-11-17 — The Meadow card is a line shorter, with its subtitle beside the title.
 
 ## 9.3.2 — 2026-11-13
 
@@ -29,9 +27,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 - Reviews of a word you know now take turns showing it, playing it aloud and asking for it from your own language.
 - Optional practice reminders, at the times you usually practice or at times you set, as many a day as you like.
 
-## 9.1.2 — 2026-10-28
-
-- The iPhone app gets 9.1.1's Home changes too.
+## 9.1.2 — 2026-10-28 — The iPhone app gets 9.1.1's Home changes too.
 
 ## 9.1.1 — 2026-10-28
 
@@ -100,9 +96,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 - On Android, finished rounds, drill pauses and closed drill runs now rain confetti, as on iPhone.
 - A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like Swahili kulia for right and to cry.
 
-## 8.3.1 — 2026-10-05
-
-- On Android, the letter drill now plays its question even with reading aloud switched off, as on iPhone.
+## 8.3.1 — 2026-10-05 — On Android, the letter drill now plays its question even with reading aloud switched off, as on iPhone.
 
 ## 8.3.0 — 2026-10-05
 
@@ -190,9 +184,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 - A numbers challenge can now be sent as a short code, so two people race the same questions.
 - Word scramble now climbs a Sprosse after three clean spellings instead of five.
 
-## 7.4.2 — 2026-09-22
-
-- After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.
+## 7.4.2 — 2026-09-22 — After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.
 
 ## 7.4.1 — 2026-09-22
 
@@ -254,9 +246,7 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 - The garden button on Home now wears a plant instead of a packing box.
 - The finished screen's summary now scrolls instead of cutting off mid-sentence at large text sizes.
 
-## 7.1.0 — 2026-09-15
-
-- Two new entries on the Sprossen card: Word scramble writes a word you already hold back out of its mixed-up letters, and Sentence scramble taps a phrase's words back into order — neither touches when your box is due.
+## 7.1.0 — 2026-09-15 — Two new entries on the Sprossen card: Word scramble writes a word you already hold back out of its mixed-up letters, and Sentence scramble taps a phrase's words back into order — neither touches when your box is due.
 
 ## 7.0.0 — 2026-09-14
 

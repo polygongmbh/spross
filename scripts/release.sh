@@ -63,11 +63,21 @@ if ! grep -q "^## $VERSION\( \|$\)" CHANGELOG.md; then
     echo "       (what earns an entry: docs/release.md)" >&2
     exit 1
   fi
-  awk -v v="$VERSION" -v d="$(date +%F)" '
-    /^## Unreleased/ && !done { print "## Unreleased"; print ""; print "## " v " — " d; done = 1; next }
+  # A lone one-line entry moves into the heading: '## VERSION — DATE — entry'.
+  LONE=$(awk '/^## Unreleased/ { inside = 1; next } inside && /^## / { exit } inside && /./' CHANGELOG.md)
+  case "$LONE" in
+    *"
+"*) LONE='' ;;
+    "- "*) LONE=" — ${LONE#- }" ;;
+    *) LONE='' ;;
+  esac
+  awk -v v="$VERSION" -v d="$(date +%F)" -v lone="$LONE" '
+    /^## Unreleased/ && !done { print "## Unreleased"; print ""; print "## " v " — " d lone; done = 1; skip = lone != ""; next }
+    skip && /^## / { skip = 0; print ""; print; next }
+    skip { next }
     { print }
   ' CHANGELOG.md > CHANGELOG.md.tmp && mv CHANGELOG.md.tmp CHANGELOG.md
-  echo "CHANGELOG.md  → ## $VERSION — $(date +%F)"
+  echo "CHANGELOG.md  → ## $VERSION — $(date +%F)$LONE"
 fi
 scripts/release-notes.sh "$VERSION" >/dev/null
 

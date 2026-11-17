@@ -3,7 +3,8 @@
 usage() { cat <<'EOF'
 Usage: scripts/release-notes.sh VERSION
 
-Prints VERSION's CHANGELOG section, the body of its GitHub release.
+Prints VERSION's CHANGELOG section, the body of its GitHub release;
+a one-entry version prints the entry its heading carries.
 An empty section is an error: a release whose version never got a changelog
 heading is a release nobody wrote notes for, worth failing the tag build over.
 EOF
@@ -26,6 +27,14 @@ NOTES=$(awk -v v="$VERSION" '
 
 # Trim the blank lines the section boundaries leave behind.
 NOTES=$(printf '%s\n' "$NOTES" | sed -e '/./,$!d' | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba')
+
+# A one-entry version carries its entry in the heading: '## VERSION — DATE — entry'.
+if [ -z "$NOTES" ]; then
+  NOTES=$(awk -v v="$VERSION" '
+    BEGIN { esc = v; gsub(/\./, "\\.", esc) }
+    $0 ~ "^## " esc " " { n = split($0, part, " — "); for (i = 3; i <= n; i++) printf "%s%s", (i > 3 ? " — " : ""), part[i]; exit }
+  ' CHANGELOG.md)
+fi
 
 if [ -z "$NOTES" ]; then
   echo "error: CHANGELOG.md has no '## $VERSION' section — rename '## Unreleased' before tagging" >&2

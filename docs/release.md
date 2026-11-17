@@ -11,7 +11,8 @@ xdevice --release --all              # your own devices ($APPLE_DEVICES) — a s
 ```
 
 The script owns the mechanical half:
-it renames `## Unreleased` to `## <version> — <today>` and opens a fresh one, writes `MARKETING_VERSION`, regenerates `Spross.xcodeproj` —
+it renames `## Unreleased` to `## <version> — <today>` and opens a fresh one —
+a lone entry moves into that heading as `## <version> — <today> — <entry>` — writes `MARKETING_VERSION`, regenerates `Spross.xcodeproj` —
 generated and gitignored, so it keeps stamping the old number until something regenerates it —
 runs the text lints, the Kotlin gates and an unsigned simulator build, and only then commits, tags and pushes.
 `--check` stops before the commit, `--no-app` drops the Xcode gate on a Linux session.
@@ -51,5 +52,6 @@ when the owner strikes one, sharpen this rule.
   A fix gets a line only where the learner saw something break, such as a crash or lost progress.
   A release where nothing clears this bar gets one short line per screen the learner sees changed.
 - One piece of work is one bullet.
+- A version with one entry is its heading alone, the entry inlined after the date.
 - A bullet is one plain sentence about what the learner sees and hears, in their words:
   no pipeline terms (ship, take, prompt, verdict), no bold lead, no explanation clause.
