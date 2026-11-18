@@ -37,7 +37,7 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   a relaunch is only for a clean state, never to reach the next screen.
   A builder verifies on screen once, after its last step, on one booted simulator;
   that pass saves its captures for the store when a release is near.
-- `scripts/dup-scan.py` ranks duplicated Swift/Kotlin code (never a gate; `--why` lists repeated `// why:` comments) — the report to hand a cleanup wave.
+- `dup-scan` (dotfiles) ranks duplicated Swift/Kotlin code (never a gate; `--why` lists repeated `// why:` comments) — the report to hand a cleanup wave.
 - `scripts/catalog-format.py --fix` rewrites the WHOLE repo — only the conductor runs it,
   after all agents are done. Agents that need valid JSON write through the formatter's own
   `formatted()` function on their files only.
