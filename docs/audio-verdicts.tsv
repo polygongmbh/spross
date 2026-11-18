@@ -527,3 +527,118 @@ date	lang	word	speaker	source	sha256	verdict	note	mos	context	heard_on
 2026-11-06	sw	karibu chakula	Waithera Were	Sw-ke-karibu chakula.flac	e335568f8485175f6a7b417d5e0596ab65702f4c39feb4c72ca6a69fc6d86b90	good		3.23	2026-11-04 new concepts	AirPods Pro
 2026-11-06	eo	proksimume	Lepticed7	LL-Q143 (epo)-Lepticed7-proksimume.wav	6f07b2b78daabc5fc18a18e6056334aec4d83aa5715ae140fb47486c17983645	good		3.27	2026-11-04 new concepts	AirPods Pro
 2026-11-06	fr	bon appétit	LoquaxFR	LL-Q150 (fra)-LoquaxFR-bon appétit.wav	fbee4e8443edc31c121522819323e0c0d27a30f88e7cbcd67b8848f65371535e	okay		3.3	2026-11-04 new concepts	AirPods Pro
+2026-11-18	de	jahrtausende	Jeuwre	De-Jahrtausende2.ogg	dacb4192b168393ef9bd86f5b843c0370c5d1ecec15742998d958c838631634b	good		3.37	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	de	jahrtausende	Kampy	De-Jahrtausende.ogg	8ffbdf12e512ed3496f2b957cb1cd3817ce074f5f60ab747917ba847f6e78f8a	bad		2.71	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	de	bahnhöfe	Jeuwre	De-Bahnhöfe2.ogg	409a8e57cdadbf7ac045b84c336d43a7a122414c04c7282523892adb7743a0fe	good		3.26	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	de	bahnhöfe	T.Voekler	De-Bahnhöfe.ogg	3dd1777f562b0908a79c25602c1b89399f1dbbfb45b5441f89ea0e4fb3a3fcfb	okay		2.75	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	de	ausgänge	Sebastian Wallroth	LL-Q188 (deu)-Sebastian Wallroth-Ausgänge.wav	a51f95a7640cfbda24c848054281597edac0dae354f14a186709ea18ec521675	okay		2.72	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	de	ausgänge	Jeuwre	De-Ausgänge2.ogg	36098d58283c117935fcf7c587253995dc2e2ab3eba22e36f13c37fa3d67171e	good		3.34	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	en	Finland	Wodencafe	LL-Q1860 (eng)-Wodencafe-Finland.wav	db59ea52cbbeb48e1e08205340dea30f2162074b043a0f1afefef616236968e3	good		2.76	2026-11-07 sweep ab (countries, after)	AirPods Pro
+2026-11-18	en	Finland	EncycloPetey	En-us-Finland.ogg	19d9e89e442572d242916c742e7a53096b6cadf5d479f8143c1e627de36e4f10	mediocre		2.43	2026-11-07 sweep ab (countries, before)	AirPods Pro
+2026-11-18	en	they	Dvortygirl	En-us-they.ogg	02754f73f227970886f5db28fad4a2606c4e34fc35beb3545525299c8085a713	okay		2.54	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	en	they	Wodencafe	LL-Q1860 (eng)-Wodencafe-they.wav	0c7f292c7b3afc81ea5ca0b63a88b57dd7185596680ad1144382877170ab910a	good		2.97	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	en	funeral	Dvortygirl	En-us-funeral.ogg	d76d66dd330495331183d8fcd4ecb66f847ee695738279af5a1bac2c9db0cab3	bad		1.99	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	en	funeral	Wodencafe	LL-Q1860 (eng)-Wodencafe-funeral.wav	5de99c2d3e6dd2b5c416850acedce2493b5757bbf3fc49e0c0e4748af393e6df	good		2.85	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	eo	libro	Castelobranco	Eo-libro2.ogg	2a7a5cbdd55d39cdcff75b3cdd61465a5d020d9889c6f25e23457a049929cea0	okay		2.83	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	eo	libro	Lepticed7	LL-Q143 (epo)-Lepticed7-libro.wav	69e14bdb40dffe6ad61c7eb2161b3a8088e7befcd1b0d6c2fff0abc40d27dabb	good		2.35	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	eo	kolero	Robin van der Vliet	LL-Q143 (epo)-Robin van der Vliet-kolero.wav	0d8dd0dc7e0f3206bb50a6e183a8c5980c39411609ee3daea164389f88359327	okay		3.16	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	eo	kolero	Lepticed7	LL-Q143 (epo)-Lepticed7-kolero.wav	b88868fe9ed1f40f5d3d88c9566b5bb321c36d9c08f8089453b9209b1391242f	good		2.73	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	eo	forgesi	Robin van der Vliet	LL-Q143 (epo)-Robin van der Vliet-forgesi.wav	aebabaffb1bd890cf7df15586675077a7787f2addcab914c4ca1b31a6a0ce6ee	okay		2.99	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	eo	forgesi	Lepticed7	LL-Q143 (epo)-Lepticed7-forgesi.wav	459f38e6836f63423f8923c1e61095abe28e42e4b1c9cdca8dd4400392fd3924	good		2.41	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	es	caro	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-caro.wav	50d8a307e8aa454f010fc529101daccf10ce0dc3dc3d46d1fea5ecde6a6abf1d	okay		2.63	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	es	caro	Rdrg109	LL-Q1321 (spa)-Rdrg109-caro.wav	ad96a6413421664e960d8778bd10ebad49883c6fa7612f55727a0b83ad7c1785	good		3.14	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	es	hasta	Precision27	LL-Q1321 (spa)-Precision27-hasta.wav	8ebfd1b32003b160f4f08fc10de8c6199acf6066c61f57d5d53bc4f013460a98	okay		2.66	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	es	hasta	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-hasta.wav	791b96c0405da006bfccb9d8efc4f305eabacbbd363f8ffa033859bd6c168882	good		3.07	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	es	corazón	Eavqwiki	LL-Q1321 (spa)-Eavqwiki-corazón.wav	0d1a4f63cafd923bb9ace810ae20b21e4821b06fdc9f856f01f1046f447df009	good		3.31	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	es	corazón	Sinaloa	LL-Q1321 (spa)-Sinaloa-corazón.wav	30fa69908a39dbfb1b7878a401d7b7bd5e8dab9b4c972f673b339bff9f327217	good		2.74	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	fr	médecin	Poslovitch	LL-Q150 (fra)-Poslovitch-médecin.wav	eb2019113369944345d873081552fe80462ab0b1c9704f5f39f7d3ee91340ff2	okay		2.78	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	fr	médecin	LoquaxFR	LL-Q150 (fra)-LoquaxFR-médecin.wav	82e3748b98c810bc09e2b20d07a3bb76465a954642d22c9a2e9d26660625bea2	good		3.10	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	fr	grandir	Sartus85	LL-Q150 (fra)-Sartus85-grandir.wav	74440f76816d971263e2a12ba03e2ed208a928ae4d0a7a35883fde60fe6b1853	good		3.43	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	fr	grandir	Jérémy-Günther-Heinz Jähnick	LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-grandir.wav	fc53b7ca039ffc6d23e4af6d819127be66d1a715c86097756426fbfbdcc6a266	mediocre		2.54	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	fr	manteau	LoquaxFR	LL-Q150 (fra)-LoquaxFR-manteau.wav	d2a1f70df1c67d3d940a4efc2636b5807f96b10517ca84b5f833f2ca1a68f0f2	good		3.11	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	fr	manteau	Poslovitch	LL-Q150 (fra)-Poslovitch-manteau.wav	75f0c38531fe3c27a1b72cde06f29bc45bc8ba6fbe0ad9f6e02b226c501ddc93	okay		2.59	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	it	presto	Marta Carbone, Association Shtooka	It-presto.ogg	7d1a439a7a20e5063f1651ae949c3ed10feee5d3247847a718c6bbacfbfb474f	good		3.03	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	it	presto	LangPao	LL-Q652 (ita)-LangPao-presto.wav	d50b0387f60db0c3f6ad53c38bfaee7283a2221f2792e9146c88cd124c38f6d4	mediocre		2.13	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	it	uomo	XANA000	LL-Q652 (ita)-XANA000-uomo.wav	f4039f136bb081ead2b97978cdcd41b3c95843cdf5bdf913a1f14a7bf5a1b14b	mediocre		2.30	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	it	uomo	LangPao	LL-Q652 (ita)-LangPao-uomo.wav	84a63e9826983d6bd432f02331598f40c92d1c12c32c35dfd9348b26804cec39	good		3.13	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	it	adesso	XANA000	LL-Q652 (ita)-XANA000-adesso.wav	3e1d2a3934d3116f8487a22eb0693fe71845fc5fe897d72c7bccb184b3e7ce6c	okay		2.67	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	it	adesso	Marta Carbone, Association Shtooka	It-adesso.ogg	3d4fc730afdfd187d11edf37d81931a220eba785bec948d81b22d0e35fb25dc2	good		3.05	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	sw	nchi	Waithera Were	Sw-ke-nchi.flac	acdbdf11ed323d9d8569adaf9f3bd4d7cfa8413ab63348e7830c24864608968d	good		2.94	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	sw	nchi	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-nchi.wav	d2a7165998014ef9c74d5427a039a2fda0baa58ea877db32f351979108b9a54f	mediocre		2.60	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	sw	sasa	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-sasa.wav	28c5cd9e818ae697e761542aebb9de65a4e5c671f3e24d52b192984b70ffa7b1	mediocre		2.50	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	sw	sasa	Waithera Were	Sw-ke-sasa.flac	d2be54e5aa0691878232e619f2b8fbd51cee0331e1918781bc6a3b7f345aa79b	good		2.92	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	sw	uji	Waithera Were	Sw-ke-uji.flac	874cf6c0a5c61fa4323e5876444103b4c423be652c597a5100001f674c1b8569	good		2.71	2026-11-07 sweep ab (words, after)	AirPods Pro
+2026-11-18	sw	uji	Goethe-Institut Cameroon	LL-Q186817(swa)-Mndetatsin-Uji(la bouillie).wav	fdf765c17877c3489debf58921b0e65400a2525178f2ff83faf090c5f5646eb1	mediocre		2.36	2026-11-07 sweep ab (words, before)	AirPods Pro
+2026-11-18	uk	Австрія	Fanat22012	LL-Q8798 (ukr)-Fanat22012-Австрія.wav	cc4f49fef069ea305cdab491b79d4d005391a8ff86e3e8a03497a6335ce932d7	good		3.31	2026-11-07 sweep ab (countries, after)	AirPods Pro
+2026-11-18	uk	Австрія	Bicolino34	LL-Q8798 (ukr)-Bicolino34-Австрія.wav	6e9e163720749494f0f045993c3ce71a3553d0c8c9a6aec619bd87709d3ae147	mediocre		2.40	2026-11-07 sweep ab (countries, before)	AirPods Pro
+2026-11-18	de	fast	Jeuwre	De-fast3.ogg	6b93911098aef58ba8b05378f1e6cde7503b51373a5220950b8b05ec6acd8cfb	okay		2.81	2026-11-18 by word (words, mos 2.81)	AirPods Pro
+2026-11-18	en	fast	Dvortygirl	En-us-fast.ogg	e3197dec1d27d950ccf2036ef081291aa117c7e883997dce2418e86935b069c8	okay		3.04	2026-11-18 by word (words, mos 3.04)	AirPods Pro
+2026-11-18	de	fast	Anhezu	De-fast.ogg	e5100a3b291e88f8e46a93c20f368558653c1ca4414cf1088f1752a8510c067e	okay			2026-11-18 de fast alternatives (words)	AirPods Pro
+2026-11-18	de	fast	Jeuwre	De-fast2.ogg	6ce553c372d1240626e6e1563672e293ef75420fa624f65fbbfdd18fd6e934a8	good			2026-11-18 de fast alternatives (words)	AirPods Pro
+2026-11-18	de	fast	Natschoba	LL-Q188 (deu)-Natschoba-fast.wav	ef529d8271122990119db788830f638f0c469d0034472d5507d35c2a52d33012	okay			2026-11-18 de fast alternatives (words)	AirPods Pro
+2026-11-18	en	spleen	AcpoKrane	LL-Q1860 (eng)-AcpoKrane-spleen.wav	3343c740b874b36817ec6c593bf4af02e6a11166b8962a674e9784922f866dc4	mediocre		1.86	2026-11-18 by word (words, mos 1.86)	AirPods Pro
+2026-11-18	es	a menudo	Marreromarco	LL-Q1321 (spa)-Marreromarco-a menudo.wav	13590bdf70ead17020d68245c8f42ad381e45022743b04d6f1711968e22c1ca8	mediocre		1.90	2026-11-18 by word (words, mos 1.9)	AirPods Pro
+2026-11-18	es	bañera	Marreromarco	LL-Q1321 (spa)-Marreromarco-bañera.wav	f2a30970600303ca33c66408793a658ecfc144a7cac6f37e541a038366c8c1f5	mediocre		1.86	2026-11-18 by word (words, mos 1.86)	AirPods Pro
+2026-11-18	es	buzón	Marreromarco	LL-Q1321 (spa)-Marreromarco-buzón.wav	e4fccb7f493dc83efdd9da9a144d7bc9ad875793d76b42408c95e58052425f5b	mediocre		1.89	2026-11-18 by word (words, mos 1.89)	AirPods Pro
+2026-11-18	es	cable	Marreromarco	LL-Q1321 (spa)-Marreromarco-cable.wav	1e81fe5d9af9eaa594a60ff01262335915cc6c0c7b6c0cbcceadc8d1d8dc0a36	mediocre		1.93	2026-11-18 by word (words, mos 1.93)	AirPods Pro
+2026-11-18	es	cansada	Marreromarco	LL-Q1321 (spa)-Marreromarco-cansada.wav	97b40140a4abae18498761f7937017573ba9352e4ade6b9d386f8b746b143fac	mediocre		3.24	2026-11-18 by word (words, mos 3.24)	MacBook Air Speakers
+2026-11-18	es	italianos	Marreromarco	LL-Q1321 (spa)-Marreromarco-italianos.wav	af3378d26bf2c938173b99239b84f3832447002b9c7c5bcaa18083f73ff79cd8	mediocre		3.14	2026-11-18 by word (countries, mos 3.14)	MacBook Air Speakers
+2026-11-18	es	cuenco	Marreromarco	LL-Q1321 (spa)-Marreromarco-cuenco.wav	800dda4fc5a5163baafa36e8fe3a38109ae6f5e81432709313d24c552dfbdfb5	mediocre		3.06	2026-11-18 by word (words, mos 3.06)	MacBook Air Speakers
+2026-11-18	es	neutral	Marreromarco	LL-Q1321 (spa)-Marreromarco-neutral.wav	399b17eee227ff4a2cc64d73b084910b22d27d91a6ef5147e577d7e9b6dd4001	mediocre		3.02	2026-11-18 by word (words, mos 3.02)	MacBook Air Speakers
+2026-11-18	es	kilo	Marreromarco	LL-Q1321 (spa)-Marreromarco-kilo.wav	5242b8d3a85dd4066c9283106b2ae0eabc184bb3790148a044b5bd21dbd7ae91	mediocre		2.83	2026-11-18 by word (words, mos 2.83)	MacBook Air Speakers
+2026-11-18	es	doler	Marreromarco	LL-Q1321 (spa)-Marreromarco-doler.wav	7afe357b400eb9b2e87f61c7437411186eca2f0d46a646de673fe74a682c9888	mediocre		2.32	2026-11-18 by word (words, mos 2.32)	MacBook Air Speakers
+2026-11-18	es	quitar	Marreromarco	LL-Q1321 (spa)-Marreromarco-quitar.wav	1c9b0b8067feb5e9a4c35efc6cbad0e1a9dfad39963ab7c508009d12cc09e4ed	mediocre		2.22	2026-11-18 by word (words, mos 2.22)	MacBook Air Speakers
+2026-11-18	es	papel higiénico	Marreromarco	LL-Q1321 (spa)-Marreromarco-papel higiénico.wav	34d7c1edd5ba46e1ac760c59b4cb6fadc83f32342ed860a6aaa41f65bf229f14	good		3.13	2026-11-18 by word (words, mos 3.13)	MacBook Air Speakers
+2026-11-18	de	küsten	Jeuwre	De-Küsten.ogg	d085fb117f633e49c948bf35c2a11dd10a2cfdc0194f13183eb7ddd783bd6a38	good		2.46	2026-11-18 voice worst (words, 1481 takes)	MacBook Air Speakers
+2026-11-18	de	nie	Jeuwre	De-nie.ogg	2fc8f30a45fdde329675f76aa73b2450e3401b109294a3060e0ffff3e60eec8b	good		2.56	2026-11-18 voice worst (words, 1481 takes)	MacBook Air Speakers
+2026-11-18	de	das Bett	Natschoba	LL-Q188 (deu)-Natschoba-das Bett.wav	67e70b5672b0ba4588836ce34d4522270e4f70df07701f888c4d475fba905ab8	good		2.15	2026-11-18 voice worst (articles, 328 takes)	MacBook Air Speakers
+2026-11-18	de	die Blume	Natschoba	LL-Q188 (deu)-Natschoba-die Blume.wav	8e8567180a05ded5fb3f6c6a3a34000194cc810ef17da11544cf81692c14b9eb	good		2.24	2026-11-18 voice worst (articles, 328 takes)	MacBook Air Speakers
+2026-11-18	en	taxes	Dvortygirl	En-us-taxes.ogg	12f99a0c2eae82be7cdbaee975522b6c3f2de34c305a0fc1593152694ab3f6c0	bad		1.97	2026-11-18 voice worst (words, 547 takes)	MacBook Air Speakers
+2026-11-18	en	purple	Dvortygirl	En-us-purple.ogg	0ae7766271261cdc310b1d198229551ab623a8ccf521fecdfecf52c4dbca5148	mediocre		2.37	2026-11-18 voice worst (words, 547 takes)	MacBook Air Speakers
+2026-11-18	en	spoon	Wodencafe	LL-Q1860 (eng)-Wodencafe-spoon.wav	30849961990b451338a00555dc29506dee29767f8a165169bc045426f808e251	good		2.53	2026-11-18 voice worst (words, 148 takes)	MacBook Air Speakers
+2026-11-18	en	speak	Wodencafe	LL-Q1860 (eng)-Wodencafe-speak.wav	4a9c8dd840c60e82e395b7d558b2a7b7d0c81e8d0c3c395e939d788ce67ef0bc	good		2.62	2026-11-18 voice worst (words, 148 takes)	MacBook Air Speakers
+2026-11-18	eo	a	Lepticed7	LL-Q143 (epo)-Lepticed7-a.wav	9362245e75b08691532e7b2cf26ac1479f718cf4b1fcb6df572b76d067f6747f	good		1.99	2026-11-18 voice worst (letters, 745 takes)	MacBook Air Speakers
+2026-11-18	eo	p	Lepticed7	LL-Q143 (epo)-Lepticed7-po.wav	85e61b97bcb3c56a6d3ff8558be01884555a0ab7d403cd762f0027c5c8601722	good		2.10	2026-11-18 voice worst (letters, 745 takes)	MacBook Air Speakers
+2026-11-18	eo	peto	Robin van der Vliet	LL-Q143 (epo)-Robin van der Vliet-peto.wav	fa6f09befb0784b63b8a38a7a65ef914b6169392055c89531366cc0c1b815965	good		2.72	2026-11-18 voice worst (words, 92 takes)	MacBook Air Speakers
+2026-11-18	eo	morto	Robin van der Vliet	LL-Q143 (epo)-Robin van der Vliet-morto.wav	0a49d5130c7b70faa64194fbe6b07088de7a146b59dc300955e3b0603b51d367	good		2.73	2026-11-18 voice worst (words, 92 takes)	MacBook Air Speakers
+2026-11-18	es	hombro	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-hombro.wav	9385a5286d5ad9e6fc3fccd0a6c8aef91dd6335fd8c79331558cdacb76a105e1	mediocre		2.18	2026-11-18 voice worst (words, 402 takes)	MacBook Air Speakers
+2026-11-18	es	tus	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-tus.wav	5b7ebe78899d202f7c72dbc7e99c8d99a5e4cf4d5a3ddc8e2f542538e4f16e08	okay		2.24	2026-11-18 voice worst (words, 402 takes)	MacBook Air Speakers
+2026-11-18	es	ser humano	Rodelar	LL-Q1321 (spa)-Rodelar-ser humano.wav	0a3751ddee50228225bd43b104b1312a4c082e5e1e4466526e66c544f13da9ae	okay		2.31	2026-11-18 voice worst (words, 122 takes)	MacBook Air Speakers
+2026-11-18	es	vivir	Rodelar	LL-Q1321 (spa)-Rodelar-vivir.wav	dcf7e24114d4206a6ac2848fac2e3f6c895f42444bc14ee7011ca0cda922ca55	okay		2.37	2026-11-18 voice worst (words, 122 takes)	MacBook Air Speakers
+2026-11-18	fr	fiches	Poslovitch	LL-Q150 (fra)-Poslovitch-fiches.wav	e787d2b86c9a0d3cbb813665f6048863a30ab878a9bab7645004ac4636700e23	good		2.25	2026-11-18 voice worst (words, 264 takes)	MacBook Air Speakers
+2026-11-18	fr	chou	Poslovitch	LL-Q150 (fra)-Poslovitch-chou.wav	c8bedcdb3b2b4b629b6d35fbc0654403741b0123c35f42bfcbeb28f8d87b1074	good		2.46	2026-11-18 voice worst (words, 264 takes)	MacBook Air Speakers
+2026-11-18	fr	doute	Sartus85	LL-Q150 (fra)-Sartus85-doute.wav	f527d3c577d4360b4cc0982490b282d2f6acd0edb4d344dd6e83fad145456458	great		2.53	2026-11-18 voice worst (words, 208 takes)	MacBook Air Speakers
+2026-11-18	fr	trop	Sartus85	LL-Q150 (fra)-Sartus85-trop.wav	d6cd1212b6d5da99c6098f19ae9d1d36fe1f3a038f4811d161c3634a16778669	great		2.62	2026-11-18 voice worst (words, 208 takes)	MacBook Air Speakers
+2026-11-18	it	errore	LangPao	LL-Q652 (ita)-LangPao-errore.wav	67902ce3445f831552e14c48cd8eca6525baf95a4685c4f37a17514208e97aef	mediocre		2.03	2026-11-18 voice worst (words, 437 takes)	MacBook Air Speakers
+2026-11-18	it	tosse	LangPao	LL-Q652 (ita)-LangPao-tosse.wav	74a672c1ecb7f48955d9b7a21990caaa0294875556ffae5cbf9be0d7ce752c8b	okay		2.06	2026-11-18 voice worst (words, 437 takes)	MacBook Air Speakers
+2026-11-18	it	d	XANA000	LL-Q652 (ita)-XANA000-di.wav	1771a4343258003e7a0bcb5a52c11aa70538b9bb583c2eff36c60db9e6f8f271	okay		1.92	2026-11-18 voice worst (letters, 144 takes)	MacBook Air Speakers
+2026-11-18	it	di	XANA000	LL-Q652 (ita)-XANA000-di.wav	1771a4343258003e7a0bcb5a52c11aa70538b9bb583c2eff36c60db9e6f8f271	okay		1.92	2026-11-18 voice worst (words, 144 takes)	MacBook Air Speakers
+2026-11-18	sw	kushughulikia	Waithera Were	Sw-ke-kushughulikia.flac	9e6fcecfd9925c3917934a81aad1e72698a33ac2fd8a6b007d376b36b209cd55	good		2.25	2026-11-18 voice worst (words, 1088 takes)	MacBook Air Speakers
+2026-11-18	sw	mkono	Waithera Were	Sw-ke-mkono.flac	3050f952d6291d2167eeb3b9b35be4ad3ed4d6df105c5947eda54b159ba8bb02	good		2.25	2026-11-18 voice worst (words, 1088 takes)	MacBook Air Speakers
+2026-11-18	sw	Septemba	Goethe-Institut Cameroon	LL-Q123(swa)-Mndetatsin-Septemba(Septembre).wav	ede68732c91fba8971707df8fef9267693e9a8eb9e63677996ec7f8ce65e671b	okay		2.20	2026-11-18 voice worst (calendar, 25 takes)	MacBook Air Speakers
+2026-11-18	sw	Jumamosi	Goethe-Institut Cameroon	LL-Q131(swa)-Mndetatsin-Jumamosi(Samedi).wav	1b338859f2577c24c6b204d176c8e6122a962d2ef0ca903e818d84bc7a458177	okay		2.36	2026-11-18 voice worst (calendar, 25 takes)	MacBook Air Speakers
+2026-11-18	uk	літр	Галя Раптова, Nicolas Vion	Uk-літр.ogg	026f58ed58a004e7580dd9e9a4dace25a02d8179fc21e2d8f25cb81ba0a36418	good		2.06	2026-11-18 voice worst (words, 850 takes)	MacBook Air Speakers
+2026-11-18	uk	мі́сце	Галя Раптова, Nicolas Vion	Uk-місце.ogg	2e2f56b6ba62d155f0910174ff6ce28ee4f01310a11c48bdb60cfecb9f7d7342	good		2.14	2026-11-18 voice worst (words, 850 takes)	MacBook Air Speakers
+2026-11-18	uk	Туніс	Tohaomg	LL-Q8798 (ukr)-Tohaomg-Туніс.wav	11ca349ea707a3e18adb16a1cb3668e51fc3c43420746662c9e8b59340f6498e	good		1.86	2026-11-18 voice worst (countries, 112 takes)	MacBook Air Speakers
+2026-11-18	uk	Люксембург	Tohaomg	LL-Q8798 (ukr)-Tohaomg-Люксембург.wav	09c1ea901b89ebaaee5dfe07819087a231952db1ba619d9d9c3df1fd1b4f35fa	good		1.92	2026-11-18 voice worst (countries, 112 takes)	MacBook Air Speakers
+2026-11-18	en	sky	Dvortygirl	En-us-sky.ogg	7f3b582fa321f5d975f0dd7632c04c442b26f30df73ab5fe4ed34f7fb8bc5c91	good		3.39	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	en	laugh	Dvortygirl	En-us-laugh.ogg	66e65846a449e721d7e6aa1822034bb3608f46d3699a195092ab946991a4c7f1	good		3.11	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	en	when	Dvortygirl	En-us-when.ogg	1d56f9793ec7d79e4a2c8ffa167193d3c403b0ceef971f1a9fba9f48f9ef85cb	good		3.00	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	en	coat	Dvortygirl	En-us-coat.ogg	9126fbb16f8fb15b26f5f1ed98bfe584751369cb2c246d4adb068b96ebcc96e8	good		2.86	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	en	studies	Dvortygirl	En-us-studies.ogg	123c341964905f3549837bb72af39f6d365bd59004230e2be59c53fd842f76d3	mediocre		2.39	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	es	camiseta	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-camiseta.wav	8430624e87dd920eec9a27df04578c548cd75b784312da245457b0f8674c7c6d	good		3.41	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	es	nevera	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-nevera.wav	af255f84bbc92365ac5871b52100733de6d12097322d948a4dad75372c3776fd	okay		2.99	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	es	canción	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-canción.wav	a3134ec23775c20ad517d262371c2e1a6cbf96dfcb2ee896254c4ad27dfdba18	okay		2.88	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	es	color	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-color.wav	0bc032658e1d7842db7a02d8b96c37deead7d19e4b04e9074566eea7fefcdc53	okay		2.76	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	es	entrenamiento	AdrianAbdulBaha	LL-Q1321 (spa)-AdrianAbdulBaha-entrenamiento.wav	aa2248715448d74ab82e5db59f69e827bd87184f7c24cf57584d208e28dd9ed0	good		2.30	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	it	carota	LangPao	LL-Q652 (ita)-LangPao-carota.wav	c7e5d1ad26599c319b15e7e92c007e9086bd9485cd3a05079079aae20b8f92dd	good		3.39	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	it	negozio	LangPao	LL-Q652 (ita)-LangPao-negozio.wav	40372f637fc624fadfbeb03c250a2b6d3b454aabe00f1be488f41a41fd82c86f	okay		3.11	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	it	piacere	LangPao	LL-Q652 (ita)-LangPao-piacere.wav	e0353cd9881bb5b4bfe480b5cd91e196b7f9f666a8f3b31c30e212bbdcda6784	good		2.95	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	it	pesce	LangPao	LL-Q652 (ita)-LangPao-pesce.wav	4bc8103aca574b4a533ada89fa229361a3c64b6ea97c9ce018b4e354f87b2b02	good		2.78	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	it	a destra	LangPao	LL-Q652 (ita)-LangPao-a destra.wav	00aef3ad7f397cffc0f3803d1aa50eb02e7cd93f33345e2552529933a0f94153	okay		2.09	2026-11-18 voice spread (words)	MacBook Air Speakers
+2026-11-18	uk	у	Tohaomg	LL-Q8798 (ukr)-Tohaomg-У.wav	3753cb56048dcd625a977d6c182a8c5b6fbc71abf266664d4a28c7cd907a42c0	okay		1.85	2026-11-18 by word (letters, mos 1.85)	MacBook Air Speakers
+2026-11-18	uk	у	UnconcernedCape	LL-Q8798 (ukr)-UnconcernedCape-у.wav	a362cd6944009adf354d090668085d98f24d8064d3bb8ba976cbf8be21ffa3a6	good		2.73	2026-11-18 by word (letters, mos 2.73)	MacBook Air Speakers
+2026-11-18	uk	у	Tabrus	Уу – ukrainian.ogg	65127ba91bb653a0dd206e1186f7647ad221cde429a0ece0dcac95ad605bab4c	good		2.77	2026-11-18 by word (letters, mos 2.77)	MacBook Air Speakers
+2026-11-18	uk	ї	Tohaomg	LL-Q8798 (ukr)-Tohaomg-Ї.wav	07d213fa81f2b88c55fda90976267cc89fe2f1c9c92107e64b490c87b6c6be38	okay		1.93	2026-11-18 by word (letters, mos 1.93)	MacBook Air Speakers
+2026-11-18	uk	ї	Po ukraińsku (Andriana)	LL-Q8798 (ukr)-Po ukraińsku (Andriana)-ї.wav	700ec93cbb5c0a6cf00f8842f2cbc93bdac4a6bfeb94c3f2bbe025f2ecb95208	okay		2.63	2026-11-18 by word (letters, mos 2.63)	MacBook Air Speakers
+2026-11-18	uk	ї	Tabrus	Її – ukrainian.ogg	306357cfdde2d442803b05c2e69efd17cdc98d323d7a41b0975a7ba2eff0162e	good		2.67	2026-11-18 by word (letters, mos 2.67)	MacBook Air Speakers

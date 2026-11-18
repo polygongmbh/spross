@@ -1097,18 +1097,6 @@
       "source": "LL-Q188 (deu)-Natschoba-der Arm.wav",
       "word": "Arm"
     },
-    "der Arzt": {
-      "author": "Natschoba",
-      "file": "articles/der_arzt.mp3",
-      "gain": 7.6,
-      "lead": 200,
-      "matches": "der Arzt",
-      "mos": 2.99,
-      "pesq": 3.7,
-      "sha256": "1a8fc5059342882560dae7361e393026ebb83e85cec12bfcb8a34e58dc94d37e",
-      "source": "LL-Q188 (deu)-Natschoba-der Arzt.wav",
-      "word": "Arzt"
-    },
     "der Ausgang": {
       "author": "Natschoba",
       "file": "articles/der_ausgang.mp3",
@@ -4074,6 +4062,7 @@
     }
   },
   "authors": {
+    "Anhezu": "CC BY 3.0",
     "Bleibein": "CC BY-SA 3.0",
     "Dinock90": "CC BY-SA 4.0",
     "Hedwig von Ebbel": "CC BY 3.0",
@@ -4184,6 +4173,31 @@
       "sha256": "5787049c8b11550c9a1fd1ec810c24b4b595cb1fd462832ba3154abfcf540b37",
       "source": "De-Januar.ogg"
     },
+    "Juli": {
+      "author": "Jeuwre",
+      "cap": 0.7,
+      "end": 1460,
+      "file": "calendar/juli.mp3",
+      "gain": 1.8,
+      "lead": 500,
+      "matches": "Juli",
+      "mos": 2.75,
+      "pesq": 3.0,
+      "sha256": "8a0c0dd2c2e5504fe097265b54787dcc2c4585433a9f9aad0256af3c3a2d9db0",
+      "source": "De-Juli2.ogg"
+    },
+    "Juni": {
+      "author": "Jeuwre",
+      "end": 1600,
+      "file": "calendar/juni.mp3",
+      "gain": -0.6,
+      "lead": 430,
+      "matches": "Juni",
+      "mos": 2.86,
+      "pesq": 2.97,
+      "sha256": "f782772875945cd587c3d71a068c06d55be16e8e8956361959b47827d9bed1e1",
+      "source": "De-Juni2.ogg"
+    },
     "Mai": {
       "author": "joni",
       "file": "calendar/mai.mp3",
@@ -4217,6 +4231,30 @@
       "pesq": 3.58,
       "sha256": "f4a053b4667d3c0abdb06aa5fa44760903bbc885b5c6d9b27279c33225621ee0",
       "source": "De-März.ogg"
+    },
+    "November": {
+      "author": "Jeuwre",
+      "end": 1460,
+      "file": "calendar/november.mp3",
+      "gain": 0.5,
+      "lead": 400,
+      "matches": "November",
+      "mos": 3.08,
+      "pesq": 3.99,
+      "sha256": "6a81edc81b8c17cafe814736e8ac93a34c9668004de0a7fab452a18ff9f2ced3",
+      "source": "De-November2.ogg"
+    },
+    "Oktober": {
+      "author": "Jeuwre",
+      "end": 1470,
+      "file": "calendar/oktober.mp3",
+      "gain": 1.3,
+      "lead": 440,
+      "matches": "Oktober",
+      "mos": 2.93,
+      "pesq": 3.93,
+      "sha256": "81b561745b014ef2784085025d2ac616bfed5a6747ec298537508250025a88c4",
+      "source": "De-Oktober2.ogg"
     },
     "Samstag": {
       "author": "Jeuwre",
@@ -4377,15 +4415,16 @@
       "source": "De-Australier.ogg"
     },
     "Belgien": {
-      "author": "MiER",
+      "author": "Jeuwre",
+      "end": 1550,
       "file": "countries/belgien.mp3",
-      "gain": -0.3,
-      "gate": -51.1,
+      "gain": -2.6,
+      "lead": 440,
       "matches": "Belgien",
-      "mos": 2.54,
-      "pesq": 2.57,
-      "sha256": "e1778aff4b1586e338d1944c511e8fea5289c2417fdcc392a28b3ec1bb45534d",
-      "source": "De-Belgien.ogg"
+      "mos": 2.95,
+      "pesq": 3.92,
+      "sha256": "a185e3c5461f41b109c28e77b04967960b64c9af8cf33b638e699d6658461c92",
+      "source": "De-Belgien2.ogg"
     },
     "Belgier": {
       "author": "Jeuwre",
@@ -4447,15 +4486,16 @@
       "source": "De-Bulgaren.ogg"
     },
     "Bulgarien": {
-      "author": "MiER",
+      "author": "Jeuwre",
+      "end": 1800,
       "file": "countries/bulgarien.mp3",
-      "gain": -6.6,
-      "gate": -52.1,
+      "gain": -2.3,
+      "lead": 440,
       "matches": "Bulgarien",
-      "mos": 2.91,
-      "pesq": 3.17,
-      "sha256": "cf05aa8e922efb0f942a51a57d8b82e2e1641597e163ec7ec267243fbaec5369",
-      "source": "De-Bulgarien.ogg"
+      "mos": 3.18,
+      "pesq": 4.07,
+      "sha256": "475f1966796e7161412c7fa871e31b653795dbdcb2c3c673b2ac55af4ea554af",
+      "source": "De-Bulgarien2.ogg"
     },
     "Chile": {
       "author": "Jeuwre",
@@ -4551,15 +4591,15 @@
       "source": "De-Deutschland.ogg"
     },
     "Dänemark": {
-      "author": "MiER",
+      "author": "Jeuwre",
       "file": "countries/du00e4nemark.mp3",
-      "gain": -1.8,
-      "gate": -53.5,
+      "gain": -2.1,
+      "lead": 420,
       "matches": "Dänemark",
-      "mos": 2.46,
-      "pesq": 3.09,
-      "sha256": "a90501d9c19a7d80552d4910b90ff989bc0ed746d537aec585d4433b9731ed21",
-      "source": "De-Dänemark.ogg"
+      "mos": 3.08,
+      "pesq": 4.02,
+      "sha256": "328b905fef2544d2d4d922e76f014807ec05da2e14c7db1d28717d3595a397f9",
+      "source": "De-Dänemark2.ogg"
     },
     "Dänen": {
       "author": "Jeuwre",
@@ -4620,15 +4660,16 @@
       "source": "De-Finnland.ogg"
     },
     "Frankreich": {
-      "author": "joni",
+      "author": "Jeuwre",
+      "end": 1950,
       "file": "countries/frankreich.mp3",
-      "gain": 3.4,
-      "gate": -61.2,
+      "gain": -1.4,
+      "lead": 410,
       "matches": "Frankreich",
-      "mos": 3.09,
-      "pesq": 1.97,
-      "sha256": "f1243c82d69da11f5f3b939912c1e472cfab9a69515d492998b1fa6f894cf724",
-      "source": "De-Frankreich.ogg"
+      "mos": 3.31,
+      "pesq": 3.52,
+      "sha256": "1d6d676322c817ef502222c8967f7a26c8249c6c0a499ed8fe345e58e8dc4c53",
+      "source": "De-Frankreich2.ogg"
     },
     "Franzosen": {
       "author": "Jeuwre",
@@ -4777,16 +4818,16 @@
       "source": "De-Irland.ogg"
     },
     "Israel": {
-      "author": "Hedwig von Ebbel",
+      "author": "Jeuwre",
+      "end": 1830,
       "file": "countries/israel.mp3",
-      "gain": 11.0,
-      "gate": -87.3,
-      "lead": 120,
+      "gain": -3.8,
+      "lead": 390,
       "matches": "Israel",
-      "mos": 3.08,
-      "pesq": 1.9,
-      "sha256": "2bf0878afb6212e49389b81f2310840aab0acd38c6853c3abc8ae77c9509fa13",
-      "source": "De-Israel.ogg"
+      "mos": 3.18,
+      "pesq": 3.33,
+      "sha256": "5f0a230e29b79f606dac7c877a0f150999fa547bec2bb814c3ebc1434944e3be",
+      "source": "De-Israel2.ogg"
     },
     "Israelis": {
       "author": "Jeuwre",
@@ -4847,15 +4888,16 @@
       "source": "De-Japaner.ogg"
     },
     "Kanada": {
-      "author": "MiER",
+      "author": "Jeuwre",
+      "end": 1660,
       "file": "countries/kanada.mp3",
-      "gain": -1.3,
-      "gate": -49.8,
+      "gain": -7.0,
+      "lead": 440,
       "matches": "Kanada",
-      "mos": 2.71,
-      "pesq": 3.45,
-      "sha256": "ce5cfb4ee06e5a89089ec062b244385344ffbd979bf6f8e32c6d1fb576938b36",
-      "source": "De-Kanada.ogg"
+      "mos": 3.34,
+      "pesq": 4.1,
+      "sha256": "ff7e7a6f2b7f8e209d0a1c39808abc411c6d7b02066c1514019a84fe5722d214",
+      "source": "De-Kanada2.ogg"
     },
     "Kanadier": {
       "author": "Jeuwre",
@@ -5111,16 +5153,16 @@
       "source": "De-Niederländer.ogg"
     },
     "Nigeria": {
-      "author": "Hedwig von Ebbel",
+      "author": "Jeuwre",
+      "end": 1880,
       "file": "countries/nigeria.mp3",
-      "gain": 4.2,
-      "gate": -81.9,
-      "lead": 50,
+      "gain": -3.5,
+      "lead": 490,
       "matches": "Nigeria",
-      "mos": 2.98,
-      "pesq": 2.3,
-      "sha256": "854aa1a75ee7a7b3d715e96dce2e018a9e0395d47031e03cd18a61cf6e1f0df9",
-      "source": "De-Nigeria.ogg"
+      "mos": 3.11,
+      "pesq": 4.2,
+      "sha256": "11c76c3262946ed69d0d01af8e070b5c5cba94eacbd1fb826039904d47f86838",
+      "source": "De-Nigeria2.ogg"
     },
     "Nigerianer": {
       "author": "Jeuwre",
@@ -5423,15 +5465,16 @@
       "source": "De-Spanien.ogg"
     },
     "Spanier": {
-      "author": "MiER",
+      "author": "Jeuwre",
+      "end": 1470,
       "file": "countries/spanier.mp3",
-      "gain": -4.2,
-      "gate": -50.8,
+      "gain": -1.6,
+      "lead": 410,
       "matches": "Spanier",
-      "mos": 2.68,
-      "pesq": 3.86,
-      "sha256": "e5bee23f1f039b46fc78b830bb8166ebfd0d82e4895d6cb7754968180dbe7bf5",
-      "source": "De-Spanier.ogg"
+      "mos": 3.16,
+      "pesq": 4.3,
+      "sha256": "57bde316bc19fa4856c32b709f17538de82ffa736a39f88161f477ea7aa20685",
+      "source": "De-Spanier2.ogg"
     },
     "Südafrika": {
       "author": "Jeuwre",
@@ -5969,16 +6012,16 @@
       "source": "De-aber.ogg"
     },
     "abfahren": {
-      "author": "Jeuwre",
-      "end": 1680,
+      "author": "Mathieu Kappler",
       "file": "words/abfahren.mp3",
-      "gain": -2.6,
-      "lead": 410,
+      "gain": 7.2,
+      "gate": -75.2,
+      "lead": 250,
       "matches": "abfahren",
-      "mos": 3.01,
-      "pesq": 2.35,
-      "sha256": "5e1ea3f6fa12e2f12cf98fe7fa037d69fadc64dd2e7d0cacf24027cd8f40d0f7",
-      "source": "De-abfahren2.ogg"
+      "mos": 3.22,
+      "pesq": 3.06,
+      "sha256": "ccdc76ea470b3af86241aeb2baf666ffb4ef6593dd3aa6b36391878f902b763a",
+      "source": "LL-Q188 (deu)-Mathieu Kappler-abfahren.wav"
     },
     "abgeben": {
       "author": "Kampy",
@@ -6906,16 +6949,16 @@
       "source": "De-Ausgang2.ogg"
     },
     "ausgänge": {
-      "author": "Sebastian Wallroth",
+      "author": "Jeuwre",
+      "end": 1500,
       "file": "words/ausgu00e4nge.mp3",
-      "gain": 7.6,
-      "gate": -77.7,
-      "lead": 200,
+      "gain": -1.2,
+      "lead": 440,
       "matches": "ausgänge",
-      "mos": 2.96,
-      "pesq": 2.29,
-      "sha256": "a51f95a7640cfbda24c848054281597edac0dae354f14a186709ea18ec521675",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Ausgänge.wav"
+      "mos": 3.26,
+      "pesq": 4.03,
+      "sha256": "36098d58283c117935fcf7c587253995dc2e2ab3eba22e36f13c37fa3d67171e",
+      "source": "De-Ausgänge2.ogg"
     },
     "ausruhen": {
       "author": "Jeuwre",
@@ -7026,16 +7069,16 @@
     },
     "baby": {
       "author": "Jeuwre",
-      "end": 1360,
+      "end": 1170,
       "file": "words/baby.mp3",
-      "gain": -3.1,
-      "gate": -84.2,
-      "lead": 350,
+      "gain": -4.3,
+      "gate": -89.4,
+      "lead": 200,
       "matches": "baby",
-      "mos": 2.56,
-      "pesq": 3.49,
-      "sha256": "7c00934d3e268d622aa00c4148dc5af7b43c781c5cb642c52d89b4a5ee785103",
-      "source": "De-Baby.ogg"
+      "mos": 2.85,
+      "pesq": 3.94,
+      "sha256": "caa134fa71bbd855d0ba42388c683b7b3ec36e4b06107f8f32fa8702aa2249e6",
+      "source": "De-Baby2.ogg"
     },
     "babys": {
       "author": "Jeuwre",
@@ -7143,15 +7186,16 @@
       "source": "De-Bahnhof2.ogg"
     },
     "bahnhöfe": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
+      "end": 1790,
       "file": "words/bahnhu00f6fe.mp3",
-      "gain": -6.2,
-      "gate": -50.9,
+      "gain": 0.4,
+      "lead": 400,
       "matches": "bahnhöfe",
-      "mos": 2.91,
-      "pesq": 2.53,
-      "sha256": "3dd1777f562b0908a79c25602c1b89399f1dbbfb45b5441f89ea0e4fb3a3fcfb",
-      "source": "De-Bahnhöfe.ogg"
+      "mos": 3.19,
+      "pesq": 3.88,
+      "sha256": "409a8e57cdadbf7ac045b84c336d43a7a122414c04c7282523892adb7743a0fe",
+      "source": "De-Bahnhöfe2.ogg"
     },
     "bald": {
       "author": "Jeuwre",
@@ -7202,17 +7246,17 @@
       "source": "De-Bank2.ogg"
     },
     "banken": {
-      "author": "Sebastian Wallroth",
-      "cap": 4.7,
+      "author": "Jeuwre",
+      "cap": 0.1,
+      "end": 1400,
       "file": "words/banken.mp3",
-      "gain": 5.0,
-      "gate": -79.0,
-      "lead": 200,
+      "gain": 1.9,
+      "lead": 440,
       "matches": "banken",
-      "mos": 2.87,
-      "pesq": 2.57,
-      "sha256": "a42586f808387af333cd89e4b68a3eb70ea898b2a58af3320cef50e605aaa9d4",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Banken.wav"
+      "mos": 3.1,
+      "pesq": 3.8,
+      "sha256": "bd5bd5c4d468b0d018b691e5fd7620db1ec13033972e1a150b401f124a665fa5",
+      "source": "De-Banken2.ogg"
     },
     "bankkarte": {
       "author": "Jeuwre",
@@ -7310,16 +7354,15 @@
       "source": "De-beantragen.ogg"
     },
     "bedeutung": {
-      "author": "Sebastian Wallroth",
+      "author": "Anhezu",
       "file": "words/bedeutung.mp3",
-      "gain": 3.4,
-      "gate": -78.5,
-      "lead": 180,
+      "gain": 3.1,
+      "gate": -60.0,
       "matches": "bedeutung",
-      "mos": 2.98,
-      "pesq": 2.25,
-      "sha256": "78527fd17c26f905e372ca8d85f395d5240527de7fe6c86ccb76ceed1be6f045",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Bedeutung.wav"
+      "mos": 3.22,
+      "pesq": 4.04,
+      "sha256": "6a1c21f681824216cd9fde3917edfc67dffa50029779febf56503004aee319bf",
+      "source": "De-Bedeutung.ogg"
     },
     "bedeutungen": {
       "author": "Jeuwre",
@@ -8251,15 +8294,16 @@
       "source": "De-brücke.ogg"
     },
     "brücken": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1500,
       "file": "words/bru00fccken.mp3",
       "gain": -0.6,
-      "gate": -56.0,
+      "lead": 440,
       "matches": "brücken",
-      "mos": 2.84,
-      "pesq": 2.61,
-      "sha256": "0e1dc78ddda8b266535905ebc621881f5b2e85aefd99d7741eb759c8d1a15a7d",
-      "source": "De-Brücken.ogg"
+      "mos": 3.28,
+      "pesq": 4.03,
+      "sha256": "71a5e17e9e42273be44ac86fb4c36b43807a84b397bc8ca88a034b1feb9b349e",
+      "source": "De-Brücken2.ogg"
     },
     "brüder": {
       "author": "Jeuwre",
@@ -9525,16 +9569,16 @@
       "source": "De-endlich.ogg"
     },
     "enkel": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
+      "end": 1590,
       "file": "words/enkel.mp3",
-      "gain": 1.5,
-      "gate": -64.3,
-      "lead": 10,
+      "gain": -2.5,
+      "lead": 440,
       "matches": "enkel",
-      "mos": 2.83,
-      "pesq": 3.54,
-      "sha256": "3a91e759a7e6216daec8b3909a095a2ee665dfa9a9794e80ea23e4afb2609c84",
-      "source": "De-Enkel.ogg"
+      "mos": 3.28,
+      "pesq": 4.38,
+      "sha256": "a7b55693c4a4d34a49951b6684016754eb52b630244207c04381fd50d051fb02",
+      "source": "De-Enkel2.ogg"
     },
     "enkelin": {
       "author": "Jeuwre",
@@ -10064,15 +10108,15 @@
     },
     "fast": {
       "author": "Jeuwre",
-      "end": 1500,
+      "end": 1350,
       "file": "words/fast.mp3",
-      "gain": -4.9,
-      "lead": 400,
+      "gain": -3.4,
+      "lead": 390,
       "matches": "fast",
-      "mos": 2.81,
-      "pesq": 4.09,
-      "sha256": "6b93911098aef58ba8b05378f1e6cde7503b51373a5220950b8b05ec6acd8cfb",
-      "source": "De-fast3.ogg"
+      "mos": 2.51,
+      "pesq": 3.83,
+      "sha256": "6ce553c372d1240626e6e1563672e293ef75420fa624f65fbbfdd18fd6e934a8",
+      "source": "De-fast2.ogg"
     },
     "fehler": {
       "author": "Jeuwre",
@@ -10800,6 +10844,18 @@
       "sha256": "9de3f861efe1b23923ce8293ec1d18c57f62c239aa8d42a542afe3a76bd7562f",
       "source": "De-Föhne.ogg"
     },
+    "fühlen": {
+      "author": "Jeuwre",
+      "end": 1310,
+      "file": "words/fu00fchlen.mp3",
+      "gain": -1.5,
+      "lead": 390,
+      "matches": "fühlen",
+      "mos": 3.02,
+      "pesq": 3.69,
+      "sha256": "1daed928d8020aeb1ae254b13f270322a2bc19497acc9115ee0b431b8e1c592e",
+      "source": "De-fühlen2.ogg"
+    },
     "für": {
       "author": "Jeuwre",
       "end": 1260,
@@ -11169,15 +11225,16 @@
       "source": "De-Gehirn2.ogg"
     },
     "gehirne": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1470,
       "file": "words/gehirne.mp3",
-      "gain": -3.4,
-      "gate": -42.7,
+      "gain": -0.3,
+      "lead": 440,
       "matches": "gehirne",
-      "mos": 2.71,
-      "pesq": 2.66,
-      "sha256": "d081ef6ae6e64fc561a5467571eda6adcd2ea9c0cc191f1273f530384a2cdbfd",
-      "source": "De-Gehirne.ogg"
+      "mos": 2.88,
+      "pesq": 4.26,
+      "sha256": "01ff245a0f6d85a48e110c98eb2afdad6a4df6265abbc85dfe2e6b7b384369f5",
+      "source": "De-Gehirne2.ogg"
     },
     "gehälter": {
       "author": "Kampy",
@@ -11682,15 +11739,16 @@
       "source": "De-Größen.ogg"
     },
     "grün": {
-      "author": "Jeuwre",
-      "end": 1620,
+      "author": "Patrick Strasser-Mikhail",
       "file": "words/gru00fcn.mp3",
-      "gate": -72.8,
+      "gain": 9.2,
+      "gate": -73.9,
+      "lead": 80,
       "matches": "grün",
-      "mos": 2.94,
-      "pesq": 2.08,
-      "sha256": "6bedaaeebfec3f9d46e2027a7103a07289c65a5e7c719a091989aec5b1683bfd",
-      "source": "De-grün2.ogg"
+      "mos": 2.98,
+      "pesq": 3.33,
+      "sha256": "f2d4a30061b3c77931de2467d50b79f653c7d0076f34e108c2852bcb31961718",
+      "source": "LL-Q188 (deu)-Patrick Strasser-Mikhail (Past)-grün.wav"
     },
     "gut": {
       "author": "Jeuwre",
@@ -12581,15 +12639,15 @@
       "source": "De-Häuser.ogg"
     },
     "häute": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1290,
       "file": "words/hu00e4ute.mp3",
-      "gain": -1.2,
-      "gate": -55.4,
+      "lead": 400,
       "matches": "häute",
-      "mos": 2.91,
-      "pesq": 2.59,
-      "sha256": "5d6eb99ab0ba454372e7e90860a0657303deafbc6ab70ec53adcdedd24927727",
-      "source": "De-Häute.ogg"
+      "mos": 3.11,
+      "pesq": 3.94,
+      "sha256": "115ec7bdd8d41a5b7820f0181d741247befc6691fad2dabd032fc2aaff5315b8",
+      "source": "De-Häute2.ogg"
     },
     "höher": {
       "author": "Jeuwre",
@@ -12856,16 +12914,16 @@
       "source": "De-Jahr2.ogg"
     },
     "jahre": {
-      "author": "Sebastian Wallroth",
+      "author": "Jeuwre",
+      "end": 1430,
       "file": "words/jahre.mp3",
-      "gain": 2.7,
-      "gate": -75.3,
-      "lead": 190,
+      "gain": -5.1,
+      "lead": 420,
       "matches": "jahre",
-      "mos": 2.84,
-      "pesq": 1.74,
-      "sha256": "3f03182323ceedc72f718300be401dc24e801ed6bc5ad5587eec1bbaf8208121",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Jahre.wav"
+      "mos": 3.09,
+      "pesq": 3.87,
+      "sha256": "330c80321766bedeb8c7eb30863cc765b7de0374a33d02376a1720bb22bbcd59",
+      "source": "De-Jahre2.ogg"
     },
     "jahrhundert": {
       "author": "Jeuwre",
@@ -12903,15 +12961,16 @@
       "source": "De-Jahrtausend2.ogg"
     },
     "jahrtausende": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1840,
       "file": "words/jahrtausende.mp3",
-      "gain": 3.0,
-      "gate": -51.3,
+      "gain": -3.9,
+      "lead": 420,
       "matches": "jahrtausende",
-      "mos": 2.97,
-      "pesq": 2.23,
-      "sha256": "8ffbdf12e512ed3496f2b957cb1cd3817ce074f5f60ab747917ba847f6e78f8a",
-      "source": "De-Jahrtausende.ogg"
+      "mos": 3.25,
+      "pesq": 4.15,
+      "sha256": "dacb4192b168393ef9bd86f5b843c0370c5d1ecec15742998d958c838631634b",
+      "source": "De-Jahrtausende2.ogg"
     },
     "jahrzehnt": {
       "author": "Jeuwre",
@@ -13697,15 +13756,17 @@
       "source": "De-Kolleginnen.ogg"
     },
     "kommen": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
+      "cap": 0.7,
+      "end": 1240,
       "file": "words/kommen.mp3",
-      "gain": 7.2,
-      "gate": -58.7,
+      "gain": 1.9,
+      "lead": 440,
       "matches": "kommen",
-      "mos": 2.89,
-      "pesq": 1.93,
-      "sha256": "d51d047c98f66daa912135bd0b68b03a354cc6953c2b3ea0f5de639b224143a1",
-      "source": "De-kommen.ogg"
+      "mos": 2.76,
+      "pesq": 3.85,
+      "sha256": "90a8be71cc482c54c6e358646b890f0021b87d9918a93aa9e074e5452883d8a0",
+      "source": "De-kommen2.ogg"
     },
     "konjugation": {
       "author": "Jeuwre",
@@ -14871,15 +14932,17 @@
       "source": "De-Lippe2.ogg"
     },
     "lippen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "cap": 4.8,
+      "end": 1270,
       "file": "words/lippen.mp3",
-      "gain": -2.0,
-      "gate": -48.2,
+      "gain": 2.4,
+      "lead": 430,
       "matches": "lippen",
-      "mos": 2.75,
-      "pesq": 2.1,
-      "sha256": "62c378263913eca1341d1706c36501d24046becc45f528a13a92c93842ecc778",
-      "source": "De-Lippen.ogg"
+      "mos": 2.62,
+      "pesq": 4.13,
+      "sha256": "b83b2b1c0ca3f6c29d9865c2a0530b702dc170e2fb6764f8a1a036b624c20ca0",
+      "source": "De-Lippen3.ogg"
     },
     "liste": {
       "author": "Jeuwre",
@@ -14896,16 +14959,15 @@
     },
     "listen": {
       "author": "Jeuwre",
-      "end": 1350,
+      "end": 1520,
       "file": "words/listen.mp3",
-      "gain": 0.9,
-      "gate": -80.5,
-      "lead": 310,
+      "gain": -1.0,
+      "lead": 440,
       "matches": "listen",
-      "mos": 2.6,
-      "pesq": 3.27,
-      "sha256": "c33299c7328662255dad240306b027be91a08ae00f35e763013ec428091dc5fa",
-      "source": "De-Listen.ogg"
+      "mos": 2.77,
+      "pesq": 4.1,
+      "sha256": "ad7fa09fd9be87291e1b08823ed00e9a3459ad31dac51f423dd19f654113a78e",
+      "source": "De-listen.ogg"
     },
     "liter": {
       "author": "Jeuwre",
@@ -15336,16 +15398,16 @@
       "source": "De-mensch.ogg"
     },
     "menschen": {
-      "author": "Sebastian Wallroth",
+      "author": "Jeuwre",
+      "end": 1430,
       "file": "words/menschen.mp3",
-      "gain": 7.1,
-      "gate": -77.6,
-      "lead": 230,
+      "gain": -1.6,
+      "lead": 430,
       "matches": "menschen",
-      "mos": 2.8,
-      "pesq": 2.47,
-      "sha256": "1745508990291631403f0625bf03b3cb5bc8a357a8ef5871ad36998a931a0f11",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Menschen.wav"
+      "mos": 2.91,
+      "pesq": 3.45,
+      "sha256": "c8aeb3c52f06026a1f65c479ad47c814228a2644c3d7159c829a760d399caf43",
+      "source": "De-Menschen2.ogg"
     },
     "messer": {
       "author": "Jeuwre",
@@ -15541,15 +15603,16 @@
       "source": "De-Monat2.ogg"
     },
     "monate": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1790,
       "file": "words/monate.mp3",
-      "gain": 3.0,
-      "gate": -48.2,
+      "gain": -5.4,
+      "lead": 430,
       "matches": "monate",
-      "mos": 2.8,
-      "pesq": 1.84,
-      "sha256": "12cb5714d7b4a813853e9528a32db38d05aa567bed74c5a16d2c2751781228ef",
-      "source": "De-Monate.ogg"
+      "mos": 3.35,
+      "pesq": 4.01,
+      "sha256": "85df648a0d33bc74cd023bffe752569a1fb0ee2eb8fdcee46e9d1fdf54b1c71f",
+      "source": "De-Monate2.ogg"
     },
     "mond": {
       "author": "Jeuwre",
@@ -15898,15 +15961,17 @@
       "source": "De-münze.ogg"
     },
     "münzen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "cap": 1.2,
+      "end": 1380,
       "file": "words/mu00fcnzen.mp3",
-      "gain": 1.6,
-      "gate": -48.3,
+      "gain": 2.1,
+      "lead": 430,
       "matches": "münzen",
-      "mos": 2.63,
-      "pesq": 1.91,
-      "sha256": "92087018a280b5a3de26dc85d329c457807bd4ab172eaed38adb2a2f2530972e",
-      "source": "De-Münzen.ogg"
+      "mos": 2.8,
+      "pesq": 3.64,
+      "sha256": "e80457b124903b105380ae8f12da60b1e06556e7592eebeaed0d5ec2d684eed6",
+      "source": "De-Münzen2.ogg"
     },
     "müssen": {
       "author": "Jeuwre",
@@ -15921,16 +15986,16 @@
       "source": "De-müssen3.ogg"
     },
     "mütter": {
-      "author": "Sebastian Wallroth",
+      "author": "Jeuwre",
+      "end": 1460,
       "file": "words/mu00fctter.mp3",
-      "gain": 6.0,
-      "gate": -74.6,
-      "lead": 250,
+      "gain": 0.3,
+      "lead": 430,
       "matches": "mütter",
-      "mos": 2.88,
-      "pesq": 2.21,
-      "sha256": "186a4935abb3518f0130faf574ee3620127139621ac7a65e6ffb8587bfb6cdff",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Mütter.wav"
+      "mos": 3.17,
+      "pesq": 4.03,
+      "sha256": "25f5a127d8b2b82d38caacc4f74ac8c3fc9e905634d2059314b1f64067c30886",
+      "source": "De-mütter.ogg"
     },
     "mütze": {
       "author": "Jeuwre",
@@ -16568,15 +16633,16 @@
       "source": "De-nächstes.ogg"
     },
     "nächte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1350,
       "file": "words/nu00e4chte.mp3",
-      "gain": 1.6,
-      "gate": -51.0,
+      "gain": -0.9,
+      "lead": 420,
       "matches": "nächte",
       "mos": 2.86,
-      "pesq": 2.41,
-      "sha256": "a2c6f6519cf39d532f3d9f25fdead5db2bff2280ad5513576b8e182ac1332151",
-      "source": "De-Nächte.ogg"
+      "pesq": 3.98,
+      "sha256": "d1705b2f11d520e29c11237cc6df721effb50bfd2a27857d349d9a0da0f65ea5",
+      "source": "De-Nächte2.ogg"
     },
     "oben": {
       "author": "Jeuwre",
@@ -17976,15 +18042,16 @@
       "source": "De-Schaf2.ogg"
     },
     "schafe": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
+      "end": 1520,
       "file": "words/schafe.mp3",
-      "gain": 6.5,
-      "gate": -59.5,
+      "gain": -4.5,
+      "lead": 420,
       "matches": "schafe",
-      "mos": 3.02,
-      "pesq": 2.08,
-      "sha256": "35c9a1b918bbf8365aa85a771a9f23e5852b687557e0e059eb6b1c146277aee0",
-      "source": "De-Schafe.ogg"
+      "mos": 3.29,
+      "pesq": 3.32,
+      "sha256": "1241a95df9df0cd59d309207ade8ebc94751e2be262b73205fc41b57d2395930",
+      "source": "De-Schafe2.ogg"
     },
     "schal": {
       "author": "Jeuwre",
@@ -18299,15 +18366,16 @@
       "source": "De-schmerz.ogg"
     },
     "schmerzen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1470,
       "file": "words/schmerzen.mp3",
-      "gain": 3.9,
-      "gate": -64.6,
+      "gain": -3.3,
+      "lead": 410,
       "matches": "schmerzen",
-      "mos": 2.86,
-      "pesq": 2.73,
-      "sha256": "09dacad8c0f3376bf08890c21406010558ed4f415976d3ecc200b4ea75ed1019",
-      "source": "De-Schmerzen.ogg"
+      "mos": 3.16,
+      "pesq": 3.78,
+      "sha256": "f036b817774593d3764332ad33f6aeddfbe73e5c058263c806fec0acb7483beb",
+      "source": "De-Schmerzen2.ogg"
     },
     "schminken": {
       "author": "Jeuwre",
@@ -18861,16 +18929,16 @@
       "source": "De-segeln2.ogg"
     },
     "sehen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1710,
       "file": "words/sehen.mp3",
-      "gain": 3.3,
-      "gate": -68.9,
-      "lead": 180,
+      "gain": -5.8,
+      "lead": 420,
       "matches": "sehen",
-      "mos": 3.01,
-      "pesq": 2.19,
-      "sha256": "48a38ce822b20404da8177c9e01ef851d010676aec35abed7c0f3ebdd6db354f",
-      "source": "De-sehen.ogg"
+      "mos": 3.02,
+      "pesq": 3.99,
+      "sha256": "385ec310dda06cd6e0f73b4b4b00e512292b000a61cfe2c78966b18ac9b65bfb",
+      "source": "De-sehen2.ogg"
     },
     "sehne": {
       "author": "Jeuwre",
@@ -19123,18 +19191,6 @@
       "pesq": 3.73,
       "sha256": "93bf77ed02feaa1c583454574e41fcd3a427be6b5b605ffa61383e5efa1e4661",
       "source": "De-Shampoos.ogg"
-    },
-    "sich fühlen": {
-      "author": "Natschoba",
-      "file": "words/sich_fu00fchlen.mp3",
-      "gain": 4.4,
-      "gate": -80.3,
-      "lead": 120,
-      "matches": "sich fühlen",
-      "mos": 2.79,
-      "pesq": 2.58,
-      "sha256": "feca6eb08557dda91de346aaa38c64344d4aff543d40b685e8102999e5e03516",
-      "source": "LL-Q188 (deu)-Natschoba-sich fühlen.wav"
     },
     "sich vorstellen": {
       "author": "Natschoba",
@@ -20314,16 +20370,16 @@
       "source": "De-Tag2.ogg"
     },
     "tage": {
-      "author": "Sebastian Wallroth",
+      "author": "Jeuwre",
+      "end": 1570,
       "file": "words/tage.mp3",
-      "gain": 5.0,
-      "gate": -80.0,
-      "lead": 260,
+      "gain": -6.3,
+      "lead": 440,
       "matches": "tage",
-      "mos": 3.18,
-      "pesq": 1.89,
-      "sha256": "1f857d4b9b0eb4936e50dfbcafce2f282b607d871e198f0668058ddd2400d6e9",
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-Tage.wav"
+      "mos": 3.28,
+      "pesq": 4.2,
+      "sha256": "f44900e04541371be91867200edc057fa5fabb6cef3ac16bf7b7aed742591ab1",
+      "source": "De-tage.ogg"
     },
     "tante": {
       "author": "Jeuwre",
@@ -20959,26 +21015,28 @@
       "source": "De-Tür.ogg"
     },
     "türen": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
+      "end": 1460,
       "file": "words/tu00fcren.mp3",
-      "gain": -7.4,
-      "gate": -57.1,
+      "gain": -2.7,
+      "lead": 440,
       "matches": "türen",
-      "mos": 2.92,
-      "pesq": 1.9,
-      "sha256": "e1693f1b94cf054a2e76d3840267f50cf2365d60ce2c9b4e9d4654e7f0418935",
-      "source": "De-Türen.ogg"
+      "mos": 3.06,
+      "pesq": 3.87,
+      "sha256": "529da2f7a4851b904b71251cfe42fc362aa8fc70c1cb8f85aeccdb46ac9efad2",
+      "source": "De-Türen2.ogg"
     },
     "uhr": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1290,
       "file": "words/uhr.mp3",
-      "gain": -1.9,
-      "gate": -54.3,
+      "gain": -3.2,
+      "lead": 390,
       "matches": "uhr",
-      "mos": 2.89,
-      "pesq": 2.37,
-      "sha256": "c234c6c6f92083614e3a2b55203457d05bf26227cc1cc2692fd9a99f06d0e890",
-      "source": "De-Uhr.ogg"
+      "mos": 2.88,
+      "pesq": 3.59,
+      "sha256": "a6d79804ab7babf43de70593c8ec950587ad611c218c5b85ec517e6a564487e8",
+      "source": "De-Uhr2.ogg"
     },
     "uhren": {
       "author": "Kampy",
@@ -22795,15 +22853,16 @@
       "source": "De-Woche2.ogg"
     },
     "wochen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "end": 1310,
       "file": "words/wochen.mp3",
-      "gain": 3.0,
-      "gate": -50.7,
+      "gain": 2.0,
+      "lead": 430,
       "matches": "wochen",
-      "mos": 2.67,
-      "pesq": 1.9,
-      "sha256": "44754ac129b11eb8de758abf80ec3eeb69128a07ac3986ea5b8555438fb8510d",
-      "source": "De-Wochen.ogg"
+      "mos": 2.94,
+      "pesq": 3.64,
+      "sha256": "d3decf85f15f038abc2079024faeedd8c9015df243b7291b489bde21c0826fef",
+      "source": "De-Wochen2.ogg"
     },
     "wochenende": {
       "author": "Jeuwre",
@@ -23319,15 +23378,16 @@
       "source": "De-ziel.ogg"
     },
     "ziele": {
-      "author": "joni",
+      "author": "Jeuwre",
+      "end": 1410,
       "file": "words/ziele.mp3",
-      "gain": 3.4,
-      "gate": -60.7,
+      "gain": -2.7,
+      "lead": 440,
       "matches": "ziele",
-      "mos": 3.03,
-      "pesq": 1.79,
-      "sha256": "fe6f78368d3422580bf6e0f2b59ed58e259ef064da9415fdab0322e197123219",
-      "source": "De-Ziele.ogg"
+      "mos": 3.21,
+      "pesq": 3.46,
+      "sha256": "5e20a423c44dffcbbc1e46b9dc04ddd10a280658f2531fe690f1dde02e5e7b39",
+      "source": "De-ziele.ogg"
     },
     "zimmer": {
       "author": "Jeuwre",

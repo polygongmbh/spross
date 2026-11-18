@@ -1,8 +1,10 @@
 {
   "authors": {
+    "Cannona": "CC0",
     "Castelobranco": "CC BY-SA 4.0",
     "Citoyenovice": "CC BY-SA 4.0",
     "DanieruOtakuBoy": "CC0",
+    "GeoMechain": "CC BY-SA 4.0",
     "Golmore": "CC0",
     "Juliano P. Junho": "CC BY-SA 4.0",
     "Lepticed7": "CC BY-SA 4.0",
@@ -12,7 +14,8 @@
     "Poslovitch": "CC0",
     "Robin van der Vliet": "CC BY-SA 4.0",
     "Tiguliano": "CC0",
-    "Wierzbowski": "CC0"
+    "Wierzbowski": "CC0",
+    "castelobranco": "CC BY-SA 3.0"
   },
   "calendar": {
     "aprilo": {
@@ -51,6 +54,41 @@
       "sha256": "67a56b93ad36f68ce2de56d9098e6b51f634b73a9bde426c57a845e9dafd84bd",
       "source": "LL-Q143 (epo)-Robin van der Vliet-decembro.wav"
     },
+    "dimanĉo": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/dimanu0109o.mp3",
+      "gain": 2.3,
+      "gate": -62.4,
+      "lead": 220,
+      "matches": "dimanĉo",
+      "mos": 3.16,
+      "pesq": 3.45,
+      "sha256": "c1679b5a03f996b0ceb3f0d07fc155b5c4d3f0390675572b686d93aa6ce51064",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-dimanĉo.wav"
+    },
+    "februaro": {
+      "author": "Lepticed7",
+      "file": "calendar/februaro.mp3",
+      "gain": 4.8,
+      "lead": 180,
+      "matches": "februaro",
+      "mos": 3.0,
+      "pesq": 4.06,
+      "sha256": "5a00a3025d0ab4e9e9fb57e4127b4482b555affe32569d6b7328ab4328bebda9",
+      "source": "LL-Q143 (epo)-Lepticed7-februaro.wav"
+    },
+    "januaro": {
+      "author": "Lepticed7",
+      "file": "calendar/januaro.mp3",
+      "gain": -2.3,
+      "gate": -77.5,
+      "lead": 220,
+      "matches": "januaro",
+      "mos": 3.22,
+      "pesq": 3.53,
+      "sha256": "b90adf816e0ddcd0de970cfbd0185c091662fd5b0e8dd5fa20d4a9611ef4c97b",
+      "source": "LL-Q143 (epo)-Lepticed7-januaro.wav"
+    },
     "julio": {
       "author": "Lepticed7",
       "file": "calendar/julio.mp3",
@@ -87,6 +125,53 @@
       "sha256": "957b505b6f8122ce05937f5691c6e41e8f73fb53280ba2934490870beba8a2bf",
       "source": "LL-Q143 (epo)-Robin van der Vliet-lundo.wav"
     },
+    "majo": {
+      "author": "Lepticed7",
+      "file": "calendar/majo.mp3",
+      "gain": 3.7,
+      "lead": 140,
+      "matches": "majo",
+      "mos": 2.98,
+      "pesq": 3.52,
+      "sha256": "5d5cbfb0b1855e4d64fee57d524bd72710b2279b372cb7ed41fff7263eed06ef",
+      "source": "LL-Q143 (epo)-Lepticed7-majo.wav"
+    },
+    "mardo": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/mardo.mp3",
+      "gain": 1.5,
+      "gate": -65.9,
+      "lead": 250,
+      "matches": "mardo",
+      "mos": 3.26,
+      "pesq": 3.84,
+      "sha256": "70c3cce4520a91549c5c34abde4a5647ab2739348dc6546a999b13a2b1d3612b",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-mardo.wav"
+    },
+    "marto": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/marto.mp3",
+      "gain": 0.9,
+      "gate": -63.9,
+      "lead": 230,
+      "matches": "marto",
+      "mos": 3.04,
+      "pesq": 3.54,
+      "sha256": "00ec0d4b617a3bb459c1c49d9668b6df0583e7a24ffa4bbbadb83347e00c9448",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-marto.wav"
+    },
+    "merkredo": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/merkredo.mp3",
+      "gain": 1.2,
+      "gate": -66.1,
+      "lead": 200,
+      "matches": "merkredo",
+      "mos": 3.13,
+      "pesq": 2.93,
+      "sha256": "1d6999a28055ea63ffb4d41f1e815acd60249953bbda92b532586e169a9ede3b",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-merkredo.wav"
+    },
     "novembro": {
       "author": "Robin van der Vliet",
       "file": "calendar/novembro.mp3",
@@ -98,6 +183,30 @@
       "pesq": 2.53,
       "sha256": "3d0eafba6888a634567edcb5dcb26857437adc86ac788a91479f187513008771",
       "source": "LL-Q143 (epo)-Robin van der Vliet-novembro.wav"
+    },
+    "oktobro": {
+      "author": "Lepticed7",
+      "file": "calendar/oktobro.mp3",
+      "gain": 1.4,
+      "gate": -80.2,
+      "lead": 250,
+      "matches": "oktobro",
+      "mos": 2.61,
+      "pesq": 2.56,
+      "sha256": "ad03ccd672d92fcf5d9d1f1cd114540506e2691422121128b9332888da140497",
+      "source": "LL-Q143 (epo)-Lepticed7-oktobro.wav"
+    },
+    "sabato": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/sabato.mp3",
+      "gain": 0.9,
+      "gate": -63.5,
+      "lead": 240,
+      "matches": "sabato",
+      "mos": 3.16,
+      "pesq": 3.39,
+      "sha256": "97292685d13ffccc50791441a8fcde45eb5feceda107237602d608fb758be93c",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-sabato.wav"
     },
     "septembro": {
       "author": "Lepticed7",
@@ -122,6 +231,18 @@
       "pesq": 3.83,
       "sha256": "2912f0b2eda2d8ea66ab7355988e354a7b1ef0da39610509b022dcce54bf88f0",
       "source": "LL-Q143 (epo)-Wierzbowski-vendredo.wav"
+    },
+    "ĵaŭdo": {
+      "author": "Robin van der Vliet",
+      "file": "calendar/u0135au016ddo.mp3",
+      "gain": 2.9,
+      "gate": -66.1,
+      "lead": 150,
+      "matches": "ĵaŭdo",
+      "mos": 3.12,
+      "pesq": 2.94,
+      "sha256": "13107100f058980f786795a7d8dfed3cf33664f0e500a36898973eb75f7cc02c",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-ĵaŭdo.wav"
     }
   },
   "countries": {
@@ -1703,6 +1824,7 @@
   },
   "licenses": {
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
+    "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
     "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
@@ -1818,15 +1940,15 @@
       "source": "LL-Q143 (epo)-Lepticed7-ajlo.wav"
     },
     "akra": {
-      "author": "Poslovitch",
+      "author": "Cannona",
       "file": "words/akra.mp3",
-      "gain": 3.6,
-      "gate": -74.7,
+      "gain": -0.2,
+      "lead": 60,
       "matches": "akra",
-      "mos": 3.05,
-      "pesq": 1.98,
-      "sha256": "1a565ae344794f32af9b6773939643931329f1927a249f95758582c28bc669cb",
-      "source": "LL-Q143 (epo)-Poslovitch-akra.wav"
+      "mos": 3.04,
+      "pesq": 3.96,
+      "sha256": "edae98a150708858ace19da6e379ce6750462d2ebc3b97c87f3ccd6626fb284c",
+      "source": "Eo-akra.ogg"
     },
     "akurata": {
       "author": "Lepticed7",
@@ -1865,16 +1987,17 @@
       "source": "LL-Q143 (epo)-Lepticed7-alergio.wav"
     },
     "alia": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
+      "cap": 0.3,
       "file": "words/alia.mp3",
-      "gain": 3.0,
-      "gate": -75.9,
-      "lead": 270,
+      "gain": 4.8,
+      "gate": -92.1,
+      "lead": 180,
       "matches": "alia",
-      "mos": 2.88,
-      "pesq": 2.35,
-      "sha256": "23c9bdf5f4b4046e36ea187147a21448bdf39d94a49589f4ceb044029e959fe4",
-      "source": "LL-Q143 (epo)-Poslovitch-alia.wav"
+      "mos": 3.21,
+      "pesq": 3.44,
+      "sha256": "a0ae17670449d13601d9b0b3c498ad7098131df3527c4190e21c880224a07781",
+      "source": "LL-Q143 (epo)-Wierzbowski-alia.wav"
     },
     "alveni": {
       "author": "Lepticed7",
@@ -2117,16 +2240,16 @@
       "source": "LL-Q143 (epo)-Poslovitch-arbaro.wav"
     },
     "arbo": {
-      "author": "Poslovitch",
+      "author": "Castelobranco",
       "file": "words/arbo.mp3",
-      "gain": -1.6,
-      "gate": -73.4,
-      "lead": 50,
+      "gain": 3.1,
+      "gate": -73.8,
+      "lead": 290,
       "matches": "arbo",
-      "mos": 2.75,
-      "pesq": 2.12,
-      "sha256": "8d3b7264755e9e0d1a151594d5e562938785ed774a307c990a23dbf107f13ff2",
-      "source": "LL-Q143 (epo)-Poslovitch-arbo.wav"
+      "mos": 2.81,
+      "pesq": 3.5,
+      "sha256": "386f9ad4b3ba0bf5fc1a6b574af690415814e13fd92a4e61761a066598978514",
+      "source": "Eo-arbo2.ogg"
     },
     "arterio": {
       "author": "Lepticed7",
@@ -2711,16 +2834,16 @@
       "source": "LL-Q143 (epo)-Robin van der Vliet-boli.wav"
     },
     "bona": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/bona.mp3",
-      "gain": 3.8,
-      "gate": -77.6,
-      "lead": 170,
+      "gain": 4.4,
+      "gate": -89.9,
+      "lead": 250,
       "matches": "bona",
-      "mos": 2.66,
-      "pesq": 2.99,
-      "sha256": "499cfe2481779d9375afe40db1c3c4b1f0da1ea0415f18b26744069996bf94d6",
-      "source": "LL-Q143 (epo)-Poslovitch-bona.wav"
+      "mos": 3.04,
+      "pesq": 4.14,
+      "sha256": "ffc0ef04d0ba5c9608e2c1e636b3f644b58367b96502011a959bffef57f1aba9",
+      "source": "LL-Q143 (epo)-Wierzbowski-bona.wav"
     },
     "bonan matenon": {
       "author": "Lepticed7",
@@ -3320,16 +3443,16 @@
       "source": "LL-Q143 (epo)-Robin van der Vliet-direkto.wav"
     },
     "diri": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/diri.mp3",
-      "gain": 2.8,
-      "gate": -74.7,
-      "lead": 190,
+      "gain": 9.4,
+      "gate": -91.8,
+      "lead": 120,
       "matches": "diri",
-      "mos": 2.8,
-      "pesq": 2.08,
-      "sha256": "08c03e18c99d664d1bfb12704d4fef69d1a4fa041a3bfbf95456922f252e08ab",
-      "source": "LL-Q143 (epo)-Poslovitch-diri.wav"
+      "mos": 2.91,
+      "pesq": 3.35,
+      "sha256": "76bb38c8b3b67533bf1943615303634df9e484a4bee62d4cda1b690a619041e3",
+      "source": "LL-Q143 (epo)-Wierzbowski-diri.wav"
     },
     "dolori": {
       "author": "Robin van der Vliet",
@@ -3392,16 +3515,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-donaco.wav"
     },
     "doni": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/doni.mp3",
-      "gain": 2.6,
-      "gate": -76.4,
-      "lead": 90,
+      "gain": 0.6,
+      "gate": -64.5,
+      "lead": 50,
       "matches": "doni",
-      "mos": 2.53,
-      "pesq": 3.08,
-      "sha256": "86f25e7ffa690b8cf4a63a8d10744ce299d11781fbf22d1a8af2032716fcef95",
-      "source": "LL-Q143 (epo)-Poslovitch-doni.wav"
+      "mos": 2.93,
+      "pesq": 3.57,
+      "sha256": "d0402def8b45da88d87ddaab8ffc1abed1e859976c46cf2cd714a3ef649cea0f",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-doni.wav"
     },
     "dormi": {
       "author": "Robin van der Vliet",
@@ -3440,16 +3563,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-dosierujo.wav"
     },
     "dua": {
-      "author": "DanieruOtakuBoy",
+      "author": "Robin van der Vliet",
       "file": "words/dua.mp3",
-      "gain": 6.1,
-      "gate": -66.5,
-      "lead": 100,
+      "gain": 0.1,
+      "gate": -66.9,
+      "lead": 140,
       "matches": "dua",
-      "mos": 2.49,
-      "pesq": 2.29,
-      "sha256": "469dd324bab8ee280bed36b0e052dc93fff34a0b30551b3490612cf7597d0fb1",
-      "source": "LL-Q143 (epo)-DanieruOtakuBoy-dua.wav"
+      "mos": 3.07,
+      "pesq": 3.51,
+      "sha256": "cad1257fee4a3f5e228af3d82eb59855676b5386b573a1cb4ce2a71456cc39c6",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-dua.wav"
     },
     "dubo": {
       "author": "Robin van der Vliet",
@@ -3500,16 +3623,16 @@
       "source": "LL-Q143 (epo)-Wierzbowski-eble.wav"
     },
     "edzino": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/edzino.mp3",
-      "gain": 1.1,
-      "gate": -72.0,
-      "lead": 170,
+      "gain": 2.1,
+      "gate": -64.0,
+      "lead": 230,
       "matches": "edzino",
-      "mos": 2.95,
-      "pesq": 2.09,
-      "sha256": "6644df358d5008d33c923283e60ef34538e33c06d64774bc55c7354a12611b3c",
-      "source": "LL-Q143 (epo)-Poslovitch-edzino.wav"
+      "mos": 3.15,
+      "pesq": 3.47,
+      "sha256": "c52072bdd395b11177a19329a5896d15f1908b4afd48d2d6eb4fc04322c0e285",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-edzino.wav"
     },
     "edziĝinta": {
       "author": "Lepticed7",
@@ -3729,16 +3852,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-elparoli.wav"
     },
     "en": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/en.mp3",
-      "gain": 3.3,
-      "gate": -76.5,
-      "lead": 120,
+      "gain": 5.8,
+      "gate": -94.8,
+      "lead": 190,
       "matches": "en",
-      "mos": 2.72,
-      "pesq": 2.48,
-      "sha256": "8f6e9766129221a6f6e9cb06727cbc01c30dd8ade0bed67682e7994275b0f42f",
-      "source": "LL-Q143 (epo)-Poslovitch-en.wav"
+      "mos": 2.96,
+      "pesq": 3.78,
+      "sha256": "bfc1d7f4f0d08bdb3daa6f81863d6dfc6919d6d59245ec6ef3097d65783fe007",
+      "source": "LL-Q143 (epo)-Wierzbowski-en.wav"
     },
     "enirejo": {
       "author": "Lepticed7",
@@ -4132,16 +4255,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-fiŝkapti.wav"
     },
     "fiŝo": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/fiu015do.mp3",
-      "gain": 6.4,
-      "gate": -75.9,
-      "lead": 140,
+      "gain": 1.9,
+      "gate": -67.6,
+      "lead": 150,
       "matches": "fiŝo",
-      "mos": 3.04,
-      "pesq": 2.21,
-      "sha256": "1a900e95c02c409572dd3354b324ccb60564f27e3706184ce20378dc29d1f95b",
-      "source": "LL-Q143 (epo)-Poslovitch-fiŝo.wav"
+      "mos": 3.19,
+      "pesq": 3.09,
+      "sha256": "3ff49e3535b2ed3320f0bac646993482bcc0b5010a37315ed53f7713f836562a",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-fiŝo.wav"
     },
     "flava": {
       "author": "Poslovitch",
@@ -4899,17 +5022,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-hodiaŭ.wav"
     },
     "homo": {
-      "author": "Poslovitch",
-      "cap": 0.5,
+      "author": "Wierzbowski",
       "file": "words/homo.mp3",
-      "gain": 4.1,
-      "gate": -71.9,
-      "lead": 160,
+      "gain": 1.8,
+      "gate": -88.5,
+      "lead": 140,
       "matches": "homo",
-      "mos": 2.54,
-      "pesq": 2.95,
-      "sha256": "bdb4f8ae88e42d4dd6a7dc91d6de1fbb849a99fe307e791453dd6ef4e0bf2279",
-      "source": "LL-Q143 (epo)-Poslovitch-homo.wav"
+      "mos": 2.97,
+      "pesq": 3.93,
+      "sha256": "2dc657299291501894ddf665082478d7113bf26de56ec987bfc154303d30df92",
+      "source": "LL-Q143 (epo)-Wierzbowski-homo.wav"
     },
     "honto": {
       "author": "Lepticed7",
@@ -5793,16 +5915,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-kirli.wav"
     },
     "kiu": {
-      "author": "Poslovitch",
+      "author": "GeoMechain",
       "file": "words/kiu.mp3",
-      "gain": 3.4,
-      "gate": -72.3,
-      "lead": 90,
+      "gain": 8.2,
+      "gate": -90.0,
+      "lead": 110,
       "matches": "kiu",
-      "mos": 3.05,
-      "pesq": 2.25,
-      "sha256": "2135c3473c3ddcbbebbf7506231e72913a49a16ac280368c322595b51bc589af",
-      "source": "LL-Q143 (epo)-Poslovitch-kiu.wav"
+      "mos": 2.88,
+      "pesq": 4.09,
+      "sha256": "d769ddfcf15da73cc41174fc4b3d09ee2ef6d4f1216f3743b02ab71cc5370d0c",
+      "source": "LL-Q143 (epo)-GeoMechain-kiu.wav"
     },
     "klaki": {
       "author": "Lepticed7",
@@ -6699,16 +6821,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-leĝo.wav"
     },
     "li": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/li.mp3",
-      "gain": 5.8,
-      "gate": -78.1,
-      "lead": 160,
+      "gain": 3.7,
+      "gate": -86.5,
+      "lead": 190,
       "matches": "li",
-      "mos": 2.19,
-      "pesq": 1.66,
-      "sha256": "df125123d5e47deb92e8ab4e1cd5d297b11a93a0e29ca9ac8d933206476876e6",
-      "source": "LL-Q143 (epo)-Poslovitch-li.wav"
+      "mos": 2.76,
+      "pesq": 2.85,
+      "sha256": "73fb1beb681257334214263c98824838295ed0ba988e7d41df747e2979dcd2e3",
+      "source": "LL-Q143 (epo)-Wierzbowski-li.wav"
     },
     "lia": {
       "author": "Lepticed7",
@@ -6879,16 +7001,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-loko.wav"
     },
     "longa": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/longa.mp3",
-      "gain": -1.3,
-      "gate": -71.2,
-      "lead": 220,
+      "gain": -1.1,
+      "gate": -69.4,
+      "lead": 260,
       "matches": "longa",
-      "mos": 2.41,
-      "pesq": 2.56,
-      "sha256": "c7691396de7757186b7ba6485d17e03d5a814836864020c88c4b5acd7023040e",
-      "source": "LL-Q143 (epo)-Poslovitch-longa.wav"
+      "mos": 3.13,
+      "pesq": 3.73,
+      "sha256": "9b67c563ddbf94c8b12bed86622db2f75a141c582dfa2ca46048d3f4f3004e95",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-longa.wav"
     },
     "loĝejo": {
       "author": "Lepticed7",
@@ -6927,16 +7049,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-loĝloko.wav"
     },
     "ludi": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/ludi.mp3",
-      "gain": 6.9,
-      "gate": -74.3,
-      "lead": 30,
+      "gain": 3.6,
+      "gate": -67.6,
+      "lead": 210,
       "matches": "ludi",
-      "mos": 2.73,
-      "pesq": 2.09,
-      "sha256": "8f8ec5fb1acc71503e44355bc4d66e682be7c359d7f5be3869b4f8d8d6e5155c",
-      "source": "LL-Q143 (epo)-Poslovitch-ludi.wav"
+      "mos": 3.21,
+      "pesq": 2.44,
+      "sha256": "6f04549d6d0e201047353969534eaa233a7da0cc749b3bce7804b94dde2a5fda",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-ludi.wav"
     },
     "ludo": {
       "author": "Lepticed7",
@@ -6963,16 +7085,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-lumo.wav"
     },
     "luno": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/luno.mp3",
-      "gain": 4.6,
-      "gate": -75.1,
-      "lead": 240,
+      "gain": 0.4,
+      "gate": -66.5,
+      "lead": 260,
       "matches": "luno",
-      "mos": 2.79,
-      "pesq": 2.47,
-      "sha256": "756ed35237894a0d067c61e31ef46f7e49a5e2f0a9e99382721f7140ece715d4",
-      "source": "LL-Q143 (epo)-Poslovitch-luno.wav"
+      "mos": 3.01,
+      "pesq": 3.48,
+      "sha256": "319c6181e963821d004e1934c4a5fc40633de9d71aeb8b151822bc75c220a553",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-luno.wav"
     },
     "malakcepti": {
       "author": "Lepticed7",
@@ -7166,16 +7288,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-mallaŭta.wav"
     },
     "mallonga": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/mallonga.mp3",
-      "gain": -0.3,
-      "gate": -74.7,
-      "lead": 240,
+      "gain": 0.6,
+      "gate": -68.8,
+      "lead": 250,
       "matches": "mallonga",
-      "mos": 2.72,
-      "pesq": 3.08,
-      "sha256": "b90992ac8a09cc01f1a3b704bc8f88fa17da07af3c90cd750c30f8953ec54b00",
-      "source": "LL-Q143 (epo)-Poslovitch-mallonga.wav"
+      "mos": 3.19,
+      "pesq": 3.62,
+      "sha256": "90fc8459316f90dd4bda0439832dff0eeb0bf2c755580c6e0267e6cf6de5ced9",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-mallonga.wav"
     },
     "malmultaj": {
       "author": "Poslovitch",
@@ -7248,16 +7370,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-malproksime.wav"
     },
     "malpura": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/malpura.mp3",
-      "gain": 2.4,
-      "gate": -75.6,
-      "lead": 160,
+      "gain": 0.6,
+      "gate": -69.8,
+      "lead": 230,
       "matches": "malpura",
-      "mos": 3.01,
-      "pesq": 2.38,
-      "sha256": "bcf97f8073fa46f9ab491169e415b414eeb56e90e2ffc3602374d7de35064712",
-      "source": "LL-Q143 (epo)-Poslovitch-malpura.wav"
+      "mos": 3.16,
+      "pesq": 3.34,
+      "sha256": "3f170a6b9071f1ec4b88c121b2e23c75c7db1292ea9ccaf0aac42a2dcfa1e8a8",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-malpura.wav"
     },
     "malrapida": {
       "author": "Wierzbowski",
@@ -7678,16 +7800,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-meti.wav"
     },
     "mi": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/mi.mp3",
-      "gain": 2.6,
-      "gate": -76.0,
-      "lead": 220,
+      "gain": 5.1,
+      "gate": -60.6,
+      "lead": 250,
       "matches": "mi",
-      "mos": 2.37,
-      "pesq": 1.6,
-      "sha256": "657d5af052bf6c1ff39313fd5ee0a7f6c93a19d4def1b3f1a31d65e0db643471",
-      "source": "LL-Q143 (epo)-Poslovitch-mi.wav"
+      "mos": 2.73,
+      "pesq": 3.24,
+      "sha256": "57bcea6906e89655ac8252f06976d460c9d56c1a50d4437f646588e53bedca3a",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-mi.wav"
     },
     "mi amas vin": {
       "author": "Lepticed7",
@@ -8306,16 +8428,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-neŭtrala.wav"
     },
     "ni": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/ni.mp3",
-      "gain": 8.8,
-      "gate": -73.0,
-      "lead": 200,
+      "gain": -1.3,
+      "gate": -83.7,
+      "lead": 240,
       "matches": "ni",
-      "mos": 2.55,
-      "pesq": 1.65,
-      "sha256": "86b95661a1cbc83889accea67a56006a43c68d85b585eda11b7307bd6628482b",
-      "source": "LL-Q143 (epo)-Poslovitch-ni.wav"
+      "mos": 2.95,
+      "pesq": 3.04,
+      "sha256": "469969f817d150a5df718ee41afdd90e1aea99693299498f14ff4b89ecf2a566",
+      "source": "LL-Q143 (epo)-Wierzbowski-ni.wav"
     },
     "nia": {
       "author": "Lepticed7",
@@ -8330,28 +8452,29 @@
       "source": "LL-Q143 (epo)-Lepticed7-nia.wav"
     },
     "nigra": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/nigra.mp3",
-      "gain": 2.3,
-      "gate": -75.0,
-      "lead": 210,
+      "gain": 0.6,
+      "gate": -64.7,
+      "lead": 200,
       "matches": "nigra",
-      "mos": 2.85,
-      "pesq": 2.72,
-      "sha256": "76a641bd4bb65693d1c03e12dcf8ffc9f20f204ce468ad7ce75840cbe6ffb8ec",
-      "source": "LL-Q143 (epo)-Poslovitch-nigra.wav"
+      "mos": 3.08,
+      "pesq": 3.5,
+      "sha256": "315d8c5cb8138f22c5064d6d8f0e1c95e49ef30570f91759497dc7ed75315ae0",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-nigra.wav"
     },
     "nokto": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
+      "cap": 0.9,
       "file": "words/nokto.mp3",
-      "gain": 5.1,
-      "gate": -78.0,
-      "lead": 210,
+      "gain": 10.7,
+      "gate": -91.4,
+      "lead": 250,
       "matches": "nokto",
-      "mos": 3.07,
-      "pesq": 1.6,
-      "sha256": "330227b2fb1fd42f979a540c482a8cb2f870329c8aa6fd5aec11f32dbad52191",
-      "source": "LL-Q143 (epo)-Poslovitch-nokto.wav"
+      "mos": 3.27,
+      "pesq": 2.72,
+      "sha256": "df27388bd9947ef5a01e951166f232f32fbe9a1e0ea3b3acb431d3a7abeb3b0a",
+      "source": "LL-Q143 (epo)-Wierzbowski-nokto.wav"
     },
     "noktomezo": {
       "author": "Lepticed7",
@@ -8437,17 +8560,16 @@
       "source": "LL-Q143 (epo)-Poslovitch-nova.wav"
     },
     "nubo": {
-      "author": "Poslovitch",
-      "cap": 0.8,
+      "author": "Robin van der Vliet",
       "file": "words/nubo.mp3",
-      "gain": 3.9,
-      "gate": -74.8,
-      "lead": 200,
+      "gain": 0.5,
+      "gate": -71.1,
+      "lead": 260,
       "matches": "nubo",
-      "mos": 2.79,
-      "pesq": 2.12,
-      "sha256": "396b662a3a0700ab820cca869a76d7f183431c0441f3a912afa65536588540e0",
-      "source": "LL-Q143 (epo)-Poslovitch-nubo.wav"
+      "mos": 2.91,
+      "pesq": 3.33,
+      "sha256": "741fd14b0a588e01598126b21f06f66bdb3656e07bd86b331ebb942716414133",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-nubo.wav"
     },
     "nuligi": {
       "author": "Lepticed7",
@@ -8725,16 +8847,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-oscedi.wav"
     },
     "osto": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/osto.mp3",
-      "gain": 2.0,
-      "gate": -73.2,
-      "lead": 210,
+      "gain": 5.4,
+      "gate": -69.4,
+      "lead": 200,
       "matches": "osto",
-      "mos": 2.78,
-      "pesq": 1.77,
-      "sha256": "a7b3f301ad73ba6b9e0decad7aa0fabc56d0b962e2ae036b8b191a5b815f572b",
-      "source": "LL-Q143 (epo)-Poslovitch-osto.wav"
+      "mos": 2.8,
+      "pesq": 2.94,
+      "sha256": "8f081d3d024fa7a568224ff8cd266b9e320193fb8b2e58946a93d03914ce6ef4",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-osto.wav"
     },
     "ovario": {
       "author": "Lepticed7",
@@ -8976,28 +9098,29 @@
       "source": "LL-Q143 (epo)-Lepticed7-pato.wav"
     },
     "patrino": {
-      "author": "Poslovitch",
+      "author": "GeoMechain",
+      "cap": 0.5,
       "file": "words/patrino.mp3",
-      "gain": 1.8,
-      "gate": -76.8,
-      "lead": 230,
+      "gain": 4.9,
+      "gate": -91.2,
+      "lead": 240,
       "matches": "patrino",
-      "mos": 2.45,
-      "pesq": 3.08,
-      "sha256": "dff5e08b13ca314e1651718a3ee644850b01d4bbca51a1db82eabcd002f70037",
-      "source": "LL-Q143 (epo)-Poslovitch-patrino.wav"
+      "mos": 2.76,
+      "pesq": 3.94,
+      "sha256": "0de10c9810414a6d8b0add9c00ea9d4f8cefa3c9b37ca9c3f31ef4e1ba2948f9",
+      "source": "LL-Q143 (epo)-GeoMechain-patrino.wav"
     },
     "patro": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/patro.mp3",
-      "gain": 4.1,
-      "gate": -79.3,
-      "lead": 160,
+      "gain": 2.5,
+      "gate": -67.9,
+      "lead": 270,
       "matches": "patro",
-      "mos": 2.82,
-      "pesq": 2.59,
-      "sha256": "e3fe7f40eebbdd2c14cde37f5389d760ee83af31a1326c3d0ecec28f102724d8",
-      "source": "LL-Q143 (epo)-Poslovitch-patro.wav"
+      "mos": 2.95,
+      "pesq": 3.48,
+      "sha256": "b896084af6acd5892d465f286fbcf741dcd7b3f37f81902ad108bb727d0d5cb7",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-patro.wav"
     },
     "paĝo": {
       "author": "Lepticed7",
@@ -9132,16 +9255,16 @@
       "source": "LL-Q143 (epo)-Robin van der Vliet-peto.wav"
     },
     "peza": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/peza.mp3",
-      "gain": 0.1,
-      "gate": -76.6,
+      "gain": 7.2,
+      "gate": -92.0,
       "lead": 220,
       "matches": "peza",
-      "mos": 2.68,
-      "pesq": 2.62,
-      "sha256": "6d5307903327d8f30e5916142bfee23e0f9b4c4c873cdb8bb4563b80562233ef",
-      "source": "LL-Q143 (epo)-Poslovitch-peza.wav"
+      "mos": 3.43,
+      "pesq": 3.53,
+      "sha256": "984f781bd6ef8b3692d735aecd99765cc2ba8cb8cefef2e802b13a6eed59a8e0",
+      "source": "LL-Q143 (epo)-Wierzbowski-peza.wav"
     },
     "piediri": {
       "author": "Lepticed7",
@@ -9238,16 +9361,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-plaĝo.wav"
     },
     "plena": {
-      "author": "Poslovitch",
+      "author": "Lepticed7",
       "file": "words/plena.mp3",
-      "gain": 2.4,
-      "gate": -75.3,
-      "lead": 180,
+      "gain": 3.4,
+      "gate": -81.4,
+      "lead": 220,
       "matches": "plena",
-      "mos": 3.01,
-      "pesq": 1.99,
-      "sha256": "7dd9f86d7c3b7a37207eb2c7c3d58edbe0a9767abd92df09ce39e62beae7b6f7",
-      "source": "LL-Q143 (epo)-Poslovitch-plena.wav"
+      "mos": 3.27,
+      "pesq": 3.29,
+      "sha256": "51e1b92cdbd56d215b205dce8fdcebf72289581f8c5b9dad3fcb8e52a93c0e86",
+      "source": "LL-Q143 (epo)-Lepticed7-plena.wav"
     },
     "plenigi": {
       "author": "Lepticed7",
@@ -9333,17 +9456,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-pluvmantelo.wav"
     },
     "pluvo": {
-      "author": "Poslovitch",
-      "cap": 0.2,
+      "author": "Castelobranco",
       "file": "words/pluvo.mp3",
-      "gain": 4.6,
-      "gate": -74.6,
-      "lead": 100,
+      "gain": 5.7,
+      "gate": -70.4,
+      "lead": 170,
       "matches": "pluvo",
-      "mos": 2.75,
-      "pesq": 2.89,
-      "sha256": "0e896b280be995b240272f7b960e8b88925e4cd66c8bb59df8f981592b6d10fd",
-      "source": "LL-Q143 (epo)-Poslovitch-pluvo.wav"
+      "mos": 3.11,
+      "pesq": 3.28,
+      "sha256": "5aad4867378ac0de59cc00f916e3af696c95959911be8cbc8d5a7a5517e2a0f1",
+      "source": "Eo-pluvo.ogg"
     },
     "pneŭo": {
       "author": "Lepticed7",
@@ -10502,16 +10624,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-sekvi.wav"
     },
     "semajnfino": {
-      "author": "Ookap",
+      "author": "Lepticed7",
       "file": "words/semajnfino.mp3",
-      "gain": 7.3,
-      "gate": -79.3,
+      "gain": -0.9,
+      "gate": -84.4,
       "lead": 160,
       "matches": "semajnfino",
-      "mos": 2.6,
-      "pesq": 3.42,
-      "sha256": "3bef4072aa04fe5b3463dc3e61604f6f82808bc3c8d42d29dcfad48ef0255422",
-      "source": "LL-Q143 (epo)-Ookap-semajnfino.wav"
+      "mos": 3.11,
+      "pesq": 3.43,
+      "sha256": "65e83e52605e9c9cb4e813de817d2144be63a8b662edcc635e1c1f8826272800",
+      "source": "LL-Q143 (epo)-Lepticed7-semajnfino.wav"
     },
     "semajno": {
       "author": "Lepticed7",
@@ -11143,16 +11265,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-surmeti.wav"
     },
     "surprizo": {
-      "author": "Ookap",
+      "author": "Lepticed7",
+      "cap": 1.7,
       "file": "words/surprizo.mp3",
-      "gain": 4.6,
-      "gate": -74.3,
-      "lead": 170,
+      "gain": 7.2,
+      "lead": 110,
       "matches": "surprizo",
-      "mos": 2.96,
-      "pesq": 1.99,
-      "sha256": "c2a536dc61a0c922906c2c9af73009c3e7e443bea14e3348d4da5d102241efc3",
-      "source": "LL-Q143 (epo)-Ookap-surprizo.wav"
+      "mos": 3.03,
+      "pesq": 3.04,
+      "sha256": "ac6c31109383b84e815142db4e3b424a2e91a0f930ad7465f42abeee0caa44e0",
+      "source": "LL-Q143 (epo)-Lepticed7-surprizo.wav"
     },
     "tablo": {
       "author": "Lepticed7",
@@ -11717,16 +11839,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-universitato.wav"
     },
     "unua": {
-      "author": "DanieruOtakuBoy",
+      "author": "castelobranco",
+      "end": 2160,
       "file": "words/unua.mp3",
-      "gain": 6.6,
-      "gate": -69.9,
-      "lead": 140,
+      "gain": -2.8,
+      "lead": 1170,
       "matches": "unua",
-      "mos": 2.77,
-      "pesq": 2.69,
-      "sha256": "b4734c50da7026a995d60a1418343104a63ade7cc3e7664a34e1245f4466ce41",
-      "source": "LL-Q143 (epo)-DanieruOtakuBoy-unua.wav"
+      "mos": 2.98,
+      "pesq": 3.81,
+      "sha256": "c8bf70c55339de408dc0b962beb5aeffbfced1023f3a52a108e116bcb9760f78",
+      "source": "Eo-unua.ogg"
     },
     "unufoje": {
       "author": "Lepticed7",
@@ -11895,15 +12017,15 @@
       "source": "LL-Q143 (epo)-Lepticed7-vendisto.wav"
     },
     "veni": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/veni.mp3",
-      "gate": -72.3,
-      "lead": 90,
+      "gate": -68.6,
+      "lead": 250,
       "matches": "veni",
-      "mos": 2.32,
-      "pesq": 2.64,
-      "sha256": "3b0add53f9ea8f6b46d2adb858ec1e96c3ec27a7ad42a59fa185a931cbf3216d",
-      "source": "LL-Q143 (epo)-Poslovitch-veni.wav"
+      "mos": 3.06,
+      "pesq": 3.41,
+      "sha256": "a412a508b85874258588cfc6d27721ac27af535ab224fdcddc76daf918003de1",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-veni.wav"
     },
     "vento": {
       "author": "Poslovitch",
@@ -11918,16 +12040,16 @@
       "source": "LL-Q143 (epo)-Poslovitch-vento.wav"
     },
     "ventro": {
-      "author": "Poslovitch",
+      "author": "NMaia",
       "file": "words/ventro.mp3",
-      "gain": 0.6,
-      "gate": -77.7,
-      "lead": 200,
+      "gain": -1.6,
+      "gate": -64.4,
+      "lead": 190,
       "matches": "ventro",
-      "mos": 2.86,
-      "pesq": 2.22,
-      "sha256": "5a8abe1ac077a7143f167dda3ef6e385863a003bb81fad8dcfeca258e8133c79",
-      "source": "LL-Q143 (epo)-Poslovitch-ventro.wav"
+      "mos": 2.98,
+      "pesq": 3.21,
+      "sha256": "83d039d6b9ca6a7d25c7fd3ac96fcf3e8e93d2337adccc91f8cfbadcb97a3e9d",
+      "source": "LL-Q143 (epo)-NMaia-ventro.wav"
     },
     "verbo": {
       "author": "Robin van der Vliet",
@@ -12001,16 +12123,16 @@
       "source": "LL-Q143 (epo)-Robin van der Vliet-veziko.wav"
     },
     "vi": {
-      "author": "Poslovitch",
+      "author": "Wierzbowski",
       "file": "words/vi.mp3",
-      "gain": 6.6,
-      "gate": -75.6,
-      "lead": 180,
+      "gain": 10.1,
+      "gate": -90.4,
+      "lead": 160,
       "matches": "vi",
-      "mos": 2.54,
-      "pesq": 2.08,
-      "sha256": "2169d87c02e9c50012c2d0e771294231ab91d199f36fad956fbdab2a2ff34dca",
-      "source": "LL-Q143 (epo)-Poslovitch-vi.wav"
+      "mos": 2.98,
+      "pesq": 3.32,
+      "sha256": "74dba76aae6e8b8e9b4256607541c0f4a9c853ab7b7c5ceee4c6a14e7cd982e4",
+      "source": "LL-Q143 (epo)-Wierzbowski-vi.wav"
     },
     "via": {
       "author": "Lepticed7",
@@ -12037,16 +12159,16 @@
       "source": "LL-Q143 (epo)-Robin van der Vliet-viando.wav"
     },
     "vidi": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/vidi.mp3",
-      "gain": 4.8,
-      "gate": -70.1,
-      "lead": 160,
+      "gain": 1.7,
+      "gate": -64.0,
+      "lead": 120,
       "matches": "vidi",
-      "mos": 2.75,
-      "pesq": 1.93,
-      "sha256": "ec5b25e81f8d20b6ec04b2670aaa9a4c3986e7dc6d14e7330e205bb03936e7a5",
-      "source": "LL-Q143 (epo)-Poslovitch-vidi.wav"
+      "mos": 3.19,
+      "pesq": 2.82,
+      "sha256": "01483c9f256744737db66135062a2a9067c79ee1a7482e3e933df4ae6c6b082b",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-vidi.wav"
     },
     "vilaĝo": {
       "author": "Lepticed7",
@@ -12085,16 +12207,16 @@
       "source": "LL-Q143 (epo)-Wierzbowski-vira.wav"
     },
     "virino": {
-      "author": "Poslovitch",
+      "author": "GeoMechain",
       "file": "words/virino.mp3",
-      "gain": 2.2,
-      "gate": -75.9,
+      "gain": 1.2,
+      "gate": -93.1,
       "lead": 180,
       "matches": "virino",
-      "mos": 2.76,
-      "pesq": 2.76,
-      "sha256": "75f3ab472e69fab11234e9a00a565240a538d6a052904cd3b523f78c60fa60f1",
-      "source": "LL-Q143 (epo)-Poslovitch-virino.wav"
+      "mos": 3.06,
+      "pesq": 3.36,
+      "sha256": "b74606075c2c6c0619deda8f0867c72ea99856ddf06dbea5396b9e9c1e71ceb1",
+      "source": "LL-Q143 (epo)-GeoMechain-virino.wav"
     },
     "viro": {
       "author": "Poslovitch",
@@ -12502,16 +12624,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-ĉiu.wav"
     },
     "ĉiuj": {
-      "author": "Poslovitch",
+      "author": "Robin van der Vliet",
       "file": "words/u0109iuj.mp3",
       "gain": 1.4,
-      "gate": -73.2,
-      "lead": 200,
+      "gate": -65.8,
+      "lead": 190,
       "matches": "ĉiuj",
-      "mos": 2.96,
-      "pesq": 2.39,
-      "sha256": "9d8323456db5c0f98badf3a6e15b0873360c29c54f6dcf62c4076d5b310205c7",
-      "source": "LL-Q143 (epo)-Poslovitch-ĉiuj.wav"
+      "mos": 3.23,
+      "pesq": 3.08,
+      "sha256": "81200208dba05eaf5cb41f384949d4fb3e98679ac654ac2272c59431898921d2",
+      "source": "LL-Q143 (epo)-Robin van der Vliet-ĉiuj.wav"
     },
     "ĉu vi parolas la anglan": {
       "author": "NMaia",
