@@ -96,20 +96,25 @@ def heard_mos(mos, pop, pesq):
     return round(SCORE_MEAN + SCORE_SPREAD * standard / SUM_SPREAD, 2)
 
 
-# POOR voices: heard as bad across their takes, not in one file — what the score cannot be
-# trusted to catch (it Francyskus, all 7 heard bad for background noise, scores up to 2.3).
-# Every take of theirs counts as heard bad, except a file a listener passed on its own.
-POOR_VOICES = {
-    "it": ["Francyskus"],
+# A listener's ruling on a whole voice, where the ear and the score part ways across its takes,
+# not in one file. Either kind gives way to a verdict on a single take.
+# poor: every take counts as heard bad, except a file a listener passed on its own
+#   (it Francyskus, all 7 heard bad for background noise, scores up to 2.3;
+#   es Marreromarco, echoey, his best scorers heard mediocre, 2026-11-18).
+# trusted: a sweep leaves its takes be whatever they score, and replaces one only for a verdict
+#   or a measure that refuses it (eo Lepticed7 beat all 3 higher-scoring replacements blind;
+#   sw Waithera Were heard good on 15 of 21, 10 of them under the reconsider bar, 2026-11-18).
+VOICES = {
+    "eo": {"Lepticed7": "trusted"},
+    "es": {"Marreromarco": "poor"},
+    "it": {"Francyskus": "poor"},
+    "sw": {"Waithera Were": "trusted"},
 }
 
-# DOUBTED voices: heard as mediocre across their takes, and still preferred over the device voice
-# (es Marreromarco, echoey on headphones and fine on a phone speaker, 2026-10-22). A sweep swaps
-# their takes for another voice's that is not clearly worse, and never picks one of theirs, except a
-# file a listener passed on its own.
-DOUBTED_VOICES = {
-    "es": ["Marreromarco"],
-}
+
+def voice_ruling(lang, author):
+    return VOICES.get(lang, {}).get(author)
+
 
 # The most one side of a take may stand over the other. A recorder that took the voice on
 # one channel only plays it in one ear on headphones: fr Clément Bucco-Lechat's country names
@@ -153,7 +158,7 @@ def verdict(sha256):
 
 
 def _poor(sha256, lang, author):
-    return author in POOR_VOICES.get(lang, ()) and not is_passed(sha256)
+    return voice_ruling(lang, author) == 'poor' and not is_passed(sha256)
 
 
 def is_rejected(sha256, lang=None, author=None):
@@ -163,9 +168,9 @@ def is_rejected(sha256, lang=None, author=None):
     return heard == 'bad' or (heard == 'mediocre' and lang in WELL_VOICED) or _poor(sha256, lang, author)
 
 
-def is_voice_doubted(sha256, lang, author):
-    """By a DOUBTED voice, and not passed on its own."""
-    return author in DOUBTED_VOICES.get(lang, ()) and not is_passed(sha256)
+def is_trusted(lang, author):
+    """By a trusted voice: kept against any challenger that only scores higher."""
+    return voice_ruling(lang, author) == 'trusted'
 
 
 def is_doubted(sha256, lang=None, author=None):
@@ -182,7 +187,7 @@ def heard_over(sha256, other):
 
 
 def is_passed(sha256):
-    """Heard as okay or better: judged as itself rather than as its POOR or DOUBTED voice."""
+    """Heard as okay or better: judged as itself rather than as its poor voice."""
     return verdict(sha256) in ('okay', 'good', 'great')
 
 

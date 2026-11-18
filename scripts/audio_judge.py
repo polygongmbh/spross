@@ -8,10 +8,10 @@ a fill and a ship take what is not `refused`, a prune removes what is.
 
   · `refused` — (reason, detail) of the first of: license refused or unknown, author names
     nobody, a Lingua Libre name that is not its speaker saying its form, decodes to silence,
-    heard as bad or by a POOR voice, under the language's floor, one-sided, speaking longer than its
+    heard as bad or by a poor voice, under the language's floor, one-sided, speaking longer than its
     key takes to say, gain past the limit;
   · `hot` — squashed by a limiter at the source;
-  · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar.
+  · `doubted` — heard as mediocre or worse, by a poor voice, or under the reconsider bar.
 
 The source checks need no bytes (`source_refusal`); `measure` reads everything else a judgement
 needs off the bytes in one process, so a picker measures its takes in a pool and caches them.

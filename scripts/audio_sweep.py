@@ -4,8 +4,8 @@ denoising would be an adaptation under BY-SA and break the sha256 the catalog pi
 
 SWEEP: an incumbent goes up when the take judge refuses it from its record, a listener doubted it
 or heard it as only okay, it scores under `RECONSIDER_MOS`, or it is squashed, one-sided or overlong,
-whatever else a listener said of it. A take by a DOUBTED voice (`audio_voices`) goes up
-too, and is beaten like a squashed one. A challenger the judge refuses or finds squashed, a listener
+whatever else a listener said of it. A take by a trusted voice (`audio_voices.VOICES`) does not go
+up for its score alone. A challenger the judge refuses or finds squashed, a listener
 doubted, or a listener rated under the incumbent, never wins.
 The best one has to beat the incumbent by `SWAP_MARGIN`, because a swap costs a voice change and a
 single file's score strays by a few tenths; against a squashed incumbent it only must not be
@@ -37,7 +37,7 @@ from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, in
                         staged_keys, voices)
 from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
                           heard_mos, heard_over, is_doubted, is_fair, is_one_sided, is_overlong, is_squashed,
-                          is_voice_doubted, mos_floor)
+                          is_trusted, mos_floor)
 
 
 def candidates(lang, takes):
@@ -82,7 +82,7 @@ def pending(lang, section, catalog, measures):
         take['squashed'] = is_squashed(measured['peak'], measured['loudness'])
         take['ear'] = is_doubted(take['sha256'], lang, take['author'])
         take['fair'] = is_fair(take['sha256'])
-        take['voice'] = is_voice_doubted(take['sha256'], lang, take['author'])
+        take['trusted'] = is_trusted(lang, take['author'])
         take['refused'] = audio_judge.source_refusal(take)
         ready.append(take)
     return [take for take in ready if take['mos'] is not None]
@@ -95,7 +95,7 @@ def sweep(lang, section, catalog, measures, only, apply):
         noisy = [take for take in takes if take['key'] in only]
     else:
         noisy = [take for take in takes
-                 if take['mos'] < RECONSIDER_MOS or take['ear'] or take['fair'] or take['voice'] or take['squashed']
+                 if (take['mos'] < RECONSIDER_MOS and not take['trusted']) or take['ear'] or take['fair'] or take['squashed']
                  or take['lopsided'] or take['overlong'] or take['refused']]
     print('%d below %.2f, heard as okay, squashed, one-sided, overlong or refused' % (len(noisy), RECONSIDER_MOS))
     if not noisy:
@@ -162,13 +162,12 @@ def best_option(take, options, lang, floor, weight):
         sha = digest_of(path)
         why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
             'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
-            'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
             'heard worse' if heard_over(take['sha256'], sha) else None
         if why:
             print('  next   %-18s (%s %s)' % (take['key'], name, why))
             continue
         needed = before + SWAP_MARGIN
-        if take['squashed'] or take['lopsided'] or take['voice']:
+        if take['squashed'] or take['lopsided']:
             needed = before - SWAP_MARGIN
         if take['ear'] or take['lopsided'] or take['overlong'] or take['refused']:
             needed = floor
@@ -186,7 +185,7 @@ def best_option(take, options, lang, floor, weight):
 
 def reason(take):
     return ('refused: %s' % take['refused'][0] if take['refused'] else 'one-sided' if take['lopsided']
-            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'heard as okay' if take['fair'] else 'a doubted voice' if take['voice'] else 'mos %.2f' % take['mos'])
+            else 'overlong' if take['overlong'] else 'squashed' if take['squashed'] else 'heard as doubtful' if take['ear'] else 'heard as okay' if take['fair'] else 'mos %.2f' % take['mos'])
 
 
 def brightness(measures, sha, path):
@@ -235,8 +234,7 @@ def consolidate(lang, section, catalog, measures, only, apply):
             verdict = judged(take, name, record, path, measures.result(sha, measures.submit(sha, path)))
             why = verdict.refused[1] if verdict.refused else 'squashed' if verdict.hot else \
                 'heard as mediocre' if is_doubted(sha, lang, record.get('author')) else \
-                'by a doubted voice' if is_voice_doubted(sha, lang, record.get('author')) else \
-                'heard worse' if heard_over(take['sha256'], sha) else None
+                    'heard worse' if heard_over(take['sha256'], sha) else None
             if why:
                 print('  next   %-18s (%s %s)' % (take['key'], record.get('author', '?'), why))
                 continue

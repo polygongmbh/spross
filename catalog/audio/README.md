@@ -60,7 +60,7 @@ so it picks among takes and refuses only the clearly bad.
 
 ```sh
 scripts/audio-packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
-scripts/audio-packs.py sweep <lang>... --apply              # poor, doubted, squashed, popping, one-sided or refused: the best other take
+scripts/audio-packs.py sweep <lang>... --apply              # poor, heard mediocre, squashed, popping, one-sided or refused: the best other take
 scripts/audio-catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
 scripts/audio-catalog.py --ship --lang <lang>               # ships them
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
@@ -116,8 +116,9 @@ bad never ships, nor does mediocre in a language whose device voice is good (de,
 bad or mediocre has every other take of its word tried,
 okay has them tried against the usual margin,
 and a take keeps its place against any challenger a listener rated lower.
-A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
-and every take of it counts as bad unless a listener passed that file.
+A voice the ear and the score part ways on across its takes gets a ruling in `VOICES` (`../../scripts/audio_voices.py`):
+a poor voice's every take counts as bad unless a listener passed that file,
+and a trusted voice's takes go up for a sweep only for a verdict or a refusing measure, never for their score alone.
 `../../scripts/audio-listen.py` plays takes and rates each with one key, writing the verdicts itself:
 `audio-listen.py bonjour fr:salut fr:goodbye` every shipped take of the words it names —
 in every language that has one, in one language, or what that language's card of a concept slug shows —
