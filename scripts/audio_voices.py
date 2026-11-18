@@ -157,8 +157,10 @@ def _poor(sha256, lang, author):
 
 
 def is_rejected(sha256, lang=None, author=None):
-    """Heard as bad, or by a POOR voice: never ships, whatever it scores."""
-    return verdict(sha256) == 'bad' or _poor(sha256, lang, author)
+    """Heard as bad, as mediocre where the device voice is good, or by a POOR voice: never ships,
+    whatever it scores."""
+    heard = verdict(sha256)
+    return heard == 'bad' or (heard == 'mediocre' and lang in WELL_VOICED) or _poor(sha256, lang, author)
 
 
 def is_voice_doubted(sha256, lang, author):

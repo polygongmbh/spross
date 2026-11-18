@@ -23,7 +23,7 @@ import audio_measure
 from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
 from audio_voices import (RECONSIDER_MOS, heard_mos, is_doubted, is_one_sided, is_overlong, is_rejected,
-                          is_squashed, mos_floor)
+                          is_squashed, mos_floor, verdict)
 
 Judged = collections.namedtuple('Judged', 'mos refused hot doubted')
 
@@ -101,7 +101,7 @@ def judge(take, index=False, measured=None):
     if not refused and index is None:
         refused = 'silent', 'decodes to silence'
     if not refused and is_rejected(digest, lang, author):
-        refused = 'poor', 'heard as bad'
+        refused = 'poor', 'heard as %s' % (verdict(digest) or 'bad')
     if not refused and mos is not None and mos < mos_floor(lang):
         refused = 'poor', 'score %.2f%s, floor is %.2f' % (
             mos, ' with its pops (+%.1f dB)' % pop if pop and pop > 0 else '', mos_floor(lang))
