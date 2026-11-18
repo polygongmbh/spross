@@ -23,8 +23,8 @@ scripts/android-emu.sh       # same for Android: boots the AVD, builds, installs
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen + git hooks + audio .venv
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
-scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
-scripts/audio-listen.py bonjour fr:goodbye  # takes for the user's ear (a form, LANG:form, LANG:slug or @speaker): hand the user this one command naming every word to hear, to run in their own terminal
+scripts/audio/coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
+scripts/audio/listen.py bonjour fr:goodbye  # takes for the user's ear (a form, LANG:form, LANG:slug or @speaker): hand the user this one command naming every word to hear, to run in their own terminal
 scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/release.md)
 ```
 

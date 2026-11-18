@@ -20,7 +20,7 @@ calendar names, and uk toponyms are not in Shtooka at all (2 of 140 country name
 """
 import os
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 WORKSPACE = os.environ.get('AUDIO_WORKSPACE') or os.path.normpath(
     os.path.join(ROOT, '..', 'data', 'reference', 'audio'))
 SECTIONS = ('words', 'letters', 'texts', 'articles', 'calendar', 'countries')
@@ -53,7 +53,7 @@ ROUTES = {
 
 def route(lang):
     if lang not in ROUTES:
-        raise SystemExit('%s: no route in scripts/audio_routes.py' % lang)
+        raise SystemExit('%s: no route in scripts/audio/routes.py' % lang)
     return ROUTES[lang]
 
 

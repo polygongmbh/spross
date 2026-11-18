@@ -17,7 +17,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from audio_routes import WORKSPACE
+from routes import WORKSPACE
 
 API = 'https://commons.wikimedia.org/w/api.php'
 UA = 'spross-audio/1.0 (educational vocab app; contact spross@polygon.gmbh)'
@@ -162,7 +162,7 @@ def uploader_credits(sources):
     """Commons filename -> the credit its page states, the uploading account where it states
     none — for rows whose pack authorship names nobody. Not cached: asked rarely, and the
     point is to re-read the page."""
-    from audio_gates import JUNK_AUTHORS
+    from gates import JUNK_AUTHORS
     resolved = {}
     for start in range(0, len(sources), 50):
         batch = sources[start:start + 50]

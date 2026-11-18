@@ -38,7 +38,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).
   Where a pack recorded the article too, the recording says it
-  (`scripts/audio-coverage.py --credits` lists which packs carry an `articles{}` section).
+  (`scripts/audio/coverage.py --credits` lists which packs carry an `articles{}` section).
   Badge, plural line and alternates stay unspoken.
 - **Audio may never give the answer away**:
   recognition speaks the word at once, produce says the meaning it asks by and waits for the reveal to say the word.
@@ -242,7 +242,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   A third measurement, `mos` (how good the take sounds, a predicted mean opinion score) with `pesq` (how undistorted, a predicted PESQ score), corrects nothing and reaches no player:
   the two exist so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   A fourth, `gate` (the file's noise level plus a margin, dBFS of the raw bytes, null where none was measured), rides on `AudioIndex.gate` to a downward expander that quiets that hiss at playback.
-  What was measured, against which target and under which scheme is `scripts/audio_index.py`'s `ANALYSIS`;
+  What was measured, against which target and under which scheme is `scripts/audio/index.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.
 - **Audio is exempt from the fingerprint.**
   `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:

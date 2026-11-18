@@ -42,7 +42,7 @@ de lieben (Leni Berlin, heard popping) ranked first at +2.7 dB,
 but 13 of the 15 shipped takes it ranked worst were heard okay to great:
 an aspirated German p thumps as low as a breath pop (de park, Jeuwre: +10.1 dB, "within normal range").
 
-**Second measure, adopted** (`audio_measure.pop`).
+**Second measure, adopted** (`measure.pop`).
 A 10 ms frame counts where its 20–300 Hz bass stands 6 dB over the speech's own bass,
 6 dB over the frame's 300 Hz–8 kHz, and the 30 ms around it barely repeats (autocorrelation ≤ 0.26):
 breath is turbulent, a plosive's thump is a smooth pulse under 80 Hz.
@@ -62,7 +62,7 @@ The value is the worst such frame, A-weighted, against the speech's loudest 100 
 | sw kwaheri, de pullover | popping | smooth, not counted |
 
 Every take at +1 dB or over pops; the measure misses about half the pops heard.
-A flag at +1 dB was replaced by a cost on the score, a point per 4 dB over 0 (`audio_voices.heard_mos`),
+A flag at +1 dB was replaced by a cost on the score, a point per 4 dB over 0 (`voices.heard_mos`),
 so a popping take ranks under a clean one the score puts level with it.
 Of 9,540 shipped takes, 10 hold a breath burst at all, and none within 60 ms of the speech's edges:
 the speech span cannot trim a pop away, so the cost stays on the score.
@@ -78,7 +78,7 @@ its background-noise output (BAK) was tried alone, on 414 rated takes (rank AUC,
 | overall less pops (the score) | 0.771 | 0.703 | 0.730 |
 | BAK | 0.877 | 0.749 | 0.820 |
 | BAK, played span only | 0.849 | 0.746 | 0.776 |
-| noise margin (`audio_measure.noise`) | 0.933 | 0.708 | — |
+| noise margin (`measure.noise`) | 0.933 | 0.708 | — |
 
 BAK ranks noisy takes better, and it was not adopted:
 it misses most noisy takes still above the floor (de ich liebe dich at 4.01, es Arca's countries, uk твій),
@@ -150,7 +150,7 @@ PESQ is SQUIM's estimate of speech distortion, correlated 0.25 with BAK and 0.47
 - At the 2.8 reconsider bar it changes little: for the same 240 takes sent back, 70 of the 92 bad or mediocre instead of 66.
 
 It was not shipped yet: it is the best of about 45 combinations tried on a sample the score itself drew,
-it would bring a new model into `audio_measure` and move every take's score and bar,
+it would bring a new model into `scripts/audio/measure.py` and move every take's score and bar,
 and the A/B pairs (10 of 15) do not separate it from the score.
 The 18 shipped takes where it and the score disagree most decide it.
 
@@ -168,6 +168,6 @@ Re-run with them (470 takes, 95 bad or mediocre), the candidate still holds, the
 - fitted before 2026-10-27 and tested on the 113 since, 0.53 → 0.74;
 - with 10% of okay-or-better takes refused, 45% of the bad or mediocre refused against 33% (+0.05…+0.20).
 
-Shipped 2026-11-06: the score is now `mos` less its pops plus `pesq`, put back on the old score's mean and spread (`../scripts/audio_voices.py`).
+Shipped 2026-11-06: the score is now `mos` less its pops plus `pesq`, put back on the old score's mean and spread (`../scripts/audio/voices.py`).
 The bars keep their shares — the reconsider bar 2.8 → 2.79 of what ships, the floors 1.3 → 1.5 and 1.8 → 1.84 of the rated takes, since what ships was pruned at the old floors —
 and the swap margin stays 0.3; 33 shipped takes fall under the new floors, 30 of them es Marreromarco's.

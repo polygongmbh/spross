@@ -26,16 +26,16 @@ more than `DULLNESS_DB` above 6 kHz (a telephone-band take scores clean and soun
 """
 import collections
 
-import audio_commons
-import audio_judge
-import audio_measure
-from audio_forms import language_info
-from audio_gates import bare_form, digest_of, speech_key
-from audio_index import FFMPEG
-from audio_manifest import audio_dir, read_manifest
-from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
+import commons
+import judge as audio_judge
+import measure
+from forms import language_info
+from gates import bare_form, digest_of, speech_key
+from index import FFMPEG
+from manifest import audio_dir, read_manifest
+from pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
-from audio_voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
+from voices import (DULLNESS_DB, ESTABLISHED_TAKES, ONE_OFF_TAKES, RECONSIDER_MOS, SWAP_MARGIN,
                           heard_mos, heard_over, is_doubted, is_fair, is_one_sided, is_overlong, is_squashed,
                           is_trusted, mos_floor)
 
@@ -44,7 +44,7 @@ def candidates(lang, takes):
     """{key: [(name, record)]} passing the record checks, the keys whose probe failed, and the
     new refusals each named."""
     options, failed = challengers(lang, takes)
-    records = audio_commons.meta(sorted({name for names in options.values() for name in names}))
+    records = commons.meta(sorted({name for names in options.values() for name in names}))
     kept = {}
     for take in takes:
         kept[take['key']] = []
@@ -76,7 +76,7 @@ def pending(lang, section, catalog, measures):
         take['lopsided'] = is_one_sided(measured['balance'])
         speech = measured.get('speech')
         if speech is None and section != 'letters':
-            start, end, _ = audio_measure.speech_span(FFMPEG, take['path'])
+            start, end, _ = measure.speech_span(FFMPEG, take['path'])
             speech = end - start
         take['overlong'] = section != 'letters' and is_overlong(speech, take['key'])
         take['squashed'] = is_squashed(measured['peak'], measured['loudness'])
@@ -189,10 +189,10 @@ def reason(take):
 
 
 def brightness(measures, sha, path):
-    """`audio_measure.brightness`, cached with the take's other measures."""
+    """`measure.brightness`, cached with the take's other measures."""
     known = measures.known.setdefault(sha, {})
     if 'bright' not in known:
-        known['bright'] = audio_measure.brightness(FFMPEG, path)
+        known['bright'] = measure.brightness(FFMPEG, path)
     return known['bright']
 
 
@@ -218,7 +218,7 @@ def consolidate(lang, section, catalog, measures, only, apply):
                      else (measured.get('mos'), measured.get('pesq')))
         take['mos'] = heard_mos(mos, measured.get('pop'), pesq)
         was_bright = brightness(measures, take['sha256'], take['path'])
-        order = audio_commons.casings(take['key'].lower())
+        order = commons.casings(take['key'].lower())
         ranked = sorted((-weight[(record.get('author'), record.get('license'))],
                          next((i for i, cased in enumerate(order) if cased in name), len(order)), name, record)
                         for name, record in options[take['key']]

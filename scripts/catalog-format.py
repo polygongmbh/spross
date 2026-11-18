@@ -21,7 +21,7 @@ The rules, all of them:
   purpose — so nothing is ever sorted.
 - 1-space indent, UTF-8 unescaped, one trailing newline.
 
-`catalog/audio/*/manifest.json` is NOT ours: `audio-catalog.py` generates it on its own
+`catalog/audio/*/manifest.json` is NOT ours: `scripts/audio/catalog.py` generates it on its own
 deterministic contract (2-space indent, sorted keys) and would revert us on the next
 rebuild. Everything else under `catalog/` is hand-edited and formatted here.
 

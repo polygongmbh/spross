@@ -15,13 +15,13 @@ import sys
 import termios
 import tty
 
-import audio_measure
-from audio_gates import speech_key, takes
-from audio_index import END_KEEP_MS, FFMPEG, LEAD_KEEP_MS
-from audio_routes import WORKSPACE
-from audio_voices import ESTABLISHED_TAKES
+import measure
+from gates import speech_key, takes
+from index import END_KEEP_MS, FFMPEG, LEAD_KEEP_MS
+from routes import WORKSPACE
+from voices import ESTABLISHED_TAKES
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 VERDICTS = os.path.join(ROOT, 'docs', 'audio-verdicts.tsv')
 RATINGS = {'1': 'bad', '2': 'mediocre', '3': 'okay', '4': 'good', '5': 'great'}
 AUDIO = os.path.join(ROOT, 'catalog', 'audio')
@@ -111,7 +111,7 @@ def from_voices(shipped, heard):
 
 def sample(argv):
     parser = argparse.ArgumentParser(
-        prog='audio-listen.py sample',
+        prog='scripts/audio/listen.py sample',
         description='Writes a listening set to ../data/review/<date>-NAME/ out of takes nobody rated yet, '
                     'and starts rating it when run from a terminal (an existing set of that NAME resumes).')
     parser.add_argument('name')
@@ -173,7 +173,7 @@ def sample(argv):
     if sys.stdin.isatty():
         print()
         return listen_set(os.path.join(out, 'set.tsv'))
-    print('scripts/audio-listen.py %s' % os.path.join(out, 'set.tsv'))
+    print('scripts/audio/listen.py %s' % os.path.join(out, 'set.tsv'))
 
 
 def key():
@@ -189,9 +189,9 @@ def key():
 def heard(path):
     """ffplay's arguments for [path] as the app plays it, near enough: its speech span at LISTEN_LUFS,
     faded at both edges as the app fades its stop."""
-    peak, loudness = audio_measure.peak_and_loudness(FFMPEG, path)
+    peak, loudness = measure.peak_and_loudness(FFMPEG, path)
     gain = 0 if loudness is None else min(LISTEN_LUFS - loudness, LISTEN_PEAK_DBFS - peak)
-    start, end, _ = audio_measure.speech_span(FFMPEG, path)
+    start, end, _ = measure.speech_span(FFMPEG, path)
     head = max(0.0, start - LEAD_KEEP_MS / 1000)
     length = end + END_KEEP_MS / 1000 - head
     # why: ffplay keeps the file's timestamps past `-ss`, so the fades time from the seek only once reset.
@@ -300,11 +300,11 @@ def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'sample':
         return sample(sys.argv[2:])
     parser = argparse.ArgumentParser(
-        prog='audio-listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
+        prog='scripts/audio/listen.py', formatter_class=argparse.RawDescriptionHelpFormatter,
         usage='%(prog)s SET [ROW] | [LANG:]FORM|@SPEAKER ...',
         description='Plays each take of a set, or every shipped take of the words named, and rates it with one key. '
                     'A new rating replaces the take\'s earlier one in its context; a set\'s rerun resumes at the first '
-                    'take not yet rated, words play every take. `audio-listen.py sample -h` draws a new set.',
+                    'take not yet rated, words play every take. `listen.py sample -h` draws a new set.',
         epilog='keys, each take playing on arrival:\n' + '\n'.join('  %-4s %s' % (key, text) for key, _, text in KEYS))
     parser.add_argument('target', nargs='+', metavar='TARGET',
                         help='a set: a TSV beside its mp3s (or naming absolute paths), columns file lang word speaker '
@@ -338,7 +338,7 @@ def listen(listed, base, row_named=None, path=None, every=False):
     """Plays [listed] (`by_word`'s or a set's rows, files relative to [base]) and records each rating."""
     if not sys.stdin.isatty():
         sys.exit('rating reads one key at a time, so it needs a terminal: run %s in one' % ' '.join(
-            ['scripts/audio-listen.py'] + [shlex.quote(arg) for arg in sys.argv[1:]]))
+            ['scripts/audio/listen.py'] + [shlex.quote(arg) for arg in sys.argv[1:]]))
     default_context = os.path.basename(base)
     context = lambda row: row.get('context') or default_context
     done = {(row['sha256'], row['context']) for row in rows(VERDICTS)}

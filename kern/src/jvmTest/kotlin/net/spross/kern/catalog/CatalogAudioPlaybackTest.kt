@@ -70,7 +70,7 @@ class CatalogAudioPlaybackTest {
     }
 
     /**
-     * `scripts/audio_voices.py`'s `heard_mos` short of the pops no manifest carries:
+     * `scripts/audio/voices.py`'s `heard_mos` short of the pops no manifest carries:
      * `mos` and `pesq` standardized, summed, and put back on the scale of `mos`.
      */
     private fun score(take: AudioRecording): Double {

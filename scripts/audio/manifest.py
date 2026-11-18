@@ -1,7 +1,7 @@
 """One language's shipped manifest, read and written whole, and the editor that changes one entry.
 
 `catalog/audio/<lang>/manifest.json` is the record of what ships: every entry pins its bytes
-by `sha256`, credits its author and carries its playback index (`audio_index.py`).
+by `sha256`, credits its author and carries its playback index (`index.py`).
 Every path that changes it goes through here, so an entry and its file move together and the
 root `authors`/`licenses` maps are re-derived on every write rather than carried along stale.
 
@@ -16,10 +16,10 @@ import sys
 import tempfile
 import unicodedata
 
-import audio_index
-import audio_judge
-from audio_gates import LICENSE_URLS, digest_of, speech_key, takes as shipped_takes
-from audio_routes import ROOT, SECTIONS
+import index as audio_index
+import judge as audio_judge
+from gates import LICENSE_URLS, digest_of, speech_key, takes as shipped_takes
+from routes import ROOT, SECTIONS
 
 AUDIO = os.environ.get('AUDIO_CATALOG') or os.path.join(ROOT, 'catalog', 'audio')
 
@@ -194,7 +194,7 @@ def put(lang, takes, dry_run=False):
     into [lang]'s manifest, each replacing its key's first take, or with `alternate` set adding
     a further one beside it. → `{(section, key): (refusal or None, mos)}`.
 
-    Every take is copied aside, measured and judged (`audio_judge.py`) first; only one that passes replaces the
+    Every take is copied aside, measured and judged (`judge.py`) first; only one that passes replaces the
     entry and file standing under its key, so a refused take leaves the recording it would have
     replaced exactly where it was; a replaced first take keeps its key's alternates.
     [dry_run] judges and writes nothing.

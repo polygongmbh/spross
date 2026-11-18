@@ -6,7 +6,7 @@ Neighbors: licenses `audio-licensing.md`, playback `audio.md`, manifest schema `
 
 Every file is 44.1 kHz stereo, VBR spanning 81-231 kbps with a median of 142,
 median clip 1.14 s.
-How many files and what they weigh is `scripts/audio-coverage.py --credits`,
+How many files and what they weigh is `scripts/audio/coverage.py --credits`,
 counted from the manifests.
 
 ## The codec is Wikimedia's choice, not ours

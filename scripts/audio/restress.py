@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Re-key shipped word recordings onto the stress-marked form their card now shows.
 
-    scripts/audio-restress.py [--check] [--lang uk ...]
+    scripts/audio/restress.py [--check] [--lang uk ...]
 
 A recording is filed under the form it speaks (`speechKey`), and the speech key keeps the
 stress mark (U+0301) a catalog writes on uk `пі́вніч`, so marking a card's stress strands the
@@ -21,9 +21,9 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import audio_forms  # noqa: E402
-import audio_manifest  # noqa: E402
-from audio_gates import speech_key, stress_free  # noqa: E402
+import forms as audio_forms  # noqa: E402
+import manifest  # noqa: E402
+from gates import speech_key, stress_free  # noqa: E402
 
 
 def restressed(key, stressed):
@@ -41,7 +41,7 @@ def displayed_forms(lang):
     holds no recording back from its stressed card."""
     keys = set()
     for path in glob.glob(os.path.join(audio_forms.CATALOG, 'areas', '*', '%s.json' % lang)):
-        for word in audio_manifest.read_json(path).get('words', {}).values():
+        for word in manifest.read_json(path).get('words', {}).values():
             forms = [word['text']] + word.get('teaches', [])
             for value in word.get('forms', {}).values():
                 forms += value if isinstance(value, list) else [value]
@@ -69,7 +69,7 @@ def moves(shown, displayed, words):
 
 
 def restress(lang, shown, check):
-    words = audio_manifest.read_manifest(audio_manifest.audio_dir(lang)).get('words', {})
+    words = manifest.read_manifest(manifest.audio_dir(lang)).get('words', {})
     found, ambiguous = moves(shown.get(lang, set()), displayed_forms(lang), words)
     for key, said in ambiguous:
         print('  %s %s: two readings %s — left as it is' % (lang, key, ' / '.join(said)))
@@ -78,7 +78,7 @@ def restress(lang, shown, check):
     if check or not found:
         return len(found)
     for key, stressed in found:
-        audio_manifest.rename(lang, 'words', key, stressed)
+        manifest.rename(lang, 'words', key, stressed)
     return 0
 
 
@@ -88,7 +88,7 @@ def main():
     parser.add_argument('--check', action='store_true', help='report what would move, write nothing')
     args = parser.parse_args()
     shown, _ = audio_forms.load_catalog()
-    audio = audio_manifest.AUDIO
+    audio = manifest.AUDIO
     langs = args.lang or sorted(name for name in os.listdir(audio) if os.path.isdir(os.path.join(audio, name)))
     pending = sum(restress(lang, shown, args.check) for lang in langs)
     sys.exit(1 if args.check and pending else 0)

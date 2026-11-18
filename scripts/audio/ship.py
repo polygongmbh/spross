@@ -1,7 +1,7 @@
 """Ships staged swaps: `$W/staged.tsv` rows through the manifest editor, for every section.
 
-    scripts/audio-catalog.py --ship [--lang L] [--dry-run]
-    scripts/audio-catalog.py --ship --from-packs [--section S] [--lang L] [--dry-run]
+    scripts/audio/catalog.py --ship [--lang L] [--dry-run]
+    scripts/audio/catalog.py --ship --from-packs [--section S] [--lang L] [--dry-run]
 
 A staged row names the take that ships now (`from_sha256`) and the one to replace it, whose
 bytes wait at `$W/staged/<to_sha256>.mp3`. It applies only while its `from_sha256` still ships,
@@ -22,11 +22,11 @@ import os
 import shutil
 import sys
 
-import audio_commons
-import audio_resolve
-from audio_gates import attribute, digest_of, speech_key
-from audio_manifest import SECTIONS, AUDIO, ascii_stem, audio_dir, put, read_manifest, remove
-from audio_routes import WORKSPACE
+import commons
+import resolve as audio_resolve
+from gates import attribute, digest_of, speech_key
+from manifest import SECTIONS, AUDIO, ascii_stem, audio_dir, put, read_manifest, remove
+from routes import WORKSPACE
 
 FIELDS = ('date lang section key from_source from_sha256 to_source to_sha256 author license '
           'mos_from mos_to picker why speaks').split()
@@ -107,7 +107,7 @@ def follow_pack(workspace, lang, row):
     if mine and all(speech_key(old['text']) == speech_key(form) and same_file(old['file'], row['to_source'])
                     for old in mine):
         return
-    record = audio_commons.meta([row['to_source']]).get(row['to_source'], {})
+    record = commons.meta([row['to_source']]).get(row['to_source'], {})
     new = dict(audio_resolve.row_for('text', form, ascii_stem(form) + '.mp3', row['to_source'], record),
                author=row['author'], license=row['license'])
     os.makedirs(os.path.join(pack, 'mp3'), exist_ok=True)
@@ -120,7 +120,7 @@ def follow_pack(workspace, lang, row):
 
 def article_word(lang, key):
     """The word a card shows behind the article [key] says — what a new `articles` entry records."""
-    from audio_forms import load_catalog
+    from forms import load_catalog
     return load_catalog()[1].get(lang, {}).get(speech_key(key))
 
 

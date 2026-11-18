@@ -3,7 +3,7 @@ A hand-built recording-quality score tried against a listener's verdicts, and wh
 Neighbors: the survey that replaced it `2026-09-28-audio-quality-tools.md`, the October evaluations `2026-10-audio-evaluations.md`, the verdicts `audio-verdicts.tsv`.
 
 Research spike: does a different automated score agree with a human listener better than
-`noise_margin` (`scripts/audio_measure.py`)?
+`noise_margin` (`scripts/audio/measure.py`)?
 Prototype and evaluation code: `/private/tmp/claude-501/-Users-tj-IT-duolernen-app/6a5f5b76-f842-46e7-869f-4c463a491230/scratchpad/quality/`
 (`quality_score.py` is the deliverable; `extract_features.py` and `evaluate.py` are the
 harness that produced the numbers below).
@@ -26,7 +26,7 @@ aggregate ordinal correlation is the load-bearing number.
 `noise_margin` contrasts the loudest 256-sample frame's in-band (300–4000 Hz) power against
 the 5th-percentile in-band power across all frames of the file.
 Two failure modes came out of diagnosing the flagged cases directly (recomputing the same
-frames `audio_measure.py` uses, printing their per-frame RMS and band power):
+frames `scripts/audio/measure.py` uses, printing their per-frame RMS and band power):
 
 - **Smooth, continuous delivery reads as noise.**
   Holunder Gabriel's takes have almost no true silence within the trimmed word — every frame
@@ -38,7 +38,7 @@ frames `audio_measure.py` uses, printing their per-frame RMS and band power):
 - **Digital silence outscores real defects.**
   When a file has a run of exact- or near-zero samples (silence padding, an untrimmed
   lead-in), the 5th-percentile band power is 0 for at least one bin, the margin is undefined,
-  and `audio_measure.py` treats `None` as the cleanest possible file.
+  and `scripts/audio/measure.py` treats `None` as the cleanest possible file.
   Natschoba's "der Arzt" hits this — the shipped manifest has no `snr` for it at all — and so
   does "der Finger" (`catalog/audio/de/articles/finger.mp3`, also Natschoba, flagged
   separately during this spike as "a bit meh"): both have real defects in their speech that

@@ -4,13 +4,13 @@ An INCUMBENT is a shipped entry, or a pack row whose form its section wants and 
 its score is the shipped manifest's wherever the bytes ship (by sha256). A recording another
 section ships too (es `perro`, word and alphabet text alike) is one file for one sound and never
 up for a swap; letters never are — a challenger spelled like a glyph is a word (fr `a`, "has").
-CHALLENGERS are every other take of the form by the language's route (`audio_routes.py`): its
+CHALLENGERS are every other take of the form by the language's route (`routes.py`): its
 Lingua Libre category's and its convention's numbered siblings, minus what the take judge refuses
 from the record alone (`audio_judge.source_refusal`), a Shtooka page saying more than the form,
 and an articled take titled as a name.
 Fetches run one at a time with no pause, into `$W/fetch-cache/`; each take is measured in a process
 pool as it lands, measures cached by sha256 in `$W/measure-cache.json`, so a rerun is cheap.
-A swap is a row in `$W/staged.tsv` (bytes in `$W/staged/`), shipped by `audio-catalog.py --ship`;
+A swap is a row in `$W/staged.tsv` (bytes in `$W/staged/`), shipped by `catalog.py --ship`;
 a key already staged against the same incumbent is passed over.
 """
 import collections
@@ -20,16 +20,16 @@ import json
 import os
 import shutil
 
-import audio_commons
-import audio_judge
-import audio_lingualibre
-import audio_measure
-import audio_resolve
-from audio_forms import catalog_forms, titled_as
-from audio_gates import digest_of, speech_key, takes
-from audio_manifest import audio_dir, read_manifest
-from audio_routes import WORKSPACE, pack_dir, route
-from audio_ship import read_rows, write_rows
+import commons
+import judge as audio_judge
+import lingualibre
+import measure
+import resolve
+from forms import catalog_forms, titled_as
+from gates import digest_of, speech_key, takes
+from manifest import audio_dir, read_manifest
+from routes import WORKSPACE, pack_dir, route
+from ship import read_rows, write_rows
 
 PICKED = ('words', 'articles', 'calendar', 'countries', 'texts')
 
@@ -43,7 +43,7 @@ class Measures:
         if os.path.exists(self.path):
             with open(self.path, encoding='utf-8') as f:
                 self.known = json.load(f)
-        self.pool = concurrent.futures.ProcessPoolExecutor(max_workers=audio_measure.WORKERS)
+        self.pool = concurrent.futures.ProcessPoolExecutor(max_workers=measure.WORKERS)
 
     def submit(self, sha, path, scored=True):
         """A future of the measures of [path]; an unreadable take answers None rather than raising."""
@@ -125,7 +125,7 @@ def challengers(lang, takes):
     options = {key: [] for key in words}
     failed = set()
     if way.get('lingualibre'):
-        found = audio_lingualibre.candidates(audio_lingualibre.files(way['lingualibre']), way['lingualibre'],
+        found = lingualibre.candidates(lingualibre.files(way['lingualibre']), way['lingualibre'],
                                              set(words.values()))
         for key, word in words.items():
             options[key] += [name for _, name in found.get(word, [])]
@@ -133,7 +133,7 @@ def challengers(lang, takes):
         if not way.get('words'):
             continue
         try:
-            siblings = audio_commons.numbered_siblings(word, way['words'])
+            siblings = commons.numbered_siblings(word, way['words'])
         except Exception as error:
             print('  ? %s: sibling probe failed (%s) — keeps its take' % (key, str(error)[:80]))
             failed.add(key)
@@ -148,8 +148,8 @@ def candidate_refusal(take, name, record):
     refused = audio_judge.source_refusal(candidate)
     if refused:
         return refused
-    if not name.startswith('LL-') and audio_resolve.says_more(name, take['key'], take['lang']):
-        return 'says more', 'its page says "%s"' % audio_commons.spoken_forms([name])[name]
+    if not name.startswith('LL-') and resolve.says_more(name, take['key'], take['lang']):
+        return 'says more', 'its page says "%s"' % commons.spoken_forms([name])[name]
     if take['section'] == 'articles' and not titled_as(name, take['key']):
         return 'titled as a name', name
     return None
@@ -157,12 +157,12 @@ def candidate_refusal(take, name, record):
 
 def fetch(name, record, key):
     """The local path of [name]'s transcode, None where Commons renders none, False (printed)
-    where Commons stayed unreachable past `audio_commons.PATIENCE_S`."""
-    url = audio_commons.transcode_url(record.get('url', ''))
+    where Commons stayed unreachable past `commons.PATIENCE_S`."""
+    url = commons.transcode_url(record.get('url', ''))
     if not url:
         return None
     try:
-        return audio_commons.fetched(name, url)
+        return commons.fetched(name, url)
     except Exception as error:
         print('  next   %-18s (fetch failed: %s)' % (key, str(error)[:80]))
         return False

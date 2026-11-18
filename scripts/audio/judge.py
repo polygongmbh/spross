@@ -18,11 +18,11 @@ needs off the bytes in one process, so a picker measures its takes in a pool and
 """
 import collections
 
-import audio_index
-import audio_measure
-from audio_gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
+import index as audio_index
+import measure as audio_measure
+from gates import (LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, named_by_its_file,
                          names_nobody)
-from audio_voices import (RECONSIDER_MOS, heard_mos, is_doubted, is_one_sided, is_overlong, is_rejected,
+from voices import (RECONSIDER_MOS, heard_mos, is_doubted, is_one_sided, is_overlong, is_rejected,
                           is_squashed, mos_floor, verdict)
 
 Judged = collections.namedtuple('Judged', 'mos refused hot doubted')
@@ -33,7 +33,7 @@ def license_refusal(license):
     if license in UNSHIPPABLE_LICENSES:
         return 'license', license
     if license not in LICENSE_URLS:
-        return 'license', 'unknown "%s" — rule on it in audio_gates.py' % license
+        return 'license', 'unknown "%s" — rule on it in gates.py' % license
     return None
 
 

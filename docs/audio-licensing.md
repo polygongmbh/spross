@@ -13,7 +13,7 @@ no NC and no ND clause ships, in audio or anywhere else.
 
 How many files each pack holds, which licenses they carry and who spoke them
 are in the manifests;
-`scripts/audio-coverage.py --credits` prints them.
+`scripts/audio/coverage.py --credits` prints them.
 The app says the same thing per file --
 `Catalog.audioCredits()` feeds the credits screen on both platforms --
 and that, not a table, is where a speaker's name is discharged.
@@ -33,7 +33,7 @@ Five words ship only the article recording, which answers both ways.
 Both carry their own author and license row.
 
 **Three licenses are refused outright**
-(`scripts/audio_gates.py`'s `UNSHIPPABLE_LICENSES`):
+(`scripts/audio/gates.py`'s `UNSHIPPABLE_LICENSES`):
 
 - **GFDL** obliges shipping the full license text and a "Transparent copy" --
   a document's terms, which a credits screen linking a deed does not meet.
@@ -92,7 +92,7 @@ Per-pack share-alike status:
   and Commons' `assumed (based on copyright claims)` wording with it.
   `everyAudioFileShipsAndIsReferencedExactlyOnce` keeps uncredited bytes out of the bundle.
 - **The converter drops rather than guesses**
-  (`scripts/audio-catalog.py` + `scripts/audio_gates.py`):
+  (`scripts/audio/catalog.py` + `scripts/audio/gates.py`):
   rows whose slug the catalog does not realize;
   rows whose recording speaks a different word;
   rows colliding on one spoken form with differing bytes;
@@ -118,7 +118,7 @@ Consequences:
 - A measurement of a file is our own factual data: it carries no license of its own.
 
 What was measured, against which target and under which scheme
-is `scripts/audio_index.py`'s `ANALYSIS`.
+is `scripts/audio/index.py`'s `ANALYSIS`.
 
 ## 4. Text-to-speech: live only, never an asset
 
@@ -168,7 +168,7 @@ Notable rejections:
 1. **BY-SA section 2(a)(5)(B) versus App Store DRM.**
    The license forbids "Effective Technological Measures" on the shared material,
    and every App Store binary is FairPlay-encrypted;
-   the majority of the files are BY-SA (`scripts/audio-coverage.py --credits` prints the split).
+   the majority of the files are BY-SA (`scripts/audio/coverage.py --credits` prints the split).
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
    under the same licenses, in **separate per-language files** --
    the `catalog/audio/<lang>/` split already prepares that shape.

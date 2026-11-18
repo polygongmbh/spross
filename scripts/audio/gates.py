@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Which pack rows may ship, and who gets credited — the gates of `audio-catalog.py`.
+"""Which pack rows may ship, and who gets credited — the gates of `catalog.py`.
 
 A pack row is keyed by the form it SPEAKS (`text`), like the shipped manifest, so whether
 that form is a concept's text, a synonym or a tagged form is the catalog's business and never
@@ -31,7 +31,7 @@ import os
 import re
 import unicodedata
 
-import audio_commons
+import commons
 
 # Authorship values that name nobody. Matched trimmed and case-insensitively, and
 # ONLY as a whole: `User:Tosca` is a name Commons can resolve, not a placeholder.
@@ -274,7 +274,7 @@ def attribute(rows, drops):
     if not files:
         return rows
     print('  resolving %d unattributed file(s) against Commons…' % len(files))
-    resolved = audio_commons.uploader_credits(files)
+    resolved = commons.uploader_credits(files)
     kept = []
     for row in rows:
         author = resolved.get(row['file'].replace('_', ' '), '') if names_nobody(row['author']) else row['author']

@@ -102,7 +102,7 @@ python3 scripts/strings.py --check-format App/Sources/Resources/Localizable.xcst
 python3 scripts/chrome.py >/dev/null
 python3 scripts/card-parity.py --check
 python3 scripts/doc-header.py --check
-python3 scripts/audio-coverage.py --check >/dev/null
+python3 scripts/audio/coverage.py --check >/dev/null
 python3 scripts/turn-machine-homes.py --check
 ./gradlew --console=plain -q :kern:jvmTest :android:testDebugUnitTest
 

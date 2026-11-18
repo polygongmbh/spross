@@ -3,7 +3,7 @@ Established no-reference speech-quality tools tried against a listener's verdict
 Neighbors: the hand-built attempt `2026-09-28-audio-quality-measure.md`, the October evaluations `2026-10-audio-evaluations.md`, the verdicts `audio-verdicts.tsv`, the fields `../catalog/audio/README.md`.
 
 Research spike: does an established no-reference speech-quality tool agree with a human
-listener better than the hand-rolled measures in `scripts/audio_measure.py`
+listener better than the hand-rolled measures in `scripts/audio/measure.py`
 (`noise_margin`, 51% pairwise; `quality`, 70% pairwise — `docs/2026-09-28-audio-quality-measure.md`)?
 Code: `/private/tmp/claude-501/-Users-tj-IT-duolernen-app/6a5f5b76-f842-46e7-869f-4c463a491230/scratchpad/quality2/`
 (`run_all.py` and `voice_scan.py` produced the numbers below; `wada_snr.py` is a direct port
@@ -134,7 +134,7 @@ An established, peer-published, MIT-licensed model that is merely *good* and unb
 hand-rolled score that is sharper on 63 labels but demonstrably confounded by whose equipment
 recorded the file.
 
-**How it would be run from `scripts/audio_measure.py`:**
+**How it would be run from `scripts/audio/measure.py`:**
 - dependency: `onnxruntime` (CPU) + `librosa` (for the mel-spectrogram front end) — both new
   to the project, which currently does all of this with `ffmpeg` + `numpy` alone; that's a
   real convention change worth a maintainer decision, not something to slip in quietly.

@@ -2,7 +2,7 @@
 The bundled recordings' file format, naming and provenance fields.
 Neighbors: when and how a recording is heard `../../docs/audio.md`, whose they are `../../docs/audio-licensing.md`.
 
-Bundled pronunciation recordings, one folder per language, **generated** by `app/scripts/audio-catalog.py` out of the workspace's packs —
+Bundled pronunciation recordings, one folder per language, **generated** by `app/scripts/audio/catalog.py` out of the workspace's packs —
 edit packs, not this directory.
 A full convert builds a language that ships no manifest yet and refuses one that does.
 
@@ -25,25 +25,25 @@ Every form is looked for bare in the words pack and,
 where a card shows it with an article, with that article in the articles pack;
 a form Commons has no take of is looked for as its bare form, the form playback falls back to:
 without its leading citation prefix or detachable particle, or with its reflexive ending traded for the bare infinitive's (`../languages.json`).
-Where each language's recordings are on Commons is one table, `../../scripts/audio_routes.py`,
-and every request goes through one client, `../../scripts/audio_commons.py`,
+Where each language's recordings are on Commons is one table, `../../scripts/audio/routes.py`,
+and every request goes through one client, `../../scripts/audio/commons.py`,
 which waits out a dropped network or a throttling Commons for up to 15 minutes before an item counts as failed.
 
 After authoring words, per language and one language at a time (Commons throttles parallel fetches), a matter of seconds:
 
 ```sh
-scripts/audio-packs.py resolve words <lang>                  # resolves only what the pack lacks
-scripts/audio-packs.py resolve articles <lang>               # the same forms with their article
-scripts/audio-catalog.py --lang <lang> --fill
-scripts/audio-catalog.py --lang <lang> --articles
-scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
+scripts/audio/packs.py resolve words <lang>                  # resolves only what the pack lacks
+scripts/audio/packs.py resolve articles <lang>               # the same forms with their article
+scripts/audio/catalog.py --lang <lang> --fill
+scripts/audio/catalog.py --lang <lang> --articles
+scripts/audio/coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
 The fill's own drops are the quality check:
 `poor` (under its language's floor, heard as bad, or as mediocre where the device voice is good), `unmeasurable` (clipped), `one-sided` (one channel near silent), `overlong` (speech running past 1.5 s plus 0.15 s a letter of its key: it says more, or the word drowns in its noise), `misnamed`, `unreachable` and `shipped-collision` each name the row and why;
-what a take must pass on its own is the take judge's (`../../scripts/audio_judge.py`).
-Quality is the score: `mos`, a predicted listener score, with `pesq`, a predicted distortion score (`../../scripts/audio_measure.py`),
-each standardized and summed with equal weight on the scale of `mos` (`../../scripts/audio_voices.py`'s `heard_mos`).
+what a take must pass on its own is the take judge's (`../../scripts/audio/judge.py`).
+Quality is the score: `mos`, a predicted listener score, with `pesq`, a predicted distortion score (`../../scripts/audio/measure.py`),
+each standardized and summed with equal weight on the scale of `mos` (`../../scripts/audio/voices.py`'s `heard_mos`).
 The floor follows the device voice:
 where it is missing (eo, sw) only the clearly bad are refused,
 where it is good a recording has to beat it,
@@ -59,11 +59,11 @@ but a single file strays by a few tenths,
 so it picks among takes and refuses only the clearly bad.
 
 ```sh
-scripts/audio-packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
-scripts/audio-packs.py sweep <lang>... --apply              # poor, heard mediocre, squashed, popping, one-sided or refused: the best other take
-scripts/audio-catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
-scripts/audio-catalog.py --ship --lang <lang>               # ships them
-scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
+scripts/audio/packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
+scripts/audio/packs.py sweep <lang>... --apply              # poor, heard mediocre, squashed, popping, one-sided or refused: the best other take
+scripts/audio/catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
+scripts/audio/catalog.py --ship --lang <lang>               # ships them
+scripts/audio/catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
 A sweep runs for hours: every run prints its `tail -f` line first and tees each pack's log to `$W/logs/<date>-<command>/`, beside a one-line-per-pack `summary.log`.
@@ -72,14 +72,14 @@ One run at a time — Commons throttles a second.
 fetches and measures are cached in the workspace, and a key already staged against what ships is passed over.
 An item Commons stays unreachable for keeps its take, and the run exits nonzero with the count.
 
-A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
+A take whose peak stands less than `voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
 A sweep reconsiders it like a poor take and never swaps one in.
 
 Where breath strikes the microphone a take pops: a turbulent burst of bass that sounds near as loud as the word,
 where a plosive's normal thump is a smooth pulse under 80 Hz.
 The score does not hear it either, so every decision takes a point off a take's `mos`
-per `audio_voices.POP_DB_PER_MOS` dB the burst sounds over the word before it joins `pesq`;
+per `voices.POP_DB_PER_MOS` dB the burst sounds over the word before it joins `pesq`;
 the manifest keeps both as measured.
 
 Both pickers only print until given `--apply`, and never write a pack:
@@ -103,8 +103,8 @@ One entry comes back out of git, or goes, without a pack;
 a restore checks the bytes against the `sha256` the manifest pinned at that revision:
 
 ```sh
-scripts/audio-catalog.py --restore <lang> <section> <key> --from <rev>
-scripts/audio-catalog.py --remove <lang> <section> <key>
+scripts/audio/catalog.py --restore <lang> <section> <key> --from <rev>
+scripts/audio/catalog.py --remove <lang> <section> <key>
 ```
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`** with its source, sha256 and `mos`,
@@ -116,17 +116,17 @@ bad never ships, nor does mediocre in a language whose device voice is good (de,
 bad or mediocre has every other take of its word tried,
 okay has them tried against the usual margin,
 and a take keeps its place against any challenger a listener rated lower.
-A voice the ear and the score part ways on across its takes gets a ruling in `VOICES` (`../../scripts/audio_voices.py`):
+A voice the ear and the score part ways on across its takes gets a ruling in `VOICES` (`../../scripts/audio/voices.py`):
 a poor voice's every take counts as bad unless a listener passed that file,
 and a trusted voice's takes go up for a sweep only for a verdict or a refusing measure, never for their score alone.
-`../../scripts/audio-listen.py` plays takes and rates each with one key, writing the verdicts itself:
-`audio-listen.py bonjour fr:salut fr:goodbye` every shipped take of the words it names —
+`../../scripts/audio/listen.py` plays takes and rates each with one key, writing the verdicts itself:
+`scripts/audio/listen.py bonjour fr:salut fr:goodbye` every shipped take of the words it names —
 in every language that has one, in one language, or what that language's card of a concept slug shows —
-and `audio-listen.py @Jeuwre` (or `de:@Jeuwre`) ten of a voice's takes, those nobody rated first,
+and `scripts/audio/listen.py @Jeuwre` (or `de:@Jeuwre`) ten of a voice's takes, those nobody rated first,
 each form or name that matches nothing tried on its letters alone (`nomdefamille`, `@LeniBerlin`),
 so a listener is handed what a run shipped in one command rather than files opened one by one,
-and `audio-listen.py SET` a listening set, takes beside a TSV naming them.
-`audio-listen.py sample NAME --from shipped|journal|voices` draws a set out of unrated takes —
+and `scripts/audio/listen.py SET` a listening set, takes beside a TSV naming them.
+`scripts/audio/listen.py sample NAME --from shipped|journal|voices` draws a set out of unrated takes —
 the lowest scorers that ship, the staged and shipped swaps most likely to be wrong,
 or one take of each voice nobody heard yet —
 and, run from a terminal, starts rating it, or resumes the one already under that name.
@@ -136,7 +136,7 @@ what is committed here is the shipped bytes and the license record that has to t
 Both apps bundle the whole tree as it stands (iOS folder reference, the Android catalog sync),
 so nothing needs registering.
 
-**`app/scripts/audio-coverage.py --check` runs on every commit that stages a recording** (`scripts/hooks/pre-commit`),
+**`app/scripts/audio/coverage.py --check` runs on every commit that stages a recording** (`scripts/hooks/pre-commit`),
 and by hand after adding one.
 The lint that verifies every file ships walks the WORKING TREE,
 so a recording fetched but never staged is indistinguishable from one that ships —
@@ -232,11 +232,11 @@ the script asks `git ls-files` instead.
   The entry itself stays the key's first take;
   an alternate carries a take's own fields (`file`, `author`, `source`, `sha256`, a departing `license`, the measurements)
   and never `matches` or `word`, which belong to the key.
-  `scripts/audio-catalog.py --add-voice <lang> <section> <speaker>` ships a Lingua Libre speaker's takes of a section,
+  `scripts/audio/catalog.py --add-voice <lang> <section> <speaker>` ships a Lingua Libre speaker's takes of a section,
   beside each key another voice says and as the first take where none ships.
   Which take plays is the engine's choice (`../../docs/audio.md`);
   sweeps and consolidation judge the first take only,
-  and `scripts/audio-catalog.py --remove <lang> <section> <key> --take <source>` drops one alternate.
+  and `scripts/audio/catalog.py --remove <lang> <section> <key> --take <source>` drops one alternate.
 - A form-keyed file is its form's ASCII stem under its section's folder —
   `[a-z0-9-]` stays, a space becomes `_`, every other character `u<hex>`,
   so `die Adresse` is `articles/die_adresse.mp3`;
@@ -255,10 +255,10 @@ the script asks `git ls-files` instead.
 - `gain` (dB), `lead` and `end` (ms) are the generator's own MEASUREMENT of those untouched bytes, one gain for every output route;
   `lead` is how much dead air to start past, `end` where to stop once the speech is over,
   so neither a click nor the hum a word sits in plays around it.
-  Both come from the speech span (`../../scripts/audio_measure.py`), which looks past clicks and over a steady edge noise.
+  Both come from the speech span (`../../scripts/audio/measure.py`), which looks past clicks and over a steady edge noise.
   The files stay unmodified and only the player corrects them.
   What was measured, against which target,
-  is `../../scripts/audio_index.py`'s `ANALYSIS`.
+  is `../../scripts/audio/index.py`'s `ANALYSIS`.
 - `cap` (dB) is what the peak ceiling held back from the gain:
   a boost is capped at the headroom the file's own peak leaves,
   so a quiet word with sharp peaks ships under the loudness target rather than clipping.
@@ -267,10 +267,10 @@ the script asks `git ls-files` instead.
   so a player under a fade hands back as much of the deficit as the ramp has taken off, and no more (`fadedGainDb`).
   It binds 5-25% of every pack but sw, which is the loud one and is capped almost nowhere.
 - `mos` (1 to 5) is a third measurement of the same bytes —
-  how good the take sounds, as predicted by the DNSMOS model (`scripts/audio_measure.py`) —
+  how good the take sounds, as predicted by the DNSMOS model (`scripts/audio/measure.py`) —
   but nothing plays it.
   `pesq` (about 1 to 4.6) beside it is how undistorted the take sounds,
-  as SQUIM's no-reference estimate of the PESQ score (`scripts/squim/`), and nothing plays it either.
+  as SQUIM's no-reference estimate of the PESQ score (`scripts/audio/squim/`), and nothing plays it either.
   Both are carried so lint can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an earlier sweep removed.
   The lint holds the median and the size of the bad tail, never a floor per file:
   some words have nothing better on Commons.

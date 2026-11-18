@@ -7,8 +7,8 @@ import re
 import sys
 import unicodedata
 
-from audio_gates import bare_form, speech_key, split_article, spoken_target_form, stress_free
-from audio_manifest import ROOT, read_json
+from gates import bare_form, speech_key, split_article, spoken_target_form, stress_free
+from manifest import ROOT, read_json
 
 CATALOG = os.path.join(ROOT, 'catalog')
 

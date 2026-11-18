@@ -1,11 +1,11 @@
-"""Where an `audio-packs.py` run writes what it prints: `$W/logs/<date>-<command>/<lang>-<section>.log`
+"""Where a `packs.py` run writes what it prints: `$W/logs/<date>-<command>/<lang>-<section>.log`
 per pack and one `summary.log` line per finished pack, while the console sees all of it too."""
 import contextlib
 import datetime
 import os
 import sys
 
-from audio_routes import WORKSPACE
+from routes import WORKSPACE
 
 
 class Tee:

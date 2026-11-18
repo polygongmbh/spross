@@ -1,21 +1,21 @@
 """Adds what a section of a shipped manifest lacks out of its pack, and leaves what it has alone.
 
-    scripts/audio-catalog.py --fill [--section S] --lang L [--dry-run]
+    scripts/audio/catalog.py --fill [--section S] --lang L [--dry-run]
 
 Every section fills alike: a pack row whose form the section does not ship yet passes the
-section's own gate, the take judge (`audio_judge.py`) and the editor's `put`, which ships it.
+section's own gate, the take judge (`judge.py`) and the editor's `put`, which ships it.
 A form the section already ships keeps its file, digest and credit — a different take of it is
-a swap, staged and shipped by `audio_ship.py`, never something a fill decides.
+a swap, staged and shipped by `ship.py`, never something a fill decides.
 The gates per section: a word some card shows (`keep_reachable`), an article some card shows in
 front of its word (`keep_article_forms`), a Lingua Libre file named for its form (every section
 but letters, whose takes say a letter's name rather than its glyph).
 """
 import os
 
-from audio_gates import (UNSHIPPABLE_LICENSES, attribute, digest_of, keep_article_forms,
+from gates import (UNSHIPPABLE_LICENSES, attribute, digest_of, keep_article_forms,
                          keep_named_by_its_file, keep_reachable, keep_unambiguous, speech_key, takes)
-from audio_manifest import audio_dir, put, read_manifest
-from audio_ship import pack_mp3, read_rows
+from manifest import audio_dir, put, read_manifest
+from ship import pack_mp3, read_rows
 
 
 def one_per_form(rows):

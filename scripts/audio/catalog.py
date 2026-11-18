@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """The shipped recordings under catalog/audio/<lang>/, out of the pronunciation packs.
 
-    scripts/audio-catalog.py --fill [--section S] --lang L [--dry-run]   # what a section lacks
-    scripts/audio-catalog.py --ship [--from-packs] [--lang L] [--dry-run] # staged swaps
-    scripts/audio-catalog.py --packs <workspace> --lang L                 # a language with no manifest yet
-    scripts/audio-catalog.py --add-voice L SECTION SPEAKER [--dry-run]   # a second voice beside each key
+    scripts/audio/catalog.py --fill [--section S] --lang L [--dry-run]   # what a section lacks
+    scripts/audio/catalog.py --ship [--from-packs] [--lang L] [--dry-run] # staged swaps
+    scripts/audio/catalog.py --packs <workspace> --lang L                 # a language with no manifest yet
+    scripts/audio/catalog.py --add-voice L SECTION SPEAKER [--dry-run]   # a second voice beside each key
 
 The packs (`pack-<lang>-<section>/manifest.tsv` + `mp3/`, keyed by the form each row speaks, the letters
 by their glyph) are unversioned research input; `catalog/audio/` is the versioned provenance record.
 What ships is the Wikimedia Commons transcode UNTOUCHED — re-encoding is an adaptation under BY-SA —
 so every entry carries the sha256 verified after the copy, and lint re-hashes what was committed.
 
-Every take that ships passes its section's gates (`audio_fill.py`) and the take judge
-(`audio_judge.py`), and goes in through the manifest editor (`audio_manifest.py`), which measures
-the bytes that landed into the playback index (`audio_index.py`).
+Every take that ships passes its section's gates (`fill.py`) and the take judge
+(`judge.py`), and goes in through the manifest editor (`manifest.py`), which measures
+the bytes that landed into the playback index (`index.py`).
 `--articles`, `--calendar` and `--countries` are a section's ship from its pack, then its fill.
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
 """
@@ -22,16 +22,16 @@ import concurrent.futures
 import os
 import sys
 
-import audio_judge
-import audio_manifest
-import audio_measure
-import audio_ship
-import audio_voice
-from audio_fill import fill
-from audio_forms import load_catalog
-from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index, span_index
-from audio_gates import digest_of, takes
-from audio_manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_manifest
+import judge as audio_judge
+import manifest as audio_manifest
+import measure
+import ship as audio_ship
+import voice as audio_voice
+from fill import fill
+from forms import load_catalog
+from index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index, span_index
+from gates import digest_of, takes
+from manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_manifest
 
 # The order a language with no manifest yet is filled in: words first, so a collision across
 # sections is decided the way it always was.
@@ -48,8 +48,8 @@ def respan(lang):
     for take in entries:
         if digest_of(os.path.join(out_dir, take['file'])) != take['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert' % take['file'])
-    with concurrent.futures.ThreadPoolExecutor(max_workers=audio_measure.WORKERS) as pool:
-        spans = pool.map(lambda take: audio_measure.speech_span(FFMPEG, os.path.join(out_dir, take['file'])), entries)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=measure.WORKERS) as pool:
+        spans = pool.map(lambda take: measure.speech_span(FFMPEG, os.path.join(out_dir, take['file'])), entries)
         moved = 0
         for take, span in zip(entries, spans):
             was = (take.pop('lead', None), take.pop('end', None))
@@ -73,7 +73,7 @@ def reindex(lang):
     entries = {(section, key, take['file']): take
                for section in SECTIONS if section in manifest
                for key, item in manifest[section].items() for take in takes(item)}
-    measured = audio_measure.measure_all(
+    measured = measure.measure_all(
         FFMPEG, sorted({os.path.join(out_dir, item['file']) for item in entries.values()}))
     moved, limited = [], 0
     for _, item in sorted(entries.items()):
@@ -107,9 +107,9 @@ def shipped_take(lang, section, key, item, out_dir):
 
 
 def prune_poor(languages):
-    """Remove every shipped recording the take judge refuses (`audio_judge.py`) — under its
+    """Remove every shipped recording the take judge refuses (`judge.py`) — under its
     language's `mos_floor`, heard as bad, one-sided — file and entry, so the device voice or
-    silence takes over. Run `audio-packs.py sweep` first, so such a word gets a better take where
+    silence takes over. Run `packs.py sweep` first, so such a word gets a better take where
     one exists."""
     for lang in languages or sorted(os.listdir(AUDIO)):
         out_dir = audio_dir(lang)
@@ -120,7 +120,7 @@ def prune_poor(languages):
                    for key, item in manifest.get(section, {}).items() for take in takes(item)]
         # why: the shipped index stands for the bytes its sha256 pins, so only what it does
         # not carry (the side balance, the squash) is measured, a few ffmpeg passes per file.
-        with concurrent.futures.ThreadPoolExecutor(max_workers=audio_measure.WORKERS) as pool:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=measure.WORKERS) as pool:
             judged = list(pool.map(lambda e: audio_judge.judge(
                 shipped_take(lang, e[0], e[1], e[2], out_dir),
                 {field: e[2][field] for field in INDEX_FIELDS if field in e[2]}), entries))
@@ -199,7 +199,7 @@ def main():
                              'every entry already shipped is left exactly as it is')
     parser.add_argument('--prune-poor', action='store_true',
                         help='remove shipped recordings the take judge refuses — under their '
-                             "language's mos floor, heard as bad, one-sided (scripts/audio_judge.py); "
+                             "language's mos floor, heard as bad, one-sided (scripts/audio/judge.py); "
                              'no packs needed')
     parser.add_argument('--ship', action='store_true',
                         help='apply the staged swaps in <packs>/staged.tsv whose incumbent still ships')
@@ -239,7 +239,7 @@ def main():
     # why: gain/lead are this build's numbers to a decimal, so another ffmpeg silently
     # rewrites manifests that were otherwise byte-identical — say so rather than surprise
     # the diff. A warning, not a stop: the gates hold on any build.
-    detected = audio_measure.version(FFMPEG)
+    detected = measure.version(FFMPEG)
     if detected != ANALYSIS['ffmpeg']:
         print('warning: measuring with %s; ANALYSIS was taken on %s — expect drifted decimals'
               % (detected, ANALYSIS['ffmpeg']))

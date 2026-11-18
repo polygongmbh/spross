@@ -1,12 +1,12 @@
 """Resolves catalog forms to Commons recordings into a pack — metadata only, no take is judged.
 
-    scripts/audio-packs.py resolve <kind>... [lang...] [--out DIR] [--full] [--append TSV]
+    scripts/audio/packs.py resolve <kind>... [lang...] [--out DIR] [--full] [--append TSV]
 
 A pack (`pack-<lang>-<kind>/manifest.tsv` + `mp3/<local_file>`) is keyed by the form a recording
 speaks, the letters by their glyph, and a run resolves only what it lacks: a row is kept while its
 form is still wanted and its Commons record may ship, so a moved catalog never reseats a form
 that already ships. `--full` re-resolves every form. The route per language and kind is
-`audio_routes.py`; a match the app refuses to ship (a refused license, a credit naming nobody, a
+`routes.py`; a match the app refuses to ship (a refused license, a credit naming nobody, a
 Shtooka take saying more than its form, an articled take titled as a name) is no match, so the
 next route gets its turn. Each run writes `missing.txt` beside the manifest: what nobody recorded.
 """
@@ -15,19 +15,19 @@ import csv
 import os
 import sys
 
-import audio_commons
-import audio_lingualibre
-from audio_forms import catalog_forms, contested_readings, letter_rows, own_variants, titled_as, variants
-from audio_gates import UNSHIPPABLE_LICENSES, speech_key, stress_free
-from audio_manifest import ascii_stem
-from audio_routes import WORKSPACE, pack_dir, route
+import commons
+import lingualibre
+from forms import catalog_forms, contested_readings, letter_rows, own_variants, titled_as, variants
+from gates import UNSHIPPABLE_LICENSES, speech_key, stress_free
+from manifest import ascii_stem
+from routes import WORKSPACE, pack_dir, route
 
 FIELDS = ['local_file', 'file', 'license', 'author', 'mp3_url']
 
 
 def says_more(name, text, lang):
     """True when Commons states [name] says something else than [text] (`spoken_forms`)."""
-    said = audio_commons.spoken_forms([name])[name]
+    said = commons.spoken_forms([name])[name]
     return bool(said) and variants(said, lang)[0] not in variants(text, lang)
 
 
@@ -53,13 +53,13 @@ def by_convention(texts, patterns, lang):
     for text in texts:
         for v in variants(text, lang):
             names = order.setdefault(v, [])
-            for cased in audio_commons.casings(v):
+            for cased in commons.casings(v):
                 for pattern in patterns:
                     name = pattern.replace('{word}', cased)
                     if name not in seen:
                         seen.add(name)
                         names.append(name)
-    live = audio_commons.exists(sorted('File:' + name for name in seen))
+    live = commons.exists(sorted('File:' + name for name in seen))
     return {v: (v, next(name for name in names if name in live))
             for v, names in order.items() if any(name in live for name in names)}
 
@@ -92,7 +92,7 @@ def write_pack(pack, rows, key):
 
 def row_for(key, value, local, name, record):
     return {key: value, 'local_file': local, 'file': name, 'license': record.get('license', '?'),
-            'author': record.get('author', '?'), 'mp3_url': audio_commons.transcode_url(record.get('url', ''))}
+            'author': record.get('author', '?'), 'mp3_url': commons.transcode_url(record.get('url', ''))}
 
 
 def resolve_words(lang, kind, pack, full):
@@ -103,7 +103,7 @@ def resolve_words(lang, kind, pack, full):
         print('%s: no card shows %s' % (lang, 'an article' if articled else 'a form'), file=sys.stderr)
         return [], [], set()
     old = [] if full else read_pack(pack)
-    audio_commons.spoken_forms([row['file'] for row in old])
+    commons.spoken_forms([row['file'] for row in old])
     kept, stale = [], set()
     for row in old:
         if refused(row['file'], row['text'], lang, row, articled):
@@ -125,7 +125,7 @@ def resolve_words(lang, kind, pack, full):
         rest = unmatched()
         if rest and way.get('lingualibre'):
             wanted = {v for t in rest for v in variants(t, lang)}
-            index.update({k: (k, name) for k, name in audio_lingualibre.resolve(wanted, way['lingualibre'], voices).items()
+            index.update({k: (k, name) for k, name in lingualibre.resolve(wanted, way['lingualibre'], voices).items()
                           if k not in index})
 
     def convention():
@@ -136,8 +136,8 @@ def resolve_words(lang, kind, pack, full):
     for step in (convention, lingua_libre) if way.get('convention_first') else (lingua_libre, convention):
         step()
         names = sorted({name for _, name in index.values()})
-        records = audio_commons.meta(names)
-        audio_commons.spoken_forms(names)
+        records = commons.meta(names)
+        commons.spoken_forms(names)
         for key in [k for k, (_, name) in index.items() if refused(name, k, lang, records.get(name, {}), False)]:
             del index[key]
 
@@ -157,7 +157,7 @@ def resolve_words(lang, kind, pack, full):
             word, name = hit
             text = form if articled else (own if word == stress_free(own) else word)
             found.setdefault(speech_key(text), (text, name))
-    records = audio_commons.meta(sorted({name for _, name in found.values()}))
+    records = commons.meta(sorted({name for _, name in found.values()}))
     new = [row_for('text', text, ascii_stem(text) + '.mp3', name, records.get(name, {}))
            for text, name in found.values()]
     wanted = {speech_key(form) for _, form in entries}
@@ -176,24 +176,24 @@ def resolve_forms(lang, kind, pack, full):
     kept = {} if full else {row['text']: row for row in read_pack(pack)
                             if row['text'] in forms and not refused(row['file'], row['text'], lang, row, False)}
     todo = [form for form in forms if form not in kept]
-    probe = {form: [p.replace('{text}', cased) for cased in audio_commons.casings(form) for p in patterns]
+    probe = {form: [p.replace('{text}', cased) for cased in commons.casings(form) for p in patterns]
              for form in todo}
-    live = audio_commons.exists(sorted({'File:' + c for cs in probe.values() for c in cs})) if patterns else set()
-    records = audio_commons.meta(sorted(live))
+    live = commons.exists(sorted({'File:' + c for cs in probe.values() for c in cs})) if patterns else set()
+    records = commons.meta(sorted(live))
     hits, index = {}, None
     for form in todo:
         name = next((c for c in probe[form] if c in live and not refused(c, form, lang, records.get(c, {}), False)), None)
         if name is None and way.get('forms_lingualibre'):
             if index is None:
-                index = audio_lingualibre.resolve({v for f in todo for v in variants(f, lang)},
+                index = lingualibre.resolve({v for f in todo for v in variants(f, lang)},
                                                   way['forms_lingualibre'],
                                                   collections.Counter(row['author'] for row in kept.values()))
             name = index.get(form.lower())
-            picked = audio_commons.meta([name]) if name else {}
+            picked = commons.meta([name]) if name else {}
             name = None if name and refused(name, form, lang, picked[name], False) else name
         if name:
             hits[form] = name
-    records = audio_commons.meta(sorted(set(hits.values())))
+    records = commons.meta(sorted(set(hits.values())))
     rows, misses = [], []
     for form in forms:
         if form in kept:
@@ -216,9 +216,9 @@ def resolve_letters(lang, pack, full):
     named = letter_rows(lang)
     kept = {} if full else {row['letter']: row for row in read_pack(pack) if row['letter'] in {g for g, _, _ in named}}
     probe = {glyph: candidates(glyph, upper, name, patterns) for glyph, upper, name in named if glyph not in kept}
-    live = audio_commons.exists(sorted({'File:' + c for cs in probe.values() for c in cs}))
+    live = commons.exists(sorted({'File:' + c for cs in probe.values() for c in cs}))
     hits = {glyph: next(c for c in cs if c in live) for glyph, cs in probe.items() if any(c in live for c in cs)}
-    records = audio_commons.meta(sorted(set(hits.values())))
+    records = commons.meta(sorted(set(hits.values())))
     rows = [kept.get(glyph) or row_for('letter', glyph, glyph + '.mp3', hits[glyph], records.get(hits[glyph], {}))
             for glyph, _, _ in named if glyph in kept or glyph in hits]
     print('%s letters: %d found, %d kept, %d / %d named rows' % (lang, len(hits), len(kept), len(rows), len(named)),
@@ -237,7 +237,7 @@ def candidates(glyph, upper, name, patterns):
             continue
         titles = [pattern]
         for key in used:
-            titles = [t.replace('{%s}' % key, cased) for t in titles for cased in audio_commons.casings(fields[key])]
+            titles = [t.replace('{%s}' % key, cased) for t in titles for cased in commons.casings(fields[key])]
         out += [t for t in titles if '{' not in t and t not in out]
     return out
 
@@ -250,7 +250,7 @@ def fetch_rows(pack, rows, stale):
         if (os.path.exists(dest) and row['local_file'] not in stale) or not row['mp3_url']:
             continue
         try:
-            if not audio_commons.fetch(row['mp3_url'], dest):
+            if not commons.fetch(row['mp3_url'], dest):
                 failed.append(row.get('text') or row.get('letter'))
         except Exception as error:
             print('  ! %s: %s' % (row['local_file'], error), file=sys.stderr)
@@ -290,7 +290,7 @@ def append(lang, kind, tsv):
                 cells = line.rstrip('\n').split('\t')
                 if speech_key(cells[0]) not in have:
                     added.append(cells)
-    records = audio_commons.meta(sorted({cells[1] for cells in added}))
+    records = commons.meta(sorted({cells[1] for cells in added}))
     new = [dict(row_for('text', cells[0], ascii_stem(cells[0]) + '.mp3', cells[1], records.get(cells[1], {})),
                 **({'author': cells[2]} if len(cells) > 2 else {})) for cells in added]
     for row in new:

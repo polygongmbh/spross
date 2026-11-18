@@ -37,7 +37,7 @@ Measured 2026-09-24 off the tree, the last debug APK (2026-09-23) and the last R
   BY 4.0 also asks for the change to be indicated.
   The `sha256` gate demotes to an integrity check over the new bytes.
   Every `gain`/`gainPhone`/`cap`/`lead`/`snr` value is a measurement of the SHIPPED bytes and must be re-measured
-  (`scripts/audio-catalog.py` `ANALYSIS`, `audio_measure.py`).
+  (`scripts/audio/catalog.py` `ANALYSIS`, `scripts/audio/measure.py`).
   AAC priming shifts `lead` by ~48 ms.
   `audio-format.md` already decided "mp3 stays, delivery first".
   This plan keeps that decision.

@@ -2,12 +2,12 @@
 """ffmpeg measurement of the shipped recordings: how loud they are, where their speech starts and
 ends, how close to full scale they already run.
 
-The mechanics behind `audio-catalog.py`'s analysis stage, which turns these numbers into
+The mechanics behind `catalog.py`'s analysis stage, which turns these numbers into
 the manifest's `gain`/`lead`/`end`. NOTHING here writes audio — every run decodes to the null
 muxer, so the mp3 that ships is byte-for-byte the mp3 that was measured, the "unmodified
 Commons transcode" claim stays true, and the sha256 gate keeps its meaning.
 """
-import audio_env  # noqa: F401 — before numpy: re-runs under the repo .venv
+import env  # noqa: F401 — before numpy: re-runs under the repo .venv
 import concurrent.futures
 import os
 import re

@@ -1,30 +1,30 @@
 #!/usr/bin/env python3
 """The workspace's packs: resolved out of Commons, swept for better takes, consolidated onto established voices.
 
-    scripts/audio-packs.py resolve <kind>... [lang...] [--out DIR] [--full] [--append TSV]
-    scripts/audio-packs.py sweep [lang...] [--sections S...] [--only FORMS] [--apply]
-    scripts/audio-packs.py consolidate [lang...] [--sections S...] [--only FORMS] [--apply]
+    scripts/audio/packs.py resolve <kind>... [lang...] [--out DIR] [--full] [--append TSV]
+    scripts/audio/packs.py sweep [lang...] [--sections S...] [--only FORMS] [--apply]
+    scripts/audio/packs.py consolidate [lang...] [--sections S...] [--only FORMS] [--apply]
 
-`resolve` finds a recording for every form the catalog shows that a pack lacks (`audio_resolve.py`),
-by the language's route (`audio_routes.py`), and fetches its transcode; nothing is judged or shipped —
-`audio-catalog.py --fill` does that. `sweep` and `consolidate` stage swaps of what ships into the
-journal (`audio_sweep.py`), which `audio-catalog.py --ship` applies; without `--apply` they only print.
+`resolve` finds a recording for every form the catalog shows that a pack lacks (`resolve.py`),
+by the language's route (`routes.py`), and fetches its transcode; nothing is judged or shipped —
+`catalog.py --fill` does that. `sweep` and `consolidate` stage swaps of what ships into the
+journal (`sweep.py`), which `catalog.py --ship` applies; without `--apply` they only print.
 Every run tees itself to `$W/logs/<date>-<command>/` and prints the `tail -f` line first.
 One run at a time, languages in sequence: Commons throttles parallel fetches.
 """
-import audio_env  # noqa: F401 — before numpy: re-runs under the repo .venv
+import env  # noqa: F401 — before numpy: re-runs under the repo .venv
 import argparse
 import os
 import sys
 import traceback
 
-import audio_resolve
-import audio_sweep
-from audio_forms import load_catalog
-from audio_log import RunLog
-from audio_manifest import AUDIO
-from audio_pick import PICKED, Measures
-from audio_routes import KINDS, ROUTES
+import resolve as audio_resolve
+import sweep as audio_sweep
+from forms import load_catalog
+from log import RunLog
+from manifest import AUDIO
+from pick import PICKED, Measures
+from routes import KINDS, ROUTES
 
 
 def run(log, packs, step):

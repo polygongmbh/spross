@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """What `catalog/audio/` covers, and what it names but does not ship.
 
-    scripts/audio-coverage.py               # per-language coverage table
-    scripts/audio-coverage.py --missing de  # the words de shows and cannot say
-    scripts/audio-coverage.py --credits     # who spoke what, under which license, per pack
-    scripts/audio-coverage.py --check       # exit 1 if a manifest names an untracked file
+    scripts/audio/coverage.py               # per-language coverage table
+    scripts/audio/coverage.py --missing de  # the words de shows and cannot say
+    scripts/audio/coverage.py --credits     # who spoke what, under which license, per pack
+    scripts/audio/coverage.py --check       # exit 1 if a manifest names an untracked file
 
 `--check` is the one a gate wants. `CatalogAudioProvenanceTest.everyAudioFileShipsAndIsReferencedExactlyOnce`
 walks the WORKING TREE, so a recording that was fetched but never `git add`ed looks exactly
@@ -23,10 +23,10 @@ import os
 import subprocess
 import sys
 
-from audio_gates import bare_form, speech_key, takes
-from audio_routes import SECTIONS
+from gates import bare_form, speech_key, takes
+from routes import SECTIONS
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CATALOG = os.path.join(ROOT, 'catalog')
 
 

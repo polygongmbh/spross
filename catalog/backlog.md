@@ -1,5 +1,5 @@
 # Catalog backlog
-Open catalog work, one pointered bullet each, filed by who moves it next: the owner, a decision (ends in its question), ready for any session, or a native speaker; never a gap a script lists (`audio-coverage.py --missing`, `audio_voices.is_squashed`).
+Open catalog work, one pointered bullet each, filed by who moves it next: the owner, a decision (ends in its question), ready for any session, or a native speaker; never a gap a script lists (`scripts/audio/coverage.py --missing`, `voices.is_squashed`).
 Neighbors: app and code issues `../docs/backlog.md`.
 
 ## Needs the owner

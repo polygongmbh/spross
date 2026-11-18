@@ -13,9 +13,9 @@ import re
 import sys
 import unicodedata
 
-import audio_commons
-from audio_gates import apostrophe_folded
-from audio_routes import WORKSPACE
+import commons
+from gates import apostrophe_folded
+from routes import WORKSPACE
 
 CATEGORY = "Category:Lingua Libre pronunciation-%s"
 # The space before `(<code>)` and a trailing gloss are both optional: Goethe-Institut
@@ -54,7 +54,7 @@ def category_files(category, refresh=False):
 
     titles, cont = [], None
     while True:
-        page = audio_commons.api(list="categorymembers", cmtitle=category, cmtype="file",
+        page = commons.api(list="categorymembers", cmtitle=category, cmtype="file",
                                  cmlimit="500", **({"cmcontinue": cont} if cont else {}))
         titles += [m["title"].removeprefix("File:") for m in page["query"]["categorymembers"]]
         cont = page.get("continue", {}).get("cmcontinue")
@@ -152,4 +152,4 @@ def resolve(wanted, code, voices=None):
     """word -> filename for every wanted surface form the category can speak, [voices]
     (speaker -> takes the pack holds) leaning a choice toward a voice the pack already has."""
     cand = candidates(files(code), code, wanted)
-    return pick(cand, audio_commons.meta(sorted({n for rows in cand.values() for _, n in rows})), voices)
+    return pick(cand, commons.meta(sorted({n for rows in cand.values() for _, n in rows})), voices)

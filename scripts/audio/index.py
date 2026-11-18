@@ -1,12 +1,12 @@
 """The ANALYSIS INDEX: what the players correct a recording by, measured off its untouched bytes.
 
-`gain`/`cap`/`lead`/`end`/`gate` plus `mos` and `pesq` per entry, re-derived by `audio-catalog.py --reindex`
-and written by every path that ships a take (`audio_manifest.py`).
+`gain`/`cap`/`lead`/`end`/`gate` plus `mos` and `pesq` per entry, re-derived by `catalog.py --reindex`
+and written by every path that ships a take (`manifest.py`).
 """
 import math
 import os
 
-import audio_measure
+import measure as audio_measure
 
 FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 

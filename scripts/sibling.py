@@ -1,8 +1,8 @@
 """Load a hyphenated sibling script as a module.
 
 `scripts/` names its tools with hyphens, which no `import` statement accepts, so the
-ones that share code are loaded by path instead. Underscore-named helpers next door
-(`audio_gates.py`, `audio_measure.py`) are plain imports and need nothing from here.
+ones that share code are loaded by path instead. The audio tools in `scripts/audio/`
+have one-word names and import each other plainly, so they need nothing from here.
 """
 import importlib.util
 import os

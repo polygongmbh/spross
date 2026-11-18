@@ -8,7 +8,7 @@ of several takes is where it does its work. Where a listener has heard a file, t
 import csv
 import os
 
-VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs',
+VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs',
                         'audio-verdicts.tsv')
 
 # Languages whose device voice is good on both platforms: without a recording the card still
