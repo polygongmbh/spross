@@ -54,6 +54,8 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 
 ### Apps & tooling
+- On the iPhone Duo a trailing sheet's vertical bar sometimes starts at the window's top, its ✕ hidden under the status pill — reproducible for minutes at a time, trigger unfound (`SystemBar.swift`).
+- Margins next to the Duo's vertical system bar come from our own pane math rather than `contentMargins`/`ContentMarginGuide.container`, which the iOS 27.1 guidance names (`WindowLayout.swift`).
 - A long typed answer is cut with "…" in the answer field.
 - A store-shot hook for a genuinely grown Box is missing: `-uitest-trees` fakes Home and the summary only, so Box screens stay early.
 - Starting a trainer run from its overview sheet is unverified on the Duo (`-uitest-run 1` never opened the run there), and the Box's leading pane truncates area titles and counts ("Greetings and C…").
