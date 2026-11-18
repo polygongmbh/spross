@@ -17,8 +17,8 @@ bare form ships a recording of its own; a winner is staged to ship under the bar
 falls back to, in place of the whole form's entry.
 
 CONSOLIDATE: a shipped take whose voice ships `ONE_OFF_TAKES` or fewer in its language moves onto
-an established voice's take of the same form — smallest license harm first (CC0 and public domain,
-then attribution, then share-alike), then the biggest voice, then the catalog's casing — unless
+an established voice's take of the same form — the biggest voice first, then the catalog's casing,
+whatever either take's license, since every license is credited alike — unless
 that take is refused, squashed, doubted by a listener, rated under the incumbent,
 scores `SWAP_MARGIN` or more under the incumbent (a sweep would win that back, and the two would
 trade the take forever), or gives up
@@ -32,7 +32,6 @@ import audio_measure
 from audio_forms import language_info
 from audio_gates import bare_form, digest_of, speech_key
 from audio_index import FFMPEG
-from audio_lingualibre import license_rank
 from audio_manifest import audio_dir, read_manifest
 from audio_pick import (candidate_refusal, challengers, credit_groups, fetch, incumbents, judged, stage,
                         staged_keys, voices)
@@ -221,7 +220,7 @@ def consolidate(lang, section, catalog, measures, only, apply):
         take['mos'] = heard_mos(mos, measured.get('pop'), pesq)
         was_bright = brightness(measures, take['sha256'], take['path'])
         order = audio_commons.casings(take['key'].lower())
-        ranked = sorted((license_rank(record.get('license', '?')), -weight[(record.get('author'), record.get('license'))],
+        ranked = sorted((-weight[(record.get('author'), record.get('license'))],
                          next((i for i, cased in enumerate(order) if cased in name), len(order)), name, record)
                         for name, record in options[take['key']]
                         if (record.get('author'), record.get('license')) != (take['author'], take['license'])

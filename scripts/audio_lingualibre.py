@@ -126,36 +126,25 @@ def candidates(files, code, wanted):
     return found
 
 
-def license_rank(license):
-    """CC0 and public domain ask nothing, attribution-only asks for a line, share-alike binds the
-    file itself; anything else last."""
-    if license in ("CC0", "Public domain"):
-        return 0
-    return 1 if license.startswith("CC BY ") else 2 if license.startswith("CC BY-SA") else 3
-
-
 def pick(cand, meta, voices=None):
-    """word -> filename. The cheaper license wins outright; inside one rank the speaker
-    covering most goes first — what is still uncovered plus the takes [voices] says the pack
-    already holds of theirs — so the pack rides as few voices as coverage allows without
-    ever trading a CC0 recording for a share-alike one."""
+    """word -> filename. The speaker covering most goes first — what is still uncovered plus the takes
+    [voices] says the pack already holds of theirs — so the pack rides as few voices as coverage
+    allows, whatever their licenses, since every license is credited alike."""
     voices = voices or {}
     chosen, remaining = {}, set(cand)
-    for rank in range(4):
-        while True:
-            covers = {}
-            for word in remaining:
-                for speaker, name in cand[word]:
-                    if license_rank(meta[name].get("license", "?")) == rank:
-                        covers.setdefault(speaker, []).append((word, name))
-            if not covers:
-                break
-            speaker = max(sorted(covers), key=lambda s: len(covers[s]) + voices.get(s, 0))
-            license = meta[covers[speaker][0][1]].get("license", "?")
-            print(f"  {license:<12} {speaker}: {len(covers[speaker])} words", file=sys.stderr)
-            for word, name in covers[speaker]:
-                chosen[word] = name
-                remaining.discard(word)
+    while True:
+        covers = {}
+        for word in remaining:
+            for speaker, name in cand[word]:
+                covers.setdefault(speaker, []).append((word, name))
+        if not covers:
+            break
+        speaker = max(sorted(covers), key=lambda s: len(covers[s]) + voices.get(s, 0))
+        license = meta[covers[speaker][0][1]].get("license", "?")
+        print(f"  {license:<12} {speaker}: {len(covers[speaker])} words", file=sys.stderr)
+        for word, name in covers[speaker]:
+            chosen[word] = name
+            remaining.discard(word)
     return chosen
 
 
