@@ -60,7 +60,8 @@ def moves(shown, displayed, words):
         spoken = speech_key(key)
         if spoken in displayed:
             continue
-        said = readings.get(stress_free(spoken), set())
+        # A key that already carries its stress is one of its own readings, not a form to move onto.
+        said = readings.get(stress_free(spoken), set()) - {spoken}
         if len(said) == 1:
             found.append((key, restressed(key, next(iter(said)))))
         elif said:
