@@ -15,18 +15,22 @@ struct StreakFlameView: View {
     var body: some View {
         HStack(spacing: Theme.spacing.sm) {
             mark
-                .font(.title2)
+                .font(Theme.typography.headline)
                 .accessibilityHidden(true)
             Text(days.counted(locale))
-                .font(Theme.typography.title)
+                .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
-            // why: the number carries the big type, so the unit stands alone —
-            // and a string that does not name its count cannot be plural-varied
+            // why: a string that does not name its count cannot be plural-varied
             // (the compiler refuses it), which is what these two keys are for.
-            Text(days == 1 ? "common.day.one" : "common.day.other")
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.textSecondary)
+            if DayMark.companion.showsUnit(streak: Int32(days)) {
+                Text(days == 1 ? "common.day.one" : "common.day.other")
+                    .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
         }
+        // why: a long run beside a wide label must not wrap its digits onto two lines.
+        .lineLimit(1)
+        .fixedSize()
         .padding(.horizontal, Theme.spacing.lg)
         .padding(.vertical, Theme.spacing.md)
         .background(Theme.colors.surfaceTint, in: Capsule())

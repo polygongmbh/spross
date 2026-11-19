@@ -8,6 +8,11 @@ package net.spross.kern.session
  */
 data class DayMark(val emoji: String?, val counted: Boolean) {
     companion object {
+        /** Beside the flame a short run names its unit; past [UNIT_BELOW] days the count speaks for itself. */
+        fun showsUnit(streak: Int): Boolean = streak < UNIT_BELOW
+
+        private const val UNIT_BELOW = 10
+
         /** The round's card: the flame with the run, a sparkle without one. */
         fun offer(streak: Int): DayMark = if (streak > 0) DayMark(null, true) else DayMark("✨", false)
 
