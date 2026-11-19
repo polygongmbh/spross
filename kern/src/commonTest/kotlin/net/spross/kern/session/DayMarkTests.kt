@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 class DayMarkTests {
 
@@ -22,5 +23,11 @@ class DayMarkTests {
     @Test
     fun withARunTheRoundCardWearsTheFlame() {
         assertEquals(DayMark(null, true), DayMark.offer(streak = 4))
+    }
+
+    @Test
+    fun aLongRunLetsTheCountSpeakForItself() {
+        assertTrue(DayMark.showsUnit(streak = 3))
+        assertFalse(DayMark.showsUnit(streak = 106))
     }
 }

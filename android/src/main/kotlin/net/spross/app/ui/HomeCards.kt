@@ -64,16 +64,20 @@ internal fun DayMark(mark: DayMarkRule, streak: Int, health: StreakHealth, chrom
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         if (emoji == null) {
-            StreakFlame(health, MaterialTheme.typography.titleLarge)
+            StreakFlame(health, MaterialTheme.typography.titleMedium)
         } else {
-            Text(emoji, style = MaterialTheme.typography.titleLarge)
+            Text(emoji, style = MaterialTheme.typography.titleMedium)
         }
-        Text("$streak", style = MaterialTheme.typography.titleLarge)
-        Text(
-            unit,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        Text("$streak", style = MaterialTheme.typography.titleMedium, maxLines = 1, softWrap = false)
+        if (DayMarkRule.showsUnit(streak)) {
+            Text(
+                unit,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                softWrap = false,
+            )
+        }
     }
 }
 
