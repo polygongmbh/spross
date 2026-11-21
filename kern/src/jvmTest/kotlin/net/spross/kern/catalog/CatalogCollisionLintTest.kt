@@ -95,7 +95,7 @@ class CatalogCollisionLintTest {
     /**
      * Single-language collisions are legitimate merges (Swahili has one word where German
      * has two) — answered at runtime, where every concept a prompt stands for answers it
-     * (`docs/grading.md`). Pinned so a NEW one (adding `nature/river` beside `bedroom/pillow`,
+     * ([net.spross.kern.session.TurnGrading]). Pinned so a NEW one (adding `nature/river` beside `bedroom/pillow`,
      * both sw `mto`) is reviewed as a merge rather than shipped as an authoring slip.
      */
     @Test

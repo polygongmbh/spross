@@ -32,7 +32,7 @@ Wiktionary dumps, FreeDict and Tatoeba, inventoried in its `reference/README.md`
   Asked the other way —
   what does this word MEAN —
   the merge is simply honored:
-  every concept printing the form answers for it, and the reveal names the rest (`../docs/grading.md`).
+  every concept printing the form answers for it, and the reveal names the rest (`TurnGrading.grade`).
 
 ## Layout
 
@@ -143,7 +143,7 @@ the content only supplies the default.
   uk `-ся` is never listed: many such verbs have no bare form (`сміятися`), and stripping it leaves a non-word.
 - `diacriticDigraphs` —
   established lossless ASCII spellings of single letters, keyed by the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`);
-  grading folds them on both sides like `ß`→`ss` (`../docs/grading.md`).
+  grading folds them on both sides like `ß`→`ss` (`ComparisonShape`).
   Omit where the language has none.
 
 **`areas/<area>/concepts.json`** — ordered, language-neutral.

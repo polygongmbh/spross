@@ -1,5 +1,5 @@
 # Listening — a playlist of the learner's own words
-What listening plays, in what order and with which pauses, how it runs with the screen locked, and how a bedtime ends it.
+What listening is on the phone: where it sits, what it plays, how it runs with the screen locked; the pool, the deal, the beats and the bedtime fade are the KDoc in `net.spross.kern.listen`.
 Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, the round it sits under `design.md`.
 
 ## On the phone
@@ -22,7 +22,7 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   New words take a fixed share from the first turn, queued words leading them, so the mode that asks the least still honors the queue the day's round does;
   suspended words are in the pool, since they are exactly the ones a due-driven surface never reaches.
   Hearing a word does NOT introduce it: introduction is the first ANSWER, and this surface has none.
-  The deal and its numbers are § The playlist.
+  The deal and its numbers are `listeningOrder`'s.
 - **It plays with the screen locked.** That is the point of it —
   the mode is for the hours the phone is in a pocket, and one that stopped at the lock screen would be a mode for staring at a phone that is already speaking.
   Both platforms put the run on the lock screen and take play/pause/next from it and from a headphone button, driving the same reducer the on-screen buttons drive;
@@ -35,85 +35,10 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   the artwork crosses to the system whole on every push, and a mode built for the hours a phone spends in a pocket cannot pay that per word.
   A bedtime, and only a bedtime, gives the card a progress bar:
   it is the one thing a run that otherwise laps forever has a length of, and the system runs the bar on between pushes.
-
 - **A small flag beside the timer reports the word on air**, both kinds behind one button:
   a one-tap entry names the saying last heard and files it as questionable (`BoxEngine.flagRecording`: its language, form and file, or that a voice read it),
   joining whatever the card's report already says;
   the other is the review's own report form, and the run pauses while it is open and plays on after.
   The flag fills once the word carries a report.
-- **Listening mode**: target word, meaning, target word again,
-  every beat kern's (§ The playlist).
-  No mute button; plays under `.playback`.
-  Takes audio over (no `.mixWithOthers`, spoken-audio mode),
-  session released on stop.
-  A word enters only if both sides can be said on this device.
-
-## The playlist
-
-- **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`):
-  the target word, its meaning in the SOURCE language, then the target again —
-  so it reaches the hours a language is available in and nothing can be typed or tapped.
-- `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)` is the one gate, disciplined like `LetterDrillAvailability.report`:
-  the only platform facts are the two `hasVoice` booleans, and kern caches nothing.
-  It is asked ONCE PER RUN, when the learner opens one, away from the main thread, never on the way past the entry card;
-  the card itself stands on `listeningOffered`: words in the box and something that can say each language.
-  `seed` only salts the order's tiebreak;
-  kern never reads a clock or cares what the number means.
-- **A short run is taken up again** (`ListeningRun.resumes`, `ListeningIntent.Resume`):
-  reopened after fewer than `LISTENING_RESUME_TURNS` turns, a few minutes,
-  the run carries on from the word it closed on, with no new deal.
-  A longer one is dealt afresh, reading the box as it stands then.
-  The platform keeps the closed run with the box and the two voices it was dealt from,
-  and a change to either deals afresh too;
-  for the box, only where the pool reads it (`ListeningPool.dealsAlike`: cards, schedules, queue), so a report filed mid-run keeps it.
-- **The pool is the sayable join short of the settled words, not a composed subset.**
-  **Both halves must be sayable** (`audible` on both forms),
-  or a turn plays a word and then silence.
-  Scheduled and unseen words alike are in it,
-  so a learner a few words in hears a stream of new words rather than lapping the handful they hold;
-  unseen words enter through `Growth.isIntroducible`, and hearing one does not introduce it.
-  **A settled word is out** (`Statistics.hasSettled`) until a lapse takes it under that bar:
-  left in, a well-used box would open on the words it trusts most.
-  **Suspended cards stay in**: suspension takes a word out of the box's rotation,
-  and this is the surface that can still reach it — at the growing priority, never leading.
-- **The ladder is the box's own bar** (`listeningPriority`):
-  a word short of `GROWING_STABILITY` is SHAKY, one past it GROWING.
-  **Nothing on it reads a due date** —
-  a due term would make listening a second scheduler, need a clock the run does not take,
-  and pin the same word first every run,
-  which listening cannot resolve since it books nothing.
-- **The deal** (`listeningOrder`, what `ListeningPool.report` returns):
-  the shaky words play first, all of them,
-  then share the turns with the growing ones, each lane starting over at its own head when it runs out,
-  so no word returns before the rest of its lane has, and a recent word waits a floor of turns.
-  Never-answered words are a fixed slice from the first turn rather than a priority,
-  so breadth rides alongside the shaky words and three hundred unseen words cannot crowd out the twenty that are slipping;
-  queued words lead that slice, most recently queued first,
-  and the catalog's earliest concepts lead the rest, with a soft lean toward earlier words past them.
-  Within a lane the order is hashed by card id salted with `seed`,
-  so catalog neighbors are not heard in sequence and a fresh seed reshuffles.
-  Only the ordered list crosses the ObjC boundary.
-- **`ListeningRun` holds no `BoxState` at all** —
-  that is what makes "listening books nothing" structural rather than promised.
-  It walks the playlist it was handed by position and deals the same words afresh at its end,
-  never opening on the word it just closed with;
-  repeats are the deal's business, never the run's.
-- **Back works like a music player's**: the first press restarts the word on air,
-  a press before the run moves on steps to the word before it, and further presses keep stepping
-  back to the head of the deal.
-  `ListeningEffect` says `Play`/`Stop` because a first Back leaves the turn as it was and must still make the sound fire.
-- **Every beat is kern's** (`ListeningTurn.sayings`):
-  target, meaning, target again, the article on the target sayings only, and the meaning shown from its own saying on.
-  The recall gap is long for a word answered before and short for a new one,
-  and the echo and the gap between turns reuse those two.
-  Each beat is armed off the previous word ACTUALLY ENDING plus its gap,
-  and a word that never reports a finish is walked past after `LISTENING_WATCHDOG_MS`.
-- **A bedtime fades the whole run rather than cutting it** (`listeningTimerStepMs`, `listeningGainDb`, `fadedGainDb`):
-  a hard stop is loud enough to wake the listener.
-  The deadline ends the run at the seam between turns (`listeningSeam`),
-  and a PAUSED run is left parked —
-  a bedtime ends a run nobody is attending, not one somebody just touched.
-  The floor holds the SUM of a recording's level and the ramp, because that is what a listener hears.
-  The remaining milliseconds are the APP's to track and hand in;
-  the run state holds no deadline.
-  The chip reads whole minutes rounded up and wakes only when one turns (`listeningTimerMinutes`, `listeningTimerWakeMs`).
+- **A turn says the target word, its meaning, and the target again**, every beat kern's (`ListeningTurn.sayings`);
+  a word enters only if both sides can be said on this device.

@@ -127,7 +127,7 @@ stops reaching the widget.
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`
-(`../../docs/grading.md` catalog-wide collision).
+(`CatalogAnswerGrader`).
 Two concepts one language writes alike are safe too, in any area:
 every concept the prompt stands for answers it (de `gehen` is to go AND to walk);
 lint pins each such merge for review (`promptCollisionsAreKnown`).

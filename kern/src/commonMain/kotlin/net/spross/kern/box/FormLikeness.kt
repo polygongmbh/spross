@@ -8,7 +8,7 @@ import net.spross.kern.session.damerauLevenshtein
  *
  * The question a MATCHER asks, and deliberately not the one grading asks: grading decides
  * whether the learner typed the word in front of them and forgives a slip per six letters
- * without limit ([AnswerNormalizer] and `docs/grading.md`), where this decides whether two
+ * without limit ([AnswerNormalizer]), where this decides whether two
  * forms name the same thing at all and stops at two. They share the distance and nothing
  * else — a budget that grew with length would fold whole families of long words together.
  *

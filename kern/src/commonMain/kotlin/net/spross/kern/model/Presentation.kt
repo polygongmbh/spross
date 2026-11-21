@@ -23,9 +23,8 @@ enum class PresentationRole {
  * Role of a card's next review, resolved at render time from the review-log count.
  *
  * FIRST exposure (count 0) is ALWAYS recognition — the learner cannot produce a
- * word never seen; the target is prompted first with its emoji as the cue (a
- * learner who already knows it gets the moment to recall), and the reveal
- * teaches the meaning, self-graded.
+ * word never seen; the target is prompted first (a learner who already knows it
+ * gets the moment to recall), and the reveal teaches the meaning and shows its picture, self-graded.
  * The SECOND review (count 1) is ALWAYS production — the word
  * has been seen once, now attempt it (ruling 2026-07-22: "returns the same
  * session as production").

@@ -28,7 +28,7 @@ import net.spross.kern.trainer.letters
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
- * accordingly (flip + self-grade both roles; the watch never types).
+ * accordingly: multiple choice in both roles, never typed.
  * [WatchEntryDto.distractors] ships the multiple-choice tiles already ranked
  * and already on the entry's own option side, so the watch only shuffles.
  * Capped at [ENTRY_CAP] to stay under the ~60 KB `updateApplicationContext`

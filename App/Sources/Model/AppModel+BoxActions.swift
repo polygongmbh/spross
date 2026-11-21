@@ -43,7 +43,7 @@ extension AppModel {
 
     /// Destructive fresh start: every schedule and tally goes, the join, the
     /// user's config (budget) and their own words stay — which of those a reset
-    /// keeps is the engine's ruling, not this layer's (`docs/grading.md`).
+    /// keeps is the engine's ruling, not this layer's.
     func resetBox() async {
         guard let old = box else { return }
         let fresh = BoxEngine.shared.reset(state: old)

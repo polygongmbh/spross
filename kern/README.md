@@ -28,8 +28,7 @@ or a bug a restatement would bring back.
 The engine's own semantics are below. Each element the learner meets has a page of its own, engine and app rules together:
 `../docs/review.md` (what a prompt shows, the turn, the card on screen),
 `../docs/scheduling.md` (the evidence behind FSRS-6 and the retry ladder),
-`../docs/listening.md` (the playlist),
-`../docs/grading.md` (how a typed answer becomes a rating),
+`../docs/listening.md` (listening on the phone),
 `../docs/audio.md` (when and how a word is spoken),
 `../docs/watch-and-widgets.md` (the wrist and the tiles);
 and the machinery behind them:
@@ -72,7 +71,7 @@ the rules the declarations cannot state are here.
 - **Join rule**: emit iff both TARGET and source realize the concept.
 - **Merges**: a prompt more than one concept shows stands for all of them, from either side --
   sw `ndege` is Vogel AND Flugzeug, de `gehen` is kwenda AND kutembea --
-  so every concept it stands for answers it (`../docs/grading.md`).
+  so every concept it stands for answers it (`TurnGrading.grade`).
   Keyed on what the learner SEES, so citation conventions
   (de noun capitals, en `"to "`, sw `ku-`) keep noun/verb homographs apart.
 - **Grammar display is target-side only**:
@@ -119,7 +118,7 @@ all feeding the one schedule ("every answer event is an FSRS review" holds).
   **Upfront** iff role == Produce and the word has not landed (section 5),
   **OnReveal** everywhere else --
   **the first exposure included** (ruling 2026-08-07).
-  Why each branch falls where it does is `../docs/review.md`.
+  Why each branch falls where it does is `emojiCue`'s KDoc.
 - Composition is **role-agnostic** -- plans carry card ids;
   the role of each entry is resolved at render from the card's log count.
 - Scheduling keys are source-agnostic -> **switching source preserves every schedule**.
@@ -193,7 +192,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   and **the learner's TEXT is never in the state** --
   the platform owns the field and hands text in through intents.
   Every rule about what that text is worth is the engine's.
-  The beats, the write-out, the recall span and the asked-by-ear rules are `../docs/review.md`.
+  The beats, the write-out and the recall span are the KDoc on `TurnMachine` and `CopyStep`.
 
 The engine also owns budgets and the growth-reserve formula, the silent answer drop,
 the extra round, endless, the urgency order (`Urgency`), statistics, streak forgiveness,
@@ -309,7 +308,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   target word, meaning in the source language, then the target again.
   Hearing a word does not introduce it --
   `ListeningRun` holds no `BoxState` at all.
-  The pool, the ladder, the deal, the beats and the bedtime fade are `../docs/listening.md`.
+  The pool, the ladder, the deal, the beats and the bedtime fade are the KDoc in `net.spross.kern.listen`.
 - **Reminders are opt-in and minted here** (`net.spross.kern.reminder.Reminders`) --
   at the learner's set times or the times they habitually start practicing, several a day where they practice several times;
   a reminder already answered is dropped, and ignored ones thin out and then stop.
@@ -319,7 +318,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   and `CatalogAnswerGrader` withdraws that credit wherever the typed form
   is really another concept's word.
   A drill grades with the same budget and refuses a slip that names another number.
-  The pipeline, the budgets and the sweeps are `../docs/grading.md`.
+  The pipeline and the budgets are `AnswerNormalizer`'s, the value check `DrillGrading.otherNumber`'s.
 - **`Match.producedRating()` is the one place a produce match becomes a rating** --
   both apps call it rather than re-deciding the mapping.
 - **Own words** (`OwnWord`, `OwnWords`, `BoxEngine.addOwnWord/updateOwnWord/removeOwnWord`) --
@@ -361,7 +360,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Suspended if either was, the queue slot moves across,
   and a merged suggestion queues the catalog word in its place.
   The fuzziness is `FormLikeness`, shared with the arrival matcher and deliberately NOT with
-  grading: they share the distance and not the budget (`../docs/grading.md`).
+  grading: they share the distance and not the budget (`TypoBudget`).
   `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:
   every suggestion, every remark and every filed report go together.
   A word written in both languages is never cleared -- it is a card with progress on it.

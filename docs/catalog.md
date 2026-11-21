@@ -33,7 +33,7 @@ Neighbors: the engine contract `../kern/README.md`, the file format `../catalog/
 - **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, teaches ≠ text, no duplicate `teaches`/`accepts` entries, no `" / "` in text, components resolve same-area, concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field —
-  every concept a shared prompt stands for answers it, `grading.md`):
+  every concept a shared prompt stands for answers it, `TurnGrading.grade`):
   - `noConceptPairCollidesInTwoLanguages` —
     the same pair colliding in two languages means one meaning authored twice;
     unify (the `variantOf` ruling).
@@ -79,7 +79,7 @@ Neighbors: the engine contract `../kern/README.md`, the file format `../catalog/
   Read through the **RAW** source, not the fingerprinting wrapper —
   a calendar joins no card, so editing one must not restamp a running box (the atlas' exemption, for its reason).
   `Catalog.dateDrillContent(source, target)` joins a pair and is null where either side has no file or the TARGET has no trainer pack —
-  the day of the month is the pack's to read (`date-readings.md`),
+  the day of the month is the pack's to read (`TrainerLanguagePack.dateDay`),
   so a pack-less calendar may prompt and never answer.
   Parse-shape rules (unknown keys, wrong list lengths, a pattern marker its kind does not take, `dateForm` echoing its `text`) hard-fail the load;
   **`CatalogDatesLintTest`**

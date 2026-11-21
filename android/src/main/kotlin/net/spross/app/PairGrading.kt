@@ -15,7 +15,7 @@ class PairGrading(val words: AnswerNormalizer, val meanings: AnswerNormalizer) {
 
     /**
      * Produce grading with the whole join in view: a form the catalog owns
-     * elsewhere is that word, never a typo of this card's answer (`docs/grading.md`).
+     * elsewhere is that word, never a typo of this card's answer ([net.spross.kern.session.CatalogAnswerGrader]).
      * One pass over every accepted form the join carries — thousands of normalized
      * strings — so it is built on the first turn that asks and kept until [retire].
      * A card that arrives after the box moved is still graded against the box standing
