@@ -71,7 +71,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         self.onFinish = onFinish
         let normalizer = Self.normalizer(model: model, content: content, reverse: reverse)
         // The page says where the run opens — the lowest Sprosse not yet answered
-        // out, or the one tapped (docs/drills.md); kern clamps it.
+        // out, or the one tapped; kern clamps it.
         #if DEBUG
         // UI-test hook: `-uitest-<drill>-level N` overrides it, which is how the
         // outer Sprossen are reached deterministically.

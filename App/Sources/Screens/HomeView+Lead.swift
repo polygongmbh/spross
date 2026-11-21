@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// The day's card when kern leads with a way in other than the round
-/// (`DayLead`, `docs/drills.md` § The suggestion):
+/// (`DayLead`):
 /// the day's tally on top, the drill, listening or the conversation as the first action,
 /// and the round one button below.
 extension HomeView {

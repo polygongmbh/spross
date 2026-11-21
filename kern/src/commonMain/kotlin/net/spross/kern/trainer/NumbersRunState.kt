@@ -135,7 +135,11 @@ data class NumbersRunState(
             maxOf(0, best - maxOf(1, standingSprossen[exercise] ?: 0))
         }
 
-    /** A challenge ends on a clock and is scored ([TimedRun]); every other run is endless. */
+    /**
+     * A challenge ends on a clock and is scored ([TimedRun]); every other run is endless.
+     * Nothing in a timed run gives a breather against the clock:
+     * no reveal, gloss, first-sight hint, read-out answer or look-up, and Skip stands where the reveal would.
+     */
     val timed: Boolean get() = challenge != null
 
     /** A timed run ends on its clock, so it offers no way out of its own beyond the ✕. */

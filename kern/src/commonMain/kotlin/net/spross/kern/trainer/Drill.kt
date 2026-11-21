@@ -13,6 +13,11 @@ package net.spross.kern.trainer
  */
 enum class Drill(val emoji: String) {
     Letters("🔤"),
+
+    /**
+     * Numbers earn a drill of their own: number facts learned in one language are retrieved
+     * fastest in that language and do not carry over for free (Spelke & Tsivkin 2001, *Cognition* 78(1)).
+     */
     Numbers(numbersReadingEmoji(NumbersReading.Cardinal)),
     Dates("📅"),
     Countries("🌍"),

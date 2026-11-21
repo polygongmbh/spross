@@ -29,7 +29,6 @@ The engine's own semantics are below. Each element the learner meets has a page 
 `../docs/review.md` (what a prompt shows, the turn, the card on screen),
 `../docs/scheduling.md` (the evidence behind FSRS-6 and the retry ladder),
 `../docs/listening.md` (the playlist),
-`../docs/drills-runs.md` (what a drill is made of and how a run plays it),
 `../docs/grading.md` (how a typed answer becomes a rating),
 `../docs/audio.md` (when and how a word is spoken),
 `../docs/watch-and-widgets.md` (the wrist and the tiles);
@@ -307,8 +306,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **A drill run is a pure machine too** (`net.spross.kern.trainer`),
   and **one injected `Random` per run** feeds every draw,
   so a seeded run is reproducible end to end.
-  Drills book no reviews and their storage keys are byte-identical across the two stores.
-  The ladder, the modes and the availability gates are `../docs/drills-runs.md`.
+  Drills book no reviews and their storage keys are byte-identical across the two stores (`DrillBookings`).
 - **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`) --
   target word, meaning in the source language, then the target again.
   Hearing a word does not introduce it --

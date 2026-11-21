@@ -9,6 +9,10 @@ import net.spross.kern.model.Language
  * The stores keep the higher of a figure and what stands ([sprossen], [answers]) and OR a mask in ([cleared]);
  * [records] holds only a record the run beat.
  * A run never answered stamps no [lastRun] and books no [dayAnswers], though it may still have stood on a Sprosse.
+ *
+ * No drill books an FSRS review: a word typed back from a hearing, spelled out of its own letters
+ * or tapped back into order is easier than the retrieval the box grades,
+ * and feeding it to FSRS would inflate the stability the scheduler spaces on.
  */
 data class DrillBookings(
     /** Progress key ([NumbersMode.PROGRESS_PREFIX] + it) → the Sprosse reached. */

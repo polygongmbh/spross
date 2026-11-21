@@ -1,6 +1,6 @@
 # Opposite pairs
 The opposites drill's pairs — which two concepts it asks for each other, and what earns a pair.
-Neighbors: the concepts they name `../areas/README.md`, what the drill does with them `../../docs/drills-words.md`.
+Neighbors: the concepts they name `../areas/README.md`.
 
 Drill-only — a pair never joins a card, so editing one never restamps a running box.
 No `pairs.json`, no drill.

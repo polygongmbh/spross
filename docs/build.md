@@ -15,6 +15,8 @@ Neighbors: the engine contract `../kern/README.md`, what may run when `performan
   so the jvm and Android gates stay green and only an app build reports it.
 - SKIE hands Swift every top-level function as a global, yet its `<File>Kt` facade stays callable,
   so a Swift call spelled through the facade (`CardKt.kindEmoji`) pins that function to its file.
+- A generic CLASS crosses to Swift typed, a generic FUNCTION arrives opaque,
+  so a reducer shared over a type parameter is a class with an object per use (`PairDrillRun`).
 - androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades as Swift.
 - The browser sees only the `@JsExport` facade `net.spross.kern.web`:
   JS-clean types only, `Long` never crosses,

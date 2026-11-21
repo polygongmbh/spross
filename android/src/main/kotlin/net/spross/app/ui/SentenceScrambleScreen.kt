@@ -24,8 +24,7 @@ import net.spross.kern.trainer.SentenceScrambleRunState
 /**
  * The sentence scramble: a phrase handed over as its own words, shuffled, and put
  * back into order by tapping. It is the one drill whose answer is an ARRANGEMENT rather than
- * something spelled — the words are given and only their order is withheld
- * (`docs/drills-words.md`).
+ * something spelled — the words are given and only their order is withheld.
  *
  * There is no check button: committing the LAST word IS the answer, the way a finished
  * spelling is on the typed drills. Until then a word can be taken back, so a slip of the

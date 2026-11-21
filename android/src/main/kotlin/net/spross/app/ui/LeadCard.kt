@@ -25,7 +25,7 @@ import net.spross.kern.trainer.DayLead
 
 /**
  * The day's card once the day has answered more than it still owes and kern leads with a way
- * in other than the round ([DayLead], `docs/drills.md` § The suggestion): what the day has done
+ * in other than the round ([DayLead]): what the day has done
  * on top, the drill, listening or the conversation as the card's body and first action, and
  * the round still one button away.
  */

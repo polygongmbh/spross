@@ -23,8 +23,12 @@ data class ScrambledWord(
  * How a word is mixed for the learner to write back — a pure function of the spelling and the
  * run's own [Random].
  *
- * The opening letter always stands: it is the cue a word is found by, and without it the
- * question turns from recalling a word into solving a puzzle. The ending is mixed with the
+ * The opening letter always stands: it is the cue a word is found by
+ * (Rayner, White, Johnson & Liversedge 2006, *Psychological Science* 17(3)), and without it the
+ * question turns from recalling a word into solving a puzzle.
+ * A harder anagram buys no more memory than an easy one (Zacks, Hasher, Sanft & Rose 1983);
+ * solving one at all is what helps, since a generated word outlasts a read one
+ * (Bertsch et al. 2007, *Memory & Cognition* 35(2)). The ending is mixed with the
  * rest — held too, it would leave a four-letter word two letters to move, one possible mix
  * and therefore the same question every time.
  *

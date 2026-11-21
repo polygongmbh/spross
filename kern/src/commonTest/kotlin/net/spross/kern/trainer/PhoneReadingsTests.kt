@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * How each language writes and reads a phone number (`docs/phone-readings.md`).
+ * How each language writes and reads a phone number.
  * The expectations are the sources' readings, never read back off the generator.
  */
 class PhoneReadingsTests {

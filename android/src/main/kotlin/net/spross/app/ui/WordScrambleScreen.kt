@@ -17,7 +17,7 @@ import net.spross.kern.trainer.WordScrambleTask
  * The word scramble: a word the box already holds, with its letters thrown out of order,
  * written back out. The answer is TYPED — handing the same letters back as tiles would leave
  * nothing to retrieve but their order, where writing the word out IS the spelling — so it
- * wears the typed card every other trainer drill wears (`docs/drills-words.md`).
+ * wears the typed card every other trainer drill wears.
  *
  * Stateless like the letter drill: no review is ever booked, and the box is READ for the
  * words it has settled and never written. The RUN is kern's, reached through

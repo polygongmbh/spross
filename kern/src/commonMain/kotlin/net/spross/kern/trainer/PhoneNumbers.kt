@@ -4,8 +4,7 @@ import kotlin.random.Random
 
 /**
  * How one language writes and reads a phone number — a mobile number of the country whose
- * speakers the pack teaches, grouped the way that country writes it
- * (`docs/phone-readings.md`).
+ * speakers the pack teaches, grouped the way that country writes it — the grouping is part of what is taught.
  *
  * [prefixes] are the leading digits a plausible number opens with (a network or area code);
  * the rest is drawn at random. [read] takes the written groups and returns every accepted
@@ -63,9 +62,10 @@ private fun numbered(group: String, zero: String, cardinal: (Long) -> List<Strin
 internal object PhonePlans {
 
     /**
-     * DIN 5008 writes a mobile as network code plus one unbroken subscriber block.
-     * Read digit by digit, with the telephone's `zwo` for every `zwei` beside it,
-     * or with the subscriber block in pairs.
+     * DIN 5008 writes a mobile as network code plus one unbroken subscriber block
+     * ([workingoffice.de](https://www.workingoffice.de/korrespondenz/din-5008/telefonnummer-richtig-schreiben/)),
+     * so the grouping never decides pairs: digit by digit is canonical, since a block can be any length a network gives out.
+     * The telephone's `zwo`, made to keep two apart from `drei`, grades for every `zwei`, and so does the subscriber block in pairs.
      */
     val German = PhonePlan(
         groups = listOf(4, 8),
@@ -81,7 +81,10 @@ internal object PhonePlans {
         (readings + readings.map { it.replace(Regex("\\bzwei\\b"), "zwo") }).distinct()
     }
 
-    /** US numbers, area code · exchange · line, every digit said on its own. */
+    /**
+     * US numbers, area code · exchange · line, every digit said on its own
+     * ([NANP](https://en.wikipedia.org/wiki/North_American_Numbering_Plan)).
+     */
     val English = PhonePlan(
         groups = listOf(3, 3, 4),
         prefixes = listOf("206", "212", "305", "312", "415", "503", "512", "617", "702", "808", "919")
@@ -91,18 +94,29 @@ internal object PhonePlans {
         styled(groups.map { digitwise(it, digit) })
     }
 
-    /** Written and read in pairs, `06 12 34 56 78`, each pair the number it spells. */
+    /**
+     * Written and read in pairs, `06 12 34 56 78`, each pair the number it spells
+     * ([fr.wikipedia](https://fr.wikipedia.org/wiki/Plan_de_num%C3%A9rotation_t%C3%A9l%C3%A9phonique_en_France)).
+     */
     val French = PhonePlan(groups = List(5) { 2 }, prefixes = listOf("06", "07")) { groups ->
         styled(groups.map { numbered(it, "zéro", FrenchNumbers::variants) })
     }
 
-    /** Spain's mobiles in threes, each group read as its number, or every digit on its own. */
+    /**
+     * Spain's mobiles in threes, each group read as its number, or every digit on its own;
+     * the older `612 34 56 78` layout is less common for mobiles
+     * ([saberespractico.com](https://www.saberespractico.com/ortografia/como-escribir-telefonos/)).
+     */
     val Spanish = PhonePlan(groups = listOf(3, 3, 3), prefixes = listOf("6", "7")) { groups ->
         styled(groups.map { numbered(it, "cero") { n -> listOf(SpanishNumbers.cardinal(n)) } }) +
             styled(groups.map { g -> digitwise(g) { d -> listOf(SpanishNumbers.cardinal(d.toLong())) } })
     }
 
-    /** Italian mobiles open on a 3, and are read one digit at a time. */
+    /**
+     * Italian mobiles open on a 3 and are read one digit at a time,
+     * since their length varies too much to pair reliably
+     * ([Wikipedia](https://en.wikipedia.org/wiki/Telephone_numbers_in_Italy)).
+     */
     val Italian = PhonePlan(
         groups = listOf(3, 3, 4),
         prefixes = listOf("320", "328", "329", "333", "334", "335", "338", "339", "340", "342",
@@ -111,7 +125,10 @@ internal object PhonePlans {
         styled(groups.map { g -> digitwise(g) { d -> listOf(ItalianNumbers.cardinal(d.toLong())) } })
     }
 
-    /** `067 123 45 67`, each group read as its number, or every digit on its own. */
+    /**
+     * `067 123 45 67`, each group read as its number, or every digit on its own
+     * ([Wikipedia](https://en.wikipedia.org/wiki/Telephone_numbers_in_Ukraine)).
+     */
     val Ukrainian = PhonePlan(
         groups = listOf(3, 3, 2, 2),
         prefixes = listOf("050", "063", "066", "067", "068", "073", "093", "095", "096", "097", "098", "099"),
@@ -120,7 +137,10 @@ internal object PhonePlans {
             styled(groups.map { g -> digitwise(g) { d -> listOf(UkrainianNumbers.cardinal(d.toLong())) } })
     }
 
-    /** Tanzanian mobiles, `0712 345 678`, read one digit at a time. */
+    /**
+     * Tanzanian mobiles, `0712 345 678`, read one digit at a time
+     * ([Wikipedia](https://en.wikipedia.org/wiki/Telephone_numbers_in_Tanzania)).
+     */
     val Swahili = PhonePlan(
         groups = listOf(4, 3, 3),
         prefixes = listOf("062", "065", "067", "068", "071", "074", "075", "076", "077", "078"),

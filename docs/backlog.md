@@ -35,7 +35,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   `project.yml:55` folder reference, `android/build.gradle.kts:131` asset sync with mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and per-language delivery (on-demand resources / Play asset packs) is the fix, measured per platform first.
 - Compound/morpheme-boundary training for a compounding language (marking the component seams inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt drill needing curated component-boundary data,
   and syllable data would not deliver it since a syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries "Feier") —
-  considered for word scramble (`drills-words.md`) and left out.
+  considered for word scramble (`WordScrambleMasking`) and left out.
 - The iOS session summary burst has geometry and timing Android does not draw —
   port it through kern `design/`, or keep it an iOS flourish?
   (`App/Sources/Design/SessionSummaryView.swift`)

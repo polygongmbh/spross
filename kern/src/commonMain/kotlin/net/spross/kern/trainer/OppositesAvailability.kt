@@ -13,7 +13,9 @@ import net.spross.kern.model.nfcNormalized
  * holds too, keyed by how the word is WRITTEN in the language being learned.
  *
  * The bar is the arrived one ([BoxEngine.arrivedCardIds]), the letter drill's: naming the
- * opposite is a second retrieval of a word already met, not a first sight of it.
+ * opposite is a second retrieval of a word already met, not a first sight of it,
+ * and antonyms are learned well as pairs and poorly where either meaning is still unknown
+ * (Yang 2021, *Chinese as a Second Language* 56(1)).
  *
  * Two concepts written alike are one prompt — sw "kulia" is the right side AND crying,
  * so it is asked once and both "kushoto" and "kucheka" answer it. Every

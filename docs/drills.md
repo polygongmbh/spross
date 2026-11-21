@@ -1,6 +1,6 @@
 # Drills -- the hub, the Sprosse and the run
-What a Sprosse is, what earns a chip on the hub, which drill Home suggests, and the shape every overview page and every run wears.
-Neighbors: each drill `drills-tables.md` and `drills-words.md`, how a run is made and played `drills-runs.md`, the card a drill wears `review.md`.
+What a Sprosse is, what earns a chip on the hub, and the shape every overview page and every run wears; each drill's own rules and which drill Home suggests are the KDoc on its kern types (`Drill`, `DrillSuggestion`).
+Neighbors: the card a drill wears `review.md`, what crosses to Swift `build.md`.
 
 ## The words
 
@@ -34,13 +34,8 @@ Nothing wears a prefix one scope wider than what it serves.
   counting content, an alphabet file, a joined atlas or calendars,
   a settled word long enough to scramble, a phrase of three words
   or enough opposite pairs whose both words have arrived
-  (`drills-runs.md`) --
+  (each drill's `*Availability`) --
   and the hub offers only languages with authored content.
-- **The roster is kern's `Drill`, and its order is the chip order.**
-  The seven are enumerated there and nowhere else:
-  what each entry gates on, the chip it earns, the glyph it wears and the key that names it
-  all key off that one list, which also carries each glyph and how the chips break into lines.
-  A title, a route and the drawing stay the platform's.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
   it is the brand word,
   so English chrome says "Sprosse 5".
@@ -59,7 +54,6 @@ Nothing wears a prefix one scope wider than what it serves.
   A pool of rows -- the atlas, the letters, the scrambles, the calendar's names --
   should show a climb more than a couple of its rows before it moves on;
   only the numbers drill is fully generated, so it has no pool to cover.
-  The counts are kern's (`WINS_TO_ADVANCE`, `Numbers.winsToAdvance`).
 - Clock, sentences and number forms are exercises a run selects, not chips:
   a chip apiece would say they are alternatives to counting rather than what counting earns.
 - **A drill card is a review card** -- same face, same reveal,
@@ -73,41 +67,7 @@ Nothing wears a prefix one scope wider than what it serves.
   the word a form adds the first time a mark does ("Neu: menos", "Neu: Komma"),
   and on the calendar the word a date's pattern adds ("Neu: tarehe", then "Neu: mwaka wa").
   One slot, the form winning where both could fire.
-  The word is DERIVED and never authored, on one rule for both
-  (`formMarker`, `DateDrill.patternWord`).
-  A reversed task gets no hint at all:
-  the prompt is the reading, which says it in words already.
-
-## The suggestion
-
-- **Home names ONE drill, so seven chips are never the question.**
-  It is named once the day has answered more cards than are still due,
-  none left being the plain case of that (`DrillSuggestion.shown`).
-- **A named drill leads the day's card in its turn** (`DayLead`):
-  what the day has done on top, the drill and its reason as the card's body and first action,
-  and one more round as the button beneath it --
-  the rest of the due reviews while any are left, an extra round once none are.
-- **Listening and the conversation take that slot in turn with the drill**,
-  one per stretch of the day the greeting turns with, among those Home offers at all,
-  so they are advertised as often as the drills are,
-  each under a one-line reason of its own, as a drill is.
-  Each keeps its own card further down meanwhile, as the drills keep their chips;
-  with nothing to name, the round card or the done card holds the slot as before.
-- **The candidates are the chips the hub offers, less every ladder that is mastered**,
-  however long ago it last ran:
-  a ladder with nothing left to clear has nothing to suggest.
-  A ladder is read the way its run opens, forward (`DrillLadders`).
-- **Three terms decide, added together** (`DrillSuggestion`):
-  local days since the drill last ran, full after a week, a drill never run counting as longest ago;
-  what the box would get out of it --
-  letters while the learned script is new and the box young, numbers while the box is young,
-  the scrambles and the opposites once enough words have settled;
-  and how much of its ladder is left.
-  The card says why in the words of whichever term carried it.
-- **It turns over with the greeting and never between renders**:
-  a small seeded nudge per drill, keyed on the greeting's stretch of the day,
-  settles close calls, and a closed run moves its drill's last-run stamp
-  (`drills-runs.md` storage contract).
+  The word is DERIVED and never authored (`formMarker`, `DateDrill.patternWord`).
 
 ## The overview page
 
@@ -136,83 +96,29 @@ Nothing wears a prefix one scope wider than what it serves.
   the rows carry neither padlock nor price and say what a Sprosse ASKS.
   What the pair cannot offer whatever the learner does -- no forms reading,
   no realized frames, a calendar with no year pattern -- has no row.
-- **An unlock is marked once.**
-  The first time a page shows open a row it last showed padlocked,
-  that row is marked and a screen reader hears what opened (`DrillUnlockMark`).
-  A row that never wore a padlock is never marked, and neither is a first visit.
 - **The modifiers are how a run is PLAYED, and only FAST has a price.**
   Reverse flips which side asks --
   the field's placeholder says so and the card never does --
   and where no ladder stands behind it the switch is offered from the first run.
-  FAST falls a Sprosse on one clean win instead of the usual count;
-  on the atlas and calendar it is earned by having EVER stood on the top Sprosse,
-  which the locked switch names as its price (`fastPrice`).
+  FAST falls a Sprosse on one clean win instead of the usual count,
+  and where it is earned the locked switch names its price (`fastPrice`).
 
 ## A run, and what it leaves behind
 
-- **The atlas and the calendar wear their record on the Sprosse circles, and open where it
-  stands.**
-  A circle (`SprosseMark`) is an outline where no run has stood on the Sprosse,
-  filled ocean where one has reached it,
-  filled forest where one run answered EVERY question of it before its first miss or almost --
-  a run that has slipped once clears nothing more, in every drill that files Sprossen
-  (`DrillSprossen`, `drills-runs.md`) --
-  and only a Sprosse that enumerates can earn forest,
-  so assembled date Sprossen never turn forest.
-  The start button opens on the lowest Sprosse no run has answered out
-  (`NumbersMode.entrySprosse`),
-  and a row the learner has been on is a control that opens a run on its own Sprosse
-  (`NumbersMode.openable`).
-  What a run answered out is filed per DIRECTION
-  (`drills-runs.md` storage contract),
-  and the ladder the reverse switch shows reads its own direction's mask.
-- **The numbers page prints the Sprosse each exercise has been climbed to**
-  under the exercise's own name,
-  because there four ladders are climbed separately,
-  their Sprossen draw values rather than listing them (none can be answered out),
-  and Zahlen counts its Sprosse in digits.
-  The number is never trimmed to the rows on the page:
-  a Sprosse goes on counting past the last named one (`DrillRamp.step`).
-- **The two scrambles and the opposites have no page to wear a ladder on, and fast-climb one anyway.**
-  A run opens at Sprosse 1 and passes each Sprosse an earlier run cleared on one clean answer
-  until its own first slip (`drills-runs.md` storage contract), filed per learned language.
-  Nothing overrides where it opens: there is no row to tap and no direction to turn.
-  The letter drill files its tile and typed formats the same way (`drills-words.md`).
-- **An endless run offers its exit where it is wanted, and pauses at a natural stop.**
-  An exit button appears under the button that goes on, and only on the SECOND miss in a row;
-  a clean answer takes the offer away again.
-  After a booked answer the run pauses at the first of three moments (`DrillPacing`):
-  a stretch of answers since it opened or last went on;
-  something new after a shorter stretch --
-  a Sprosse cleared for the first time
-  (climbed off in the scrambles, the opposites and the letters,
-  answered out in the run's own direction on the atlas and the calendar,
-  climbed past where the exercise stood in numbers),
-  or the standing answer-streak record beaten (numbers, atlas, calendar);
-  or most of the last few answers missed, where the pause says a stop is fine and why.
-  The pause stands in place of the question on the round summary's own screen --
-  its glyph where the summary's tree or popper stands, the run's figures as its tally --
-  and wears the round's exit pair:
-  one closes the run as the X does, the other goes on with the SAME run --
-  prompts asked, ladder, answer streak -- and starts the next stretch.
-  A timed run ends on its clock and never pauses;
-  each clean answer adds a second to that clock per non-zero digit of the number it asked.
+- **A run that has slipped once clears nothing more**, in every drill that files Sprossen;
+  what a run files and where the next one opens are kern's (`SprosseMark`, `DrillBookings`, `NumbersMode.entrySprosse`).
+- **An endless run offers its exit where it is wanted, and pauses at a natural stop** (`DrillRunProgress.offersFinish`, `DrillPacing`).
+  The pause stands in place of the question on the round summary's own screen
+  and wears the round's exit pair: one closes the run as the X does, the other goes on with the SAME run.
   What ends a run unasked is running OUT of questions:
-  a run asks each prompt once (`drills-runs.md`),
-  so a ladder answered out hands its figures over.
+  a run asks each prompt once, so a ladder answered out hands its figures over.
 - **A run is a FULL screen however it was started, and its X is the one way out.**
   The four overviews open theirs in a cover;
   the scrambles and the opposites the hub opens directly wear the same one.
-- **A closed run has no screen of its own; a paused one shows its figures in place.**
-  The endless drills hand their figures --
-  answered, best answer streak, whether the record fell --
-  to the page that started them;
-  the page wears them as one tile above the picks and scrolls up to meet it.
-  The scrambles and the opposites, opened straight from the hub, leave their tile on the hub card,
-  and only after a run long enough to report (`DrillRunSummary.worthReporting`);
-  it reports the run just closed, so the app going to the background clears it.
-  The pause counts what was answered and names only what the stretch reached:
-  the climb from the Sprosse it opened on, and a record beaten.
+- **A closed run has no screen of its own** (`DrillRunSummary`):
+  its figures are one tile on the page that started it,
+  or on the hub card for a drill opened straight from the hub;
+  the tile reports the run just closed, so the app going to the background clears it.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --
   the longest clean answer streak and the most answers one run took.
   The letter drill, the two scrambles and the opposites keep none,

@@ -29,8 +29,8 @@ import net.spross.kern.trainer.SprosseMark
  * drill is started from.
  *
  * The same shape as the numbers page — the drill's formats and start first, the alphabet
- * table under them. What the format rows say, and why the page still stands where this
- * device can sound nothing: `docs/drills-words.md`.
+ * table under them. The table stands even where this device can sound nothing:
+ * audio is the drill's precondition, not the table's.
  */
 @Composable
 fun LettersOverviewScreen(model: AppModel) {

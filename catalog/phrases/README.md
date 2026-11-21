@@ -56,8 +56,7 @@ met no numbers yet. So lint requires English of every language the trainer can g
 
 - `slot` is `numbers`, `years`, `clock`, `fraction` or `phone` — which generator fills the frame.
   A `phone` slot draws a mobile number of the ANSWER language's country
-  and shows it in that country's grouping on both sides (`06 12 34 56 78` for a French answer);
-  how each language reads one is `../../docs/phone-readings.md`.
+  and shows it in that country's grouping on both sides (`06 12 34 56 78` for a French answer).
   A `fraction` slot draws a reduced `n/d` the answer language can read as a NOUN
   (`ein Viertel Kilo Mehl`, `un tercio de kilo de harina`);
   halves are never drawn, because German and Spanish read 1/2 adjectivally

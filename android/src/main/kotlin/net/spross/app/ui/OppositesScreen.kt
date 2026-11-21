@@ -12,8 +12,8 @@ import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
 
 /**
- * The opposites drill: a word the box holds, and its opposite typed back in the same language
- * (`docs/drills-words.md`). It wears the word scramble's typed card; the reveal names EVERY
+ * The opposites drill: a word the box holds, and its opposite typed back in the same language.
+ * It wears the word scramble's typed card; the reveal names EVERY
  * opposite, since a word the language writes alike for two meanings has one for each.
  */
 @Composable

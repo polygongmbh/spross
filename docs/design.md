@@ -190,7 +190,7 @@ What licenses a second component is a parameter attempted and found not to carry
   - Once the day has answered more than is still due, the day's card leads with ONE drill and why,
     listening, or the conversation, taking turns,
     opening what that card opens, the round a smaller button under it
-    (`drills.md` § The suggestion).
+    (`DayLead`).
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.
   - The round card names what the round is led by (due work or new-word offer),

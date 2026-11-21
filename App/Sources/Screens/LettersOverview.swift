@@ -6,8 +6,8 @@ import SprossKern
 ///
 /// Two sections, start first: the formats the drill will walk through and the
 /// button that opens it, then the alphabet table (one card per row of
-/// `catalog/alphabet/<lang>.json`). What the format rows say, and why the page
-/// still stands where this device can sound nothing: `docs/drills-words.md`.
+/// `catalog/alphabet/<lang>.json`). The table stands even where this device can
+/// sound nothing: audio is the drill's precondition, not the table's.
 ///
 /// The alphabet rows live in LettersOverview+Alphabet.swift and the format
 /// ladder in LettersOverview+Practice.swift; split purely for file size.

@@ -16,7 +16,7 @@ import net.spross.kern.trainer.PairDrill
  * calendar's own words, its own ladder and the table under it.
  *
  * Unlike the atlas the ladder here is not one fixed list — its height is the pair's own
- * and the direction's (`docs/drills-tables.md`) — so the rows are drawn from kern's own
+ * and the direction's — so the rows are drawn from kern's own
  * [DateDrill.kinds] per Sprosse rather than from a list of fixed length.
  */
 @Composable
