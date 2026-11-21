@@ -134,7 +134,7 @@ fun BoxCardRow(
             modifier = Modifier.clearAndSetSemantics {},
         )
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-            // Exposure surfaces render the TARGET side first (`docs/reports.md`).
+            // Exposure surfaces render the TARGET side first (`Card.pairLine`).
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),

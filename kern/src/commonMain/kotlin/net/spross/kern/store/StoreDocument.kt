@@ -25,16 +25,21 @@ import net.spross.kern.model.ReviewLogEntry
 internal const val STORE_SCHEMA_VERSION: Int = 2
 
 /**
- * One language's stored box (`box-<target>.json`, `docs/snapshots.md`), and the
+ * One language's stored box (`box-<target>.json` in the App Group), and the
  * envelope an export wraps every language in.
  *
  * A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else: memory,
  * phase and step are replayed from that log on the way in, so the file carries only
- * what a replay cannot give back. Timestamps are epoch seconds, which no timezone touches.
+ * what a replay cannot give back. `due` is stored for that reason:
+ * a retention or ladder change then moves future answers rather than reshuffling every pending date.
+ * Timestamps are epoch seconds, which no timezone touches.
  */
 @Serializable
 internal data class StoredBoxDto(
-    /** The known language this box was last studied under; absent in a file written before it. */
+    /**
+     * The known language this box was last studied under, so a document that travels re-opens the pair
+     * its progress was made in; absent in a file written before it, where the device's own setting stands.
+     */
     val source: String? = null,
     /** cardId → `[due, [[date, rating], …]]`, all seconds. */
     val cards: Map<String, JsonArray> = emptyMap(),

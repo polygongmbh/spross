@@ -72,7 +72,7 @@ fun closingNote(realization: Realization, alsoMeans: List<String>): ClosingNote?
 internal const val PAIR_JOINER = " → "
 
 /**
- * The card as one line — target side first, as every exposure surface reads it
- * (`docs/reports.md`): a reported card's row, a catalog match's word.
+ * The card as one line — target side first, as every exposure surface reads it:
+ * a reported card's row, a catalog match's word.
  */
 val Card.pairLine: String get() = target.text + PAIR_JOINER + source.text

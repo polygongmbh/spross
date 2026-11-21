@@ -224,7 +224,7 @@ Realization fields — only `text` is required:
   Homonyms are handled by the area rule above, not inside the string.
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the noun's class prefix):
   it is the citation convention, grading ignores the dash,
-  and the engine takes it off again wherever the dash alone would identify the answer among plain words (`../docs/snapshots.md`).
+  and the engine takes it off again wherever the dash alone would identify the answer among plain words (`MultipleChoice.optionForm`).
   The agreement forms themselves go in `teaches`,
   so recognition rotates through them and a multiple-choice tile never shows the bare stem.
 - `teaches` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):

@@ -33,7 +33,6 @@ The engine's own semantics are below. Each element the learner meets has a page 
 `../docs/audio.md` (when and how a word is spoken),
 `../docs/watch-and-widgets.md` (the wrist and the tiles);
 and the machinery behind them:
-`../docs/reports.md` (the read models a surface draws the box from),
 `../docs/snapshots.md` (the box document and the watch/widget wire),
 `../docs/catalog.md` (what the engine needs of the catalog),
 `../docs/build.md` (what crosses to Swift, Android and the web).
@@ -137,7 +136,7 @@ and the rest are private constants beside the rule each serves
 (`SessionComposer`, `TodayReport`, `net.spross.kern.listen`).
 `BoxConfig.product()` hands the shipped calibration out as a value,
 because Kotlin default arguments do not cross the ObjC boundary
-(`../docs/snapshots.md` re-applies it to every loaded box).
+(`StoredBox.join` re-applies it to every loaded box).
 
 ## 5. FSRS-6
 
@@ -275,7 +274,6 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **No surface derives a card's standing from a raw phase** --
   the engine reports the stage (`GrowthStage`),
   and every listing carries it whole (`CardRowState.Standing.stage`, an `ActiveStage`).
-  The read models a surface draws the box from are `../docs/reports.md`.
   **The color a stage wears is the same fact, extended to drawing**:
   `CardRowState.Standing.swatch` resolves it once, off `net.spross.kern.design.Palette`,
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
