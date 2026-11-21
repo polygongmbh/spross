@@ -36,17 +36,17 @@ class CueSounds(context: Context) {
         .build()
 
     /**
-     * Clip name → the pool's id for it, loaded as the model opens so the first answer of
-     * a session pays no decode. A name that would not open is simply absent, and the cue
+     * Chime → the pool's id for its clip, loaded as the model opens so the first answer of
+     * a session pays no decode. A clip that would not open is simply absent, and the cue
      * behind it stays silent — a chime is never worth an error surface.
      */
-    private val loaded: Map<String, Int> = buildMap {
+    private val loaded: Map<Chime, Int> = buildMap {
         val assets = context.applicationContext.assets
-        for (name in CHIMES.keys) {
+        for (chime in Chime.entries) {
             try {
                 // why: the pool dups the descriptor during load, exactly as the
                 // framework's own resource overload assumes — closing ours is safe.
-                assets.openFd("sounds/$name.wav").use { put(name, pool.load(it, 1)) }
+                assets.openFd("sounds/${chime.name.lowercase()}.wav").use { put(chime, pool.load(it, 1)) }
             } catch (_: IOException) {
                 continue
             }
@@ -55,19 +55,12 @@ class CueSounds(context: Context) {
 
     /** The verdict kern reached, made audible. */
     fun play(kind: ToneKind) {
-        fire(
-            when (kind) {
-                ToneKind.Correct -> CORRECT
-                ToneKind.Almost -> ALMOST
-                ToneKind.Wrong -> WRONG
-                ToneKind.Reveal -> REVEAL
-            },
-        )
+        fire(kind.chime)
     }
 
     /** The finish, once: the correct interval carried on up to the octave. */
     fun cheer() {
-        fire(CHEER)
+        fire(Chime.Cheer) // layer-ok: the finish screen's own sound, no verdict
     }
 
     /** From `AppModel.onCleared()` — the decoded clips go with the model that opened them. */
@@ -77,29 +70,16 @@ class CueSounds(context: Context) {
 
     // why: a play whose id never finished loading is a no-op in the pool rather than a
     // throw, so an answer inside the first hundred ms of launch is silent, never a crash.
-    private fun fire(name: String) {
-        val id = loaded[name] ?: return
-        val volume = VOLUMES.getValue(name)
+    private fun fire(chime: Chime) {
+        val id = loaded[chime] ?: return
+        // why: the files are full scale; kern's level places each chime against the words.
+        val volume = Playback.linear(chime.levelDb).toFloat()
         pool.play(id, volume, volume, 1, 0, 1f)
     }
 
     private companion object {
-        const val CORRECT = "correct"
-        const val ALMOST = "almost"
-        const val WRONG = "wrong"
-        const val REVEAL = "reveal"
-        const val CHEER = "cheer"
-
         /** A second answer inside the first chime's tail overlaps it rather than cutting it. */
         const val STREAMS = 2
-
-        val CHIMES = mapOf(
-            CORRECT to Chime.Correct, ALMOST to Chime.Almost, WRONG to Chime.Wrong,
-            REVEAL to Chime.Reveal, CHEER to Chime.Cheer,
-        )
-
-        /** The files are full scale; the pool plays each at kern's level for its chime. */
-        val VOLUMES = CHIMES.mapValues { Playback.linear(it.value.levelDb).toFloat() }
 
         /**
          * Media, like the words: see the class note. SONIFICATION rather than speech —

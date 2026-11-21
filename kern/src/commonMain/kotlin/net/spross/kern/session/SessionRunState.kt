@@ -3,6 +3,8 @@ package net.spross.kern.session
 import kotlin.math.max
 import kotlin.math.min
 import net.spross.kern.box.BoxState
+import net.spross.kern.design.Palette
+import net.spross.kern.design.Swatch
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 import net.spross.kern.store.SaveScope
@@ -14,7 +16,17 @@ sealed class SessionStep {
 }
 
 /** What one answer turned out to be: [Right] clean and correct, [Almost] accepted with a caveat, [Wrong] a miss. */
-enum class AnswerOutcome { Right, Almost, Wrong }
+enum class AnswerOutcome {
+    Right, Almost, Wrong;
+
+    /** Its segment's hue in the progress bar: green the clean answer's alone, as on the field ([FieldVerdict]). */
+    val ink: Swatch
+        get() = when (this) {
+            Right -> Palette.success
+            Almost -> Palette.amber
+            Wrong -> Palette.wrong
+        }
+}
 
 /** What the learner (or the app's lifecycle) does to a run. */
 sealed class SessionIntent {
