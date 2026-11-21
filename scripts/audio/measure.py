@@ -273,7 +273,7 @@ def noise(binary, path):
 # MOS: how good a take sounds, as the DNSMOS P.835 overall score (Microsoft's no-reference
 # speech-quality model, MIT, `dnsmos/`): 1 to 5, like a listener's mean opinion score.
 # Of every measure tried against a listener's verdicts (`docs/audio-verdicts.tsv`), this is
-# the one that ranks every voice where the ear did (`docs/2026-09-28-audio-quality-tools.md`);
+# the one that ranks every voice where the ear did (`docs/archive/2026-09-28-audio-quality-tools.md`);
 # single files still stray by a few tenths, so it compares takes and refuses the clearly bad.
 # The model scores 9.01 s windows, so a shorter take is doubled onto itself until it fills
 # one — the reference implementation's own padding, kept so the scores match it.
@@ -331,7 +331,7 @@ def mos(binary, path):
 # PESQ: how undistorted a take sounds, as torchaudio SQUIM's no-reference estimate of the wideband
 # PESQ score (CC BY 4.0, `squim/`): about 1 to 4.6. It hears the distortion DNSMOS misses.
 # The model reads the whole take at once, a take under PESQ_MIN_SECONDS repeated until it fills
-# that, as the study that adopted it did (`docs/2026-10-audio-evaluations.md`).
+# that, as the study that adopted it did (`docs/archive/2026-10-audio-evaluations.md`).
 PESQ_MODEL = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'squim', 'pesq.onnx')
 PESQ_RATE = 16000
 PESQ_MIN_SECONDS = 1

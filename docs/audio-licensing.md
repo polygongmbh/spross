@@ -1,6 +1,6 @@
 # Audio & content licensing
 The ship/legal record for the bundled audio and content (what is in the app, whose it is, what each license asks, where the app answers it); the per-file truth is the manifests.
-Neighbors: schema `../catalog/audio/README.md`, playback `audio.md`, codec `audio-format.md`, the source's license `source-license.md`.
+Neighbors: schema `../catalog/audio/README.md`, playback `audio.md`, the source's license `source-license.md`.
 
 The pack research (how each source was found, what was rejected, the coverage gaps)
 lives in `data/reference/audio/README.md` (external workspace).
@@ -107,8 +107,7 @@ The correction is **not applied to the files**.
 Each entry carries the numbers measured off the shipped bytes --
 `gain` (dB from the analysis target)
 plus `lead` (dead air at the head, ms) --
-and only a player ever applies them
-(iOS through an EQ node, Android through `LoudnessEnhancer` and a seek).
+and only a player ever applies them (`Playback`).
 Consequences:
 
 - The shipped mp3 bytes remain **byte-identical Commons transcodes**,

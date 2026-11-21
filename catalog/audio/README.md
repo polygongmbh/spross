@@ -223,7 +223,7 @@ the script asks `git ls-files` instead.
   playback is keyed by what stands on the card, never by the concept that shows it,
   so a rotated synonym nobody recorded falls through to the app's own voice instead of playing the canonical word.
   It may differ from `text` in case (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation dash (`zuri` / "-zuri") —
-  the engine folds those away (`../../docs/audio.md`).
+  the engine folds those away (`speechKey`).
   Letters carry no `matches`: they speak a name, and that string belongs to the alphabet file.
 - `source` — the original Commons filename;
   the credits screen links `File:<source>`,

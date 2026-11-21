@@ -50,7 +50,8 @@ data class LetterDrillTask(
     /**
      * Which take of the prompt's recording plays where it has several
      * (`AudioRecording.take`): drawn once per question, so the drill moves between voices —
-     * several talkers teach a sound better than one — while a replay repeats the same one.
+     * several talkers teach a sound better than one (Thomson 2018, *Journal of Second Language Pronunciation* 4(2)) —
+     * while a replay repeats the same one.
      */
     val take: Int = 0,
 )

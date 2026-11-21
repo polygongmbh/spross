@@ -1,6 +1,6 @@
 # Audio evaluations, October 2026: quality measures, pops, noise, and swaps by ear
 Every measure and picker change tried against a listener's verdicts in October 2026, one dated section each, with its data, its result, and what was adopted.
-Neighbors: the September measures `2026-09-28-audio-quality-tools.md` and `2026-09-28-audio-quality-measure.md`, the verdicts `audio-verdicts.tsv`, the bars `../catalog/audio/README.md`.
+Neighbors: the September measures `2026-09-28-audio-quality-tools.md` and `2026-09-28-audio-quality-measure.md`, the verdicts `../audio-verdicts.tsv`, the bars `../../catalog/audio/README.md`.
 
 Study scripts and per-take numbers live in the workspace `data/reference/audio/`:
 `measure-study-2026-10-25/`, `pop-study-2026-10-28/`, `noise-study-2026-10-28/` and `measure-study-2026-10-28/`.
@@ -168,6 +168,6 @@ Re-run with them (470 takes, 95 bad or mediocre), the candidate still holds, the
 - fitted before 2026-10-27 and tested on the 113 since, 0.53 → 0.74;
 - with 10% of okay-or-better takes refused, 45% of the bad or mediocre refused against 33% (+0.05…+0.20).
 
-Shipped 2026-11-06: the score is now `mos` less its pops plus `pesq`, put back on the old score's mean and spread (`../scripts/audio/voices.py`).
+Shipped 2026-11-06: the score is now `mos` less its pops plus `pesq`, put back on the old score's mean and spread (`../../scripts/audio/voices.py`).
 The bars keep their shares — the reconsider bar 2.8 → 2.79 of what ships, the floors 1.3 → 1.5 and 1.8 → 1.84 of the rated takes, since what ships was pruned at the old floors —
 and the swap margin stays 0.3; 33 shipped takes fall under the new floors, 30 of them es Marreromarco's.

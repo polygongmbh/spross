@@ -1,6 +1,6 @@
 # Audio rating sources
 A survey of whether anyone besides us has already rated Commons/Wiktionary/Lingua Libre pronunciation files or their speakers, and whether that judgement is reusable.
-Neighbors: the verdicts `audio-verdicts.tsv`, the quality measure survey `2026-09-28-audio-quality-tools.md`.
+Neighbors: the verdicts `../audio-verdicts.tsv`, the quality measure survey `2026-09-28-audio-quality-tools.md`.
 
 ## Verdict
 

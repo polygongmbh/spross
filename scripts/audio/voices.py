@@ -78,7 +78,7 @@ POP_DB_PER_MOS = 4
 # on 2026-11-06 and summed with equal weight, then put back on the scale of `mos` less its pops — same
 # mean and spread — so a bar reads in the units it always did. PESQ hears the distortion DNSMOS misses:
 # on 470 rated takes it lifts the take AUC from 0.66 to 0.75 and the voice ranking from ρ 0.28 to 0.56,
-# and holds on verdicts set aside while fitting (`../docs/2026-10-audio-evaluations.md`).
+# and holds on verdicts set aside while fitting (`../docs/archive/2026-10-audio-evaluations.md`).
 SCORE_MEAN, SCORE_SPREAD = 2.910, 0.282
 PESQ_MEAN, PESQ_SPREAD = 3.164, 0.705
 SUM_SPREAD = 1.603

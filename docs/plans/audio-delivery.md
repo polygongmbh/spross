@@ -29,7 +29,7 @@ Measured 2026-09-24 off the tree, the last debug APK (2026-09-23) and the last R
   X→Y needs both, 30.9 MB (it+sw) to 49.9 MB (de+uk), saving 90–109 MB.
 - **No cheap win exists before delivery.**
   Nothing is unplayable to strip, and deflate is ruled out above.
-  A mono repack recovers 3.76% (`audio-format.md`).
+  A mono repack recovers 3.76% (`../archive/2026-08-22-audio-format.md`).
   AAC-LC would bring the corpus to ~40% (~56 MB) on both platforms with no delivery machinery,
   but it is our adaptation, and it obliges the following:
   the credits' "Recordings shipped unmodified" line goes,
@@ -39,7 +39,7 @@ Measured 2026-09-24 off the tree, the last debug APK (2026-09-23) and the last R
   Every `gain`/`gainPhone`/`cap`/`lead`/`snr` value is a measurement of the SHIPPED bytes and must be re-measured
   (`scripts/audio/catalog.py` `ANALYSIS`, `scripts/audio/measure.py`).
   AAC priming shifts `lead` by ~48 ms.
-  `audio-format.md` already decided "mp3 stays, delivery first".
+  `../archive/2026-08-22-audio-format.md` decided "mp3 stays, delivery first".
   This plan keeps that decision.
   Transcoding stays the fallback if the owner rejects networking (question 1).
 
@@ -157,7 +157,7 @@ Atomic series, each green on its own:
    iOS drops `catalog/audio` from the Release product (a script phase after resources, or a split folder reference).
    Android's `SyncAssetsTask` excludes `audio/**` for `release`.
    Docs: `audio-licensing.md` § 1 ("what ships" becomes "what the pair downloads") and § 6.1 (mitigation in place),
-   `audio-format.md` § The decision (delivery landed), `distribution.md`,
+   `distribution.md`,
    a CHANGELOG line, and the backlog line pruned.
    Gate: size check on the release APK/IPA (expected ~16 MB APK before minify).
 7. Optional: `feat(app,android): recordings status in the audio setting`: size, downloaded/pending, remove.

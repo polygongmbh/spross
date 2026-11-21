@@ -47,8 +47,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
   which side owns a glyph?
 - `web/site.js` runs its own numbers ramp beside kern's `NumbersRun` —
   should the site read kern's JS export instead?
-- The dated audio research docs (`docs/2026-09-28-audio-quality-*.md`, `docs/2026-10-09-audio-rating-sources.md`) and `docs/audio-verdicts.tsv` sit under `docs/` as if current —
-  archive, fold into `docs/audio-format.md`, or keep?
 
 ## Ready
 
