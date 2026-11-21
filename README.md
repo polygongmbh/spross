@@ -124,5 +124,5 @@ Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBO
 `scripts/android-emu.sh` is the emulator counterpart of `xsim`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
-via `scripts/build-kern.sh` (integration detail: `docs/build.md`).
+via `scripts/build-kern.sh`.
 After adding/removing Swift source files or switching commits: `xcodegen generate` (`xsim` runs it on every build).

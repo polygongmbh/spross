@@ -25,6 +25,8 @@ kotlin {
         binaries.executable()
     }
 
+    // why: no watchOS targets — nothing links Kotlin on the watch,
+    // and the unused slices would cost every kern-edit rebuild about half again.
     val xcf = XCFramework("SprossKern")
     listOf(
         iosArm64(),

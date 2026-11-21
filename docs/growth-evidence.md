@@ -5,13 +5,6 @@ Neighbors: the resulting rules `../kern/README.md` §6, the retry ladder's evide
 The box is breadth-first: exposure to a lot of the language, accepting that any
 single word may not stick.
 
-## The short version
-
-Intake is bounded by **two** things: how many cards a sitting tests (`sessionCap`)
-and how many first sights one round offers (`NEW_CARDS_PER_ROUND`).
-Nothing throttles on how shaky the material is,
-and nothing throttles on how far behind the box has fallen.
-
 ## Proactive interference does not survive spaced practice
 
 Underwood (1957): recall of a new list falls from ~80% to ~20% as prior lists accumulate.

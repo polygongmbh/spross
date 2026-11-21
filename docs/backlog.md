@@ -30,7 +30,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   (`WatchModel.practiceLap`)
 - Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `review.md`).
 - `tools/FaceGen --seed` reads the retired `vocab-*.json` and a `../../content` that no longer exists —
-  port it to the catalog join or delete it (`docs/facegen.md`).
+  port it to the catalog join or delete it.
 - Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per language —
   `project.yml:55` folder reference, `android/build.gradle.kts:131` asset sync with mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and per-language delivery (on-demand resources / Play asset packs) is the fix, measured per platform first.
 - Compound/morpheme-boundary training for a compounding language (marking the component seams inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt drill needing curated component-boundary data,

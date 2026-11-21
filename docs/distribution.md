@@ -34,9 +34,7 @@ The distribution certificate is created once by an Admin or the Account Holder:
 Xcode › Settings › Accounts › the team › Manage Certificates › `+` › Apple Distribution.
 In Keychain Access, under My Certificates, the "Apple Distribution: …" entry with its key exports as `.p12`;
 `base64 -i dist.p12 | pbcopy` turns it into the secret.
-It is the only certificate the pipeline signs with:
-automatic signing would mint a development certificate on every fresh runner until the team's limit refuses it,
-and Apple's cloud-managed fallback is refused to an App Manager key with "Cloud signing permission error".
+It is the only certificate the pipeline signs with (`release.yml` says why).
 It expires after a year; a renewed one replaces both secrets, and the next run replaces every profile still on the old one.
 
 **The Android key is unrepeatable.**
@@ -182,10 +180,3 @@ the GitHub release is the delivery that must not depend on Apple being up, so th
 
 Spross is listed at `https://apps.apple.com/app/id6810577722`, Apple Watch app included.
 A release reaches it from the same App Store Connect build TestFlight serves, submitted for App Review in the App Store Connect UI.
-
-## What the runners do
-
-`ubuntu-latest` builds the APK behind the text lints, `:kern:jvmTest` and `:android:testDebugUnitTest`.
-`xcode-27` pins Xcode 27.1, whose SDK has the iOS 27.1 APIs the app calls — the image's default moves —
-generates the project with `xcodegen` (`.xcodeproj` is never committed), caches `~/.konan` against the Kotlin version, then fetches the profiles, archives, uploads, and exports the IPA.
-macOS minutes bill at ten times the Linux rate, which is why only a tag starts one.

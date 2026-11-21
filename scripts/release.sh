@@ -94,6 +94,8 @@ if command -v xcodegen >/dev/null 2>&1; then
   echo "Spross.xcodeproj regenerated."
 fi
 
+# why: every gate runs before the tag exists — the tag triggers the release workflow, whose
+# publish step will not overwrite a GitHub release that stands, so a red after the push costs the version.
 echo "Gates…"
 # The pre-commit hook's text lints run only on a clone that set hooksPath —
 # so a release is where their absence would otherwise first show.
@@ -108,7 +110,7 @@ python3 scripts/turn-machine-homes.py --check
 
 # The app gate is the only one that sees a Swift call site: a Kotlin change can leave
 # every Kotlin gate green and still fail to compile against the framework
-# (docs/build.md § Swift ergonomics). Unsigned simulator build — a signing or
+# (docs/build.md: a Kotlin default value does not cross). Unsigned simulator build — a signing or
 # provisioning failure is the Mac's, never the release's.
 if [ "$APP_GATE" -eq 1 ] && command -v xcodebuild >/dev/null 2>&1; then
   SIM=$(xcrun simctl list devices available | awk -F' \\(' '/^ +iPhone/ { print $1; exit }' | sed 's/^ *//')

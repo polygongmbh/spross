@@ -27,7 +27,7 @@ or a bug a restatement would bring back.
 
 The engine's own semantics are below. Each element the learner meets has a page of its own, engine and app rules together:
 `../docs/review.md` (what a prompt shows, the turn, the card on screen),
-`../docs/scheduling.md` (FSRS-6 parameters, provenance and the retry ladder's evidence),
+`../docs/scheduling.md` (the evidence behind FSRS-6 and the retry ladder),
 `../docs/listening.md` (the playlist),
 `../docs/drills-runs.md` (what a drill is made of and how a run plays it),
 `../docs/grading.md` (how a typed answer becomes a rating),
@@ -37,7 +37,7 @@ and the machinery behind them:
 `../docs/reports.md` (the read models a surface draws the box from),
 `../docs/snapshots.md` (the box document and the watch/widget wire),
 `../docs/catalog.md` (what the engine needs of the catalog),
-`../docs/build.md` (KMP pins and the Xcode hand-off).
+`../docs/build.md` (what crosses to Swift, Android and the web).
 The one engine rule that is not the box's own work is the seam to an outside chat assistant:
 `Briefing` writes what it may be told about a learner
 and `Harvest` reads back what it sends home;
@@ -142,7 +142,7 @@ because Kotlin default arguments do not cross the ObjC boundary
 
 ## 5. FSRS-6
 
-Parameters, provenance and the golden vectors are `../docs/scheduling.md`;
+The evidence behind the model and the ladder is `../docs/scheduling.md`;
 the numbers behind each setting are on `BoxConfig` itself, and the three stability bars in `box/StabilityBars.kt`.
 
 - **ONE ALTERNATING ladder, `stepsSeconds`, shared by Learning and Relearning**

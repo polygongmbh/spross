@@ -28,6 +28,10 @@ struct Manifest: Codable {
     var cards: [ManifestEntry]
 }
 
+/// Renders cards for the Apple Watch Photos face,
+/// which shuffles an album of up to 24 photos on every wrist raise — each glance at the time is one exposure.
+/// The face draws the time over the top of the photo, hence `--time-safe-top`.
+/// To load: AirDrop the output to the iPhone, save it to its own album, and pick that album in a Photos face.
 @main
 struct FaceGenCommand: AsyncParsableCommand {
     static let configuration = CommandConfiguration(

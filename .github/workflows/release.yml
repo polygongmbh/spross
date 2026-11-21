@@ -2,6 +2,7 @@ name: release
 
 # why: the tag is both the trigger and the version — every artifact below reads
 # ${GITHUB_REF_NAME#v}, so cutting a build never means bumping a number twice.
+# Only a tag starts this: macOS minutes bill at ten times the Linux rate.
 on:
   push:
     tags: ['v*']

@@ -10,18 +10,12 @@ scripts/release.sh 5.7.2             # heading, version, gates, commit, tag, pus
 xdevice --release --all              # your own devices ($APPLE_DEVICES) — a separate build, from here
 ```
 
-The script owns the mechanical half:
-it renames `## Unreleased` to `## <version> — <today>` and opens a fresh one —
-a lone entry moves into that heading as `## <version> — <today> — <entry>` — writes `MARKETING_VERSION`, regenerates `Spross.xcodeproj` —
-generated and gitignored, so it keeps stamping the old number until something regenerates it —
-runs the text lints, the Kotlin gates and an unsigned simulator build, and only then commits, tags and pushes.
-`--check` stops before the commit, `--no-app` drops the Xcode gate on a Linux session.
-Two things stay yours: which number, and what the entries say.
+The script owns the mechanical half (`--help`);
+two things stay yours: which number, and what the entries say.
 Between releases a new entry lands anywhere in `## Unreleased` and existing ones stay put;
 the section is reviewed once, right before the cut, against the rules below:
 prune and merge, reword for the learner,
 then order the bullets from what most learners meet to what fewest do.
-An empty `## Unreleased` stops the script.
 
 The number is a judgment call; `release.sh` prints commit counts as guidance.
 
@@ -30,15 +24,6 @@ The number is a judgment call; `release.sh` prints commit counts as guidance.
 - A patch refines what was there — fixes, wording, layout, look, recordings — however many learners meet it.
 - The counts are a prompt, not a rule:
   a feature reached from one button in a corner is a patch, however many `feat:` commits it took.
-
-Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
-the workflow strips the leading `v` and hands the rest to both surfaces, so nothing is bumped twice —
-and a red found after the push costs the release rather than a rerun, since the publish step creates the GitHub release and will not overwrite one that already stands.
-`MARKETING_VERSION` in `project.yml` is what a local build shows —
-Gradle reads it too rather than keeping a second number, and `scripts/release-notes.sh` fails the run when the changelog has no section under that heading.
-
-Android's `versionCode` is derived from the name:
-`4.1.2` → `40102` so it rises on its own as long as minor and patch stay under 100.
 
 ## What earns a changelog entry
 
