@@ -24,6 +24,7 @@ internal object EsperantoForms {
         is NumberValue.Price -> price(value.units, value.cents)
     }
 
+    /** `minus` is the sign (PMEG); `malplus` and `negativa` do not grade. */
     private fun negative(magnitude: Long): List<String> =
         EsperantoNumbers.variants(magnitude).map { "minus $it" }
 
@@ -45,7 +46,11 @@ internal object EsperantoForms {
         return EsperantoNumbers.spellings(tails.map { "$head komo $it" })
     }
 
-    /** The noun is counted, so it pluralizes; `elcento` is the same word built from Esperanto roots. */
+    /**
+     * The noun is counted, so it pluralizes.
+     * PIV registers `elcento` beside `procento` as the better-built word and usage prefers `procento`,
+     * so `elcento` grades and is never shown.
+     */
     private fun percent(n: Long): List<String> {
         val suffix = if (n == 1L) listOf("procento", "elcento") else listOf("procentoj", "elcentoj")
         return EsperantoNumbers.variants(n).flatMap { count -> suffix.map { "$count $it" } }
@@ -55,6 +60,7 @@ internal object EsperantoForms {
      * Frequency reads as the adverbial accusative `tri fojojn`, the one form every numeral
      * takes; the `-foje` adverb is accepted wherever the numeral is a single word, which is
      * as far as it welds ("dudek unu fojojn" has no adverb).
+     * `trioble` is a factor (threefold), not a count of occasions, so it does not grade.
      */
     private fun multiplicative(n: Long): List<String> {
         val noun = if (n == 1L) "fojon" else "fojojn"
@@ -82,6 +88,7 @@ internal object EsperantoForms {
 
     /**
      * `eŭro` and `cendo` are counted nouns and pluralize: "tri eŭroj kaj kvindek cendoj".
+     * `cendo` is any currency's minor unit; the tag already says euro, so `eŭrocendo` is not needed.
      * Both amounts are named with `kaj` between them; dropping the `kaj`, or the `cendoj`
      * once the euros are named, grades beside it.
      */

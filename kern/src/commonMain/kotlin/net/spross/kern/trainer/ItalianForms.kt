@@ -12,6 +12,9 @@ package net.spross.kern.trainer
  * ("una volta"), apocopates before it ("ventun volte") and stays whole in front of a
  * preposition ("uno per cento") — three readings of one numeral, so each arm below spells
  * its own instead of taking [ItalianNumbers.cardinal] as it stands.
+ *
+ * `per cento` is two words and takes no apocope: `per` is a preposition, not a noun `uno` shortens before,
+ * so `ventun per cento` and one-word `percento` do not grade.
  */
 internal object ItalianForms {
 

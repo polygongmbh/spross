@@ -13,7 +13,7 @@ import net.spross.kern.model.LanguageInfo
  * distance-1 `Juni`/`Juli`), a de→uk pair carrying the short one (a `dateForm` on
  * every month, no year pattern), a de→en pair whose patterns carry a SYNONYM, and a de→sw
  * pair whose numerals sit one edit apart (`sita`/`saba`) — the shapes
- * `docs/date-readings.md` says the content can take. Every target is a pack language, so
+ * the content can take. Every target is a pack language, so
  * the generated Sprossen draw.
  */
 internal object DateDrillFixture {

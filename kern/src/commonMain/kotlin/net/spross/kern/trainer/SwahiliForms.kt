@@ -12,7 +12,7 @@ package net.spross.kern.trainer
  * tatu. A bare `20.` supplies no noun, so every prefix would be an invention shown to the
  * learner as fact; that every published source cites ordinals with the slot still empty is
  * the lexicographers saying the same thing. Ordinals arrive with a noun-bearing frame or
- * not at all (`docs/backlog.md`: the numeral-side agreement field).
+ * not at all (`catalog/backlog.md`: the numeral-side agreement field).
  *
  * **Denominators stop at 4.** nusu, theluthi and robo are the everyday words; past them the
  * sources give three mutually incompatible systems (Almasi's `sehemu … ya/za …` periphrasis,

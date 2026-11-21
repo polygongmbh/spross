@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * The VOCABULARY SPEC for the day of the month, authored from `docs/date-readings.md`
+ * The VOCABULARY SPEC for the day of the month, authored from the sources
  * (Duden and DWDS for German; the Chicago Manual's date forms for English; the
  * Fundamenta's `-a` for Esperanto; RAE's DPD on `el primero`/`el uno` for Spanish; the
  * Académie française and the BDL on `le premier` for French; the Accademia della Crusca on

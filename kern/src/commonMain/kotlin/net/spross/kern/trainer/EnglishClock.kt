@@ -11,6 +11,9 @@ import net.spross.kern.trainer.EnglishClockRegisters as Registers
  * Accepted beside it: the digital reading everywhere, the "a quarter"/"minutes" forms,
  * American "after"/"till"/"quarter of", the part of the day, the meridiem and the
  * 24-hour reading. 12-hour cycle — the prompt carries the 24-hour value.
+ *
+ * Approximators (`gone four`, `nearly four`) stay out:
+ * one names an interval, so accepting it at 16:20 accepts it at 16:05 as well.
  */
 internal object EnglishClock {
     private val hourWords = listOf("twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve")

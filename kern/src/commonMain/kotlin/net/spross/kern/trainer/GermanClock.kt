@@ -19,7 +19,10 @@ internal object GermanClock {
      */
     private fun beforeUhr(hourWord: String) = if (hourWord == "eins") "ein" else hourWord
 
-    /** Non-round minutes fall back to a plain reading ("drei Uhr siebzehn"). */
+    /**
+     * Non-round minutes fall back to a plain reading ("drei Uhr siebzehn"):
+     * the relative readings (`siebzehn nach drei`) are said on the five-minute grid only.
+     */
     private fun conversational(hours: Int, minutes: Int): Conversational {
         val h12 = hours % 12
         val nextH = (h12 + 1) % 12

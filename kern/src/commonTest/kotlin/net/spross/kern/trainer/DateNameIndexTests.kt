@@ -142,8 +142,8 @@ class DateNameIndexTests {
     }
 
     /**
-     * `le premier mars`, never `le un mars`: the pack emits `premier` alone for the 1st
-     * (`docs/date-readings.md` § French), and the cardinal a learner reaches for is two
+     * `le premier mars`, never `le un mars`: the pack emits `premier` alone for the 1st,
+     * and the cardinal a learner reaches for is two
      * words from the reading, so nothing forgives it either.
      */
     @Test

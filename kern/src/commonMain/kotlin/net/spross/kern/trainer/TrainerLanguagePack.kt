@@ -2,6 +2,24 @@ package net.spross.kern.trainer
 
 import net.spross.kern.model.Language
 
+/**
+ * One time, read for the clock drill.
+ *
+ * [display] is the one reading the reveal teaches:
+ * what a native says most naturally at that time,
+ * the construction a speaker reaches for on a round step and the face read out off the five-minute grid.
+ * [accepted] is every reading that grades, generous on purpose,
+ * and every reading in it also grades without its part of the day.
+ * Where a reading counts toward the coming hour, its part of the day is that hour's
+ * (19:45 `huit heures moins le quart du soir`).
+ * A reading without a part of the day is open across the twelve-hour cycle by design (`saa sita` is midnight and noon);
+ * any other reading accepted for two times in one cycle is a bug.
+ * [gloss] names other constructions in the language being answered in, each one also in [accepted] (`ClockRevealTests`).
+ *
+ * The emphatic full hour (de `punkt sechs`, en `six o'clock sharp`, es `en punto`, uk `рівно`) is no reading:
+ * it says the hour is exact, which no learner answering "18:00" volunteers,
+ * and the catalog teaches where it sits in a sentence (`time/nine-am-sharp`).
+ */
 internal data class ClockReading(
     val display: String,
     val accepted: List<String>,
@@ -11,7 +29,15 @@ internal data class ClockReading(
 internal data class YearReading(val display: String, val accepted: List<String>)
 
 /**
- * Per-language generator bundle. All cardinal arithmetic is Long — Kotlin Int
+ * Per-language generator bundle.
+ *
+ * Every reading list is canonical first:
+ * the reveal teaches the first and grades the rest without showing them.
+ * A reading a learner will reach for that must grade wrong is left out,
+ * and the generator's KDoc names the source that rules it out.
+ * Where the canonical choice still wants a native ruling, both grade and the first is shown meanwhile.
+ *
+ * All cardinal arithmetic is Long — Kotlin Int
  * is 32-bit on every platform, arm64_32 watches included: values
  * beyond 9 999 999 999 fall back to digits inside each generator; a negative
  * is read by [formReading] (`NumberValue.Negative`), and [number] refuses one.
@@ -22,6 +48,13 @@ internal interface TrainerLanguagePack {
 
     fun year(y: Long): YearReading
 
+    /**
+     * One generator per language, because clocks rhyme without sharing a computation:
+     * the past/to pivot is :31 in most languages and :25 in German, which counts against the half hour;
+     * the half hour names the coming hour in de and uk and the current one elsewhere;
+     * Swahili's hours are offset by six.
+     * Only [leadWith] and [ClockGloss] carry no language rule, so only they are shared.
+     */
     fun clock(hour: Int, minute: Int): ClockReading
 
     /** Highest place word per digit count; index 0 → 2 digits … index 8 → 10 digits. */
@@ -49,7 +82,7 @@ internal interface TrainerLanguagePack {
 
     /**
      * Accepted readings of a day of the month, canonical first — what this language calls
-     * the 3rd INSIDE a date, which is rarely what it calls a bare 3 (`docs/date-readings.md`).
+     * the 3rd INSIDE a date, which is rarely what it calls a bare 3.
      * Defaulted like [formReading] to the plain cardinal, so a language whose dates simply
      * count says nothing here instead of restating its own numerals.
      */
@@ -59,8 +92,7 @@ internal interface TrainerLanguagePack {
      * Accepted readings of a YEAR inside a date, canonical first — [dateDay]'s rule one slot
      * over. Defaulted to the pack's own [year] reading, which is what a language counting its
      * years the way it counts anything else already says; a language whose date puts the year
-     * in a case or an ordinal the bare numeral never wears says so here (uk,
-     * `docs/date-readings.md`).
+     * in a case or an ordinal the bare numeral never wears says so here (uk).
      */
     fun dateYear(y: Long): List<String> = year(y).let { listOf(it.display) + it.accepted }.distinct()
 
@@ -268,7 +300,10 @@ private object ItalianPack : TrainerLanguagePack {
     override val decimalMark = ','
 }
 
-/** The registry: de/en/es/sw/uk/eo/fr/it authored, insertion order is presentation order. */
+/**
+ * The registry: de/en/es/sw/uk/eo/fr/it authored, insertion order is presentation order.
+ * Every sweep iterates this map, so a generator missing here is skipped in silence.
+ */
 internal val trainerPacks: Map<Language, TrainerLanguagePack> = linkedMapOf(
     "de" to GermanPack,
     "en" to EnglishPack,

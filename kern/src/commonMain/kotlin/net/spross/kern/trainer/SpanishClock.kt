@@ -122,7 +122,10 @@ internal object SpanishClock {
         return out
     }
 
-    /** "veinte para las tres", "faltan veinte minutos para las tres" — America. */
+    /**
+     * "veinte para las tres", "faltan veinte minutos para las tres" — America.
+     * `a` never stands in for `para`, so `veinte a las tres` stays out.
+     */
     private fun paraFamily(h: Int, m: Int): List<String> {
         val next = Forms.hourWords[(h % 12 + 1) % 12]
         val target = "${Forms.article(next)} $next"

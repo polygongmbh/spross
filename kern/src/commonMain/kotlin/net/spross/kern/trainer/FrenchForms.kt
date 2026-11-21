@@ -2,8 +2,7 @@ package net.spross.kern.trainer
 
 /**
  * French readings of the written number forms
- * (Académie française · Grevisse · BDL; the sources and the refusals are
- * `docs/number-forms.md` § French).
+ * (Académie française · Grevisse · BDL; the links are on [FrenchNumbers]).
  *
  * Everything composes over [FrenchNumbers.variants], so the rectified spelling, the spaced
  * twin and the regional decades grade behind `moins`, `pour cent` and a fraction noun
@@ -48,6 +47,7 @@ internal object FrenchForms {
      *
      * Only `demi` modifies a noun directly, so a half is the suppletive `un demi` with the
      * feminine noun `la moitié` beside it; since 1 ≤ n < d, d == 2 forces n == 1.
+     * `un troisième` for 1/3 is the mistake the suppletion teaches, so it does not grade.
      */
     private fun fraction(n: Long, d: Long): List<String> {
         if (d == 2L) return listOf("un demi", "demi", "la moitié", "une demie")

@@ -9,6 +9,9 @@ package net.spross.kern.trainer
  * everything else, thousands included, stays apart, and a numeral that takes an ending
  * closes up again with a hyphen (`dudek-unua`), which the comparison pipeline deletes,
  * so the hyphen-free spelling grades exact without being emitted.
+ * A welded `dumil` is not accepted:
+ * "Tion, kion oni elparolas kiel apartajn vortojn, oni ne skribu kiel unu vorton."
+ * Both rules: PMEG, Nombraj vortetoj — Formoj (https://bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html).
  */
 internal object EsperantoNumbers {
 

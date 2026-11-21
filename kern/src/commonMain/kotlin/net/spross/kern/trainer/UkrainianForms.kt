@@ -161,6 +161,9 @@ internal object UkrainianForms {
      * a single fused word built on the multiplier's GENITIVE rather than on the cardinal
      * standing there: `дев'ятсот` → `дев'ятисотий`, `дві тисячі` → `двохтисячний`.
      * Null past the tables, which every caller reads as "this language does not say it".
+     * The ordinal reach of 1–100 is load-bearing here:
+     * past it a compound thousand welds into one adjective (24 000th is `двадцятичотирьохтисячний`),
+     * which the last-word rule cannot produce.
      */
     private fun ordinalOf(cardinal: String): String? {
         ROUND_THOUSANDS[cardinal]?.let { return it }
@@ -184,8 +187,10 @@ internal object UkrainianForms {
      * The YEAR inside a date — the same genitive ordinal one slot over, over the year's own
      * readings: `2026` is `дві тисячі двадцять шостого`, `1900` `тисяча дев'ятисотого`.
      * A year read as a bare cardinal is not a register choice in Ukrainian but an error,
-     * which is why the date takes this and never [UkrainianNumbers.variants]
-     * (`docs/date-readings.md`).
+     * which is why the date takes this and never [UkrainianNumbers.variants].
+     * The pattern closes it with `року`, taught, and grades the `року`-less reading:
+     * how obligatory the noun is is a matter of register,
+     * and the alternative a source names is the locative `у … році`, another construction.
      */
     fun dateYear(y: Long): List<String> =
         UkrainianNumbers.yearVariants(y).mapNotNull(::genitiveOrdinal).distinct()

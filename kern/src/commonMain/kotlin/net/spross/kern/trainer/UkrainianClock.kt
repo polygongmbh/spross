@@ -151,6 +151,7 @@ internal object UkrainianClock {
     /**
      * The 0–23 register. Hour zero has an ordinal (`нульова`) but no clipped reading —
      * "нульова п'ять" is not Ukrainian.
+     * `нуль годин` stays out: a calque, and one edit from a digital reading of another hour.
      */
     private fun official(h: Int, m: Int): List<Core> {
         val hourWord = Forms.official[h]

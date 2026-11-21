@@ -98,8 +98,8 @@ internal object FrenchClock {
      * The reveal names the 24-hour register and nothing else, because nothing else is a
      * construction the display did not already take: whichever of the two 12-hour families
      * fits the step IS the display, and the other one says the same clock in the register
-     * this line already carries (`docs/clock-registers.md` § What a reveal names). Where the
-     * two coincide — a small hour read out off the grid — the gloss is absent, not empty.
+     * this line already carries. Where the two coincide — a small hour read out off the
+     * grid — the gloss is absent, not empty.
      */
     private fun gloss(h: Int, m: Int): String? = ClockGloss.line(
         display(h, m), official(h, m), limit = 3, lead = "aussi : ", separator = " · ",

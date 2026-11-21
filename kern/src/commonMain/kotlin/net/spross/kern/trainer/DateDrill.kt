@@ -14,7 +14,7 @@ import net.spross.kern.model.Language
  * uses it — inside [DateTaskKind.DayAndMonth] and the dated line, which is the only place
  * `le premier`, `il primo` and `tarehe mosi` ever stand — while a BARE numeral is what the
  * numbers drill owns: `dateDay` is the plain cardinal in es, fr, it and sw and literally
- * `formReading(Ordinal)` in de, en and eo (`docs/date-readings.md`).
+ * `formReading(Ordinal)` in de, en and eo.
  *
  * Registry-by-file like the atlas: a pair has this drill exactly when
  * [net.spross.kern.catalog.Catalog.dateDrillContent] joins its two calendars. Pure and
@@ -26,7 +26,7 @@ import net.spross.kern.model.Language
  * Sprosse is simply the last one. What keeps the new question from drowning in the old is
  * the draw order, not a narrower Sprosse ([drawOrder]). A Sprosse the answer language cannot
  * carry is absent, not locked: no `dateWithYear` pattern, no year Sprosse, and the ladder
- * simply tops out a Sprosse short (uk, `docs/date-readings.md`).
+ * simply tops out a Sprosse short.
  * Reverse is a DIRECTION rather than a shorter ladder: the bare names swap sides, and the
  * numeric Sprossen turn into a parse — the card carries the reading and the run wants the
  * date written down ([DateDrillParsing]). Which is the easier half of the skill and the half

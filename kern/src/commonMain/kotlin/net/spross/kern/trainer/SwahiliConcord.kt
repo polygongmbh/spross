@@ -24,9 +24,11 @@ package net.spross.kern.trainer
  * app's bar is sourced or not shipped. Nothing counted in a sentence frame gets that big.
  *
  * Sources: Almasi, Fallon & Wared, *Swahili Grammar for Introductory and Intermediate
- * Levels* (UPA 2014), ch. 18 "Numbers" — Table 18.1 (p. 188) for the prefixes, p. 187 for
- * the stem rule and the single-digit-column rule; corroborated per stem by Wiktionary's
- * declension tables. The full citations live in `docs/number-forms.md` §Swahili.
+ * Levels* (UPA 2014), ch. 18 "Numbers"
+ * (https://hist.hse.ru/data/2019/06/14/1486229742/18.%20Numbers.pdf) — Table 18.1 (p. 188)
+ * for the prefixes, p. 187 for the stem rule and the single-digit-column rule;
+ * corroborated for the compound shapes by *Swahili Lehrbuch* (Partnerschaft Tansania München, p. 13)
+ * and per stem by Wiktionary's declension tables.
  */
 object SwahiliConcord {
 

@@ -125,6 +125,8 @@ internal object SpanishForms {
      * The apocope primer/tercer belongs immediately before a masculine noun and a bare
      * prompt has no noun, so it is not canonical and does not grade either: where the
      * apocope goes is exactly what a Spanish ordinal drill is for.
+     * `onceavo` is no ordinal either: the DPD calls *el onceavo aniversario* incorrect,
+     * because the `-avo` forms are fractional only.
      *
      * An n outside [LIMITS] returns nothing, which the sampler already reads as
      * "this pack cannot say that" rather than throwing across the ObjC boundary.

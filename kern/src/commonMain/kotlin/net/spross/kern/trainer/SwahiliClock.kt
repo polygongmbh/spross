@@ -8,6 +8,8 @@ package net.spross.kern.trainer
  *
  * The part of the day is what separates saa mbili in the morning from saa mbili at
  * night, and it is optional: every reading is accepted bare as well.
+ *
+ * `kasa` is not a Swahili word (owner-confirmed); the quarter words are `na robo` and `kasorobo`.
  */
 internal object SwahiliClock {
     private val hourWords = listOf("kumi na mbili", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumi na moja", "kumi na mbili")

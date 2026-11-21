@@ -90,7 +90,7 @@ Realization fields — `text` is required, everything else is per-language:
   the frame exists to train exactly that agreement.
 - `swahiliNounClass` — Swahili only (`KI_VI`/`JI_MA`), `numbers` frames:
   the counted noun's Bantu class, so the numeral takes its concord prefix
-  (*viti viwili*, `../../docs/number-forms.md`). Absent for N-class nouns, which need none.
+  (*viti viwili*, `SwahiliConcord`). Absent for N-class nouns, which need none.
 - `notes` — keyed by explanation language, exactly as a realization's `notes`.
 
 Frames sit outside `areas.json` on purpose:
@@ -104,15 +104,14 @@ and editing one never restamps a learner's box.
   so a Swahili clock frame must read naturally with the value inline.
 - Ukrainian time-at is «о» + locative, so its frame says «о» ("Поїзд вирушає о {slot}.")
   and composes only the locative readings, each bringing its own «о» or «об»;
-  a predicate frame ("Зараз …", "На будильнику …") takes the nominative ones
-  (`../../docs/clock-registers.md` § Ukrainian's time-when).
+  a predicate frame ("Зараз …", "На будильнику …") takes the nominative ones.
 - Italian time-at contracts the preposition with the hour's article
   ("alle due" but "all'una"), and a frame cannot know which of the two a draw will need,
   so Italian clock frames are predicate frames
   ("Adesso …", "La sveglia dice che …") — the reading brings its own copula.
 - Ukrainian year frames use DICTATION framing, where a year is read back as the bare
   cardinal it is written as; the genitive ordinal a year takes once it stands inside a date
-  is the dates drill's, not a frame's (`../../docs/date-readings.md`).
+  is the dates drill's, not a frame's.
 - A Swahili counted noun stands in its **plural** and names that plural's class:
   the numeral agrees with the noun beside it, and a class is only unambiguous there
   (*daftari* is contested in the singular, *madaftari* is plainly JI-MA).
@@ -125,8 +124,7 @@ and editing one never restamps a learner's box.
 - French clock frames stay PREPOSITIONAL, which is the Ukrainian constraint from the other side:
   `à` never contracts with an hour word and the reading is bare,
   so `Le train part à {slot}.` composes for every draw.
-  Its copula rides along as an accepted reading and is dropped where a frame does not say it
-  (`../../docs/clock-registers.md` § French's bare reading).
+  Its copula rides along as an accepted reading and is dropped where a frame does not say it.
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
 - Esperanto reads the clock as a bare nominative noun phrase (`la tria`) and `je` does not contract,
   so it is the one language whose clock frames may carry the preposition

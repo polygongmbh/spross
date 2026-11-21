@@ -49,6 +49,11 @@ internal sealed interface NumberValue {
  * [step] is the smallest amount a tag shows in whole units, and [minorUnit] whether cents
  * are drawn at all: a Tanzanian shilling price is a round sum with no coin below it in use,
  * so a Swahili price is never "TSh 3,50".
+ *
+ * Each language prices in what its speakers price in:
+ * the dollar for en, because the project's English is American;
+ * the hryvnia for uk, tagged `грн` as DSTU 3582:2013 abbreviates it;
+ * the Tanzanian shilling for sw, because the Swahili sources are Tanzanian.
  */
 internal enum class Currency(
     val prefix: String,

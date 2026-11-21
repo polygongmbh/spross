@@ -8,6 +8,9 @@ package net.spross.kern.trainer
  * "para las". A reading that is the same one with a word added or dropped (the part of
  * the day, an article, "Minuten", "хвилин", the "y") teaches nothing the display did
  * not: it is not an alternative, it is the same alternative said shorter.
+ * One line per construction, not per wording:
+ * counting the minute up from the hour is one move in every register,
+ * so a generator offers one candidate for it.
  *
  * So a candidate is dropped when its words are a subsequence of the display's, or the
  * display's are a subsequence of its — and again against every alternative already

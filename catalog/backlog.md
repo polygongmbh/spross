@@ -23,7 +23,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
   an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
-  (`docs/date-readings.md:88`)?
+  (`lunedì 3 marzo` against `il lunedì 3 marzo`)?
 - `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
   answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
   atlas' on its reference row, drop the field, or give the atlas page its own prose band?
@@ -51,7 +51,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   field in every language, since the frame must decline the NUMERAL while the general device
   runs the other way (`PhraseTemplate.CountForms` inflects the noun from the numeral) and
   `swahiliNounClass` prefixes a cardinal stem where an ordinal's `-a` concord belongs to the
-  frame — ordinals are drilled bare meanwhile (`docs/number-forms.md`), and Swahili cannot
+  frame — ordinals are drilled bare meanwhile, and Swahili cannot
   drill them at all.
 - Swahili noun class is a frame-only fact (`swahiliNounClass` names it per phrase frame) while
   the nouns carry no class the way de/fr/es nouns carry `grammar.article`; a catalog

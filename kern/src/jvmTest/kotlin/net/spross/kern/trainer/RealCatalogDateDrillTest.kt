@@ -10,8 +10,16 @@ import net.spross.kern.catalog.dateDrillContent
 
 /**
  * The CONTENT SPEC for the assembled date, against the SHIPPING calendars — what
- * `docs/date-readings.md` rules a language says, read back off the drill that grades it
+ * a language says, read back off the drill that grades it
  * rather than off the JSON. A reading that changes here is a claim about the language.
+ *
+ * Swahili sources:
+ * Kamusi Project, "Dates — Tarehe Gani?" (https://kamusi.org/content/dates) for `tarehe mosi` beside `tarehe moja` and `mwezi wa nane`;
+ * Almasi et al., *Swahili Grammar*, ch. 21 "Days, Months, and Dates"
+ * (https://hist.hse.ru/data/2019/06/16/1485884965/21.%20Days,%20Months,%20and%20Dates%20in%20Swahili.pdf);
+ * University of Kansas Kiswahili lessons 15 and 16 for the weekday count and the months
+ * (https://kiswahili.ku.edu/sites/kiswahili/files/documents/lessons/lesson_15.pdf, …/lesson_16.pdf);
+ * Wiktionary "mechi" (https://en.wiktionary.org/wiki/mechi), the football match.
  *
  * The day-of-month numeral has its own spec ([NumbersDateReadingTests], on the packs); this
  * one is about the pattern the calendar wraps around it and the names it fills in.
@@ -39,7 +47,7 @@ class RealCatalogDateDrillTest {
      * Swahili counts its months as well as naming them, so `Mwezi wa Tatu` grades wherever
      * `Machi` does — but the reveal keeps the borrowed name a learner will meet in print.
      * The counted name can only be authored: its `wa` is the associative concord slot the
-     * pack refuses to invent for a bare numeral (`docs/number-forms.md` § Swahili).
+     * pack refuses to invent for a bare numeral ([SwahiliForms]).
      */
     @Test
     fun theSwahiliMonthsCountAsWellAsName() {
