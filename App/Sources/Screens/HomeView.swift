@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Home: what to do right now, at a glance.
+/// Home: `HomeSection`'s sections in order, in two panes where the window splits.
 struct HomeView: View {
     let model: AppModel
     /// Opens the Box at an area, or at the top for nil.

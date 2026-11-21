@@ -24,10 +24,7 @@ import net.spross.kern.design.PaneRole
 import net.spross.kern.trainer.DayLead
 
 /**
- * The north star screen: one glance = what to do right now.
- *
- * Top to bottom: the greeting, ONE state card, the listening card, the
- * trainers, the companion card, the fortnight behind it over the trees — dealt into two panes
+ * Home: [HomeSection]'s sections in order, dealt into two panes
  * where the window splits ([PaneColumns]). Which state card is kern's
  * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
