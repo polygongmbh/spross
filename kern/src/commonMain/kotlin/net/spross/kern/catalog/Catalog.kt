@@ -258,7 +258,7 @@ class Catalog internal constructor(
             orders = raw.orders,
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the
-            // language being explained, which every reader can read (`docs/catalog.md`).
+            // language being explained, which every reader can read.
             // Null reader is the PROMPT side, where neither arm has anything to say.
             note = reader?.let { raw.notes[it] ?: raw.notes[lang] },
         )

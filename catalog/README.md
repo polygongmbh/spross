@@ -304,7 +304,7 @@ Realization fields — only `text` is required:
   A note reaches a card only while this file's language is the one being LEARNED, never while it is the learner's own —
   so it is always written for somebody meeting this word.
   Key it by the FILE'S OWN language and it is the shared wording, which every reader falls to.
-  Key it by another language and it is written for that reader alone, beating the shared one for them (`../docs/catalog.md`) and reaching nobody else —
+  Key it by another language and it is written for that reader alone, beating the shared one for them and reaching nobody else —
   so writing one is a promise to write it for every reader who needs it.
   Which of the two to write, and what earns a note at all, is `areas/README.md`.
 

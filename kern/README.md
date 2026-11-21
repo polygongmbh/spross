@@ -33,7 +33,6 @@ The engine's own semantics are below. Each element the learner meets has a page 
 `../docs/watch-and-widgets.md` (the wrist and the tiles);
 and the machinery behind them:
 `../docs/snapshots.md` (the box document and the watch/widget wire),
-`../docs/catalog.md` (what the engine needs of the catalog),
 `../docs/build.md` (what crosses to Swift, Android and the web).
 The one engine rule that is not the box's own work is the seam to an outside chat assistant:
 `Briefing` writes what it may be told about a learner

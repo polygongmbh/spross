@@ -1,6 +1,6 @@
 # The calendar
 The names of the days and months and how each language writes a whole date.
-Neighbors: what the engine composes `../../docs/catalog.md`, the day and year readings `TrainerLanguagePack.dateDay`/`dateYear`.
+Neighbors: the day and year readings `TrainerLanguagePack.dateDay`/`dateYear`.
 
 The calendar itself is not authored: seven weekdays and twelve months in ISO order
 are the same list in every language, so there is no manifest beside these files

@@ -180,7 +180,7 @@ object OwnWords {
      * accepted [Realization.accepts] spelling beside it.
      *
      * The catalog's rule that a form nobody can type is never a `text`
-     * (`docs/catalog.md`) holds here too — but an own word keeps every form
+     * (`catalog/README.md` § `accepts`) holds here too — but an own word keeps every form
      * the learner wrote, and splits them only where grading needs one answer.
      */
     private fun realization(lang: Language, text: String): Realization {
