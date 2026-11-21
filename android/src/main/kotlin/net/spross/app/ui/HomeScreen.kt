@@ -24,9 +24,8 @@ import net.spross.kern.design.PaneRole
 import net.spross.kern.trainer.DayLead
 
 /**
- * Home: [HomeSection]'s sections in order, dealt into two panes
- * where the window splits ([PaneColumns]). Which state card is kern's
- * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
+ * Which state card stands is kern's [DayLead] under a load failure ([homeCard]);
+ * the drill Home names stands only inside one.
  */
 @Composable
 fun HomeScreen(model: AppModel) {
