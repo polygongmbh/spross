@@ -117,8 +117,11 @@ A session ends with at most one simulator or emulator running, the one the owner
 ## Extended docs
 
 - A checkable rule earns a gate (pre-commit or test, `--fix` and a per-line waiver where it can) and keeps its sentence for the why; every rule lives in the repo.
-- **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it.
-- Docs carry foundations and leave to the running app and the code what they answer faster; a needed cross-link means a fact is filed in the wrong doc.
+- **One fact, one home**: each topic owned by exactly one doc; a plan links into it.
+- Docs hold only what future implementers need across several places in the code;
+  what has one place in the code is documented there (KDoc, Swift doc comment),
+  and what carries no weight for a future decision goes to `docs/archive/` or is cut;
+  a needed cross-link means a fact is filed in the wrong doc.
 - A rule states what to do, in positive terms.
 - Before editing any `.md` file, read its first three lines — heading, scope and layout, neighbors — keep them true in the same edit,
   put what the scope excludes where the neighbors point, and keep file-describing prose to those lines.
