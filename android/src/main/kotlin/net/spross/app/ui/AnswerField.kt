@@ -32,14 +32,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.app.audio.Pronouncer
+import net.spross.kern.session.FieldVerdict
 import net.spross.kern.session.TurnFeedback
 
 /**
  * The one field every asking surface types into — the review loop's and all four drills'.
  *
  * The verdict tint, the checkmark and the state a screen reader hears are the whole of what
- * it renders, and they are the same wherever the answer is written: a near miss runs amber
- * throughout — field edge, checkmark and box agree (`docs/design.md`).
+ * it renders, and they are the same wherever the answer is written ([FieldVerdict]).
  *
  * Open after grading unless [locked]: a review miss keeps typing, because the retype IS the
  * answer; a drill's miss locks it on what was written, since nothing there is retyped
@@ -66,15 +66,9 @@ fun AnswerField(
     /** Keeps what was written and takes no more. */
     locked: Boolean = false,
 ) {
-    val palette = Theme.colors
-    // The edge says how the answer landed: green where it was clean, amber for a near miss
-    // and for a reveal alike — on a reveal it is the whole of the mark, since nothing about
-    // an unanswered question was accepted and no checkmark may claim otherwise.
-    val tint: Color? = when (feedback) {
-        TurnFeedback.Correct -> palette.success
-        is TurnFeedback.Almost, TurnFeedback.Revealed -> palette.amber
-        else -> null
-    }
+    val verdict = FieldVerdict.of(feedback)
+    // why: an open field keeps Material's own focused and resting outline.
+    val tint: Color? = if (verdict == FieldVerdict.Open) null else verdict.ink.tint()
     val owned = remember { FocusRequester() }
     val requester = focus ?: owned
     LaunchedEffect(Unit) { if (focus == null) requester.claimWhenPlaced() }
@@ -107,24 +101,16 @@ fun AnswerField(
             },
         placeholder = { Text(placeholder, Modifier.fillMaxWidth(), textAlign = TextAlign.Center) },
         textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-        // why: correctness is never color alone — the mark says it on screen, the state
-        // description says it to TalkBack, and the tint is the third telling of the same
-        // thing. The mark says ACCEPTED and rides both accepted states, its color saying
-        // how cleanly; a reveal gets none, because nothing about it was accepted.
         // why: mirrors the mark so the answer stays centered under the card when a verdict lands.
-        leadingIcon = if (feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost) {
+        leadingIcon = if (verdict.check) {
             { Spacer(Modifier.size(24.dp)) }
         } else {
             null
         },
-        trailingIcon = when (feedback) {
-            TurnFeedback.Correct -> {
-                { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
-            }
-            is TurnFeedback.Almost -> {
-                { Icon(SprossIcons.Check, contentDescription = null, tint = palette.amber) }
-            }
-            else -> null
+        trailingIcon = if (verdict.check) {
+            { Icon(SprossIcons.Check, contentDescription = null, tint = verdict.ink.tint()) }
+        } else {
+            null
         },
         colors = if (tint == null) {
             OutlinedTextFieldDefaults.colors()

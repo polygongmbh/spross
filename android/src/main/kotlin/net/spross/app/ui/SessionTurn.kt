@@ -139,14 +139,12 @@ private fun VerdictTile(
 private val VERDICT_TILE = 60.dp
 
 /**
- * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and — on
- * a wrong answer alone — a haptic under it.
- *
- * The haptic falls where iOS puts it — a gentle wake-up on a miss, never on a reveal or a hit.
+ * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and the
+ * haptic under it where the tone taps ([ToneKind.taps]).
  */
 fun View.cueTone(kind: ToneKind, sounds: CueSounds) {
     sounds.play(kind)
-    if (kind != ToneKind.Wrong) return
+    if (!kind.taps) return
     // why: the expressive constant only exists from API 30 — an older device taps with the
     // long press it has always had rather than letting a miss pass unfelt.
     performHapticFeedback(

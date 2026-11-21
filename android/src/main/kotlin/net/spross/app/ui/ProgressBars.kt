@@ -58,11 +58,7 @@ fun SegmentsBar(
     ) {
         segments.takeLast(bar.shown).forEachIndexed { offset, tone ->
             val index = bar.firstShown + offset
-            val color = when (tone) {
-                AnswerOutcome.Right -> palette.success
-                AnswerOutcome.Almost -> palette.amber
-                AnswerOutcome.Wrong -> palette.wrong
-            }
+            val color = tone.ink.tint()
             // why: keyed on the run-wide index, so a segment already on screen holds its settled
             // weight and color instead of replaying the entrance on every answer that
             // follows it — only the newest slot grows in and eases into its tone.

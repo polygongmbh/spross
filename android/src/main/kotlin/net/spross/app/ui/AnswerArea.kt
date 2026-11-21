@@ -30,6 +30,7 @@ import net.spross.kern.session.AnswerControls.GiveUp
 import net.spross.kern.session.AnswerControls.Primary
 import net.spross.kern.session.AnswerControls.Slot
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.FieldVerdict
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.TurnFeedback
 
@@ -99,6 +100,7 @@ fun AnswerArea(
                     almost.shownForm,
                     chrome,
                     correctionVoice?.pronounce?.invoke(almost.correctForm),
+                    ink = FieldVerdict.of(almost).ink.tint(),
                     playing = correctionVoice?.isPlaying?.invoke(almost.correctForm) == true,
                 )
             }

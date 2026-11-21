@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -55,16 +56,17 @@ fun AlmostCorrection(
     form: String,
     chrome: Chrome,
     pronounce: (() -> Unit)?,
+    /** The field's near-miss ink ([net.spross.kern.session.FieldVerdict.ink]), so field and box agree. */
+    ink: Color,
     modifier: Modifier = Modifier,
     playing: Boolean = false,
 ) {
-    val amber = Theme.colors.amber
     val shape = MaterialTheme.shapes.small
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Theme.colors.wash(amber), shape)
-            .border(1.dp, amber.copy(alpha = Palette.EDGE.toFloat()), shape)
+            .background(Theme.colors.wash(ink), shape)
+            .border(1.dp, ink.copy(alpha = Palette.EDGE.toFloat()), shape)
             .clip(shape)
             .padding(Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
@@ -75,7 +77,7 @@ fun AlmostCorrection(
         Icon(
             SprossIcons.CornerDownRight,
             contentDescription = null,
-            tint = amber,
+            tint = ink,
             modifier = Modifier.size(SPEAKER_GLYPH),
         )
         Column(
