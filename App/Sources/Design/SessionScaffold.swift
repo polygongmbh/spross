@@ -7,17 +7,6 @@ import SwiftUI
 // arbitrary content below — or, in a wide window, the same chrome as items in the
 // system's toolbar (`SystemBar`), the content taking the full width. Pure chrome — knows nothing about cards.
 
-/// One answered item's segment hue — which answer reads as which outcome is kern's (`AnswerOutcome`).
-extension AnswerOutcome {
-    var color: Color {
-        switch self {
-        case .right: return Theme.colors.success
-        case .almost: return Theme.colors.amber
-        case .wrong: return Theme.colors.wrong
-        }
-    }
-}
-
 struct SessionScaffold<Content: View>: View {
     /// 1-based position of the current card in the composed session.
     let position: Int
@@ -112,7 +101,7 @@ struct SessionScaffold<Content: View>: View {
                     : AnyLayout(HStackLayout(spacing: spacing))
                 stack {
                     ForEach(Array(visible.enumerated()), id: \.offset) { _, outcome in
-                        Rectangle().fill(outcome.color)
+                        Rectangle().fill(Color(outcome.ink))
                     }
                     if remaining > 0 {
                         Rectangle()

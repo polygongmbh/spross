@@ -4,19 +4,13 @@ import SwiftUI
 // MARK: - AnswerInputView
 //
 // Typed-answer field with inline feedback. The field itself only ever shows
-// what the LEARNER typed; where the right answer goes depends on how close they
-// came:
-// - correct → subtle green glow + checkmark, nothing else to say
-// - almost  → amber throughout, and the box below carries the form that was
-//             owed, at full size and audible
-// - revealed → amber edge; the CARD carries the answer, so nothing here does
+// what the LEARNER typed; its edge, checkmark and correction box are kern's
+// `FieldVerdict`, and a clean answer adds a soft glow in its ink.
 
 struct AnswerInputView: View {
 
     @Binding var text: String
-    /// Where kern says the answer stands. A near miss (`almost`) runs amber
-    /// throughout — edge, checkmark and box agree — so the green glow stays the
-    /// clean answer's alone; a reveal carries nothing, the CARD holds the answer.
+    /// Where kern says the answer stands.
     var feedback: TurnFeedback = TurnFeedbackNeutral.shared
     /// Resolved by the caller — the String Catalog is the one home for it,
     /// so there is no default to fall through to.
@@ -61,6 +55,8 @@ struct AnswerInputView: View {
 
     private var state: Skie.Kern.TurnFeedback.__Sealed { onEnum(of: feedback) }
 
+    private var verdict: FieldVerdict { FieldVerdict.companion.of(feedback: feedback) }
+
     /// Revealed, locked and empty: the card is carrying the answer and there is
     /// nothing of the learner's here to keep on screen.
     private var isInert: Bool {
@@ -101,7 +97,7 @@ struct AnswerInputView: View {
                 .strokeBorder(borderColor, lineWidth: feedback is TurnFeedbackNeutral ? 1 : 2)
         )
         .shadow(
-            color: feedback is TurnFeedbackCorrect ? Theme.colors.success.opacity(0.35) : .clear,
+            color: verdict == .clean ? Color(verdict.ink).opacity(0.35) : .clear,
             radius: 10
         )
         // why: the amber edge is the only thing marking a reveal, and a color
@@ -122,19 +118,13 @@ struct AnswerInputView: View {
         }
     }
 
-    /// The checkmark says ACCEPTED and rides both correct states; its color
-    /// says how cleanly. It is silent: the field's own value speaks the verdict.
-    /// A reveal gets no mark at all — the amber edge already carries the state,
-    /// and a mark here would read as a button.
+    /// Silent: the field's own value speaks the verdict.
     @ViewBuilder
     private var statusIcon: some View {
-        switch state {
-        case .neutral, .revealed:
-            EmptyView()
-        case .correct, .almost:
+        if verdict.check {
             Image(systemName: "checkmark.circle.fill")
                 .font(.title3)
-                .foregroundStyle(borderColor)
+                .foregroundStyle(Color(verdict.ink))
                 .accessibilityHidden(true)
         }
     }
@@ -143,15 +133,7 @@ struct AnswerInputView: View {
         feedback is TurnFeedbackRevealed
     }
 
-    private var borderColor: Color {
-        switch state {
-        // why: the field's edge is a control boundary, not a decorative
-        // hairline — the softer Theme.colors.separator hides it against the surface.
-        case .neutral: return Theme.colors.borderStrong
-        case .correct: return Theme.colors.success
-        case .almost, .revealed: return Theme.colors.amber
-        }
-    }
+    private var borderColor: Color { Color(verdict.ink) }
 
     // MARK: Correction box
 
@@ -167,7 +149,7 @@ struct AnswerInputView: View {
         HStack(spacing: Theme.spacing.md) {
             Image(systemName: "arrow.turn.down.right")
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Theme.colors.amber)
+                .foregroundStyle(Color(verdict.ink))
             VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                 Text(caption)
                     .font(Theme.typography.caption)
@@ -189,11 +171,11 @@ struct AnswerInputView: View {
         .padding(Theme.spacing.lg)
         .background(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .fill(Theme.colors.amber.opacity(Palette.shared.WASH))
+                .fill(Color(verdict.ink).opacity(Palette.shared.WASH))
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .strokeBorder(Theme.colors.amber.opacity(Palette.shared.EDGE), lineWidth: 1)
+                .strokeBorder(Color(verdict.ink).opacity(Palette.shared.EDGE), lineWidth: 1)
         )
         // why: `contain`, not `combine` — caption and form stay two stops, and the
         // replay stays an action on the form itself.

@@ -4,8 +4,8 @@ import UIKit
 
 // MARK: - Sound
 //
-// Tiny feedback layer for the review loop: one soft sound per event, and a
-// haptic on a wrong answer only.
+// Tiny feedback layer for the review loop: one soft sound per event, and the
+// tap kern's `ToneKind.taps` asks for.
 //
 // The sounds are bundled files rather than Apple's built-in UISounds ids
 // (1053/1054/1057 and friends). Those ids carry the system alert haptic with
@@ -43,34 +43,27 @@ enum Sound {
     /// The correct interval carried on up to the octave — the finish screen only.
     private static let cheerPlayer = load("cheer", .cheer)
 
-    static func correct() {
-        play(correctPlayer)
-    }
-
-    static func wrong() {
-        play(wrongPlayer)
-        // why: the only haptic in the app — a single light tap on a wrong
-        // answer as a gentle wake-up cue, never on reveal or on a correct one.
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-    }
-
-    static func reveal() {
-        play(revealPlayer)
-    }
-
-    /// The cue a graded answer asks for, named by kern's `ToneKind` — every
-    /// surface that grades reads the mapping here rather than spelling it out.
+    /// The cue a graded answer asks for: kern's `ToneKind` names its chime
+    /// and whether it taps.
     static func play(_ kind: ToneKind) {
-        switch kind {
-        case .correct: correct()
-        case .almost: play(almostPlayer)
-        case .wrong: wrong()
-        case .reveal: reveal()
-        }
+        play(player(kind.chime))
+        // why: the only haptic in the app — the lightest tap, where kern says
+        // the verdict taps at all.
+        if kind.taps { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
     }
 
     static func cheer() {
         play(cheerPlayer)
+    }
+
+    private static func player(_ chime: Chime) -> AVAudioPlayer? {
+        switch chime {
+        case .correct: return correctPlayer
+        case .almost: return almostPlayer
+        case .wrong: return wrongPlayer
+        case .reveal: return revealPlayer
+        case .cheer: return cheerPlayer
+        }
     }
 
     /// Loads the players off the answering path, so the first chime of a

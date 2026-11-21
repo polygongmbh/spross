@@ -148,7 +148,7 @@ extension AppModel {
     var sessionCannotListen: Bool { run?.cannotListen ?? false }
 
     /// The answered stretch as the progress bar draws it. Which rating reads as
-    /// which outcome is kern's grouping (`AnswerOutcome`); only the hues are ours.
+    /// which outcome, and its hue, are kern's (`AnswerOutcome`).
     var sessionSegments: [AnswerOutcome] { run?.segments ?? [] }
 
     /// What the finished round's summary says — kern's (`RoundSummary`), nil without a run.

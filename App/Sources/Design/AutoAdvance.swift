@@ -3,9 +3,9 @@ import UIKit
 
 /// Central timing + accessibility guard for every "a clean correct answer
 /// flips on its own" surface — vocab review, the trainer drills, the letter
-/// drill. The two beats (docs/design.md § Review UX rules) and their numbers are
-/// kern's `AdvanceBeat`, so the turn machine and the drills cannot drift apart;
-/// the screen-reader skip lives here once so no surface can forget the guard.
+/// drill. The two beats and their numbers are kern's `AdvanceBeat`, and when
+/// none may run is kern's `Cue.ArmAdvance`; the screen-reader skip lives here
+/// once so no surface can forget the guard.
 enum AutoAdvance {
     /// VoiceOver and Switch Control both make a timed screen change
     /// hostile: it truncates the correctness announcement and moves the
