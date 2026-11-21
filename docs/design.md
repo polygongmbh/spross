@@ -18,14 +18,7 @@ rephrase it as an availability statement or a question.
 
 - One document per target language, saved after answers, at session end and on background —
   an answered review is never only in memory.
-- **Calibration is re-applied from the build on every load**:
-  learning steps, retention and caps are the app version's decisions,
-  so a box written months ago answers to the current numbers, not its own.
-  Nothing survives it — growth pacing is the engine's opinion,
-  not a figure the learner tunes (`growth-evidence.md`).
-- Drill records live outside the box: a drill run touches no card and no schedule,
-  so losing one costs a climb, never learning history.
-  Only its answer count per day lives in the box, since the streak reads it.
+- Calibration is the build's, never a figure the learner tunes (`snapshots.md`).
 
 ## Profile & onboarding
 
@@ -33,16 +26,11 @@ rephrase it as an availability statement or a question.
   the catalog decides which targets a source can reach.
 - Default source = device language when covered, else en.
   Either picker may hold the other side's language — picking it swaps the pair.
-- A language is named by its endonym (`LanguageChoices.name`);
-  pickers add the English exonym.
-- Onboarding ends inside the first round, and only its last page commits
-  (joins the box and opens the session; `OnboardingPage`) —
-  with no way back once it has.
+- Onboarding ends inside the first round, with no way back once its last page commits (`OnboardingPage`).
   That first round teaches itself, one line per moment, in the quiet aside line,
   and the lines last that round only.
 - Onboarding copy teaches where things are and what to do there, not what the app believes:
-  the tour names each stop by its own screen's name (`OnboardingTourStop`),
-  and choosing what to learn (queuing an area in the box) is one of them.
+  the tour names each stop by its own screen's name (`OnboardingTourStop`).
 - Settings' import takes a word list (Anki, Quizlet, CSV) where the file is no backup,
   reviewed like the companion's way back before it goes in as own words.
 - Importing a backup on a first run skips onboarding:
@@ -88,14 +76,9 @@ a first exposure, a recognition turn, a settled word's recalled produce turn (no
 or a learner who does not want to type.
 Grade buttons live on that path only.
 
-- The role alternates between produce and recognize.
-- **Produce**: typed answer in the target language, graded by the kern normalizer.
-  The reveal is the no-typing fallback, self-graded.
-- **Recognize**: reveal and self-grade only — no input field.
-  Three outcomes; Easy is earned by answering fast, never picked.
+- Which turn a card asks, and what it earns, is `review.md`'s.
+- Self-grading has three outcomes; Easy is earned by answering fast, never picked.
   Buttons name what the learner knows, never FSRS rating names.
-  The recall clock runs from prompt to reveal.
-  The reveal carries the source meaning plus the full synonym family.
 - A card's text stays centered whatever else it carries.
   A picture's slot is held whether or not the picture is in it, so a reveal never reflows the words.
   A picture that would answer the question is withheld until the reveal (`CardEmoji.Cue`).
@@ -127,20 +110,8 @@ What licenses a second component is a parameter attempted and found not to carry
   where the target merges two source concepts.
   The card holds on the meaning it teaches.
   Only one hint on the card at a time.
-- **The hear turn** for words past the growing bar:
-  prompt is the replay glyph, answer is the meaning in the known language.
-  Asked as recognition when the word cannot be heard.
-- **"Can't listen right now?"** under every hear card:
-  puts the word on the card as text, and every later hear card of that session starts that way.
-  Same answer, same rating; only the channel moves.
-- **A produce miss keeps the field open for a retry.**
-  The reveal trims to the words already right;
-  finishing counts as recalled-with-help, giving up is an honest miss.
-  A hear card has no retry: its miss shows the reveal and a Next button.
-- **A missed word is written out once before the session moves on.**
-  Encoding only, never a grade.
-  Production and first exposures ask for it; recognition misses do not.
-  One write-out per miss.
+- The hear turn's prompt is the replay glyph, and "Can't listen right now?" stands under every hear card;
+  the retry, the write-out and what each earns are `review.md`'s.
 - **Finishing the word IS the answer:**
   the field confirms itself when the letters line up, the card flips a beat later.
   Backing out takes the confirmation with it.
@@ -180,17 +151,10 @@ What licenses a second component is a parameter attempted and found not to carry
 - **Three peer sections**: Home, Box, Settings.
   The tab bar stands on those three and on nothing else.
 - **Home** carries the day: the round, listening, the drills, the companion, the trees.
-  - The line over the round carries the language being learned in words that fit the hour
-    (`GreetingPlan` over `dayPart`/`partVariant`).
-    Two registers: the target speaking for itself, or the known language asking about it.
-    The spoken lines lead and may address the learner by name (`Greetings.addressed`).
+  - The line over the round carries the language being learned in words that fit the hour (`GreetingPlan`).
     Every chrome line invites with a question that pictures its hour — never states.
     No line pictures coffee, alcohol or any other drug.
-    Holds through a render, moves on by the next opening.
-  - Once the day has answered more than is still due, the day's card leads with ONE drill and why,
-    listening, or the conversation, taking turns,
-    opening what that card opens, the round a smaller button under it
-    (`DayLead`).
+  - Where the day's card leads with something else (`DayLead`), it says why, and the round is a smaller button under it.
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.
   - The round card names what the round is led by (due work or new-word offer),
@@ -203,23 +167,11 @@ What licenses a second component is a parameter attempted and found not to carry
   pasted or from a file (`WordListFile`); every box briefs, one no round has opened as a beginner's talk.
   It stands under the day's card, never in it.
   The prompt text is never shown, only the loop it runs.
-  What comes back is shown whole and sorted, never filtered:
-  every pair in new/near/held groups (`HarvestKind`), only the new group arrives ticked.
+  Of what comes back, only the new group arrives ticked (`HarvestKind`).
 - **The trees**: one tree per area, catalog order.
   Answers how the box is shaped and which corners have never been opened.
   **The unit is the area, not the word.**
-  **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
-  blossom and fruit appear on it.
-  A stage is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit;
-  how a tree stands, grows and is drawn is kern's (`growthByArea`, `TreesLayout`, `AreaTree`, `TreePicture`, `TreeRise`),
-  and whether a round summary shows one, and what it claims over it, `RoundSummary`.
-  A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
-  A leaf is a sprig of ribbed leaflets in one of three greens by height, never faded; a fruit carries a shaded side and a glint.
-  Settled and matured words hang no leaf of their own, so about a third of them carry a single leaf beside their mark: a grown crown is never bare.
-  Height comes from how many words the area has met, never from catalog count.
-  An unopened area is one faded seedling.
-  A lapse drops leaves, never shrinks the tree.
-  A suspended word gets no space.
+  How a tree grows and is drawn is kern's (`TreePicture`); merely queued hangs nothing, and a suspended word gets no space.
   Accessibility: canvas hidden, each tree has a tap target speaking its area name,
   blossom differs from leaf in shape before color, figures spelled out beneath for the eye.
   Nothing moves.
@@ -255,17 +207,11 @@ What licenses a second component is a parameter attempted and found not to carry
 
 ## Wide windows
 
-- **Width alone splits a window** into two panes, halves of its safe area around its center (`WindowPanes`),
-  so a tablet, an unfolded foldable and any wide window answer to one rule, and a phone held upright never splits.
-- Text in a pane keeps a readable column.
-  A screen without a pane design halves only with the hinge: on a foldable half open like a book it stands in the trailing half,
-  on any window lying flat it centers its column across the whole width.
+- How a window splits into panes and how large its type grows are kern's (`WindowPanes`, `TypeScale`).
 - **Navigation and a screen's own controls stand where the platform's guidance puts them** on a wide window (`CLAUDE.md`).
-- Home's sections and the pane each takes are defined once, in the one column's order, for both platforms.
-  The primary pane holds what acts on the day — the day's card, the drills and the companion —
-  and stands beside the platform's own navigation: trailing on iOS, beside its system bar, and leading on Android, beside the rail.
-  The secondary pane holds the rest: the greeting heads it, then the voice hint, listening, and the last 14 days over the trees.
-  Each pane scrolls on its own.
+- Home's sections and the pane each takes are defined once for both platforms:
+  the primary pane holds what acts on the day and stands beside the platform's own navigation,
+  the secondary pane holds the rest, and each scrolls on its own.
 - The Box puts its areas in one pane and the chosen area's words in the other.
 - A sheet follows the same hinge: on a half-open book it stands in the trailing half,
   lying flat it keeps the platform's placement; an alert stays centered.
@@ -273,9 +219,6 @@ What licenses a second component is a parameter attempted and found not to carry
   an action that needs its words, like a summary's Chat about them and Keep practicing, stays a labeled button in the content.
 - **A session's card keeps the whole width**; its close, progress and read-aloud stand where the platform puts a task's controls,
   and the status line stays over the card.
-- **A big window enlarges type** whether or not it splits (`TypeScale`):
-  its shorter side decides, so an unfolded foldable counts upright and on its side, and no phone does;
-  the whole app grows a little and a session's card more, on top of the reader's own text size.
 
 ## Design language
 
@@ -287,7 +230,3 @@ so a noun taking both (l'élève) stays neutral.
 The rendered article is always the one `grammar.article` names, prepended.
 Palette: stone-and-moss paper, clay headline, ocean/forest secondaries,
 every pairing clearing WCAG AA in both schemes.
-
-## Not yet
-
-Couple mode, accounts/sync, UI chrome past de/en.
