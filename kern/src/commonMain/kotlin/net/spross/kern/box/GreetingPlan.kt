@@ -26,6 +26,8 @@ data class GreetingLine(val spoken: Boolean, val index: Int)
  * (the chrome's lines for [chromePart]), the spoken lines first — they both greet and teach,
  * and only they address the learner ([address]).
  * The words are the catalog's and each app's string table; which one is shown is [pick].
+ * A chrome line invites with a question that pictures its hour, never a statement,
+ * and no line in either register pictures coffee, alcohol or any other drug.
  */
 class GreetingPlan(
     private val nowEpochMillis: Long,

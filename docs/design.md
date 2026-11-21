@@ -1,18 +1,6 @@
 # Spross — app design
-The app-layer rules every screen answers to: what the app composes, how an answer is asked, graded and shown, how copy speaks, the visual language; one screen's layout, element order, sizes, timings and inventories are the code's, not this page's.
+The app-layer rules both phones answer to: what the app composes, how an answer is asked, graded and shown, the window and the visual language; copy is `../scripts/strings.py`'s, and one screen's layout, element order, sizes, timings and inventories are the code's, not this page's.
 Neighbors: the review card `review.md`, drills `drills.md`, listening `listening.md`, the wrist and the tiles `watch-and-widgets.md`, audio `audio.md`, engine `../kern/README.md`.
-
-## North star
-
-Every screen answers "What do I do right now?" with zero ambiguity.
-The app composes the work; the user never browses for what to study.
-
-Copy states what is on the table, never personifies waiting
-("Zeit für neue Wörter!", not "Neue Wörter warten auf dich";
-"Morgen sind %@ Karten dran", not "warten auf dich").
-Every prompt, empty state, call to action and forecast line gets the same read:
-where the sentence puts the learner under an expectation,
-rephrase it as an availability statement or a question.
 
 ## Persistence
 
@@ -22,10 +10,6 @@ rephrase it as an availability statement or a question.
 
 ## Profile & onboarding
 
-- Profile = (source, target) catalog languages;
-  the catalog decides which targets a source can reach.
-- Default source = device language when covered, else en.
-  Either picker may hold the other side's language — picking it swaps the pair.
 - Onboarding ends inside the first round, with no way back once its last page commits (`OnboardingPage`).
   That first round teaches itself, one line per moment, in the quiet aside line,
   and the lines last that round only.
@@ -38,31 +22,9 @@ rephrase it as an availability statement or a question.
 
 ## Chrome & copy
 
-- UI chrome renders in the known language when chrome exists (de/en today), else en.
-  Onboarding follows the source being picked, re-rendering on each tap.
-- **English chrome title-cases names** — screens, drills, exercises, modifiers, sections.
-  Sentences stay sentence case.
-  German is left alone — it has no title-case convention.
-- Chrome strings are symbolic keys (`settings.known.title`), never source text.
-  How a key is written and kept honest: `scripts/strings.py`.
-  A key is a literal, never built by interpolation
-  (`"dates.sprosse.\(n)"` looks up `dates.sprosse.%lld`, localizes nothing).
-  Key namespaces: first level = surface, second level = kind within it
-  (`box.card` vs `box.shelf`, `home.offer` vs `home.done`);
-  cross-surface keys go to `common.`, accessibility-only keys to `a11y.`.
-  Keys name the domain's word, not the code's —
-  known/learning over source/target, Sprosse over rung, queue over pack.
-  No key is also the stem of a family that means something else.
-- The String Catalog is the one home for copy on both phones (`scripts/chrome.py`);
-  what a string means is its catalog entry's `comment`.
+- Chrome copy, its keys and how it speaks are `../scripts/strings.py`'s.
   Where the layout differs the reader composes — the catalog holds the caption,
   each phone sets the form beside or below it.
-- The watch, the complication and the iOS widget never see that catalog,
-  so they carry their own, under the same rules,
-  and resolve it in the snapshot's chrome language — never the device's.
-- Area titles and area emoji both come from the catalog; the app carries no map.
-  A title is a plain name usable as the produce prompt's area cue;
-  the catalog's optional subtitle is the flavor line, never shown where a cue is wanted.
 - **A screen reader speaks what learning needs** — prompts, answers, verdicts, corrections, controls —
   and stays silent on visual cues, counters, progress and decoration.
   A sound beside a word is an action on the word, never a stop of its own.
@@ -151,9 +113,6 @@ What licenses a second component is a parameter attempted and found not to carry
 - **Three peer sections**: Home, Box, Settings.
   The tab bar stands on those three and on nothing else.
 - **Home** carries the day: the round, listening, the drills, the companion, the trees.
-  - The line over the round carries the language being learned in words that fit the hour (`GreetingPlan`).
-    Every chrome line invites with a question that pictures its hour — never states.
-    No line pictures coffee, alcohol or any other drug.
   - Where the day's card leads with something else (`DayLead`), it says why, and the round is a smaller button under it.
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.
@@ -194,7 +153,6 @@ What licenses a second component is a parameter attempted and found not to carry
   at their usual times (learned, `../kern/README.md` §6) or at times they set, as many a day as they choose.
   The system's permission is asked for at that switch and nowhere else;
   a reminder is a normal alert whose priority the system settings own.
-  Its text names what is ready, never the streak.
 - **Mid-round**, report and suspend are offered only once the answer is out
   (`TurnState.answerOut`).
   A report carries the typed answer along without asking about it,
@@ -209,9 +167,7 @@ What licenses a second component is a parameter attempted and found not to carry
 
 - How a window splits into panes and how large its type grows are kern's (`WindowPanes`, `TypeScale`).
 - **Navigation and a screen's own controls stand where the platform's guidance puts them** on a wide window (`CLAUDE.md`).
-- Home's sections and the pane each takes are defined once for both platforms:
-  the primary pane holds what acts on the day and stands beside the platform's own navigation,
-  the secondary pane holds the rest, and each scrolls on its own.
+- Each of Home's panes (`HomeSection`) scrolls on its own.
 - The Box puts its areas in one pane and the chosen area's words in the other.
 - A sheet follows the same hinge: on a half-open book it stands in the trailing half,
   lying flat it keeps the platform's placement; an alert stays centered.
@@ -222,11 +178,6 @@ What licenses a second component is a parameter attempted and found not to carry
 
 ## Design language
 
-Warm, card-centric, emoji as illustration.
-Article colors: der=blue, die=berry, das=green;
-two-gender languages fold onto the same two hues,
-and the hue is the word's gender — the catalog's `grammar.gender` where authored, else the article's —
-so a noun taking both (l'élève) stays neutral.
-The rendered article is always the one `grammar.article` names, prepended.
-Palette: stone-and-moss paper, clay headline, ocean/forest secondaries,
-every pairing clearing WCAG AA in both schemes.
+A noun's article wears its gender's hue (`Palette.der`/`die`/`das`, `Gender`);
+a noun taking both genders (l'élève) stays neutral.
+Colors come from `Palette` only.

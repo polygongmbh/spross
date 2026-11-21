@@ -21,6 +21,22 @@ LocalizedStringKey parameters, or wrapped in Label/accessibilityLabel. Keys it
 misses get flagged `extractionState: "stale"` — cosmetic (they still compile
 into every .lproj) but it churns the file on every index.
 
+How the copy speaks, on every surface either catalog reaches:
+copy states what is on the table and never personifies waiting
+("Zeit für neue Wörter!", not "Neue Wörter warten auf dich"); a sentence that puts the
+learner under an expectation becomes an availability statement or a question.
+A reminder names what is ready, never the streak.
+English title-cases names (screens, drills, exercises, modifiers, sections) and keeps
+sentences in sentence case; German has no title case and is left alone.
+
+How a key is named: first level the surface, second the kind within it
+(box.card vs box.shelf, home.offer vs home.done); keys used on several surfaces go under
+`common`, accessibility-only ones under `a11y`. A key names the domain's word, not the code's
+(known/learning over source/target, Sprosse over rung, queue over pack), and no key is
+also the stem of a family that means something else. A key is a literal: one built by
+interpolation ("dates.sprosse.\\(n)") looks up dates.sprosse.%lld, which --built reports
+as missing; the families the code composes on purpose are COMPOSED below.
+
 A plural has to NAME its number: the compiler refuses a variation whose text does not
 carry the specifier, so a unit label standing apart from the figure it counts
 ("🔥 5 · Tage", two Texts for two type sizes) takes a key per form instead.
