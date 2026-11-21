@@ -55,33 +55,11 @@ A new surface that asks the way an existing one does IS that component with a pa
 never a second cut.
 What licenses a second component is a parameter attempted and found not to carry.
 
-- **A right answer's feedback is the subtlest the surface has, because it comes all the time:**
-  never a buzz beyond the lightest tap, never a chime as loud as the miss's.
-- **The answer is never on screen twice, and never in the field.**
-  Correct → card stays closed, narrated at the field;
-  where the meaning never stood on screen (a scramble, the opposites, a letter heard) it grows that meaning alone.
-  Wrong or revealed → card expands onto the answer.
-  Near miss → correction box under the field, card closed.
-  Either way the owed form stands at a readable size with its speaker beside it.
-- **Near miss runs amber** — field edge, checkmark and box agree.
-  Green stays the clean answer's alone.
-  Its chime is the correct one's first note alone; a merged meaning, full credit, sounds correct.
-- Near miss does not auto-advance.
-- A wrong answer that is another catalog word **names that word** (`Match.OtherWord`).
-- **Meaning answers accept every meaning the word has**,
-  where the target merges two source concepts.
-  The card holds on the meaning it teaches.
-  Only one hint on the card at a time.
-- The hear turn's prompt is the replay glyph, and "Can't listen right now?" stands under every hear card;
-  the retry, the write-out and what each earns are `review.md`'s.
-- **Finishing the word IS the answer:**
-  the field confirms itself when the letters line up, the card flips a beat later.
-  Backing out takes the confirmation with it.
-  Every step keeps a way out.
-- The text field appears only where there is something to type, focused immediately.
-- **Auto-advance** has two beats, live (typed exactly right) and explicit (a check or tile tap),
-  both from kern's `AdvanceBeat`.
-  Under VoiceOver or Switch Control no timer runs; an explicit next step stands instead.
+- How a verdict looks, sounds and feels is kern's, one table both phones read:
+  the field's ink and checkmark (`FieldVerdict`), the chime and the tap (`ToneKind`),
+  when the card opens (`Question.opens`) and when a beat may run (`Cue.ArmAdvance`).
+- Only one hint stands on the card at a time.
+- The text field is focused the moment it appears, and every step keeps a way out.
 
 ## Counts & sessions
 
@@ -91,20 +69,14 @@ What licenses a second component is a parameter attempted and found not to carry
 - **A round too long for the evening can be taken short:**
   due work alone, a round's worth, no first sights,
   offered only while it differs from the full round.
-- **The session end raises the tree of the hardest-worked area,
-  whatever the round did to the counts.**
-  Only the round's own marks move; Reduce Motion draws the finished tree at once.
-  Where no tree stands, one glyph does, springing in as the screen arrives;
-  nothing else decorates the hero.
+- The summary's hero is the tree kern raises (`RoundSummary.shownTree`, `TreeRise`),
+  or where none stands, one glyph springing in as the screen arrives;
+  nothing else decorates it, and Reduce Motion draws the finished tree at once.
 - **A record is named, a number is only counted.**
-- **A finished stretch is celebrated, record or not** — confetti and the cheer, as one:
-  every round summary, every drill pause but the one suggesting a stop,
-  and a closed drill run long enough to report or that beat its stored best (kern's `celebrated`).
+- **A finished stretch is celebrated, record or not** — confetti and the cheer, as one,
+  on every round summary and wherever kern's `celebrated` says.
   On a summary screen a tap anywhere but its buttons replays both;
   a screen coming back into view does not.
-- **The finish screen reports the round, not the box:**
-  one claim over the tree, one line of what the round did;
-  the day streak, record or not, is Home's.
 - **Stopping is the default at round end**, and going on the secondary choice.
   A day going badly says so and says why stopping is the better call.
 

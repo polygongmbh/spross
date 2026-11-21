@@ -8,7 +8,9 @@ import net.spross.kern.box.grownArea
 import net.spross.kern.box.growthHeadline
 
 /**
- * Everything a finished round's summary says, taken together.
+ * Everything a finished round's summary says, taken together:
+ * it reports the round, not the box — one claim over the tree ([headline]),
+ * one line of what the round did ([parts]); the day streak, record or not, is Home's.
  * The words for each part, the tree's drawing and the area's name are the platform's.
  */
 data class RoundSummary(

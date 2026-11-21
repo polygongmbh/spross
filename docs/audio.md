@@ -90,7 +90,7 @@ Neighbors: the recordings' licenses `audio-licensing.md`, the manifest's file fo
 - **A card whose only content is a sound is dealt whenever the app itself is not muted.**
   The device's volume holds nothing back;
   iOS's ring/silent switch cannot be read at all, so hear cards carry
-  "Can't listen right now?" on screen (`design.md`).
+  "Can't listen right now?" on screen (`AnswerControls.cantListen`).
 - **A screen about to play words at a very low volume says so.**
   Review cards and drills while reading aloud is on, the letter drill and Listening always:
   a line under the top bar asks for the volume to come up, and goes once it has.
