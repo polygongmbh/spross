@@ -18,8 +18,8 @@ object Palette {
     val surfaceTint = Swatch(0xE5E8DE, 0x27302A)
 
     /**
-     * Decorative hairline — card edges, the reveal divider, the ring groove.
-     * Deliberately below 3:1: the card's fill and shadow carry its boundary.
+     * Decorative hairline — dividers and the ring groove.
+     * Deliberately below 3:1: nothing relies on it to find an edge.
      */
     val separator = Swatch(0xD3D6CA, 0x3A443D)
 

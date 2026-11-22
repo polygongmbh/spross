@@ -20,8 +20,8 @@ import SprossKern
 // file's Commons page (`CreditsView.fileRow`).
 //
 // Never circled or filled, so it never LOOKS like a button.
-// Pulses gently while its word is sounding, the shape Duolingo's speaker
-// rides; Reduce Motion drops the pulse and just snaps.
+// While its word is sounding its waves light in turn, the system's own
+// playing idiom (`variableColor`), which moves nothing under Reduce Motion.
 
 struct SpeakerIcon: View {
     enum Size {
@@ -56,29 +56,19 @@ struct SpeakerIcon: View {
     /// the correction box, `SpokenWord`, an alphabet row — never pass nil.
     var pronounce: (() -> Void)?
 
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
     var body: some View {
         Button { pronounce?() } label: {
             Image(systemName: "speaker.wave.2.fill")
                 .font(.system(size: size.pointSize, weight: .semibold))
                 .foregroundStyle(size == .small ? Theme.colors.textSecondary : Theme.colors.accent)
                 .opacity(pronounce == nil ? Palette.shared.DIMMED : 1)
-                .scaleEffect(pulsing ? 1.16 : 1.0)
-                .animation(
-                    pulsing
-                        ? .easeInOut.repeatForever(autoreverses: true)
-                        : .easeOut(duration: 0.15),
-                    value: pulsing
-                )
+                .symbolEffect(.variableColor.iterative, isActive: isPlaying)
                 .frame(minWidth: size.hitTarget, minHeight: size.hitTarget)
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .disabled(pronounce == nil)
     }
-
-    private var pulsing: Bool { isPlaying && !reduceMotion }
 }
 
 // MARK: - Previews

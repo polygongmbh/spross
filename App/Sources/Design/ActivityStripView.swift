@@ -41,7 +41,6 @@ struct ActivityStripView: View {
             .frame(maxWidth: .infinity)
         }
         .panelSurface(vertical: Theme.spacing.md)
-        .cardShadow()
         .accessibilityHidden(true)
     }
 

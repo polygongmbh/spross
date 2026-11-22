@@ -4,25 +4,13 @@ import SprossKern
 // MARK: - Shared modifiers & button styles
 
 extension View {
-    /// The one card shadow used everywhere: a soft bloom, so the card lifts rather than casting a box.
-    func cardShadow() -> some View {
-        shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
-    }
-
-    /// The one card FACE: surface fill, hairline, shadow. Every card a session
-    /// puts up — vocabulary, drill prompt, listening prompt — wears this, so a
-    /// screen never shows two cards cut from different cloth.
+    /// The one card FACE: the surface fill on the page, flat as iOS draws grouped content.
+    /// Every card a session puts up — vocabulary, drill prompt, listening prompt — wears this.
     func cardSurface() -> some View {
         background(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                // why: faint on purpose — the fill and the shadow carry the edge, the hairline only closes it.
-                .strokeBorder(Theme.colors.separator.opacity(0.6), lineWidth: 1)
-        )
-        .cardShadow()
     }
 
     /// A field's or input row's surface: the control corner, filled, with a hairline edge.
@@ -54,7 +42,7 @@ extension View {
     /// The one inline PANEL: a block of the page — a table's rows, a ladder, a
     /// list of notes — set on the surface color at the tile radius, full width,
     /// with its own inset. A card is a question, a panel is the page around it,
-    /// so a panel wears no shadow and no hairline.
+    /// so it sits at the tile radius rather than the card's.
     func panelSurface(_ fill: Color = Theme.colors.surface,
                       vertical: CGFloat = Theme.spacing.lg) -> some View {
         padding(.horizontal, Theme.spacing.lg)
@@ -64,26 +52,6 @@ extension View {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                     .fill(fill)
             )
-    }
-}
-
-/// How far a pressed control shrinks under the thumb, cut a little deeper the smaller the control.
-enum PressKind: CGFloat {
-    /// A full action button, primary or soft.
-    case action = 0.97
-    /// A chip-shaped control: a hub chip, a choice tile, a scramble tile, the listening timer.
-    case chip = 0.96
-    /// A grade in the rating row.
-    case rating = 0.95
-    /// A compact icon-only button.
-    case icon = 0.9
-}
-
-extension View {
-    /// A control giving way under the thumb, every kind on the same quick spring.
-    func press(_ isPressed: Bool, _ kind: PressKind) -> some View {
-        scaleEffect(isPressed ? kind.rawValue : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: isPressed)
     }
 }
 
@@ -100,7 +68,6 @@ struct PrimaryButtonStyle: ButtonStyle {
             .frame(minHeight: 52) // card-parity: the button's own height, not a card reserve
             .background(color, in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.85 : 1)
-            .press(configuration.isPressed, .action)
     }
 }
 
@@ -117,7 +84,6 @@ struct SoftButtonStyle: ButtonStyle {
             .frame(minHeight: 44)
             .background(color.opacity(Palette.shared.WASH), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .press(configuration.isPressed, .action)
     }
 }
 
@@ -132,7 +98,6 @@ struct IconButtonStyle: ButtonStyle {
             .frame(width: 40, height: 40)
             .background(color.opacity(Palette.shared.WASH), in: Circle())
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .press(configuration.isPressed, .icon)
     }
 }
 
@@ -142,6 +107,5 @@ struct ChipButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .press(configuration.isPressed, .chip)
     }
 }

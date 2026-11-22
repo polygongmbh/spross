@@ -212,15 +212,12 @@ private var ladder: some View {
                      subtitle: "Hier duftet es nach Essen.",
                      stats: previewArea(settled: 18, growing: 6, queued: 0))
                 .panelSurface()
-                .cardShadow()
             AreaChip(emoji: "🛁", name: "Bad",
                      stats: previewArea(settled: 4, growing: 9, queued: 28, locked: 3))
                 .panelSurface()
-                .cardShadow()
             AreaChip(emoji: "🧰", name: "Werkstatt",
                      stats: previewArea(settled: 0, growing: 0, queued: 17))
                 .panelSurface()
-                .cardShadow()
             // The whole ladder, in the order a card climbs it.
             ladder
         }
@@ -236,7 +233,6 @@ private var ladder: some View {
         AreaChip(emoji: "🍳", name: "Küche",
                  stats: previewArea(settled: 18, growing: 6, queued: 28, locked: 2))
             .panelSurface()
-            .cardShadow()
         ladder
     }
     .padding(Theme.spacing.xl)

@@ -80,7 +80,7 @@ extension QuestionDriving {
             }
             .padding(.bottom, Theme.spacing.lg)
             // why: the scroll view clips its content, and a turning card's near edge
-            // (and its shadow) reaches above the card — the room keeps the flip whole.
+            // reaches above the card — the room keeps the flip whole.
             .padding(.top, Theme.spacing.xl)
         }
         // why: most of that room reaches up into the gap under the top bar,

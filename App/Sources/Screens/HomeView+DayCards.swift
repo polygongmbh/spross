@@ -179,6 +179,5 @@ extension View {
                 RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                     .fill(Theme.colors.surface)
             )
-            .cardShadow()
     }
 }

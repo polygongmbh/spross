@@ -39,7 +39,6 @@ struct BoxSettingsSection: View {
                 }
             }
             .panelSurface()
-            .cardShadow()
 
             SettingsAboutFooter(model: model)
         }

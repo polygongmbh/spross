@@ -46,7 +46,6 @@ struct BoxAreaSection: View {
             }
         }
         .panelSurface()
-        .cardShadow()
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {

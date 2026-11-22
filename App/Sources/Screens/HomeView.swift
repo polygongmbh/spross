@@ -195,7 +195,6 @@ struct HomeView: View {
                 .accessibilityLabel(Text("common.dismiss"))
             }
             .panelSurface()
-            .cardShadow()
         }
     }
 }

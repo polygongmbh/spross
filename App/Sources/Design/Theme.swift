@@ -132,8 +132,7 @@ enum Theme {
         let background = Color(Palette.shared.background)
         let surface = Color(Palette.shared.surface)
         let surfaceTint = Color(Palette.shared.surfaceTint)
-        /// Decorative hairline — card edges, the reveal divider, the ring groove.
-        /// Deliberately below 3:1: the card's fill and shadow carry its boundary.
+        /// Decorative hairline — the reveal divider, the ring groove. Deliberately below 3:1.
         let separator = Color(Palette.shared.separator)
         /// A line that must be SEEN — the answer field's edge is a control
         /// boundary, so it owes 3:1 where the decorative hairline does not.

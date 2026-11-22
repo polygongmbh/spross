@@ -105,7 +105,6 @@ struct BoxOwnContentSection: View {
             }
         }
         .panelSurface()
-        .cardShadow()
     }
 
     /// What the section's card can be made of, top to bottom. Only the ones with
