@@ -4,10 +4,9 @@ import SprossKern
 // MARK: - Shared modifiers & button styles
 
 extension View {
-    /// The one card shadow used everywhere, cut by kern's `CardSurface`.
+    /// The one card shadow used everywhere: a soft bloom, so the card lifts rather than casting a box.
     func cardShadow() -> some View {
-        shadow(color: .black.opacity(CardSurface.shared.SHADOW_ALPHA),
-               radius: CardSurface.shared.SHADOW_RADIUS, x: 0, y: CardSurface.shared.SHADOW_Y)
+        shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
     }
 
     /// The one card FACE: surface fill, hairline, shadow. Every card a session
@@ -20,7 +19,8 @@ extension View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .strokeBorder(Theme.colors.separator.opacity(CardSurface.shared.HAIRLINE), lineWidth: 1)
+                // why: faint on purpose — the fill and the shadow carry the edge, the hairline only closes it.
+                .strokeBorder(Theme.colors.separator.opacity(0.6), lineWidth: 1)
         )
         .cardShadow()
     }
@@ -67,13 +67,23 @@ extension View {
     }
 }
 
+/// How far a pressed control shrinks under the thumb, cut a little deeper the smaller the control.
+enum PressKind: CGFloat {
+    /// A full action button, primary or soft.
+    case action = 0.97
+    /// A chip-shaped control: a hub chip, a choice tile, a scramble tile, the listening timer.
+    case chip = 0.96
+    /// A grade in the rating row.
+    case rating = 0.95
+    /// A compact icon-only button.
+    case icon = 0.9
+}
+
 extension View {
-    /// A control giving way under the thumb: kern's `PressKind` names how far, and the spring it runs.
+    /// A control giving way under the thumb, every kind on the same quick spring.
     func press(_ isPressed: Bool, _ kind: PressKind) -> some View {
-        scaleEffect(isPressed ? kind.scale : 1)
-            .animation(.spring(response: PressKind.companion.RESPONSE,
-                               dampingFraction: PressKind.companion.DAMPING),
-                       value: isPressed)
+        scaleEffect(isPressed ? kind.rawValue : 1)
+            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: isPressed)
     }
 }
 

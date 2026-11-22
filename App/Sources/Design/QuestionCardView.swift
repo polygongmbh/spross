@@ -186,7 +186,7 @@ struct QuestionCardView: View {
         Text(askKey(ask))
             .font(Theme.typography.caption)
             .foregroundStyle(Theme.colors.textSecondary)
-            .textCase(CardType.shared.askCase == .upper ? .uppercase : nil)
+            .textCase(.uppercase)
             .multilineTextAlignment(.center)
     }
 

@@ -64,10 +64,10 @@ struct SpeakerIcon: View {
                 .font(.system(size: size.pointSize, weight: .semibold))
                 .foregroundStyle(size == .small ? Theme.colors.textSecondary : Theme.colors.accent)
                 .opacity(pronounce == nil ? Palette.shared.DIMMED : 1)
-                .scaleEffect(pulsing ? SpeakerPulse.shared.SCALE : 1.0)
+                .scaleEffect(pulsing ? 1.16 : 1.0)
                 .animation(
                     pulsing
-                        ? .easeInOut(duration: Double(SpeakerPulse.shared.HALF_MS) / 1000).repeatForever(autoreverses: true)
+                        ? .easeInOut.repeatForever(autoreverses: true)
                         : .easeOut(duration: 0.15),
                     value: pulsing
                 )

@@ -2,14 +2,17 @@ import SwiftUI
 import SprossKern
 
 /// How an overview row that just unlocked is marked, once (kern's `DrillUnlockMark`
-/// decides which, `UnlockMarkMotion` times it): the padlock it wore fades where it stood while a wash behind
+/// decides which): the padlock it wore fades where it stood while a wash behind
 /// the row fades with it. Short and quiet on purpose — it confirms what the
 /// learner earned rather than celebrating it.
 enum UnlockMark {
-    static let hold: Duration = .milliseconds(Int(UnlockMarkMotion.shared.HOLD_MS))
-    static let fade: Animation = .easeOut(duration: Double(UnlockMarkMotion.shared.FADE_MS) / 1000)
-    static let shrink = CGFloat(UnlockMarkMotion.shared.PADLOCK_SHRINK)
-    static let wash = UnlockMarkMotion.shared.WASH_ALPHA
+    /// How long the padlock stands before it goes — past the screen sliding in, so the eye finds it first.
+    static let hold: Duration = .milliseconds(600)
+    static let fade: Animation = .easeOut(duration: 0.9)
+    /// The scale the fading padlock shrinks to, where motion is not reduced.
+    static let shrink: CGFloat = 0.6
+    /// The accent's opacity in the wash over the row.
+    static let wash = 0.12
 
     /// Says the unlocked rows once, a beat after the page settles.
     @MainActor

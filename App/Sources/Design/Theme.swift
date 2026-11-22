@@ -31,14 +31,14 @@ enum Theme {
     static let typography = Typography()
     static let colors = Colors()
 
-    // MARK: Spacing (pt), kern's `Spacing`
+    // MARK: Spacing (pt), on the system's 4-pt grid; `lg` is the system's default padding
 
     struct Spacing {
-        let xs = CGFloat(SprossKern.Spacing.shared.xs)
-        let sm = CGFloat(SprossKern.Spacing.shared.sm)
-        let md = CGFloat(SprossKern.Spacing.shared.md)
-        let lg = CGFloat(SprossKern.Spacing.shared.lg)
-        let xl = CGFloat(SprossKern.Spacing.shared.xl)
+        let xs: CGFloat = 4
+        let sm: CGFloat = 8
+        let md: CGFloat = 12
+        let lg: CGFloat = 16
+        let xl: CGFloat = 24
     }
 
     // MARK: Corner radius family (one family, three sizes)
