@@ -39,8 +39,7 @@ Neighbors: the snapshots they decode `snapshots.md`, the review card on the phon
   **Red is the wrist's alone**: the phone keeps wrong off its cards because the learner stays there and can correct it, while a glance-long wrist answer has no second face to be gentle on.
   The mark names what earned the rating, never the grade: a learner sees why it came.
   Reduce Motion keeps every color and the mark and drops only the movement.
-  No sound — the wrist is a silent surface, and two channels already carry it;
-  the right answer's feedback is the subtlest the wrist has.
+  No sound — the wrist is a silent surface, and two channels already carry it.
 - **The picture arrives with the answer.** A card that has an emoji shows it on the watch's prompt line once a tile is tapped, never before:
   on a recognition question the picture depicts the very meaning being asked for.
   The emoji cue picks which KEY the picture travels under (`snapshots.md`), so no surface can show one early by reading the wrong field.

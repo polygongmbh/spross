@@ -14,7 +14,7 @@ import net.spross.kern.design.Palette
 class AnswerFeedbackTests {
 
     @Test
-    fun aRightAnswersFeedbackIsTheSubtlest() {
+    fun aRightAnswerSoundsQuietestAndNeverTaps() {
         val quietest = ToneKind.entries.minBy { it.chime.levelDb }
         assertEquals(ToneKind.Correct, quietest)
         assertTrue(ToneKind.Correct.chime.levelDb < ToneKind.Wrong.chime.levelDb)
