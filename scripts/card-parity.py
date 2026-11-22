@@ -6,11 +6,12 @@ numbers it is built from live in the two token tables — `App/Sources/Design/Th
 and `android/.../ui/Theme.kt`. A raw pt/dp/sp number inside a card file is how a second
 layout gets born — every divergence so far was a sibling file's near-identical code cut fresh.
 
-Three checks, no build required (pure text, so it runs on a machine with no Xcode):
+Two checks, no build required (pure text, so it runs on a machine with no Xcode):
 
-  1. The two token tables agree, name for name.
-  2. A card file states no number the tables already name.
-  3. A card FACE is composed of the shared primitives, not cut fresh.
+  1. A card file states no number its platform's table already names.
+  2. A card FACE is composed of the shared primitives, not cut fresh.
+
+Each table holds its own platform's numbers: the phones match in function, not in look.
 
 A number a card genuinely owes to the device rather than to the design — a hit target, a
 hairline — is listed in ALLOW. A one-off that neither table can own carries its reason on
@@ -128,19 +129,6 @@ def tables():
     return ios, droid
 
 
-def parity(ios, droid, report):
-    """Every token one table names, the other names too — with the same number."""
-    bad = 0
-    for family, _ in GROUPS:
-        for name in sorted(set(ios[family]) | set(droid[family])):
-            here, there = ios[family].get(name), droid[family].get(name)
-            if here == there:
-                continue
-            report(f"FAIL {family}.{name}: iOS says {here}, Android says {there}")
-            bad += 1
-    return bad
-
-
 def scan(files, rules, prims, tokens, report, fix):
     """A card file states no number a table already names, and a face composes primitives."""
     bad = 0
@@ -193,7 +181,7 @@ def main(argv):
     lines = []
     report = lines.append
     ios, droid = tables()
-    bad = parity(ios, droid, report)
+    bad = 0
     ios_bodies = bodies(IOS_UI, ".swift", IOS_FACES, [CANON])
     droid_bodies = bodies((DROID_UI,), ".kt", DROID_FACES, DROID_UNSCANNED)
     for files, rules, prims, tokens in (
