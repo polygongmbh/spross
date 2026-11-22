@@ -35,7 +35,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.kern.design.Palette
-import net.spross.kern.design.SpeakerPulse
 
 /**
  * The form an accepted-but-unclean answer owes back — a slip's proper spelling, or the
@@ -48,7 +47,7 @@ import net.spross.kern.design.SpeakerPulse
  * (iOS `AnswerInputView.correctionBox`).
  *
  * The speaker drops entirely where nothing can be heard, rather than offering a control
- * that would do nothing, and pulses while its form is sounding ([SpeakerPulse]).
+ * that would do nothing, and pulses while its form is sounding ([pulseScale]).
  */
 @Composable
 fun AlmostCorrection(
@@ -135,12 +134,16 @@ private fun pulseScale(playing: Boolean): Float {
     if (!playing) return 1f
     val swell = rememberInfiniteTransition(label = "speakerPulse").animateFloat(
         initialValue = 1f,
-        targetValue = SpeakerPulse.SCALE.toFloat(),
+        targetValue = PULSE_SCALE,
         animationSpec = infiniteRepeatable(
-            tween(SpeakerPulse.HALF_MS, easing = FastOutSlowInEasing),
+            tween(PULSE_HALF_MS, easing = FastOutSlowInEasing),
             RepeatMode.Reverse,
         ),
         label = "speakerSwell",
     )
     return swell.value
 }
+
+/** The glyph's scale at the top of a swell, and how long one swell or one ebb takes. */
+private const val PULSE_SCALE = 1.16f
+private const val PULSE_HALF_MS = 350

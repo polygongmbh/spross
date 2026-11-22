@@ -30,11 +30,17 @@ import net.spross.kern.design.UnlockMarkMotion
 
 /*
  * How an overview row that just unlocked is marked, once (kern's [net.spross.kern.trainer.DrillUnlockMark] decides
- * which, [UnlockMarkMotion] times it): the padlock it wore fades where it stood while a wash over the row fades with it.
+ * which): the padlock it wore fades where it stood while a wash over the row fades with it.
  * Short and quiet on purpose — it confirms what the learner earned rather than celebrating it.
  */
-private const val HOLD_MS = UnlockMarkMotion.HOLD_MS.toLong()
-private const val FADE_MS = UnlockMarkMotion.FADE_MS
+
+/** How long the padlock stands before it goes — past the screen sliding in, so the eye finds it first. */
+private const val HOLD_MS = 600L
+private const val FADE_MS = 900
+
+/** The scale the fading padlock shrinks to, and the accent's opacity in the wash over the row. */
+private const val PADLOCK_SHRINK = 0.6f
+private const val WASH_ALPHA = 0.12f
 
 /** Whether a newly unlocked row's padlock is still standing: true for [HOLD_MS], then false. */
 @Composable
@@ -55,7 +61,7 @@ fun UnlockingMark(newlyUnlocked: Boolean, mark: @Composable () -> Unit) {
         targetState = padlockStanding(newlyUnlocked),
         transitionSpec = {
             fadeIn(tween(FADE_MS)) togetherWith
-                (fadeOut(tween(FADE_MS)) + scaleOut(tween(FADE_MS), targetScale = UnlockMarkMotion.PADLOCK_SHRINK.toFloat()))
+                (fadeOut(tween(FADE_MS)) + scaleOut(tween(FADE_MS), targetScale = PADLOCK_SHRINK))
         },
         contentAlignment = Alignment.Center,
         label = "unlock",
@@ -89,7 +95,7 @@ fun Modifier.unlockWash(newlyUnlocked: Boolean): Modifier = composed {
         delay(HOLD_MS)
         alpha.animateTo(0f, tween(FADE_MS, easing = FastOutSlowInEasing))
     }
-    val wash = Theme.colors.accent.copy(alpha = UnlockMarkMotion.WASH_ALPHA.toFloat())
+    val wash = Theme.colors.accent.copy(alpha = WASH_ALPHA)
     drawBehind { drawRect(wash.copy(alpha = wash.alpha * alpha.value)) }
 }
 

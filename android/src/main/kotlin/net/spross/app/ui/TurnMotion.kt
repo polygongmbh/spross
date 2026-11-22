@@ -1,24 +1,14 @@
 package net.spross.app.ui
 
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.tween
-import net.spross.kern.design.CardMotion
 
 /**
- * The one easing a turn's own motion shares: the segments bar filling, a choice tile's fill
+ * The one spec a turn's own motion shares: the segments bar filling, a choice tile's fill
  * and mark, a scramble chip settling into place, the verdict border and the card reveal. A
  * turn is one thing happening on screen, not four widgets each picking their own curve.
  *
- * M3's standard emphasized curve (`FastOutSlowInEasing`) rather than a spring — these are
- * value transitions (color, size, weight) a spring has no rest state to overshoot toward, and
- * a fixed-duration ease is what M3 itself prescribes for content settling into place.
+ * Compose's default tween: Material's standard curve over its medium duration (300 ms),
+ * which settles a verdict before kern's live beat (`ADVANCE_LIVE_MS`) moves the card on.
  */
-private val TurnEasing = FastOutSlowInEasing
-
-/** The turn's one duration, kern's reveal timing shared with iOS. */
-private const val TURN_MOTION_MS = CardMotion.REVEAL_MS
-
-/** The shared spec every turn animation in this package reaches for, over any value type. */
-fun <T> turnTween(durationMillis: Int = TURN_MOTION_MS): FiniteAnimationSpec<T> =
-    tween(durationMillis = durationMillis, easing = TurnEasing)
+fun <T> turnTween(): FiniteAnimationSpec<T> = tween()

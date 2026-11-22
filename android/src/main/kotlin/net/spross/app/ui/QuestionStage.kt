@@ -5,7 +5,6 @@ import androidx.compose.animation.EnterExitState
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.SizeTransform
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.togetherWith
@@ -15,14 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import kotlin.math.abs
 import net.spross.app.QuestionDriver
-import net.spross.kern.design.CardMotion
 import net.spross.kern.session.Question
 
 /**
  * Where a question card stands, for the review session and every drill:
  * the switch to the next question turns the outgoing card away and the incoming one in
- * about the vertical axis, timed and angled by kern's [CardMotion] — a reveal within one
+ * about the vertical axis, each showing only its front half — a reveal within one
  * question (same [key]) changes nothing here.
  * The answer area stands outside, so the field and its focus never turn with the card.
  *
@@ -48,13 +47,13 @@ fun <S> QuestionStage(
         // outgoing card composed until it ends, and the size follows without clipping the turn.
         transitionSpec = {
             (EnterTransition.None togetherWith ExitTransition.KeepUntilTransitionsFinished)
-                .using(SizeTransform(clip = false) { _, _ -> tween(CardMotion.FLIP_MS, easing = FastOutSlowInEasing) })
+                .using(SizeTransform(clip = false) { _, _ -> tween() })
         },
         label = "questionStage",
     ) { shown ->
         // −1 before it enters, 0 standing, +1 once it has left.
         val turn = transition.animateFloat(
-            transitionSpec = { tween(CardMotion.FLIP_MS, easing = FastOutSlowInEasing) },
+            transitionSpec = { tween() },
             label = "questionFlip",
         ) { phase ->
             when (phase) {
@@ -66,12 +65,11 @@ fun <S> QuestionStage(
         Box(
             Modifier.fillMaxWidth().graphicsLayer {
                 // why: read in the draw phase, so the flip redraws the layer and recomposes nothing.
-                val t = turn.value.toDouble()
-                val angle = if (t <= 0) CardMotion.flipAngle(1 + t, incoming = true)
-                else CardMotion.flipAngle(t, incoming = false)
-                rotationY = angle.toFloat()
+                // why: past edge-on only a card's mirrored back would show, so it is hidden there.
+                val angle = -EDGE_ON * turn.value
+                rotationY = angle
                 cameraDistance = CAMERA_DISTANCE * density
-                alpha = if (CardMotion.flipShows(angle)) 1f else 0f
+                alpha = if (abs(angle) < EDGE_ON) 1f else 0f
             },
         ) { card(shown) }
     }
@@ -87,6 +85,9 @@ fun QuestionStage(question: Question, modifier: Modifier = Modifier, card: @Comp
 fun QuestionStage(flow: QuestionDriver, modifier: Modifier = Modifier, card: @Composable (Question) -> Unit) {
     QuestionStage(flow.question ?: return, modifier, card)
 }
+
+/** How far a card turns in or out: edge-on, where it vanishes. */
+private const val EDGE_ON = 90f
 
 /** How far the eye stands from a turning card, in card-independent dp — a gentle perspective. */
 private const val CAMERA_DISTANCE = 12f
