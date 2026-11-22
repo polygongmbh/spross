@@ -21,7 +21,7 @@ enum UnlockMark {
         let text = String(format: ChromeStrings.string("a11y.trainer.unlocked %@", locale: locale),
                           titles.formatted(.list(type: .and).locale(locale)))
         Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(Int(UnlockMarkMotion.shared.ANNOUNCE_DELAY_MS)))
+            try? await Task.sleep(for: .milliseconds(Int(DrillUnlockMark.shared.ANNOUNCE_DELAY_MS)))
             AccessibilityNotification.Announcement(text).post()
         }
     }

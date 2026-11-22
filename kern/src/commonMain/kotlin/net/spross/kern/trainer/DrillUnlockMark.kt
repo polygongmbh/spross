@@ -13,10 +13,12 @@ import net.spross.kern.model.Language
  * from the run that opened it is marked there, and never again.
  *
  * Which rows a page can padlock, and what they are called, is kern's ([row]); the platform
- * files the set under [key] beside the Sprosse records, and draws and announces the mark
- * ([net.spross.kern.design.UnlockMarkMotion]).
+ * files the set under [key] beside the Sprosse records, and draws and announces the mark.
  */
 object DrillUnlockMark {
+
+    /** The pause before the marked rows are announced, so the screen change being announced is not talked over. */
+    const val ANNOUNCE_DELAY_MS: Int = 700
 
     /** Store prefix of the rows a page last showed padlocked — the full key is [key]. */
     const val LOCKED_PREFIX: String = "trainer.locked."

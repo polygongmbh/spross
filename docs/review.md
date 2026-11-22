@@ -49,7 +49,8 @@ Neighbors: the evidence behind the schedule `scheduling.md`, what a card says al
   A drill's run state declares both with no default, so a new drill cannot ship without ruling on its card.
 - **A card opens on a miss or a reveal only** (`Question.opens`), never on an accepted answer,
   which already stands in the learner's own text.
-- **How a card moves is `design.CardMotion`**; each app keeps its native easing.
+- **A verdict is drawn before the card moves on**: each app's verdict motion settles inside the live beat (`ADVANCE_LIVE_MS`);
+  how a card moves is that app's own.
 
 ## Evidence
 

@@ -26,10 +26,10 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import kotlinx.coroutines.delay
 import net.spross.app.Chrome
-import net.spross.kern.design.UnlockMarkMotion
+import net.spross.kern.trainer.DrillUnlockMark
 
 /*
- * How an overview row that just unlocked is marked, once (kern's [net.spross.kern.trainer.DrillUnlockMark] decides
+ * How an overview row that just unlocked is marked, once (kern's [DrillUnlockMark] decides
  * which): the padlock it wore fades where it stood while a wash over the row fades with it.
  * Short and quiet on purpose — it confirms what the learner earned rather than celebrating it.
  */
@@ -108,7 +108,7 @@ fun AnnounceUnlocks(titles: List<String>, chrome: Chrome) {
     val view = LocalView.current
     LaunchedEffect(titles) {
         if (titles.isEmpty()) return@LaunchedEffect
-        delay(UnlockMarkMotion.ANNOUNCE_DELAY_MS.toLong())
+        delay(DrillUnlockMark.ANNOUNCE_DELAY_MS.toLong())
         @Suppress("DEPRECATION") // why: the one call that speaks without moving focus
         view.announceForAccessibility(chrome.a11yTrainerUnlocked.format(titles.joinToString(", ")))
     }
