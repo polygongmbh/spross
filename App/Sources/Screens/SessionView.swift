@@ -148,9 +148,6 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
     /// The count tells a card dealt again straight after itself from the one it follows.
     private var dealt: CardDeal { CardDeal(card: model.currentCardId, answered: model.sessionSegments.count) }
 
-    /// VoiceOver and Switch Control both make a timed screen change hostile:
-    /// it truncates the correctness announcement and moves the page under the
-    /// user. Where either runs, an explicit "Weiter" replaces the beat.
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
     @ViewBuilder

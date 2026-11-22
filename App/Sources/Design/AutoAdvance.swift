@@ -7,16 +7,11 @@ import UIKit
 /// none may run is kern's `Cue.ArmAdvance`; the screen-reader skip lives here
 /// once so no surface can forget the guard.
 enum AutoAdvance {
-    /// VoiceOver and Switch Control both make a timed screen change
-    /// hostile: it truncates the correctness announcement and moves the
-    /// page under the user. Every auto-advance surface reads this one flag
-    /// instead of deciding for itself — where it's true, callers must
-    /// render an explicit "Weiter" in the branch that would otherwise be
-    /// EmptyView() while the timer ran.
+    /// Every auto-advance surface reads this one flag instead of deciding
+    /// for itself — where it's true, callers must render an explicit "Weiter"
+    /// in the branch that would otherwise be EmptyView() while the timer ran.
     @MainActor
-    static var screenReaderOn: Bool {
-        UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-    }
+    static var screenReaderOn: Bool { UIAccessibility.isVoiceOverRunning }
 
     /// Arm the beat a turn asked for, on the beat's own number — a surface
     /// driven by kern never re-picks which of the two it is. `holding` is what

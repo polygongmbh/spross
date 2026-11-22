@@ -213,9 +213,6 @@ extension DrillRunning {
 
     // MARK: - The two things the screen reads back
 
-    /// VoiceOver and Switch Control both make a timed screen change hostile: it
-    /// truncates the correctness announcement and moves the page under the user.
-    /// Where either runs, an explicit "Weiter" replaces the beat.
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
     // MARK: - What most drills have nothing of their own to do about

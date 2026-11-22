@@ -11,7 +11,7 @@ import net.spross.kern.catalog.Chime
 sealed class Cue {
     /**
      * Arm (or re-arm) the beat before the question moves on.
-     * Where VoiceOver, Switch Control or TalkBack runs, a timed change is hostile — it truncates the
+     * Where a screen reader (VoiceOver, TalkBack) runs, a timed change is hostile — it truncates the
      * announcement and moves the page under the user — so the platform skips the timer and renders
      * the explicit button instead, which books the same answer as the beat would.
      * A near miss arms none: its correction is the point of the pause ([TurnFeedback.Almost]).
@@ -30,7 +30,7 @@ sealed class Cue {
 /**
  * The verdict a cue sounds for, and what the device does about it.
  *
- * A right answer comes all the time, so its feedback is the subtlest there is:
+ * A right answer comes on most cards, so its sound must not grow tiresome over a review:
  * the quietest chime of the four and no tap at all.
  * A near miss sounds [Almost], the correct chime's first note alone,
  * while a merged meaning with full credit is cued [Correct] (`TurnMachine.holding`).
