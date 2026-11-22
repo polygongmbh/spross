@@ -75,8 +75,11 @@ A session ends with at most one simulator or emulator running, the one the owner
   a removal is documented beyond its commit message only when it is likely to be reintroduced.
 - A rule lives in kern once — kern MINTS every decision, a platform READS it
   (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
-  anything both platforms would compute — a value, proportion, curve, timeline, threshold or shared layout (`net.spross.kern.design`) — lives in kern once;
+  anything both platforms would compute that changes what the learner can do, sees or learns —
+  a value, threshold, timeline or drawn content such as the trees (`net.spross.kern.design`) — lives in kern once;
   a platform holds only what needs its own API and converts kern's units.
+- The phones match in function, not in look: spacing, shadows, corners, type and motion follow each platform's own design,
+  from the system's defaults where it has one, in that platform's theme rather than kern.
 - Simplicity over Perfection: get behavior right for the cases that occur, in the simplest code that does.
 - A script states its usage in a `--help` text near the top, its header comment one line pointing there;
   `-h|--help` prints it, a bad argument names `--help`.
