@@ -84,15 +84,15 @@ fun SleepTimerChip(model: AppModel) {
                 onClick = { run.cycleTimer() },
                 onLongClick = { run.turnOffTimer() },
             )
-            .heightIn(min = 48.dp)
+            .heightIn(min = ListeningCornerHeight)
             .padding(horizontal = Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
-        Icon(SprossIcons.Moon, contentDescription = null, modifier = Modifier.size(18.dp), tint = tint)
+        Icon(SprossIcons.Moon, contentDescription = null, modifier = Modifier.size(20.dp), tint = tint)
         Text(
             left ?: chrome.listenTimer,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = tint,
         )
