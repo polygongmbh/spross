@@ -3437,7 +3437,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leg heute noch Holz nach!"
+            "value" : "Bleib heute am Ball!"
           }
         },
         "en" : {
@@ -3453,7 +3453,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lass dein Feuer nicht ausgehen!"
+            "value" : "Heute geht noch was!"
           }
         },
         "en" : {
@@ -3469,7 +3469,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fach die Glut wieder an!"
+            "value" : "Mach den Tag noch voll!"
           }
         },
         "en" : {
