@@ -32,6 +32,10 @@ struct ListeningView: View {
         _driver = State(initialValue: ListeningDriver(model: model))
     }
 
+    /// The height of both corner controls, the flag and the bedtime chip,
+    /// a little over the 44 pt floor so a thumb finds them without aiming.
+    private static let cornerSize: CGFloat = 48
+
     private var turn: ListeningTurn? { driver.state.turn }
 
     var body: some View {
@@ -66,7 +70,7 @@ struct ListeningView: View {
 
     // MARK: - Reporting
 
-    /// One small flag beside the timer, and behind it the two things a learner
+    /// One flag beside the timer, and behind it the two things a learner
     /// may want to say about the word on air: that what they just HEARD sounds
     /// off, in one tap and nothing typed, and the review's own report form for
     /// anything else. One button rather than two, because both are about the
@@ -92,9 +96,9 @@ struct ListeningView: View {
                 }
             } label: {
                 Image(systemName: onFile ? "flag.fill" : "flag")
-                    .font(Theme.typography.caption)
+                    .font(Theme.typography.headline)
                     .foregroundStyle(onFile ? Theme.colors.accent : Theme.colors.textSecondary)
-                    .padding(Theme.spacing.sm)
+                    .frame(width: Self.cornerSize, height: Self.cornerSize)
                     .background(Circle().fill(Theme.colors.surfaceTint))
                     .contentShape(Circle())
             }
@@ -190,10 +194,10 @@ struct ListeningView: View {
                 .accessibilityHidden(true)
             timerText
         }
-        .font(Theme.typography.caption)
+        .font(Theme.typography.subheadline)
         .foregroundStyle(driver.bedtime.isSet ? Theme.colors.accent : Theme.colors.textSecondary)
         .padding(.horizontal, Theme.spacing.md)
-        .padding(.vertical, Theme.spacing.sm)
+        .frame(minHeight: Self.cornerSize)
         .background(Capsule().fill(Theme.colors.surfaceTint))
         // The press `ChipButtonStyle` would give it, by hand — see below
         // for why this chip is not a Button.

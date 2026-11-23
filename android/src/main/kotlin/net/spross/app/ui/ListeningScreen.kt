@@ -135,8 +135,11 @@ private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {
     }
 }
 
+/** The height of both corner controls, the report flag and the bedtime chip. */
+internal val ListeningCornerHeight = 52.dp
+
 /**
- * One small flag beside the timer, and behind it the two things a learner may want to say
+ * One flag beside the timer, and behind it the two things a learner may want to say
  * about the word on air: that what they just HEARD sounds off, in one tap and nothing typed,
  * and the review's own report form for anything else. One button rather than two, because
  * both are about the same word and neither is a control the run needs at a glance.
@@ -155,15 +158,20 @@ private fun ReportFlag(model: AppModel, turn: ListeningTurn) {
     var pausedForReport by remember { mutableStateOf(false) }
     val onFile = model.reportedIssue(turn.cardId) != null
     Box {
-        IconButton(
+        FilledIconButton(
             onClick = { open = true },
-            modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.listenReport },
+            modifier = Modifier
+                .size(ListeningCornerHeight)
+                .semantics(mergeDescendants = true) { contentDescription = chrome.listenReport },
+            colors = IconButtonDefaults.filledIconButtonColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = if (onFile) MaterialTheme.colorScheme.primary else Theme.colors.textSecondary,
+            ),
         ) {
             Icon(
                 if (onFile) SprossIcons.FlagFilled else SprossIcons.Flag,
                 contentDescription = null,
-                tint = if (onFile) MaterialTheme.colorScheme.primary else Theme.colors.textSecondary,
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(24.dp),
             )
         }
         CardMenu(
