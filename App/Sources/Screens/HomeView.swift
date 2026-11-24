@@ -150,7 +150,7 @@ struct HomeView: View {
 
     // MARK: - Listening
 
-    /// `docs/design.md`, `docs/listening.md`.
+    /// `docs/design.md`, `docs/drills.md`.
     @ViewBuilder
     private var listeningCard: some View {
         // why: the check is two lookups and two voice probes; dealing the playlist waits for the run to open.

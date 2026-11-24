@@ -43,7 +43,7 @@ import net.spross.kern.listen.sayings
  * leaves the turn as it was and its whole observable is the `Play` it asks for.
  *
  * It touches no box. Nothing here books a review, writes a schedule or moves the streak —
- * listening answers nothing, so it costs the box nothing (`docs/listening.md`).
+ * listening answers nothing, so it costs the box nothing (`kern/README.md`).
  */
 class ListeningDriver(
     private val app: Application,

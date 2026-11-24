@@ -1,6 +1,6 @@
 # Spross — app design
 The app-layer rules both phones answer to: what the app composes, how an answer is asked, graded and shown, the window and the visual language; copy is `../scripts/strings.py`'s, and one screen's layout, element order, sizes, timings and inventories are the code's, not this page's.
-Neighbors: the review card `review.md`, drills `drills.md`, listening `listening.md`, the wrist and the tiles `watch-and-widgets.md`, audio `audio.md`, engine `../kern/README.md`.
+Neighbors: the review card `review.md`, drills `drills.md`, the wrist and the tiles `watch-and-widgets.md`, audio `audio.md`, engine `../kern/README.md`.
 
 ## Persistence
 

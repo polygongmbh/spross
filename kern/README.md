@@ -28,7 +28,6 @@ or a bug a restatement would bring back.
 The engine's own semantics are below. Each element the learner meets has a page of its own, engine and app rules together:
 `../docs/review.md` (what a prompt shows, the turn, the card on screen),
 `../docs/scheduling.md` (the evidence behind FSRS-6 and the retry ladder),
-`../docs/listening.md` (listening on the phone),
 `../docs/audio.md` (when and how a word is spoken),
 `../docs/watch-and-widgets.md` (the wrist and the tiles);
 and the machinery behind them:
@@ -306,7 +305,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`) --
   target word, meaning in the source language, then the target again.
   Hearing a word does not introduce it --
-  `ListeningRun` holds no `BoxState` at all.
+  `ListeningRun` holds no `BoxState` at all, so a run books no review, moves no streak and can be closed at any moment.
+  It asks nothing, so it has no end screen and laps until closed.
   The pool, the ladder, the deal, the beats and the bedtime fade are the KDoc in `net.spross.kern.listen`.
 - **Reminders are opt-in and minted here** (`net.spross.kern.reminder.Reminders`) --
   at the learner's set times or the times they habitually start practicing, several a day where they practice several times;

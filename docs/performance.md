@@ -16,7 +16,7 @@ Two things kern does not do.
 It never reads a clock —
 `nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at a pinned moment.
 And it never decides for itself when to refresh something whose truth is the platform's:
-a voice arriving from Settings while the app slept is not an event kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time and the platform owns the rebuild trigger (`listening.md`).
+a voice arriving from Settings while the app slept is not an event kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time and the platform owns the rebuild trigger.
 
 Both apps are shaped the same way:
 a screen reads values off the model, and the model takes those values when something moves.

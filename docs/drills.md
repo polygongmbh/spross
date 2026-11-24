@@ -36,6 +36,8 @@ Nothing wears a prefix one scope wider than what it serves.
   or enough opposite pairs whose both words have arrived
   (each drill's `*Availability`) --
   and the hub offers only languages with authored content.
+- **Listening earns no chip**: it asks nothing, grades nothing and has no Sprosse to reach,
+  so it is a card of its own on Home (`design.md`) rather than a peer of counting and spelling.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
   it is the brand word,
   so English chrome says "Sprosse 5".

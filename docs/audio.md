@@ -1,6 +1,6 @@
 # Audio — how a word is spoken
 Which sound plays and when, how the mutes and the audio setting interact, what is spoken and how a recording is matched to a form, and how loud it plays.
-Neighbors: the recordings' licenses `audio-licensing.md`, the manifest's file format `../catalog/audio/README.md`, listening `listening.md`.
+Neighbors: the recordings' licenses `audio-licensing.md`, the manifest's file format `../catalog/audio/README.md`.
 
 ## When a word is spoken
 
