@@ -435,7 +435,7 @@ internal object ChromeDe : Chrome {
     override val headlineStreak = listOf(
         "Bleib heute am Ball!",
         "Heute geht noch was!",
-        "Mach den Tag noch voll!",
+        "Fach die Glut wieder an!",
     )
     override val homeTallySomeCards = "Ein paar Karten für dich."
     override val homeOfferHeldBack = "%d weitere sind startklar."
