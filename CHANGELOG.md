@@ -4,6 +4,13 @@ Neighbors: what earns an entry and its wording `docs/release.md`.
 
 ## Unreleased
 
+## 9.3.4 — 2026-11-24
+
+- Hundreds of words sound better, and a word whose recording was poor is read by your phone's own voice instead.
+- On iPhone, cards sit flat on the page, and the speaker's waves light up while a word plays.
+- The streak badge on Home is more compact, and its German headlines sound more natural.
+- The report flag and bedtime timer while listening are easier to tap.
+
 ## 9.3.3 — 2026-11-17 — The Meadow card is a line shorter, with its subtitle beside the title.
 
 ## 9.3.2 — 2026-11-13

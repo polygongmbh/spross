@@ -20,7 +20,7 @@ Install + launch: `xsim` (the maintainer's dotfiles helper, `xsim --help`) build
 everything after `--` to the app:
 
 ```sh
-xsim 'iPhone 17' -- -uitest-source de -uitest-target sw -uitest-screen box
+xsim -- -uitest-source de -uitest-target sw -uitest-screen box
 xsim --no-build --shot build/shots/box.png -- -readAloud off
 ```
 
