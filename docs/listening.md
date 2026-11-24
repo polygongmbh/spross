@@ -36,11 +36,10 @@ Neighbors: how a word is spoken `audio.md`, the drills it is not `drills.md`, th
   A bedtime, and only a bedtime, gives the card a progress bar:
   it is the one thing a run that otherwise laps forever has a length of, and the system runs the bar on between pushes.
 
-- **A flag beside the timer reports the word on air**, both kinds behind one button:
-  a one-tap entry names the saying last heard and files it as questionable (`BoxEngine.flagRecording`: its language, form and file, or that a voice read it),
+- **The word on air can be reported**, both kinds behind one entry:
+  a one-tap note names the saying last heard and files it as questionable (`BoxEngine.flagRecording`: its language, form and file, or that a voice read it),
   joining whatever the card's report already says;
   the other is the review's own report form, and the run pauses while it is open and plays on after.
-  The flag fills once the word carries a report.
 - **Listening mode**: target word, meaning, target word again,
   every beat kern's (§ The playlist).
   No mute button; plays under `.playback`.
